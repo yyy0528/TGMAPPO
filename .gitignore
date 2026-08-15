@@ -1,5 +1,6 @@
 # Runtime outputs (logs, plots, checkpoints, generated figures)
 outputs/
+results/
 
 # Python bytecode and caches
 __pycache__/

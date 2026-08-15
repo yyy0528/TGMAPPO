@@ -163,7 +163,6 @@ class buoy_environment:
             )
             for _ in range(self.buoy_number)
         ]
-        print("my ooooo",self.share_observation_space)
 
     def _get_obs(self, agent: buoy_node) -> np.ndarray:
         return self.observation(agent=agent)

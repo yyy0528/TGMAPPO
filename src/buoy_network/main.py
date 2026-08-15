@@ -1,4 +1,6 @@
 import random
+import numpy as np
+import torch
 
 from .environment import buoy_environment
 from .runner import Runner
@@ -95,6 +97,9 @@ def parse_args(args, parser):
         help="the size of the buoys' grid ",
 
     )
+    parser.add_argument("--num_episodes", type=int, default=1000)
+    parser.add_argument("--num_moving_buoys", type=int, default=25)
+    parser.add_argument("--output_root", type=str, default="results")
 
     all_args = parser.parse_known_args(args)[0]
 
@@ -109,6 +114,9 @@ def main(args):
     all_args, parser = parse_args(args, parser)
     from onpolicy.config import graph_config
     all_args, parser = graph_config(args, parser)
+    random.seed(all_args.seed)
+    np.random.seed(all_args.seed)
+    torch.manual_seed(all_args.seed)
     # 浮标的格式[能力，坐标]，虽然能能量没有用到，但这个形式保留了下来
     buoys = [[10, [i, j]] for i in range(all_args.grid_size) for j in range(all_args.grid_size)]
 
@@ -143,8 +151,6 @@ def main(args):
 
     runner.run()
 
-
-random.seed(12)
 
 if __name__ == "__main__":
     main(sys.argv[1:])

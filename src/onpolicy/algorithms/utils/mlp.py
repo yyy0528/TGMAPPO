@@ -68,7 +68,6 @@ class MLPBase(nn.Module):
         if override_obs_dim is None:
             obs_dim = obs_shape[0]
         else:
-            print("Overriding Observation dimension")
             obs_dim = override_obs_dim
 
         if self._use_feature_normalization:

@@ -111,7 +111,6 @@ class GraphReplayBuffer(object):
         )
         #print(" threadtest 4share_obs, thread",self.n_rollout_threads, self.obs)
         # graph related stuff
-        print(  "my_test_esisod",self.episode_length + 1)
         self.node_obs = np.zeros(
             (
                 self.episode_length + 1,

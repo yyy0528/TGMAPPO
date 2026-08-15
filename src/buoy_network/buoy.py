@@ -321,7 +321,6 @@ class buoy_net:
         return self.buoys
 
     def build_s_rate(self,added_value):
-        print("buoy.success_rate_neighbor:\n")
         for buoy in self.buoys:
 
             buoy.success_rate_neighbor = []
@@ -343,10 +342,7 @@ class buoy_net:
                     buoy.success_rate_neighbor.append(0)
 
 
-            for  i in buoy.success_rate_neighbor:
-                print(i ,end="")
-            print("  ",end=" ")
-            for  j in range(len(added_value[buoy.id])):
+            for j in range(len(added_value[buoy.id])):
                 # print(int(added_value[buoy.id][j]),end=" ")
                 # # 假设 added_value[buoy.id][j] 是一个浮点数，例如 12.3456
                 # value = added_value[buoy.id][j]
@@ -360,11 +356,6 @@ class buoy_net:
                 num = int(added_value[buoy.id][j])
 
                 # 格式化：总宽度3，右对齐（数字靠右，左侧补空格）
-                print(f"{num:3d}", end=" ")
-
-
-
-            print(" ")
 
             # for buoy in self.buoys:
             #     # 从列表中提取字符串（假设列表只有一个元素，取索引0）

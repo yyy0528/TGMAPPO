@@ -1,0 +1,4 @@
+2026-08-15 18:45:47,817 - INFO - Episode 0 | 交付率: 0.2083 | 平均跳数: 2.25 | 平均时延: 2.60 | temp_reward: -1556.176750 |
+2026-08-15 18:45:47,951 - INFO - Training plots saved to directory: outputs\TG-MAPPO\plots\training_2026-08-15_18-45
+2026-08-15 18:45:47,951 - INFO - Delivery rate plot path: outputs\TG-MAPPO\plots\training_2026-08-15_18-45\delivery_rate_vs_episode.png
+2026-08-15 18:45:47,951 - INFO - Average hops plot path: outputs\TG-MAPPO\plots\training_2026-08-15_18-45\average_hops_vs_episode.png

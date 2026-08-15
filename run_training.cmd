@@ -12,7 +12,7 @@ if not exist "%PYTHON_EXE%" (
 cd /d "%~dp0"
 set "PYTHONPATH=%~dp0src;%PYTHONPATH%"
 
-"%PYTHON_EXE%" -m buoy_network.main ^
+"%PYTHON_EXE%" run_algorithm.py --algorithm tg-mappo ^
   --project_name TG-MAPPO ^
   --env_name GraphMPE ^
   --algorithm_name mappo ^

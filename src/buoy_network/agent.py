@@ -246,7 +246,6 @@ class DeepQNetwork(nn.Module):
         # check to replace target parameters
         if self.learn_step_counter % self.replace_target_iter == 0:
             self._replace_target_params()
-            print('\ntarget params replaced\n')
 
         # sample batch memory from all memory
         # batch_memory = self.replay_buffer.sample(self.batch_size)

@@ -94,7 +94,6 @@ class GR_Actor(nn.Module):
         ]  # returns (num_nodes, num_node_feats)
         edge_dim = get_shape_from_obs_space(edge_obs_space)[0]  # returns (edge_dim,)
 
-        print("命令行参数:", args)  # 打印所有参数
         self.gnn_base = GNNBase(args, node_obs_shape, edge_dim, args.actor_graph_aggr)
         gnn_out_dim = self.gnn_base.out_dim  # output shape from gnns
         mlp_base_in_dim = gnn_out_dim + obs_shape[0]

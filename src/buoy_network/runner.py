@@ -11,6 +11,7 @@ import logging
 from datetime import datetime
 import os
 from .utils import setup_logger
+from src.experiment_io import MetricCsvWriter, moving_buoy_ids
 
 logger = setup_logger(log_dir="outputs/TG-MAPPO/diagnostic_logs", log_name="buoy_2018")
 class tmp_buffer:
@@ -35,9 +36,21 @@ class Runner:
         self.episode_rates = []  # 存储每个episode的交付率
         self.episode_hops = []  # 存储每个episode的平均跳数
         self.episode_indices = []  # 存储episode编号（横坐标）
+        self.metric_writer = MetricCsvWriter(
+            self.env.all_args.output_root,
+            self.env.all_args.num_moving_buoys,
+            "TG-MAPPO",
+        )
+        self.moving_buoy_ids = moving_buoy_ids(
+            len(self.agents), self.env.all_args.num_moving_buoys
+        )
 
         # 新增：日志配置
-        self.log_dir = "outputs/TG-MAPPO/training_logs"
+        self.run_dir = os.path.join(
+            self.env.all_args.output_root,
+            "moves_{}".format(self.env.all_args.num_moving_buoys),
+        )
+        self.log_dir = os.path.join(self.run_dir, "logs")
         os.makedirs(self.log_dir, exist_ok=True)  # 创建日志目录
         log_file = os.path.join(self.log_dir, f"log_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log")
 
@@ -46,14 +59,13 @@ class Runner:
             level=logging.INFO,
             format="%(asctime)s - %(levelname)s - %(message)s",
             handlers=[
-                logging.FileHandler(log_file),
-                logging.StreamHandler()
+                logging.FileHandler(log_file)
             ]
         )
         self.logger = logging.getLogger(__name__)
 
     def run(self):
-        episodes = 1000
+        episodes = self.env.all_args.num_episodes
         added_value = np.zeros((len(self.agents),len(self.agents)),dtype= np.float32)
         penalty = -35
         for episode in range(episodes):
@@ -67,7 +79,6 @@ class Runner:
             self.env.packet_generation()
             self.memory_id =0
             self.agents[0].RL.policy.lr_decay(episode, episodes)
-            print("\nepisode:", episode)
             temp_reward = 0
             memory_id_poll=[]
 
@@ -482,7 +493,7 @@ class Runner:
 
                         # 新增：所有浮标完成动作后，统一调用move()
                         for agent in self.agents:
-                            if (agent.buoy.id )%1==0:
+                            if agent.buoy.id in self.moving_buoy_ids:
                                  agent.buoy.move()  # 每个浮标执行移动
                         # 移动后可能需要重新计算邻居关系（如果位置变化影响邻居判断）
                         # 例如：self.env.update_neighbors()  # 假设环境有更新邻居的方法
@@ -504,6 +515,9 @@ class Runner:
             self.episode_indices.append(episode)  # 记录episode编号
             self.episode_rates.append(rate)  # 记录交付率
             self.episode_hops.append(average_hops)  # 记录平均跳数
+            self.metric_writer.write(
+                episode, rate, average_hops, average_q_time
+            )
 
             # 新增：输出日志（包含当前episode的关键指标）
             self.logger.info(
@@ -513,7 +527,6 @@ class Runner:
                 f"平均时延: {average_q_time:.2f} | "
                 f"temp_reward: {temp_reward: 2f} |"
             )
-            print(f"temp_reward: {temp_reward}")
 
             # 原代码：打印到控制台（可选，日志已包含）
             print(
@@ -521,6 +534,7 @@ class Runner:
 
         # 新增：所有episode结束后绘制图像
         self.plot_metrics()
+        self.metric_writer.close()
 
     # # 新增：绘图函数
     # def plot_metrics(self):
@@ -559,7 +573,7 @@ class Runner:
         # 1. 生成时间戳（格式：年-月-日_时-分，避免特殊字符）
         timestamp = time.strftime("%Y-%m-%d_%H-%M", time.localtime())
         # 2. 创建带时间戳的图像目录（格式：training_plots_2025-10-20_14-30）
-        plot_dir = os.path.join("outputs", "TG-MAPPO", "plots", f"training_{timestamp}")
+        plot_dir = os.path.join(self.run_dir, "plots", "TG_MAPPO")
         os.makedirs(plot_dir, exist_ok=True)
 
         # -------------------------- 绘制交付率曲线（英文版本）--------------------------
