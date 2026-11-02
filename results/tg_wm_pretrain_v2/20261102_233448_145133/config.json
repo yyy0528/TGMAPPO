@@ -1,0 +1,13 @@
+{
+  "dataset": "results/tg_wm_mixed_data/20261102_231446_057743",
+  "epochs": 40,
+  "batch_size": 128,
+  "hidden": 64,
+  "lr": 0.001,
+  "seed": 12,
+  "history_length": 4,
+  "device": "cpu",
+  "overfit_samples": 0,
+  "skip_test": true,
+  "output_root": "results/tg_wm_pretrain_v2"
+}

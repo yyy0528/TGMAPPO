@@ -1,0 +1,61 @@
+{
+  "mode": "supervised_pretrain",
+  "initial_validation": {
+    "samples": 3823,
+    "attempts": 3301,
+    "ack_brier": 0.2496328055858612,
+    "ack_nll": 0.6924126744270325,
+    "ack_prior_brier": 0.24974817037582397,
+    "ack_history_link_brier": 0.24904818832874298,
+    "queue_mse": 0.0011584650492295623,
+    "queue_persistence_mse": 0.0012175197480246425,
+    "motion_mse": 0.0007880443590693176,
+    "motion_persistence_mse": 0.0007677213288843632
+  },
+  "training": {
+    "samples": 3799,
+    "attempts": 3234,
+    "ack_brier": 0.23416641354560852,
+    "ack_nll": 0.6603723168373108,
+    "ack_prior_brier": 0.24416667222976685,
+    "ack_history_link_brier": 0.2488252967596054,
+    "queue_mse": 0.0009476721752434969,
+    "queue_persistence_mse": 0.0013194247148931026,
+    "motion_mse": 0.0007332497625611722,
+    "motion_persistence_mse": 0.0007330874213948846
+  },
+  "validation": {
+    "samples": 3823,
+    "attempts": 3301,
+    "ack_brier": 0.25079724192619324,
+    "ack_nll": 0.6950695514678955,
+    "ack_prior_brier": 0.24974817037582397,
+    "ack_history_link_brier": 0.24904818832874298,
+    "queue_mse": 0.0009138864697888494,
+    "queue_persistence_mse": 0.0012175197480246425,
+    "motion_mse": 0.0007683720323257148,
+    "motion_persistence_mse": 0.0007677213288843632
+  },
+  "selected_epoch": 10,
+  "parameter_count": 64133,
+  "training_seconds": 42.805357399978675,
+  "checkpoint_sha256": "0d32d71963378244839fb8189926e633e9454381e3b1496cba2adf8b56429c23",
+  "test": {
+    "samples": 3563,
+    "attempts": 3012,
+    "ack_brier": 0.24671205878257751,
+    "ack_nll": 0.686881959438324,
+    "ack_prior_brier": 0.2477189600467682,
+    "ack_history_link_brier": 0.24934230744838715,
+    "queue_mse": 0.0009087171056307852,
+    "queue_persistence_mse": 0.0012201628414914012,
+    "motion_mse": 0.0007188896997831762,
+    "motion_persistence_mse": 0.0007184954592958093
+  },
+  "integration_gate": {
+    "ack": false,
+    "queue": true,
+    "motion": false
+  },
+  "weights_unchanged_during_evaluation": true
+}

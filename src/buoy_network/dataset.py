@@ -213,13 +213,19 @@ def iter_wm_samples(root, split="train", history_length=4):
                 current_episode = row["episode_id"]
                 history = [deque(maxlen=history_length) for _ in row["events"]]
                 previous = [None] * len(row["events"])
+                previous_ack = [None] * len(row["events"])
+                previous_attempt = [False] * len(row["events"])
             for node, event in enumerate(row["events"]):
                 actor = before["actor_inputs"]
                 history[node].append({"step": row["step"], "own_obs": actor["obs"][node],
                                       "node_features": actor["node_features"], "distances": actor["distances"],
                                       "available_actions": actor["available_actions"][node],
-                                      "own_previous_action": previous[node]})
+                                      "own_previous_action": previous[node],
+                                      "own_previous_ack": previous_ack[node],
+                                      "own_previous_attempt": previous_attempt[node]})
                 previous[node] = event["action"]
+                previous_ack[node] = event["ack"]
+                previous_attempt[node] = event["attempted"]
                 if event["packet_id"] is None:
                     continue
                 yield {"episode_id": current_episode, "step": row["step"], "agent_id": node,

@@ -1,0 +1,35 @@
+{
+  "python": "D:\\python3.6.8\\python.exe",
+  "scope": "legacy_fixed_v1 targeted regressions",
+  "stages": [
+    {
+      "name": "functions",
+      "tests": 20,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 2.013,
+      "log": "functions.log"
+    },
+    {
+      "name": "modules",
+      "tests": 24,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 7.771,
+      "log": "modules.log"
+    },
+    {
+      "name": "integration",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 24.534,
+      "log": "integration.log"
+    }
+  ],
+  "success": true,
+  "tests": 50
+}

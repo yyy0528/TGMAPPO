@@ -151,16 +151,21 @@ class RecorderModuleTests(unittest.TestCase):
 
     def test_reader_has_only_past_actions_and_current_inputs_with_wait_mask(self):
         with tempfile.TemporaryDirectory() as temp:
-            root = self.run_script(temp, [{0: 1}, {}, {}])
+            root = self.run_script(temp, [{0: 1, 1: 2}, {}, {}])
             audit_run(root)
             samples = list(iter_wm_samples(root, history_length=2))
             first = next(sample for sample in samples if sample["agent_id"] == 0 and sample["step"] == 0)
             self.assertEqual(first["inputs"]["candidate_action"], 1)
             self.assertIsNone(first["inputs"]["history"][0]["own_previous_action"])
+            self.assertIsNone(first["inputs"]["history"][0]["own_previous_ack"])
+            self.assertFalse(first["inputs"]["history"][0]["own_previous_attempt"])
+            next_sender = next(sample for sample in samples if sample["agent_id"] == 1 and sample["step"] == 1)
+            self.assertTrue(next_sender["inputs"]["history"][-1]["own_previous_ack"])
+            self.assertTrue(next_sender["inputs"]["history"][-1]["own_previous_attempt"])
             self.assertTrue(first["targets"]["ack_loss_mask"])
             waited = next(sample for sample in samples if sample["agent_id"] == 1 and sample["step"] == 1)
             self.assertEqual([frame["step"] for frame in waited["inputs"]["history"]], [0, 1])
-            self.assertEqual(waited["inputs"]["history"][-1]["own_previous_action"], 25)
+            self.assertEqual(waited["inputs"]["history"][-1]["own_previous_action"], 2)
             self.assertFalse(waited["targets"]["ack_loss_mask"])
             self.assertIsNone(waited["targets"]["ack"])
             self.assertNotIn("diagnostic", json.dumps(waited["inputs"]))

@@ -1,0 +1,44 @@
+{
+  "mode": "overfit_check",
+  "initial_validation": {
+    "samples": 32,
+    "attempts": 24,
+    "ack_brier": 0.24593691527843475,
+    "ack_nll": 0.685014009475708,
+    "ack_prior_brier": 0.2430555820465088,
+    "ack_history_link_brier": 0.25,
+    "queue_mse": 0.0015799164539203048,
+    "queue_persistence_mse": 0.0015811010962352157,
+    "motion_mse": 0.0009576980373822153,
+    "motion_persistence_mse": 0.0009374995133839548
+  },
+  "training": {
+    "samples": 32,
+    "attempts": 24,
+    "ack_brier": 2.9220430519671936e-08,
+    "ack_nll": 0.00010559615475358441,
+    "ack_prior_brier": 0.2430555820465088,
+    "ack_history_link_brier": 0.25,
+    "queue_mse": 1.9160369291171264e-08,
+    "queue_persistence_mse": 0.0015811010962352157,
+    "motion_mse": 3.4344015631404545e-08,
+    "motion_persistence_mse": 0.0009374995133839548
+  },
+  "validation": {
+    "samples": 32,
+    "attempts": 24,
+    "ack_brier": 2.9220430519671936e-08,
+    "ack_nll": 0.00010559615475358441,
+    "ack_prior_brier": 0.2430555820465088,
+    "ack_history_link_brier": 0.25,
+    "queue_mse": 1.9160369291171264e-08,
+    "queue_persistence_mse": 0.0015811010962352157,
+    "motion_mse": 3.4344015631404545e-08,
+    "motion_persistence_mse": 0.0009374995133839548
+  },
+  "selected_epoch": 200,
+  "parameter_count": 64517,
+  "training_seconds": 2.2444515000097454,
+  "checkpoint_sha256": "6a1c4f233645662671c55bf1b35e1d17f387520176ff0fabdf0cc22303bfbce7",
+  "weights_unchanged_during_evaluation": true
+}
