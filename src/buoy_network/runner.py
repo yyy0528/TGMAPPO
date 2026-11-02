@@ -13,6 +13,8 @@ from datetime import datetime
 import os
 from .utils import setup_logger
 from src.experiment_io import MetricCsvWriter, moving_buoy_ids
+from .transition_data import TransitionRecorder, routing_actions
+import random
 
 logger = setup_logger(log_dir="outputs/TG-MAPPO/diagnostic_logs", log_name="buoy_2018")
 class tmp_buffer:
@@ -53,6 +55,15 @@ class Runner:
         )
         self.log_dir = os.path.join(self.run_dir, "logs")
         os.makedirs(self.log_dir, exist_ok=True)  # 创建日志目录
+        self.data_exporter = None
+        self.data_behavior = getattr(self.env.all_args, "data_behavior", "tg-mappo")
+        self.data_rng = random.Random(getattr(self.env.all_args, "seed", 0))
+        if getattr(self.env.all_args, "export_wm_data", False):
+            self.data_exporter = TransitionRecorder(
+                os.path.join(self.run_dir, "wm_data"), self.env.all_args,
+                self.env.all_args.wm_export_max_steps,
+                self.env.all_args.wm_export_max_bytes,
+                self.env.all_args.wm_export_max_packets)
         log_file = os.path.join(self.log_dir, f"log_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log")
 
         # 配置日志：同时输出到文件和控制台
@@ -72,6 +83,8 @@ class Runner:
         try:
             return self._run()
         finally:
+            if self.data_exporter is not None:
+                self.data_exporter.close()
             self.metric_writer.close()
             self.logger.removeHandler(self._log_handler)
             self._log_handler.close()
@@ -92,6 +105,8 @@ class Runner:
             self.env.packet_generation()
             next_queue_order = self.env.packet_id
             self.agents[0].RL.warmup()
+            if self.data_exporter is not None:
+                self.data_exporter.start_episode(self.env, episode, added_value)
             self.memory_id =0
             self.agents[0].RL.policy.lr_decay(episode, episodes)
             temp_reward = 0
@@ -117,11 +132,19 @@ class Runner:
                     rnn_states_critic,
                     actions_env,
                 ) = self.agents[0].RL.collect(self.step)
+                if self.data_behavior != "tg-mappo":
+                    rule_actions, rule_logp = routing_actions(self.env, self.data_behavior, self.data_rng)
+                    actions = np.asarray(rule_actions, dtype=np.int64)
+                    action_log_probs = np.asarray(rule_logp, dtype=np.float32)
+                    actions_env = np.squeeze(np.eye(self.env.buoy_number + 1)[actions], 2)
                 for node in range(self.env.buoy_number):
                     action_index = int(actions[0][node][0])
                     if not 0 <= action_index <= self.env.buoy_number or not available_t[0, node, action_index]:
                         raise ValueError("Sampled action violates the current physical action mask")
                 self.memory_id += 1
+                if self.data_exporter is not None:
+                    self.data_exporter.start_step(self.env, actions, action_log_probs,
+                                                  values, service_packet_ids)
                 actions_mask_list,  obs_list, agent_id_list, node_obs_list, adj_list, reward_list, done_list=[],[],[],[],[],[],[]
                 #print(obs_list)
                 tme_b = tmp_buffer(self.memory_id)
@@ -297,7 +320,12 @@ class Runner:
 
                     else:
                         agent.step += 1
+                        queue_before = (buoy.packet, self.env.buoys[action_origin].packet)
                         reward, done, reach = self.env.buoy_go(action,pass_added_reward,penalty)
+                        if self.data_exporter is not None:
+                            self.data_exporter.attempt(
+                                self.env, buoy.id, action_origin, service_packet_ids.get(buoy.id),
+                                reach, reward, pass_added_reward, penalty, queue_before)
 
                         obs_n, agent_id_n, node_obs_n, adj_n, reward_n, done_n =  self.env.step_one_agent(buoy.id, reward, done)
                         actions_mask_list.append([1])
@@ -340,6 +368,8 @@ class Runner:
                                 if k == 0:
                                     k = 1
                                     packet.transmit(action[1])
+                                    if self.data_exporter is not None:
+                                        self.data_exporter.transmitted(packet)
                                     packet.queue_order = next_queue_order
                                     next_queue_order += 1
                                     forwarded_packet_ids.add(packet.id)
@@ -474,6 +504,8 @@ class Runner:
 
                 reward_tmp = np.sum(reward_list)
                 temp_reward += reward_tmp
+                if self.data_exporter is not None:
+                    self.data_exporter.end_step(self.env, added_value, reward_tmp, terminal)
                 #print(f"reward_tep: {reward_tmp}")
 
                 reward_list = [[reward_tmp]] * len(self.agents)
@@ -503,8 +535,9 @@ class Runner:
                 # insert data into buffer
                 self.agents[0].RL.insert(data)
                 if terminal:
-                    self.agents[0].RL.compute()
-                    train_infos = self.agents[0].RL.train()
+                    if self.data_behavior == "tg-mappo":
+                        self.agents[0].RL.compute()
+                        train_infos = self.agents[0].RL.train()
                     #print(self.step,self.env.all_args.episode_length)
 
                     break

@@ -98,6 +98,14 @@ def parse_args(args, parser):
     )
     parser.add_argument("--num_episodes", type=int, default=1000)
     parser.add_argument("--num_moving_buoys", type=int, default=25)
+    parser.add_argument("--scenario_seed", type=int, default=None,
+                        help="Optional simulator RNG seed; omitted preserves legacy seed 2568")
+    parser.add_argument("--export_wm_data", type=lambda x: bool(strtobool(x)), default=False)
+    parser.add_argument("--data_behavior", choices=("tg-mappo", "random", "geographic"), default="tg-mappo")
+    parser.add_argument("--wm_data_split", choices=("train", "validation", "test"), default="train")
+    parser.add_argument("--wm_export_max_steps", type=int, default=20000)
+    parser.add_argument("--wm_export_max_bytes", type=int, default=268435456)
+    parser.add_argument("--wm_export_max_packets", type=int, default=10000)
     parser.add_argument("--output_root", type=str, default="results")
 
     all_args = parser.parse_known_args(args)[0]
@@ -133,6 +141,15 @@ def main(args):
         parser.error("Require positive episode settings/comm_range and one rollout thread")
     # The buoy graph and legal routing links must have the same physical radius.
     all_args.max_edge_dist = all_args.comm_range
+    if all_args.data_behavior != "tg-mappo" and not all_args.export_wm_data:
+        parser.error("Rule behavior is data-only and requires --export_wm_data true")
+    if all_args.scenario_seed is not None and not 0 <= all_args.scenario_seed < 2 ** 32:
+        parser.error("scenario_seed must be in [0, 2**32)")
+    if all_args.export_wm_data and (
+            min(all_args.wm_export_max_steps, all_args.wm_export_max_bytes,
+                all_args.wm_export_max_packets) <= 0
+            or all_args.effective_num_env_steps > all_args.wm_export_max_steps):
+        parser.error("WM data budgets must be positive and cover the full requested training")
     print("Training budget: {} episodes x {} joint slots = {} environment steps ({})".format(
         all_args.num_episodes, all_args.episode_length,
         all_args.effective_num_env_steps, all_args.training_budget_source), flush=True)

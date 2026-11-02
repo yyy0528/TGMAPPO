@@ -573,7 +573,8 @@ class buoy_environment:
 
     def packet_generation(self):
 
-        np.random.seed(2568)
+        scenario_seed = getattr(self.all_args, "scenario_seed", None)
+        np.random.seed(2568 if scenario_seed is None else scenario_seed)
         for buoy in self.buoys:
             if buoy.if_sink:
                 continue

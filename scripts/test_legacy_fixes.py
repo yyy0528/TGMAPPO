@@ -30,15 +30,19 @@ def main():
         import test_legacy_targeted_fixes as regressions
         import test_legacy_budget as budgets
         import test_plot_comparison as comparison
+        import test_legacy_transition_data as datasets
     except unittest.SkipTest as exc:
         parser.error(str(exc))
     destination = Path(args.output_root).resolve() / datetime.now().strftime("%Y%m%d_%H%M%S_%f")
     destination.mkdir(parents=True, exist_ok=False)
     report = {"python": sys.executable, "scope": "legacy_fixed_v1 targeted regressions", "stages": []}
     stages = (
-        ("functions", (regressions.GeometryAndChannelFixes, budgets.TrainingBudgetTests)),
-        ("modules", (regressions.ActionAndRolloutFixes, comparison.ComparisonPlotTests)),
-        ("integration", (regressions.ArgumentFixes, regressions.NeuralIntegrationFixes)),
+        ("functions", (regressions.GeometryAndChannelFixes, budgets.TrainingBudgetTests,
+                       datasets.SnapshotFunctionTests)),
+        ("modules", (regressions.ActionAndRolloutFixes, comparison.ComparisonPlotTests,
+                     datasets.RecorderModuleTests)),
+        ("integration", (regressions.ArgumentFixes, regressions.NeuralIntegrationFixes,
+                         datasets.ExportProcessIntegrationTests)),
     )
     success = True
     for name, classes in stages:

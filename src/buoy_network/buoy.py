@@ -217,7 +217,8 @@ class buoy_net:
         self.count_NB = []  # 这个还没用上
         self.buoys_number = len(buoys)
         self.comm_range = getattr(all_args, "comm_range", 1.5)
-        random.seed(2568)
+        scenario_seed = getattr(all_args, "scenario_seed", None)
+        random.seed(2568 if scenario_seed is None else scenario_seed)
         self.initialize_node(buoys,all_args)
         # 初始化局部网络
         self.adj_matrix = self.build_adjacency_matrix()

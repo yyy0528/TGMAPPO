@@ -1,0 +1,84 @@
+{
+  "date": "2026-11-02",
+  "step": 3,
+  "status": "complete: legacy data export, small mixed collection and audit",
+  "next_step": 4,
+  "next_action": "Train minimal supervised WM on train histories; fit normalization on train only; start with ACK and queue targets",
+  "python": "D:\\python3.6.8\\python.exe",
+  "device": "cpu",
+  "git_base": "8f4ccaac4893bd0948193409d5f81dd00c1b048c",
+  "branch": "experiment/tg-wm-pm",
+  "source_provenance": "source_provenance.json",
+  "source_snapshot": "source_snapshot",
+  "source_files_verified": 126,
+  "collection_manifest": "dataset_manifest.json",
+  "independent_audit": "audit_report.json",
+  "behaviors": ["tg-mappo", "random", "geographic"],
+  "scenario_seeds_by_split": {"train": 0, "validation": 101, "test": 202},
+  "collection": {
+    "processes": 9,
+    "episodes": 18,
+    "joint_slots": 1440,
+    "snapshots": 1458,
+    "packets": 432,
+    "delivered": 223,
+    "unresolved": 209,
+    "jsonl_bytes": 53670677,
+    "final_failure_labels": 0
+  },
+  "legacy_regression": {
+    "report": "../../tg_step3_acceptance_regression/20261102_231256_960712/test_report.json",
+    "functions": 20,
+    "modules": 24,
+    "integration": 6,
+    "tests": 50,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "reference_framework_regression": {
+    "report": "../../tg_step3_research_regression_unrestricted/20261102_230423_725946/test_report.json",
+    "tests": 96,
+    "passed": true
+  },
+  "baseline_compatibility": {
+    "new_csv": "../../tg_step3_final_baseline_compat/runs/20261102_231444_672746/moves_5/logs/TG_MAPPO_metrics.csv",
+    "previous_csv": "../../tg_step2_smoke/runs/20261102_223655_296563/moves_5/logs/TG_MAPPO_metrics.csv",
+    "episodes": 2,
+    "joint_slots": 160,
+    "export_enabled": true,
+    "scenario_seed_override": false,
+    "exact_csv_match": true,
+    "delivery_rates": [0.375, 0.25]
+  },
+  "manual_sample": {
+    "run": "tg-mappo_seed_0",
+    "episode": 0,
+    "step": 0,
+    "sender": 0,
+    "action": 5,
+    "distance": 1.0,
+    "legal": true,
+    "attempted": true,
+    "ack": false,
+    "queue_before": [1, 1],
+    "queue_after": [1, 1],
+    "sender_legacy_reward": -35.5,
+    "final_outcome": null,
+    "censored": true
+  },
+  "resolved_issues": [
+    "Optional scenario_seed overrides hard-coded 2568; omitted keeps default legacy behavior",
+    "Legacy guard allows only explicit WM export options",
+    "Explicit LF makes JSONL byte budget match Windows file sizes",
+    "Same scenario seed cannot cross dataset splits; same source path cannot be reused"
+  ],
+  "execution_restrictions": "Sandbox denied SciPy access and reference temporary-file replacement; authorized unrestricted reruns passed",
+  "limits": [
+    "No real legacy TTL failure mechanism; unresolved packets remain censored",
+    "No WM/PM training implemented in this step",
+    "Rule collection does not update PPO",
+    "No GPU performance or converged-policy claim",
+    "Raw normalization is not fitted; future trainer must fit on train only"
+  ]
+}

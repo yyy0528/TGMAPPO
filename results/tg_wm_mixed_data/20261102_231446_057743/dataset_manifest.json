@@ -1,0 +1,230 @@
+{
+  "schema_version": "legacy_tg_collection_v1",
+  "complete": true,
+  "node_count": 25,
+  "requested_steps": 1440,
+  "runs": [
+    {
+      "scenario_seed": 0,
+      "policy_seed": 0,
+      "split": "train",
+      "behavior": "tg-mappo",
+      "data_path": "source_runs\\runs\\tg-mappo_seed_0\\moves_5\\wm_data",
+      "audit": {
+        "passed": true,
+        "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_mixed_data\\20261102_231446_057743\\source_runs\\runs\\tg-mappo_seed_0\\moves_5\\wm_data",
+        "split": "train",
+        "scenario_seed": 0,
+        "episodes": 2,
+        "steps": 160,
+        "snapshots": 162,
+        "packets": 48,
+        "delivered": 14,
+        "unresolved": 34,
+        "attempts": 1473,
+        "ack_successes": 850,
+        "waits": 2527,
+        "bytes": 6242194
+      }
+    },
+    {
+      "scenario_seed": 0,
+      "policy_seed": 0,
+      "split": "train",
+      "behavior": "random",
+      "data_path": "source_runs\\runs\\random_seed_0\\moves_5\\wm_data",
+      "audit": {
+        "passed": true,
+        "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_mixed_data\\20261102_231446_057743\\source_runs\\runs\\random_seed_0\\moves_5\\wm_data",
+        "split": "train",
+        "scenario_seed": 0,
+        "episodes": 2,
+        "steps": 160,
+        "snapshots": 162,
+        "packets": 48,
+        "delivered": 8,
+        "unresolved": 40,
+        "attempts": 1464,
+        "ack_successes": 873,
+        "waits": 2536,
+        "bytes": 6221525
+      }
+    },
+    {
+      "scenario_seed": 0,
+      "policy_seed": 0,
+      "split": "train",
+      "behavior": "geographic",
+      "data_path": "source_runs\\runs\\geographic_seed_0\\moves_5\\wm_data",
+      "audit": {
+        "passed": true,
+        "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_mixed_data\\20261102_231446_057743\\source_runs\\runs\\geographic_seed_0\\moves_5\\wm_data",
+        "split": "train",
+        "scenario_seed": 0,
+        "episodes": 2,
+        "steps": 160,
+        "snapshots": 162,
+        "packets": 48,
+        "delivered": 48,
+        "unresolved": 0,
+        "attempts": 297,
+        "ack_successes": 141,
+        "waits": 3703,
+        "bytes": 5518411
+      }
+    },
+    {
+      "scenario_seed": 101,
+      "policy_seed": 101,
+      "split": "validation",
+      "behavior": "tg-mappo",
+      "data_path": "source_runs\\runs\\tg-mappo_seed_101\\moves_5\\wm_data",
+      "audit": {
+        "passed": true,
+        "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_mixed_data\\20261102_231446_057743\\source_runs\\runs\\tg-mappo_seed_101\\moves_5\\wm_data",
+        "split": "validation",
+        "scenario_seed": 101,
+        "episodes": 2,
+        "steps": 160,
+        "snapshots": 162,
+        "packets": 48,
+        "delivered": 15,
+        "unresolved": 33,
+        "attempts": 1467,
+        "ack_successes": 794,
+        "waits": 2533,
+        "bytes": 6191298
+      }
+    },
+    {
+      "scenario_seed": 101,
+      "policy_seed": 101,
+      "split": "validation",
+      "behavior": "random",
+      "data_path": "source_runs\\runs\\random_seed_101\\moves_5\\wm_data",
+      "audit": {
+        "passed": true,
+        "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_mixed_data\\20261102_231446_057743\\source_runs\\runs\\random_seed_101\\moves_5\\wm_data",
+        "split": "validation",
+        "scenario_seed": 101,
+        "episodes": 2,
+        "steps": 160,
+        "snapshots": 162,
+        "packets": 48,
+        "delivered": 7,
+        "unresolved": 41,
+        "attempts": 1623,
+        "ack_successes": 848,
+        "waits": 2377,
+        "bytes": 6257896
+      }
+    },
+    {
+      "scenario_seed": 101,
+      "policy_seed": 101,
+      "split": "validation",
+      "behavior": "geographic",
+      "data_path": "source_runs\\runs\\geographic_seed_101\\moves_5\\wm_data",
+      "audit": {
+        "passed": true,
+        "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_mixed_data\\20261102_231446_057743\\source_runs\\runs\\geographic_seed_101\\moves_5\\wm_data",
+        "split": "validation",
+        "scenario_seed": 101,
+        "episodes": 2,
+        "steps": 160,
+        "snapshots": 162,
+        "packets": 48,
+        "delivered": 48,
+        "unresolved": 0,
+        "attempts": 211,
+        "ack_successes": 140,
+        "waits": 3789,
+        "bytes": 5446575
+      }
+    },
+    {
+      "scenario_seed": 202,
+      "policy_seed": 202,
+      "split": "test",
+      "behavior": "tg-mappo",
+      "data_path": "source_runs\\runs\\tg-mappo_seed_202\\moves_5\\wm_data",
+      "audit": {
+        "passed": true,
+        "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_mixed_data\\20261102_231446_057743\\source_runs\\runs\\tg-mappo_seed_202\\moves_5\\wm_data",
+        "split": "test",
+        "scenario_seed": 202,
+        "episodes": 2,
+        "steps": 160,
+        "snapshots": 162,
+        "packets": 48,
+        "delivered": 18,
+        "unresolved": 30,
+        "attempts": 1391,
+        "ack_successes": 763,
+        "waits": 2609,
+        "bytes": 6140394
+      }
+    },
+    {
+      "scenario_seed": 202,
+      "policy_seed": 202,
+      "split": "test",
+      "behavior": "random",
+      "data_path": "source_runs\\runs\\random_seed_202\\moves_5\\wm_data",
+      "audit": {
+        "passed": true,
+        "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_mixed_data\\20261102_231446_057743\\source_runs\\runs\\random_seed_202\\moves_5\\wm_data",
+        "split": "test",
+        "scenario_seed": 202,
+        "episodes": 2,
+        "steps": 160,
+        "snapshots": 162,
+        "packets": 48,
+        "delivered": 17,
+        "unresolved": 31,
+        "attempts": 1401,
+        "ack_successes": 763,
+        "waits": 2599,
+        "bytes": 6189334
+      }
+    },
+    {
+      "scenario_seed": 202,
+      "policy_seed": 202,
+      "split": "test",
+      "behavior": "geographic",
+      "data_path": "source_runs\\runs\\geographic_seed_202\\moves_5\\wm_data",
+      "audit": {
+        "passed": true,
+        "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_mixed_data\\20261102_231446_057743\\source_runs\\runs\\geographic_seed_202\\moves_5\\wm_data",
+        "split": "test",
+        "scenario_seed": 202,
+        "episodes": 2,
+        "steps": 160,
+        "snapshots": 162,
+        "packets": 48,
+        "delivered": 48,
+        "unresolved": 0,
+        "attempts": 220,
+        "ack_successes": 140,
+        "waits": 3780,
+        "bytes": 5463050
+      }
+    }
+  ],
+  "split_rule": "independent processes; disjoint explicit scenario seeds; full runs/episodes",
+  "normalization": "raw data only; fit on training split in future WM trainer",
+  "behaviors": [
+    "tg-mappo",
+    "random",
+    "geographic"
+  ],
+  "behavior": "TG-MAPPO online PPO; rules collect without PPO; independent processes",
+  "budgets": {
+    "max_steps": 20000,
+    "max_bytes": 268435456,
+    "max_packets": 10000
+  },
+  "total_steps": 1440,
+  "total_jsonl_bytes": 53670677
+}

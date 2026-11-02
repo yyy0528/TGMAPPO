@@ -43,11 +43,12 @@ def reject_research_options(arguments):
         "dataset", "plugin", "config", "policy", "checkpoint", "policy_checkpoint", "resume",
     }
     unsupported = []
+    data_options = {"wm_data_split", "wm_export_max_steps", "wm_export_max_bytes", "wm_export_max_packets"}
     for argument in arguments:
         if not argument.startswith("--"):
             continue
         name = argument[2:].split("=", 1)[0].replace("-", "_")
-        if name in research_names or name.startswith(("wm_", "pm_")):
+        if name in research_names or (name.startswith(("wm_", "pm_")) and name not in data_options):
             unsupported.append(argument.split("=", 1)[0])
     if unsupported:
         raise ValueError(
