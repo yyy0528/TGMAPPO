@@ -200,7 +200,23 @@ class GraphReplayBuffer(object):
         self.active_masks = np.ones_like(self.masks)
 
         self.step = 0
+        self.filled_steps = 0
         self.tag =[]
+
+    def reset_episode(self):
+        """Start a true task boundary; do not carry recurrent state across resets."""
+        self.step = 0
+        self.filled_steps = 0
+        self.tag = []
+        self.memory_list.fill(0)
+        self.rnn_states.fill(0)
+        self.rnn_states_critic.fill(0)
+        self.masks.fill(1)
+        self.bad_masks.fill(1)
+        self.active_masks.fill(1)
+        self.value_preds.fill(0)
+        self.returns.fill(0)
+        self.rewards.fill(0)
 
     def insert(
         self,
@@ -261,6 +277,10 @@ class GraphReplayBuffer(object):
             actions available to each agent.
             If None, all actions are available.
         """
+        if self.filled_steps >= self.episode_length:
+            raise RuntimeError("Graph rollout is full; update/reset before inserting another transition")
+        if available_actions is not None and np.shape(available_actions) != self.available_actions[self.step + 1].shape:
+            raise ValueError("Expected next-observation action masks with shape [envs, N, N+1]")
         self.tag += memory_id_pool
         self.share_obs[self.step + 1] = share_obs.copy()
         self.obs[self.step + 1] = obs.copy()
@@ -286,10 +306,13 @@ class GraphReplayBuffer(object):
             self.available_actions[self.step + 1] = available_actions.copy()
 
         self.step = (self.step + 1) % self.episode_length
+        self.filled_steps += 1
 
     def after_update(self) -> None:
         """Copy last timestep data to first index. Called after update to model."""
         self.tag =[]
+        self.step = 0
+        self.filled_steps = 0
         self.share_obs[0] = self.share_obs[-1].copy()
         self.obs[0] = self.obs[-1].copy()
         self.node_obs[0] = self.node_obs[-1].copy()

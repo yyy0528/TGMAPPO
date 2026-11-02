@@ -7,6 +7,7 @@ import logging
 from datetime import datetime
 import os
 import time
+import json
 import logging
 from datetime import datetime
 import os
@@ -55,37 +56,56 @@ class Runner:
         log_file = os.path.join(self.log_dir, f"log_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log")
 
         # 配置日志：同时输出到文件和控制台
-        logging.basicConfig(
-            level=logging.INFO,
-            format="%(asctime)s - %(levelname)s - %(message)s",
-            handlers=[
-                logging.FileHandler(log_file)
-            ]
-        )
-        self.logger = logging.getLogger(__name__)
+        self.logger = logging.getLogger(__name__ + "." + str(id(self)))
+        self.logger.setLevel(logging.INFO)
+        self.logger.propagate = False
+        self._log_handler = logging.FileHandler(log_file)
+        self._log_handler.setFormatter(logging.Formatter("%(message)s"))
+        self.logger.addHandler(self._log_handler)
+        with open(os.path.join(self.log_dir, "TG_MAPPO_environment.json"), "w", encoding="utf-8") as stream:
+            json.dump({"implementation": "legacy_fixed_v1", "node_features": [
+                "x", "y", "queue_fraction", "entity_type"],
+                "action_schema": "global_node_wait_v1", "config": vars(self.env.all_args)},
+                stream, indent=2)
 
     def run(self):
+        try:
+            return self._run()
+        finally:
+            self.metric_writer.close()
+            self.logger.removeHandler(self._log_handler)
+            self._log_handler.close()
+
+    def _run(self):
         episodes = self.env.all_args.num_episodes
         added_value = np.zeros((len(self.agents),len(self.agents)),dtype= np.float32)
         penalty = -35
         for episode in range(episodes):
             # initial
             self.len = []
+            self.q_time = []
             self.env.reset()
             self.done = False
             self.step = 0
             self.route = []
             self.reward = 0
             self.env.packet_generation()
+            next_queue_order = self.env.packet_id
+            self.agents[0].RL.warmup()
             self.memory_id =0
             self.agents[0].RL.policy.lr_decay(episode, episodes)
             temp_reward = 0
             memory_id_poll=[]
 
             #print("done")
-            while True:
+            while self.step < self.env.all_args.episode_length:
 
-                #self.agents[0].RL.warmup()
+                available_t = self.env.available_actions()
+                service_packet_ids = {}
+                for packet in sorted(self.env.packets, key=lambda queued: queued.queue_order):
+                    if not packet.if_sink and packet.agent_id not in service_packet_ids:
+                        service_packet_ids[packet.agent_id] = packet.id
+                forwarded_packet_ids = set()
 
                 # Sample actions
                 #print("self_step",self.step)
@@ -97,6 +117,10 @@ class Runner:
                     rnn_states_critic,
                     actions_env,
                 ) = self.agents[0].RL.collect(self.step)
+                for node in range(self.env.buoy_number):
+                    action_index = int(actions[0][node][0])
+                    if not 0 <= action_index <= self.env.buoy_number or not available_t[0, node, action_index]:
+                        raise ValueError("Sampled action violates the current physical action mask")
                 self.memory_id += 1
                 actions_mask_list,  obs_list, agent_id_list, node_obs_list, adj_list, reward_list, done_list=[],[],[],[],[],[],[]
                 #print(obs_list)
@@ -262,32 +286,12 @@ class Runner:
 
                     observation = self.env.get_obs_list(buoy.id)
 
-                    neighbor = buoy.neighbor
-                    if self.env.sink_id in neighbor:
-                        action = [buoy.id, self.env.sink_id]
-                        action_origin = self.env.sink_id
-                        pass_added_reward = added_value[buoy.id][action_origin]
-                    else:
-                        action_origin = actions[0][buoy.id][0]
-                        # if buoy.id == 1:
-                        #     print(f"actions:{actions}")
-                            # print(f"actions:{actions}")
-                            # print(f"actions:{actions}")
-                        # pass_added_reward = added_value[buoy.id][action_origin]
-                        # print(f"buoy_id:{buoy.id}, action_origin:{action_origin}")
-                        # print(f"pass_added_reward:{pass_added_reward}")
-                        #print("test action")
-                       # print(action_origin, buoy.id)
-                       # print("neribor", len(buoy.neighbor))
-                       # print("act", action_origin)
-                        action_origin = action_origin % len(buoy.neighbor)
-                       # print("act_pick", action_origin)
-                       # print("final", buoy.neighbor[action_origin])
-                        action = [buoy.id, buoy.neighbor[action_origin]]
-                        pass_added_reward = added_value[buoy.id][buoy.neighbor[action_origin]]
-                        # print(f"buoy_id:{buoy.id}, action_origin:{buoy.neighbor[action_origin]}")
-                        # print(f"                                              pass_added_reward:{pass_added_reward}")
-                    if packet_num_list[buoy.id] == 0:
+                    action_origin = int(actions[0][buoy.id][0])
+                    action = [buoy.id, action_origin]
+                    reward, done, reach = 0.0, False, False
+                    pass_added_reward = (0.0 if action_origin == self.env.buoy_number
+                                         else added_value[buoy.id][action_origin])
+                    if action_origin == self.env.buoy_number or packet_num_list[buoy.id] == 0:
                         obs_n, agent_id_n, node_obs_n, adj_n, reward_n, done_n = self.env.step_one_agent(buoy.id,0, done)
                         actions_mask_list.append([0])
 
@@ -331,14 +335,16 @@ class Runner:
                         if_sink = packet.if_sink
                         if not if_sink:
 
-                            if packet.agent_id == action[0] and reach:
+                            if (packet.agent_id == action[0] and reach
+                                    and packet.id == service_packet_ids.get(buoy.id)):
                                 if k == 0:
                                     k = 1
                                     packet.transmit(action[1])
+                                    packet.queue_order = next_queue_order
+                                    next_queue_order += 1
+                                    forwarded_packet_ids.add(packet.id)
                                     packet.add_memory(self.memory_id)
                                     packet.stay_time = 1
-                                else:
-                                    packet.stay_time += 1
                         if_sink = packet.if_sink
                         if if_sink:
                             buffer = self.agents[0].RL.buffer
@@ -447,6 +453,25 @@ class Runner:
 
 
 
+                for packet in self.env.packets:
+                    if not packet.if_sink and packet.id not in forwarded_packet_ids:
+                        packet.stay_time += 1
+                self.step += 1
+                self.env.current_step = self.step
+                self.env.current_time_step = self.step
+                if self.step % 20 == 0:
+                    self.env.buoy_net.reset_lost_rate()
+                if self.moving_buoy_ids:
+                    for agent in self.agents:
+                        if agent.buoy.id in self.moving_buoy_ids:
+                            agent.buoy.move()
+                    self.env.buoy_net.update_topology(added_value)
+                # Capture t+1 only after all nodes and topology have advanced.
+                obs_list, agent_id_list, node_obs_list, adj_list = self.env.observe_graph()
+                available_tp1 = self.env.available_actions()
+                terminal = self.step == self.env.all_args.episode_length
+                done_batch = np.full((1, self.env.buoy_number), terminal, dtype=bool)
+
                 reward_tmp = np.sum(reward_list)
                 temp_reward += reward_tmp
                 #print(f"reward_tep: {reward_tmp}")
@@ -462,8 +487,8 @@ class Runner:
                     [adj_list],
                     [agent_id_list],
                     [reward_list],
-                    actions_mask_list,
-                    np.array([done_list]),
+                    available_tp1,
+                    done_batch,
                     values,
                     actions,
                     action_log_probs,
@@ -477,30 +502,10 @@ class Runner:
 
                 # insert data into buffer
                 self.agents[0].RL.insert(data)
-                self.step += 1
-
-                # 定期改变节点间的丢包率
-                if (self.step > 3) and (self.step % 20 == 0):
-                    self.env.buoy_net.reset_lost_rate()
-
-
-                if  self.step > self.env.all_args.episode_length:
+                if terminal:
                     self.agents[0].RL.compute()
                     train_infos = self.agents[0].RL.train()
                     #print(self.step,self.env.all_args.episode_length)
-
-                    if (episode+1)%1 ==0:
-
-                        # 新增：所有浮标完成动作后，统一调用move()
-                        for agent in self.agents:
-                            if agent.buoy.id in self.moving_buoy_ids:
-                                 agent.buoy.move()  # 每个浮标执行移动
-                        # 移动后可能需要重新计算邻居关系（如果位置变化影响邻居判断）
-                        # 例如：self.env.update_neighbors()  # 假设环境有更新邻居的方法
-
-                        # 移动完v成后，显式调用update_topology()更新距离和邻居
-                        # self.env.buoy_net.update_topology(added_value)
-
 
                     break
 

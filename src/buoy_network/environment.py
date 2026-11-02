@@ -42,16 +42,11 @@ class buoy_environment:
 
      # adding this for compatibility with MAPPO code
     def _get_entity_feat_global(self, entity) -> arr:
-        """
-        Returns: ([velocity, position, goal_pos, entity_type])
-        in global coords for the given entity
-        """
-        pos = entity.id
-        #goal_pos = self.sink
-        #entity_type = entity.if_sink
-
-
-        return np.hstack([pos])
+        """Physical features; the final categorical column is consumed by EmbedConv."""
+        return np.asarray([
+            entity.position[0], entity.position[1],
+            float(entity.packet) / max(self.packet_id, 1), float(entity.if_sink),
+        ], dtype=np.float32)
 
     def graph_observation(self, bouy: buoy_node) -> Tuple[arr, arr]:
         """
@@ -87,8 +82,8 @@ class buoy_environment:
                 entity_b = self.buoys[ib]
                 delta_pos = [entity_a.position[0] - entity_b.position[0], entity_a.position[1] - entity_b.position[1]]
                 delta_pos_i = [entity_b.position[0] - entity_a.position[0], entity_b.position[1] - entity_a.position[1]]
-                self.cached_dist_vect[ia, ib, :] = [ia,ib]
-                self.cached_dist_vect[ib, ia, :] = [ib,ia]
+                self.cached_dist_vect[ia, ib, :] = delta_pos
+                self.cached_dist_vect[ib, ia, :] = delta_pos_i
 
         self.cached_dist_mag = np.linalg.norm(self.cached_dist_vect, axis=2)
 
@@ -155,7 +150,7 @@ class buoy_environment:
                     low=-np.inf, high=+np.inf, shape=(obs_dim,), dtype=np.float32
                 )
             )
-            u_action_space = spaces.Discrete(self.buoy_number)
+            u_action_space = spaces.Discrete(self.buoy_number + 1)
             self.action_space.append(u_action_space)
         self.share_observation_space = [
             spaces.Box(
@@ -238,6 +233,10 @@ class buoy_environment:
 
     def reset_graph(self) -> Tuple[List, List, List, List]:
         self.current_step = 0
+        return self.observe_graph()
+
+    def observe_graph(self) -> Tuple[List, List, List, List]:
+        """Take one consistent decision-time snapshot without advancing the clock."""
         obs_n, node_obs_n, adj_n, agent_id_n = [], [], [], []
         self.agents = self.buoys
         for agent in self.agents:
@@ -257,6 +256,26 @@ class buoy_environment:
         self.packets = []
         self.packet_id = 0
         self.step_number = 0
+        self.current_step = 0
+        self.current_time_step = 0
+
+    def available_actions(self):
+        """Global next-hop indices 0..N-1 plus WAIT=N, for a single rollout env."""
+        mask = np.zeros((1, self.buoy_number, self.buoy_number + 1), dtype=np.float32)
+        mask[:, :, self.buoy_number] = 1.0
+        radius = getattr(self.all_args, "comm_range", 1.5)
+        for sender in self.buoys:
+            if sender.if_sink or sender.packet <= 0:
+                continue
+            for receiver in self.buoys:
+                if sender.id != receiver.id and np.linalg.norm(
+                        np.asarray(sender.position) - np.asarray(receiver.position)) <= radius:
+                    mask[0, sender.id, receiver.id] = 1.0
+        return mask
+
+    def active_masks(self):
+        return np.any(self.available_actions()[:, :, :self.buoy_number], axis=-1,
+                      keepdims=True).astype(np.float32)
 
     # 观测(智能体网络的输入)在强化学习当中好像只起到了加速收敛的作用
     # 这里需要考虑怎么记录数据包的路径
@@ -274,9 +293,14 @@ class buoy_environment:
         done = False
         sender_id = action[0]
         receiver_id = action[1]
+        if (not 0 <= sender_id < self.buoy_number or not 0 <= receiver_id < self.buoy_number
+                or sender_id == receiver_id):
+            raise ValueError("buoy_go requires a legal global next-hop index; WAIT is handled by runner")
         sender = self.buoys[sender_id]
 
         receiver = self.buoys[receiver_id]
+        if sender.packet <= 0 or receiver_id not in sender.neighbor:
+            raise ValueError("Cannot transmit an empty queue or to an unreachable neighbor")
         idx = 0
         for neighbor_id in sender.neighbor:
             if neighbor_id == receiver.id:
@@ -293,7 +317,7 @@ class buoy_environment:
         # 欧式距离
         # + math.pow(
         #                     (self.buoys[i].get_position()[2] - self.buoys[j].get_position()[2]), 2)
-        if dist > 1.5:
+        if dist > getattr(self.all_args, "comm_range", 1.5):
             is_adj = False
             # print(f"-----------------------------------------is_adj:{is_adj}")
 
@@ -306,17 +330,17 @@ class buoy_environment:
             reach = True
 
             if sender.send_number[idx] >= 10:
-                s_rate = sender.success_rate_neighbor[idx]
+                s_rate = sender.success_rate_neighbor[receiver_id]
 
-                sender.success_rate_neighbor[idx] = (s_rate + sender.success_number[idx]/10)/2
+                sender.success_rate_neighbor[receiver_id] = (s_rate + sender.success_number[idx]/10)/2
                 sender.send_number[idx] = 0
                 # sender.success_rate_neighbor[idx] = 0
                 sender.success_number[idx] = 0
         else:
             reach = False
             if sender.send_number[idx] >= 10:
-                s_rate = sender.success_rate_neighbor[idx]
-                sender.success_rate_neighbor[idx] = (s_rate + sender.success_number[idx]/10)/2
+                s_rate = sender.success_rate_neighbor[receiver_id]
+                sender.success_rate_neighbor[receiver_id] = (s_rate + sender.success_number[idx]/10)/2
                 sender.send_number[idx] = 0
                 # sender.success_rate_neighbor[idx] = 0
                 sender.success_number[idx] = 0
@@ -392,10 +416,9 @@ class buoy_environment:
 
 
     def step_one_agent(self, agent_id: int, reward: int, done: bool) -> Tuple[List, List, List, List, List, List]:
-        self.current_step += 1
         obs_n, reward_n, done_n, info_n = [], [], [], []
         node_obs_n, adj_n, agent_id_n = [], [], []
-        self.current_time_step += 1
+        # Runner advances time once after the complete joint decision.
         self.agents = self.buoys
         # set action for each agent
         #buoy_go TODO
@@ -490,9 +513,7 @@ class buoy_environment:
         return obs
 
     def get_n_action(self, buoy_id):
-        buoy = self.buoys[buoy_id]
-        n = len(buoy.get_neighbor())
-        return n
+        return self.buoy_number + 1
 
     def get_n_obs(self, buoy_id):
         obs = self.get_obs_list(buoy_id)
@@ -548,21 +569,7 @@ class buoy_environment:
         return neighbor
 
     def get_avail_action(self, buoy_id):
-
-        buoy = self.buoys[buoy_id]
-        neighbor_id = buoy.get_neighbor_two()
-        neighbor = [0]*len(neighbor_id)
-        i = 0
-        for n_id in neighbor_id:
-            n_buoy = self.buoys[n_id]
-            dist = math.sqrt(
-                math.pow((buoy.get_position()[0] - n_buoy.get_position()[0]), 2) + math.pow(
-                    (buoy.get_position()[1] - n_buoy.get_position()[1]), 2))
-            if dist <= 1.5:
-                neighbor[i] = 1
-            i += 1
-
-        return neighbor
+        return self.available_actions()[0, buoy_id].tolist()
 
     def packet_generation(self):
 

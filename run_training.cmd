@@ -25,7 +25,6 @@ set "PYTHONPATH=%~dp0src;%PYTHONPATH%"
   --n_rollout_threads 1 ^
   --num_mini_batch 20 ^
   --episode_length 80 ^
-  --num_env_steps 200 ^
   --ppo_epoch 10 ^
   --use_ReLU ^
   --gain 0.01 ^

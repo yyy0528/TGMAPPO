@@ -1,8 +1,10 @@
+#原始 TG-MAPPO 路径 你原项目的主算法和原环境
 import argparse
 import os
 import subprocess
 import sys
 from datetime import datetime
+from src.legacy_cli import reject_research_options
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 SRC_DIR = os.path.join(ROOT_DIR, "src")
@@ -57,7 +59,6 @@ TG_MAPPO_DEFAULT_ARGS = [
     ("--n_rollout_threads", "1"),
     ("--num_mini_batch", "20"),
     ("--episode_length", "80"),
-    ("--num_env_steps", "200"),
     ("--ppo_epoch", "10"),
     ("--use_ReLU", None),
     ("--gain", "0.01"),
@@ -169,6 +170,12 @@ def main():
     if known_args.list_algorithms:
         print("Supported algorithms: " + ", ".join(ALGORITHM_CHOICES))
         return 0
+
+    if known_args.algorithm in ("tg-mappo", "all"):
+        try:
+            reject_research_options(extra_args)
+        except ValueError as exc:
+            parser.error(str(exc))
 
     try:
         run_root = create_run_root(known_args.output_root, known_args.run_name)

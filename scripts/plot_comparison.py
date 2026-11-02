@@ -2,6 +2,7 @@
 
 import argparse
 import csv
+import math
 import os
 
 import matplotlib
@@ -33,9 +34,19 @@ def read_metrics(path):
                 )
             )
         for row in reader:
-            values["episode"].append(int(row["episode"]))
-            for key, _ in METRICS:
-                values[key].append(float(row[key]))
+            location = "{}:{}".format(path, reader.line_num)
+            try:
+                episode = int(row["episode"])
+                metrics = {key: float(row[key]) for key, _ in METRICS}
+            except (ValueError, TypeError, KeyError) as exc:
+                raise ValueError("{}: invalid metric value ({})".format(location, exc)) from None
+            if not all(math.isfinite(value) for value in metrics.values()):
+                raise ValueError("{}: metric values must be finite (no NaN or infinity)".format(location))
+            values["episode"].append(episode)
+            for key, value in metrics.items():
+                values[key].append(value)
+    if not values["episode"]:
+        raise ValueError("{} contains no metric rows".format(path))
     return values
 
 
@@ -61,7 +72,8 @@ def plot_all(input_dir, output_dir):
     for key, label in METRICS:
         plt.figure(figsize=(10, 6))
         for name, data in datasets:
-            plt.plot(data["episode"], data[key], label=name)
+            marker = "o" if len(data["episode"]) == 1 else None
+            plt.plot(data["episode"], data[key], label=name, marker=marker)
         plt.xlabel("Episode")
         plt.ylabel(label)
         plt.title("{} Comparison".format(label))

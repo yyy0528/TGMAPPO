@@ -1,0 +1,5 @@
+Episode 0 | 交付率: 0.3750 | 平均跳数: 54.08 | 平均时延: 29.29 | temp_reward: -13732.265143 |
+Episode 1 | 交付率: 0.2500 | 平均跳数: 61.92 | 平均时延: 31.75 | temp_reward:  8310.748656 |
+Training plots saved to directory: D:\programs\20251012\20250829buoy\20240607buoy\buoy_network\results\tg_baseline_smoke\runs\20261102_213826_386193\moves_5\plots\TG_MAPPO
+Delivery rate plot path: D:\programs\20251012\20250829buoy\20240607buoy\buoy_network\results\tg_baseline_smoke\runs\20261102_213826_386193\moves_5\plots\TG_MAPPO\delivery_rate_vs_episode.png
+Average hops plot path: D:\programs\20251012\20250829buoy\20240607buoy\buoy_network\results\tg_baseline_smoke\runs\20261102_213826_386193\moves_5\plots\TG_MAPPO\average_hops_vs_episode.png

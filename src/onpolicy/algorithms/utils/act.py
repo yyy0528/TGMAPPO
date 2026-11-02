@@ -181,12 +181,12 @@ class ACTLayer(nn.Module):
                     if len(action_logit.entropy().shape) == len(active_masks.shape):
                         dist_entropy.append(
                             (action_logit.entropy() * active_masks).sum()
-                            / active_masks.sum()
+                            / active_masks.sum().clamp(min=1.0)
                         )
                     else:
                         dist_entropy.append(
                             (action_logit.entropy() * active_masks.squeeze(-1)).sum()
-                            / active_masks.sum()
+                            / active_masks.sum().clamp(min=1.0)
                         )
                 else:
                     dist_entropy.append(action_logit.entropy().mean())
@@ -208,7 +208,7 @@ class ACTLayer(nn.Module):
                 if active_masks is not None:
                     dist_entropy.append(
                         (action_logit.entropy() * active_masks.squeeze(-1)).sum()
-                        / active_masks.sum()
+                        / active_masks.sum().clamp(min=1.0)
                     )
                 else:
                     dist_entropy.append(action_logit.entropy().mean())
@@ -222,7 +222,7 @@ class ACTLayer(nn.Module):
             if active_masks is not None:
                 dist_entropy = (
                     action_logits.entropy() * active_masks.squeeze(-1)
-                ).sum() / active_masks.sum()
+                ).sum() / active_masks.sum().clamp(min=1.0)
             else:
                 dist_entropy = action_logits.entropy().mean()
 

@@ -1,0 +1,33 @@
+{
+  "environment": {
+    "version": "research_v1",
+    "backend": "reference_grid",
+    "grid_size": 5,
+    "comm_range": 1.5,
+    "num_moving_buoys": 5,
+    "mobility_std": 0.05,
+    "loss_probability": 0.2,
+    "task_horizon": 80,
+    "task_ttl": 80,
+    "reward_mode": "sparse"
+  },
+  "policy": {
+    "backend": "graph_mappo",
+    "trainer": "graph_mappo",
+    "hidden_size": 64,
+    "graph_layers": 2,
+    "rollout_length": 16,
+    "learning_rate": 0.0003,
+    "ppo_epochs": 2,
+    "minibatch_steps": 8,
+    "use_earp": false
+  },
+  "world_model": { "enabled": false },
+  "progress": { "enabled": false },
+  "runtime": {
+    "seed": 12,
+    "episodes": 3,
+    "device": "cpu",
+    "output_root": "results/research_graph_mappo"
+  }
+}

@@ -2,11 +2,8 @@ import random
 import numpy as np
 import torch
 
-from .environment import buoy_environment
-from .runner import Runner
-from .agent import Agent, DeepQNetwork
-
 from onpolicy.config import get_config
+from src.legacy_cli import reject_research_options, resolve_training_budget
 
 from distutils.util import strtobool
 
@@ -34,7 +31,9 @@ def parse_args(args, parser):
     # 替换MPE特定参数
     parser.add_argument("--num_buoys", type=int, default=5, help="浮标数量")
     parser.add_argument("--routers", type=int, default=3, help="路由节点数量")
-    parser.add_argument("--comm_range", type=float, default=100.0, help="通信范围")
+    parser.add_argument("--comm_range", type=float, default=1.5, help="Physical communication radius")
+    parser.add_argument("--random_channel", type=lambda x: bool(strtobool(x)), default=True,
+                        help="Enable configured stochastic packet loss; false uses a lossless channel")
     # 添加新环境所需参数...
 
 
@@ -111,9 +110,35 @@ def main(args):
     # 这段代码的作用是定义和解析一系列与多智能体环境相关的命令行参数，
     # 以便在程序运行时可以通过命令行灵活配置环境的各种属性和奖励机制等
     parser = get_config()
+    parser.allow_abbrev = False
+    try:
+        reject_research_options(args)
+    except ValueError as exc:
+        parser.error(str(exc))
     all_args, parser = parse_args(args, parser)
     from onpolicy.config import graph_config
     all_args, parser = graph_config(args, parser)
+    all_args = parser.parse_args(args)
+    try:
+        budget = resolve_training_budget(args, all_args.num_episodes,
+                                         all_args.episode_length, all_args.num_env_steps)
+    except ValueError as exc:
+        parser.error(str(exc))
+    for name, value in budget.items():
+        setattr(all_args, name, value)
+    if all_args.num_agents != all_args.grid_size ** 2:
+        parser.error("num_agents must equal grid_size squared")
+    if (all_args.episode_length < 1 or all_args.num_episodes < 1
+            or all_args.comm_range <= 0 or all_args.n_rollout_threads != 1):
+        parser.error("Require positive episode settings/comm_range and one rollout thread")
+    # The buoy graph and legal routing links must have the same physical radius.
+    all_args.max_edge_dist = all_args.comm_range
+    print("Training budget: {} episodes x {} joint slots = {} environment steps ({})".format(
+        all_args.num_episodes, all_args.episode_length,
+        all_args.effective_num_env_steps, all_args.training_budget_source), flush=True)
+    from .environment import buoy_environment
+    from .runner import Runner
+    from .agent import Agent, DeepQNetwork
     random.seed(all_args.seed)
     np.random.seed(all_args.seed)
     torch.manual_seed(all_args.seed)

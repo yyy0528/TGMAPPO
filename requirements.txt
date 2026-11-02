@@ -5,4 +5,6 @@ scipy
 gym
 torch-geometric
 wandb
+tensorboardX
+imageio
 # 如需额外库，请补充（例如 multiagent 或其他环境依赖）

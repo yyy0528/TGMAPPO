@@ -32,6 +32,7 @@ class buoy_node:
         self.packet_buffer = None  # 考虑拥塞的情况才会用到
         self.lost_rate_list = []
         self.lost_rate = 0
+        self.random_channel = True
         self.success_rate_neighbor = []
         self.success_number = []
         self.send_number = []
@@ -57,10 +58,9 @@ class buoy_node:
             random_int = random.randint(1, 8)
             self.lost_rate_list.append(random_int * 0.1)
             # self.lost_rate_list.append(0)
-        self.lost_rate = self.lost_rate_list[0]
+        self.lost_rate = self.lost_rate_list[0] if self.random_channel else 0.0
         # self.lost_rate =  0
         self.lost_idx += 1
-        self.lost_rate = 0
 
 
         self.position_init[0] = position[0]
@@ -106,11 +106,10 @@ class buoy_node:
     def node_refresh(self):
         # self.energy = self.o_energy
         self.packet = 0
-        self.lost_rate = self.lost_rate_list[0]
+        self.lost_rate = self.lost_rate_list[0] if self.random_channel else 0.0
         self.lost_idx = 1
         # 这个还得改
         # 新增：位置边界约束辅助方法
-        self.lost_rate = 0
 
     def _clamp_position(self):
         """确保位置坐标在边界范围内"""
@@ -183,6 +182,7 @@ class buoy_node:
 class data_packet:
     def __init__(self, packet_id, source, destination):
         self.id = packet_id
+        self.queue_order = packet_id
         self.agent_id = source  # 当前位置
         self.last_pos = source  # 判断是否被传输
         self.stay_time = 1  # 停留时间
@@ -216,6 +216,7 @@ class buoy_net:
         self.buoys = []
         self.count_NB = []  # 这个还没用上
         self.buoys_number = len(buoys)
+        self.comm_range = getattr(all_args, "comm_range", 1.5)
         random.seed(2568)
         self.initialize_node(buoys,all_args)
         # 初始化局部网络
@@ -247,6 +248,7 @@ class buoy_net:
     def initialize_node(self, buoys,all_args):
         for i in range(self.buoys_number):
             buoy = buoy_node(all_args.grid_size)
+            buoy.random_channel = getattr(all_args, "random_channel", True)
             buoy.initialize(i, buoys[i][0], buoys[i][1])
             self.buoys.append(buoy)
 
@@ -254,6 +256,7 @@ class buoy_net:
     def build_adjacency_matrix(self):
 
         adj_matrix = np.zeros((self.buoys_number, self.buoys_number))
+        self.count_NB = []
         # 只要通信范围内的节点的距离，这样通过列的序号就得到这个邻居的编号。
         for i in range(self.buoys_number):
             cc = 0  # 计数
@@ -264,7 +267,7 @@ class buoy_net:
                 # 欧式距离
                 # + math.pow(
                 #                     (self.buoys[i].get_position()[2] - self.buoys[j].get_position()[2]), 2)
-                if dist <= 1.5:
+                if dist <= self.comm_range:
                     adj_matrix[i][j] = dist  # 只要通信范围内的节点的距离，这样通过列的序号就得到这个邻居的编号。
                     cc += 1
                 else:
@@ -290,12 +293,11 @@ class buoy_net:
                 # 欧式距离
                 # + math.pow(
                 #                     (self.buoys[i].get_position()[2] - self.buoys[j].get_position()[2]), 2)
-                if dist <= 3:
+                if dist <= 2 * self.comm_range:
                     adj_matrix[i][j] = dist  # 只要通信范围内的节点的距离，这样通过列的序号就得到这个邻居的编号。
                     cc += 1
                 else:
                     adj_matrix[i][j] = 0
-            self.count_NB.append(cc - 1)  # 统计邻居数量，减去把自己当邻居的情况
         '''if(math.sqrt(math.pow((x[i]-250),2)+math.pow((y[i]-250),2)+math.pow(z[i]-250,2)))<=self.r:
                 candidate_of_cluster_heads.append(i) '''
         # if np.array(self.count_NB).all() >= 1:  # 每个节点的邻居数至少为2时，则终止循环，为了避免后续因邻居过少而报错
@@ -329,13 +331,8 @@ class buoy_net:
 
                 if action_id in buoy.neighbor:
                     neighbor_id = action_id
-                    success = 0
-                    for i in range(10):
-                        rate = random.random()
-                        if rate >= self.buoys[neighbor_id].lost_rate:
-                            success += 1
-                    rate = success / 10
-                    rate = 1        #成功率是1
+                    # A declared prior, updated by real ACKs rather than hidden channel truth.
+                    rate = 0.5
                     buoy.success_rate_neighbor.append(rate)
 
                 else:
@@ -417,12 +414,12 @@ class buoy_net:
 
     def reset_lost_rate(self):
         for buoy in self.buoys:
-            buoy.lost_rate = buoy.lost_rate_list[buoy.lost_idx]
-
-            buoy.lost_idx += 1
-            buoy.lost_rate = 0
-            if buoy.lost_idx == 10:
-                buoy.lost_idx = 0
+            if not buoy.lost_rate_list:
+                raise ValueError("A channel loss schedule cannot be empty")
+            buoy.lost_idx %= len(buoy.lost_rate_list)
+            buoy.lost_rate = (buoy.lost_rate_list[buoy.lost_idx]
+                              if buoy.random_channel else 0.0)
+            buoy.lost_idx = (buoy.lost_idx + 1) % len(buoy.lost_rate_list)
 
     def transmit(self, sender, receiver):
         pass
@@ -433,6 +430,13 @@ class buoy_net:
             move_step_y = random.normalvariate(0, 0.001)
             buoy.move(move_step_x, move_step_y)
     def update_topology(self,added_value):
+        statistics = {}
+        for buoy in self.buoys:
+            statistics[buoy.id] = {
+                receiver: (buoy.send_number[index], buoy.success_number[index],
+                           buoy.success_rate_neighbor[receiver])
+                for index, receiver in enumerate(buoy.neighbor)
+            }
         # 重新计算一跳和两跳邻居的邻接矩阵
         self.adj_matrix = self.build_adjacency_matrix()
         self.adj_matrix_two = self.build_adjacency_matrix_two()
@@ -446,3 +450,9 @@ class buoy_net:
 
         # self.added_value =added_value
         self.build_s_rate(added_value)
+        for buoy in self.buoys:
+            for index, receiver in enumerate(buoy.neighbor):
+                previous = statistics[buoy.id].get(receiver)
+                if previous is not None:
+                    buoy.send_number[index], buoy.success_number[index], rate = previous
+                    buoy.success_rate_neighbor[receiver] = rate

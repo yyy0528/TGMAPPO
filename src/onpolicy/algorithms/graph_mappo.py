@@ -115,7 +115,7 @@ class GR_MAPPO():
             value_loss = value_loss_original
 
         if self._use_value_active_masks:
-            value_loss = (value_loss * active_masks_batch).sum() / active_masks_batch.sum()
+            value_loss = (value_loss * active_masks_batch).sum() / active_masks_batch.sum().clamp(min=1.0)
         else:
             value_loss = value_loss.mean()
 
@@ -194,7 +194,7 @@ class GR_MAPPO():
             policy_action_loss = (
                                 -torch.sum(torch.min(surr1, surr2), dim=-1,
                                 keepdim=True) * active_masks_batch
-                                ).sum() / active_masks_batch.sum()
+                                ).sum() / active_masks_batch.sum().clamp(min=1.0)
         else:
             policy_action_loss = -torch.sum(torch.min(surr1, surr2), 
                                             dim=-1, keepdim=True).mean()
@@ -294,11 +294,15 @@ class GR_MAPPO():
 
         #优势标准化   标准化优势值，提升训练稳定性。
         #标准化：(优势 - 均值) / (标准差 + 1e-5)，避免除零错误。
-        advantages_copy = advantages.copy()
-        advantages_copy[buffer.active_masks[:-1] == 0.0] = np.nan
-        mean_advantages = np.nanmean(advantages_copy)
-        std_advantages = np.nanstd(advantages_copy)
-        advantages = (advantages - mean_advantages) / (std_advantages + 1e-5)
+        active = buffer.active_masks[:-1] > 0.0
+        if active.any():
+            mean_advantages = advantages[active].mean()
+            std_advantages = advantages[active].std()
+            advantages = (advantages - mean_advantages) / (std_advantages + 1e-5)
+            advantages[~active] = 0.0
+        else:
+            # Isolated/empty networks produce valid WAIT-only rollouts.
+            advantages = np.zeros_like(advantages)
         
 
         #初始化训练指标        记录每个训练步骤的指标，最终取平均。

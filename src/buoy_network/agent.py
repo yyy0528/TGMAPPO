@@ -316,6 +316,7 @@ class DeepQNetwork(nn.Module):
             np.concatenate(self.buffer.rnn_states[step]),
             np.concatenate(self.buffer.rnn_states_critic[step]),
             np.concatenate(self.buffer.masks[step]),
+            available_actions=np.concatenate(self.buffer.available_actions[step]),
         )
         # [self.envs, agents, dim]
         values = np.array(np.split(_t2n(value), self.n_rollout_threads))
@@ -407,7 +408,7 @@ class DeepQNetwork(nn.Module):
             memory_id,
             memory_id_pool,
             bad_masks= None,
-            active_masks = None,
+            active_masks = self.env.active_masks(),
             available_actions=action_masks
         )
 
@@ -521,6 +522,7 @@ class DeepQNetwork(nn.Module):
 
         # reset env
         obs, agent_id, node_obs, adj = self.env.reset_graph()
+        self.buffer.reset_episode()
 
         # replay buffer
 
@@ -535,6 +537,8 @@ class DeepQNetwork(nn.Module):
         self.buffer.adj[0] = adj.copy()
         self.buffer.agent_id[0] = agent_id.copy()
         self.buffer.share_agent_id[0] = share_agent_id.copy()
+        self.buffer.available_actions[0] = self.env.available_actions()
+        self.buffer.active_masks[0] = self.env.active_masks()
     def train(self):
         """Train policies with data in buffer."""
         self.trainer.prep_training()      # 准备训练环境

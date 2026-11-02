@@ -408,7 +408,7 @@ class TransformerConvNet(nn.Module):
         assert adj.size(-1) == adj.size(-2)
 
         # filter far away nodes and connection to itself
-        connect_mask = ((adj < max_edge_dist) & (adj > 0)).float()
+        connect_mask = ((adj <= max_edge_dist) & (adj > 0)).float()
         adj = adj * connect_mask
         # print("adj", adj.shape)
         if adj.dim() == 3:
