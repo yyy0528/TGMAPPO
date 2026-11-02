@@ -1,0 +1,131 @@
+{
+  "mode": "overfit_check",
+  "initial_validation": {
+    "samples": 32,
+    "attempts": 24,
+    "ack_brier": 0.24486972391605377,
+    "ack_nll": 0.6828064918518066,
+    "ack_prior_brier": 0.2430555820465088,
+    "ack_history_link_brier": 0.25,
+    "queue_mse": 0.001662977272644639,
+    "queue_persistence_mse": 0.0015811010962352157,
+    "motion_mse": 0.0009523882763460279,
+    "motion_clamped_walk_mse": 0.0008680549217388034,
+    "motion_persistence_mse": 0.0009374995133839548,
+    "ack_groups": {
+      "behavior_id:tg-mappo": {
+        "attempts": 24,
+        "predicted_mean": 0.48811545968055725,
+        "observed_mean": 0.4166666567325592,
+        "brier": 0.24486972391605377,
+        "history_link_brier": 0.25
+      },
+      "phase_id:0-19": {
+        "attempts": 24,
+        "predicted_mean": 0.48811545968055725,
+        "observed_mean": 0.4166666567325592,
+        "brier": 0.24486972391605377,
+        "history_link_brier": 0.25
+      }
+    },
+    "ack_calibration_bins": [
+      {
+        "bin": 2,
+        "count": 24,
+        "predicted": 0.48811545968055725,
+        "observed": 0.4166666567325592
+      }
+    ]
+  },
+  "training": {
+    "samples": 32,
+    "attempts": 24,
+    "ack_brier": 6.29206837743368e-08,
+    "ack_nll": 0.00013483245857059956,
+    "ack_prior_brier": 0.2430555820465088,
+    "ack_history_link_brier": 0.25,
+    "queue_mse": 3.584544217005714e-08,
+    "queue_persistence_mse": 0.0015811010962352157,
+    "motion_mse": 6.475074343370579e-08,
+    "motion_clamped_walk_mse": 0.0008680549217388034,
+    "motion_persistence_mse": 0.0009374995133839548,
+    "ack_groups": {
+      "behavior_id:tg-mappo": {
+        "attempts": 24,
+        "predicted_mean": 0.41664496064186096,
+        "observed_mean": 0.4166666567325592,
+        "brier": 6.29206837743368e-08,
+        "history_link_brier": 0.25
+      },
+      "phase_id:0-19": {
+        "attempts": 24,
+        "predicted_mean": 0.41664496064186096,
+        "observed_mean": 0.4166666567325592,
+        "brier": 6.29206837743368e-08,
+        "history_link_brier": 0.25
+      }
+    },
+    "ack_calibration_bins": [
+      {
+        "bin": 0,
+        "count": 14,
+        "predicted": 9.678439528215677e-05,
+        "observed": 0.0
+      },
+      {
+        "bin": 4,
+        "count": 10,
+        "predicted": 0.9998124241828918,
+        "observed": 1.0
+      }
+    ]
+  },
+  "validation": {
+    "samples": 32,
+    "attempts": 24,
+    "ack_brier": 6.29206837743368e-08,
+    "ack_nll": 0.00013483245857059956,
+    "ack_prior_brier": 0.2430555820465088,
+    "ack_history_link_brier": 0.25,
+    "queue_mse": 3.584544217005714e-08,
+    "queue_persistence_mse": 0.0015811010962352157,
+    "motion_mse": 6.475074343370579e-08,
+    "motion_clamped_walk_mse": 0.0008680549217388034,
+    "motion_persistence_mse": 0.0009374995133839548,
+    "ack_groups": {
+      "behavior_id:tg-mappo": {
+        "attempts": 24,
+        "predicted_mean": 0.41664496064186096,
+        "observed_mean": 0.4166666567325592,
+        "brier": 6.29206837743368e-08,
+        "history_link_brier": 0.25
+      },
+      "phase_id:0-19": {
+        "attempts": 24,
+        "predicted_mean": 0.41664496064186096,
+        "observed_mean": 0.4166666567325592,
+        "brier": 6.29206837743368e-08,
+        "history_link_brier": 0.25
+      }
+    },
+    "ack_calibration_bins": [
+      {
+        "bin": 0,
+        "count": 14,
+        "predicted": 9.678439528215677e-05,
+        "observed": 0.0
+      },
+      {
+        "bin": 4,
+        "count": 10,
+        "predicted": 0.9998124241828918,
+        "observed": 1.0
+      }
+    ]
+  },
+  "selected_epoch": 198,
+  "parameter_count": 66789,
+  "training_seconds": 2.8331380000163335,
+  "checkpoint_sha256": "c4c4648d59041250e75085e91a28f71d1fabf3f1706dcf51259b362ef18e7a5f",
+  "weights_unchanged_during_evaluation": true
+}

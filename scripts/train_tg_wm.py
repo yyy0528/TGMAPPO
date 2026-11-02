@@ -11,7 +11,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 import torch
-from src.buoy_network.world_model import GraphWorldModel, batch, load_split, evaluate
+from src.buoy_network.world_model import GraphWorldModel, batch, load_split, evaluate, validation_selection
 from src.buoy_network.dataset import audit_run, run_roots
 
 
@@ -48,7 +48,7 @@ def main():
     output.mkdir(parents=True, exist_ok=False)
     (output/"config.json").write_text(json.dumps(vars(args), indent=2), encoding="utf-8")
     initial = evaluate(model, validation, args.device)
-    best = float("inf")
+    best = (float("inf"),) * 3
     started = time.perf_counter()
     with (output/"learning_curve.csv").open("x", newline="", encoding="utf-8") as stream:
         writer = None
@@ -67,17 +67,20 @@ def main():
                 optimizer.step()
                 losses.append(loss.item())
             metrics = evaluate(model, validation, args.device)
-            # Validation selection combines calibrated ACK and normalized continuous error.
+            # Retain the old composite for diagnosis; mandatory per-head gates select weights.
             score = metrics["ack_brier"] + metrics["queue_mse"] / model.queue_scale.square().mean().item() + metrics["motion_mse"] / model.motion_scale.square().mean().item()
-            row = dict(epoch=epoch+1, loss=sum(losses)/len(losses), selection_score=score, **metrics)
+            selection = validation_selection(metrics)
+            scalar_metrics = {key:value for key,value in metrics.items() if not isinstance(value, (dict,list))}
+            row = dict(epoch=epoch+1, loss=sum(losses)/len(losses), selection_score=score,
+                       failed_gates=selection[0], worst_relative_error=selection[1], **scalar_metrics)
             if writer is None:
                 writer = csv.DictWriter(stream, fieldnames=list(row))
                 writer.writeheader()
             writer.writerow(row)
             stream.flush()
-            if score < best:
-                best = score
-                torch.save({"architecture": "legacy_tg_graph_gru_wm_v2_ack_history", "hidden": args.hidden,
+            if selection < best:
+                best = selection
+                torch.save({"architecture": "legacy_tg_graph_gru_wm_v4_motion_context", "hidden": args.hidden,
                             "history_length": args.history_length, "node_count": training["nodes"].shape[2],
                             "state_dict": model.state_dict(), "selected_epoch": epoch+1,
                             "dataset": str(Path(args.dataset).resolve()),
@@ -88,6 +91,7 @@ def main():
     model.load_state_dict(payload["state_dict"])
     checkpoint_hash = hashlib.sha256((output/"wm_best.pt").read_bytes()).hexdigest()
     result = {"mode": "overfit_check" if args.overfit_samples else "supervised_pretrain",
+              "selection_rule": "per_head_gates_then_worst_relative_error_v1",
               "initial_validation": initial, "training": evaluate(model, training, args.device),
               "validation": evaluate(model, validation, args.device), "selected_epoch": payload["selected_epoch"],
               "parameter_count": sum(p.numel() for p in model.parameters()),

@@ -1,0 +1,283 @@
+{
+  "mode": "supervised_pretrain",
+  "initial_validation": {
+    "samples": 3823,
+    "attempts": 3301,
+    "ack_brier": 0.24810545146465302,
+    "ack_nll": 0.6893484592437744,
+    "ack_prior_brier": 0.2484561651945114,
+    "ack_history_link_brier": 0.24904818832874298,
+    "queue_mse": 0.0012688670540228486,
+    "queue_persistence_mse": 0.0012175197480246425,
+    "motion_mse": 0.0007894358714111149,
+    "motion_clamped_walk_mse": 0.0006584413349628448,
+    "motion_persistence_mse": 0.0007677213288843632,
+    "ack_groups": {
+      "behavior_id:tg-mappo": {
+        "attempts": 1467,
+        "predicted_mean": 0.49106648564338684,
+        "observed_mean": 0.5412406325340271,
+        "brier": 0.24913357198238373,
+        "history_link_brier": 0.24953603744506836
+      },
+      "behavior_id:random": {
+        "attempts": 1623,
+        "predicted_mean": 0.4870184361934662,
+        "observed_mean": 0.5224891901016235,
+        "brier": 0.24808768928050995,
+        "history_link_brier": 0.24943546950817108
+      },
+      "behavior_id:geographic": {
+        "attempts": 211,
+        "predicted_mean": 0.5070660710334778,
+        "observed_mean": 0.6635071039199829,
+        "brier": 0.24109400808811188,
+        "history_link_brier": 0.2426777184009552
+      },
+      "phase_id:0-19": {
+        "attempts": 1110,
+        "predicted_mean": 0.49580517411231995,
+        "observed_mean": 0.6297297477722168,
+        "brier": 0.24986913800239563,
+        "history_link_brier": 0.24922743439674377
+      },
+      "phase_id:20-39": {
+        "attempts": 779,
+        "predicted_mean": 0.48254942893981934,
+        "observed_mean": 0.43132221698760986,
+        "brier": 0.2438618540763855,
+        "history_link_brier": 0.24705149233341217
+      },
+      "phase_id:40-59": {
+        "attempts": 741,
+        "predicted_mean": 0.49241113662719727,
+        "observed_mean": 0.5344129800796509,
+        "brier": 0.2480131834745407,
+        "history_link_brier": 0.24863867461681366
+      },
+      "phase_id:60-79": {
+        "attempts": 671,
+        "predicted_mean": 0.48687034845352173,
+        "observed_mean": 0.5230998396873474,
+        "brier": 0.25021636486053467,
+        "history_link_brier": 0.2515220046043396
+      }
+    },
+    "ack_calibration_bins": [
+      {
+        "bin": 1,
+        "count": 219,
+        "predicted": 0.35381630063056946,
+        "observed": 0.4337899684906006
+      },
+      {
+        "bin": 2,
+        "count": 2936,
+        "predicted": 0.4923277795314789,
+        "observed": 0.5401907563209534
+      },
+      {
+        "bin": 3,
+        "count": 146,
+        "predicted": 0.6497005820274353,
+        "observed": 0.6917808055877686
+      }
+    ]
+  },
+  "training": {
+    "samples": 15376,
+    "attempts": 13221,
+    "ack_brier": 0.23470912873744965,
+    "ack_nll": 0.6615843176841736,
+    "ack_prior_brier": 0.24784670770168304,
+    "ack_history_link_brier": 0.24905970692634583,
+    "queue_mse": 0.0008777746697887778,
+    "queue_persistence_mse": 0.0012338609667494893,
+    "motion_mse": 0.0006999947363510728,
+    "motion_clamped_walk_mse": 0.0006583851645700634,
+    "motion_persistence_mse": 0.0007885663071647286,
+    "ack_groups": {
+      "behavior_id:tg-mappo": {
+        "attempts": 6144,
+        "predicted_mean": 0.560027539730072,
+        "observed_mean": 0.5519205927848816,
+        "brier": 0.23525385558605194,
+        "history_link_brier": 0.24974210560321808
+      },
+      "behavior_id:random": {
+        "attempts": 5806,
+        "predicted_mean": 0.5632082223892212,
+        "observed_mean": 0.5633826851844788,
+        "brier": 0.23606979846954346,
+        "history_link_brier": 0.24975651502609253
+      },
+      "behavior_id:geographic": {
+        "attempts": 1271,
+        "predicted_mean": 0.44128668308258057,
+        "observed_mean": 0.44217151403427124,
+        "brier": 0.2258605659008026,
+        "history_link_brier": 0.24257798492908478
+      },
+      "phase_id:0-19": {
+        "attempts": 4632,
+        "predicted_mean": 0.5150266289710999,
+        "observed_mean": 0.4928756356239319,
+        "brier": 0.2347799837589264,
+        "history_link_brier": 0.24650892615318298
+      },
+      "phase_id:20-39": {
+        "attempts": 3167,
+        "predicted_mean": 0.5530083775520325,
+        "observed_mean": 0.5961477756500244,
+        "brier": 0.23393473029136658,
+        "history_link_brier": 0.2516537606716156
+      },
+      "phase_id:40-59": {
+        "attempts": 2775,
+        "predicted_mean": 0.5714409947395325,
+        "observed_mean": 0.5535135269165039,
+        "brier": 0.23811492323875427,
+        "history_link_brier": 0.24996216595172882
+      },
+      "phase_id:60-79": {
+        "attempts": 2647,
+        "predicted_mean": 0.5851688981056213,
+        "observed_mean": 0.5731016397476196,
+        "brier": 0.23194120824337006,
+        "history_link_brier": 0.2494737207889557
+      }
+    },
+    "ack_calibration_bins": [
+      {
+        "bin": 0,
+        "count": 68,
+        "predicted": 0.17161960899829865,
+        "observed": 0.1617647111415863
+      },
+      {
+        "bin": 1,
+        "count": 1077,
+        "predicted": 0.3415575921535492,
+        "observed": 0.3426183760166168
+      },
+      {
+        "bin": 2,
+        "count": 8002,
+        "predicted": 0.5190810561180115,
+        "observed": 0.5084978938102722
+      },
+      {
+        "bin": 3,
+        "count": 3968,
+        "predicted": 0.6679190397262573,
+        "observed": 0.6779233813285828
+      },
+      {
+        "bin": 4,
+        "count": 106,
+        "predicted": 0.8316466212272644,
+        "observed": 0.801886796951294
+      }
+    ]
+  },
+  "validation": {
+    "samples": 3823,
+    "attempts": 3301,
+    "ack_brier": 0.24659782648086548,
+    "ack_nll": 0.6864439249038696,
+    "ack_prior_brier": 0.2484561651945114,
+    "ack_history_link_brier": 0.24904818832874298,
+    "queue_mse": 0.0008826457778923213,
+    "queue_persistence_mse": 0.0012175197480246425,
+    "motion_mse": 0.0006874126265756786,
+    "motion_clamped_walk_mse": 0.0006584413349628448,
+    "motion_persistence_mse": 0.0007677213288843632,
+    "ack_groups": {
+      "behavior_id:tg-mappo": {
+        "attempts": 1467,
+        "predicted_mean": 0.5583275556564331,
+        "observed_mean": 0.5412406325340271,
+        "brier": 0.24530449509620667,
+        "history_link_brier": 0.24953603744506836
+      },
+      "behavior_id:random": {
+        "attempts": 1623,
+        "predicted_mean": 0.5590465068817139,
+        "observed_mean": 0.5224891901016235,
+        "brier": 0.24907176196575165,
+        "history_link_brier": 0.24943546950817108
+      },
+      "behavior_id:geographic": {
+        "attempts": 211,
+        "predicted_mean": 0.5451797246932983,
+        "observed_mean": 0.6635071039199829,
+        "brier": 0.23656071722507477,
+        "history_link_brier": 0.2426777184009552
+      },
+      "phase_id:0-19": {
+        "attempts": 1110,
+        "predicted_mean": 0.5470491647720337,
+        "observed_mean": 0.6297297477722168,
+        "brier": 0.23833239078521729,
+        "history_link_brier": 0.24922743439674377
+      },
+      "phase_id:20-39": {
+        "attempts": 779,
+        "predicted_mean": 0.5470220446586609,
+        "observed_mean": 0.43132221698760986,
+        "brier": 0.25543373823165894,
+        "history_link_brier": 0.24705149233341217
+      },
+      "phase_id:40-59": {
+        "attempts": 741,
+        "predicted_mean": 0.5694376826286316,
+        "observed_mean": 0.5344129800796509,
+        "brier": 0.24626536667346954,
+        "history_link_brier": 0.24863867461681366
+      },
+      "phase_id:60-79": {
+        "attempts": 671,
+        "predicted_mean": 0.5754453539848328,
+        "observed_mean": 0.5230998396873474,
+        "brier": 0.2503800690174103,
+        "history_link_brier": 0.2515220046043396
+      }
+    },
+    "ack_calibration_bins": [
+      {
+        "bin": 1,
+        "count": 164,
+        "predicted": 0.35691481828689575,
+        "observed": 0.4268292784690857
+      },
+      {
+        "bin": 2,
+        "count": 2103,
+        "predicted": 0.5186671614646912,
+        "observed": 0.5102235078811646
+      },
+      {
+        "bin": 3,
+        "count": 1012,
+        "predicted": 0.6660478115081787,
+        "observed": 0.6136363744735718
+      },
+      {
+        "bin": 4,
+        "count": 22,
+        "predicted": 0.8227449059486389,
+        "observed": 0.8181818127632141
+      }
+    ]
+  },
+  "selected_epoch": 12,
+  "parameter_count": 66789,
+  "training_seconds": 141.99928970000474,
+  "checkpoint_sha256": "1264e567b670e79963704b87e76daa35de88d910092f962b3a426273277daebb",
+  "integration_gate": {
+    "ack": true,
+    "queue": true,
+    "motion": true
+  },
+  "weights_unchanged_during_evaluation": true
+}

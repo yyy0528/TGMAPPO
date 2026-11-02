@@ -1,0 +1,280 @@
+{
+  "mode": "supervised_pretrain",
+  "initial_validation": {
+    "samples": 3823,
+    "attempts": 3301,
+    "ack_brier": 0.24557696282863617,
+    "ack_nll": 0.6841904520988464,
+    "ack_prior_brier": 0.24974817037582397,
+    "ack_history_link_brier": 0.24904818832874298,
+    "queue_mse": 0.0012973728589713573,
+    "queue_persistence_mse": 0.0012175197480246425,
+    "motion_mse": 0.0007734789396636188,
+    "motion_persistence_mse": 0.0007677213288843632,
+    "ack_groups": {
+      "behavior_id:tg-mappo": {
+        "attempts": 1467,
+        "predicted_mean": 0.5310705304145813,
+        "observed_mean": 0.5412406325340271,
+        "brier": 0.2465844601392746,
+        "history_link_brier": 0.24953603744506836
+      },
+      "behavior_id:random": {
+        "attempts": 1623,
+        "predicted_mean": 0.526873767375946,
+        "observed_mean": 0.5224891901016235,
+        "brier": 0.24686990678310394,
+        "history_link_brier": 0.24943546950817108
+      },
+      "behavior_id:geographic": {
+        "attempts": 211,
+        "predicted_mean": 0.5522674918174744,
+        "observed_mean": 0.6635071039199829,
+        "brier": 0.22862695157527924,
+        "history_link_brier": 0.2426777184009552
+      },
+      "phase_id:0-19": {
+        "attempts": 1110,
+        "predicted_mean": 0.5372664928436279,
+        "observed_mean": 0.6297297477722168,
+        "brier": 0.2402375042438507,
+        "history_link_brier": 0.24922743439674377
+      },
+      "phase_id:20-39": {
+        "attempts": 779,
+        "predicted_mean": 0.5227287411689758,
+        "observed_mean": 0.43132221698760986,
+        "brier": 0.2494225800037384,
+        "history_link_brier": 0.24705149233341217
+      },
+      "phase_id:40-59": {
+        "attempts": 741,
+        "predicted_mean": 0.5320109724998474,
+        "observed_mean": 0.5344129800796509,
+        "brier": 0.24656222760677338,
+        "history_link_brier": 0.24863867461681366
+      },
+      "phase_id:60-79": {
+        "attempts": 671,
+        "predicted_mean": 0.5259813070297241,
+        "observed_mean": 0.5230998396873474,
+        "brier": 0.24885711073875427,
+        "history_link_brier": 0.2515220046043396
+      }
+    },
+    "ack_calibration_bins": [
+      {
+        "bin": 1,
+        "count": 87,
+        "predicted": 0.35481008887290955,
+        "observed": 0.4137931168079376
+      },
+      {
+        "bin": 2,
+        "count": 2729,
+        "predicted": 0.516595721244812,
+        "observed": 0.5272994041442871
+      },
+      {
+        "bin": 3,
+        "count": 481,
+        "predicted": 0.6378028988838196,
+        "observed": 0.6299376487731934
+      },
+      {
+        "bin": 4,
+        "count": 4,
+        "predicted": 0.8209225535392761,
+        "observed": 1.0
+      }
+    ]
+  },
+  "training": {
+    "samples": 3799,
+    "attempts": 3234,
+    "ack_brier": 0.2335241287946701,
+    "ack_nll": 0.6593109965324402,
+    "ack_prior_brier": 0.24416667222976685,
+    "ack_history_link_brier": 0.2488252967596054,
+    "queue_mse": 0.0009338801028206944,
+    "queue_persistence_mse": 0.0013194247148931026,
+    "motion_mse": 0.0007325888145714998,
+    "motion_persistence_mse": 0.0007330874213948846,
+    "ack_groups": {
+      "behavior_id:tg-mappo": {
+        "attempts": 1473,
+        "predicted_mean": 0.5551536679267883,
+        "observed_mean": 0.5770536065101624,
+        "brier": 0.23246875405311584,
+        "history_link_brier": 0.24880683422088623
+      },
+      "behavior_id:random": {
+        "attempts": 1464,
+        "predicted_mean": 0.5775851607322693,
+        "observed_mean": 0.5963114500045776,
+        "brier": 0.2310793250799179,
+        "history_link_brier": 0.24770919978618622
+      },
+      "behavior_id:geographic": {
+        "attempts": 297,
+        "predicted_mean": 0.4505476951599121,
+        "observed_mean": 0.4747474789619446,
+        "brier": 0.25080931186676025,
+        "history_link_brier": 0.2544185221195221
+      },
+      "phase_id:0-19": {
+        "attempts": 1121,
+        "predicted_mean": 0.5142907500267029,
+        "observed_mean": 0.4950936734676361,
+        "brier": 0.23989522457122803,
+        "history_link_brier": 0.24970729649066925
+      },
+      "phase_id:20-39": {
+        "attempts": 761,
+        "predicted_mean": 0.5754826664924622,
+        "observed_mean": 0.664914608001709,
+        "brier": 0.22622013092041016,
+        "history_link_brier": 0.24937310814857483
+      },
+      "phase_id:40-59": {
+        "attempts": 708,
+        "predicted_mean": 0.5735147595405579,
+        "observed_mean": 0.5847457647323608,
+        "brier": 0.23069855570793152,
+        "history_link_brier": 0.2477789670228958
+      },
+      "phase_id:60-79": {
+        "attempts": 644,
+        "predicted_mean": 0.5848259925842285,
+        "observed_mean": 0.6040372848510742,
+        "brier": 0.23417134582996368,
+        "history_link_brier": 0.2477930635213852
+      }
+    },
+    "ack_calibration_bins": [
+      {
+        "bin": 1,
+        "count": 191,
+        "predicted": 0.35308969020843506,
+        "observed": 0.4188481569290161
+      },
+      {
+        "bin": 2,
+        "count": 2055,
+        "predicted": 0.5155258774757385,
+        "observed": 0.5245742201805115
+      },
+      {
+        "bin": 3,
+        "count": 951,
+        "predicted": 0.6723893880844116,
+        "observed": 0.7108306884765625
+      },
+      {
+        "bin": 4,
+        "count": 37,
+        "predicted": 0.8337960243225098,
+        "observed": 0.8108108043670654
+      }
+    ]
+  },
+  "validation": {
+    "samples": 3823,
+    "attempts": 3301,
+    "ack_brier": 0.2478105127811432,
+    "ack_nll": 0.6891199946403503,
+    "ack_prior_brier": 0.24974817037582397,
+    "ack_history_link_brier": 0.24904818832874298,
+    "queue_mse": 0.0009029879583977163,
+    "queue_persistence_mse": 0.0012175197480246425,
+    "motion_mse": 0.0007688856567256153,
+    "motion_persistence_mse": 0.0007677213288843632,
+    "ack_groups": {
+      "behavior_id:tg-mappo": {
+        "attempts": 1467,
+        "predicted_mean": 0.5517511367797852,
+        "observed_mean": 0.5412406325340271,
+        "brier": 0.2443242371082306,
+        "history_link_brier": 0.24953603744506836
+      },
+      "behavior_id:random": {
+        "attempts": 1623,
+        "predicted_mean": 0.5571993589401245,
+        "observed_mean": 0.5224891901016235,
+        "brier": 0.2507607638835907,
+        "history_link_brier": 0.24943546950817108
+      },
+      "behavior_id:geographic": {
+        "attempts": 211,
+        "predicted_mean": 0.5145984888076782,
+        "observed_mean": 0.6635071039199829,
+        "brier": 0.2493564337491989,
+        "history_link_brier": 0.2426777184009552
+      },
+      "phase_id:0-19": {
+        "attempts": 1110,
+        "predicted_mean": 0.5394467711448669,
+        "observed_mean": 0.6297297477722168,
+        "brier": 0.2434084713459015,
+        "history_link_brier": 0.24922743439674377
+      },
+      "phase_id:20-39": {
+        "attempts": 779,
+        "predicted_mean": 0.5453072786331177,
+        "observed_mean": 0.43132221698760986,
+        "brier": 0.2595325708389282,
+        "history_link_brier": 0.24705149233341217
+      },
+      "phase_id:40-59": {
+        "attempts": 741,
+        "predicted_mean": 0.5634340643882751,
+        "observed_mean": 0.5344129800796509,
+        "brier": 0.2410944104194641,
+        "history_link_brier": 0.24863867461681366
+      },
+      "phase_id:60-79": {
+        "attempts": 671,
+        "predicted_mean": 0.5681803822517395,
+        "observed_mean": 0.5230998396873474,
+        "brier": 0.2489006370306015,
+        "history_link_brier": 0.2515220046043396
+      }
+    },
+    "ack_calibration_bins": [
+      {
+        "bin": 1,
+        "count": 141,
+        "predicted": 0.35658177733421326,
+        "observed": 0.4822694957256317
+      },
+      {
+        "bin": 2,
+        "count": 2210,
+        "predicted": 0.5150099992752075,
+        "observed": 0.5117647051811218
+      },
+      {
+        "bin": 3,
+        "count": 932,
+        "predicted": 0.6643579602241516,
+        "observed": 0.6137338876724243
+      },
+      {
+        "bin": 4,
+        "count": 18,
+        "predicted": 0.8167893886566162,
+        "observed": 0.6111111044883728
+      }
+    ]
+  },
+  "selected_epoch": 13,
+  "parameter_count": 64645,
+  "training_seconds": 48.46758610001416,
+  "checkpoint_sha256": "e08df24d7c8be9cf426b0793a7838b76f09a95b82a4c4588ba225379aca23236",
+  "integration_gate": {
+    "ack": true,
+    "queue": true,
+    "motion": false
+  },
+  "weights_unchanged_during_evaluation": true
+}

@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-03",
+  "wm_tests": {"passed": 6, "failures": 0, "errors": 0},
+  "test_predictions_performed": false,
+  "validation_selection_verified_from_curve": true,
+  "paired_old_new_selection_training_curves_identical": true,
+  "paired_epochs_checked": 40,
+  "paired_fields": ["loss", "ack_brier", "queue_mse", "motion_mse"],
+  "selected_epoch": 2,
+  "checkpoint_sha256": "2919dff60d3128321170410e632e7bddd476a4f09c766b92108bfe9cb73daca9",
+  "legacy_inference": {"python": "D:\\python3.6.8\\python.exe", "torch": "1.8.1+cpu", "samples": 2, "outputs_finite": true},
+  "limitations": ["Single development validation scenario", "ACK phase 20-39 not better than link baseline", "Motion weaker than known clamped-walk conditional mean", "Full WM heads/reliability and Actor integration not complete"]
+}

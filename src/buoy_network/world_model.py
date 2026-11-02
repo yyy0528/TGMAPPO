@@ -37,7 +37,16 @@ def encode_sample(sample, history_length=4):
         (current[target_node, 1] - current[node, 1]).item() / 4,
         current[target_node, 2].item(),
         0.0 if action == n else history[-1]["own_obs"][action], float(action == n)])
+    feedback = [float(frame["own_previous_ack"]) for frame in history
+                if action != n and frame["own_previous_action"] == action
+                and frame.get("own_previous_attempt", False)
+                and frame.get("own_previous_ack") is not None]
+    posterior = (sum(feedback) + 1.0)/(len(feedback) + 2.0)
+    candidate = torch.cat((candidate, torch.tensor([posterior, len(feedback)/history_length])))
     next_nodes = torch.tensor(sample["targets"]["next_node_features"])
+    offset = current[node, :2] - current[node, :2].round()
+    previous_motion = (current[node, :2]-nodes[len(history)-2, node, :2]
+                       if len(history) > 1 else torch.zeros(2))
     queue = torch.stack((next_nodes[node, 2] - current[node, 2],
                          next_nodes[target_node, 2] - current[target_node, 2]))
     return {"nodes": nodes, "distances": distances, "context": context,
@@ -46,7 +55,11 @@ def encode_sample(sample, history_length=4):
             "ack": torch.tensor(float(sample["targets"]["ack"] or 0)),
             "ack_mask": torch.tensor(sample["targets"]["ack_loss_mask"]),
             "queue": queue, "queue_mask": torch.tensor([True, action != n]),
-            "motion": next_nodes[node, :2] - current[node, :2]}
+            "motion": next_nodes[node, :2] - current[node, :2],
+            "motion_context": torch.cat((offset, previous_motion))/0.1,
+            "behavior_id": torch.tensor(next((index for index, name in enumerate(
+                ("tg-mappo", "random", "geographic")) if sample.get("episode_id", "").startswith(name+"_")), 3)),
+            "phase_id": torch.tensor(history[-1]["step"] // 20)}
 
 
 def load_split(root, split, history_length=4, limit=None):
@@ -64,6 +77,18 @@ def batch(data, indices, device="cpu"):
     return {key: value[indices].to(device) for key, value in data.items()}
 
 
+def validation_selection(metrics):
+    """Mandatory per-head gates outrank improvements in an already good head."""
+    pairs = [(metrics["ack_brier"], min(metrics["ack_prior_brier"], metrics["ack_history_link_brier"])),
+             (metrics["queue_mse"], metrics["queue_persistence_mse"]),
+             (metrics["motion_mse"], metrics["motion_persistence_mse"])]
+    import math
+    if not all(math.isfinite(value) and value >= 0 for pair in pairs for value in pair):
+        raise ValueError("Invalid validation metric")
+    ratios = [value/max(baseline, 1e-12) for value, baseline in pairs]
+    return (sum(value >= baseline for value, baseline in pairs), max(ratios), sum(ratios))
+
+
 class GraphWorldModel(nn.Module):
     def __init__(self, hidden=64):
         super().__init__()
@@ -71,8 +96,8 @@ class GraphWorldModel(nn.Module):
         self.input = nn.Linear(4, hidden)
         self.messages = nn.ModuleList([nn.Linear(2*hidden, hidden) for _ in range(2)])
         self.history = nn.GRU(2*hidden+8, hidden, batch_first=True)
-        self.topology = nn.Linear(hidden, 2)
-        self.business = nn.Sequential(nn.Linear(2*hidden+5, hidden), nn.ReLU(), nn.Linear(hidden, 3))
+        self.topology = nn.Sequential(nn.Linear(hidden+4, 32), nn.Tanh(), nn.Linear(32, 2))
+        self.business = nn.Sequential(nn.Linear(2*hidden+7, hidden), nn.ReLU(), nn.Linear(hidden, 3))
         self.register_buffer("node_mean", torch.zeros(4))
         self.register_buffer("node_std", torch.ones(4))
         self.register_buffer("queue_scale", torch.ones(2))
@@ -110,10 +135,13 @@ class GraphWorldModel(nn.Module):
         _, hidden = self.history(packed)
         hidden = hidden[-1]
         target = encoded[rows, data["length"]-1, data["target"]]
-        target = target * (1 - data["candidate"][:, -1:])
+        target = target * (1 - data["candidate"][:, 4:5])
         business = self.business(torch.cat((hidden, target, data["candidate"]), -1))
-        return {"ack_logit": business[:, 0], "queue": business[:, 1:] * self.queue_scale,
-                "motion": self.topology(hidden) * self.motion_scale}
+        rate = data["candidate"][:, 3].clamp(0.01, 0.99)
+        recent = data["candidate"][:, 5]
+        prior = torch.where(data["candidate"][:, 6] > 0, (rate+recent)/2, rate).clamp(0.01, 0.99)
+        return {"ack_logit": business[:, 0] + torch.logit(prior), "queue": business[:, 1:] * self.queue_scale,
+                "motion": self.topology(torch.cat((hidden, data["motion_context"]), -1)) * self.motion_scale}
 
     def loss(self, data):
         prediction = self(data)
@@ -140,7 +168,7 @@ def evaluate(model, data, device="cpu", batch_size=256):
     labels = data["ack"][mask]
     prior = model.ack_prior.cpu().expand_as(labels)
     link = data["candidate"][:, 3][mask].clamp(0, 1)
-    return {"samples": len(data["length"]), "attempts": int(mask.sum()),
+    metrics = {"samples": len(data["length"]), "attempts": int(mask.sum()),
             "ack_brier": float((probability-labels).square().mean()),
             "ack_nll": float(F.binary_cross_entropy(probability.clamp(1e-6, 1-1e-6), labels)),
             "ack_prior_brier": float((prior-labels).square().mean()),
@@ -148,4 +176,25 @@ def evaluate(model, data, device="cpu", batch_size=256):
             "queue_mse": float((pred["queue"]-data["queue"])[data["queue_mask"]].square().mean()),
             "queue_persistence_mse": float(data["queue"][data["queue_mask"]].square().mean()),
             "motion_mse": float((pred["motion"]-data["motion"]).square().mean()),
+            "motion_clamped_walk_mse": float((-data["motion_context"][:, :2]*0.1/3-data["motion"]).square().mean()),
             "motion_persistence_mse": float(data["motion"].square().mean())}
+    metrics["ack_groups"] = {}
+    for field, names in (("behavior_id", ("tg-mappo", "random", "geographic", "unknown")),
+                         ("phase_id", ("0-19", "20-39", "40-59", "60-79"))):
+        for index, name in enumerate(names):
+            selected = mask & (data[field] == index)
+            if not selected.any():
+                continue
+            p = pred["ack_logit"][selected].sigmoid()
+            y = data["ack"][selected]
+            metrics["ack_groups"][field+":"+name] = {
+                "attempts": int(selected.sum()), "predicted_mean": float(p.mean()),
+                "observed_mean": float(y.mean()), "brier": float((p-y).square().mean()),
+                "history_link_brier": float((data["candidate"][:, 3][selected]-y).square().mean())}
+    metrics["ack_calibration_bins"] = []
+    for index in range(5):
+        selected = (probability >= index/5) & (probability < (index+1)/5 if index < 4 else probability <= 1)
+        if selected.any():
+            metrics["ack_calibration_bins"].append({"bin": index, "count": int(selected.sum()),
+                "predicted": float(probability[selected].mean()), "observed": float(labels[selected].mean())})
+    return metrics

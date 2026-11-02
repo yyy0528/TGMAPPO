@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 
 import torch
-from src.buoy_network.world_model import GraphWorldModel, encode_sample, batch, evaluate
+from src.buoy_network.world_model import GraphWorldModel, encode_sample, batch, evaluate, validation_selection
 
 
 def sample(action=1, ack=True):
@@ -22,6 +22,16 @@ def data():
 
 
 class WorldModelFunctions(unittest.TestCase):
+    def test_selection_preserves_mandatory_head_gates(self):
+        good = {"ack_brier": 0.24, "ack_prior_brier": 0.25, "ack_history_link_brier": 0.249,
+                "queue_mse": 0.0009, "queue_persistence_mse": 0.0012,
+                "motion_mse": 0.0007, "motion_persistence_mse": 0.0008}
+        bad_ack = dict(good, ack_brier=0.26, queue_mse=0.0001, motion_mse=0.0001)
+        self.assertLess(validation_selection(good), validation_selection(bad_ack))
+        self.assertEqual(validation_selection(good)[0], 0)
+        with self.assertRaises(ValueError):
+            validation_selection(dict(good, ack_brier=float("nan")))
+
     @classmethod
     def setUpClass(cls):
         torch.set_num_threads(1)
@@ -32,12 +42,32 @@ class WorldModelFunctions(unittest.TestCase):
         modified["targets"]["next_node_features"][0] = [999,999,999,1]
         modified["targets"]["ack"] = False
         before, after = encode_sample(original), encode_sample(modified)
-        for key in ("nodes", "distances", "context", "candidate", "length", "agent", "target"):
+        for key in ("nodes", "distances", "context", "candidate", "length", "agent", "target", "motion_context"):
             self.assertTrue(torch.equal(before[key], after[key]), key)
         wait = encode_sample(sample(3, None))
         self.assertFalse(wait["ack_mask"])
         self.assertFalse(wait["queue_mask"][1])
         self.assertEqual(wait["length"], 1)
+
+    def test_motion_context_is_observed_offset_not_future_motion(self):
+        record = sample()
+        record["inputs"]["history"][0]["node_features"][0][0] = 0.1
+        encoded = encode_sample(record)
+        self.assertAlmostEqual(encoded["motion_context"][0].item(), 1.0)
+        self.assertEqual(encoded["motion_context"][2:].tolist(), [0.0, 0.0])
+        record["targets"]["next_node_features"][0][0] = 1000
+        self.assertTrue(torch.equal(encoded["motion_context"], encode_sample(record)["motion_context"]))
+
+    def test_receiver_feedback_uses_only_matching_previous_attempts(self):
+        original = sample()
+        frame = original["inputs"]["history"][0]
+        frame.update(own_previous_action=1, own_previous_ack=True, own_previous_attempt=True)
+        encoded = encode_sample(original)
+        self.assertAlmostEqual(encoded["candidate"][5].item(), 2/3, places=6)
+        frame["own_previous_action"] = 2
+        self.assertEqual(encode_sample(original)["candidate"][5].item(), 0.5)
+        frame.update(own_previous_action=1, own_previous_attempt=False)
+        self.assertEqual(encode_sample(original)["candidate"][6].item(), 0)
 
     def test_topology_is_independent_of_current_candidate_action(self):
         torch.manual_seed(1)
