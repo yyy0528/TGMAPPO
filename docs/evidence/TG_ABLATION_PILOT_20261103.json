@@ -1,0 +1,995 @@
+{
+  "success": true,
+  "scope": "three-seed short pilot, not formal performance acceptance",
+  "test_count": 86,
+  "tests": [
+    {
+      "python": "D:\\python3.6.8\\python.exe",
+      "scope": "legacy_fixed_v1 targeted regressions",
+      "stages": [
+        {
+          "name": "functions",
+          "tests": 21,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "seconds": 2.038,
+          "log": "functions.log"
+        },
+        {
+          "name": "modules",
+          "tests": 24,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "seconds": 8.643,
+          "log": "modules.log"
+        },
+        {
+          "name": "integration",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "seconds": 28.821,
+          "log": "integration.log"
+        }
+      ],
+      "success": true,
+      "tests": 51
+    },
+    {
+      "python": "D:\\python3.6.8\\python.exe",
+      "stages": [
+        {
+          "name": "functions",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "modules",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "integration",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0
+        }
+      ],
+      "success": true
+    },
+    {
+      "python": "D:\\python3.6.8\\python.exe",
+      "success": true,
+      "stages": [
+        {
+          "name": "functions",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "modules",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "integration",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0
+        }
+      ]
+    },
+    {
+      "success": true,
+      "python": "D:\\python3.6.8\\python.exe",
+      "stages": [
+        {
+          "name": "functions",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "name": "modules",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      ]
+    },
+    {
+      "module": "tests.test_tg_progress_model",
+      "tests": 5,
+      "exit_code": 0,
+      "log": "test_causal_gru_and_online_prefix_equivalence (tests.test_tg_progress_model.ProgressFunctions) ... ok\ntest_censored_likelihood_is_observed_survival_not_failure (tests.test_tg_progress_model.ProgressFunctions) ... ok\ntest_packet_weighting_padding_and_real_gradient_update (tests.test_tg_progress_model.ProgressFunctions) ... ok\ntest_prefix_features_only_use_current_and_past (tests.test_tg_progress_model.ProgressFunctions) ... ok\ntest_unknown_window_results_do_not_count_as_zero_brier (tests.test_tg_progress_model.ProgressFunctions) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 1.441s\n\nOK\n"
+    },
+    {
+      "module": "tests.test_tg_world_model",
+      "tests": 6,
+      "exit_code": 0,
+      "log": "test_future_targets_do_not_change_inputs_and_wait_is_masked (tests.test_tg_world_model.WorldModelFunctions) ... ok\ntest_motion_context_is_observed_offset_not_future_motion (tests.test_tg_world_model.WorldModelFunctions) ... ok\ntest_real_gradients_checkpoint_and_evaluation_preserve_normalization (tests.test_tg_world_model.WorldModelFunctions) ... ok\ntest_receiver_feedback_uses_only_matching_previous_attempts (tests.test_tg_world_model.WorldModelFunctions) ... ok\ntest_selection_preserves_mandatory_head_gates (tests.test_tg_world_model.WorldModelFunctions) ... ok\ntest_topology_is_independent_of_current_candidate_action (tests.test_tg_world_model.WorldModelFunctions) ... ok\n\n----------------------------------------------------------------------\nRan 6 tests in 1.369s\n\nOK\n"
+    }
+  ],
+  "suite": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_ablation_pilot\\20261103_151015_964923",
+  "manifest_sha256": "38c4966ae45605d6d1a6d36c4f4a21d88f2fc537dbed5aedea650fd28d613626",
+  "summary_sha256": "3db76c97a73f435e15acbb5da10fc3cd01704b8e0c62f32a7f29dacfd1c80864",
+  "resume_new_jobs": 0,
+  "snapshot_files": 130,
+  "baseline_parity": {
+    "actor": true,
+    "critic": true
+  },
+  "baseline_parity_run": "results\\tg_step7_baseline_parity\\runs\\20261103_152023_713241\\moves_5",
+  "old_baseline": "results\\tg_step6_final_baseline\\runs\\20261103_142752_782391\\moves_5",
+  "summary": {
+    "purpose": "pilot",
+    "budget": {
+      "purpose": "pilot",
+      "training_jobs": 18,
+      "evaluation_jobs": 18,
+      "training_steps_per_job": 160,
+      "total_training_steps": 2880,
+      "total_evaluation_steps": 2880,
+      "independent_training_seeds": [
+        11,
+        22,
+        33
+      ],
+      "evaluation_scenes": [
+        7001
+      ]
+    },
+    "by_training_seed": [
+      {
+        "group": "A",
+        "train_seed": 11,
+        "generated": 48,
+        "delivered": 47,
+        "delivery_rate": 0.9791666666666666,
+        "unresolved_fraction": 0.02083333333333337,
+        "success_hops_mean": 3.893617021276596,
+        "success_delay_mean": 38,
+        "success_delay_p95": 77,
+        "retry_attempts": 338,
+        "loop_transfers": 0,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 18.114760099999998,
+        "resources": {
+          "actor_trainable": 21956,
+          "critic_trainable": 18616,
+          "wm_frozen": 0,
+          "pm_frozen": 0,
+          "wm_active": false,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 1.537238100000002,
+          "ppo_updates": 2,
+          "ppo_seconds": 6.6689285,
+          "diagnostic_seconds": 7.100000001258877e-06
+        }
+      },
+      {
+        "group": "A",
+        "train_seed": 22,
+        "generated": 48,
+        "delivered": 0,
+        "delivery_rate": 0.0,
+        "unresolved_fraction": 1.0,
+        "success_hops_mean": null,
+        "success_delay_mean": null,
+        "success_delay_p95": null,
+        "retry_attempts": 301,
+        "loop_transfers": 273,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 16.9898878,
+        "resources": {
+          "actor_trainable": 21956,
+          "critic_trainable": 18616,
+          "wm_frozen": 0,
+          "pm_frozen": 0,
+          "wm_active": false,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 1.441284900000003,
+          "ppo_updates": 2,
+          "ppo_seconds": 6.2070896000000015,
+          "diagnostic_seconds": 5.799999999833716e-06
+        }
+      },
+      {
+        "group": "A",
+        "train_seed": 33,
+        "generated": 48,
+        "delivered": 0,
+        "delivery_rate": 0.0,
+        "unresolved_fraction": 1.0,
+        "success_hops_mean": null,
+        "success_delay_mean": null,
+        "success_delay_p95": null,
+        "retry_attempts": 163,
+        "loop_transfers": 129,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 16.755375899999997,
+        "resources": {
+          "actor_trainable": 21956,
+          "critic_trainable": 18616,
+          "wm_frozen": 0,
+          "pm_frozen": 0,
+          "wm_active": false,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 1.4229691999999963,
+          "ppo_updates": 2,
+          "ppo_seconds": 6.046024600000001,
+          "diagnostic_seconds": 6.700000000137152e-06
+        }
+      },
+      {
+        "group": "B",
+        "train_seed": 11,
+        "generated": 48,
+        "delivered": 47,
+        "delivery_rate": 0.9791666666666666,
+        "unresolved_fraction": 0.02083333333333337,
+        "success_hops_mean": 3.893617021276596,
+        "success_delay_mean": 38,
+        "success_delay_p95": 77,
+        "retry_attempts": 338,
+        "loop_transfers": 0,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 23.255841900000007,
+        "resources": {
+          "actor_trainable": 24165,
+          "critic_trainable": 18616,
+          "wm_frozen": 66789,
+          "pm_frozen": 0,
+          "wm_active": true,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 6.390980400000006,
+          "ppo_updates": 2,
+          "ppo_seconds": 6.457455699999998,
+          "diagnostic_seconds": 0.7121396999999972
+        }
+      },
+      {
+        "group": "B",
+        "train_seed": 22,
+        "generated": 48,
+        "delivered": 0,
+        "delivery_rate": 0.0,
+        "unresolved_fraction": 1.0,
+        "success_hops_mean": null,
+        "success_delay_mean": null,
+        "success_delay_p95": null,
+        "retry_attempts": 301,
+        "loop_transfers": 273,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 26.41865080000001,
+        "resources": {
+          "actor_trainable": 24165,
+          "critic_trainable": 18616,
+          "wm_frozen": 66789,
+          "pm_frozen": 0,
+          "wm_active": true,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 7.354115100000003,
+          "ppo_updates": 2,
+          "ppo_seconds": 7.003703700000001,
+          "diagnostic_seconds": 0.7791390000000007
+        }
+      },
+      {
+        "group": "B",
+        "train_seed": 33,
+        "generated": 48,
+        "delivered": 0,
+        "delivery_rate": 0.0,
+        "unresolved_fraction": 1.0,
+        "success_hops_mean": null,
+        "success_delay_mean": null,
+        "success_delay_p95": null,
+        "retry_attempts": 163,
+        "loop_transfers": 129,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 26.790483899999998,
+        "resources": {
+          "actor_trainable": 24165,
+          "critic_trainable": 18616,
+          "wm_frozen": 66789,
+          "pm_frozen": 0,
+          "wm_active": true,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 7.535358900000011,
+          "ppo_updates": 2,
+          "ppo_seconds": 7.1428457000000005,
+          "diagnostic_seconds": 0.7769501999999999
+        }
+      },
+      {
+        "group": "C",
+        "train_seed": 11,
+        "generated": 48,
+        "delivered": 47,
+        "delivery_rate": 0.9791666666666666,
+        "unresolved_fraction": 0.02083333333333337,
+        "success_hops_mean": 3.893617021276596,
+        "success_delay_mean": 38,
+        "success_delay_p95": 77,
+        "retry_attempts": 338,
+        "loop_transfers": 0,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 22.92503290000002,
+        "resources": {
+          "actor_trainable": 21956,
+          "critic_trainable": 18616,
+          "wm_frozen": 0,
+          "pm_frozen": 24496,
+          "wm_active": false,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 1.5537274000000094,
+          "ppo_updates": 2,
+          "ppo_seconds": 6.804361200000001,
+          "diagnostic_seconds": 0.003447400000002432
+        }
+      },
+      {
+        "group": "C",
+        "train_seed": 22,
+        "generated": 48,
+        "delivered": 0,
+        "delivery_rate": 0.0,
+        "unresolved_fraction": 1.0,
+        "success_hops_mean": null,
+        "success_delay_mean": null,
+        "success_delay_p95": null,
+        "retry_attempts": 301,
+        "loop_transfers": 273,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 22.85746500000002,
+        "resources": {
+          "actor_trainable": 21956,
+          "critic_trainable": 18616,
+          "wm_frozen": 0,
+          "pm_frozen": 24496,
+          "wm_active": false,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 1.623026299999994,
+          "ppo_updates": 2,
+          "ppo_seconds": 6.661309,
+          "diagnostic_seconds": 0.004214100000001331
+        }
+      },
+      {
+        "group": "C",
+        "train_seed": 33,
+        "generated": 48,
+        "delivered": 0,
+        "delivery_rate": 0.0,
+        "unresolved_fraction": 1.0,
+        "success_hops_mean": null,
+        "success_delay_mean": null,
+        "success_delay_p95": null,
+        "retry_attempts": 163,
+        "loop_transfers": 129,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 23.21352040000005,
+        "resources": {
+          "actor_trainable": 21956,
+          "critic_trainable": 18616,
+          "wm_frozen": 0,
+          "pm_frozen": 24496,
+          "wm_active": false,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 1.7168368000000003,
+          "ppo_updates": 2,
+          "ppo_seconds": 6.9084491,
+          "diagnostic_seconds": 0.00357710000000111
+        }
+      },
+      {
+        "group": "D",
+        "train_seed": 11,
+        "generated": 48,
+        "delivered": 47,
+        "delivery_rate": 0.9791666666666666,
+        "unresolved_fraction": 0.02083333333333337,
+        "success_hops_mean": 3.893617021276596,
+        "success_delay_mean": 38,
+        "success_delay_p95": 77,
+        "retry_attempts": 338,
+        "loop_transfers": 0,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 29.181120799999974,
+        "resources": {
+          "actor_trainable": 24165,
+          "critic_trainable": 18616,
+          "wm_frozen": 66789,
+          "pm_frozen": 24496,
+          "wm_active": true,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 6.949329600000006,
+          "ppo_updates": 2,
+          "ppo_seconds": 6.728095299999998,
+          "diagnostic_seconds": 0.7605228999999998
+        }
+      },
+      {
+        "group": "D",
+        "train_seed": 22,
+        "generated": 48,
+        "delivered": 0,
+        "delivery_rate": 0.0,
+        "unresolved_fraction": 1.0,
+        "success_hops_mean": null,
+        "success_delay_mean": null,
+        "success_delay_p95": null,
+        "retry_attempts": 301,
+        "loop_transfers": 273,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 30.298546499999986,
+        "resources": {
+          "actor_trainable": 24165,
+          "critic_trainable": 18616,
+          "wm_frozen": 66789,
+          "pm_frozen": 24496,
+          "wm_active": true,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 7.394532299999996,
+          "ppo_updates": 2,
+          "ppo_seconds": 7.079569899999999,
+          "diagnostic_seconds": 0.8031986
+        }
+      },
+      {
+        "group": "D",
+        "train_seed": 33,
+        "generated": 48,
+        "delivered": 0,
+        "delivery_rate": 0.0,
+        "unresolved_fraction": 1.0,
+        "success_hops_mean": null,
+        "success_delay_mean": null,
+        "success_delay_p95": null,
+        "retry_attempts": 163,
+        "loop_transfers": 129,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 32.66671360000004,
+        "resources": {
+          "actor_trainable": 24165,
+          "critic_trainable": 18616,
+          "wm_frozen": 66789,
+          "pm_frozen": 24496,
+          "wm_active": true,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 8.014083599999992,
+          "ppo_updates": 2,
+          "ppo_seconds": 7.1730424999999975,
+          "diagnostic_seconds": 0.7878466
+        }
+      },
+      {
+        "group": "E",
+        "train_seed": 11,
+        "generated": 48,
+        "delivered": 47,
+        "delivery_rate": 0.9791666666666666,
+        "unresolved_fraction": 0.02083333333333337,
+        "success_hops_mean": 3.893617021276596,
+        "success_delay_mean": 38,
+        "success_delay_p95": 77,
+        "retry_attempts": 338,
+        "loop_transfers": 0,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 19.761773100000028,
+        "resources": {
+          "actor_trainable": 24213,
+          "critic_trainable": 18616,
+          "wm_frozen": 0,
+          "pm_frozen": 0,
+          "wm_active": false,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 1.6312248999999968,
+          "ppo_updates": 2,
+          "ppo_seconds": 6.649303500000001,
+          "diagnostic_seconds": 4.800000001914384e-06
+        }
+      },
+      {
+        "group": "E",
+        "train_seed": 22,
+        "generated": 48,
+        "delivered": 0,
+        "delivery_rate": 0.0,
+        "unresolved_fraction": 1.0,
+        "success_hops_mean": null,
+        "success_delay_mean": null,
+        "success_delay_p95": null,
+        "retry_attempts": 301,
+        "loop_transfers": 273,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 18.641709100000014,
+        "resources": {
+          "actor_trainable": 24213,
+          "critic_trainable": 18616,
+          "wm_frozen": 0,
+          "pm_frozen": 0,
+          "wm_active": false,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 1.4983749000000046,
+          "ppo_updates": 2,
+          "ppo_seconds": 6.5846553,
+          "diagnostic_seconds": 6.699999998360795e-06
+        }
+      },
+      {
+        "group": "E",
+        "train_seed": 33,
+        "generated": 48,
+        "delivered": 0,
+        "delivery_rate": 0.0,
+        "unresolved_fraction": 1.0,
+        "success_hops_mean": null,
+        "success_delay_mean": null,
+        "success_delay_p95": null,
+        "retry_attempts": 163,
+        "loop_transfers": 129,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 18.981888400000003,
+        "resources": {
+          "actor_trainable": 24213,
+          "critic_trainable": 18616,
+          "wm_frozen": 0,
+          "pm_frozen": 0,
+          "wm_active": false,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 1.5186842999999945,
+          "ppo_updates": 2,
+          "ppo_seconds": 6.744735000000001,
+          "diagnostic_seconds": 3.900000002943216e-06
+        }
+      },
+      {
+        "group": "F",
+        "train_seed": 11,
+        "generated": 48,
+        "delivered": 47,
+        "delivery_rate": 0.9791666666666666,
+        "unresolved_fraction": 0.02083333333333337,
+        "success_hops_mean": 3.893617021276596,
+        "success_delay_mean": 38,
+        "success_delay_p95": 77,
+        "retry_attempts": 338,
+        "loop_transfers": 0,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 20.80589479999992,
+        "resources": {
+          "actor_trainable": 24165,
+          "critic_trainable": 18616,
+          "wm_frozen": 66789,
+          "pm_frozen": 0,
+          "wm_active": false,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 1.9125919000000047,
+          "ppo_updates": 2,
+          "ppo_seconds": 6.8566234,
+          "diagnostic_seconds": 0.8122090000000028
+        }
+      },
+      {
+        "group": "F",
+        "train_seed": 22,
+        "generated": 48,
+        "delivered": 0,
+        "delivery_rate": 0.0,
+        "unresolved_fraction": 1.0,
+        "success_hops_mean": null,
+        "success_delay_mean": null,
+        "success_delay_p95": null,
+        "retry_attempts": 301,
+        "loop_transfers": 273,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 22.390058700000054,
+        "resources": {
+          "actor_trainable": 24165,
+          "critic_trainable": 18616,
+          "wm_frozen": 66789,
+          "pm_frozen": 0,
+          "wm_active": false,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 1.8525191999999981,
+          "ppo_updates": 2,
+          "ppo_seconds": 7.8689351999999975,
+          "diagnostic_seconds": 0.8050986000000027
+        }
+      },
+      {
+        "group": "F",
+        "train_seed": 33,
+        "generated": 48,
+        "delivered": 0,
+        "delivery_rate": 0.0,
+        "unresolved_fraction": 1.0,
+        "success_hops_mean": null,
+        "success_delay_mean": null,
+        "success_delay_p95": null,
+        "retry_attempts": 163,
+        "loop_transfers": 129,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 21.356815199999915,
+        "resources": {
+          "actor_trainable": 24165,
+          "critic_trainable": 18616,
+          "wm_frozen": 66789,
+          "pm_frozen": 0,
+          "wm_active": false,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 1.8371983000000045,
+          "ppo_updates": 2,
+          "ppo_seconds": 7.2071558,
+          "diagnostic_seconds": 0.7925996000000017
+        }
+      }
+    ],
+    "groups": [
+      {
+        "group": "A",
+        "independent_training_n": 3,
+        "metrics": {
+          "delivery_rate": {
+            "mean": 0.3263888888888889,
+            "sample_std": 0.5653221385815086,
+            "n_defined": 3
+          },
+          "unresolved_fraction": {
+            "mean": 0.6736111111111112,
+            "sample_std": 0.5653221385815086,
+            "n_defined": 3
+          },
+          "success_hops_mean": {
+            "mean": 3.893617021276596,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "success_delay_mean": {
+            "mean": 38,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "success_delay_p95": {
+            "mean": 77,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "retry_attempts": {
+            "mean": 267.3333333333333,
+            "sample_std": 92.22978549976864,
+            "n_defined": 3
+          },
+          "loop_transfers": {
+            "mean": 134,
+            "sample_std": 136.5686640485291,
+            "n_defined": 3
+          }
+        }
+      },
+      {
+        "group": "B",
+        "independent_training_n": 3,
+        "metrics": {
+          "delivery_rate": {
+            "mean": 0.3263888888888889,
+            "sample_std": 0.5653221385815086,
+            "n_defined": 3
+          },
+          "unresolved_fraction": {
+            "mean": 0.6736111111111112,
+            "sample_std": 0.5653221385815086,
+            "n_defined": 3
+          },
+          "success_hops_mean": {
+            "mean": 3.893617021276596,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "success_delay_mean": {
+            "mean": 38,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "success_delay_p95": {
+            "mean": 77,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "retry_attempts": {
+            "mean": 267.3333333333333,
+            "sample_std": 92.22978549976864,
+            "n_defined": 3
+          },
+          "loop_transfers": {
+            "mean": 134,
+            "sample_std": 136.5686640485291,
+            "n_defined": 3
+          }
+        }
+      },
+      {
+        "group": "C",
+        "independent_training_n": 3,
+        "metrics": {
+          "delivery_rate": {
+            "mean": 0.3263888888888889,
+            "sample_std": 0.5653221385815086,
+            "n_defined": 3
+          },
+          "unresolved_fraction": {
+            "mean": 0.6736111111111112,
+            "sample_std": 0.5653221385815086,
+            "n_defined": 3
+          },
+          "success_hops_mean": {
+            "mean": 3.893617021276596,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "success_delay_mean": {
+            "mean": 38,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "success_delay_p95": {
+            "mean": 77,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "retry_attempts": {
+            "mean": 267.3333333333333,
+            "sample_std": 92.22978549976864,
+            "n_defined": 3
+          },
+          "loop_transfers": {
+            "mean": 134,
+            "sample_std": 136.5686640485291,
+            "n_defined": 3
+          }
+        }
+      },
+      {
+        "group": "D",
+        "independent_training_n": 3,
+        "metrics": {
+          "delivery_rate": {
+            "mean": 0.3263888888888889,
+            "sample_std": 0.5653221385815086,
+            "n_defined": 3
+          },
+          "unresolved_fraction": {
+            "mean": 0.6736111111111112,
+            "sample_std": 0.5653221385815086,
+            "n_defined": 3
+          },
+          "success_hops_mean": {
+            "mean": 3.893617021276596,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "success_delay_mean": {
+            "mean": 38,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "success_delay_p95": {
+            "mean": 77,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "retry_attempts": {
+            "mean": 267.3333333333333,
+            "sample_std": 92.22978549976864,
+            "n_defined": 3
+          },
+          "loop_transfers": {
+            "mean": 134,
+            "sample_std": 136.5686640485291,
+            "n_defined": 3
+          }
+        }
+      },
+      {
+        "group": "E",
+        "independent_training_n": 3,
+        "metrics": {
+          "delivery_rate": {
+            "mean": 0.3263888888888889,
+            "sample_std": 0.5653221385815086,
+            "n_defined": 3
+          },
+          "unresolved_fraction": {
+            "mean": 0.6736111111111112,
+            "sample_std": 0.5653221385815086,
+            "n_defined": 3
+          },
+          "success_hops_mean": {
+            "mean": 3.893617021276596,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "success_delay_mean": {
+            "mean": 38,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "success_delay_p95": {
+            "mean": 77,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "retry_attempts": {
+            "mean": 267.3333333333333,
+            "sample_std": 92.22978549976864,
+            "n_defined": 3
+          },
+          "loop_transfers": {
+            "mean": 134,
+            "sample_std": 136.5686640485291,
+            "n_defined": 3
+          }
+        }
+      },
+      {
+        "group": "F",
+        "independent_training_n": 3,
+        "metrics": {
+          "delivery_rate": {
+            "mean": 0.3263888888888889,
+            "sample_std": 0.5653221385815086,
+            "n_defined": 3
+          },
+          "unresolved_fraction": {
+            "mean": 0.6736111111111112,
+            "sample_std": 0.5653221385815086,
+            "n_defined": 3
+          },
+          "success_hops_mean": {
+            "mean": 3.893617021276596,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "success_delay_mean": {
+            "mean": 38,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "success_delay_p95": {
+            "mean": 77,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "retry_attempts": {
+            "mean": 267.3333333333333,
+            "sample_std": 92.22978549976864,
+            "n_defined": 3
+          },
+          "loop_transfers": {
+            "mean": 134,
+            "sample_std": 136.5686640485291,
+            "n_defined": 3
+          }
+        }
+      }
+    ],
+    "statistical_unit": "independent trained policy, not evaluation episode",
+    "drop_rate_supported": false,
+    "limitations": [
+      "pilot is not convergence or significance evidence",
+      "one frozen WM/PM pretraining seed",
+      "legacy history rewards persist between episodes",
+      "CPU wall timing; CUDA unmeasured",
+      "E matches trainable extra Actor capacity within 2.2%, not frozen-model total capacity",
+      "F uses same four-frame input scope and scorer; idle WM loaded but never called"
+    ]
+  },
+  "reporting_tools_sha256": {
+    "scripts/verify_tg_ablation.py": "46222c9dcd4fb55d2438a80b40afda46dfe0fb66c82fe587cbdad43b850cdd67",
+    "scripts/plot_tg_ablation.py": "4a7005d8f4af8d5fc5f7f4971f707842b0be990f836ae656493d6164cc40ba12",
+    "scripts/test_tg_ablation.py": "10ac37db6bad037652972cede6ce5deb8027c81312c294c23b4670b0cf0bcd03",
+    "tests/test_legacy_ablation.py": "e350549d314ee4e5791e8425bd7fadd3adb0b5be313be15a3b1c803776198b6a",
+    "tests/test_ablation_suite.py": "6425d2641dfc4e2df905b803035d7b461333db44a231a650566409cfb04255c1"
+  }
+}

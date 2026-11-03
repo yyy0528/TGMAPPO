@@ -30,6 +30,10 @@ def load_policy(learner, path):
             raise ValueError("Incompatible TG environment/config/WM mode")
         if learner.wm_runtime is not None and payload["wm"]["checkpoint_sha256"] != learner.wm_runtime.file_sha256:
             raise ValueError("Policy expects a different frozen WM")
+        if payload.get("actor_extra_width", 0) != getattr(learner.all_args, "actor_extra_width", 0):
+            raise ValueError("Actor expansion configuration mismatch")
+        if learner.wm_runtime is not None and payload["wm"].get("feature_source", "learned") != learner.wm_runtime.feature_source:
+            raise ValueError("Candidate feature source mismatch")
         if payload.get("use_pm_reward", False) != (learner.pm_runtime is not None):
             raise ValueError("Policy PM mode mismatch")
         if learner.pm_runtime is not None and any(payload["pm"][key] != learner.pm_runtime.metadata()[key]
@@ -60,6 +64,12 @@ def save_policy(learner, run_dir):
     root = Path(run_dir)
     wm = learner.wm_runtime.metadata() if learner.wm_runtime is not None else None
     pm = learner.pm_runtime.metadata() if learner.pm_runtime is not None else None
+    resources = {"actor_trainable": sum(p.numel() for p in learner.policy.actor.parameters() if p.requires_grad),
+                 "critic_trainable": sum(p.numel() for p in learner.policy.critic.parameters() if p.requires_grad),
+                 "wm_frozen": sum(p.numel() for p in learner.wm_runtime.model.parameters()) if wm else 0,
+                 "pm_frozen": sum(p.numel() for p in learner.pm_runtime.model.parameters()) if pm else 0,
+                 "wm_active": bool(wm and learner.wm_runtime.feature_source == "learned"),
+                 "device": str(learner.device), "cuda_peak_bytes": None}
     if getattr(learner.all_args, "tg_evaluate", False):
         metadata = dict(learner.evaluation_metadata)
         metadata["actor_unchanged"] = tensor_digest(learner.policy.actor.state_dict()) == metadata["actor_sha256"]
@@ -73,6 +83,7 @@ def save_policy(learner, run_dir):
         payload = {"format": "original_tg_policy_v1", "config": signature(learner),
             "use_wm_actor": learner.wm_runtime is not None, "wm": wm,
             "use_pm_reward": learner.pm_runtime is not None, "pm": pm,
+            "actor_extra_width": getattr(learner.all_args, "actor_extra_width", 0),
             "actor": learner.policy.actor.state_dict(), "critic": learner.policy.critic.state_dict(),
             "value_normalizer": (learner.trainer.value_normalizer.state_dict()
                                  if learner.trainer._use_valuenorm else None),
@@ -83,5 +94,7 @@ def save_policy(learner, run_dir):
                     "checkpoint_sha256": hashlib.sha256(path.read_bytes()).hexdigest(), "wm": wm,
                     "wm_ppo_updates": learner.wm_update_records, "pm": pm,
                     "pm_ppo_updates": learner.pm_update_records, "training_resume_supported": False}
+    metadata.update(profile=learner.profile, resources=resources,
+                    timing_scope="CPU collect and PPO wall time; diagnostics separated; import/env/plot overhead excluded")
     with (root / "logs" / "TG_policy_report.json").open("x", encoding="utf-8") as stream:
         json.dump(metadata, stream, indent=2, allow_nan=False)

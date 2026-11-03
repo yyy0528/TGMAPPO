@@ -44,7 +44,7 @@ def reject_research_options(arguments):
     }
     unsupported = []
     data_options = {"wm_data_split", "wm_export_max_steps", "wm_export_max_bytes", "wm_export_max_packets",
-                    "wm_actor_checkpoint", "pm_reward_checkpoint", "pm_reward_alpha"}
+                    "wm_actor_checkpoint", "wm_feature_source", "pm_reward_checkpoint", "pm_reward_alpha"}
     for argument in arguments:
         if not argument.startswith("--"):
             continue

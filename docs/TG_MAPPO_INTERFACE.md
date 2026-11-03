@@ -227,3 +227,10 @@ Critic 输入和环境奖励维持原流程；PM 仍未实现。新增原 TG che
 原环境执行完 t→t+1 后，Runner 在广播奖励和调用 insert/compute 之前计算 `r_train=r_env+alpha*(buffer.gamma*Phi_tp1-Phi_t)`。
 TG_PM_rewards.csv 保存分项；GAE/Critic 使用 r_train；原指标仍按环境结果。实际投递和完整任务终止将相应势函数置零。
 不改变原始未结束标签，未实现真实失败分类或跨 rollout 延续；通用差分函数的截断边界已测。当前总计 76 项通过，见 [PM 接入说明](TG_MAPPO_PM_INTEGRATION.md)。
+
+## 11. 第 7 步工具更新（2026-11-03）
+
+新增旁路真实尝试/转发事件指标，写 TG_physical_metrics.jsonl；成功跳数 len(route)-1、投递时延/nearest-rank P95、重传及环路独立于旧 CSV。
+新增 actor_extra_width=17 的 Actor 残差扩容对照，wm_feature_source=history 的四帧统计对照；Critic 结构和原环境奖励保持原定义。
+新增参数/CPU计时报告、冻结配置、源码快照和任务级接续；86 项回归及六组三种子短预实验的 36 个子任务通过。
+正式长训练未启动，详细分母、种子统计、对照局限及接续命令见 [第 7 步记录](TG_MAPPO_ABLATION_EXPERIMENTS.md)。

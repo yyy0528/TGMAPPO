@@ -56,7 +56,10 @@ def load_frozen_wm(path, n):
 
 
 class FrozenWMRuntime:
-    def __init__(self, path, n):
+    def __init__(self, path, n, feature_source="learned"):
+        if feature_source not in ("learned", "history"):
+            raise ValueError("Unknown candidate feature source")
+        self.feature_source = feature_source
         self.model, self.history_length = load_frozen_wm(path, n)
         self.n = n
         self.path = str(Path(path).resolve())
@@ -108,6 +111,17 @@ class FrozenWMRuntime:
             if not available[0, node, :self.n].any():
                 continue
             for action in np.flatnonzero(available[0, node]):
+                if self.feature_source == "history":
+                    history = list(self.histories[node])
+                    feedback = [float(frame["own_previous_ack"]) for frame in history
+                                if frame["own_previous_action"] == action and frame["own_previous_attempt"]]
+                    ack = (sum(feedback)+1)/(len(feedback)+2) if feedback else obs[0, node, action]
+                    def trend(target):
+                        values = [frame["node_features"][target][2] for frame in history]
+                        return (values[-1]-values[0])/(len(values)-1) if len(values) > 1 else 0.
+                    result[0, node, action] = (0. if action == self.n else ack, trend(node),
+                                               0. if action == self.n else trend(action))
+                    continue
                 records.append(encode_inputs({"agent_id": node, "inputs": {
                     "history": list(self.histories[node]), "candidate_action": int(action)}}, self.history_length))
                 locations.append((node, int(action)))
@@ -123,6 +137,7 @@ class FrozenWMRuntime:
                     result[0, node, action, 0] = 0.0
                     result[0, node, action, 2] = 0.0
             result[..., 1:] = np.clip(result[..., 1:], -1, 1)
+        result[..., 1:] = np.clip(result[..., 1:], -1, 1)
         self.next_step += 1
         self.predictions += 1
         return result
@@ -138,5 +153,6 @@ class FrozenWMRuntime:
         return {"checkpoint": self.path, "checkpoint_sha256": self.file_sha256,
                 "state_sha256": self.initial_digest, "history_length": self.history_length,
                 "features": list(FEATURES), "predictions": self.predictions,
+                "feature_source": self.feature_source, "learned_forward_used": self.feature_source == "learned",
                 "frozen": True, "critic_uses_wm": False,
                 "not_used": ["motion", "delivery", "drop", "uncertainty"]}

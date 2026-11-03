@@ -103,6 +103,8 @@ def parse_args(args, parser):
     parser.add_argument("--export_wm_data", type=lambda x: bool(strtobool(x)), default=False)
     parser.add_argument("--use_wm_actor", type=lambda x: bool(strtobool(x)), default=False)
     parser.add_argument("--wm_actor_checkpoint", default="")
+    parser.add_argument("--wm_feature_source", choices=("learned", "history"), default="learned")
+    parser.add_argument("--actor_extra_width", type=int, default=0)
     parser.add_argument("--use_pm_reward", type=lambda x: bool(strtobool(x)), default=False)
     parser.add_argument("--pm_reward_checkpoint", default="")
     parser.add_argument("--pm_reward_alpha", type=float, default=1.0)
@@ -150,6 +152,10 @@ def main(args):
     all_args.max_edge_dist = all_args.comm_range
     if bool(all_args.wm_actor_checkpoint) != all_args.use_wm_actor:
         parser.error("--use_wm_actor true requires --wm_actor_checkpoint; disabled mode accepts no WM path")
+    if all_args.actor_extra_width < 0 or (all_args.actor_extra_width and (all_args.use_wm_actor or all_args.use_pm_reward)):
+        parser.error("Actor expansion control requires nonnegative width and WM/PM disabled")
+    if all_args.wm_feature_source != "learned" and (not all_args.use_wm_actor or all_args.use_pm_reward):
+        parser.error("History control requires candidate Actor enabled and PM disabled")
     if bool(all_args.pm_reward_checkpoint) != all_args.use_pm_reward:
         parser.error("--use_pm_reward true requires --pm_reward_checkpoint; disabled mode accepts no PM path")
     if not np.isfinite(all_args.pm_reward_alpha) or all_args.pm_reward_alpha < 0:

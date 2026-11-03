@@ -148,6 +148,8 @@ class DeepQNetwork(nn.Module):
         self.evaluation_metadata = None
         self.pm_runtime = None
         self.pm_update_records = []
+        self.profile = {"collect_calls": 0, "collect_seconds": 0., "ppo_updates": 0,
+                        "ppo_seconds": 0., "diagnostic_seconds": 0.}
         if getattr(self.all_args, "use_pm_reward", False):
             from .progress_runtime import FrozenPMRuntime
             self.pm_runtime = FrozenPMRuntime(self.all_args.pm_reward_checkpoint, self.env.buoy_number,
@@ -156,7 +158,8 @@ class DeepQNetwork(nn.Module):
             if self.all_args.use_recurrent_policy or self.all_args.use_naive_recurrent_policy:
                 raise ValueError("WM Actor integration currently supports feedforward TG policy only")
             from .wm_runtime import FrozenWMRuntime
-            self.wm_runtime = FrozenWMRuntime(self.all_args.wm_actor_checkpoint, self.env.buoy_number)
+            self.wm_runtime = FrozenWMRuntime(self.all_args.wm_actor_checkpoint, self.env.buoy_number,
+                                              getattr(self.all_args, "wm_feature_source", "learned"))
 
 
         # build two network: eval_net and target_net
@@ -313,6 +316,8 @@ class DeepQNetwork(nn.Module):
     # 将动作转换为环境可以接受的格式
     @torch.no_grad()
     def collect(self, step: int) -> Tuple[arr, arr, arr, arr, arr, arr]:
+        import time
+        started = time.perf_counter()
         self.trainer.prep_rollout()
         wm_features = None
         if self.wm_runtime is not None:
@@ -368,6 +373,8 @@ class DeepQNetwork(nn.Module):
         else:
             raise NotImplementedError
 
+        self.profile["collect_calls"] += 1
+        self.profile["collect_seconds"] += time.perf_counter()-started
         return (
             values,
             actions,
@@ -568,6 +575,8 @@ class DeepQNetwork(nn.Module):
         self.buffer.active_masks[0] = self.env.active_masks()
     def train(self):
         """Train policies with data in buffer."""
+        import time
+        diagnostic_start = time.perf_counter()
         if self.pm_runtime is not None:
             from .wm_runtime import tensor_digest
             self.pm_runtime.assert_frozen()
@@ -602,8 +611,13 @@ class DeepQNetwork(nn.Module):
             actor_before = tensor_digest(self.policy.actor.state_dict())
             critic_before = tensor_digest(self.policy.critic.state_dict())
             fusion_before = tensor_digest(self.policy.actor.wm_fusion.state_dict())
+        self.profile["diagnostic_seconds"] += time.perf_counter()-diagnostic_start
         self.trainer.prep_training()      # 准备训练环境
+        ppo_start = time.perf_counter()
         train_infos = self.trainer.train(self.buffer)
+        self.profile["ppo_seconds"] += time.perf_counter()-ppo_start
+        self.profile["ppo_updates"] += 1
+        diagnostic_start = time.perf_counter()
         if self.pm_runtime is not None:
             self.pm_runtime.assert_frozen()
             self.pm_update_records.append({"pm_frozen": True,
@@ -619,6 +633,7 @@ class DeepQNetwork(nn.Module):
                 "critic_changed": critic_before != tensor_digest(self.policy.critic.state_dict()),
                 "fusion_changed": fusion_before != tensor_digest(self.policy.actor.wm_fusion.state_dict()),
                 "wm_frozen": True, "metrics": {key: float(value) for key,value in train_infos.items()}})
+        self.profile["diagnostic_seconds"] += time.perf_counter()-diagnostic_start
         #从缓冲区采样数据，计算损失函数，并通过反向传播更新网络参数。
 
         #更新后处理缓冲区

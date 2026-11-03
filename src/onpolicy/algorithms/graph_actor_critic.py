@@ -111,6 +111,15 @@ class GR_Actor(nn.Module):
             action_space, self.hidden_size, self._use_orthogonal, self._gain
         )
         self.use_wm = getattr(args, "use_wm_actor", False)
+        self.actor_extra_width = getattr(args, "actor_extra_width", 0)
+        if self.actor_extra_width:
+            if self.use_wm or self.actor_extra_width < 1:
+                raise ValueError("Actor expansion control requires WM disabled and a positive width")
+            with torch.random.fork_rng(devices=[]):
+                self.actor_extra = nn.Sequential(nn.Linear(self.hidden_size, self.actor_extra_width), nn.Tanh(),
+                                                 nn.Linear(self.actor_extra_width, self.hidden_size))
+                nn.init.zeros_(self.actor_extra[-1].weight)
+                nn.init.zeros_(self.actor_extra[-1].bias)
         if self.use_wm:
             if action_space.__class__.__name__ != "Discrete":
                 raise ValueError("WM Actor requires Discrete next-hop actions")
@@ -223,6 +232,8 @@ class GR_Actor(nn.Module):
         if self._use_naive_recurrent_policy or self._use_recurrent_policy:
             actor_features, rnn_states = self.rnn(actor_features, rnn_states, masks)
 
+        if self.actor_extra_width:
+            actor_features = actor_features+self.actor_extra(actor_features)
         if self.use_wm:
             distribution = self._wm_distribution(actor_features, available_actions, wm_features)
             actions = distribution.mode() if deterministic else distribution.sample()
@@ -311,6 +322,8 @@ class GR_Actor(nn.Module):
         if self._use_naive_recurrent_policy or self._use_recurrent_policy:
             actor_features, rnn_states = self.rnn(actor_features, rnn_states, masks)
 
+        if self.actor_extra_width:
+            actor_features = actor_features+self.actor_extra(actor_features)
         if self.use_wm:
             distribution = self._wm_distribution(actor_features, available_actions, wm_features)
             action_log_probs = distribution.log_probs(action)
