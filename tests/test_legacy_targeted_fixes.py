@@ -75,6 +75,14 @@ class ScriptedAlgorithm:
 
 
 class GeometryAndChannelFixes(unittest.TestCase):
+    def test_huber_large_negative_errors_have_symmetric_nonzero_gradients(self):
+        from onpolicy.utils.util import huber_loss
+        errors = torch.tensor([-20., -2., -.5, 0., .5, 2., 20.], requires_grad=True)
+        losses = huber_loss(errors, 1.)
+        self.assertTrue(torch.allclose(losses, torch.tensor([19.5, 1.5, .125, 0, .125, 1.5, 19.5])))
+        losses.sum().backward()
+        self.assertTrue(torch.allclose(errors.grad, torch.tensor([-1., -1., -.5, 0, .5, 1., 1.])))
+
     def test_graph_distance_is_physical_and_changes_after_motion(self):
         env = make_environment()
         _, before = env.graph_observation(env.buoys[0])
