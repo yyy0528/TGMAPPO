@@ -303,6 +303,7 @@
 - 核验器曾因跨 Python 版本标准差差 1.1e-16 报错，解释后修为浮点统计容差；源码/权重/原始文件 SHA 保持严格核验。
 - 目录 results/tg_ablation_pilot/20261103_151015_964923；[凭据](evidence/TG_ABLATION_PILOT_20261103.json)、[完整说明/命令](TG_MAPPO_ABLATION_EXPERIMENTS.md)，图/CSV 已生成并查看。
 - 缺项：正式预算训练/盲测、总容量及历史 Critic 等对照、PM 真失败分类/可靠性、GPU 与半途训练恢复；下一次先诊断零投递种子的策略/环路再定中等预算。
+- Git：工具/代码/配置/测试和小型凭据已本地提交 `f02deb96`；本轮推送仍因 GitHub 443 无法连接退出 1，尚未上传。网络恢复后重推 experiment/tg-wm-pm；原有无关修改未提交。
 
 ### 后续日志模板（复制后填写真实结果）
 
