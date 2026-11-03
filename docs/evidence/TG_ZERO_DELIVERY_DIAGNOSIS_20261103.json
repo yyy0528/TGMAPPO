@@ -1,0 +1,2413 @@
+{
+  "success": true,
+  "scope": "read-only zero-delivery diagnosis; no training or policy/reward fix",
+  "new_tests": 6,
+  "tests": [
+    {
+      "command": [
+        "D:\\python3.6.8\\python.exe",
+        "-m",
+        "unittest",
+        "tests.test_policy_diagnostics",
+        "-v"
+      ],
+      "tests": 4,
+      "exit_code": 0,
+      "log": "test_active_wait_sink_opportunity_and_initial_agreement (tests.test_policy_diagnostics.DiagnosticFunctions) ... ok\ntest_cycles_preserve_direction_and_ignore_path_prefix (tests.test_policy_diagnostics.DiagnosticFunctions) ... ok\ntest_observed_traps_are_not_physical_disconnections (tests.test_policy_diagnostics.DiagnosticFunctions) ... ok\ntest_successful_loop_counts_and_wait_are_separate (tests.test_policy_diagnostics.DiagnosticFunctions) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nOK\n"
+    },
+    {
+      "command": [
+        "D:\\python3.6.8\\python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_legacy_diagnostic_capture.py",
+        "-v"
+      ],
+      "tests": 2,
+      "exit_code": 0,
+      "log": "D:\\python3.6.8\\lib\\site-packages\\torch\\cuda\\amp\\autocast_mode.py:118: UserWarning: torch.cuda.amp.autocast only affects CUDA ops, but CUDA is not available.  Disabling.\n  warnings.warn(\"torch.cuda.amp.autocast only affects CUDA ops, but CUDA is not available.  Disabling.\")\ntest_baseline_capture_is_read_only_and_detaches_cleanly (test_legacy_diagnostic_capture.CaptureModules) ... D:\\python3.6.8\\lib\\site-packages\\torch\\cuda\\amp\\grad_scaler.py:116: UserWarning: torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.\n  warnings.warn(\"torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.\")\nok\ntest_wm_distribution_capture_uses_cached_inputs_without_sampling (test_legacy_diagnostic_capture.CaptureModules) ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 0.275s\n\nOK\n"
+    }
+  ],
+  "diagnostic_cases": 24,
+  "reward_control_cases": 2,
+  "batch": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_policy_diagnostics\\20261103_155544_634157",
+  "commands_sha256": "627979046e1aaee5a15f77cbb9e89a71cb11b57ee7113a51a08f0c302b8a7118",
+  "artifacts_sha256": {
+    "A_11_trained_greedy": {
+      "report.json": "8e6628ee1762646ee4ebfef84ac329542ccf89c732063feb2b6805ae135147fe",
+      "slots.jsonl": "fb54b2124cc11e9fdc6d958ac0ec475dc1c5082879283780271f937e88cad9ee",
+      "packet_routes.jsonl": "39fa352cfea5a7701f73a930337691adbe3c0927e0122d69935182eb0134f250"
+    },
+    "A_22_trained_greedy": {
+      "report.json": "58ce03f94f12c7d685bb05aa430dcd2bb30136df38bb3330e73c7cb804360ba3",
+      "slots.jsonl": "31526d3e73cd06f76e110d07e8de024e6119f8382bb9a8f35f3c824cff739ab9",
+      "packet_routes.jsonl": "fe9d1de57c527f6ae2ecbdfaead8f775abaa24ab202b8ba8b2cad83a0bd929e3"
+    },
+    "A_33_trained_greedy": {
+      "report.json": "595116b4507afb0ca94312b0171c8db52de3ce7c5a5d60ae1c6c05d1a0c31a21",
+      "slots.jsonl": "dbb24a0f026319bed40fafc3df13d373cd5fa7d906ab94fbaf083e3779084a15",
+      "packet_routes.jsonl": "7c6b935b05f69eca575e4d59a343b2b0ce4701a4cb522fe1049ee593d80ee2a0"
+    },
+    "B_11_trained_greedy": {
+      "report.json": "9e753e75143c6d086ad6aba1084d1d93705816832fd6fcd1edf7c1cf40223c50",
+      "slots.jsonl": "7cacbbe3bb46b6e7093f9a26beffa0fa2dad24c5f8dce8a6afadf3da92553533",
+      "packet_routes.jsonl": "39fa352cfea5a7701f73a930337691adbe3c0927e0122d69935182eb0134f250"
+    },
+    "B_22_trained_greedy": {
+      "report.json": "7b90484df6f909ae653a4e20600a79dc92773d26f85d1c675bcbe420f85a6450",
+      "slots.jsonl": "f5d79c6a5c5852364022476e7442ecb83ac61a33719d3585b4351f7d310f7876",
+      "packet_routes.jsonl": "fe9d1de57c527f6ae2ecbdfaead8f775abaa24ab202b8ba8b2cad83a0bd929e3"
+    },
+    "B_33_trained_greedy": {
+      "report.json": "447595356d63e7c653db604dc5895bf1fe935ca0c15344038cd149a32c6aaf07",
+      "slots.jsonl": "c1d38530a3ddbf2c7d7c2869930520efc18942fa845b64a2ba54cdac32ed43e8",
+      "packet_routes.jsonl": "7c6b935b05f69eca575e4d59a343b2b0ce4701a4cb522fe1049ee593d80ee2a0"
+    },
+    "C_11_trained_greedy": {
+      "report.json": "d1367fc9ec14ad69bd0ab262bb71c8d82b4305e12a46077be301ef7849428c33",
+      "slots.jsonl": "56127702f26206a2aee1bd6397cf6ce2a5e84297ef0dbb4e5e95759d067a7870",
+      "packet_routes.jsonl": "39fa352cfea5a7701f73a930337691adbe3c0927e0122d69935182eb0134f250"
+    },
+    "C_22_trained_greedy": {
+      "report.json": "f0a738cbb0e1f010d523b32deb20819b3d70758adcce2720a56b871b81183d03",
+      "slots.jsonl": "4d5fa00b1f63b92cf690b07223c11a6cfcc23b66b19dd67e8ee79ac4421b8325",
+      "packet_routes.jsonl": "fe9d1de57c527f6ae2ecbdfaead8f775abaa24ab202b8ba8b2cad83a0bd929e3"
+    },
+    "C_33_trained_greedy": {
+      "report.json": "de246ecea55959cc6ee230dca474040855418b79145e8415b231243b05d200a4",
+      "slots.jsonl": "e8f1e4679fddc49585b6d6f82db7843a3c0d01a2c0814432735040215671cfdc",
+      "packet_routes.jsonl": "7c6b935b05f69eca575e4d59a343b2b0ce4701a4cb522fe1049ee593d80ee2a0"
+    },
+    "D_11_trained_greedy": {
+      "report.json": "25069ef5622fe569ec0c8b95115d887dde973e262ca9c0cdbe359b3073c2664a",
+      "slots.jsonl": "e191aafc8f8bb6b85566f98ec7fce43087de8093687093af8a82165262ed13a0",
+      "packet_routes.jsonl": "39fa352cfea5a7701f73a930337691adbe3c0927e0122d69935182eb0134f250"
+    },
+    "D_22_trained_greedy": {
+      "report.json": "d698ce5f8f2b5cb99d2014c105a26d1fb86758e97c036f25f7d73cb037f8da1a",
+      "slots.jsonl": "0ac19d1f70b1ec3af292337e70d2310d313463dea4e980d4c744a2ca2f1718d2",
+      "packet_routes.jsonl": "fe9d1de57c527f6ae2ecbdfaead8f775abaa24ab202b8ba8b2cad83a0bd929e3"
+    },
+    "D_33_trained_greedy": {
+      "report.json": "84f4eb1528dce46a6f8677dad19a3ceaf89324a73bfa4840d31de949ad84e3ff",
+      "slots.jsonl": "ca98c666c24781d1b32ff48135b1c09c2d5ed8148a3999167d37ec42497552e5",
+      "packet_routes.jsonl": "7c6b935b05f69eca575e4d59a343b2b0ce4701a4cb522fe1049ee593d80ee2a0"
+    },
+    "E_11_trained_greedy": {
+      "report.json": "8e59010fcaae9298422ca02bb092fb6d37ed2a5d725eb6f0ca4baddb9ef90354",
+      "slots.jsonl": "403e50276830167dd851383b5b107c4a267c9ea893f29aac68a78df8cc07f4e7",
+      "packet_routes.jsonl": "39fa352cfea5a7701f73a930337691adbe3c0927e0122d69935182eb0134f250"
+    },
+    "E_22_trained_greedy": {
+      "report.json": "acd88d6cac143c282af86d5948f057bbd04f8467290e8692f2189aa898ab6985",
+      "slots.jsonl": "df28d814d4ecf2dafb5af7c844f8403198d07fad69d21c76307fcf26080e9eb5",
+      "packet_routes.jsonl": "fe9d1de57c527f6ae2ecbdfaead8f775abaa24ab202b8ba8b2cad83a0bd929e3"
+    },
+    "E_33_trained_greedy": {
+      "report.json": "be44e3da7aaa5b4795ee62d7606222b29aee324239408b2eafcd50c7f8b92801",
+      "slots.jsonl": "4368f0512543efa94c9a70d4883e1ce337ca149e32ee0ac9c622266c3bb52541",
+      "packet_routes.jsonl": "7c6b935b05f69eca575e4d59a343b2b0ce4701a4cb522fe1049ee593d80ee2a0"
+    },
+    "F_11_trained_greedy": {
+      "report.json": "f516bd670fcc05b982239c825bc3cea4145b953532397f47d0b32d1fbec2605b",
+      "slots.jsonl": "cb465e6284249e27db896373d4d2a06f11b02eb7d82268054c2eb24f48c87154",
+      "packet_routes.jsonl": "39fa352cfea5a7701f73a930337691adbe3c0927e0122d69935182eb0134f250"
+    },
+    "F_22_trained_greedy": {
+      "report.json": "eaaed75b53a61b7ea587aa1d9026d89ee9d495def0ccb8ed63ad81e67cb55506",
+      "slots.jsonl": "f9ff8c68fe51b452d9ace682c3b3ef4a212c9c5d515e37efe9bb544152bf8d70",
+      "packet_routes.jsonl": "fe9d1de57c527f6ae2ecbdfaead8f775abaa24ab202b8ba8b2cad83a0bd929e3"
+    },
+    "F_33_trained_greedy": {
+      "report.json": "0cc7cc88f57f5ff073a6c936353325567364785ad9b22fd08b2a16f2aff41fcf",
+      "slots.jsonl": "e93514cc516a6184f7cfe8ddb5a7c6805672e939ee39fc1f5323e30bcce19ed1",
+      "packet_routes.jsonl": "7c6b935b05f69eca575e4d59a343b2b0ce4701a4cb522fe1049ee593d80ee2a0"
+    },
+    "A_11_initial_greedy": {
+      "report.json": "00a2522c00fde82bc43407c95b966318d36a7806286b65bea72f0999fdc07cf9",
+      "slots.jsonl": "506d59a27ffa836a7aa74d4283935c5a5080d2ee801ced05c27ecb9fd2984b6f",
+      "packet_routes.jsonl": "a75749c7dfa704db667be1b30630717ec3ad8806db716fd4e5b29c89e126151f"
+    },
+    "A_22_initial_greedy": {
+      "report.json": "3b99b9df7bffdadeaaaa08e54964787f301926e680b4cf54d198b4e69accece8",
+      "slots.jsonl": "5be8fc2f85bf65a8f9837585667a538bb47bff43a17d40af4d3078243a348ac8",
+      "packet_routes.jsonl": "414586cffc7c8cae1d27dff576056af7aa4cb2076f5e0aed86517cfd1c95646a"
+    },
+    "A_33_initial_greedy": {
+      "report.json": "c79394a083e50b1ccc5214f4f2fa80027cb200c5bf4e13e4d41f62351aa0bab7",
+      "slots.jsonl": "4c7e6c7c5ee0dfad672bcf8bd374f223f0c957613a07fa6ed2149ab535984af4",
+      "packet_routes.jsonl": "18a492d82c8fd483157c1622f5a2f333182306aff7062682cfdcfe417ef8318c"
+    },
+    "A_11_trained_sample": {
+      "report.json": "8732a798ca726cae42e5fdfe75853d2c0a3f3e36fcaca882f5fcf0572c1da886",
+      "slots.jsonl": "c0809d5bab75f04f68625006a69a7cf67ce1d96d04380c18584010a814788d54",
+      "packet_routes.jsonl": "1c729d10d75b5800c8d429b738fa555a9c017f4107ac01ece3614027eb860d45"
+    },
+    "A_22_trained_sample": {
+      "report.json": "185515acf5d2ad4b401c0b2b976764f5a1b46f0de5fe46e80a865fcc212fb0a2",
+      "slots.jsonl": "b5375d1ecdf9d7fe43e149345c52effa64b9b94a8efae5b87b315d5006dbb7f9",
+      "packet_routes.jsonl": "6034c1914b5ec594073d6bc96f26dc5eb8e8c3b937f931b7fdae34635ea92ad1"
+    },
+    "A_33_trained_sample": {
+      "report.json": "f4be7c57c7ea110c42c79f71fa21fd302d62a9f01d6dd8d4d0e87cf77e3c4b9a",
+      "slots.jsonl": "100b22d9ef6648d2b1341ef68ff2896e5e2a28ed6faf764ab83c4bc8d318f29d",
+      "packet_routes.jsonl": "ec250f00a48605e685e44e8715636a7da82c42ad93f354400406dd2b3a57addc"
+    }
+  },
+  "cases": [
+    {
+      "group": "A",
+      "training_seed": 11,
+      "stage": "trained",
+      "decode": "greedy",
+      "eval_scene": 7001,
+      "policy_sha256": "bff216117cea7c75081dce19382da8fc28236c653ce1df76f45378463a0f4936",
+      "initial_actor_sha256": "597b0e4afbde349c68a6a25a0bbfc8e7f13a00ad5baa9a1db7ab6be5fc8fd68d",
+      "weights_unchanged": true,
+      "actor_delta_from_initial_l2": 0.07072094082832336,
+      "actor_initial_l2": 31.516925811767578,
+      "optimizer_updates": 0,
+      "torch_threads": 16,
+      "pilot_metrics_exact_match": true,
+      "analysis": {
+        "generated": 48,
+        "delivered": 47,
+        "active_decisions": 526,
+        "active_wait_count": 0,
+        "active_wait_fraction": 0.0,
+        "forced_wait_count": 3474,
+        "sink_legal_count": 233,
+        "sink_chosen_count": 98,
+        "mean_sink_probability_when_legal": 0.14281788321267894,
+        "initial_greedy_agreement": 0.03612167300380228,
+        "initial_comparison_count": 526,
+        "mean_normalized_entropy": 0.9993172319121801,
+        "mean_top_probability_gap": 0.0034187314996474596,
+        "attempts": 526,
+        "ack_successes": 188,
+        "ack_failures": 338,
+        "revisit_transfers": 0,
+        "revisit_fraction_of_successes": 0.0,
+        "nonprogress_successes": 12,
+        "physical_sink_reachable_fraction": 1.0,
+        "live_packet_slots": 1866,
+        "observed_closed_sccs": [],
+        "top_closed_cycles": [],
+        "representative_routes": [
+          {
+            "packet_id": 5,
+            "source": 5,
+            "final_node": 19,
+            "route": [
+              5,
+              1,
+              6,
+              12,
+              18,
+              19
+            ],
+            "hops": 5,
+            "closed_cycles": []
+          }
+        ]
+      },
+      "action_trace_sha256": "b11ad0ff0d5ad5d75f4aaee443fbb1417109c234846c8a842ebf0ccc7942fd9f",
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_policy_diagnostics\\20261103_155544_634157\\A_11_trained_greedy"
+    },
+    {
+      "group": "A",
+      "training_seed": 22,
+      "stage": "trained",
+      "decode": "greedy",
+      "eval_scene": 7001,
+      "policy_sha256": "bc72c31b30acfbd3fd9d15e573c0913be23f8fd84f8195f69f667401ac7d2b27",
+      "initial_actor_sha256": "6c55e5e01751d1ab918dab9604c745f163c11ca9f706fc71ce9418f06b75a90d",
+      "weights_unchanged": true,
+      "actor_delta_from_initial_l2": 0.06952811032533646,
+      "actor_initial_l2": 31.60031509399414,
+      "optimizer_updates": 0,
+      "torch_threads": 16,
+      "pilot_metrics_exact_match": true,
+      "analysis": {
+        "generated": 48,
+        "delivered": 0,
+        "active_decisions": 1162,
+        "active_wait_count": 480,
+        "active_wait_fraction": 0.41308089500860584,
+        "forced_wait_count": 2838,
+        "sink_legal_count": 165,
+        "sink_chosen_count": 0,
+        "mean_sink_probability_when_legal": 0.17116152824777545,
+        "initial_greedy_agreement": 0.3055077452667814,
+        "initial_comparison_count": 1162,
+        "mean_normalized_entropy": 0.999631207840039,
+        "mean_top_probability_gap": 0.0034175497926963996,
+        "attempts": 682,
+        "ack_successes": 375,
+        "ack_failures": 307,
+        "revisit_transfers": 273,
+        "revisit_fraction_of_successes": 0.728,
+        "nonprogress_successes": 210,
+        "physical_sink_reachable_fraction": 1.0,
+        "live_packet_slots": 3840,
+        "observed_closed_sccs": [
+          [
+            0,
+            1
+          ],
+          [
+            12,
+            17
+          ]
+        ],
+        "top_closed_cycles": [
+          {
+            "nodes": [
+              0,
+              1
+            ],
+            "count": 85
+          },
+          {
+            "nodes": [
+              12,
+              17
+            ],
+            "count": 60
+          }
+        ],
+        "representative_routes": [
+          {
+            "packet_id": 0,
+            "source": 0,
+            "final_node": 1,
+            "route": [
+              0,
+              1,
+              0,
+              1,
+              0,
+              1,
+              0,
+              1,
+              0,
+              1,
+              0,
+              1
+            ],
+            "hops": 11,
+            "closed_cycles": [
+              {
+                "nodes": [
+                  0,
+                  1
+                ],
+                "count": 5
+              }
+            ]
+          },
+          {
+            "packet_id": 1,
+            "source": 1,
+            "final_node": 0,
+            "route": [
+              1,
+              0,
+              1,
+              0,
+              1,
+              0,
+              1,
+              0,
+              1,
+              0,
+              1,
+              0
+            ],
+            "hops": 11,
+            "closed_cycles": [
+              {
+                "nodes": [
+                  0,
+                  1
+                ],
+                "count": 5
+              }
+            ]
+          },
+          {
+            "packet_id": 13,
+            "source": 13,
+            "final_node": 12,
+            "route": [
+              13,
+              12,
+              17,
+              12,
+              17,
+              12,
+              17,
+              12,
+              17,
+              12,
+              17,
+              12
+            ],
+            "hops": 11,
+            "closed_cycles": [
+              {
+                "nodes": [
+                  12,
+                  17
+                ],
+                "count": 5
+              }
+            ]
+          },
+          {
+            "packet_id": 12,
+            "source": 12,
+            "final_node": 17,
+            "route": [
+              12,
+              17,
+              12,
+              17,
+              12,
+              17,
+              12,
+              17,
+              12,
+              17,
+              12,
+              17,
+              12,
+              17
+            ],
+            "hops": 13,
+            "closed_cycles": [
+              {
+                "nodes": [
+                  12,
+                  17
+                ],
+                "count": 6
+              }
+            ]
+          },
+          {
+            "packet_id": 17,
+            "source": 17,
+            "final_node": 12,
+            "route": [
+              17,
+              12,
+              17,
+              12,
+              17,
+              12,
+              17,
+              12,
+              17,
+              12,
+              17,
+              12,
+              17,
+              12
+            ],
+            "hops": 13,
+            "closed_cycles": [
+              {
+                "nodes": [
+                  12,
+                  17
+                ],
+                "count": 6
+              }
+            ]
+          },
+          {
+            "packet_id": 13,
+            "source": 13,
+            "final_node": 17,
+            "route": [
+              13,
+              12,
+              17,
+              12,
+              17,
+              12,
+              17,
+              12,
+              17,
+              12,
+              17,
+              12,
+              17
+            ],
+            "hops": 12,
+            "closed_cycles": [
+              {
+                "nodes": [
+                  12,
+                  17
+                ],
+                "count": 5
+              }
+            ]
+          }
+        ]
+      },
+      "action_trace_sha256": "900f8b47120ecbd7f75aa57938b831bbde3d9f87949f5dad230015a3d4ad4b37",
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_policy_diagnostics\\20261103_155544_634157\\A_22_trained_greedy"
+    },
+    {
+      "group": "A",
+      "training_seed": 33,
+      "stage": "trained",
+      "decode": "greedy",
+      "eval_scene": 7001,
+      "policy_sha256": "9ba19170fddad74f22feb1f4b706dca4cacc2d4cb50732d8601211e52bf7b1e9",
+      "initial_actor_sha256": "0098898250eba17d7f2adbeea6974b93a1a9aae9d2ad0bc1124e0c5a2a4e1e91",
+      "weights_unchanged": true,
+      "actor_delta_from_initial_l2": 0.0823267474770546,
+      "actor_initial_l2": 31.514251708984375,
+      "optimizer_updates": 0,
+      "torch_threads": 16,
+      "pilot_metrics_exact_match": true,
+      "analysis": {
+        "generated": 48,
+        "delivered": 0,
+        "active_decisions": 413,
+        "active_wait_count": 0,
+        "active_wait_fraction": 0.0,
+        "forced_wait_count": 3587,
+        "sink_legal_count": 20,
+        "sink_chosen_count": 0,
+        "mean_sink_probability_when_legal": 0.15253877304494382,
+        "initial_greedy_agreement": 0.0387409200968523,
+        "initial_comparison_count": 413,
+        "mean_normalized_entropy": 0.9993666250737382,
+        "mean_top_probability_gap": 0.0035635166718076565,
+        "attempts": 413,
+        "ack_successes": 249,
+        "ack_failures": 164,
+        "revisit_transfers": 129,
+        "revisit_fraction_of_successes": 0.5180722891566265,
+        "nonprogress_successes": 89,
+        "physical_sink_reachable_fraction": 1.0,
+        "live_packet_slots": 3840,
+        "observed_closed_sccs": [
+          [
+            12,
+            13
+          ]
+        ],
+        "top_closed_cycles": [
+          {
+            "nodes": [
+              12,
+              13
+            ],
+            "count": 67
+          },
+          {
+            "nodes": [
+              0,
+              5
+            ],
+            "count": 2
+          }
+        ],
+        "representative_routes": [
+          {
+            "packet_id": 5,
+            "source": 5,
+            "final_node": 13,
+            "route": [
+              5,
+              0,
+              6,
+              12,
+              13,
+              12,
+              13
+            ],
+            "hops": 6,
+            "closed_cycles": [
+              {
+                "nodes": [
+                  12,
+                  13
+                ],
+                "count": 1
+              }
+            ]
+          },
+          {
+            "packet_id": 6,
+            "source": 6,
+            "final_node": 13,
+            "route": [
+              6,
+              12,
+              13,
+              12,
+              13,
+              12,
+              13
+            ],
+            "hops": 6,
+            "closed_cycles": [
+              {
+                "nodes": [
+                  12,
+                  13
+                ],
+                "count": 2
+              }
+            ]
+          },
+          {
+            "packet_id": 8,
+            "source": 8,
+            "final_node": 13,
+            "route": [
+              8,
+              12,
+              13,
+              12,
+              13,
+              12,
+              13
+            ],
+            "hops": 6,
+            "closed_cycles": [
+              {
+                "nodes": [
+                  12,
+                  13
+                ],
+                "count": 2
+              }
+            ]
+          },
+          {
+            "packet_id": 0,
+            "source": 0,
+            "final_node": 13,
+            "route": [
+              0,
+              5,
+              0,
+              6,
+              12,
+              13,
+              12,
+              13
+            ],
+            "hops": 7,
+            "closed_cycles": [
+              {
+                "nodes": [
+                  0,
+                  5
+                ],
+                "count": 1
+              },
+              {
+                "nodes": [
+                  12,
+                  13
+                ],
+                "count": 1
+              }
+            ]
+          },
+          {
+            "packet_id": 5,
+            "source": 5,
+            "final_node": 13,
+            "route": [
+              5,
+              0,
+              5,
+              0,
+              6,
+              12,
+              13
+            ],
+            "hops": 6,
+            "closed_cycles": [
+              {
+                "nodes": [
+                  0,
+                  5
+                ],
+                "count": 1
+              }
+            ]
+          },
+          {
+            "packet_id": 6,
+            "source": 6,
+            "final_node": 13,
+            "route": [
+              6,
+              12,
+              13,
+              12,
+              13,
+              12,
+              13
+            ],
+            "hops": 6,
+            "closed_cycles": [
+              {
+                "nodes": [
+                  12,
+                  13
+                ],
+                "count": 2
+              }
+            ]
+          }
+        ]
+      },
+      "action_trace_sha256": "c62cf22b53a9d24ffe12a6e1b2f4d2907f5f6fa0e9a1ddf752cba6456e1c69db",
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_policy_diagnostics\\20261103_155544_634157\\A_33_trained_greedy"
+    },
+    {
+      "group": "B",
+      "training_seed": 11,
+      "stage": "trained",
+      "decode": "greedy",
+      "eval_scene": 7001,
+      "policy_sha256": "3df09937604cb397273b4c73d62afa61c52befcb79166898544a21b509ea7a71",
+      "initial_actor_sha256": "2b3e4fac65d5c3d60651042cfc67c408ce61f52064bbdc0e7aa9eef47c85b968",
+      "weights_unchanged": true,
+      "actor_delta_from_initial_l2": 0.07102308422327042,
+      "actor_initial_l2": 31.683700561523438,
+      "optimizer_updates": 0,
+      "torch_threads": 16,
+      "pilot_metrics_exact_match": true,
+      "analysis": {
+        "generated": 48,
+        "delivered": 47,
+        "active_decisions": 526,
+        "active_wait_count": 0,
+        "active_wait_fraction": 0.0,
+        "forced_wait_count": 3474,
+        "sink_legal_count": 233,
+        "sink_chosen_count": 98,
+        "mean_sink_probability_when_legal": 0.14283027448751384,
+        "initial_greedy_agreement": 0.03612167300380228,
+        "initial_comparison_count": 526,
+        "mean_normalized_entropy": 0.9993133925740796,
+        "mean_top_probability_gap": 0.003386423742476525,
+        "attempts": 526,
+        "ack_successes": 188,
+        "ack_failures": 338,
+        "revisit_transfers": 0,
+        "revisit_fraction_of_successes": 0.0,
+        "nonprogress_successes": 12,
+        "physical_sink_reachable_fraction": 1.0,
+        "live_packet_slots": 1866,
+        "observed_closed_sccs": [],
+        "top_closed_cycles": []
+      },
+      "action_trace_sha256": "b11ad0ff0d5ad5d75f4aaee443fbb1417109c234846c8a842ebf0ccc7942fd9f",
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_policy_diagnostics\\20261103_155544_634157\\B_11_trained_greedy"
+    },
+    {
+      "group": "B",
+      "training_seed": 22,
+      "stage": "trained",
+      "decode": "greedy",
+      "eval_scene": 7001,
+      "policy_sha256": "6a14abbd060116e862efd9d88132e3b7322c117d50d51fe3e78456b26c5408d3",
+      "initial_actor_sha256": "6305e036516d72c68c7fc1608e8768f74a9bddbd7e1ba97281a448dfee894865",
+      "weights_unchanged": true,
+      "actor_delta_from_initial_l2": 0.06962699443101883,
+      "actor_initial_l2": 31.771678924560547,
+      "optimizer_updates": 0,
+      "torch_threads": 16,
+      "pilot_metrics_exact_match": true,
+      "analysis": {
+        "generated": 48,
+        "delivered": 0,
+        "active_decisions": 1162,
+        "active_wait_count": 480,
+        "active_wait_fraction": 0.41308089500860584,
+        "forced_wait_count": 2838,
+        "sink_legal_count": 165,
+        "sink_chosen_count": 0,
+        "mean_sink_probability_when_legal": 0.1711582137779756,
+        "initial_greedy_agreement": 0.3055077452667814,
+        "initial_comparison_count": 1162,
+        "mean_normalized_entropy": 0.9996299185348889,
+        "mean_top_probability_gap": 0.00339612755892404,
+        "attempts": 682,
+        "ack_successes": 375,
+        "ack_failures": 307,
+        "revisit_transfers": 273,
+        "revisit_fraction_of_successes": 0.728,
+        "nonprogress_successes": 210,
+        "physical_sink_reachable_fraction": 1.0,
+        "live_packet_slots": 3840,
+        "observed_closed_sccs": [
+          [
+            0,
+            1
+          ],
+          [
+            12,
+            17
+          ]
+        ],
+        "top_closed_cycles": [
+          {
+            "nodes": [
+              0,
+              1
+            ],
+            "count": 85
+          },
+          {
+            "nodes": [
+              12,
+              17
+            ],
+            "count": 60
+          }
+        ]
+      },
+      "action_trace_sha256": "900f8b47120ecbd7f75aa57938b831bbde3d9f87949f5dad230015a3d4ad4b37",
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_policy_diagnostics\\20261103_155544_634157\\B_22_trained_greedy"
+    },
+    {
+      "group": "B",
+      "training_seed": 33,
+      "stage": "trained",
+      "decode": "greedy",
+      "eval_scene": 7001,
+      "policy_sha256": "fa86ceebcbc5f8535660718ca341fdbf85d466d4fb7e396b8a77591ead7f6046",
+      "initial_actor_sha256": "357328bd4e3494ab28624c9e32c31ec91ad3543539dc0c396bbfdd17723f5eac",
+      "weights_unchanged": true,
+      "actor_delta_from_initial_l2": 0.08266832679510117,
+      "actor_initial_l2": 31.689117431640625,
+      "optimizer_updates": 0,
+      "torch_threads": 16,
+      "pilot_metrics_exact_match": true,
+      "analysis": {
+        "generated": 48,
+        "delivered": 0,
+        "active_decisions": 413,
+        "active_wait_count": 0,
+        "active_wait_fraction": 0.0,
+        "forced_wait_count": 3587,
+        "sink_legal_count": 20,
+        "sink_chosen_count": 0,
+        "mean_sink_probability_when_legal": 0.15254002697765828,
+        "initial_greedy_agreement": 0.0387409200968523,
+        "initial_comparison_count": 413,
+        "mean_normalized_entropy": 0.9993602805561094,
+        "mean_top_probability_gap": 0.003610994567593997,
+        "attempts": 413,
+        "ack_successes": 249,
+        "ack_failures": 164,
+        "revisit_transfers": 129,
+        "revisit_fraction_of_successes": 0.5180722891566265,
+        "nonprogress_successes": 89,
+        "physical_sink_reachable_fraction": 1.0,
+        "live_packet_slots": 3840,
+        "observed_closed_sccs": [
+          [
+            12,
+            13
+          ]
+        ],
+        "top_closed_cycles": [
+          {
+            "nodes": [
+              12,
+              13
+            ],
+            "count": 67
+          },
+          {
+            "nodes": [
+              0,
+              5
+            ],
+            "count": 2
+          }
+        ]
+      },
+      "action_trace_sha256": "c62cf22b53a9d24ffe12a6e1b2f4d2907f5f6fa0e9a1ddf752cba6456e1c69db",
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_policy_diagnostics\\20261103_155544_634157\\B_33_trained_greedy"
+    },
+    {
+      "group": "C",
+      "training_seed": 11,
+      "stage": "trained",
+      "decode": "greedy",
+      "eval_scene": 7001,
+      "policy_sha256": "104002638be06329bfabcc062313b9a5b6a7ecb0a9b9ddf796d063a67407626c",
+      "initial_actor_sha256": "597b0e4afbde349c68a6a25a0bbfc8e7f13a00ad5baa9a1db7ab6be5fc8fd68d",
+      "weights_unchanged": true,
+      "actor_delta_from_initial_l2": 0.07072015851736069,
+      "actor_initial_l2": 31.516925811767578,
+      "optimizer_updates": 0,
+      "torch_threads": 16,
+      "pilot_metrics_exact_match": true,
+      "analysis": {
+        "generated": 48,
+        "delivered": 47,
+        "active_decisions": 526,
+        "active_wait_count": 0,
+        "active_wait_fraction": 0.0,
+        "forced_wait_count": 3474,
+        "sink_legal_count": 233,
+        "sink_chosen_count": 98,
+        "mean_sink_probability_when_legal": 0.1428174331720295,
+        "initial_greedy_agreement": 0.03612167300380228,
+        "initial_comparison_count": 526,
+        "mean_normalized_entropy": 0.9993172433854791,
+        "mean_top_probability_gap": 0.003418509894450808,
+        "attempts": 526,
+        "ack_successes": 188,
+        "ack_failures": 338,
+        "revisit_transfers": 0,
+        "revisit_fraction_of_successes": 0.0,
+        "nonprogress_successes": 12,
+        "physical_sink_reachable_fraction": 1.0,
+        "live_packet_slots": 1866,
+        "observed_closed_sccs": [],
+        "top_closed_cycles": []
+      },
+      "action_trace_sha256": "b11ad0ff0d5ad5d75f4aaee443fbb1417109c234846c8a842ebf0ccc7942fd9f",
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_policy_diagnostics\\20261103_155544_634157\\C_11_trained_greedy"
+    },
+    {
+      "group": "C",
+      "training_seed": 22,
+      "stage": "trained",
+      "decode": "greedy",
+      "eval_scene": 7001,
+      "policy_sha256": "4f4bdc74952d53cfb7694b47a4d796762f991cae683047afd006594144395ed3",
+      "initial_actor_sha256": "6c55e5e01751d1ab918dab9604c745f163c11ca9f706fc71ce9418f06b75a90d",
+      "weights_unchanged": true,
+      "actor_delta_from_initial_l2": 0.06952774524688721,
+      "actor_initial_l2": 31.60031509399414,
+      "optimizer_updates": 0,
+      "torch_threads": 16,
+      "pilot_metrics_exact_match": true,
+      "analysis": {
+        "generated": 48,
+        "delivered": 0,
+        "active_decisions": 1162,
+        "active_wait_count": 480,
+        "active_wait_fraction": 0.41308089500860584,
+        "forced_wait_count": 2838,
+        "sink_legal_count": 165,
+        "sink_chosen_count": 0,
+        "mean_sink_probability_when_legal": 0.17116102111158948,
+        "initial_greedy_agreement": 0.3055077452667814,
+        "initial_comparison_count": 1162,
+        "mean_normalized_entropy": 0.9996312138491928,
+        "mean_top_probability_gap": 0.0034176909818398973,
+        "attempts": 682,
+        "ack_successes": 375,
+        "ack_failures": 307,
+        "revisit_transfers": 273,
+        "revisit_fraction_of_successes": 0.728,
+        "nonprogress_successes": 210,
+        "physical_sink_reachable_fraction": 1.0,
+        "live_packet_slots": 3840,
+        "observed_closed_sccs": [
+          [
+            0,
+            1
+          ],
+          [
+            12,
+            17
+          ]
+        ],
+        "top_closed_cycles": [
+          {
+            "nodes": [
+              0,
+              1
+            ],
+            "count": 85
+          },
+          {
+            "nodes": [
+              12,
+              17
+            ],
+            "count": 60
+          }
+        ]
+      },
+      "action_trace_sha256": "900f8b47120ecbd7f75aa57938b831bbde3d9f87949f5dad230015a3d4ad4b37",
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_policy_diagnostics\\20261103_155544_634157\\C_22_trained_greedy"
+    },
+    {
+      "group": "C",
+      "training_seed": 33,
+      "stage": "trained",
+      "decode": "greedy",
+      "eval_scene": 7001,
+      "policy_sha256": "ff1cc96789f92acf62517aad15577b6c2c48895914c6e2aa0f3e0440eeb6e9f0",
+      "initial_actor_sha256": "0098898250eba17d7f2adbeea6974b93a1a9aae9d2ad0bc1124e0c5a2a4e1e91",
+      "weights_unchanged": true,
+      "actor_delta_from_initial_l2": 0.08232644200325012,
+      "actor_initial_l2": 31.514251708984375,
+      "optimizer_updates": 0,
+      "torch_threads": 16,
+      "pilot_metrics_exact_match": true,
+      "analysis": {
+        "generated": 48,
+        "delivered": 0,
+        "active_decisions": 413,
+        "active_wait_count": 0,
+        "active_wait_fraction": 0.0,
+        "forced_wait_count": 3587,
+        "sink_legal_count": 20,
+        "sink_chosen_count": 0,
+        "mean_sink_probability_when_legal": 0.15254058577120305,
+        "initial_greedy_agreement": 0.0387409200968523,
+        "initial_comparison_count": 413,
+        "mean_normalized_entropy": 0.9993666635636906,
+        "mean_top_probability_gap": 0.0035634840191420864,
+        "attempts": 413,
+        "ack_successes": 249,
+        "ack_failures": 164,
+        "revisit_transfers": 129,
+        "revisit_fraction_of_successes": 0.5180722891566265,
+        "nonprogress_successes": 89,
+        "physical_sink_reachable_fraction": 1.0,
+        "live_packet_slots": 3840,
+        "observed_closed_sccs": [
+          [
+            12,
+            13
+          ]
+        ],
+        "top_closed_cycles": [
+          {
+            "nodes": [
+              12,
+              13
+            ],
+            "count": 67
+          },
+          {
+            "nodes": [
+              0,
+              5
+            ],
+            "count": 2
+          }
+        ]
+      },
+      "action_trace_sha256": "c62cf22b53a9d24ffe12a6e1b2f4d2907f5f6fa0e9a1ddf752cba6456e1c69db",
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_policy_diagnostics\\20261103_155544_634157\\C_33_trained_greedy"
+    },
+    {
+      "group": "D",
+      "training_seed": 11,
+      "stage": "trained",
+      "decode": "greedy",
+      "eval_scene": 7001,
+      "policy_sha256": "6c06ff5da67044e0698a1878e33035e2061176a860f7448bcadc5616e99edfb8",
+      "initial_actor_sha256": "2b3e4fac65d5c3d60651042cfc67c408ce61f52064bbdc0e7aa9eef47c85b968",
+      "weights_unchanged": true,
+      "actor_delta_from_initial_l2": 0.07102225720882416,
+      "actor_initial_l2": 31.683700561523438,
+      "optimizer_updates": 0,
+      "torch_threads": 16,
+      "pilot_metrics_exact_match": true,
+      "analysis": {
+        "generated": 48,
+        "delivered": 47,
+        "active_decisions": 526,
+        "active_wait_count": 0,
+        "active_wait_fraction": 0.0,
+        "forced_wait_count": 3474,
+        "sink_legal_count": 233,
+        "sink_chosen_count": 98,
+        "mean_sink_probability_when_legal": 0.14282982332767846,
+        "initial_greedy_agreement": 0.03612167300380228,
+        "initial_comparison_count": 526,
+        "mean_normalized_entropy": 0.9993134052083105,
+        "mean_top_probability_gap": 0.003386205975886987,
+        "attempts": 526,
+        "ack_successes": 188,
+        "ack_failures": 338,
+        "revisit_transfers": 0,
+        "revisit_fraction_of_successes": 0.0,
+        "nonprogress_successes": 12,
+        "physical_sink_reachable_fraction": 1.0,
+        "live_packet_slots": 1866,
+        "observed_closed_sccs": [],
+        "top_closed_cycles": []
+      },
+      "action_trace_sha256": "b11ad0ff0d5ad5d75f4aaee443fbb1417109c234846c8a842ebf0ccc7942fd9f",
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_policy_diagnostics\\20261103_155544_634157\\D_11_trained_greedy"
+    },
+    {
+      "group": "D",
+      "training_seed": 22,
+      "stage": "trained",
+      "decode": "greedy",
+      "eval_scene": 7001,
+      "policy_sha256": "a658b08db00bb1a2d8f6395297741345f97ba56e6c6ad5de06c675b78688b2ad",
+      "initial_actor_sha256": "6305e036516d72c68c7fc1608e8768f74a9bddbd7e1ba97281a448dfee894865",
+      "weights_unchanged": true,
+      "actor_delta_from_initial_l2": 0.06962660700082779,
+      "actor_initial_l2": 31.771678924560547,
+      "optimizer_updates": 0,
+      "torch_threads": 16,
+      "pilot_metrics_exact_match": true,
+      "analysis": {
+        "generated": 48,
+        "delivered": 0,
+        "active_decisions": 1162,
+        "active_wait_count": 480,
+        "active_wait_fraction": 0.41308089500860584,
+        "forced_wait_count": 2838,
+        "sink_legal_count": 165,
+        "sink_chosen_count": 0,
+        "mean_sink_probability_when_legal": 0.1711577045646581,
+        "initial_greedy_agreement": 0.3055077452667814,
+        "initial_comparison_count": 1162,
+        "mean_normalized_entropy": 0.9996299240924171,
+        "mean_top_probability_gap": 0.0033962685172405998,
+        "attempts": 682,
+        "ack_successes": 375,
+        "ack_failures": 307,
+        "revisit_transfers": 273,
+        "revisit_fraction_of_successes": 0.728,
+        "nonprogress_successes": 210,
+        "physical_sink_reachable_fraction": 1.0,
+        "live_packet_slots": 3840,
+        "observed_closed_sccs": [
+          [
+            0,
+            1
+          ],
+          [
+            12,
+            17
+          ]
+        ],
+        "top_closed_cycles": [
+          {
+            "nodes": [
+              0,
+              1
+            ],
+            "count": 85
+          },
+          {
+            "nodes": [
+              12,
+              17
+            ],
+            "count": 60
+          }
+        ]
+      },
+      "action_trace_sha256": "900f8b47120ecbd7f75aa57938b831bbde3d9f87949f5dad230015a3d4ad4b37",
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_policy_diagnostics\\20261103_155544_634157\\D_22_trained_greedy"
+    },
+    {
+      "group": "D",
+      "training_seed": 33,
+      "stage": "trained",
+      "decode": "greedy",
+      "eval_scene": 7001,
+      "policy_sha256": "312aaa074928be0a5fe5dedea2b7fa6ccfb6542bd0eea5032997cc0ed232eac1",
+      "initial_actor_sha256": "357328bd4e3494ab28624c9e32c31ec91ad3543539dc0c396bbfdd17723f5eac",
+      "weights_unchanged": true,
+      "actor_delta_from_initial_l2": 0.08266811072826385,
+      "actor_initial_l2": 31.689117431640625,
+      "optimizer_updates": 0,
+      "torch_threads": 16,
+      "pilot_metrics_exact_match": true,
+      "analysis": {
+        "generated": 48,
+        "delivered": 0,
+        "active_decisions": 413,
+        "active_wait_count": 0,
+        "active_wait_fraction": 0.0,
+        "forced_wait_count": 3587,
+        "sink_legal_count": 20,
+        "sink_chosen_count": 0,
+        "mean_sink_probability_when_legal": 0.152541846036911,
+        "initial_greedy_agreement": 0.0387409200968523,
+        "initial_comparison_count": 413,
+        "mean_normalized_entropy": 0.9993603196748789,
+        "mean_top_probability_gap": 0.003610961463924759,
+        "attempts": 413,
+        "ack_successes": 249,
+        "ack_failures": 164,
+        "revisit_transfers": 129,
+        "revisit_fraction_of_successes": 0.5180722891566265,
+        "nonprogress_successes": 89,
+        "physical_sink_reachable_fraction": 1.0,
+        "live_packet_slots": 3840,
+        "observed_closed_sccs": [
+          [
+            12,
+            13
+          ]
+        ],
+        "top_closed_cycles": [
+          {
+            "nodes": [
+              12,
+              13
+            ],
+            "count": 67
+          },
+          {
+            "nodes": [
+              0,
+              5
+            ],
+            "count": 2
+          }
+        ]
+      },
+      "action_trace_sha256": "c62cf22b53a9d24ffe12a6e1b2f4d2907f5f6fa0e9a1ddf752cba6456e1c69db",
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_policy_diagnostics\\20261103_155544_634157\\D_33_trained_greedy"
+    },
+    {
+      "group": "E",
+      "training_seed": 11,
+      "stage": "trained",
+      "decode": "greedy",
+      "eval_scene": 7001,
+      "policy_sha256": "975d8dfd11ae0180e7af979c1bd7821504dc58c9c4502050b367ee26027b24f8",
+      "initial_actor_sha256": "e7c32c3930c46989a30e9c836b862668d078e3ec3931bda142b0c6cd4a0c1888",
+      "weights_unchanged": true,
+      "actor_delta_from_initial_l2": 0.07335954159498215,
+      "actor_initial_l2": 31.604888916015625,
+      "optimizer_updates": 0,
+      "torch_threads": 16,
+      "pilot_metrics_exact_match": true,
+      "analysis": {
+        "generated": 48,
+        "delivered": 47,
+        "active_decisions": 526,
+        "active_wait_count": 0,
+        "active_wait_fraction": 0.0,
+        "forced_wait_count": 3474,
+        "sink_legal_count": 233,
+        "sink_chosen_count": 98,
+        "mean_sink_probability_when_legal": 0.1428238060405326,
+        "initial_greedy_agreement": 0.03612167300380228,
+        "initial_comparison_count": 526,
+        "mean_normalized_entropy": 0.9993160167788901,
+        "mean_top_probability_gap": 0.0034126570951122748,
+        "attempts": 526,
+        "ack_successes": 188,
+        "ack_failures": 338,
+        "revisit_transfers": 0,
+        "revisit_fraction_of_successes": 0.0,
+        "nonprogress_successes": 12,
+        "physical_sink_reachable_fraction": 1.0,
+        "live_packet_slots": 1866,
+        "observed_closed_sccs": [],
+        "top_closed_cycles": []
+      },
+      "action_trace_sha256": "b11ad0ff0d5ad5d75f4aaee443fbb1417109c234846c8a842ebf0ccc7942fd9f",
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_policy_diagnostics\\20261103_155544_634157\\E_11_trained_greedy"
+    },
+    {
+      "group": "E",
+      "training_seed": 22,
+      "stage": "trained",
+      "decode": "greedy",
+      "eval_scene": 7001,
+      "policy_sha256": "2c002f5eda2cf26b7b3c0d51554144c9ae0ec93da61c8ad37526c39585a7f1a6",
+      "initial_actor_sha256": "ddaa0efe3a8b4f7da77e0834dbf5bae3d7f99db6a99bcc5ed7df992e9a40358b",
+      "weights_unchanged": true,
+      "actor_delta_from_initial_l2": 0.07198226451873779,
+      "actor_initial_l2": 31.689857482910156,
+      "optimizer_updates": 0,
+      "torch_threads": 16,
+      "pilot_metrics_exact_match": true,
+      "analysis": {
+        "generated": 48,
+        "delivered": 0,
+        "active_decisions": 1162,
+        "active_wait_count": 480,
+        "active_wait_fraction": 0.41308089500860584,
+        "forced_wait_count": 2838,
+        "sink_legal_count": 165,
+        "sink_chosen_count": 0,
+        "mean_sink_probability_when_legal": 0.17116305186893,
+        "initial_greedy_agreement": 0.3055077452667814,
+        "initial_comparison_count": 1162,
+        "mean_normalized_entropy": 0.9996309448317395,
+        "mean_top_probability_gap": 0.0034191560532365528,
+        "attempts": 682,
+        "ack_successes": 375,
+        "ack_failures": 307,
+        "revisit_transfers": 273,
+        "revisit_fraction_of_successes": 0.728,
+        "nonprogress_successes": 210,
+        "physical_sink_reachable_fraction": 1.0,
+        "live_packet_slots": 3840,
+        "observed_closed_sccs": [
+          [
+            0,
+            1
+          ],
+          [
+            12,
+            17
+          ]
+        ],
+        "top_closed_cycles": [
+          {
+            "nodes": [
+              0,
+              1
+            ],
+            "count": 85
+          },
+          {
+            "nodes": [
+              12,
+              17
+            ],
+            "count": 60
+          }
+        ]
+      },
+      "action_trace_sha256": "900f8b47120ecbd7f75aa57938b831bbde3d9f87949f5dad230015a3d4ad4b37",
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_policy_diagnostics\\20261103_155544_634157\\E_22_trained_greedy"
+    },
+    {
+      "group": "E",
+      "training_seed": 33,
+      "stage": "trained",
+      "decode": "greedy",
+      "eval_scene": 7001,
+      "policy_sha256": "368e7c06ecddfe8579a68886603ff7698ab99c6bf1254f306a4da53d5627d056",
+      "initial_actor_sha256": "44c93ec54794601d5e6e7525de275c23015b11a857756898b3ec3b1a6aa0a0a9",
+      "weights_unchanged": true,
+      "actor_delta_from_initial_l2": 0.08516667783260345,
+      "actor_initial_l2": 31.606008529663086,
+      "optimizer_updates": 0,
+      "torch_threads": 16,
+      "pilot_metrics_exact_match": true,
+      "analysis": {
+        "generated": 48,
+        "delivered": 0,
+        "active_decisions": 413,
+        "active_wait_count": 0,
+        "active_wait_fraction": 0.0,
+        "forced_wait_count": 3587,
+        "sink_legal_count": 20,
+        "sink_chosen_count": 0,
+        "mean_sink_probability_when_legal": 0.15253810733556747,
+        "initial_greedy_agreement": 0.0387409200968523,
+        "initial_comparison_count": 413,
+        "mean_normalized_entropy": 0.9993647837881672,
+        "mean_top_probability_gap": 0.003569846634570392,
+        "attempts": 413,
+        "ack_successes": 249,
+        "ack_failures": 164,
+        "revisit_transfers": 129,
+        "revisit_fraction_of_successes": 0.5180722891566265,
+        "nonprogress_successes": 89,
+        "physical_sink_reachable_fraction": 1.0,
+        "live_packet_slots": 3840,
+        "observed_closed_sccs": [
+          [
+            12,
+            13
+          ]
+        ],
+        "top_closed_cycles": [
+          {
+            "nodes": [
+              12,
+              13
+            ],
+            "count": 67
+          },
+          {
+            "nodes": [
+              0,
+              5
+            ],
+            "count": 2
+          }
+        ]
+      },
+      "action_trace_sha256": "c62cf22b53a9d24ffe12a6e1b2f4d2907f5f6fa0e9a1ddf752cba6456e1c69db",
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_policy_diagnostics\\20261103_155544_634157\\E_33_trained_greedy"
+    },
+    {
+      "group": "F",
+      "training_seed": 11,
+      "stage": "trained",
+      "decode": "greedy",
+      "eval_scene": 7001,
+      "policy_sha256": "aa17540694ab9ebc534a909a748b8916fee588943bb0668178bf1f258c44d447",
+      "initial_actor_sha256": "2b3e4fac65d5c3d60651042cfc67c408ce61f52064bbdc0e7aa9eef47c85b968",
+      "weights_unchanged": true,
+      "actor_delta_from_initial_l2": 0.07104774564504623,
+      "actor_initial_l2": 31.683700561523438,
+      "optimizer_updates": 0,
+      "torch_threads": 16,
+      "pilot_metrics_exact_match": true,
+      "analysis": {
+        "generated": 48,
+        "delivered": 47,
+        "active_decisions": 526,
+        "active_wait_count": 0,
+        "active_wait_fraction": 0.0,
+        "forced_wait_count": 3474,
+        "sink_legal_count": 233,
+        "sink_chosen_count": 98,
+        "mean_sink_probability_when_legal": 0.14283049314446716,
+        "initial_greedy_agreement": 0.03612167300380228,
+        "initial_comparison_count": 526,
+        "mean_normalized_entropy": 0.9993141917727735,
+        "mean_top_probability_gap": 0.00338719924026569,
+        "attempts": 526,
+        "ack_successes": 188,
+        "ack_failures": 338,
+        "revisit_transfers": 0,
+        "revisit_fraction_of_successes": 0.0,
+        "nonprogress_successes": 12,
+        "physical_sink_reachable_fraction": 1.0,
+        "live_packet_slots": 1866,
+        "observed_closed_sccs": [],
+        "top_closed_cycles": []
+      },
+      "action_trace_sha256": "b11ad0ff0d5ad5d75f4aaee443fbb1417109c234846c8a842ebf0ccc7942fd9f",
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_policy_diagnostics\\20261103_155544_634157\\F_11_trained_greedy"
+    },
+    {
+      "group": "F",
+      "training_seed": 22,
+      "stage": "trained",
+      "decode": "greedy",
+      "eval_scene": 7001,
+      "policy_sha256": "46f54147b49f48194ae928449f45f43927e775d9d7eef80bc163cfad7ea6757c",
+      "initial_actor_sha256": "6305e036516d72c68c7fc1608e8768f74a9bddbd7e1ba97281a448dfee894865",
+      "weights_unchanged": true,
+      "actor_delta_from_initial_l2": 0.06959934532642365,
+      "actor_initial_l2": 31.771678924560547,
+      "optimizer_updates": 0,
+      "torch_threads": 16,
+      "pilot_metrics_exact_match": true,
+      "analysis": {
+        "generated": 48,
+        "delivered": 0,
+        "active_decisions": 1162,
+        "active_wait_count": 480,
+        "active_wait_fraction": 0.41308089500860584,
+        "forced_wait_count": 2838,
+        "sink_legal_count": 165,
+        "sink_chosen_count": 0,
+        "mean_sink_probability_when_legal": 0.17114971307190982,
+        "initial_greedy_agreement": 0.3055077452667814,
+        "initial_comparison_count": 1162,
+        "mean_normalized_entropy": 0.9996298863750964,
+        "mean_top_probability_gap": 0.0034083531473774508,
+        "attempts": 682,
+        "ack_successes": 375,
+        "ack_failures": 307,
+        "revisit_transfers": 273,
+        "revisit_fraction_of_successes": 0.728,
+        "nonprogress_successes": 210,
+        "physical_sink_reachable_fraction": 1.0,
+        "live_packet_slots": 3840,
+        "observed_closed_sccs": [
+          [
+            0,
+            1
+          ],
+          [
+            12,
+            17
+          ]
+        ],
+        "top_closed_cycles": [
+          {
+            "nodes": [
+              0,
+              1
+            ],
+            "count": 85
+          },
+          {
+            "nodes": [
+              12,
+              17
+            ],
+            "count": 60
+          }
+        ]
+      },
+      "action_trace_sha256": "900f8b47120ecbd7f75aa57938b831bbde3d9f87949f5dad230015a3d4ad4b37",
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_policy_diagnostics\\20261103_155544_634157\\F_22_trained_greedy"
+    },
+    {
+      "group": "F",
+      "training_seed": 33,
+      "stage": "trained",
+      "decode": "greedy",
+      "eval_scene": 7001,
+      "policy_sha256": "8f3ff3cddff61c8bf8605daeb35e3efb0e2780bbad42096189365b2a9806abec",
+      "initial_actor_sha256": "357328bd4e3494ab28624c9e32c31ec91ad3543539dc0c396bbfdd17723f5eac",
+      "weights_unchanged": true,
+      "actor_delta_from_initial_l2": 0.08265745639801025,
+      "actor_initial_l2": 31.689117431640625,
+      "optimizer_updates": 0,
+      "torch_threads": 16,
+      "pilot_metrics_exact_match": true,
+      "analysis": {
+        "generated": 48,
+        "delivered": 0,
+        "active_decisions": 413,
+        "active_wait_count": 0,
+        "active_wait_fraction": 0.0,
+        "forced_wait_count": 3587,
+        "sink_legal_count": 20,
+        "sink_chosen_count": 0,
+        "mean_sink_probability_when_legal": 0.15257227122783662,
+        "initial_greedy_agreement": 0.0387409200968523,
+        "initial_comparison_count": 413,
+        "mean_normalized_entropy": 0.9993619063079465,
+        "mean_top_probability_gap": 0.0035746418318506014,
+        "attempts": 413,
+        "ack_successes": 249,
+        "ack_failures": 164,
+        "revisit_transfers": 129,
+        "revisit_fraction_of_successes": 0.5180722891566265,
+        "nonprogress_successes": 89,
+        "physical_sink_reachable_fraction": 1.0,
+        "live_packet_slots": 3840,
+        "observed_closed_sccs": [
+          [
+            12,
+            13
+          ]
+        ],
+        "top_closed_cycles": [
+          {
+            "nodes": [
+              12,
+              13
+            ],
+            "count": 67
+          },
+          {
+            "nodes": [
+              0,
+              5
+            ],
+            "count": 2
+          }
+        ]
+      },
+      "action_trace_sha256": "c62cf22b53a9d24ffe12a6e1b2f4d2907f5f6fa0e9a1ddf752cba6456e1c69db",
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_policy_diagnostics\\20261103_155544_634157\\F_33_trained_greedy"
+    },
+    {
+      "group": "A",
+      "training_seed": 11,
+      "stage": "initial",
+      "decode": "greedy",
+      "eval_scene": 7001,
+      "policy_sha256": "bff216117cea7c75081dce19382da8fc28236c653ce1df76f45378463a0f4936",
+      "initial_actor_sha256": "597b0e4afbde349c68a6a25a0bbfc8e7f13a00ad5baa9a1db7ab6be5fc8fd68d",
+      "weights_unchanged": true,
+      "actor_delta_from_initial_l2": 0.0,
+      "actor_initial_l2": 31.516925811767578,
+      "optimizer_updates": 0,
+      "torch_threads": 16,
+      "analysis": {
+        "generated": 48,
+        "delivered": 0,
+        "active_decisions": 840,
+        "active_wait_count": 480,
+        "active_wait_fraction": 0.5714285714285714,
+        "forced_wait_count": 3160,
+        "sink_legal_count": 164,
+        "sink_chosen_count": 0,
+        "mean_sink_probability_when_legal": 0.16570299541259684,
+        "initial_greedy_agreement": 1.0,
+        "initial_comparison_count": 840,
+        "mean_normalized_entropy": 0.9999796823171893,
+        "mean_top_probability_gap": 0.0014489150029562768,
+        "attempts": 360,
+        "ack_successes": 218,
+        "ack_failures": 142,
+        "revisit_transfers": 126,
+        "revisit_fraction_of_successes": 0.5779816513761468,
+        "nonprogress_successes": 114,
+        "physical_sink_reachable_fraction": 1.0,
+        "live_packet_slots": 3840,
+        "observed_closed_sccs": [
+          [
+            11,
+            17
+          ]
+        ],
+        "top_closed_cycles": [
+          {
+            "nodes": [
+              11,
+              17
+            ],
+            "count": 74
+          }
+        ]
+      },
+      "action_trace_sha256": "ca04f1f08a387f20be39c93aad72b75fb2bc9ac10a6fb7015fe07a379eba3f84",
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_policy_diagnostics\\20261103_155544_634157\\A_11_initial_greedy"
+    },
+    {
+      "group": "A",
+      "training_seed": 22,
+      "stage": "initial",
+      "decode": "greedy",
+      "eval_scene": 7001,
+      "policy_sha256": "bc72c31b30acfbd3fd9d15e573c0913be23f8fd84f8195f69f667401ac7d2b27",
+      "initial_actor_sha256": "6c55e5e01751d1ab918dab9604c745f163c11ca9f706fc71ce9418f06b75a90d",
+      "weights_unchanged": true,
+      "actor_delta_from_initial_l2": 0.0,
+      "actor_initial_l2": 31.60031509399414,
+      "optimizer_updates": 0,
+      "torch_threads": 16,
+      "analysis": {
+        "generated": 48,
+        "delivered": 0,
+        "active_decisions": 1422,
+        "active_wait_count": 0,
+        "active_wait_fraction": 0.0,
+        "forced_wait_count": 2578,
+        "sink_legal_count": 278,
+        "sink_chosen_count": 0,
+        "mean_sink_probability_when_legal": 0.1636216510757268,
+        "initial_greedy_agreement": 1.0,
+        "initial_comparison_count": 1422,
+        "mean_normalized_entropy": 0.9999702128211441,
+        "mean_top_probability_gap": 0.0012946555812734424,
+        "attempts": 1422,
+        "ack_successes": 657,
+        "ack_failures": 765,
+        "revisit_transfers": 574,
+        "revisit_fraction_of_successes": 0.8736681887366818,
+        "nonprogress_successes": 374,
+        "physical_sink_reachable_fraction": 1.0,
+        "live_packet_slots": 3840,
+        "observed_closed_sccs": [
+          [
+            0,
+            1
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            6,
+            12
+          ],
+          [
+            15,
+            20
+          ],
+          [
+            19,
+            23
+          ]
+        ],
+        "top_closed_cycles": [
+          {
+            "nodes": [
+              0,
+              1
+            ],
+            "count": 77
+          },
+          {
+            "nodes": [
+              3,
+              7
+            ],
+            "count": 68
+          },
+          {
+            "nodes": [
+              15,
+              20
+            ],
+            "count": 62
+          },
+          {
+            "nodes": [
+              6,
+              12
+            ],
+            "count": 52
+          },
+          {
+            "nodes": [
+              19,
+              23
+            ],
+            "count": 41
+          }
+        ]
+      },
+      "action_trace_sha256": "fd0e10a56f7ab32591674ff8abd79e1bd540e35784c812fdbf55db3e7b6ac5bf",
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_policy_diagnostics\\20261103_155544_634157\\A_22_initial_greedy"
+    },
+    {
+      "group": "A",
+      "training_seed": 33,
+      "stage": "initial",
+      "decode": "greedy",
+      "eval_scene": 7001,
+      "policy_sha256": "9ba19170fddad74f22feb1f4b706dca4cacc2d4cb50732d8601211e52bf7b1e9",
+      "initial_actor_sha256": "0098898250eba17d7f2adbeea6974b93a1a9aae9d2ad0bc1124e0c5a2a4e1e91",
+      "weights_unchanged": true,
+      "actor_delta_from_initial_l2": 0.0,
+      "actor_initial_l2": 31.514251708984375,
+      "optimizer_updates": 0,
+      "torch_threads": 16,
+      "analysis": {
+        "generated": 48,
+        "delivered": 0,
+        "active_decisions": 782,
+        "active_wait_count": 9,
+        "active_wait_fraction": 0.011508951406649617,
+        "forced_wait_count": 3218,
+        "sink_legal_count": 6,
+        "sink_chosen_count": 0,
+        "mean_sink_probability_when_legal": 0.14769301563501358,
+        "initial_greedy_agreement": 1.0,
+        "initial_comparison_count": 782,
+        "mean_normalized_entropy": 0.9999574197681868,
+        "mean_top_probability_gap": 0.002174793482970094,
+        "attempts": 773,
+        "ack_successes": 407,
+        "ack_failures": 366,
+        "revisit_transfers": 244,
+        "revisit_fraction_of_successes": 0.5995085995085995,
+        "nonprogress_successes": 195,
+        "physical_sink_reachable_fraction": 1.0,
+        "live_packet_slots": 3840,
+        "observed_closed_sccs": [
+          [
+            9,
+            14
+          ],
+          [
+            17,
+            22
+          ]
+        ],
+        "top_closed_cycles": [
+          {
+            "nodes": [
+              17,
+              22
+            ],
+            "count": 70
+          },
+          {
+            "nodes": [
+              9,
+              14
+            ],
+            "count": 70
+          },
+          {
+            "nodes": [
+              0,
+              6,
+              1
+            ],
+            "count": 1
+          }
+        ]
+      },
+      "action_trace_sha256": "12cd3913cbd19332a948814f45d46a1df7b06a8e56da3d2f28215fbb24026e9e",
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_policy_diagnostics\\20261103_155544_634157\\A_33_initial_greedy"
+    },
+    {
+      "group": "A",
+      "training_seed": 11,
+      "stage": "trained",
+      "decode": "sample",
+      "eval_scene": 7001,
+      "policy_sha256": "bff216117cea7c75081dce19382da8fc28236c653ce1df76f45378463a0f4936",
+      "initial_actor_sha256": "597b0e4afbde349c68a6a25a0bbfc8e7f13a00ad5baa9a1db7ab6be5fc8fd68d",
+      "weights_unchanged": true,
+      "actor_delta_from_initial_l2": 0.07072094082832336,
+      "actor_initial_l2": 31.516925811767578,
+      "optimizer_updates": 0,
+      "torch_threads": 16,
+      "analysis": {
+        "generated": 48,
+        "delivered": 12,
+        "active_decisions": 1868,
+        "active_wait_count": 291,
+        "active_wait_fraction": 0.15578158458244112,
+        "forced_wait_count": 2132,
+        "sink_legal_count": 151,
+        "sink_chosen_count": 26,
+        "mean_sink_probability_when_legal": 0.14828319832781292,
+        "initial_greedy_agreement": 0.03907922912205567,
+        "initial_comparison_count": 1868,
+        "mean_normalized_entropy": 0.9994214205748728,
+        "mean_top_probability_gap": 0.005597476354885918,
+        "attempts": 1577,
+        "ack_successes": 821,
+        "ack_failures": 756,
+        "revisit_transfers": 369,
+        "revisit_fraction_of_successes": 0.44945188794153473,
+        "nonprogress_successes": 418,
+        "physical_sink_reachable_fraction": 1.0,
+        "live_packet_slots": 3438,
+        "observed_closed_sccs": [],
+        "top_closed_cycles": [
+          {
+            "nodes": [
+              1,
+              7
+            ],
+            "count": 8
+          },
+          {
+            "nodes": [
+              1,
+              5
+            ],
+            "count": 6
+          },
+          {
+            "nodes": [
+              1,
+              2
+            ],
+            "count": 5
+          },
+          {
+            "nodes": [
+              17,
+              21
+            ],
+            "count": 4
+          },
+          {
+            "nodes": [
+              5,
+              6
+            ],
+            "count": 4
+          },
+          {
+            "nodes": [
+              4,
+              8
+            ],
+            "count": 4
+          },
+          {
+            "nodes": [
+              0,
+              6
+            ],
+            "count": 4
+          },
+          {
+            "nodes": [
+              15,
+              20
+            ],
+            "count": 4
+          }
+        ]
+      },
+      "action_trace_sha256": "c63df6e10a2c7d88a91c0fb1151e29b8920e437e9d48fb18d461e5e8dbe9eeb0",
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_policy_diagnostics\\20261103_155544_634157\\A_11_trained_sample"
+    },
+    {
+      "group": "A",
+      "training_seed": 22,
+      "stage": "trained",
+      "decode": "sample",
+      "eval_scene": 7001,
+      "policy_sha256": "bc72c31b30acfbd3fd9d15e573c0913be23f8fd84f8195f69f667401ac7d2b27",
+      "initial_actor_sha256": "6c55e5e01751d1ab918dab9604c745f163c11ca9f706fc71ce9418f06b75a90d",
+      "weights_unchanged": true,
+      "actor_delta_from_initial_l2": 0.06952811032533646,
+      "actor_initial_l2": 31.60031509399414,
+      "optimizer_updates": 0,
+      "torch_threads": 16,
+      "analysis": {
+        "generated": 48,
+        "delivered": 6,
+        "active_decisions": 1819,
+        "active_wait_count": 282,
+        "active_wait_fraction": 0.15503023639362287,
+        "forced_wait_count": 2181,
+        "sink_legal_count": 99,
+        "sink_chosen_count": 21,
+        "mean_sink_probability_when_legal": 0.14707770650133942,
+        "initial_greedy_agreement": 0.3589884551951622,
+        "initial_comparison_count": 1819,
+        "mean_normalized_entropy": 0.9996369609505038,
+        "mean_top_probability_gap": 0.002821204044158279,
+        "attempts": 1537,
+        "ack_successes": 790,
+        "ack_failures": 747,
+        "revisit_transfers": 343,
+        "revisit_fraction_of_successes": 0.4341772151898734,
+        "nonprogress_successes": 412,
+        "physical_sink_reachable_fraction": 1.0,
+        "live_packet_slots": 3555,
+        "observed_closed_sccs": [],
+        "top_closed_cycles": [
+          {
+            "nodes": [
+              1,
+              5
+            ],
+            "count": 8
+          },
+          {
+            "nodes": [
+              5,
+              10
+            ],
+            "count": 6
+          },
+          {
+            "nodes": [
+              0,
+              1
+            ],
+            "count": 5
+          },
+          {
+            "nodes": [
+              10,
+              16
+            ],
+            "count": 4
+          },
+          {
+            "nodes": [
+              5,
+              11,
+              10
+            ],
+            "count": 4
+          },
+          {
+            "nodes": [
+              5,
+              6
+            ],
+            "count": 4
+          },
+          {
+            "nodes": [
+              1,
+              7
+            ],
+            "count": 4
+          },
+          {
+            "nodes": [
+              2,
+              3
+            ],
+            "count": 4
+          }
+        ]
+      },
+      "action_trace_sha256": "c055a4e72d0dba0b786182db66a7583eee7d2229e3f6b931185b8a4880a26daa",
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_policy_diagnostics\\20261103_155544_634157\\A_22_trained_sample"
+    },
+    {
+      "group": "A",
+      "training_seed": 33,
+      "stage": "trained",
+      "decode": "sample",
+      "eval_scene": 7001,
+      "policy_sha256": "9ba19170fddad74f22feb1f4b706dca4cacc2d4cb50732d8601211e52bf7b1e9",
+      "initial_actor_sha256": "0098898250eba17d7f2adbeea6974b93a1a9aae9d2ad0bc1124e0c5a2a4e1e91",
+      "weights_unchanged": true,
+      "actor_delta_from_initial_l2": 0.0823267474770546,
+      "actor_initial_l2": 31.514251708984375,
+      "optimizer_updates": 0,
+      "torch_threads": 16,
+      "analysis": {
+        "generated": 48,
+        "delivered": 7,
+        "active_decisions": 1748,
+        "active_wait_count": 242,
+        "active_wait_fraction": 0.13844393592677345,
+        "forced_wait_count": 2252,
+        "sink_legal_count": 83,
+        "sink_chosen_count": 13,
+        "mean_sink_probability_when_legal": 0.13959102709609342,
+        "initial_greedy_agreement": 0.062356979405034325,
+        "initial_comparison_count": 1748,
+        "mean_normalized_entropy": 0.9992845500541203,
+        "mean_top_probability_gap": 0.004392399638038751,
+        "attempts": 1506,
+        "ack_successes": 798,
+        "ack_failures": 708,
+        "revisit_transfers": 365,
+        "revisit_fraction_of_successes": 0.4573934837092732,
+        "nonprogress_successes": 404,
+        "physical_sink_reachable_fraction": 1.0,
+        "live_packet_slots": 3575,
+        "observed_closed_sccs": [],
+        "top_closed_cycles": [
+          {
+            "nodes": [
+              0,
+              1
+            ],
+            "count": 5
+          },
+          {
+            "nodes": [
+              5,
+              6
+            ],
+            "count": 4
+          },
+          {
+            "nodes": [
+              0,
+              5
+            ],
+            "count": 4
+          },
+          {
+            "nodes": [
+              2,
+              7
+            ],
+            "count": 4
+          },
+          {
+            "nodes": [
+              2,
+              8
+            ],
+            "count": 4
+          },
+          {
+            "nodes": [
+              17,
+              22
+            ],
+            "count": 4
+          },
+          {
+            "nodes": [
+              21,
+              22
+            ],
+            "count": 4
+          },
+          {
+            "nodes": [
+              6,
+              10
+            ],
+            "count": 3
+          }
+        ]
+      },
+      "action_trace_sha256": "b61880d82ad8defc5d8bcbff637bf4b165d7d524391d8887a72ae5d3379bd186",
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_policy_diagnostics\\20261103_155544_634157\\A_33_trained_sample"
+    }
+  ],
+  "equal_greedy_action_traces_by_seed": {
+    "11": {
+      "A": "b11ad0ff0d5ad5d75f4aaee443fbb1417109c234846c8a842ebf0ccc7942fd9f",
+      "B": "b11ad0ff0d5ad5d75f4aaee443fbb1417109c234846c8a842ebf0ccc7942fd9f",
+      "C": "b11ad0ff0d5ad5d75f4aaee443fbb1417109c234846c8a842ebf0ccc7942fd9f",
+      "D": "b11ad0ff0d5ad5d75f4aaee443fbb1417109c234846c8a842ebf0ccc7942fd9f",
+      "E": "b11ad0ff0d5ad5d75f4aaee443fbb1417109c234846c8a842ebf0ccc7942fd9f",
+      "F": "b11ad0ff0d5ad5d75f4aaee443fbb1417109c234846c8a842ebf0ccc7942fd9f"
+    },
+    "22": {
+      "A": "900f8b47120ecbd7f75aa57938b831bbde3d9f87949f5dad230015a3d4ad4b37",
+      "B": "900f8b47120ecbd7f75aa57938b831bbde3d9f87949f5dad230015a3d4ad4b37",
+      "C": "900f8b47120ecbd7f75aa57938b831bbde3d9f87949f5dad230015a3d4ad4b37",
+      "D": "900f8b47120ecbd7f75aa57938b831bbde3d9f87949f5dad230015a3d4ad4b37",
+      "E": "900f8b47120ecbd7f75aa57938b831bbde3d9f87949f5dad230015a3d4ad4b37",
+      "F": "900f8b47120ecbd7f75aa57938b831bbde3d9f87949f5dad230015a3d4ad4b37"
+    },
+    "33": {
+      "A": "c62cf22b53a9d24ffe12a6e1b2f4d2907f5f6fa0e9a1ddf752cba6456e1c69db",
+      "B": "c62cf22b53a9d24ffe12a6e1b2f4d2907f5f6fa0e9a1ddf752cba6456e1c69db",
+      "C": "c62cf22b53a9d24ffe12a6e1b2f4d2907f5f6fa0e9a1ddf752cba6456e1c69db",
+      "D": "c62cf22b53a9d24ffe12a6e1b2f4d2907f5f6fa0e9a1ddf752cba6456e1c69db",
+      "E": "c62cf22b53a9d24ffe12a6e1b2f4d2907f5f6fa0e9a1ddf752cba6456e1c69db",
+      "F": "c62cf22b53a9d24ffe12a6e1b2f4d2907f5f6fa0e9a1ddf752cba6456e1c69db"
+    }
+  },
+  "probability_differences": [
+    {
+      "group": "B",
+      "seed": 11,
+      "max_probability_difference_from_A": 0.0001653432846069336
+    },
+    {
+      "group": "B",
+      "seed": 22,
+      "max_probability_difference_from_A": 0.00015109777450561523
+    },
+    {
+      "group": "B",
+      "seed": 33,
+      "max_probability_difference_from_A": 0.000283658504486084
+    },
+    {
+      "group": "C",
+      "seed": 11,
+      "max_probability_difference_from_A": 1.4156103134155273e-06
+    },
+    {
+      "group": "C",
+      "seed": 22,
+      "max_probability_difference_from_A": 2.250075340270996e-06
+    },
+    {
+      "group": "C",
+      "seed": 33,
+      "max_probability_difference_from_A": 6.22868537902832e-06
+    },
+    {
+      "group": "D",
+      "seed": 11,
+      "max_probability_difference_from_A": 0.00016526877880096436
+    },
+    {
+      "group": "D",
+      "seed": 22,
+      "max_probability_difference_from_A": 0.00015014410018920898
+    },
+    {
+      "group": "D",
+      "seed": 33,
+      "max_probability_difference_from_A": 0.00028324127197265625
+    },
+    {
+      "group": "E",
+      "seed": 11,
+      "max_probability_difference_from_A": 2.3916363716125488e-05
+    },
+    {
+      "group": "E",
+      "seed": 22,
+      "max_probability_difference_from_A": 2.7447938919067383e-05
+    },
+    {
+      "group": "E",
+      "seed": 33,
+      "max_probability_difference_from_A": 4.32133674621582e-05
+    },
+    {
+      "group": "F",
+      "seed": 11,
+      "max_probability_difference_from_A": 0.00015667080879211426
+    },
+    {
+      "group": "F",
+      "seed": 22,
+      "max_probability_difference_from_A": 0.00012162327766418457
+    },
+    {
+      "group": "F",
+      "seed": 33,
+      "max_probability_difference_from_A": 0.0002817213535308838
+    }
+  ],
+  "reward_probes": [
+    {
+      "control": "wait",
+      "scope": "scripted environment/reward probe; Actor unused",
+      "actor_executed": false,
+      "weights_unchanged": true,
+      "optimizer_updates": 0,
+      "scene": 7001,
+      "episode_environment_returns": [
+        0.0,
+        0.0
+      ],
+      "episode_terminal_rewards": [
+        0.0,
+        0.0
+      ],
+      "physical_episodes": [
+        {
+          "schema": "original_tg_physical_v1",
+          "episode": 0,
+          "horizon": 80,
+          "generated_packets": 24,
+          "delivered_packets": 0,
+          "unresolved_packets": 24,
+          "delivery_rate": 0.0,
+          "unresolved_fraction": 1.0,
+          "true_drop_count": null,
+          "true_drop_rate": null,
+          "success_hops_mean": null,
+          "success_delay_mean": null,
+          "success_delay_p95": null,
+          "attempts": 0,
+          "ack_successes": 0,
+          "ack_failures": 0,
+          "retry_attempts": 0,
+          "loop_transfers": 0,
+          "success_hops": [],
+          "success_delays": []
+        },
+        {
+          "schema": "original_tg_physical_v1",
+          "episode": 1,
+          "horizon": 80,
+          "generated_packets": 24,
+          "delivered_packets": 0,
+          "unresolved_packets": 24,
+          "delivery_rate": 0.0,
+          "unresolved_fraction": 1.0,
+          "true_drop_count": null,
+          "true_drop_rate": null,
+          "success_hops_mean": null,
+          "success_delay_mean": null,
+          "success_delay_p95": null,
+          "attempts": 0,
+          "ack_successes": 0,
+          "ack_failures": 0,
+          "retry_attempts": 0,
+          "loop_transfers": 0,
+          "success_hops": [],
+          "success_delays": []
+        }
+      ],
+      "first_successful_sink_attempt": null
+    },
+    {
+      "control": "geographic",
+      "scope": "scripted environment/reward probe; Actor unused",
+      "actor_executed": false,
+      "weights_unchanged": true,
+      "optimizer_updates": 0,
+      "scene": 7001,
+      "episode_environment_returns": [
+        8071.859057075249,
+        47861.84543598753
+      ],
+      "episode_terminal_rewards": [
+        0.0,
+        0.0
+      ],
+      "physical_episodes": [
+        {
+          "schema": "original_tg_physical_v1",
+          "episode": 0,
+          "horizon": 80,
+          "generated_packets": 24,
+          "delivered_packets": 24,
+          "unresolved_packets": 0,
+          "delivery_rate": 1.0,
+          "unresolved_fraction": 0.0,
+          "true_drop_count": null,
+          "true_drop_rate": null,
+          "success_hops_mean": 2.9166666666666665,
+          "success_delay_mean": 10.875,
+          "success_delay_p95": 21,
+          "attempts": 135,
+          "ack_successes": 70,
+          "ack_failures": 65,
+          "retry_attempts": 65,
+          "loop_transfers": 0,
+          "success_hops": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            3,
+            3,
+            3,
+            3,
+            4,
+            3,
+            2,
+            2,
+            2,
+            4,
+            3,
+            2,
+            1,
+            1,
+            4,
+            3,
+            2,
+            1
+          ],
+          "success_delays": [
+            24,
+            18,
+            15,
+            20,
+            21,
+            14,
+            18,
+            13,
+            7,
+            11,
+            11,
+            8,
+            12,
+            10,
+            4,
+            13,
+            4,
+            7,
+            1,
+            2,
+            15,
+            9,
+            3,
+            1
+          ]
+        },
+        {
+          "schema": "original_tg_physical_v1",
+          "episode": 1,
+          "horizon": 80,
+          "generated_packets": 24,
+          "delivered_packets": 24,
+          "unresolved_packets": 0,
+          "delivery_rate": 1.0,
+          "unresolved_fraction": 0.0,
+          "true_drop_count": null,
+          "true_drop_rate": null,
+          "success_hops_mean": 2.9583333333333335,
+          "success_delay_mean": 14.541666666666666,
+          "success_delay_p95": 32,
+          "attempts": 169,
+          "ack_successes": 71,
+          "ack_failures": 98,
+          "retry_attempts": 98,
+          "loop_transfers": 0,
+          "success_hops": [
+            5,
+            4,
+            4,
+            4,
+            4,
+            4,
+            3,
+            3,
+            3,
+            3,
+            4,
+            3,
+            2,
+            2,
+            2,
+            4,
+            3,
+            2,
+            1,
+            1,
+            4,
+            3,
+            2,
+            1
+          ],
+          "success_delays": [
+            21,
+            29,
+            33,
+            28,
+            32,
+            18,
+            10,
+            21,
+            20,
+            26,
+            8,
+            9,
+            8,
+            9,
+            7,
+            16,
+            4,
+            7,
+            1,
+            1,
+            22,
+            15,
+            3,
+            1
+          ]
+        }
+      ],
+      "first_successful_sink_attempt": {
+        "step": 0,
+        "sender": 18,
+        "receiver": 24,
+        "history_before": 0.0,
+        "penalty": -35,
+        "reward": -17.833333333333332,
+        "success": true,
+        "targets_sink": true
+      }
+    }
+  ],
+  "source_files_sha256": {
+    "src/buoy_network/policy_diagnostics.py": "63db598336965c36fb6edab50813872f26601b62057048c86d90b537665f0807",
+    "scripts/diagnose_tg_policy.py": "1bc8793c0f267f5eb7603d9678a977dc51a3c4c6466cdc685ea7326433816852",
+    "scripts/probe_tg_reward_contract.py": "89bdff9ba0c14a3681ee7bd252e5c0577e009a3a9fa379b2f4c9713ea2413c7e",
+    "scripts/plot_tg_policy_diagnosis.py": "501fcca9da3279ebc6410ebc295ae5780e6d357ef8f22350741b997316d7a4c1",
+    "scripts/verify_tg_policy_diagnosis.py": "70f3cfa18ade295b02f8c968fc4b092c11fe12e58e4020d7d34baf01502bc043",
+    "tests/test_policy_diagnostics.py": "7258a1c07dc0b051129a625f784f721fa80648c6421ef8ff620d3b192e4944dd",
+    "tests/test_legacy_diagnostic_capture.py": "7a332c9837a956d21fef0281ad24c70dfc494cfaaa90bcb3f41bb327ea52e96d"
+  },
+  "source_archive": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_policy_diagnostics\\20261103_155544_634157\\diagnostic_source",
+  "source_archive_manifest_sha256": "b7eb54e13474063d767bcbf73fd3a7702a416f59e9d43641d848b148530b3be3",
+  "limitations": [
+    "scene 7001 only, two episodes per case",
+    "sampling is a diagnosis control, not a selected evaluation fix",
+    "observed SCCs are not physically closed network regions",
+    "WAIT is not proven globally optimal",
+    "no claim that longer training alone resolves the issue"
+  ]
+}
