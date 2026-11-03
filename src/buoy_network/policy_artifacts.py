@@ -6,6 +6,7 @@ from pathlib import Path
 
 import torch
 from .wm_runtime import tensor_digest
+from .task_reward import reward_contract
 
 
 CONFIG_KEYS = ("grid_size", "comm_range", "num_moving_buoys", "random_channel", "episode_length",
@@ -28,6 +29,8 @@ def load_policy(learner, path):
         if (payload["format"] != "original_tg_policy_v1" or payload["config"] != signature(learner)
                 or payload["use_wm_actor"] != (learner.wm_runtime is not None)):
             raise ValueError("Incompatible TG environment/config/WM mode")
+        if payload.get("reward_contract", {"version": "legacy_v1"}) != reward_contract(learner.all_args):
+            raise ValueError("Policy task reward version/weights mismatch")
         if learner.wm_runtime is not None and payload["wm"]["checkpoint_sha256"] != learner.wm_runtime.file_sha256:
             raise ValueError("Policy expects a different frozen WM")
         if payload.get("actor_extra_width", 0) != getattr(learner.all_args, "actor_extra_width", 0):
@@ -81,6 +84,7 @@ def save_policy(learner, run_dir):
         path = root / "checkpoints" / "tg_policy_latest.pt"
         path.parent.mkdir(parents=True, exist_ok=True)
         payload = {"format": "original_tg_policy_v1", "config": signature(learner),
+            "reward_contract": reward_contract(learner.all_args),
             "use_wm_actor": learner.wm_runtime is not None, "wm": wm,
             "use_pm_reward": learner.pm_runtime is not None, "pm": pm,
             "actor_extra_width": getattr(learner.all_args, "actor_extra_width", 0),
@@ -94,7 +98,7 @@ def save_policy(learner, run_dir):
                     "checkpoint_sha256": hashlib.sha256(path.read_bytes()).hexdigest(), "wm": wm,
                     "wm_ppo_updates": learner.wm_update_records, "pm": pm,
                     "pm_ppo_updates": learner.pm_update_records, "training_resume_supported": False}
-    metadata.update(profile=learner.profile, resources=resources,
+    metadata.update(profile=learner.profile, resources=resources, reward_contract=reward_contract(learner.all_args),
                     timing_scope="CPU collect and PPO wall time; diagnostics separated; import/env/plot overhead excluded")
     with (root / "logs" / "TG_policy_report.json").open("x", encoding="utf-8") as stream:
         json.dump(metadata, stream, indent=2, allow_nan=False)

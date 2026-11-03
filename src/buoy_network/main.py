@@ -108,6 +108,10 @@ def parse_args(args, parser):
     parser.add_argument("--use_pm_reward", type=lambda x: bool(strtobool(x)), default=False)
     parser.add_argument("--pm_reward_checkpoint", default="")
     parser.add_argument("--pm_reward_alpha", type=float, default=1.0)
+    parser.add_argument("--tg_reward_version", choices=("legacy_v1", "task_v2"), default="legacy_v1")
+    parser.add_argument("--tg_delivery_weight", type=float, default=1.0)
+    parser.add_argument("--tg_delay_weight", type=float, default=1.0)
+    parser.add_argument("--tg_unfinished_weight", type=float, default=1.0)
     parser.add_argument("--tg_evaluate", type=lambda x: bool(strtobool(x)), default=False)
     parser.add_argument("--tg_policy_checkpoint", default="")
     parser.add_argument("--data_behavior", choices=("tg-mappo", "random", "geographic"), default="tg-mappo")
@@ -136,6 +140,17 @@ def main(args):
     from onpolicy.config import graph_config
     all_args, parser = graph_config(args, parser)
     all_args = parser.parse_args(args)
+    from .task_reward import reward_contract
+    try:
+        reward_contract(all_args)
+        if all_args.tg_reward_version == "legacy_v1" and any(
+                getattr(all_args, "tg_"+key) != 1. for key in
+                ("delivery_weight", "delay_weight", "unfinished_weight")):
+            raise ValueError("Task reward weights require --tg_reward_version task_v2")
+        if all_args.tg_reward_version == "task_v2" and all_args.export_wm_data:
+            raise ValueError("Task v2 raw data export needs a new schema; current WM export requires legacy_v1")
+    except ValueError as exc:
+        parser.error(str(exc))
     try:
         budget = resolve_training_budget(args, all_args.num_episodes,
                                          all_args.episode_length, all_args.num_env_steps)

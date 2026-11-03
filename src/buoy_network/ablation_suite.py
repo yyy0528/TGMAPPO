@@ -10,6 +10,8 @@ import subprocess
 import time
 from datetime import datetime
 from pathlib import Path
+from types import SimpleNamespace
+from .task_reward import reward_contract
 
 ROOT = Path(__file__).resolve().parents[2]
 GROUPS = ("A", "B", "C", "D", "E", "F")
@@ -43,7 +45,13 @@ def validate(config):
                 "eval_episodes", "episode_length", "ppo_epoch", "num_mini_batch", "num_moving_buoys",
                 "random_channel", "wm_checkpoint", "wm_sha256", "pm_checkpoint", "pm_sha256",
                 "target_delivery_rate", "target_window", "job_timeout_seconds", "auxiliary_reports"}
-    require(set(config) == required and config["schema"] == "original_tg_ablation_v1", "Unknown/incomplete suite schema")
+    if config.get("schema") == "original_tg_ablation_v2":
+        required.add("reward_contract")
+        spec = config["reward_contract"]
+        parsed = reward_contract(SimpleNamespace(tg_reward_version=spec.get("version"),
+            **{"tg_"+key: spec.get(key) for key in ("delivery_weight", "delay_weight", "unfinished_weight")}))
+        require(spec == parsed and spec["version"] == "task_v2", "Invalid explicit task reward contract")
+    require(set(config) == required and config["schema"] in ("original_tg_ablation_v1", "original_tg_ablation_v2"), "Unknown/incomplete suite schema")
     for field in ("python", "wm_checkpoint", "pm_checkpoint"):
         config[field] = str((ROOT/config[field]).resolve())
     config["auxiliary_reports"] = {name:str((ROOT/path).resolve()) for name,path in config["auxiliary_reports"].items()}
@@ -102,6 +110,11 @@ def jobs(config, suite):
               "--episode_length", "80", "--num_moving_buoys", str(config["num_moving_buoys"]),
               "--random_channel", str(config["random_channel"]).lower(), "--ppo_epoch", str(config["ppo_epoch"]),
               "--num_mini_batch", str(config["num_mini_batch"])]
+    if "reward_contract" in config:
+        spec = config["reward_contract"]
+        common += ["--tg_reward_version", spec["version"]]
+        for key in ("delivery_weight", "delay_weight", "unfinished_weight"):
+            common += ["--tg_"+key, str(spec[key])]
     for group in config["groups"]:
         for seed in config["train_seeds"]:
             train_key = "{}_seed_{}".format(group, seed)
@@ -163,6 +176,11 @@ def inspect_job(job, config):
     report_path = root/"logs"/"TG_policy_report.json"
     report = read(report_path)
     actual = read(root/"logs"/"TG_MAPPO_environment.json")["config"]
+    if "reward_contract" in config:
+        from .task_reward_audit import audit_reward_csv
+        require(report.get("reward_contract") == config["reward_contract"]
+                == reward_contract(SimpleNamespace(**actual)), "Task reward version/weights differ")
+        audit_reward_csv(root/"logs", config["reward_contract"])
     seed = job["train_seed"] if job["kind"] == "training" else job["scene"]
     require(actual["seed"] == actual["scenario_seed"] == seed and actual["ppo_epoch"] == config["ppo_epoch"]
             and actual["num_mini_batch"] == config["num_mini_batch"] and actual["num_moving_buoys"] == config["num_moving_buoys"]
@@ -230,7 +248,8 @@ def summarize(manifest):
     return {"purpose": config["purpose"], "budget": budget(config), "by_training_seed": by_seed, "groups": groups,
             "statistical_unit": "independent trained policy, not evaluation episode", "drop_rate_supported": False,
             "limitations": ["pilot is not convergence or significance evidence", "one frozen WM/PM pretraining seed",
-                            "legacy history rewards persist between episodes", "CPU wall timing; CUDA unmeasured",
+                            ("legacy history rewards persist between episodes" if "reward_contract" not in config else
+                             "task_v2 excludes legacy numeric reward; legacy observation/history state retained"), "CPU wall timing; CUDA unmeasured",
                             "E matches trainable extra Actor capacity within 2.2%, not frozen-model total capacity",
                             "F uses same four-frame input scope and scorer; idle WM loaded but never called"]}
 

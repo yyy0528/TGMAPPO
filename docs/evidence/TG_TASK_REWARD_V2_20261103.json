@@ -1,0 +1,4787 @@
+{
+  "success": true,
+  "scope": "task reward contract and short pilot; NOT a solved zero-delivery policy",
+  "suite": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_ablation_task_v2_pilot\\20261103_171200_267697",
+  "manifest_sha256": "1d983c3c129119bb8fb622354c57da3fb006ee768470ea4adea5a37aea702d39",
+  "summary_sha256": "b852dc8e1321ed5ebaf329edb148693508221b3078210c3b8d71797775953694",
+  "reward_contract": {
+    "version": "task_v2",
+    "delivery_weight": 1.0,
+    "delay_weight": 1.0,
+    "unfinished_weight": 1.0,
+    "normalization": "initial_packets_and_task_horizon_v1"
+  },
+  "jobs": 36,
+  "training_steps": 2880,
+  "evaluation_steps": 2880,
+  "snapshot_files": 142,
+  "resume_new_jobs": 0,
+  "baseline_parity": {
+    "actor": true,
+    "critic": true,
+    "TG_MAPPO_metrics.csv": true,
+    "TG_physical_metrics.jsonl": true
+  },
+  "parity_run": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_task_v2_legacy_parity\\runs\\20261103_171214_556858\\moves_5",
+  "old_baseline": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_ablation_pilot\\20261103_151015_964923\\training\\runs\\A_seed_11_attempt_1\\moves_5",
+  "file_backed_regression_count": 83,
+  "test_reports": [
+    {
+      "path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_task_reward_tests\\20261103_170948_556757\\report.json",
+      "sha256": "2c2524d127d34600022c65c0b50de1dd596c286c4f960c1a25bbb5cc805256ec",
+      "report": {
+        "python": "D:\\python3.6.8\\python.exe",
+        "success": true,
+        "stages": [
+          {
+            "name": "functions",
+            "tests": 4,
+            "failures": 0,
+            "errors": 0
+          },
+          {
+            "name": "modules",
+            "tests": 2,
+            "failures": 0,
+            "errors": 0
+          },
+          {
+            "name": "integration",
+            "tests": 2,
+            "failures": 0,
+            "errors": 0
+          }
+        ]
+      }
+    },
+    {
+      "path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\targeted_fixes\\20261103_171041_939908\\test_report.json",
+      "sha256": "10f2faa42ee5ce1ab16daddd2bc55e9a1677cde2acb7978f6e850ca4fe4cbbda",
+      "report": {
+        "python": "D:\\python3.6.8\\python.exe",
+        "scope": "legacy_fixed_v1 targeted regressions",
+        "stages": [
+          {
+            "name": "functions",
+            "tests": 21,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "seconds": 2.075,
+            "log": "functions.log"
+          },
+          {
+            "name": "modules",
+            "tests": 24,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "seconds": 6.104,
+            "log": "modules.log"
+          },
+          {
+            "name": "integration",
+            "tests": 6,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "seconds": 23.184,
+            "log": "integration.log"
+          }
+        ],
+        "success": true,
+        "tests": 51
+      }
+    },
+    {
+      "path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_actor_tests\\20261103_171031_714868\\report.json",
+      "sha256": "99c58041a53d5dba41c751d73cd123e7ef256127264f8248a6ace75ec1f068f8",
+      "report": {
+        "python": "D:\\python3.6.8\\python.exe",
+        "stages": [
+          {
+            "name": "functions",
+            "tests": 3,
+            "failures": 0,
+            "errors": 0
+          },
+          {
+            "name": "modules",
+            "tests": 3,
+            "failures": 0,
+            "errors": 0
+          },
+          {
+            "name": "integration",
+            "tests": 2,
+            "failures": 0,
+            "errors": 0
+          }
+        ],
+        "success": true
+      }
+    },
+    {
+      "path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_pm_tests\\20261103_171035_146062\\report.json",
+      "sha256": "3b80c1b6add280ad18631d9e1e1a53f3b1c32af2a6ebd499ee2c680938320606",
+      "report": {
+        "python": "D:\\python3.6.8\\python.exe",
+        "success": true,
+        "stages": [
+          {
+            "name": "functions",
+            "tests": 2,
+            "failures": 0,
+            "errors": 0
+          },
+          {
+            "name": "modules",
+            "tests": 2,
+            "failures": 0,
+            "errors": 0
+          },
+          {
+            "name": "integration",
+            "tests": 2,
+            "failures": 0,
+            "errors": 0
+          }
+        ]
+      }
+    },
+    {
+      "path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_ablation_tests\\20261103_171041_758447\\report.json",
+      "sha256": "75d1e7bc42a0651a0a481a6f9fef150554aa37f36f626b3e4987867b742ec4f1",
+      "report": {
+        "success": true,
+        "python": "D:\\python3.6.8\\python.exe",
+        "stages": [
+          {
+            "name": "functions",
+            "tests": 6,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          {
+            "name": "modules",
+            "tests": 4,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          }
+        ]
+      }
+    }
+  ],
+  "cli_rejections": [
+    {
+      "command": [
+        "D:\\python3.6.8\\python.exe",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\run_algorithm.py",
+        "--algorithm",
+        "tg-mappo",
+        "--num_episodes",
+        "1",
+        "--episode_length",
+        "4",
+        "--output_root",
+        "results/tg_task_reward_cli_negative",
+        "--tg_reward_version",
+        "task_v2",
+        "--tg_delay_weight",
+        "0"
+      ],
+      "exit_code": 2,
+      "expected_reason": "finite delivery/delay"
+    },
+    {
+      "command": [
+        "D:\\python3.6.8\\python.exe",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\run_algorithm.py",
+        "--algorithm",
+        "tg-mappo",
+        "--num_episodes",
+        "1",
+        "--episode_length",
+        "4",
+        "--output_root",
+        "results/tg_task_reward_cli_negative",
+        "--tg_reward_version",
+        "task_v2",
+        "--tg_unfinished_weight",
+        "nan"
+      ],
+      "exit_code": 2,
+      "expected_reason": "finite delivery/delay"
+    },
+    {
+      "command": [
+        "D:\\python3.6.8\\python.exe",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\run_algorithm.py",
+        "--algorithm",
+        "tg-mappo",
+        "--num_episodes",
+        "1",
+        "--episode_length",
+        "4",
+        "--output_root",
+        "results/tg_task_reward_cli_negative",
+        "--tg_delay_weight",
+        "2"
+      ],
+      "exit_code": 2,
+      "expected_reason": "weights require"
+    },
+    {
+      "command": [
+        "D:\\python3.6.8\\python.exe",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\run_algorithm.py",
+        "--algorithm",
+        "tg-mappo",
+        "--num_episodes",
+        "1",
+        "--episode_length",
+        "4",
+        "--output_root",
+        "results/tg_task_reward_cli_negative",
+        "--tg_reward_version",
+        "task_v2",
+        "--export_wm_data",
+        "true"
+      ],
+      "exit_code": 2,
+      "expected_reason": "export requires legacy_v1"
+    }
+  ],
+  "reward_audits": {
+    "A_seed_11": {
+      "episodes": 2,
+      "slots": 160,
+      "base_returns": [
+        -0.795833333333333,
+        -1.5781250000000002
+      ],
+      "physical_event_counts_and_reward_channels_verified": true
+    },
+    "A_seed_11_scene_7001": {
+      "episodes": 2,
+      "slots": 160,
+      "base_returns": [
+        -1.8755208333333329,
+        -1.8755208333333329
+      ],
+      "physical_event_counts_and_reward_channels_verified": true
+    },
+    "A_seed_22": {
+      "episodes": 2,
+      "slots": 160,
+      "base_returns": [
+        -1.5734375000000007,
+        -1.4703125
+      ],
+      "physical_event_counts_and_reward_channels_verified": true
+    },
+    "A_seed_22_scene_7001": {
+      "episodes": 2,
+      "slots": 160,
+      "base_returns": [
+        -1.9999999999999984,
+        -1.9999999999999984
+      ],
+      "physical_event_counts_and_reward_channels_verified": true
+    },
+    "A_seed_33": {
+      "episodes": 2,
+      "slots": 160,
+      "base_returns": [
+        -1.3291666666666673,
+        -1.3354166666666667
+      ],
+      "physical_event_counts_and_reward_channels_verified": true
+    },
+    "A_seed_33_scene_7001": {
+      "episodes": 2,
+      "slots": 160,
+      "base_returns": [
+        -1.9999999999999984,
+        -1.9999999999999984
+      ],
+      "physical_event_counts_and_reward_channels_verified": true
+    },
+    "B_seed_11": {
+      "episodes": 2,
+      "slots": 160,
+      "base_returns": [
+        -0.795833333333333,
+        -1.5781250000000002
+      ],
+      "physical_event_counts_and_reward_channels_verified": true
+    },
+    "B_seed_11_scene_7001": {
+      "episodes": 2,
+      "slots": 160,
+      "base_returns": [
+        -1.8755208333333329,
+        -1.8755208333333329
+      ],
+      "physical_event_counts_and_reward_channels_verified": true
+    },
+    "B_seed_22": {
+      "episodes": 2,
+      "slots": 160,
+      "base_returns": [
+        -1.5734375000000007,
+        -1.4703125
+      ],
+      "physical_event_counts_and_reward_channels_verified": true
+    },
+    "B_seed_22_scene_7001": {
+      "episodes": 2,
+      "slots": 160,
+      "base_returns": [
+        -1.9999999999999984,
+        -1.9999999999999984
+      ],
+      "physical_event_counts_and_reward_channels_verified": true
+    },
+    "B_seed_33": {
+      "episodes": 2,
+      "slots": 160,
+      "base_returns": [
+        -1.3291666666666673,
+        -1.3354166666666667
+      ],
+      "physical_event_counts_and_reward_channels_verified": true
+    },
+    "B_seed_33_scene_7001": {
+      "episodes": 2,
+      "slots": 160,
+      "base_returns": [
+        -1.9999999999999984,
+        -1.9999999999999984
+      ],
+      "physical_event_counts_and_reward_channels_verified": true
+    },
+    "C_seed_11": {
+      "episodes": 2,
+      "slots": 160,
+      "base_returns": [
+        -0.795833333333333,
+        -1.3817708333333334
+      ],
+      "physical_event_counts_and_reward_channels_verified": true
+    },
+    "C_seed_11_scene_7001": {
+      "episodes": 2,
+      "slots": 160,
+      "base_returns": [
+        -1.270833333333334,
+        -1.292708333333334
+      ],
+      "physical_event_counts_and_reward_channels_verified": true
+    },
+    "C_seed_22": {
+      "episodes": 2,
+      "slots": 160,
+      "base_returns": [
+        -1.5734375000000007,
+        -1.6125000000000007
+      ],
+      "physical_event_counts_and_reward_channels_verified": true
+    },
+    "C_seed_22_scene_7001": {
+      "episodes": 2,
+      "slots": 160,
+      "base_returns": [
+        -1.627083333333334,
+        -1.628645833333334
+      ],
+      "physical_event_counts_and_reward_channels_verified": true
+    },
+    "C_seed_33": {
+      "episodes": 2,
+      "slots": 160,
+      "base_returns": [
+        -1.3291666666666673,
+        -1.4614583333333337
+      ],
+      "physical_event_counts_and_reward_channels_verified": true
+    },
+    "C_seed_33_scene_7001": {
+      "episodes": 2,
+      "slots": 160,
+      "base_returns": [
+        -1.755208333333334,
+        -1.7557291666666672
+      ],
+      "physical_event_counts_and_reward_channels_verified": true
+    },
+    "D_seed_11": {
+      "episodes": 2,
+      "slots": 160,
+      "base_returns": [
+        -0.795833333333333,
+        -1.3817708333333334
+      ],
+      "physical_event_counts_and_reward_channels_verified": true
+    },
+    "D_seed_11_scene_7001": {
+      "episodes": 2,
+      "slots": 160,
+      "base_returns": [
+        -1.270833333333334,
+        -1.292708333333334
+      ],
+      "physical_event_counts_and_reward_channels_verified": true
+    },
+    "D_seed_22": {
+      "episodes": 2,
+      "slots": 160,
+      "base_returns": [
+        -1.5734375000000007,
+        -1.6125000000000007
+      ],
+      "physical_event_counts_and_reward_channels_verified": true
+    },
+    "D_seed_22_scene_7001": {
+      "episodes": 2,
+      "slots": 160,
+      "base_returns": [
+        -1.627083333333334,
+        -1.628645833333334
+      ],
+      "physical_event_counts_and_reward_channels_verified": true
+    },
+    "D_seed_33": {
+      "episodes": 2,
+      "slots": 160,
+      "base_returns": [
+        -1.3291666666666673,
+        -1.4614583333333337
+      ],
+      "physical_event_counts_and_reward_channels_verified": true
+    },
+    "D_seed_33_scene_7001": {
+      "episodes": 2,
+      "slots": 160,
+      "base_returns": [
+        -1.755208333333334,
+        -1.7557291666666672
+      ],
+      "physical_event_counts_and_reward_channels_verified": true
+    },
+    "E_seed_11": {
+      "episodes": 2,
+      "slots": 160,
+      "base_returns": [
+        -0.795833333333333,
+        -1.5781250000000002
+      ],
+      "physical_event_counts_and_reward_channels_verified": true
+    },
+    "E_seed_11_scene_7001": {
+      "episodes": 2,
+      "slots": 160,
+      "base_returns": [
+        -1.8755208333333329,
+        -1.8755208333333329
+      ],
+      "physical_event_counts_and_reward_channels_verified": true
+    },
+    "E_seed_22": {
+      "episodes": 2,
+      "slots": 160,
+      "base_returns": [
+        -1.5734375000000007,
+        -1.4703125
+      ],
+      "physical_event_counts_and_reward_channels_verified": true
+    },
+    "E_seed_22_scene_7001": {
+      "episodes": 2,
+      "slots": 160,
+      "base_returns": [
+        -1.9999999999999984,
+        -1.9999999999999984
+      ],
+      "physical_event_counts_and_reward_channels_verified": true
+    },
+    "E_seed_33": {
+      "episodes": 2,
+      "slots": 160,
+      "base_returns": [
+        -1.3291666666666673,
+        -1.3354166666666667
+      ],
+      "physical_event_counts_and_reward_channels_verified": true
+    },
+    "E_seed_33_scene_7001": {
+      "episodes": 2,
+      "slots": 160,
+      "base_returns": [
+        -1.9999999999999984,
+        -1.9999999999999984
+      ],
+      "physical_event_counts_and_reward_channels_verified": true
+    },
+    "F_seed_11": {
+      "episodes": 2,
+      "slots": 160,
+      "base_returns": [
+        -0.795833333333333,
+        -1.5781250000000002
+      ],
+      "physical_event_counts_and_reward_channels_verified": true
+    },
+    "F_seed_11_scene_7001": {
+      "episodes": 2,
+      "slots": 160,
+      "base_returns": [
+        -1.8755208333333329,
+        -1.8755208333333329
+      ],
+      "physical_event_counts_and_reward_channels_verified": true
+    },
+    "F_seed_22": {
+      "episodes": 2,
+      "slots": 160,
+      "base_returns": [
+        -1.5734375000000007,
+        -1.4703125
+      ],
+      "physical_event_counts_and_reward_channels_verified": true
+    },
+    "F_seed_22_scene_7001": {
+      "episodes": 2,
+      "slots": 160,
+      "base_returns": [
+        -1.9999999999999984,
+        -1.9999999999999984
+      ],
+      "physical_event_counts_and_reward_channels_verified": true
+    },
+    "F_seed_33": {
+      "episodes": 2,
+      "slots": 160,
+      "base_returns": [
+        -1.3291666666666673,
+        -1.3354166666666667
+      ],
+      "physical_event_counts_and_reward_channels_verified": true
+    },
+    "F_seed_33_scene_7001": {
+      "episodes": 2,
+      "slots": 160,
+      "base_returns": [
+        -1.9999999999999984,
+        -1.9999999999999984
+      ],
+      "physical_event_counts_and_reward_channels_verified": true
+    }
+  },
+  "controls": [
+    {
+      "control": "wait",
+      "scope": "scripted environment/reward probe; Actor unused",
+      "actor_executed": false,
+      "weights_unchanged": true,
+      "optimizer_updates": 0,
+      "scene": 7001,
+      "reward_contract": {
+        "delivery_weight": 1.0,
+        "delay_weight": 1.0,
+        "unfinished_weight": 1.0,
+        "version": "task_v2",
+        "normalization": "initial_packets_and_task_horizon_v1"
+      },
+      "return_channel": "configured base reward consumed by PPO; not raw legacy buoy_go",
+      "episode_environment_returns": [
+        -1.9999999999999984,
+        -1.9999999999999984
+      ],
+      "episode_terminal_rewards": [
+        -1.0125,
+        -1.0125
+      ],
+      "physical_episodes": [
+        {
+          "schema": "original_tg_physical_v1",
+          "episode": 0,
+          "horizon": 80,
+          "generated_packets": 24,
+          "delivered_packets": 0,
+          "unresolved_packets": 24,
+          "delivery_rate": 0.0,
+          "unresolved_fraction": 1.0,
+          "true_drop_count": null,
+          "true_drop_rate": null,
+          "success_hops_mean": null,
+          "success_delay_mean": null,
+          "success_delay_p95": null,
+          "attempts": 0,
+          "ack_successes": 0,
+          "ack_failures": 0,
+          "retry_attempts": 0,
+          "loop_transfers": 0,
+          "success_hops": [],
+          "success_delays": []
+        },
+        {
+          "schema": "original_tg_physical_v1",
+          "episode": 1,
+          "horizon": 80,
+          "generated_packets": 24,
+          "delivered_packets": 0,
+          "unresolved_packets": 24,
+          "delivery_rate": 0.0,
+          "unresolved_fraction": 1.0,
+          "true_drop_count": null,
+          "true_drop_rate": null,
+          "success_hops_mean": null,
+          "success_delay_mean": null,
+          "success_delay_p95": null,
+          "attempts": 0,
+          "ack_successes": 0,
+          "ack_failures": 0,
+          "retry_attempts": 0,
+          "loop_transfers": 0,
+          "success_hops": [],
+          "success_delays": []
+        }
+      ],
+      "first_successful_sink_attempt": null,
+      "first_delivery_reward_components": null,
+      "reward_audit": {
+        "episodes": 2,
+        "slots": 160,
+        "base_returns": [
+          -1.9999999999999984,
+          -1.9999999999999984
+        ],
+        "physical_event_counts_and_reward_channels_verified": true
+      }
+    },
+    {
+      "control": "geographic",
+      "scope": "scripted environment/reward probe; Actor unused",
+      "actor_executed": false,
+      "weights_unchanged": true,
+      "optimizer_updates": 0,
+      "scene": 7001,
+      "reward_contract": {
+        "delivery_weight": 1.0,
+        "delay_weight": 1.0,
+        "unfinished_weight": 1.0,
+        "version": "task_v2",
+        "normalization": "initial_packets_and_task_horizon_v1"
+      },
+      "return_channel": "configured base reward consumed by PPO; not raw legacy buoy_go",
+      "episode_environment_returns": [
+        0.8640625,
+        0.8182291666666668
+      ],
+      "episode_terminal_rewards": [
+        0.0,
+        0.0
+      ],
+      "physical_episodes": [
+        {
+          "schema": "original_tg_physical_v1",
+          "episode": 0,
+          "horizon": 80,
+          "generated_packets": 24,
+          "delivered_packets": 24,
+          "unresolved_packets": 0,
+          "delivery_rate": 1.0,
+          "unresolved_fraction": 0.0,
+          "true_drop_count": null,
+          "true_drop_rate": null,
+          "success_hops_mean": 2.9166666666666665,
+          "success_delay_mean": 10.875,
+          "success_delay_p95": 21,
+          "attempts": 135,
+          "ack_successes": 70,
+          "ack_failures": 65,
+          "retry_attempts": 65,
+          "loop_transfers": 0,
+          "success_hops": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            3,
+            3,
+            3,
+            3,
+            4,
+            3,
+            2,
+            2,
+            2,
+            4,
+            3,
+            2,
+            1,
+            1,
+            4,
+            3,
+            2,
+            1
+          ],
+          "success_delays": [
+            24,
+            18,
+            15,
+            20,
+            21,
+            14,
+            18,
+            13,
+            7,
+            11,
+            11,
+            8,
+            12,
+            10,
+            4,
+            13,
+            4,
+            7,
+            1,
+            2,
+            15,
+            9,
+            3,
+            1
+          ]
+        },
+        {
+          "schema": "original_tg_physical_v1",
+          "episode": 1,
+          "horizon": 80,
+          "generated_packets": 24,
+          "delivered_packets": 24,
+          "unresolved_packets": 0,
+          "delivery_rate": 1.0,
+          "unresolved_fraction": 0.0,
+          "true_drop_count": null,
+          "true_drop_rate": null,
+          "success_hops_mean": 2.9583333333333335,
+          "success_delay_mean": 14.541666666666666,
+          "success_delay_p95": 32,
+          "attempts": 169,
+          "ack_successes": 71,
+          "ack_failures": 98,
+          "retry_attempts": 98,
+          "loop_transfers": 0,
+          "success_hops": [
+            5,
+            4,
+            4,
+            4,
+            4,
+            4,
+            3,
+            3,
+            3,
+            3,
+            4,
+            3,
+            2,
+            2,
+            2,
+            4,
+            3,
+            2,
+            1,
+            1,
+            4,
+            3,
+            2,
+            1
+          ],
+          "success_delays": [
+            21,
+            29,
+            33,
+            28,
+            32,
+            18,
+            10,
+            21,
+            20,
+            26,
+            8,
+            9,
+            8,
+            9,
+            7,
+            16,
+            4,
+            7,
+            1,
+            1,
+            22,
+            15,
+            3,
+            1
+          ]
+        }
+      ],
+      "first_successful_sink_attempt": {
+        "step": 0,
+        "sender": 18,
+        "receiver": 24,
+        "history_before": 0.0,
+        "penalty": -35,
+        "reward": -17.833333333333332,
+        "success": true,
+        "targets_sink": true
+      },
+      "first_delivery_reward_components": {
+        "episode": "0",
+        "step": "0",
+        "next_step": "1",
+        "reward_version": "task_v2",
+        "initial_packets": "24",
+        "unresolved_before": "24",
+        "delivered_this_step": "2",
+        "unresolved_after": "22",
+        "reward_legacy": "-675.4549461100887",
+        "reward_delivery": "0.08333333333333333",
+        "reward_delay": "-0.0125",
+        "reward_window_end": "0.0",
+        "reward_base": "0.07083333333333333",
+        "reward_progress": "0.0",
+        "reward_train": "0.07083333333333333",
+        "terminated": "False",
+        "rollout_truncated": "False"
+      },
+      "reward_audit": {
+        "episodes": 2,
+        "slots": 160,
+        "base_returns": [
+          0.8640625,
+          0.8182291666666668
+        ],
+        "physical_event_counts_and_reward_channels_verified": true
+      }
+    }
+  ],
+  "diagnostics": [
+    {
+      "group": "A",
+      "training_seed": 11,
+      "stage": "trained",
+      "decode": "greedy",
+      "eval_scene": 7001,
+      "policy_sha256": "38e6b6cd159642f25aa9844828f9e2960883152548fc0b1441ea6bfe3e7eb4fd",
+      "initial_actor_sha256": "597b0e4afbde349c68a6a25a0bbfc8e7f13a00ad5baa9a1db7ab6be5fc8fd68d",
+      "weights_unchanged": true,
+      "actor_delta_from_initial_l2": 0.07346836477518082,
+      "actor_initial_l2": 31.516925811767578,
+      "optimizer_updates": 0,
+      "torch_threads": 16,
+      "analysis": {
+        "generated": 48,
+        "delivered": 2,
+        "active_decisions": 571,
+        "active_wait_count": 160,
+        "active_wait_fraction": 0.28021015761821366,
+        "forced_wait_count": 3429,
+        "sink_legal_count": 17,
+        "sink_chosen_count": 2,
+        "mean_sink_probability_when_legal": 0.1290192021166577,
+        "initial_greedy_agreement": 0.014010507880910683,
+        "initial_comparison_count": 571,
+        "mean_normalized_entropy": 0.9995240581369983,
+        "mean_top_probability_gap": 0.0048062226974818,
+        "attempts": 411,
+        "ack_successes": 224,
+        "ack_failures": 187,
+        "revisit_transfers": 126,
+        "revisit_fraction_of_successes": 0.5625,
+        "nonprogress_successes": 114,
+        "physical_sink_reachable_fraction": 1.0,
+        "live_packet_slots": 3682,
+        "observed_closed_sccs": [
+          [
+            12,
+            16
+          ]
+        ],
+        "top_closed_cycles": [
+          {
+            "nodes": [
+              12,
+              16
+            ],
+            "count": 71
+          }
+        ],
+        "action_counts_by_sender": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            4,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            160
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            4,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            8,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            160,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            28,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            160,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            13,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "episodes": [
+          {
+            "physical": {
+              "schema": "original_tg_physical_v1",
+              "episode": 0,
+              "horizon": 80,
+              "generated_packets": 24,
+              "delivered_packets": 1,
+              "unresolved_packets": 23,
+              "delivery_rate": 0.041666666666666664,
+              "unresolved_fraction": 0.9583333333333334,
+              "true_drop_count": null,
+              "true_drop_rate": null,
+              "success_hops_mean": 1.0,
+              "success_delay_mean": 1.0,
+              "success_delay_p95": 1,
+              "attempts": 205,
+              "ack_successes": 109,
+              "ack_failures": 96,
+              "retry_attempts": 96,
+              "loop_transfers": 60,
+              "success_hops": [
+                1
+              ],
+              "success_delays": [
+                1
+              ]
+            },
+            "unresolved_examples": [
+              {
+                "packet_id": 2,
+                "source": 2,
+                "final_node": 12,
+                "route": [
+                  2,
+                  7,
+                  12,
+                  16,
+                  12,
+                  16,
+                  12
+                ],
+                "hops": 6,
+                "closed_cycles": [
+                  {
+                    "nodes": [
+                      12,
+                      16
+                    ],
+                    "count": 2
+                  }
+                ]
+              },
+              {
+                "packet_id": 6,
+                "source": 6,
+                "final_node": 16,
+                "route": [
+                  6,
+                  12,
+                  16,
+                  12,
+                  16,
+                  12,
+                  16
+                ],
+                "hops": 6,
+                "closed_cycles": [
+                  {
+                    "nodes": [
+                      12,
+                      16
+                    ],
+                    "count": 2
+                  }
+                ]
+              },
+              {
+                "packet_id": 7,
+                "source": 7,
+                "final_node": 16,
+                "route": [
+                  7,
+                  12,
+                  16,
+                  12,
+                  16,
+                  12,
+                  16
+                ],
+                "hops": 6,
+                "closed_cycles": [
+                  {
+                    "nodes": [
+                      12,
+                      16
+                    ],
+                    "count": 2
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "physical": {
+              "schema": "original_tg_physical_v1",
+              "episode": 1,
+              "horizon": 80,
+              "generated_packets": 24,
+              "delivered_packets": 1,
+              "unresolved_packets": 23,
+              "delivery_rate": 0.041666666666666664,
+              "unresolved_fraction": 0.9583333333333334,
+              "true_drop_count": null,
+              "true_drop_rate": null,
+              "success_hops_mean": 1.0,
+              "success_delay_mean": 1.0,
+              "success_delay_p95": 1,
+              "attempts": 206,
+              "ack_successes": 115,
+              "ack_failures": 91,
+              "retry_attempts": 90,
+              "loop_transfers": 66,
+              "success_hops": [
+                1
+              ],
+              "success_delays": [
+                1
+              ]
+            },
+            "unresolved_examples": [
+              {
+                "packet_id": 2,
+                "source": 2,
+                "final_node": 16,
+                "route": [
+                  2,
+                  7,
+                  12,
+                  16,
+                  12,
+                  16,
+                  12,
+                  16
+                ],
+                "hops": 7,
+                "closed_cycles": [
+                  {
+                    "nodes": [
+                      12,
+                      16
+                    ],
+                    "count": 2
+                  }
+                ]
+              },
+              {
+                "packet_id": 6,
+                "source": 6,
+                "final_node": 16,
+                "route": [
+                  6,
+                  12,
+                  16,
+                  12,
+                  16,
+                  12,
+                  16
+                ],
+                "hops": 6,
+                "closed_cycles": [
+                  {
+                    "nodes": [
+                      12,
+                      16
+                    ],
+                    "count": 2
+                  }
+                ]
+              },
+              {
+                "packet_id": 7,
+                "source": 7,
+                "final_node": 16,
+                "route": [
+                  7,
+                  12,
+                  16,
+                  12,
+                  16,
+                  12,
+                  16
+                ],
+                "hops": 6,
+                "closed_cycles": [
+                  {
+                    "nodes": [
+                      12,
+                      16
+                    ],
+                    "count": 2
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_task_v2_diagnostics\\A11",
+      "pilot_metrics_exact_match": true
+    },
+    {
+      "group": "A",
+      "training_seed": 22,
+      "stage": "trained",
+      "decode": "greedy",
+      "eval_scene": 7001,
+      "policy_sha256": "c41077231cf8cada7b35d125289e2b0d54987b5bce87a6b7b17dcfe5fa8e9015",
+      "initial_actor_sha256": "6c55e5e01751d1ab918dab9604c745f163c11ca9f706fc71ce9418f06b75a90d",
+      "weights_unchanged": true,
+      "actor_delta_from_initial_l2": 0.06414446979761124,
+      "actor_initial_l2": 31.60031509399414,
+      "optimizer_updates": 0,
+      "torch_threads": 16,
+      "analysis": {
+        "generated": 48,
+        "delivered": 0,
+        "active_decisions": 860,
+        "active_wait_count": 0,
+        "active_wait_fraction": 0.0,
+        "forced_wait_count": 3140,
+        "sink_legal_count": 322,
+        "sink_chosen_count": 0,
+        "mean_sink_probability_when_legal": 0.14431389182898569,
+        "initial_greedy_agreement": 0.2627906976744186,
+        "initial_comparison_count": 860,
+        "mean_normalized_entropy": 0.9995912381389632,
+        "mean_top_probability_gap": 0.002284638280438822,
+        "attempts": 860,
+        "ack_successes": 308,
+        "ack_failures": 552,
+        "revisit_transfers": 171,
+        "revisit_fraction_of_successes": 0.5551948051948052,
+        "nonprogress_successes": 104,
+        "physical_sink_reachable_fraction": 1.0,
+        "live_packet_slots": 3840,
+        "observed_closed_sccs": [
+          [
+            2,
+            6,
+            7
+          ],
+          [
+            18,
+            19
+          ]
+        ],
+        "top_closed_cycles": [
+          {
+            "nodes": [
+              18,
+              19
+            ],
+            "count": 35
+          },
+          {
+            "nodes": [
+              2,
+              6,
+              7
+            ],
+            "count": 29
+          },
+          {
+            "nodes": [
+              2,
+              6
+            ],
+            "count": 15
+          },
+          {
+            "nodes": [
+              15,
+              16
+            ],
+            "count": 8
+          }
+        ],
+        "action_counts_by_sender": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            10,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            113,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            29,
+            0,
+            0,
+            0,
+            0,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            93,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            4,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            6,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            11,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            13,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            21,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            17,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            20,
+            0,
+            22,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            54,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            160,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            160,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            6,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            7,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            9,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "episodes": [
+          {
+            "physical": {
+              "schema": "original_tg_physical_v1",
+              "episode": 0,
+              "horizon": 80,
+              "generated_packets": 24,
+              "delivered_packets": 0,
+              "unresolved_packets": 24,
+              "delivery_rate": 0.0,
+              "unresolved_fraction": 1.0,
+              "true_drop_count": null,
+              "true_drop_rate": null,
+              "success_hops_mean": null,
+              "success_delay_mean": null,
+              "success_delay_p95": null,
+              "attempts": 435,
+              "ack_successes": 160,
+              "ack_failures": 275,
+              "retry_attempts": 273,
+              "loop_transfers": 90,
+              "success_hops": [],
+              "success_delays": []
+            },
+            "unresolved_examples": [
+              {
+                "packet_id": 2,
+                "source": 2,
+                "final_node": 6,
+                "route": [
+                  2,
+                  6,
+                  7,
+                  2,
+                  6,
+                  7,
+                  2,
+                  6,
+                  7,
+                  2,
+                  6,
+                  2,
+                  6
+                ],
+                "hops": 12,
+                "closed_cycles": [
+                  {
+                    "nodes": [
+                      2,
+                      6,
+                      7
+                    ],
+                    "count": 3
+                  },
+                  {
+                    "nodes": [
+                      2,
+                      6
+                    ],
+                    "count": 1
+                  }
+                ]
+              },
+              {
+                "packet_id": 0,
+                "source": 0,
+                "final_node": 7,
+                "route": [
+                  0,
+                  6,
+                  7,
+                  2,
+                  6,
+                  7,
+                  2,
+                  6,
+                  7,
+                  2,
+                  6,
+                  7
+                ],
+                "hops": 11,
+                "closed_cycles": [
+                  {
+                    "nodes": [
+                      2,
+                      6,
+                      7
+                    ],
+                    "count": 3
+                  }
+                ]
+              },
+              {
+                "packet_id": 1,
+                "source": 1,
+                "final_node": 7,
+                "route": [
+                  1,
+                  2,
+                  6,
+                  7,
+                  2,
+                  6,
+                  2,
+                  6,
+                  7,
+                  2,
+                  6,
+                  7
+                ],
+                "hops": 11,
+                "closed_cycles": [
+                  {
+                    "nodes": [
+                      2,
+                      6,
+                      7
+                    ],
+                    "count": 2
+                  },
+                  {
+                    "nodes": [
+                      2,
+                      6
+                    ],
+                    "count": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "physical": {
+              "schema": "original_tg_physical_v1",
+              "episode": 1,
+              "horizon": 80,
+              "generated_packets": 24,
+              "delivered_packets": 0,
+              "unresolved_packets": 24,
+              "delivery_rate": 0.0,
+              "unresolved_fraction": 1.0,
+              "true_drop_count": null,
+              "true_drop_rate": null,
+              "success_hops_mean": null,
+              "success_delay_mean": null,
+              "success_delay_p95": null,
+              "attempts": 425,
+              "ack_successes": 148,
+              "ack_failures": 277,
+              "retry_attempts": 275,
+              "loop_transfers": 81,
+              "success_hops": [],
+              "success_delays": []
+            },
+            "unresolved_examples": [
+              {
+                "packet_id": 20,
+                "source": 20,
+                "final_node": 19,
+                "route": [
+                  20,
+                  15,
+                  16,
+                  15,
+                  16,
+                  15,
+                  16,
+                  15,
+                  16,
+                  15,
+                  16,
+                  17,
+                  18,
+                  19
+                ],
+                "hops": 13,
+                "closed_cycles": [
+                  {
+                    "nodes": [
+                      15,
+                      16
+                    ],
+                    "count": 4
+                  }
+                ]
+              },
+              {
+                "packet_id": 1,
+                "source": 1,
+                "final_node": 7,
+                "route": [
+                  1,
+                  2,
+                  6,
+                  2,
+                  6,
+                  7,
+                  2,
+                  6,
+                  7,
+                  2,
+                  6,
+                  7
+                ],
+                "hops": 11,
+                "closed_cycles": [
+                  {
+                    "nodes": [
+                      2,
+                      6,
+                      7
+                    ],
+                    "count": 2
+                  },
+                  {
+                    "nodes": [
+                      2,
+                      6
+                    ],
+                    "count": 1
+                  }
+                ]
+              },
+              {
+                "packet_id": 0,
+                "source": 0,
+                "final_node": 7,
+                "route": [
+                  0,
+                  6,
+                  2,
+                  6,
+                  7,
+                  2,
+                  6,
+                  7,
+                  2,
+                  6,
+                  7
+                ],
+                "hops": 10,
+                "closed_cycles": [
+                  {
+                    "nodes": [
+                      2,
+                      6,
+                      7
+                    ],
+                    "count": 2
+                  },
+                  {
+                    "nodes": [
+                      2,
+                      6
+                    ],
+                    "count": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_task_v2_diagnostics\\A22",
+      "pilot_metrics_exact_match": true
+    },
+    {
+      "group": "A",
+      "training_seed": 33,
+      "stage": "trained",
+      "decode": "greedy",
+      "eval_scene": 7001,
+      "policy_sha256": "5778c862f8a7f748b20131032afc31deb6d6b49b8a5620e03f15d5705e24d3bc",
+      "initial_actor_sha256": "0098898250eba17d7f2adbeea6974b93a1a9aae9d2ad0bc1124e0c5a2a4e1e91",
+      "weights_unchanged": true,
+      "actor_delta_from_initial_l2": 0.0767277404665947,
+      "actor_initial_l2": 31.514251708984375,
+      "optimizer_updates": 0,
+      "torch_threads": 16,
+      "analysis": {
+        "generated": 48,
+        "delivered": 0,
+        "active_decisions": 1431,
+        "active_wait_count": 782,
+        "active_wait_fraction": 0.546470999301188,
+        "forced_wait_count": 2569,
+        "sink_legal_count": 8,
+        "sink_chosen_count": 0,
+        "mean_sink_probability_when_legal": 0.14248482417315245,
+        "initial_greedy_agreement": 0.30328441649196364,
+        "initial_comparison_count": 1431,
+        "mean_normalized_entropy": 0.9993995500354572,
+        "mean_top_probability_gap": 0.001760283075038742,
+        "attempts": 649,
+        "ack_successes": 377,
+        "ack_failures": 272,
+        "revisit_transfers": 309,
+        "revisit_fraction_of_successes": 0.8196286472148541,
+        "nonprogress_successes": 188,
+        "physical_sink_reachable_fraction": 1.0,
+        "live_packet_slots": 3840,
+        "observed_closed_sccs": [
+          [
+            0,
+            1,
+            5
+          ],
+          [
+            9,
+            14
+          ]
+        ],
+        "top_closed_cycles": [
+          {
+            "nodes": [
+              9,
+              14
+            ],
+            "count": 70
+          },
+          {
+            "nodes": [
+              0,
+              5,
+              1
+            ],
+            "count": 62
+          }
+        ],
+        "action_counts_by_sender": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            92,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            124,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            31
+          ],
+          [
+            0,
+            3,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            4,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            84
+          ],
+          [
+            0,
+            111,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            27
+          ],
+          [
+            0,
+            3,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            3,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            152,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            160
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            4,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            6,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            123,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            160
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            160
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            4,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            160
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            4,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            4,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "episodes": [
+          {
+            "physical": {
+              "schema": "original_tg_physical_v1",
+              "episode": 0,
+              "horizon": 80,
+              "generated_packets": 24,
+              "delivered_packets": 0,
+              "unresolved_packets": 24,
+              "delivery_rate": 0.0,
+              "unresolved_fraction": 1.0,
+              "true_drop_count": null,
+              "true_drop_rate": null,
+              "success_hops_mean": null,
+              "success_delay_mean": null,
+              "success_delay_p95": null,
+              "attempts": 316,
+              "ack_successes": 184,
+              "ack_failures": 132,
+              "retry_attempts": 129,
+              "loop_transfers": 150,
+              "success_hops": [],
+              "success_delays": []
+            },
+            "unresolved_examples": [
+              {
+                "packet_id": 2,
+                "source": 2,
+                "final_node": 5,
+                "route": [
+                  2,
+                  1,
+                  0,
+                  5,
+                  1,
+                  0,
+                  5,
+                  1,
+                  0,
+                  5,
+                  1,
+                  0,
+                  5,
+                  1,
+                  0,
+                  5,
+                  1,
+                  0,
+                  5
+                ],
+                "hops": 18,
+                "closed_cycles": [
+                  {
+                    "nodes": [
+                      0,
+                      5,
+                      1
+                    ],
+                    "count": 5
+                  }
+                ]
+              },
+              {
+                "packet_id": 5,
+                "source": 5,
+                "final_node": 5,
+                "route": [
+                  5,
+                  1,
+                  0,
+                  5,
+                  1,
+                  0,
+                  5,
+                  1,
+                  0,
+                  5,
+                  1,
+                  0,
+                  5,
+                  1,
+                  0,
+                  5,
+                  1,
+                  0,
+                  5
+                ],
+                "hops": 18,
+                "closed_cycles": [
+                  {
+                    "nodes": [
+                      0,
+                      5,
+                      1
+                    ],
+                    "count": 6
+                  }
+                ]
+              },
+              {
+                "packet_id": 6,
+                "source": 6,
+                "final_node": 5,
+                "route": [
+                  6,
+                  1,
+                  0,
+                  5,
+                  1,
+                  0,
+                  5,
+                  1,
+                  0,
+                  5,
+                  1,
+                  0,
+                  5,
+                  1,
+                  0,
+                  5,
+                  1,
+                  0,
+                  5
+                ],
+                "hops": 18,
+                "closed_cycles": [
+                  {
+                    "nodes": [
+                      0,
+                      5,
+                      1
+                    ],
+                    "count": 5
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "physical": {
+              "schema": "original_tg_physical_v1",
+              "episode": 1,
+              "horizon": 80,
+              "generated_packets": 24,
+              "delivered_packets": 0,
+              "unresolved_packets": 24,
+              "delivery_rate": 0.0,
+              "unresolved_fraction": 1.0,
+              "true_drop_count": null,
+              "true_drop_rate": null,
+              "success_hops_mean": null,
+              "success_delay_mean": null,
+              "success_delay_p95": null,
+              "attempts": 333,
+              "ack_successes": 193,
+              "ack_failures": 140,
+              "retry_attempts": 139,
+              "loop_transfers": 159,
+              "success_hops": [],
+              "success_delays": []
+            },
+            "unresolved_examples": [
+              {
+                "packet_id": 2,
+                "source": 2,
+                "final_node": 5,
+                "route": [
+                  2,
+                  1,
+                  0,
+                  5,
+                  1,
+                  0,
+                  5,
+                  1,
+                  0,
+                  5,
+                  1,
+                  0,
+                  5,
+                  1,
+                  0,
+                  5,
+                  1,
+                  0,
+                  5
+                ],
+                "hops": 18,
+                "closed_cycles": [
+                  {
+                    "nodes": [
+                      0,
+                      5,
+                      1
+                    ],
+                    "count": 5
+                  }
+                ]
+              },
+              {
+                "packet_id": 5,
+                "source": 5,
+                "final_node": 5,
+                "route": [
+                  5,
+                  1,
+                  0,
+                  5,
+                  1,
+                  0,
+                  5,
+                  1,
+                  0,
+                  5,
+                  1,
+                  0,
+                  5,
+                  1,
+                  0,
+                  5,
+                  1,
+                  0,
+                  5
+                ],
+                "hops": 18,
+                "closed_cycles": [
+                  {
+                    "nodes": [
+                      0,
+                      5,
+                      1
+                    ],
+                    "count": 6
+                  }
+                ]
+              },
+              {
+                "packet_id": 6,
+                "source": 6,
+                "final_node": 5,
+                "route": [
+                  6,
+                  1,
+                  0,
+                  5,
+                  1,
+                  0,
+                  5,
+                  1,
+                  0,
+                  5,
+                  1,
+                  0,
+                  5,
+                  1,
+                  0,
+                  5,
+                  1,
+                  0,
+                  5
+                ],
+                "hops": 18,
+                "closed_cycles": [
+                  {
+                    "nodes": [
+                      0,
+                      5,
+                      1
+                    ],
+                    "count": 5
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_task_v2_diagnostics\\A33",
+      "pilot_metrics_exact_match": true
+    }
+  ],
+  "summary": {
+    "purpose": "pilot",
+    "budget": {
+      "purpose": "pilot",
+      "training_jobs": 18,
+      "evaluation_jobs": 18,
+      "training_steps_per_job": 160,
+      "total_training_steps": 2880,
+      "total_evaluation_steps": 2880,
+      "independent_training_seeds": [
+        11,
+        22,
+        33
+      ],
+      "evaluation_scenes": [
+        7001
+      ]
+    },
+    "by_training_seed": [
+      {
+        "group": "A",
+        "train_seed": 11,
+        "generated": 48,
+        "delivered": 2,
+        "delivery_rate": 0.041666666666666664,
+        "unresolved_fraction": 0.9583333333333334,
+        "success_hops_mean": 1,
+        "success_delay_mean": 1,
+        "success_delay_p95": 1,
+        "retry_attempts": 186,
+        "loop_transfers": 126,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 20.2105186,
+        "resources": {
+          "actor_trainable": 21956,
+          "critic_trainable": 18616,
+          "wm_frozen": 0,
+          "pm_frozen": 0,
+          "wm_active": false,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 1.5699774999999927,
+          "ppo_updates": 2,
+          "ppo_seconds": 7.839049900000002,
+          "diagnostic_seconds": 4.899999997753923e-06
+        }
+      },
+      {
+        "group": "A",
+        "train_seed": 22,
+        "generated": 48,
+        "delivered": 0,
+        "delivery_rate": 0.0,
+        "unresolved_fraction": 1.0,
+        "success_hops_mean": null,
+        "success_delay_mean": null,
+        "success_delay_p95": null,
+        "retry_attempts": 548,
+        "loop_transfers": 171,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 21.0664358,
+        "resources": {
+          "actor_trainable": 21956,
+          "critic_trainable": 18616,
+          "wm_frozen": 0,
+          "pm_frozen": 0,
+          "wm_active": false,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 1.6872361000000027,
+          "ppo_updates": 2,
+          "ppo_seconds": 7.5449803000000015,
+          "diagnostic_seconds": 7.399999998547457e-06
+        }
+      },
+      {
+        "group": "A",
+        "train_seed": 33,
+        "generated": 48,
+        "delivered": 0,
+        "delivery_rate": 0.0,
+        "unresolved_fraction": 1.0,
+        "success_hops_mean": null,
+        "success_delay_mean": null,
+        "success_delay_p95": null,
+        "retry_attempts": 268,
+        "loop_transfers": 309,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 17.3207072,
+        "resources": {
+          "actor_trainable": 21956,
+          "critic_trainable": 18616,
+          "wm_frozen": 0,
+          "pm_frozen": 0,
+          "wm_active": false,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 1.4733923999999945,
+          "ppo_updates": 2,
+          "ppo_seconds": 6.4520591000000005,
+          "diagnostic_seconds": 5.2999999988756485e-06
+        }
+      },
+      {
+        "group": "B",
+        "train_seed": 11,
+        "generated": 48,
+        "delivered": 2,
+        "delivery_rate": 0.041666666666666664,
+        "unresolved_fraction": 0.9583333333333334,
+        "success_hops_mean": 1,
+        "success_delay_mean": 1,
+        "success_delay_p95": 1,
+        "retry_attempts": 186,
+        "loop_transfers": 126,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 22.519373299999998,
+        "resources": {
+          "actor_trainable": 24165,
+          "critic_trainable": 18616,
+          "wm_frozen": 66789,
+          "pm_frozen": 0,
+          "wm_active": true,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 6.394425299999997,
+          "ppo_updates": 2,
+          "ppo_seconds": 6.040457100000002,
+          "diagnostic_seconds": 0.725976300000001
+        }
+      },
+      {
+        "group": "B",
+        "train_seed": 22,
+        "generated": 48,
+        "delivered": 0,
+        "delivery_rate": 0.0,
+        "unresolved_fraction": 1.0,
+        "success_hops_mean": null,
+        "success_delay_mean": null,
+        "success_delay_p95": null,
+        "retry_attempts": 548,
+        "loop_transfers": 171,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 22.972629600000005,
+        "resources": {
+          "actor_trainable": 24165,
+          "critic_trainable": 18616,
+          "wm_frozen": 66789,
+          "pm_frozen": 0,
+          "wm_active": true,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 6.401909900000003,
+          "ppo_updates": 2,
+          "ppo_seconds": 6.369827900000002,
+          "diagnostic_seconds": 0.709099099999996
+        }
+      },
+      {
+        "group": "B",
+        "train_seed": 33,
+        "generated": 48,
+        "delivered": 0,
+        "delivery_rate": 0.0,
+        "unresolved_fraction": 1.0,
+        "success_hops_mean": null,
+        "success_delay_mean": null,
+        "success_delay_p95": null,
+        "retry_attempts": 242,
+        "loop_transfers": 320,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 26.717160300000018,
+        "resources": {
+          "actor_trainable": 24165,
+          "critic_trainable": 18616,
+          "wm_frozen": 66789,
+          "pm_frozen": 0,
+          "wm_active": true,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 7.630594300000015,
+          "ppo_updates": 2,
+          "ppo_seconds": 7.0982479000000005,
+          "diagnostic_seconds": 0.8510388999999989
+        }
+      },
+      {
+        "group": "C",
+        "train_seed": 11,
+        "generated": 48,
+        "delivered": 12,
+        "delivery_rate": 0.25,
+        "unresolved_fraction": 0.75,
+        "success_hops_mean": 2,
+        "success_delay_mean": 10.166666666666666,
+        "success_delay_p95": 23,
+        "retry_attempts": 233,
+        "loop_transfers": 128,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 22.567720100000003,
+        "resources": {
+          "actor_trainable": 21956,
+          "critic_trainable": 18616,
+          "wm_frozen": 0,
+          "pm_frozen": 24496,
+          "wm_active": false,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 1.546570399999995,
+          "ppo_updates": 2,
+          "ppo_seconds": 6.626728399999999,
+          "diagnostic_seconds": 0.003871000000001956
+        }
+      },
+      {
+        "group": "C",
+        "train_seed": 22,
+        "generated": 48,
+        "delivered": 6,
+        "delivery_rate": 0.125,
+        "unresolved_fraction": 0.875,
+        "success_hops_mean": 1,
+        "success_delay_mean": 1.8333333333333333,
+        "success_delay_p95": 5,
+        "retry_attempts": 344,
+        "loop_transfers": 213,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 19.66583030000001,
+        "resources": {
+          "actor_trainable": 21956,
+          "critic_trainable": 18616,
+          "wm_frozen": 0,
+          "pm_frozen": 24496,
+          "wm_active": false,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 1.4715054999999913,
+          "ppo_updates": 2,
+          "ppo_seconds": 5.950448200000001,
+          "diagnostic_seconds": 0.0034130000000018867
+        }
+      },
+      {
+        "group": "C",
+        "train_seed": 33,
+        "generated": 48,
+        "delivered": 4,
+        "delivery_rate": 0.08333333333333333,
+        "unresolved_fraction": 0.9166666666666666,
+        "success_hops_mean": 1.5,
+        "success_delay_mean": 5.25,
+        "success_delay_p95": 7,
+        "retry_attempts": 385,
+        "loop_transfers": 352,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 22.184459000000004,
+        "resources": {
+          "actor_trainable": 21956,
+          "critic_trainable": 18616,
+          "wm_frozen": 0,
+          "pm_frozen": 24496,
+          "wm_active": false,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 1.5722738999999937,
+          "ppo_updates": 2,
+          "ppo_seconds": 6.9298291,
+          "diagnostic_seconds": 0.003575899999998633
+        }
+      },
+      {
+        "group": "D",
+        "train_seed": 11,
+        "generated": 48,
+        "delivered": 12,
+        "delivery_rate": 0.25,
+        "unresolved_fraction": 0.75,
+        "success_hops_mean": 2,
+        "success_delay_mean": 10.166666666666666,
+        "success_delay_p95": 23,
+        "retry_attempts": 233,
+        "loop_transfers": 128,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 33.07741999999996,
+        "resources": {
+          "actor_trainable": 24165,
+          "critic_trainable": 18616,
+          "wm_frozen": 66789,
+          "pm_frozen": 24496,
+          "wm_active": true,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 7.400835099999997,
+          "ppo_updates": 2,
+          "ppo_seconds": 8.5069938,
+          "diagnostic_seconds": 0.9468329999999998
+        }
+      },
+      {
+        "group": "D",
+        "train_seed": 22,
+        "generated": 48,
+        "delivered": 6,
+        "delivery_rate": 0.125,
+        "unresolved_fraction": 0.875,
+        "success_hops_mean": 1,
+        "success_delay_mean": 1.8333333333333333,
+        "success_delay_p95": 5,
+        "retry_attempts": 344,
+        "loop_transfers": 213,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 33.88327149999998,
+        "resources": {
+          "actor_trainable": 24165,
+          "critic_trainable": 18616,
+          "wm_frozen": 66789,
+          "pm_frozen": 24496,
+          "wm_active": true,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 7.9701916000000015,
+          "ppo_updates": 2,
+          "ppo_seconds": 8.638801700000002,
+          "diagnostic_seconds": 0.8799500000000027
+        }
+      },
+      {
+        "group": "D",
+        "train_seed": 33,
+        "generated": 48,
+        "delivered": 4,
+        "delivery_rate": 0.08333333333333333,
+        "unresolved_fraction": 0.9166666666666666,
+        "success_hops_mean": 1.5,
+        "success_delay_mean": 5.25,
+        "success_delay_p95": 7,
+        "retry_attempts": 385,
+        "loop_transfers": 352,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 30.85442869999997,
+        "resources": {
+          "actor_trainable": 24165,
+          "critic_trainable": 18616,
+          "wm_frozen": 66789,
+          "pm_frozen": 24496,
+          "wm_active": true,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 7.597192500000004,
+          "ppo_updates": 2,
+          "ppo_seconds": 6.792342,
+          "diagnostic_seconds": 0.8008835999999988
+        }
+      },
+      {
+        "group": "E",
+        "train_seed": 11,
+        "generated": 48,
+        "delivered": 2,
+        "delivery_rate": 0.041666666666666664,
+        "unresolved_fraction": 0.9583333333333334,
+        "success_hops_mean": 1,
+        "success_delay_mean": 1,
+        "success_delay_p95": 1,
+        "retry_attempts": 186,
+        "loop_transfers": 126,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 19.370026900000028,
+        "resources": {
+          "actor_trainable": 24213,
+          "critic_trainable": 18616,
+          "wm_frozen": 0,
+          "pm_frozen": 0,
+          "wm_active": false,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 1.5558267999999904,
+          "ppo_updates": 2,
+          "ppo_seconds": 6.6874122,
+          "diagnostic_seconds": 4.300000000512227e-06
+        }
+      },
+      {
+        "group": "E",
+        "train_seed": 22,
+        "generated": 48,
+        "delivered": 0,
+        "delivery_rate": 0.0,
+        "unresolved_fraction": 1.0,
+        "success_hops_mean": null,
+        "success_delay_mean": null,
+        "success_delay_p95": null,
+        "retry_attempts": 548,
+        "loop_transfers": 171,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 21.47717250000005,
+        "resources": {
+          "actor_trainable": 24213,
+          "critic_trainable": 18616,
+          "wm_frozen": 0,
+          "pm_frozen": 0,
+          "wm_active": false,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 2.024844200000001,
+          "ppo_updates": 2,
+          "ppo_seconds": 6.7974975,
+          "diagnostic_seconds": 7.399999999435636e-06
+        }
+      },
+      {
+        "group": "E",
+        "train_seed": 33,
+        "generated": 48,
+        "delivered": 0,
+        "delivery_rate": 0.0,
+        "unresolved_fraction": 1.0,
+        "success_hops_mean": null,
+        "success_delay_mean": null,
+        "success_delay_p95": null,
+        "retry_attempts": 238,
+        "loop_transfers": 329,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 17.617387699999995,
+        "resources": {
+          "actor_trainable": 24213,
+          "critic_trainable": 18616,
+          "wm_frozen": 0,
+          "pm_frozen": 0,
+          "wm_active": false,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 1.5272964999999918,
+          "ppo_updates": 2,
+          "ppo_seconds": 6.272311800000001,
+          "diagnostic_seconds": 4.600000000465343e-06
+        }
+      },
+      {
+        "group": "F",
+        "train_seed": 11,
+        "generated": 48,
+        "delivered": 2,
+        "delivery_rate": 0.041666666666666664,
+        "unresolved_fraction": 0.9583333333333334,
+        "success_hops_mean": 1,
+        "success_delay_mean": 1,
+        "success_delay_p95": 1,
+        "retry_attempts": 186,
+        "loop_transfers": 126,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 20.85065659999998,
+        "resources": {
+          "actor_trainable": 24165,
+          "critic_trainable": 18616,
+          "wm_frozen": 66789,
+          "pm_frozen": 0,
+          "wm_active": false,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 1.864537900000007,
+          "ppo_updates": 2,
+          "ppo_seconds": 7.337901399999999,
+          "diagnostic_seconds": 0.8736013999999992
+        }
+      },
+      {
+        "group": "F",
+        "train_seed": 22,
+        "generated": 48,
+        "delivered": 0,
+        "delivery_rate": 0.0,
+        "unresolved_fraction": 1.0,
+        "success_hops_mean": null,
+        "success_delay_mean": null,
+        "success_delay_p95": null,
+        "retry_attempts": 548,
+        "loop_transfers": 171,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 19.156586800000014,
+        "resources": {
+          "actor_trainable": 24165,
+          "critic_trainable": 18616,
+          "wm_frozen": 66789,
+          "pm_frozen": 0,
+          "wm_active": false,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 1.7941625000000092,
+          "ppo_updates": 2,
+          "ppo_seconds": 6.6308992,
+          "diagnostic_seconds": 0.7967772000000002
+        }
+      },
+      {
+        "group": "F",
+        "train_seed": 33,
+        "generated": 48,
+        "delivered": 0,
+        "delivery_rate": 0.0,
+        "unresolved_fraction": 1.0,
+        "success_hops_mean": null,
+        "success_delay_mean": null,
+        "success_delay_p95": null,
+        "retry_attempts": 242,
+        "loop_transfers": 320,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 20.394606100000033,
+        "resources": {
+          "actor_trainable": 24165,
+          "critic_trainable": 18616,
+          "wm_frozen": 66789,
+          "pm_frozen": 0,
+          "wm_active": false,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 1.857093799999995,
+          "ppo_updates": 2,
+          "ppo_seconds": 7.2780364,
+          "diagnostic_seconds": 0.7928093000000018
+        }
+      }
+    ],
+    "groups": [
+      {
+        "group": "A",
+        "independent_training_n": 3,
+        "metrics": {
+          "delivery_rate": {
+            "mean": 0.013888888888888888,
+            "sample_std": 0.024056261216234408,
+            "n_defined": 3
+          },
+          "unresolved_fraction": {
+            "mean": 0.9861111111111112,
+            "sample_std": 0.024056261216234387,
+            "n_defined": 3
+          },
+          "success_hops_mean": {
+            "mean": 1,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "success_delay_mean": {
+            "mean": 1,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "success_delay_p95": {
+            "mean": 1,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "retry_attempts": {
+            "mean": 334,
+            "sample_std": 189.81043174704598,
+            "n_defined": 3
+          },
+          "loop_transfers": {
+            "mean": 202,
+            "sample_std": 95.35722311393091,
+            "n_defined": 3
+          }
+        }
+      },
+      {
+        "group": "B",
+        "independent_training_n": 3,
+        "metrics": {
+          "delivery_rate": {
+            "mean": 0.013888888888888888,
+            "sample_std": 0.024056261216234408,
+            "n_defined": 3
+          },
+          "unresolved_fraction": {
+            "mean": 0.9861111111111112,
+            "sample_std": 0.024056261216234387,
+            "n_defined": 3
+          },
+          "success_hops_mean": {
+            "mean": 1,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "success_delay_mean": {
+            "mean": 1,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "success_delay_p95": {
+            "mean": 1,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "retry_attempts": {
+            "mean": 325.3333333333333,
+            "sample_std": 194.85721267978082,
+            "n_defined": 3
+          },
+          "loop_transfers": {
+            "mean": 205.66666666666666,
+            "sample_std": 101.53981156833675,
+            "n_defined": 3
+          }
+        }
+      },
+      {
+        "group": "C",
+        "independent_training_n": 3,
+        "metrics": {
+          "delivery_rate": {
+            "mean": 0.1527777777777778,
+            "sample_std": 0.08673608331108887,
+            "n_defined": 3
+          },
+          "unresolved_fraction": {
+            "mean": 0.8472222222222222,
+            "sample_std": 0.08673608331108885,
+            "n_defined": 3
+          },
+          "success_hops_mean": {
+            "mean": 1.5,
+            "sample_std": 0.5,
+            "n_defined": 3
+          },
+          "success_delay_mean": {
+            "mean": 5.75,
+            "sample_std": 4.1891062425189345,
+            "n_defined": 3
+          },
+          "success_delay_p95": {
+            "mean": 11.666666666666666,
+            "sample_std": 9.865765724632494,
+            "n_defined": 3
+          },
+          "retry_attempts": {
+            "mean": 320.6666666666667,
+            "sample_std": 78.64053238205686,
+            "n_defined": 3
+          },
+          "loop_transfers": {
+            "mean": 231,
+            "sample_std": 113.07961796893373,
+            "n_defined": 3
+          }
+        }
+      },
+      {
+        "group": "D",
+        "independent_training_n": 3,
+        "metrics": {
+          "delivery_rate": {
+            "mean": 0.1527777777777778,
+            "sample_std": 0.08673608331108887,
+            "n_defined": 3
+          },
+          "unresolved_fraction": {
+            "mean": 0.8472222222222222,
+            "sample_std": 0.08673608331108885,
+            "n_defined": 3
+          },
+          "success_hops_mean": {
+            "mean": 1.5,
+            "sample_std": 0.5,
+            "n_defined": 3
+          },
+          "success_delay_mean": {
+            "mean": 5.75,
+            "sample_std": 4.1891062425189345,
+            "n_defined": 3
+          },
+          "success_delay_p95": {
+            "mean": 11.666666666666666,
+            "sample_std": 9.865765724632494,
+            "n_defined": 3
+          },
+          "retry_attempts": {
+            "mean": 320.6666666666667,
+            "sample_std": 78.64053238205686,
+            "n_defined": 3
+          },
+          "loop_transfers": {
+            "mean": 231,
+            "sample_std": 113.07961796893373,
+            "n_defined": 3
+          }
+        }
+      },
+      {
+        "group": "E",
+        "independent_training_n": 3,
+        "metrics": {
+          "delivery_rate": {
+            "mean": 0.013888888888888888,
+            "sample_std": 0.024056261216234408,
+            "n_defined": 3
+          },
+          "unresolved_fraction": {
+            "mean": 0.9861111111111112,
+            "sample_std": 0.024056261216234387,
+            "n_defined": 3
+          },
+          "success_hops_mean": {
+            "mean": 1,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "success_delay_mean": {
+            "mean": 1,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "success_delay_p95": {
+            "mean": 1,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "retry_attempts": {
+            "mean": 324,
+            "sample_std": 195.72429588581997,
+            "n_defined": 3
+          },
+          "loop_transfers": {
+            "mean": 208.66666666666666,
+            "sample_std": 106.61300733650343,
+            "n_defined": 3
+          }
+        }
+      },
+      {
+        "group": "F",
+        "independent_training_n": 3,
+        "metrics": {
+          "delivery_rate": {
+            "mean": 0.013888888888888888,
+            "sample_std": 0.024056261216234408,
+            "n_defined": 3
+          },
+          "unresolved_fraction": {
+            "mean": 0.9861111111111112,
+            "sample_std": 0.024056261216234387,
+            "n_defined": 3
+          },
+          "success_hops_mean": {
+            "mean": 1,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "success_delay_mean": {
+            "mean": 1,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "success_delay_p95": {
+            "mean": 1,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "retry_attempts": {
+            "mean": 325.3333333333333,
+            "sample_std": 194.85721267978082,
+            "n_defined": 3
+          },
+          "loop_transfers": {
+            "mean": 205.66666666666666,
+            "sample_std": 101.53981156833675,
+            "n_defined": 3
+          }
+        }
+      }
+    ],
+    "statistical_unit": "independent trained policy, not evaluation episode",
+    "drop_rate_supported": false,
+    "limitations": [
+      "pilot is not convergence or significance evidence",
+      "one frozen WM/PM pretraining seed",
+      "task_v2 excludes legacy numeric reward; legacy observation/history state retained",
+      "CPU wall timing; CUDA unmeasured",
+      "E matches trainable extra Actor capacity within 2.2%, not frozen-model total capacity",
+      "F uses same four-frame input scope and scorer; idle WM loaded but never called"
+    ]
+  },
+  "validator_sha256": "659309447ad5543514da5b208e4ea5ae3a9c65904423fd346b2b7d63a6202660",
+  "extra_test_source_sha256": "4f4007640363e9c4a357d5dfeb8a20cf36081e77c74a4118ce7732e11a8c4d54"
+}

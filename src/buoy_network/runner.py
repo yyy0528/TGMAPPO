@@ -17,6 +17,7 @@ from .transition_data import TransitionRecorder, routing_actions
 import random
 import csv
 from .physical_metrics import PacketMetrics
+from .task_reward import reward_contract, TaskRewardLedger, REWARD_FIELDS
 
 logger = setup_logger(log_dir="outputs/TG-MAPPO/diagnostic_logs", log_name="buoy_2018")
 class tmp_buffer:
@@ -58,6 +59,10 @@ class Runner:
         self.log_dir = os.path.join(self.run_dir, "logs")
         os.makedirs(self.log_dir, exist_ok=True)  # 创建日志目录
         self.physical_stream = open(os.path.join(self.log_dir, "TG_physical_metrics.jsonl"), "x", encoding="utf-8")
+        self.reward_contract = reward_contract(self.env.all_args)
+        self.reward_stream = open(os.path.join(self.log_dir, "TG_reward_components.csv"), "x", newline="", encoding="utf-8")
+        self.reward_writer = csv.DictWriter(self.reward_stream, fieldnames=REWARD_FIELDS)
+        self.reward_writer.writeheader()
         self.pm_runtime = getattr(self.agents[0].RL, "pm_runtime", None)
         self.pm_stream = None
         if self.pm_runtime is not None:
@@ -86,7 +91,8 @@ class Runner:
         with open(os.path.join(self.log_dir, "TG_MAPPO_environment.json"), "w", encoding="utf-8") as stream:
             json.dump({"implementation": "legacy_fixed_v1", "node_features": [
                 "x", "y", "queue_fraction", "entity_type"],
-                "action_schema": "global_node_wait_v1", "config": vars(self.env.all_args)},
+                "action_schema": "global_node_wait_v1", "reward_contract": self.reward_contract,
+                "config": vars(self.env.all_args)},
                 stream, indent=2)
 
     def run(self):
@@ -94,6 +100,7 @@ class Runner:
             return self._run()
         finally:
             self.physical_stream.close()
+            self.reward_stream.close()
             if self.pm_stream is not None:
                 self.pm_stream.close()
             if self.data_exporter is not None:
@@ -117,6 +124,8 @@ class Runner:
             self.reward = 0
             self.env.packet_generation()
             self.physical_metrics = PacketMetrics(self.env.packets)
+            self.task_rewards = TaskRewardLedger(self.reward_contract,
+                [p.id for p in self.env.packets if not p.if_sink], self.env.all_args.episode_length, episode)
             next_queue_order = self.env.packet_id
             self.agents[0].RL.warmup()
             if self.pm_runtime is not None:
@@ -389,6 +398,8 @@ class Runner:
                                     k = 1
                                     packet.transmit(action[1])
                                     self.physical_metrics.transferred(packet, self.step+1)
+                                    if packet.if_sink:
+                                        self.task_rewards.delivered(packet.id)
                                     if self.pm_runtime is not None and packet.if_sink:
                                         self.pm_runtime.delivered(packet.id)
                                     if self.data_exporter is not None:
@@ -525,12 +536,17 @@ class Runner:
                 terminal = self.step == self.env.all_args.episode_length
                 done_batch = np.full((1, self.env.buoy_number), terminal, dtype=bool)
 
-                reward_tmp = np.sum(reward_list)
+                reward_row = self.task_rewards.advance(self.step, np.sum(reward_list), terminal)
+                reward_tmp = reward_row["reward_base"]
                 temp_reward += reward_tmp
+                reward_row["reward_progress"] = 0.
                 if self.pm_runtime is not None:
                     pm_row = self.pm_runtime.advance(self.env, self.step, reward_tmp, terminal)
                     self.pm_writer.writerow(pm_row)
                     reward_tmp = pm_row["reward_train"]
+                    reward_row["reward_progress"] = pm_row["reward_progress"]
+                reward_row["reward_train"] = reward_tmp
+                self.reward_writer.writerow(reward_row)
                 if self.data_exporter is not None:
                     self.data_exporter.end_step(self.env, added_value, reward_tmp, terminal)
                 #print(f"reward_tep: {reward_tmp}")
@@ -574,6 +590,7 @@ class Runner:
             physical = self.physical_metrics.summary(episode, self.step)
             self.physical_stream.write(json.dumps(physical, allow_nan=False)+"\n")
             self.physical_stream.flush()
+            self.reward_stream.flush()
             rate = len(self.len) / self.env.packet_id if self.env.packet_id != 0 else 0  # 避免除零错误
             loss_num = self.env.packet_id - len(self.len)
             average_hops = ( sum(self.len)  +  self.env.all_args.episode_length* loss_num ) / self.env.packet_id if self.env.packet_id else 0  # 避免空列表错误

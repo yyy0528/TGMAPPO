@@ -1,5 +1,6 @@
 """Explicit scripted reward controls, NOT evaluations of trained Actor decisions."""
 import argparse
+import csv
 import json
 import math
 import sys
@@ -11,10 +12,11 @@ from diagnose_tg_policy import build,read,sha,Agent,Runner,tensor_digest
 import numpy as np
 
 
-def run(suite, output, kind):
+def run(suite, output, kind, reward_version="legacy_v1"):
     manifest = read(suite/"manifest.json")
     source = next(j for j in manifest["jobs"] if j["group"] == "A" and j["kind"] == "evaluation" and j["train_seed"] == 22)
     config = read(Path(source["output"])/"logs/TG_MAPPO_environment.json")["config"]
+    config["tg_reward_version"] = reward_version
     env,learner = build(config,output)
     before = {"actor":tensor_digest(learner.policy.actor.state_dict()),"critic":tensor_digest(learner.policy.critic.state_dict())}
     rewards,attempts = [],[]
@@ -49,11 +51,20 @@ def run(suite, output, kind):
     if before != after:
         raise ValueError("Scripted reward probe changed model weights")
     rows = [json.loads(line) for line in (output/"moves_5/logs/TG_physical_metrics.jsonl").read_text().splitlines()]
+    from buoy_network.task_reward import reward_contract
+    spec = reward_contract(env.all_args)
+    with (output/"moves_5/logs/TG_reward_components.csv").open(encoding="utf-8", newline="") as stream:
+        reward_rows = list(csv.DictReader(stream))
     result = {"control":kind,"scope":"scripted environment/reward probe; Actor unused", "actor_executed":False,
               "weights_unchanged":True,"optimizer_updates":learner.profile["ppo_updates"],"scene":config["scenario_seed"],
+              "reward_contract":spec,"return_channel":"configured base reward consumed by PPO; not raw legacy buoy_go",
               "episode_environment_returns":[sum(rewards[i*80:(i+1)*80]) for i in range(2)],
               "episode_terminal_rewards":[rewards[79],rewards[159]],"physical_episodes":rows,
-              "first_successful_sink_attempt":next((a for a in attempts if a["targets_sink"] and a["success"]),None)}
+              "first_successful_sink_attempt":next((a for a in attempts if a["targets_sink"] and a["success"]),None),
+              "first_delivery_reward_components":next((r for r in reward_rows if int(r["delivered_this_step"]) > 0),None)}
+    if reward_version == "task_v2":
+        from buoy_network.task_reward_audit import audit_reward_csv
+        result["reward_audit"] = audit_reward_csv(output/"moves_5/logs",spec)
     (output/"reward_probe.json").write_text(json.dumps(result,indent=2,allow_nan=False),encoding="utf-8")
     (output/"attempts.json").write_text(json.dumps(attempts,indent=2,allow_nan=False),encoding="utf-8")
     return result
@@ -63,10 +74,11 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--suite",required=True)
     parser.add_argument("--output-root",default="results/tg_reward_probe")
+    parser.add_argument("--reward-version",choices=("legacy_v1","task_v2"),default="legacy_v1")
     args = parser.parse_args()
     root = Path(args.output_root).resolve()/datetime.now().strftime("%Y%m%d_%H%M%S_%f")
     root.mkdir(parents=True,exist_ok=False)
-    reports = [run(Path(args.suite).resolve(),root/kind,kind) for kind in ("wait","geographic")]
+    reports = [run(Path(args.suite).resolve(),root/kind,kind,args.reward_version) for kind in ("wait","geographic")]
     (root/"summary.json").write_text(json.dumps({"reports":reports},indent=2),encoding="utf-8")
     print("Reward probes: "+str(root/"summary.json"),flush=True)
 
