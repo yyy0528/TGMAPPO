@@ -3,6 +3,7 @@ import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from contextlib import contextmanager
 
 
 class PopArt(torch.nn.Module):
@@ -59,6 +60,7 @@ class PopArt(torch.nn.Module):
         self.mean.zero_()
         self.mean_sq.zero_()
         self.debiasing_term.zero_()
+        self.stddev.fill_(0.1)  # Same floor as the effective debiased variance below.
 
     def forward(self, input_vector):
         if type(input_vector) == np.ndarray:
@@ -73,7 +75,10 @@ class PopArt(torch.nn.Module):
             input_vector = torch.from_numpy(input_vector)
         input_vector = input_vector.to(**self.tpdv)
 
-        old_mean, old_stddev = self.mean, self.stddev
+        if input_vector.numel() == 0 or not torch.isfinite(input_vector).all():
+            raise ValueError("PopArt requires nonempty finite targets")
+        old_mean, old_var = self.debiased_mean_var()
+        old_mean, old_stddev = old_mean.clone(), old_var.sqrt().clone()
 
         batch_mean = input_vector.mean(dim=tuple(range(self.norm_axes)))
         batch_sq_mean = (input_vector**2).mean(dim=tuple(range(self.norm_axes)))
@@ -82,16 +87,12 @@ class PopArt(torch.nn.Module):
         self.mean_sq.mul_(self.beta).add_(batch_sq_mean * (1.0 - self.beta))
         self.debiasing_term.mul_(self.beta).add_(1.0 * (1.0 - self.beta))
 
-        # changed the next 3 lines according to this issue:
-        # https://github.com/marlbenchmark/on-policy/issues/19#issue-939380562
-        self.stddev = nn.Parameter(
-            (self.mean_sq - self.mean**2).sqrt().clamp(min=1e-4)
-        )
-
-        self.weight = nn.Parameter(self.weight * old_stddev / self.stddev)
-        self.bias = nn.Parameter(
-            (old_stddev * self.bias + old_mean - self.mean) / self.stddev
-        )
+        new_mean, new_var = self.debiased_mean_var()
+        new_stddev = new_var.sqrt()
+        # Keep optimizer references and requires_grad flags. Never replace Parameters.
+        self.weight.mul_((old_stddev/new_stddev).unsqueeze(-1))
+        self.bias.copy_((old_stddev*self.bias+old_mean-new_mean)/new_stddev)
+        self.stddev.copy_(new_stddev)
 
     def debiased_mean_var(self):
         debiased_mean = self.mean / self.debiasing_term.clamp(min=self.epsilon)
@@ -111,6 +112,7 @@ class PopArt(torch.nn.Module):
 
         return out
 
+
     def denormalize(self, input_vector):
         if type(input_vector) == np.ndarray:
             input_vector = torch.from_numpy(input_vector)
@@ -125,3 +127,43 @@ class PopArt(torch.nn.Module):
         out = out.cpu().numpy()
 
         return out
+
+
+@contextmanager
+def popart_rollout(trainer, buffer):
+    """Call AFTER old-scale GAE/advantages, BEFORE any critic forward/backward.
+
+    Fix statistics for every epoch/minibatch in one rollout. Cached values remain
+    in their collection coordinates; remap_popart_values aligns value clipping.
+    """
+    if not trainer._use_popart:
+        yield
+        return
+    if getattr(trainer, "_popart_old_stats", None) is not None:
+        raise ValueError("Nested PopArt rollout normalization")
+    normalizer = trainer.value_normalizer
+    mean, var = normalizer.debiased_mean_var()
+    snapshot = (mean.detach().clone(), var.detach().sqrt().clone())
+    targets = buffer.returns[:-1]
+    if trainer._use_value_active_masks:
+        targets = targets[buffer.active_masks[:-1, ..., 0] > 0]
+    else:
+        targets = targets.reshape(-1, targets.shape[-1])
+    if targets.size:
+        normalizer.update(targets)
+    trainer._popart_old_stats = snapshot
+    try:
+        yield
+    finally:
+        trainer._popart_old_stats = None
+
+
+def remap_popart_values(trainer, value_preds):
+    if not trainer._use_popart:
+        return value_preds
+    snapshot = getattr(trainer, "_popart_old_stats", None)
+    if snapshot is None:
+        raise ValueError("PopArt ppo_update requires normalization prepared by train")
+    old_mean, old_std = snapshot
+    mean, var = trainer.value_normalizer.debiased_mean_var()
+    return (value_preds*old_std+old_mean-mean)/var.sqrt()

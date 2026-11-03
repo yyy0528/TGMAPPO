@@ -1,0 +1,2470 @@
+{
+  "success": true,
+  "scope": "critic optimizer repair and bounded development experiments; no convergence claim",
+  "suite": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_ablation_popart_v2_pilot\\20261103_200507_863382",
+  "manifest_sha256": "0b48d1f84f38e2fe396e50d4ee10ff3c1aa7428f63d03e14ba9dee274faf8c40",
+  "summary_sha256": "3666a7f39624b82b775c4c35ef6e7ad7a8ee4e790f8b778357bb295934e89c4e",
+  "tests": [
+    {
+      "path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\targeted_fixes\\20261103_200248_221548\\test_report.json",
+      "sha256": "3afa2eb90bc9569549fb57ded518683d09fec94a59f324aef9e288b36e4b2ae8",
+      "report": {
+        "python": "D:\\python3.6.8\\python.exe",
+        "scope": "legacy_fixed_v1 targeted regressions",
+        "stages": [
+          {
+            "name": "functions",
+            "tests": 21,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "seconds": 2.176,
+            "log": "functions.log"
+          },
+          {
+            "name": "modules",
+            "tests": 24,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "seconds": 7.493,
+            "log": "modules.log"
+          },
+          {
+            "name": "integration",
+            "tests": 6,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "seconds": 23.974,
+            "log": "integration.log"
+          }
+        ],
+        "success": true,
+        "tests": 51
+      }
+    },
+    {
+      "path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_actor_tests\\20261103_200248_201120\\report.json",
+      "sha256": "99c58041a53d5dba41c751d73cd123e7ef256127264f8248a6ace75ec1f068f8",
+      "report": {
+        "python": "D:\\python3.6.8\\python.exe",
+        "stages": [
+          {
+            "name": "functions",
+            "tests": 3,
+            "failures": 0,
+            "errors": 0
+          },
+          {
+            "name": "modules",
+            "tests": 3,
+            "failures": 0,
+            "errors": 0
+          },
+          {
+            "name": "integration",
+            "tests": 2,
+            "failures": 0,
+            "errors": 0
+          }
+        ],
+        "success": true
+      }
+    },
+    {
+      "path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_pm_tests\\20261103_200248_966738\\report.json",
+      "sha256": "3b80c1b6add280ad18631d9e1e1a53f3b1c32af2a6ebd499ee2c680938320606",
+      "report": {
+        "python": "D:\\python3.6.8\\python.exe",
+        "success": true,
+        "stages": [
+          {
+            "name": "functions",
+            "tests": 2,
+            "failures": 0,
+            "errors": 0
+          },
+          {
+            "name": "modules",
+            "tests": 2,
+            "failures": 0,
+            "errors": 0
+          },
+          {
+            "name": "integration",
+            "tests": 2,
+            "failures": 0,
+            "errors": 0
+          }
+        ]
+      }
+    },
+    {
+      "path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_ablation_tests\\20261103_200239_876627\\report.json",
+      "sha256": "75d1e7bc42a0651a0a481a6f9fef150554aa37f36f626b3e4987867b742ec4f1",
+      "report": {
+        "success": true,
+        "python": "D:\\python3.6.8\\python.exe",
+        "stages": [
+          {
+            "name": "functions",
+            "tests": 6,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          {
+            "name": "modules",
+            "tests": 4,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          }
+        ]
+      }
+    },
+    {
+      "path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_task_reward_tests\\20261103_200240_275847\\report.json",
+      "sha256": "2c2524d127d34600022c65c0b50de1dd596c286c4f960c1a25bbb5cc805256ec",
+      "report": {
+        "python": "D:\\python3.6.8\\python.exe",
+        "success": true,
+        "stages": [
+          {
+            "name": "functions",
+            "tests": 4,
+            "failures": 0,
+            "errors": 0
+          },
+          {
+            "name": "modules",
+            "tests": 2,
+            "failures": 0,
+            "errors": 0
+          },
+          {
+            "name": "integration",
+            "tests": 2,
+            "failures": 0,
+            "errors": 0
+          }
+        ]
+      }
+    },
+    {
+      "path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_popart_tests\\20261103_200114_613815\\report.json",
+      "sha256": "06fa9a7560b3f87779f63fecff1c5cef1da38c6000ada8a61456648506da4c8e",
+      "report": {
+        "python": "D:\\python3.6.8\\python.exe",
+        "success": true,
+        "stages": [
+          {
+            "name": "functions",
+            "tests": 4,
+            "failures": 0,
+            "errors": 0
+          },
+          {
+            "name": "modules",
+            "tests": 2,
+            "failures": 0,
+            "errors": 0
+          },
+          {
+            "name": "integration",
+            "tests": 1,
+            "failures": 0,
+            "errors": 0
+          }
+        ]
+      }
+    },
+    {
+      "path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_popart_regressions\\extra_tests.json",
+      "sha256": "9e7fabb07b002cf7e0705d9288fa4f4dcd1cb5a5dfbf8ff3a6e92326cc093c42",
+      "report": {
+        "success": true,
+        "scope": "actual subprocess stdout saved from tool result; no tests rerun",
+        "stages": [
+          {
+            "name": "modern_model_and_diagnostic_tests",
+            "tests": 15,
+            "failures": 0,
+            "errors": 0
+          },
+          {
+            "name": "legacy_capture_tests",
+            "tests": 2,
+            "failures": 0,
+            "errors": 0
+          }
+        ],
+        "commands": [
+          {
+            "command": "& \"D:\\python3.10.9\\python.exe\" -m unittest tests.test_tg_world_model tests.test_tg_progress_model tests.test_policy_diagnostics -v",
+            "exit_code": 0,
+            "stdout": "test_future_targets_do_not_change_inputs_and_wait_is_masked (tests.test_tg_world_model.WorldModelFunctions) ... ok\r\ntest_motion_context_is_observed_offset_not_future_motion (tests.test_tg_world_model.WorldModelFunctions) ... ok\r\ntest_real_gradients_checkpoint_and_evaluation_preserve_normalization (tests.test_tg_world_model.WorldModelFunctions) ... ok\r\ntest_receiver_feedback_uses_only_matching_previous_attempts (tests.test_tg_world_model.WorldModelFunctions) ... ok\r\ntest_selection_preserves_mandatory_head_gates (tests.test_tg_world_model.WorldModelFunctions) ... ok\r\ntest_topology_is_independent_of_current_candidate_action (tests.test_tg_world_model.WorldModelFunctions) ... ok\r\ntest_causal_gru_and_online_prefix_equivalence (tests.test_tg_progress_model.ProgressFunctions) ... ok\r\ntest_censored_likelihood_is_observed_survival_not_failure (tests.test_tg_progress_model.ProgressFunctions) ... ok\r\ntest_packet_weighting_padding_and_real_gradient_update (tests.test_tg_progress_model.ProgressFunctions) ... ok\r\ntest_prefix_features_only_use_current_and_past (tests.test_tg_progress_model.ProgressFunctions) ... ok\r\ntest_unknown_window_results_do_not_count_as_zero_brier (tests.test_tg_progress_model.ProgressFunctions) ... ok\r\ntest_active_wait_sink_opportunity_and_initial_agreement (tests.test_policy_diagnostics.DiagnosticFunctions) ... ok\r\ntest_cycles_preserve_direction_and_ignore_path_prefix (tests.test_policy_diagnostics.DiagnosticFunctions) ... ok\r\ntest_observed_traps_are_not_physical_disconnections (tests.test_policy_diagnostics.DiagnosticFunctions) ... ok\r\ntest_successful_loop_counts_and_wait_are_separate (tests.test_policy_diagnostics.DiagnosticFunctions) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 15 tests in 1.780s\r\n\r\nOK\r\n",
+            "tests": 15
+          },
+          {
+            "command": "& \"D:\\python3.6.8\\python.exe\" -m unittest discover -s tests -p test_legacy_diagnostic_capture.py -v",
+            "exit_code": 0,
+            "stdout": "D:\\python3.6.8\\lib\\site-packages\\torch\\cuda\\amp\\autocast_mode.py:118: UserWarning: torch.cuda.amp.autocast only affects CUDA ops, but CUDA is not available.  Disabling.\r\n  warnings.warn(\"torch.cuda.amp.autocast only affects CUDA ops, but CUDA is not available.  Disabling.\")\r\ntest_baseline_capture_is_read_only_and_detaches_cleanly (test_legacy_diagnostic_capture.CaptureModules) ... D:\\python3.6.8\\lib\\site-packages\\torch\\cuda\\amp\\grad_scaler.py:116: UserWarning: torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.\r\n  warnings.warn(\"torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.\")\r\nok\r\ntest_wm_distribution_capture_uses_cached_inputs_without_sampling (test_legacy_diagnostic_capture.CaptureModules) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 2 tests in 0.196s\r\n\r\nOK\r\n",
+            "tests": 2
+          }
+        ]
+      }
+    }
+  ],
+  "test_count": 107,
+  "pilot_jobs": 36,
+  "resume_new_jobs": 0,
+  "formatting_only_changes": {
+    "src\\onpolicy\\algorithms\\graph_mappo.py": {
+      "snapshot_sha256": "64f08ed1a7e17e464ad9ff75adda7d8f701f8aadc35edca5cab2e9485a1ed6db",
+      "working_sha256": "244445c7fb1a231faaee64142bcf7e60b4dd4f2b34b5475e8560b54d6e095312",
+      "ast_identical": true
+    }
+  },
+  "before_probe": {
+    "torch": "1.8.1+cpu",
+    "scope": "isolated PopArt, no Actor/environment/PPO",
+    "source_file": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_ablation_task_v2_pilot\\20261103_171200_267697\\source_snapshot\\src\\onpolicy\\algorithms\\utils\\popart.py",
+    "source_sha256": "3d4fb8ea5b347f64aeb9a808feae38b8649ba12e404c3ec1a537a8df71f959e4",
+    "head_parameters_in_optimizer": false,
+    "parameter_identity_preserved": false,
+    "denormalized_output_max_change": 93.90570068359375,
+    "head_has_nonzero_gradient": true,
+    "head_changed_by_optimizer": false,
+    "normalization_parameters_require_grad": {
+      "stddev": true,
+      "mean": false,
+      "mean_sq": false,
+      "debiasing_term": false
+    }
+  },
+  "after_probe": {
+    "torch": "1.8.1+cpu",
+    "scope": "isolated PopArt, no Actor/environment/PPO",
+    "source_file": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\src\\onpolicy\\algorithms\\utils\\popart.py",
+    "source_sha256": "07b297da0f17b157863f711ddecb9bf7d5614d81bd27f3a7c32d646a5fa3ac0b",
+    "head_parameters_in_optimizer": true,
+    "parameter_identity_preserved": true,
+    "denormalized_output_max_change": 1.1771917343139648e-06,
+    "head_has_nonzero_gradient": true,
+    "head_changed_by_optimizer": true,
+    "normalization_parameters_require_grad": {
+      "stddev": false,
+      "mean": false,
+      "mean_sq": false,
+      "debiasing_term": false
+    }
+  },
+  "critic_optimizer_step_records": {
+    "A_seed_11": [
+      2,
+      4
+    ],
+    "A_seed_22": [
+      2,
+      4
+    ],
+    "A_seed_33": [
+      2,
+      4
+    ],
+    "B_seed_11": [
+      2,
+      4
+    ],
+    "B_seed_22": [
+      2,
+      4
+    ],
+    "B_seed_33": [
+      2,
+      4
+    ],
+    "C_seed_11": [
+      2,
+      4
+    ],
+    "C_seed_22": [
+      2,
+      4
+    ],
+    "C_seed_33": [
+      2,
+      4
+    ],
+    "D_seed_11": [
+      2,
+      4
+    ],
+    "D_seed_22": [
+      2,
+      4
+    ],
+    "D_seed_33": [
+      2,
+      4
+    ],
+    "E_seed_11": [
+      2,
+      4
+    ],
+    "E_seed_22": [
+      2,
+      4
+    ],
+    "E_seed_33": [
+      2,
+      4
+    ],
+    "F_seed_11": [
+      2,
+      4
+    ],
+    "F_seed_22": [
+      2,
+      4
+    ],
+    "F_seed_33": [
+      2,
+      4
+    ]
+  },
+  "old_policy_frozen_compatibility": {
+    "source": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_ablation_task_v2_pilot\\20261103_171200_267697\\training\\runs\\A_seed_22_attempt_1\\moves_5\\checkpoints\\tg_policy_latest.pt",
+    "source_training_implementation": "legacy_popart_v1",
+    "checkpoint_sha256": "c41077231cf8cada7b35d125289e2b0d54987b5bce87a6b7b17dcfe5fa8e9015",
+    "actor_sha256": "331b35d51f0019184897152ac97345a1bafdf5bb3a8fc19b73819df47d0687e6",
+    "critic_sha256": "5c3243816c3d153fcde843bca3b554757b2a621e30b94abe54bf31ed835dbb92",
+    "actor_unchanged": true,
+    "critic_unchanged": true,
+    "mode": "frozen_greedy_evaluation",
+    "wm": null,
+    "pm": null,
+    "optimizer_updates": 0,
+    "profile": {
+      "collect_calls": 160,
+      "collect_seconds": 1.7780790999999931,
+      "ppo_updates": 0,
+      "ppo_seconds": 0.0,
+      "diagnostic_seconds": 0.0
+    },
+    "resources": {
+      "actor_trainable": 21956,
+      "critic_trainable": 18615,
+      "wm_frozen": 0,
+      "pm_frozen": 0,
+      "wm_active": false,
+      "device": "cpu",
+      "cuda_peak_bytes": null
+    },
+    "reward_contract": {
+      "delivery_weight": 1.0,
+      "delay_weight": 1.0,
+      "unfinished_weight": 1.0,
+      "version": "task_v2",
+      "normalization": "initial_packets_and_task_horizon_v1"
+    },
+    "timing_scope": "CPU collect and PPO wall time; diagnostics separated; import/env/plot overhead excluded"
+  },
+  "diagnostic": {
+    "group": "A",
+    "training_seed": 22,
+    "stage": "trained",
+    "decode": "greedy",
+    "eval_scene": 7001,
+    "policy_sha256": "cc50b0a9742a80dfb16feb8e511f6eb9574783a6499657df24035026455447eb",
+    "initial_actor_sha256": "6c55e5e01751d1ab918dab9604c745f163c11ca9f706fc71ce9418f06b75a90d",
+    "weights_unchanged": true,
+    "actor_delta_from_initial_l2": 0.062242936342954636,
+    "actor_initial_l2": 31.60031509399414,
+    "optimizer_updates": 0,
+    "torch_threads": 16,
+    "analysis": {
+      "generated": 48,
+      "delivered": 0,
+      "active_decisions": 698,
+      "active_wait_count": 0,
+      "active_wait_fraction": 0.0,
+      "forced_wait_count": 3302,
+      "sink_legal_count": 87,
+      "sink_chosen_count": 0,
+      "mean_sink_probability_when_legal": 0.16664412352202954,
+      "initial_greedy_agreement": 0.2707736389684814,
+      "initial_comparison_count": 698,
+      "mean_normalized_entropy": 0.9994712373673935,
+      "mean_top_probability_gap": 0.0048646628856658936,
+      "attempts": 698,
+      "ack_successes": 339,
+      "ack_failures": 359,
+      "revisit_transfers": 217,
+      "revisit_fraction_of_successes": 0.640117994100295,
+      "nonprogress_successes": 160,
+      "physical_sink_reachable_fraction": 1.0,
+      "live_packet_slots": 3840,
+      "observed_closed_sccs": [
+        [
+          14,
+          19
+        ],
+        [
+          16,
+          17
+        ]
+      ],
+      "top_closed_cycles": [
+        {
+          "nodes": [
+            16,
+            17
+          ],
+          "count": 78
+        },
+        {
+          "nodes": [
+            14,
+            19
+          ],
+          "count": 41
+        }
+      ],
+      "action_counts_by_sender": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          8,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          11,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          29,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          5,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          33,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          11,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          160,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          160,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          160,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          6,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          77,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          5,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          5,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "episodes": [
+        {
+          "physical": {
+            "schema": "original_tg_physical_v1",
+            "episode": 0,
+            "horizon": 80,
+            "generated_packets": 24,
+            "delivered_packets": 0,
+            "unresolved_packets": 24,
+            "delivery_rate": 0.0,
+            "unresolved_fraction": 1.0,
+            "true_drop_count": null,
+            "true_drop_rate": null,
+            "success_hops_mean": null,
+            "success_delay_mean": null,
+            "success_delay_p95": null,
+            "attempts": 347,
+            "ack_successes": 172,
+            "ack_failures": 175,
+            "retry_attempts": 174,
+            "loop_transfers": 111,
+            "success_hops": [],
+            "success_delays": []
+          },
+          "unresolved_examples": [
+            {
+              "packet_id": 9,
+              "source": 9,
+              "final_node": 14,
+              "route": [
+                9,
+                14,
+                19,
+                14,
+                19,
+                14,
+                19,
+                14,
+                19,
+                14
+              ],
+              "hops": 9,
+              "closed_cycles": [
+                {
+                  "nodes": [
+                    14,
+                    19
+                  ],
+                  "count": 4
+                }
+              ]
+            },
+            {
+              "packet_id": 4,
+              "source": 4,
+              "final_node": 14,
+              "route": [
+                4,
+                9,
+                14,
+                19,
+                14,
+                19,
+                14,
+                19,
+                14
+              ],
+              "hops": 8,
+              "closed_cycles": [
+                {
+                  "nodes": [
+                    14,
+                    19
+                  ],
+                  "count": 3
+                }
+              ]
+            },
+            {
+              "packet_id": 13,
+              "source": 13,
+              "final_node": 14,
+              "route": [
+                13,
+                19,
+                14,
+                19,
+                14,
+                19,
+                14,
+                19,
+                14
+              ],
+              "hops": 8,
+              "closed_cycles": [
+                {
+                  "nodes": [
+                    14,
+                    19
+                  ],
+                  "count": 3
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "physical": {
+            "schema": "original_tg_physical_v1",
+            "episode": 1,
+            "horizon": 80,
+            "generated_packets": 24,
+            "delivered_packets": 0,
+            "unresolved_packets": 24,
+            "delivery_rate": 0.0,
+            "unresolved_fraction": 1.0,
+            "true_drop_count": null,
+            "true_drop_rate": null,
+            "success_hops_mean": null,
+            "success_delay_mean": null,
+            "success_delay_p95": null,
+            "attempts": 351,
+            "ack_successes": 167,
+            "ack_failures": 184,
+            "retry_attempts": 182,
+            "loop_transfers": 106,
+            "success_hops": [],
+            "success_delays": []
+          },
+          "unresolved_examples": [
+            {
+              "packet_id": 2,
+              "source": 2,
+              "final_node": 16,
+              "route": [
+                2,
+                7,
+                11,
+                17,
+                16,
+                17,
+                16,
+                17,
+                16
+              ],
+              "hops": 8,
+              "closed_cycles": [
+                {
+                  "nodes": [
+                    16,
+                    17
+                  ],
+                  "count": 2
+                }
+              ]
+            },
+            {
+              "packet_id": 3,
+              "source": 3,
+              "final_node": 16,
+              "route": [
+                3,
+                7,
+                11,
+                17,
+                16,
+                17,
+                16,
+                17,
+                16
+              ],
+              "hops": 8,
+              "closed_cycles": [
+                {
+                  "nodes": [
+                    16,
+                    17
+                  ],
+                  "count": 2
+                }
+              ]
+            },
+            {
+              "packet_id": 11,
+              "source": 11,
+              "final_node": 16,
+              "route": [
+                11,
+                17,
+                16,
+                17,
+                16,
+                17,
+                16,
+                17,
+                16
+              ],
+              "hops": 8,
+              "closed_cycles": [
+                {
+                  "nodes": [
+                    16,
+                    17
+                  ],
+                  "count": 3
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_popart_v2_diagnostics\\A22",
+    "pilot_metrics_exact_match": true
+  },
+  "summary": {
+    "purpose": "pilot",
+    "budget": {
+      "purpose": "pilot",
+      "training_jobs": 18,
+      "evaluation_jobs": 18,
+      "training_steps_per_job": 160,
+      "total_training_steps": 2880,
+      "total_evaluation_steps": 2880,
+      "independent_training_seeds": [
+        11,
+        22,
+        33
+      ],
+      "evaluation_scenes": [
+        7001
+      ]
+    },
+    "by_training_seed": [
+      {
+        "group": "A",
+        "train_seed": 11,
+        "generated": 48,
+        "delivered": 10,
+        "delivery_rate": 0.20833333333333334,
+        "unresolved_fraction": 0.7916666666666666,
+        "success_hops_mean": 1.6,
+        "success_delay_mean": 6.7,
+        "success_delay_p95": 18,
+        "retry_attempts": 178,
+        "loop_transfers": 129,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 17.803231800000002,
+        "resources": {
+          "actor_trainable": 21956,
+          "critic_trainable": 18615,
+          "wm_frozen": 0,
+          "pm_frozen": 0,
+          "wm_active": false,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 1.4930718000000043,
+          "ppo_updates": 2,
+          "ppo_seconds": 6.3985641,
+          "diagnostic_seconds": 5.400000000044258e-06
+        }
+      },
+      {
+        "group": "A",
+        "train_seed": 22,
+        "generated": 48,
+        "delivered": 0,
+        "delivery_rate": 0.0,
+        "unresolved_fraction": 1.0,
+        "success_hops_mean": null,
+        "success_delay_mean": null,
+        "success_delay_p95": null,
+        "retry_attempts": 356,
+        "loop_transfers": 217,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 19.7457555,
+        "resources": {
+          "actor_trainable": 21956,
+          "critic_trainable": 18615,
+          "wm_frozen": 0,
+          "pm_frozen": 0,
+          "wm_active": false,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 1.748400500000006,
+          "ppo_updates": 2,
+          "ppo_seconds": 6.341864599999999,
+          "diagnostic_seconds": 4.600000000465343e-06
+        }
+      },
+      {
+        "group": "A",
+        "train_seed": 33,
+        "generated": 48,
+        "delivered": 0,
+        "delivery_rate": 0.0,
+        "unresolved_fraction": 1.0,
+        "success_hops_mean": null,
+        "success_delay_mean": null,
+        "success_delay_p95": null,
+        "retry_attempts": 312,
+        "loop_transfers": 327,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 17.1779109,
+        "resources": {
+          "actor_trainable": 21956,
+          "critic_trainable": 18615,
+          "wm_frozen": 0,
+          "pm_frozen": 0,
+          "wm_active": false,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 1.446518099999996,
+          "ppo_updates": 2,
+          "ppo_seconds": 6.0327264,
+          "diagnostic_seconds": 4.400000000792659e-06
+        }
+      },
+      {
+        "group": "B",
+        "train_seed": 11,
+        "generated": 48,
+        "delivered": 10,
+        "delivery_rate": 0.20833333333333334,
+        "unresolved_fraction": 0.7916666666666666,
+        "success_hops_mean": 1.6,
+        "success_delay_mean": 6.7,
+        "success_delay_p95": 18,
+        "retry_attempts": 178,
+        "loop_transfers": 129,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 23.0090395,
+        "resources": {
+          "actor_trainable": 24165,
+          "critic_trainable": 18615,
+          "wm_frozen": 66789,
+          "pm_frozen": 0,
+          "wm_active": true,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 6.419521100000001,
+          "ppo_updates": 2,
+          "ppo_seconds": 6.2401453,
+          "diagnostic_seconds": 0.6935953999999995
+        }
+      },
+      {
+        "group": "B",
+        "train_seed": 22,
+        "generated": 48,
+        "delivered": 0,
+        "delivery_rate": 0.0,
+        "unresolved_fraction": 1.0,
+        "success_hops_mean": null,
+        "success_delay_mean": null,
+        "success_delay_p95": null,
+        "retry_attempts": 356,
+        "loop_transfers": 217,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 24.380844600000003,
+        "resources": {
+          "actor_trainable": 24165,
+          "critic_trainable": 18615,
+          "wm_frozen": 66789,
+          "pm_frozen": 0,
+          "wm_active": true,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 6.780230199999997,
+          "ppo_updates": 2,
+          "ppo_seconds": 6.7069521,
+          "diagnostic_seconds": 0.765833999999999
+        }
+      },
+      {
+        "group": "B",
+        "train_seed": 33,
+        "generated": 48,
+        "delivered": 0,
+        "delivery_rate": 0.0,
+        "unresolved_fraction": 1.0,
+        "success_hops_mean": null,
+        "success_delay_mean": null,
+        "success_delay_p95": null,
+        "retry_attempts": 321,
+        "loop_transfers": 321,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 29.085109700000004,
+        "resources": {
+          "actor_trainable": 24165,
+          "critic_trainable": 18615,
+          "wm_frozen": 66789,
+          "pm_frozen": 0,
+          "wm_active": true,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 8.310146000000003,
+          "ppo_updates": 2,
+          "ppo_seconds": 7.713719299999999,
+          "diagnostic_seconds": 0.8133821000000001
+        }
+      },
+      {
+        "group": "C",
+        "train_seed": 11,
+        "generated": 48,
+        "delivered": 12,
+        "delivery_rate": 0.25,
+        "unresolved_fraction": 0.75,
+        "success_hops_mean": 2,
+        "success_delay_mean": 8.75,
+        "success_delay_p95": 24,
+        "retry_attempts": 195,
+        "loop_transfers": 121,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 20.284859899999987,
+        "resources": {
+          "actor_trainable": 21956,
+          "critic_trainable": 18615,
+          "wm_frozen": 0,
+          "pm_frozen": 24496,
+          "wm_active": false,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 1.451370999999997,
+          "ppo_updates": 2,
+          "ppo_seconds": 6.5228454000000005,
+          "diagnostic_seconds": 0.003765800000002706
+        }
+      },
+      {
+        "group": "C",
+        "train_seed": 22,
+        "generated": 48,
+        "delivered": 2,
+        "delivery_rate": 0.041666666666666664,
+        "unresolved_fraction": 0.9583333333333334,
+        "success_hops_mean": 1,
+        "success_delay_mean": 4.5,
+        "success_delay_p95": 8,
+        "retry_attempts": 223,
+        "loop_transfers": 109,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 21.49455759999998,
+        "resources": {
+          "actor_trainable": 21956,
+          "critic_trainable": 18615,
+          "wm_frozen": 0,
+          "pm_frozen": 24496,
+          "wm_active": false,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 1.6149931000000013,
+          "ppo_updates": 2,
+          "ppo_seconds": 6.756973000000001,
+          "diagnostic_seconds": 0.0037154999999984284
+        }
+      },
+      {
+        "group": "C",
+        "train_seed": 33,
+        "generated": 48,
+        "delivered": 4,
+        "delivery_rate": 0.08333333333333333,
+        "unresolved_fraction": 0.9166666666666666,
+        "success_hops_mean": 1.5,
+        "success_delay_mean": 4,
+        "success_delay_p95": 7,
+        "retry_attempts": 399,
+        "loop_transfers": 424,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 21.896158200000002,
+        "resources": {
+          "actor_trainable": 21956,
+          "critic_trainable": 18615,
+          "wm_frozen": 0,
+          "pm_frozen": 24496,
+          "wm_active": false,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 1.6232875999999992,
+          "ppo_updates": 2,
+          "ppo_seconds": 6.6555452,
+          "diagnostic_seconds": 0.004309100000000399
+        }
+      },
+      {
+        "group": "D",
+        "train_seed": 11,
+        "generated": 48,
+        "delivered": 12,
+        "delivery_rate": 0.25,
+        "unresolved_fraction": 0.75,
+        "success_hops_mean": 2,
+        "success_delay_mean": 8.75,
+        "success_delay_p95": 24,
+        "retry_attempts": 195,
+        "loop_transfers": 121,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 25.708456099999978,
+        "resources": {
+          "actor_trainable": 24165,
+          "critic_trainable": 18615,
+          "wm_frozen": 66789,
+          "pm_frozen": 24496,
+          "wm_active": true,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 6.226465300000002,
+          "ppo_updates": 2,
+          "ppo_seconds": 6.4134921999999985,
+          "diagnostic_seconds": 0.7185748999999957
+        }
+      },
+      {
+        "group": "D",
+        "train_seed": 22,
+        "generated": 48,
+        "delivered": 2,
+        "delivery_rate": 0.041666666666666664,
+        "unresolved_fraction": 0.9583333333333334,
+        "success_hops_mean": 1,
+        "success_delay_mean": 4.5,
+        "success_delay_p95": 8,
+        "retry_attempts": 223,
+        "loop_transfers": 109,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 31.3411926,
+        "resources": {
+          "actor_trainable": 24165,
+          "critic_trainable": 18615,
+          "wm_frozen": 66789,
+          "pm_frozen": 24496,
+          "wm_active": true,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 7.590390300000004,
+          "ppo_updates": 2,
+          "ppo_seconds": 6.9313629,
+          "diagnostic_seconds": 0.7481597999999998
+        }
+      },
+      {
+        "group": "D",
+        "train_seed": 33,
+        "generated": 48,
+        "delivered": 4,
+        "delivery_rate": 0.08333333333333333,
+        "unresolved_fraction": 0.9166666666666666,
+        "success_hops_mean": 1.5,
+        "success_delay_mean": 4,
+        "success_delay_p95": 7,
+        "retry_attempts": 399,
+        "loop_transfers": 424,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 33.85141399999998,
+        "resources": {
+          "actor_trainable": 24165,
+          "critic_trainable": 18615,
+          "wm_frozen": 66789,
+          "pm_frozen": 24496,
+          "wm_active": true,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 8.111884199999988,
+          "ppo_updates": 2,
+          "ppo_seconds": 8.250657899999998,
+          "diagnostic_seconds": 0.9040014999999997
+        }
+      },
+      {
+        "group": "E",
+        "train_seed": 11,
+        "generated": 48,
+        "delivered": 10,
+        "delivery_rate": 0.20833333333333334,
+        "unresolved_fraction": 0.7916666666666666,
+        "success_hops_mean": 1.6,
+        "success_delay_mean": 6.7,
+        "success_delay_p95": 18,
+        "retry_attempts": 178,
+        "loop_transfers": 129,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 25.266088300000035,
+        "resources": {
+          "actor_trainable": 24213,
+          "critic_trainable": 18615,
+          "wm_frozen": 0,
+          "pm_frozen": 0,
+          "wm_active": false,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 2.0300578000000056,
+          "ppo_updates": 2,
+          "ppo_seconds": 8.507296900000002,
+          "diagnostic_seconds": 5.79999999761327e-06
+        }
+      },
+      {
+        "group": "E",
+        "train_seed": 22,
+        "generated": 48,
+        "delivered": 0,
+        "delivery_rate": 0.0,
+        "unresolved_fraction": 1.0,
+        "success_hops_mean": null,
+        "success_delay_mean": null,
+        "success_delay_p95": null,
+        "retry_attempts": 356,
+        "loop_transfers": 217,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 26.377316600000086,
+        "resources": {
+          "actor_trainable": 24213,
+          "critic_trainable": 18615,
+          "wm_frozen": 0,
+          "pm_frozen": 0,
+          "wm_active": false,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 2.337641700000013,
+          "ppo_updates": 2,
+          "ppo_seconds": 8.933021100000001,
+          "diagnostic_seconds": 5.799999995836913e-06
+        }
+      },
+      {
+        "group": "E",
+        "train_seed": 33,
+        "generated": 48,
+        "delivered": 0,
+        "delivery_rate": 0.0,
+        "unresolved_fraction": 1.0,
+        "success_hops_mean": null,
+        "success_delay_mean": null,
+        "success_delay_p95": null,
+        "retry_attempts": 328,
+        "loop_transfers": 316,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 25.85649239999998,
+        "resources": {
+          "actor_trainable": 24213,
+          "critic_trainable": 18615,
+          "wm_frozen": 0,
+          "pm_frozen": 0,
+          "wm_active": false,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 2.181509599999986,
+          "ppo_updates": 2,
+          "ppo_seconds": 9.065808,
+          "diagnostic_seconds": 5.3999999982679014e-06
+        }
+      },
+      {
+        "group": "F",
+        "train_seed": 11,
+        "generated": 48,
+        "delivered": 10,
+        "delivery_rate": 0.20833333333333334,
+        "unresolved_fraction": 0.7916666666666666,
+        "success_hops_mean": 1.6,
+        "success_delay_mean": 6.7,
+        "success_delay_p95": 18,
+        "retry_attempts": 178,
+        "loop_transfers": 129,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 26.026252699999986,
+        "resources": {
+          "actor_trainable": 24165,
+          "critic_trainable": 18615,
+          "wm_frozen": 66789,
+          "pm_frozen": 0,
+          "wm_active": false,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 2.2668045999999995,
+          "ppo_updates": 2,
+          "ppo_seconds": 8.638710799999998,
+          "diagnostic_seconds": 0.9681078000000012
+        }
+      },
+      {
+        "group": "F",
+        "train_seed": 22,
+        "generated": 48,
+        "delivered": 0,
+        "delivery_rate": 0.0,
+        "unresolved_fraction": 1.0,
+        "success_hops_mean": null,
+        "success_delay_mean": null,
+        "success_delay_p95": null,
+        "retry_attempts": 356,
+        "loop_transfers": 217,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 22.661155399999984,
+        "resources": {
+          "actor_trainable": 24165,
+          "critic_trainable": 18615,
+          "wm_frozen": 66789,
+          "pm_frozen": 0,
+          "wm_active": false,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 2.0387556999999905,
+          "ppo_updates": 2,
+          "ppo_seconds": 6.845251700000001,
+          "diagnostic_seconds": 0.799201899999999
+        }
+      },
+      {
+        "group": "F",
+        "train_seed": 33,
+        "generated": 48,
+        "delivered": 0,
+        "delivery_rate": 0.0,
+        "unresolved_fraction": 1.0,
+        "success_hops_mean": null,
+        "success_delay_mean": null,
+        "success_delay_p95": null,
+        "retry_attempts": 321,
+        "loop_transfers": 321,
+        "true_drop_rate": null,
+        "target_first_training_steps": null,
+        "train_worker_seconds": 20.97954089999996,
+        "resources": {
+          "actor_trainable": 24165,
+          "critic_trainable": 18615,
+          "wm_frozen": 66789,
+          "pm_frozen": 0,
+          "wm_active": false,
+          "device": "cpu",
+          "cuda_peak_bytes": null
+        },
+        "profile": {
+          "collect_calls": 160,
+          "collect_seconds": 1.7692086999999994,
+          "ppo_updates": 2,
+          "ppo_seconds": 6.9304229,
+          "diagnostic_seconds": 0.7655426999999957
+        }
+      }
+    ],
+    "groups": [
+      {
+        "group": "A",
+        "independent_training_n": 3,
+        "metrics": {
+          "delivery_rate": {
+            "mean": 0.06944444444444445,
+            "sample_std": 0.12028130608117205,
+            "n_defined": 3
+          },
+          "unresolved_fraction": {
+            "mean": 0.9305555555555556,
+            "sample_std": 0.12028130608117206,
+            "n_defined": 3
+          },
+          "success_hops_mean": {
+            "mean": 1.6,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "success_delay_mean": {
+            "mean": 6.7,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "success_delay_p95": {
+            "mean": 18,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "retry_attempts": {
+            "mean": 282,
+            "sample_std": 92.71461589199407,
+            "n_defined": 3
+          },
+          "loop_transfers": {
+            "mean": 224.33333333333334,
+            "sample_std": 99.20349456210367,
+            "n_defined": 3
+          }
+        }
+      },
+      {
+        "group": "B",
+        "independent_training_n": 3,
+        "metrics": {
+          "delivery_rate": {
+            "mean": 0.06944444444444445,
+            "sample_std": 0.12028130608117205,
+            "n_defined": 3
+          },
+          "unresolved_fraction": {
+            "mean": 0.9305555555555556,
+            "sample_std": 0.12028130608117206,
+            "n_defined": 3
+          },
+          "success_hops_mean": {
+            "mean": 1.6,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "success_delay_mean": {
+            "mean": 6.7,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "success_delay_p95": {
+            "mean": 18,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "retry_attempts": {
+            "mean": 285,
+            "sample_std": 94.30270409696638,
+            "n_defined": 3
+          },
+          "loop_transfers": {
+            "mean": 222.33333333333334,
+            "sample_std": 96.11104688501386,
+            "n_defined": 3
+          }
+        }
+      },
+      {
+        "group": "C",
+        "independent_training_n": 3,
+        "metrics": {
+          "delivery_rate": {
+            "mean": 0.125,
+            "sample_std": 0.11023963796102461,
+            "n_defined": 3
+          },
+          "unresolved_fraction": {
+            "mean": 0.875,
+            "sample_std": 0.11023963796102462,
+            "n_defined": 3
+          },
+          "success_hops_mean": {
+            "mean": 1.5,
+            "sample_std": 0.5,
+            "n_defined": 3
+          },
+          "success_delay_mean": {
+            "mean": 5.75,
+            "sample_std": 2.6100766272276377,
+            "n_defined": 3
+          },
+          "success_delay_p95": {
+            "mean": 13,
+            "sample_std": 9.539392014169456,
+            "n_defined": 3
+          },
+          "retry_attempts": {
+            "mean": 272.3333333333333,
+            "sample_std": 110.58631621196781,
+            "n_defined": 3
+          },
+          "loop_transfers": {
+            "mean": 218,
+            "sample_std": 178.50210082797346,
+            "n_defined": 3
+          }
+        }
+      },
+      {
+        "group": "D",
+        "independent_training_n": 3,
+        "metrics": {
+          "delivery_rate": {
+            "mean": 0.125,
+            "sample_std": 0.11023963796102461,
+            "n_defined": 3
+          },
+          "unresolved_fraction": {
+            "mean": 0.875,
+            "sample_std": 0.11023963796102462,
+            "n_defined": 3
+          },
+          "success_hops_mean": {
+            "mean": 1.5,
+            "sample_std": 0.5,
+            "n_defined": 3
+          },
+          "success_delay_mean": {
+            "mean": 5.75,
+            "sample_std": 2.6100766272276377,
+            "n_defined": 3
+          },
+          "success_delay_p95": {
+            "mean": 13,
+            "sample_std": 9.539392014169456,
+            "n_defined": 3
+          },
+          "retry_attempts": {
+            "mean": 272.3333333333333,
+            "sample_std": 110.58631621196781,
+            "n_defined": 3
+          },
+          "loop_transfers": {
+            "mean": 218,
+            "sample_std": 178.50210082797346,
+            "n_defined": 3
+          }
+        }
+      },
+      {
+        "group": "E",
+        "independent_training_n": 3,
+        "metrics": {
+          "delivery_rate": {
+            "mean": 0.06944444444444445,
+            "sample_std": 0.12028130608117205,
+            "n_defined": 3
+          },
+          "unresolved_fraction": {
+            "mean": 0.9305555555555556,
+            "sample_std": 0.12028130608117206,
+            "n_defined": 3
+          },
+          "success_hops_mean": {
+            "mean": 1.6,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "success_delay_mean": {
+            "mean": 6.7,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "success_delay_p95": {
+            "mean": 18,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "retry_attempts": {
+            "mean": 287.3333333333333,
+            "sample_std": 95.71485429824011,
+            "n_defined": 3
+          },
+          "loop_transfers": {
+            "mean": 220.66666666666666,
+            "sample_std": 93.55390602926921,
+            "n_defined": 3
+          }
+        }
+      },
+      {
+        "group": "F",
+        "independent_training_n": 3,
+        "metrics": {
+          "delivery_rate": {
+            "mean": 0.06944444444444445,
+            "sample_std": 0.12028130608117205,
+            "n_defined": 3
+          },
+          "unresolved_fraction": {
+            "mean": 0.9305555555555556,
+            "sample_std": 0.12028130608117206,
+            "n_defined": 3
+          },
+          "success_hops_mean": {
+            "mean": 1.6,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "success_delay_mean": {
+            "mean": 6.7,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "success_delay_p95": {
+            "mean": 18,
+            "sample_std": null,
+            "n_defined": 1
+          },
+          "retry_attempts": {
+            "mean": 285,
+            "sample_std": 94.30270409696638,
+            "n_defined": 3
+          },
+          "loop_transfers": {
+            "mean": 222.33333333333334,
+            "sample_std": 96.11104688501386,
+            "n_defined": 3
+          }
+        }
+      }
+    ],
+    "statistical_unit": "independent trained policy, not evaluation episode",
+    "drop_rate_supported": false,
+    "limitations": [
+      "pilot is not convergence or significance evidence",
+      "one frozen WM/PM pretraining seed",
+      "task_v2 excludes legacy numeric reward; legacy observation/history state retained",
+      "CPU wall timing; CUDA unmeasured",
+      "E matches trainable extra Actor capacity within 2.2%, not frozen-model total capacity",
+      "F uses same four-frame input scope and scorer; idle WM loaded but never called"
+    ]
+  },
+  "baseline_20_episode_probes": [
+    {
+      "seed": 11,
+      "training": "results\\tg_popart_budget_probe\\training\\runs\\A_seed_11_e20\\moves_5",
+      "evaluation": "results\\tg_popart_budget_probe\\evaluation\\runs\\A_seed_11_e20_scene7001\\moves_5",
+      "train_steps": 1600,
+      "critic_head_optimizer_steps": 40,
+      "generated": 48,
+      "delivered": 14,
+      "physical_episodes": [
+        {
+          "schema": "original_tg_physical_v1",
+          "episode": 0,
+          "horizon": 80,
+          "generated_packets": 24,
+          "delivered_packets": 7,
+          "unresolved_packets": 17,
+          "delivery_rate": 0.2916666666666667,
+          "unresolved_fraction": 0.7083333333333334,
+          "true_drop_count": null,
+          "true_drop_rate": null,
+          "success_hops_mean": 1.8571428571428572,
+          "success_delay_mean": 9.142857142857142,
+          "success_delay_p95": 23,
+          "attempts": 66,
+          "ack_successes": 26,
+          "ack_failures": 40,
+          "retry_attempts": 40,
+          "loop_transfers": 0,
+          "success_hops": [
+            3,
+            3,
+            2,
+            2,
+            1,
+            1,
+            1
+          ],
+          "success_delays": [
+            18,
+            23,
+            10,
+            4,
+            1,
+            2,
+            6
+          ]
+        },
+        {
+          "schema": "original_tg_physical_v1",
+          "episode": 1,
+          "horizon": 80,
+          "generated_packets": 24,
+          "delivered_packets": 7,
+          "unresolved_packets": 17,
+          "delivery_rate": 0.2916666666666667,
+          "unresolved_fraction": 0.7083333333333334,
+          "true_drop_count": null,
+          "true_drop_rate": null,
+          "success_hops_mean": 1.8571428571428572,
+          "success_delay_mean": 6.571428571428571,
+          "success_delay_p95": 15,
+          "attempts": 57,
+          "ack_successes": 26,
+          "ack_failures": 31,
+          "retry_attempts": 31,
+          "loop_transfers": 0,
+          "success_hops": [
+            3,
+            3,
+            2,
+            2,
+            1,
+            1,
+            1
+          ],
+          "success_delays": [
+            9,
+            15,
+            13,
+            6,
+            1,
+            1,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 22,
+      "training": "results\\tg_popart_budget_probe\\training\\runs\\A_seed_22_e20\\moves_5",
+      "evaluation": "results\\tg_popart_budget_probe\\evaluation\\runs\\A_seed_22_e20_scene7001\\moves_5",
+      "train_steps": 1600,
+      "critic_head_optimizer_steps": 40,
+      "generated": 48,
+      "delivered": 10,
+      "physical_episodes": [
+        {
+          "schema": "original_tg_physical_v1",
+          "episode": 0,
+          "horizon": 80,
+          "generated_packets": 24,
+          "delivered_packets": 5,
+          "unresolved_packets": 19,
+          "delivery_rate": 0.20833333333333334,
+          "unresolved_fraction": 0.7916666666666666,
+          "true_drop_count": null,
+          "true_drop_rate": null,
+          "success_hops_mean": 1.8,
+          "success_delay_mean": 8.8,
+          "success_delay_p95": 15,
+          "attempts": 190,
+          "ack_successes": 91,
+          "ack_failures": 99,
+          "retry_attempts": 97,
+          "loop_transfers": 59,
+          "success_hops": [
+            2,
+            2,
+            2,
+            1,
+            2
+          ],
+          "success_delays": [
+            15,
+            8,
+            6,
+            5,
+            10
+          ]
+        },
+        {
+          "schema": "original_tg_physical_v1",
+          "episode": 1,
+          "horizon": 80,
+          "generated_packets": 24,
+          "delivered_packets": 5,
+          "unresolved_packets": 19,
+          "delivery_rate": 0.20833333333333334,
+          "unresolved_fraction": 0.7916666666666666,
+          "true_drop_count": null,
+          "true_drop_rate": null,
+          "success_hops_mean": 1.8,
+          "success_delay_mean": 10.8,
+          "success_delay_p95": 18,
+          "attempts": 165,
+          "ack_successes": 79,
+          "ack_failures": 86,
+          "retry_attempts": 85,
+          "loop_transfers": 47,
+          "success_hops": [
+            2,
+            2,
+            2,
+            1,
+            2
+          ],
+          "success_delays": [
+            8,
+            13,
+            18,
+            5,
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "seed": 33,
+      "training": "results\\tg_popart_budget_probe\\training\\runs\\A_seed_33_e20\\moves_5",
+      "evaluation": "results\\tg_popart_budget_probe\\evaluation\\runs\\A_seed_33_e20_scene7001\\moves_5",
+      "train_steps": 1600,
+      "critic_head_optimizer_steps": 40,
+      "generated": 48,
+      "delivered": 16,
+      "physical_episodes": [
+        {
+          "schema": "original_tg_physical_v1",
+          "episode": 0,
+          "horizon": 80,
+          "generated_packets": 24,
+          "delivered_packets": 8,
+          "unresolved_packets": 16,
+          "delivery_rate": 0.3333333333333333,
+          "unresolved_fraction": 0.6666666666666666,
+          "true_drop_count": null,
+          "true_drop_rate": null,
+          "success_hops_mean": 2.0,
+          "success_delay_mean": 6.875,
+          "success_delay_p95": 20,
+          "attempts": 193,
+          "ack_successes": 115,
+          "ack_failures": 78,
+          "retry_attempts": 77,
+          "loop_transfers": 80,
+          "success_hops": [
+            3,
+            3,
+            2,
+            3,
+            1,
+            1,
+            2,
+            1
+          ],
+          "success_delays": [
+            9,
+            12,
+            3,
+            20,
+            2,
+            1,
+            7,
+            1
+          ]
+        },
+        {
+          "schema": "original_tg_physical_v1",
+          "episode": 1,
+          "horizon": 80,
+          "generated_packets": 24,
+          "delivered_packets": 8,
+          "unresolved_packets": 16,
+          "delivery_rate": 0.3333333333333333,
+          "unresolved_fraction": 0.6666666666666666,
+          "true_drop_count": null,
+          "true_drop_rate": null,
+          "success_hops_mean": 2.0,
+          "success_delay_mean": 8.625,
+          "success_delay_p95": 28,
+          "attempts": 195,
+          "ack_successes": 105,
+          "ack_failures": 90,
+          "retry_attempts": 89,
+          "loop_transfers": 70,
+          "success_hops": [
+            3,
+            3,
+            2,
+            3,
+            1,
+            1,
+            2,
+            1
+          ],
+          "success_delays": [
+            11,
+            15,
+            6,
+            28,
+            1,
+            1,
+            5,
+            2
+          ]
+        }
+      ]
+    }
+  ],
+  "budget_probe_scope": "baseline only; original per-total-episode learning-rate schedule retained; not WM/PM ablation",
+  "validator_sha256": "cdc23ddcd4f1fef252022a2e9ea1f86f111b5ee064a081b94ee90adf4d8c3dac",
+  "new_test_source_sha256": "f2b5a92ac4832e243b1e944f3222c3e6c92db8bceb4280b8f2c9157b960e7d9b"
+}

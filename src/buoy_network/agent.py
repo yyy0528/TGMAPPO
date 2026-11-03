@@ -148,6 +148,7 @@ class DeepQNetwork(nn.Module):
         self.evaluation_metadata = None
         self.pm_runtime = None
         self.pm_update_records = []
+        self.training_records = []
         self.profile = {"collect_calls": 0, "collect_seconds": 0., "ppo_updates": 0,
                         "ppo_seconds": 0., "diagnostic_seconds": 0.}
         if getattr(self.all_args, "use_pm_reward", False):
@@ -617,6 +618,17 @@ class DeepQNetwork(nn.Module):
         train_infos = self.trainer.train(self.buffer)
         self.profile["ppo_seconds"] += time.perf_counter()-ppo_start
         self.profile["ppo_updates"] += 1
+        head = self.policy.critic.v_out
+        optimizer = self.policy.critic_optimizer
+        registered = {id(p) for group in optimizer.param_groups for p in group["params"]}
+        head_registered = all(id(p) in registered for p in (head.weight, head.bias))
+        if not head_registered:
+            raise ValueError("Critic value head is detached from its optimizer")
+        self.training_records.append(dict(
+            {key: float(value) for key,value in train_infos.items()},
+            update=self.profile["ppo_updates"], popart=self.trainer._use_popart,
+            critic_head_in_optimizer=head_registered,
+            critic_head_optimizer_steps=int(optimizer.state.get(head.weight, {}).get("step", 0))))
         diagnostic_start = time.perf_counter()
         if self.pm_runtime is not None:
             self.pm_runtime.assert_frozen()

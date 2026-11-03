@@ -9,6 +9,7 @@ from onpolicy.utils.shared_buffer import SharedReplayBuffer
 from onpolicy.utils.util import get_grad_norm, huber_loss, mse_loss
 from onpolicy.utils.valuenorm import ValueNorm
 from onpolicy.algorithms.utils.util import check
+from onpolicy.algorithms.utils.popart import popart_rollout, remap_popart_values
 
 
 class R_MAPPO:
@@ -87,7 +88,8 @@ class R_MAPPO:
             -self.clip_param, self.clip_param
         )
         if self._use_popart or self._use_valuenorm:
-            self.value_normalizer.update(return_batch)
+            if self._use_valuenorm:
+                self.value_normalizer.update(return_batch)
             error_clipped = (
                 self.value_normalizer.normalize(return_batch) - value_pred_clipped
             )
@@ -111,7 +113,7 @@ class R_MAPPO:
         if self._use_value_active_masks:
             value_loss = (
                 value_loss * active_masks_batch
-            ).sum() / active_masks_batch.sum()
+            ).sum() / active_masks_batch.sum().clamp(min=1.0)
         else:
             value_loss = value_loss.mean()
 
@@ -158,6 +160,7 @@ class R_MAPPO:
         old_action_log_probs_batch = check(old_action_log_probs_batch).to(**self.tpdv)
         adv_targ = check(adv_targ).to(**self.tpdv)
         value_preds_batch = check(value_preds_batch).to(**self.tpdv)
+        value_preds_batch = remap_popart_values(self, value_preds_batch)
         return_batch = check(return_batch).to(**self.tpdv)
         active_masks_batch = check(active_masks_batch).to(**self.tpdv)
 
@@ -185,7 +188,7 @@ class R_MAPPO:
             policy_action_loss = (
                 -torch.sum(torch.min(surr1, surr2), dim=-1, keepdim=True)
                 * active_masks_batch
-            ).sum() / active_masks_batch.sum()
+            ).sum() / active_masks_batch.sum().clamp(min=1.0)
         else:
             policy_action_loss = -torch.sum(
                 torch.min(surr1, surr2), dim=-1, keepdim=True
@@ -252,11 +255,13 @@ class R_MAPPO:
             )
         else:
             advantages = buffer.returns[:-1] - buffer.value_preds[:-1]
-        advantages_copy = advantages.copy()
-        advantages_copy[buffer.active_masks[:-1] == 0.0] = np.nan
-        mean_advantages = np.nanmean(advantages_copy)
-        std_advantages = np.nanstd(advantages_copy)
-        advantages = (advantages - mean_advantages) / (std_advantages + 1e-5)
+        active = buffer.active_masks[:-1] > 0.
+        if active.any():
+            mean_advantages, std_advantages = advantages[active].mean(), advantages[active].std()
+            advantages = (advantages-mean_advantages)/(std_advantages+1e-5)
+            advantages[~active] = 0.
+        else:
+            advantages = np.zeros_like(advantages)
 
         train_info = {}
 
@@ -267,37 +272,38 @@ class R_MAPPO:
         train_info["critic_grad_norm"] = 0
         train_info["ratio"] = 0
 
-        for _ in range(self.ppo_epoch):
-            if self._use_recurrent_policy:
-                data_generator = buffer.recurrent_generator(
-                    advantages, self.num_mini_batch, self.data_chunk_length
-                )
-            elif self._use_naive_recurrent:
-                data_generator = buffer.naive_recurrent_generator(
-                    advantages, self.num_mini_batch
-                )
-            else:
-                data_generator = buffer.feed_forward_generator(
-                    advantages, self.num_mini_batch
-                )
+        with popart_rollout(self, buffer):
+            for _ in range(self.ppo_epoch):
+                if self._use_recurrent_policy:
+                    data_generator = buffer.recurrent_generator(
+                        advantages, self.num_mini_batch, self.data_chunk_length
+                    )
+                elif self._use_naive_recurrent:
+                    data_generator = buffer.naive_recurrent_generator(
+                        advantages, self.num_mini_batch
+                    )
+                else:
+                    data_generator = buffer.feed_forward_generator(
+                        advantages, self.num_mini_batch
+                    )
 
-            for sample in data_generator:
-                (
-                    value_loss,
-                    critic_grad_norm,
-                    policy_loss,
-                    dist_entropy,
-                    actor_grad_norm,
-                    imp_weights,
-                ) = self.ppo_update(sample, update_actor)
+                for sample in data_generator:
+                    (
+                        value_loss,
+                        critic_grad_norm,
+                        policy_loss,
+                        dist_entropy,
+                        actor_grad_norm,
+                        imp_weights,
+                    ) = self.ppo_update(sample, update_actor)
 
-                train_info["value_loss"] += value_loss.item()
-                train_info["policy_loss"] += policy_loss.item()
-                train_info["dist_entropy"] += dist_entropy.item()
-                train_info["actor_grad_norm"] += actor_grad_norm
-                train_info["critic_grad_norm"] += critic_grad_norm
-                train_info["ratio"] += imp_weights.mean()
-                print(f"value_loss:    {value_loss}")
+                    train_info["value_loss"] += value_loss.item()
+                    train_info["policy_loss"] += policy_loss.item()
+                    train_info["dist_entropy"] += dist_entropy.item()
+                    train_info["actor_grad_norm"] += actor_grad_norm
+                    train_info["critic_grad_norm"] += critic_grad_norm
+                    train_info["ratio"] += imp_weights.mean()
+                    print(f"value_loss:    {value_loss}")
 
         num_updates = self.ppo_epoch * self.num_mini_batch
 

@@ -10,6 +10,7 @@ from onpolicy.utils.graph_buffer import GraphReplayBuffer
 from onpolicy.utils.util import get_grad_norm, huber_loss, mse_loss
 from onpolicy.utils.valuenorm import ValueNorm
 from onpolicy.algorithms.utils.util import check
+from onpolicy.algorithms.utils.popart import popart_rollout, remap_popart_values
 import torch.jit as jit
 import torch.cuda.amp as amp
 
@@ -93,7 +94,8 @@ class GR_MAPPO():
                             value_preds_batch).clamp(-self.clip_param,
                                                     self.clip_param)
         if self._use_popart or self._use_valuenorm:
-            self.value_normalizer.update(return_batch)
+            if self._use_valuenorm:
+                self.value_normalizer.update(return_batch)
             error_clipped = self.value_normalizer.normalize(return_batch) - \
                             value_pred_clipped
             error_original = self.value_normalizer.normalize(return_batch) - \
@@ -166,6 +168,7 @@ class GR_MAPPO():
         old_action_log_probs_batch = check(old_action_log_probs_batch).to(**self.tpdv)
         adv_targ = check(adv_targ).to(**self.tpdv)
         value_preds_batch = check(value_preds_batch).to(**self.tpdv)
+        value_preds_batch = remap_popart_values(self, value_preds_batch)
         return_batch = check(return_batch).to(**self.tpdv)
         active_masks_batch = check(active_masks_batch).to(**self.tpdv)
         # print("MaPPO", active_masks_batch.T)
@@ -325,52 +328,53 @@ class GR_MAPPO():
 
         #                                                                                                             ppo epoch  ===10
 
-        for _ in range(self.ppo_epoch):
-        #                                                                                                              每个epo会更新 20次参数
-            st = time.time()
+        with popart_rollout(self, buffer):
+            for _ in range(self.ppo_epoch):
+            #                                                                                                              每个epo会更新 20次参数
+                st = time.time()
 
-            # 选择数据生成器
-            if self._use_recurrent_policy:
-                data_generator = buffer.recurrent_generator(advantages, 
-                                                        self.num_mini_batch, 
-                                                        self.data_chunk_length)
-            elif self._use_naive_recurrent:
-                data_generator = buffer.naive_recurrent_generator(advantages, 
-                                                            self.num_mini_batch)
-            else:
-                data_generator = buffer.feed_forward_generator(advantages, 
-                                                            self.num_mini_batch)
-                #                                                                                                  每次返回 100个  样本信息
-                #                                                                                                          返回20次
-            # actor_backward_time, critic_backward_time = 0, 0 
+                # 选择数据生成器
+                if self._use_recurrent_policy:
+                    data_generator = buffer.recurrent_generator(advantages,
+                                                            self.num_mini_batch,
+                                                            self.data_chunk_length)
+                elif self._use_naive_recurrent:
+                    data_generator = buffer.naive_recurrent_generator(advantages,
+                                                                self.num_mini_batch)
+                else:
+                    data_generator = buffer.feed_forward_generator(advantages,
+                                                                self.num_mini_batch)
+                    #                                                                                                  每次返回 100个  样本信息
+                    #                                                                                                          返回20次
+                # actor_backward_time, critic_backward_time = 0, 0
 
-           # print("data_genrator",data_generator,  self.num_mini_batch,self.data_chunk_length)
-            # 遍历小批量数据
-                                                                                                      # 内层循环：遍历生成器中的20个mini-batch
-            for sample in data_generator:
+               # print("data_genrator",data_generator,  self.num_mini_batch,self.data_chunk_length)
+                # 遍历小批量数据
+                                                                                                          # 内层循环：遍历生成器中的20个mini-batch
+                for sample in data_generator:
 
 
-                # 执行PPO更新，返回损失和梯度信息
-                value_loss, critic_grad_norm, policy_loss, dist_entropy, \
-                actor_grad_norm, imp_weights, actor_bt, critic_bt = self.ppo_update(sample, update_actor)
-                
+                    # 执行PPO更新，返回损失和梯度信息
+                    value_loss, critic_grad_norm, policy_loss, dist_entropy, \
+                    actor_grad_norm, imp_weights, actor_bt, critic_bt = self.ppo_update(sample, update_actor)
 
-                # actor_backward_time += actor_bt
-                # critic_backward_time += critic_bt
-                # 累加指标
-                train_info['value_loss'] += value_loss.item()
-                train_info['policy_loss'] += policy_loss.item()
-                train_info['dist_entropy'] += dist_entropy.item() #策略动作分布的熵，值越高表示探索性越强。
-                train_info['actor_grad_norm'] += actor_grad_norm  #策略网络梯度的范数，监控梯度爆炸或消失问题。
-                train_info['critic_grad_norm'] += critic_grad_norm  #价值网络梯度的范数，
-                train_info['ratio'] += imp_weights.mean()       #新旧策略概率比的平均值，用于调整PPO的CLIP范围，值接近1表示策略更新幅度稳定。
-                #print(f"value_loss:    {value_loss}")
-            # print(f'PPO epoch time: {time.time() - st}')
-            # print(f'PPO epoch actor backward time: {actor_backward_time}')
-            # print(f'PPO epoch critic backward time: {critic_backward_time}')
 
-        #指标平均化
-        #将累加的指标除以总更新次数（PPO epoch × 小批量数量），得到平均训练指标。
+                    # actor_backward_time += actor_bt
+                    # critic_backward_time += critic_bt
+                    # 累加指标
+                    train_info['value_loss'] += value_loss.item()
+                    train_info['policy_loss'] += policy_loss.item()
+                    train_info['dist_entropy'] += dist_entropy.item() #策略动作分布的熵，值越高表示探索性越强。
+                    train_info['actor_grad_norm'] += actor_grad_norm  #策略网络梯度的范数，监控梯度爆炸或消失问题。
+                    train_info['critic_grad_norm'] += critic_grad_norm  #价值网络梯度的范数，
+                    train_info['ratio'] += imp_weights.mean()       #新旧策略概率比的平均值，用于调整PPO的CLIP范围，值接近1表示策略更新幅度稳定。
+                    #print(f"value_loss:    {value_loss}")
+                # print(f'PPO epoch time: {time.time() - st}')
+                # print(f'PPO epoch actor backward time: {actor_backward_time}')
+                # print(f'PPO epoch critic backward time: {critic_backward_time}')
+
+            #指标平均化
+            #将累加的指标除以总更新次数（PPO epoch × 小批量数量），得到平均训练指标。
         num_updates = self.ppo_epoch * self.num_mini_batch
 
         for k in train_info.keys():
