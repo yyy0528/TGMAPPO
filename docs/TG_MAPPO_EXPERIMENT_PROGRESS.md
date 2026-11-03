@@ -347,6 +347,7 @@
 - 该开发场景20回合基线均有投递；两回合对照仍有零投递，整体投递低、仍未收敛。20回合只诊断基线，不与两回合WM/PM作创新对比；原随总回合数衰减的学习率也随预算变化，不能当作纯回合数因果实验。
 - 产物：results/tg_ablation_popart_v2_pilot/20261103_200507_863382、results/tg_popart_budget_probe；[实现/命令/全部结论](TG_MAPPO_POPART_FIX.md)、[107项与实际任务凭据](evidence/TG_POPART_FIX_20261103.json)。大日志/权重仍在本地results。
 - 下一次第一件事：审查Runner无条件lr_decay与use_linear_lr_decay开关，先修正/明确计划再测试；随后选择统一PPO更新预算检查动作排序/环路。暂未启动正式1000回合、盲测或重训冻结WM/PM。
+- Git：本轮实现8132bdea已成功推送origin/experiment/tg-wm-pm；上轮因网络未上传的奖励提交9a5bf870也已一并同步。远程从f84883bf前进到8132bdea，先前连接失败已解除；权重和大日志仍留本地results。
 
 ### 后续日志模板（复制后填写真实结果）
 
