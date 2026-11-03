@@ -162,3 +162,10 @@ suite 另复制最终 WM/PM 预训练和数据清单，辅助采样/预训练成
 
 零投递诊断已完成，见[动作/环路/奖励说明](TG_MAPPO_ZERO_DELIVERY_DIAGNOSIS.md)。确认物理可达而 greedy 困在环路/等待，六组动作序列相同；奖励存在等待零成本的冷启动风险。
 24 个冻结诊断复现和 2 个规则奖励探针不是新的训练或正式消融结果，不改变本文件的原三种子统计。下一次先评审奖励契约并小预算验证，尚未实施修复。
+
+## 9. 后续公共学习器与预算记录（2026-11-03）
+
+此后依次完成[task_v2奖励](TG_MAPPO_TASK_REWARD_V2.md)、[PopArt价值头](TG_MAPPO_POPART_FIX.md)、[学习率开关](TG_MAPPO_LR_SWITCH_FIX.md)及[PPO预算检查](TG_MAPPO_PPO_UPDATE_BUDGET.md)，不改写本文件的legacy_v1历史统计。最新接续位置统一见[进度入口](TG_MAPPO_EXPERIMENT_PROGRESS.md)。
+
+PPO预算仅A单组：v3 schema新增purpose=diagnostic，组必须严格为["A"]；pilot/formal仍要求A-D，不能用该目的跳过正式消融条件。两套配置为tg_ppo_budget_epoch1/epoch4.json，均20×80、mini=2、显式linear，只调整遍数。
+123项及12任务通过；1/4遍均值同27.78%，4遍种子33降至2/48且环路更重，暂不推广4遍至六组。独立基线预算检查不替代正式A-F比较，不与两回合辅助组混作创新收益。

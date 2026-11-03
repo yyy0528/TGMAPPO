@@ -58,9 +58,12 @@ def validate(config):
     for field in ("python", "wm_checkpoint", "pm_checkpoint"):
         config[field] = str((ROOT/config[field]).resolve())
     config["auxiliary_reports"] = {name:str((ROOT/path).resolve()) for name,path in config["auxiliary_reports"].items()}
-    require(config["purpose"] in ("pilot", "formal"), "Unknown purpose")
+    require(config["purpose"] in ("pilot", "formal", "diagnostic"), "Unknown purpose")
     require(set(config["groups"]).issubset(GROUPS) and len(config["groups"]) == len(set(config["groups"]))
-            and {"A", "B", "C", "D"}.issubset(config["groups"]), "Require unique A-D groups; E/F optional")
+            and ((config["purpose"] == "diagnostic" and config["groups"] == ["A"]
+                  and config["schema"] == "original_tg_ablation_v3")
+                 or (config["purpose"] != "diagnostic" and {"A", "B", "C", "D"}.issubset(config["groups"]))),
+            "Require A-D ablation groups, or baseline-only A under v3 diagnostic purpose")
     for field in ("train_seeds", "eval_seeds"):
         values = config[field]
         require(values and all(type(v) is int and 0 <= v < 2**32 for v in values)
@@ -203,6 +206,16 @@ def inspect_job(job, config):
             "Wrong collected step count")
     if job["kind"] == "training":
         require(report["mode"] == "training" and digest(report["checkpoint"]) == report["checkpoint_sha256"], "Invalid policy artifact")
+        if config["purpose"] == "diagnostic":
+            records = report["training_updates"]
+            require(len(records) == config["train_episodes"],"Missing PPO diagnostic records")
+            for index,row in enumerate(records,1):
+                steps = index*config["ppo_epoch"]*config["num_mini_batch"]
+                require(row["actor_optimizer_steps"] == row["critic_head_optimizer_steps"] == steps,
+                        "Actual PPO optimizer budget differs")
+                require(math.isfinite(row["approx_kl"]) and row["approx_kl"] >= 0
+                        and math.isfinite(row["clip_fraction"]) and 0 <= row["clip_fraction"] <= 1,
+                        "Invalid PPO drift diagnostics")
     else:
         require(report["mode"] == "frozen_greedy_evaluation" and report["optimizer_updates"] == 0
                 and report["actor_unchanged"] and report["critic_unchanged"], "Evaluation updated weights")
@@ -257,11 +270,14 @@ def summarize(manifest):
         groups.append(item)
     return {"purpose": config["purpose"], "budget": budget(config), "by_training_seed": by_seed, "groups": groups,
             "statistical_unit": "independent trained policy, not evaluation episode", "drop_rate_supported": False,
-            "limitations": ["pilot is not convergence or significance evidence", "one frozen WM/PM pretraining seed",
+            "limitations": (["baseline only; not a WM/PM ablation", "development scene; no convergence/significance claim",
+                             "optimizer compute budget varies; environment interactions held fixed", "CPU timings are not a controlled speed benchmark"]
+                            if config["purpose"] == "diagnostic" else
+                            ["pilot is not convergence or significance evidence", "one frozen WM/PM pretraining seed",
                             ("legacy history rewards persist between episodes" if "reward_contract" not in config else
                              "task_v2 excludes legacy numeric reward; legacy observation/history state retained"), "CPU wall timing; CUDA unmeasured",
                             "E matches trainable extra Actor capacity within 2.2%, not frozen-model total capacity",
-                            "F uses same four-frame input scope and scorer; idle WM loaded but never called"]}
+                            "F uses same four-frame input scope and scorer; idle WM loaded but never called"])}
 
 
 def run_suite(root):

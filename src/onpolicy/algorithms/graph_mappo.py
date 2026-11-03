@@ -11,6 +11,7 @@ from onpolicy.utils.util import get_grad_norm, huber_loss, mse_loss
 from onpolicy.utils.valuenorm import ValueNorm
 from onpolicy.algorithms.utils.util import check
 from onpolicy.algorithms.utils.popart import popart_rollout, remap_popart_values
+from onpolicy.algorithms.utils.ppo_diagnostics import ppo_update_diagnostics
 import torch.jit as jit
 import torch.cuda.amp as amp
 
@@ -192,6 +193,8 @@ class GR_MAPPO():
         # print(f'obs: {obs_batch.shape}')
         # st = time.time()
         imp_weights = torch.exp(action_log_probs - old_action_log_probs_batch)
+        self.last_ppo_diagnostics = ppo_update_diagnostics(action_log_probs-old_action_log_probs_batch,
+            active_masks_batch,self.clip_param,self._use_policy_active_masks)
 
         surr1 = imp_weights * adv_targ
         surr2 = torch.clamp(imp_weights, 1.0 - self.clip_param, 
@@ -322,6 +325,8 @@ class GR_MAPPO():
         train_info['actor_grad_norm'] = 0
         train_info['critic_grad_norm'] = 0
         train_info['ratio'] = 0
+        train_info['approx_kl'] = 0
+        train_info['clip_fraction'] = 0
 
         #PPO 多轮迭代更新
 
@@ -368,6 +373,8 @@ class GR_MAPPO():
                     train_info['actor_grad_norm'] += actor_grad_norm  #策略网络梯度的范数，监控梯度爆炸或消失问题。
                     train_info['critic_grad_norm'] += critic_grad_norm  #价值网络梯度的范数，
                     train_info['ratio'] += imp_weights.mean()       #新旧策略概率比的平均值，用于调整PPO的CLIP范围，值接近1表示策略更新幅度稳定。
+                    train_info['approx_kl'] += self.last_ppo_diagnostics['approx_kl']
+                    train_info['clip_fraction'] += self.last_ppo_diagnostics['clip_fraction']
                     #print(f"value_loss:    {value_loss}")
                 # print(f'PPO epoch time: {time.time() - st}')
                 # print(f'PPO epoch actor backward time: {actor_backward_time}')
