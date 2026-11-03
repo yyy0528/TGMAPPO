@@ -110,9 +110,35 @@ class GR_Actor(nn.Module):
         self.act = ACTLayer(
             action_space, self.hidden_size, self._use_orthogonal, self._gain
         )
+        self.use_wm = getattr(args, "use_wm_actor", False)
+        if self.use_wm:
+            if action_space.__class__.__name__ != "Discrete":
+                raise ValueError("WM Actor requires Discrete next-hop actions")
+            self.wm_action_count = action_space.n
+            # Preserve baseline Actor/Critic RNG initialization and start with zero residual.
+            with torch.random.fork_rng(devices=[]):
+                self.wm_fusion = nn.Sequential(nn.Linear(self.hidden_size+3, 32), nn.Tanh(), nn.Linear(32, 1))
+                nn.init.zeros_(self.wm_fusion[-1].weight)
+                nn.init.zeros_(self.wm_fusion[-1].bias)
 
 ################################################################################
         self.to(device)
+
+    def _wm_distribution(self, features, available_actions, wm_features):
+        from onpolicy.algorithms.utils.distributions import FixedCategorical
+        if wm_features is None or available_actions is None:
+            raise ValueError("WM Actor requires cached features and current action masks")
+        wm = check(wm_features).to(**self.tpdv)
+        if wm.shape != (features.shape[0], self.wm_action_count, 3) or not torch.isfinite(wm).all():
+            raise ValueError("Invalid cached WM feature shape/values")
+        mask = available_actions > 0
+        if not mask.any(-1).all():
+            raise ValueError("WM Actor has no legal action")
+        joined = torch.cat((features.unsqueeze(1).expand(-1, self.wm_action_count, -1), wm), -1)
+        logits = self.act.action_out.linear(features) + self.wm_fusion(joined).squeeze(-1)
+        logits = logits.masked_fill(~mask, float('-inf'))
+        logits = logits - logits.max(-1, keepdim=True)[0]
+        return FixedCategorical(logits=logits)
 
 
 
@@ -127,6 +153,7 @@ class GR_Actor(nn.Module):
         masks,
         available_actions=None,
         deterministic=False,
+        wm_features=None,
     ) -> Tuple[Tensor, Tensor, Tensor]:
         """
         Compute actions from the given inputs.
@@ -196,9 +223,12 @@ class GR_Actor(nn.Module):
         if self._use_naive_recurrent_policy or self._use_recurrent_policy:
             actor_features, rnn_states = self.rnn(actor_features, rnn_states, masks)
 
-        actions, action_log_probs = self.act(
-            actor_features, available_actions, deterministic
-        )
+        if self.use_wm:
+            distribution = self._wm_distribution(actor_features, available_actions, wm_features)
+            actions = distribution.mode() if deterministic else distribution.sample()
+            action_log_probs = distribution.log_probs(actions)
+        else:
+            actions, action_log_probs = self.act(actor_features, available_actions, deterministic)
 
         return (actions, action_log_probs, rnn_states)
 
@@ -213,6 +243,7 @@ class GR_Actor(nn.Module):
         masks,
         available_actions=None,
         active_masks=None,
+        wm_features=None,
     ) -> Tuple[Tensor, Tensor]:
         """
         Compute log probability and entropy of given actions.
@@ -280,12 +311,16 @@ class GR_Actor(nn.Module):
         if self._use_naive_recurrent_policy or self._use_recurrent_policy:
             actor_features, rnn_states = self.rnn(actor_features, rnn_states, masks)
 
-        action_log_probs, dist_entropy = self.act.evaluate_actions(
-            actor_features,
-            action,
-            available_actions,
-            active_masks=active_masks if self._use_policy_active_masks else None,
-        )
+        if self.use_wm:
+            distribution = self._wm_distribution(actor_features, available_actions, wm_features)
+            action_log_probs = distribution.log_probs(action)
+            entropy = distribution.entropy().unsqueeze(-1)
+            dist_entropy = ((entropy * active_masks).sum()/active_masks.sum().clamp(min=1)
+                            if self._use_policy_active_masks and active_masks is not None else entropy.mean())
+        else:
+            action_log_probs, dist_entropy = self.act.evaluate_actions(
+                actor_features, action, available_actions,
+                active_masks=active_masks if self._use_policy_active_masks else None)
 
         return (action_log_probs, dist_entropy)
 

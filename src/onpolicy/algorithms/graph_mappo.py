@@ -150,6 +150,11 @@ class GR_MAPPO():
         """
 
 
+        wm_features = sample[-1] if self.policy.actor.use_wm else None
+        if self.policy.actor.use_wm:
+            if len(sample) != 17:
+                raise ValueError("WM PPO sample must include cached candidate features")
+            sample = sample[:-1]
         share_obs_batch, obs_batch, node_obs_batch, adj_batch, agent_id_batch, \
         share_agent_id_batch, rnn_states_batch, rnn_states_critic_batch, \
         actions_batch, value_preds_batch, return_batch, masks_batch, \
@@ -179,7 +184,7 @@ class GR_MAPPO():
                                                         actions_batch, 
                                                         masks_batch, 
                                                         available_actions_batch,
-                                                        active_masks_batch)
+                                                        active_masks_batch, wm_features=wm_features)
         # actor update
         # print(f'obs: {obs_batch.shape}')
         # st = time.time()

@@ -11,7 +11,7 @@ from torch.nn import functional as F
 from .dataset import iter_wm_samples
 
 
-def encode_sample(sample, history_length=4):
+def encode_inputs(sample, history_length=4):
     history = sample["inputs"]["history"][-history_length:]
     node = sample["agent_id"]
     n = len(history[-1]["node_features"])
@@ -43,23 +43,30 @@ def encode_sample(sample, history_length=4):
                 and frame.get("own_previous_ack") is not None]
     posterior = (sum(feedback) + 1.0)/(len(feedback) + 2.0)
     candidate = torch.cat((candidate, torch.tensor([posterior, len(feedback)/history_length])))
-    next_nodes = torch.tensor(sample["targets"]["next_node_features"])
     offset = current[node, :2] - current[node, :2].round()
     previous_motion = (current[node, :2]-nodes[len(history)-2, node, :2]
                        if len(history) > 1 else torch.zeros(2))
-    queue = torch.stack((next_nodes[node, 2] - current[node, 2],
-                         next_nodes[target_node, 2] - current[target_node, 2]))
     return {"nodes": nodes, "distances": distances, "context": context,
             "length": torch.tensor(len(history)), "agent": torch.tensor(node),
             "target": torch.tensor(target_node), "candidate": candidate,
-            "ack": torch.tensor(float(sample["targets"]["ack"] or 0)),
-            "ack_mask": torch.tensor(sample["targets"]["ack_loss_mask"]),
-            "queue": queue, "queue_mask": torch.tensor([True, action != n]),
-            "motion": next_nodes[node, :2] - current[node, :2],
             "motion_context": torch.cat((offset, previous_motion))/0.1,
             "behavior_id": torch.tensor(next((index for index, name in enumerate(
                 ("tg-mappo", "random", "geographic")) if sample.get("episode_id", "").startswith(name+"_")), 3)),
             "phase_id": torch.tensor(history[-1]["step"] // 20)}
+
+
+def encode_sample(sample, history_length=4):
+    inputs = encode_inputs(sample, history_length)
+    current = inputs["nodes"][inputs["length"]-1]
+    node, target = inputs["agent"], inputs["target"]
+    next_nodes = torch.tensor(sample["targets"]["next_node_features"])
+    inputs.update(ack=torch.tensor(float(sample["targets"]["ack"] or 0)),
+                  ack_mask=torch.tensor(sample["targets"]["ack_loss_mask"]),
+                  queue=torch.stack((next_nodes[node, 2]-current[node, 2],
+                                     next_nodes[target, 2]-current[target, 2])),
+                  queue_mask=torch.tensor([True, sample["inputs"]["candidate_action"] != len(current)]),
+                  motion=next_nodes[node, :2]-current[node, :2])
+    return inputs
 
 
 def load_split(root, split, history_length=4, limit=None):

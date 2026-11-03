@@ -1,0 +1,397 @@
+{
+  "success": true,
+  "test_count": 64,
+  "scope": "step5 integration, not performance acceptance",
+  "tests": {
+    "legacy": {
+      "python": "D:\\python3.6.8\\python.exe",
+      "scope": "legacy_fixed_v1 targeted regressions",
+      "stages": [
+        {
+          "name": "functions",
+          "tests": 20,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "seconds": 1.746,
+          "log": "functions.log"
+        },
+        {
+          "name": "modules",
+          "tests": 24,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "seconds": 5.737,
+          "log": "modules.log"
+        },
+        {
+          "name": "integration",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "seconds": 20.824,
+          "log": "integration.log"
+        }
+      ],
+      "success": true,
+      "tests": 50
+    },
+    "wm_actor": {
+      "python": "D:\\python3.6.8\\python.exe",
+      "stages": [
+        {
+          "name": "functions",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "modules",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "integration",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0
+        }
+      ],
+      "success": true
+    },
+    "wm_pretrain": {
+      "python": "D:\\python3.10.9\\python.exe",
+      "tests": 6,
+      "exit_code": 0,
+      "log": "test_future_targets_do_not_change_inputs_and_wait_is_masked (tests.test_tg_world_model.WorldModelFunctions) ... ok\ntest_motion_context_is_observed_offset_not_future_motion (tests.test_tg_world_model.WorldModelFunctions) ... ok\ntest_real_gradients_checkpoint_and_evaluation_preserve_normalization (tests.test_tg_world_model.WorldModelFunctions) ... ok\ntest_receiver_feedback_uses_only_matching_previous_attempts (tests.test_tg_world_model.WorldModelFunctions) ... ok\ntest_selection_preserves_mandatory_head_gates (tests.test_tg_world_model.WorldModelFunctions) ... ok\ntest_topology_is_independent_of_current_candidate_action (tests.test_tg_world_model.WorldModelFunctions) ... ok\n\n----------------------------------------------------------------------\nRan 6 tests in 1.305s\n\nOK\n"
+    }
+  },
+  "runs": {
+    "baseline": {
+      "run": "results\\tg_step5_final_baseline\\runs\\20261103_134541_832767\\moves_5",
+      "config": {
+        "seed": 0,
+        "scenario_seed": null,
+        "grid_size": 5,
+        "num_agents": 25,
+        "comm_range": 1.5,
+        "num_moving_buoys": 5,
+        "random_channel": true,
+        "episode_length": 80,
+        "num_episodes": 2,
+        "ppo_epoch": 1,
+        "num_mini_batch": 2,
+        "use_wm_actor": false,
+        "tg_evaluate": false
+      },
+      "metrics": [
+        {
+          "episode": 0.0,
+          "delivery_rate": 0.375,
+          "average_hops": 54.083333333333336,
+          "average_delay": 29.285714285714285
+        },
+        {
+          "episode": 1.0,
+          "delivery_rate": 0.25,
+          "average_hops": 61.916666666666664,
+          "average_delay": 31.75
+        }
+      ],
+      "policy_report": {
+        "mode": "training",
+        "checkpoint": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_step5_final_baseline\\runs\\20261103_134541_832767\\moves_5\\checkpoints\\tg_policy_latest.pt",
+        "checkpoint_sha256": "4c2c3278e3bf54d5a6291b01926c267eccf3d8a2a41273c3d491fc8f3c64eb19",
+        "wm": null,
+        "wm_ppo_updates": [],
+        "training_resume_supported": false
+      }
+    },
+    "wm": {
+      "run": "results\\tg_step5_final_wm\\runs\\20261103_134541_780345\\moves_5",
+      "config": {
+        "seed": 0,
+        "scenario_seed": null,
+        "grid_size": 5,
+        "num_agents": 25,
+        "comm_range": 1.5,
+        "num_moving_buoys": 5,
+        "random_channel": true,
+        "episode_length": 80,
+        "num_episodes": 2,
+        "ppo_epoch": 1,
+        "num_mini_batch": 2,
+        "use_wm_actor": true,
+        "tg_evaluate": false
+      },
+      "metrics": [
+        {
+          "episode": 0.0,
+          "delivery_rate": 0.375,
+          "average_hops": 54.083333333333336,
+          "average_delay": 29.285714285714285
+        },
+        {
+          "episode": 1.0,
+          "delivery_rate": 0.25,
+          "average_hops": 61.916666666666664,
+          "average_delay": 31.75
+        }
+      ],
+      "policy_report": {
+        "mode": "training",
+        "checkpoint": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_step5_final_wm\\runs\\20261103_134541_780345\\moves_5\\checkpoints\\tg_policy_latest.pt",
+        "checkpoint_sha256": "c3df1fa9d54ad8adb71e88d0ccff48ee5aba91520a2f8c807caf84ce66c9e252",
+        "wm": {
+          "checkpoint": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_multiscene_gate_selection\\20261103_000951_565881\\wm_best.pt",
+          "checkpoint_sha256": "2919dff60d3128321170410e632e7bddd476a4f09c766b92108bfe9cb73daca9",
+          "state_sha256": "6382137db574de437731e71df413df5e88c441ccb55236088ac2754197f9aea6",
+          "history_length": 4,
+          "features": [
+            "ack_probability",
+            "sender_joint_queue_fraction_delta",
+            "receiver_joint_queue_fraction_delta"
+          ],
+          "predictions": 160,
+          "frozen": true,
+          "critic_uses_wm": false,
+          "not_used": [
+            "motion",
+            "delivery",
+            "drop",
+            "uncertainty"
+          ]
+        },
+        "wm_ppo_updates": [
+          {
+            "ratio_max_error": 0.0,
+            "cache_sha256": "3ff98af868c2394528a73a33e5b280a2405b93d70068fa3540e4edb2dede3fab",
+            "actor_changed": true,
+            "critic_changed": true,
+            "fusion_changed": true,
+            "wm_frozen": true,
+            "metrics": {
+              "value_loss": 2.8127976655960083,
+              "policy_loss": 0.0001849133986979723,
+              "dist_entropy": 1.8891658186912537,
+              "actor_grad_norm": 0.31012171506881714,
+              "critic_grad_norm": 22.49601173400879,
+              "ratio": 1.0000587701797485
+            }
+          },
+          {
+            "ratio_max_error": 0.0,
+            "cache_sha256": "abeb8cd99e01f4040bb1bd64d2adb796afae69c8647ca037d568e9dd1235375d",
+            "actor_changed": true,
+            "critic_changed": true,
+            "fusion_changed": true,
+            "wm_frozen": true,
+            "metrics": {
+              "value_loss": 0.4772583693265915,
+              "policy_loss": -7.355213710980024e-05,
+              "dist_entropy": 1.9422800540924072,
+              "actor_grad_norm": 0.3418680727481842,
+              "critic_grad_norm": 1.0790023803710938,
+              "ratio": 0.9999105334281921
+            }
+          }
+        ],
+        "training_resume_supported": false
+      }
+    },
+    "baseline_eval": {
+      "run": "results\\tg_step5_final_baseline_eval\\runs\\20261103_134829_709841\\moves_5",
+      "config": {
+        "seed": 303,
+        "scenario_seed": 303,
+        "grid_size": 5,
+        "num_agents": 25,
+        "comm_range": 1.5,
+        "num_moving_buoys": 5,
+        "random_channel": true,
+        "episode_length": 80,
+        "num_episodes": 2,
+        "ppo_epoch": 1,
+        "num_mini_batch": 2,
+        "use_wm_actor": false,
+        "tg_evaluate": true
+      },
+      "metrics": [
+        {
+          "episode": 0.0,
+          "delivery_rate": 0.16666666666666666,
+          "average_hops": 67.04166666666667,
+          "average_delay": 1.6666666666666667
+        },
+        {
+          "episode": 1.0,
+          "delivery_rate": 0.16666666666666666,
+          "average_hops": 67.04166666666667,
+          "average_delay": 1.6666666666666667
+        }
+      ],
+      "policy_report": {
+        "source": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_step5_final_baseline\\runs\\20261103_134541_832767\\moves_5\\checkpoints\\tg_policy_latest.pt",
+        "checkpoint_sha256": "4c2c3278e3bf54d5a6291b01926c267eccf3d8a2a41273c3d491fc8f3c64eb19",
+        "actor_sha256": "6066e9a134104c593ba2130cea61e8c8479b7a3d3c46a186b191a0cce0b63e31",
+        "critic_sha256": "081126a01deeb024892eaa83116ec5ad756f20c34ed947a6e6524c2f331d2ea2",
+        "actor_unchanged": true,
+        "critic_unchanged": true,
+        "mode": "frozen_greedy_evaluation",
+        "wm": null,
+        "optimizer_updates": 0
+      }
+    },
+    "wm_eval": {
+      "run": "results\\tg_step5_final_wm_eval\\runs\\20261103_134829_660838\\moves_5",
+      "config": {
+        "seed": 303,
+        "scenario_seed": 303,
+        "grid_size": 5,
+        "num_agents": 25,
+        "comm_range": 1.5,
+        "num_moving_buoys": 5,
+        "random_channel": true,
+        "episode_length": 80,
+        "num_episodes": 2,
+        "ppo_epoch": 1,
+        "num_mini_batch": 2,
+        "use_wm_actor": true,
+        "tg_evaluate": true
+      },
+      "metrics": [
+        {
+          "episode": 0.0,
+          "delivery_rate": 0.16666666666666666,
+          "average_hops": 67.04166666666667,
+          "average_delay": 1.6666666666666667
+        },
+        {
+          "episode": 1.0,
+          "delivery_rate": 0.16666666666666666,
+          "average_hops": 67.04166666666667,
+          "average_delay": 1.6666666666666667
+        }
+      ],
+      "policy_report": {
+        "source": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_step5_final_wm\\runs\\20261103_134541_780345\\moves_5\\checkpoints\\tg_policy_latest.pt",
+        "checkpoint_sha256": "c3df1fa9d54ad8adb71e88d0ccff48ee5aba91520a2f8c807caf84ce66c9e252",
+        "actor_sha256": "b635fe5d0a7979cc609861983689773546c4677f926f1fef0aac98a6de12994b",
+        "critic_sha256": "081126a01deeb024892eaa83116ec5ad756f20c34ed947a6e6524c2f331d2ea2",
+        "actor_unchanged": true,
+        "critic_unchanged": true,
+        "mode": "frozen_greedy_evaluation",
+        "wm": {
+          "checkpoint": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_multiscene_gate_selection\\20261103_000951_565881\\wm_best.pt",
+          "checkpoint_sha256": "2919dff60d3128321170410e632e7bddd476a4f09c766b92108bfe9cb73daca9",
+          "state_sha256": "6382137db574de437731e71df413df5e88c441ccb55236088ac2754197f9aea6",
+          "history_length": 4,
+          "features": [
+            "ack_probability",
+            "sender_joint_queue_fraction_delta",
+            "receiver_joint_queue_fraction_delta"
+          ],
+          "predictions": 160,
+          "frozen": true,
+          "critic_uses_wm": false,
+          "not_used": [
+            "motion",
+            "delivery",
+            "drop",
+            "uncertainty"
+          ]
+        },
+        "optimizer_updates": 0
+      }
+    },
+    "wm_eval_repeat": {
+      "run": "results\\tg_step5_final_wm_eval_repeat\\runs\\20261103_134829_537564\\moves_5",
+      "config": {
+        "seed": 303,
+        "scenario_seed": 303,
+        "grid_size": 5,
+        "num_agents": 25,
+        "comm_range": 1.5,
+        "num_moving_buoys": 5,
+        "random_channel": true,
+        "episode_length": 80,
+        "num_episodes": 2,
+        "ppo_epoch": 1,
+        "num_mini_batch": 2,
+        "use_wm_actor": true,
+        "tg_evaluate": true
+      },
+      "metrics": [
+        {
+          "episode": 0.0,
+          "delivery_rate": 0.16666666666666666,
+          "average_hops": 67.04166666666667,
+          "average_delay": 1.6666666666666667
+        },
+        {
+          "episode": 1.0,
+          "delivery_rate": 0.16666666666666666,
+          "average_hops": 67.04166666666667,
+          "average_delay": 1.6666666666666667
+        }
+      ],
+      "policy_report": {
+        "source": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_step5_final_wm\\runs\\20261103_134541_780345\\moves_5\\checkpoints\\tg_policy_latest.pt",
+        "checkpoint_sha256": "c3df1fa9d54ad8adb71e88d0ccff48ee5aba91520a2f8c807caf84ce66c9e252",
+        "actor_sha256": "b635fe5d0a7979cc609861983689773546c4677f926f1fef0aac98a6de12994b",
+        "critic_sha256": "081126a01deeb024892eaa83116ec5ad756f20c34ed947a6e6524c2f331d2ea2",
+        "actor_unchanged": true,
+        "critic_unchanged": true,
+        "mode": "frozen_greedy_evaluation",
+        "wm": {
+          "checkpoint": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_multiscene_gate_selection\\20261103_000951_565881\\wm_best.pt",
+          "checkpoint_sha256": "2919dff60d3128321170410e632e7bddd476a4f09c766b92108bfe9cb73daca9",
+          "state_sha256": "6382137db574de437731e71df413df5e88c441ccb55236088ac2754197f9aea6",
+          "history_length": 4,
+          "features": [
+            "ack_probability",
+            "sender_joint_queue_fraction_delta",
+            "receiver_joint_queue_fraction_delta"
+          ],
+          "predictions": 160,
+          "frozen": true,
+          "critic_uses_wm": false,
+          "not_used": [
+            "motion",
+            "delivery",
+            "drop",
+            "uncertainty"
+          ]
+        },
+        "optimizer_updates": 0
+      }
+    }
+  },
+  "source_files_sha256": {
+    "src/buoy_network/agent.py": "5a71b9cf0e3644fcfb052307d17eeedb4eb6b2fe4db48ea519d8002cb6b3bd75",
+    "src/buoy_network/main.py": "a0690af5d17abae70e1fa6d39e6681da53f4ce1af519447af80c3e78ace6f983",
+    "src/buoy_network/runner.py": "7aa3e64d651279fbce9b905860561d04970d3ed1f33abbae3171abbe131588f3",
+    "src/buoy_network/world_model.py": "38f4d960de47335c96490150cda4b49a4e7140ab9e465ad84e586745100e09dd",
+    "src/buoy_network/wm_runtime.py": "76807bf8e8412ae8ac6b7789cb77b3938c00727d35b9f60d426286db2e52fbdf",
+    "src/buoy_network/policy_artifacts.py": "b0c5bd8b04a8334f905d3784c7772fffe0fce69a2e20c9d43fa8b4ccf0e89736",
+    "src/legacy_cli.py": "3132d15eb35a5575247763299db91e5deb159be526fc30558b16b415863b31d8",
+    "src/onpolicy/algorithms/graph_actor_critic.py": "2174ba70517e83e865253abf1ec97207f88fc6ee00433033987c9261eb12798f",
+    "src/onpolicy/algorithms/graph_MAPPOPolicy.py": "9bc7818bf49caed72a2ed9c9511a010f0718e439f4712da2338ee76cdc33e594",
+    "src/onpolicy/algorithms/graph_mappo.py": "246c5c0fc7146df3a299fa2d4488c3cd8ae2bfe5f81b5ce3ad50d5aaea996c9f",
+    "src/onpolicy/utils/graph_buffer.py": "6b3defc7e16411d8ba52904d3c4da8acb16811e8f7d1ca0a0f79e2294a29af73",
+    "tests/test_legacy_wm_actor.py": "ec1b44bdc65ec252ad0fd288b42d745f7671367b6c6d68084e4f3efaf3fabfa2",
+    "scripts/test_tg_wm_actor.py": "6c6ccef1f1f83e7d4e9757cf3f1a0535045d7c76943f41fb634b369dbab9b3df",
+    "scripts/verify_tg_wm_actor_runs.py": "f412112c14e399ec7f030a6106f2ab8e8b03e70b83a697633fba8bc35b2d3273"
+  },
+  "limitations": [
+    "CPU only",
+    "one independent training seed; 2x80 smoke only",
+    "no performance gain demonstrated",
+    "PM disabled",
+    "motion/delivery/drop/uncertainty not used",
+    "no optimizer/RNG resume"
+  ]
+}

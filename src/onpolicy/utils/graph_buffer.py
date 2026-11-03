@@ -201,6 +201,10 @@ class GraphReplayBuffer(object):
 
         self.step = 0
         self.filled_steps = 0
+        self.wm_features = (np.zeros((self.episode_length, self.n_rollout_threads, num_agents,
+                                     num_agents+1, 3), dtype=np.float32)
+                            if getattr(args, "use_wm_actor", False) else None)
+        self.wm_feature_ready = np.zeros(self.episode_length, dtype=bool)
         self.tag =[]
 
     def reset_episode(self):
@@ -217,6 +221,9 @@ class GraphReplayBuffer(object):
         self.value_preds.fill(0)
         self.returns.fill(0)
         self.rewards.fill(0)
+        self.wm_feature_ready.fill(False)
+        if self.wm_features is not None:
+            self.wm_features.fill(0)
 
     def insert(
         self,
@@ -610,7 +617,13 @@ class GraphReplayBuffer(object):
             else:
                 adv_targ = advantages[indices]
 
-            yield share_obs_batch, obs_batch, node_obs_batch, adj_batch, agent_id_batch, share_agent_id_batch, rnn_states_batch, rnn_states_critic_batch, actions_batch, value_preds_batch, return_batch, masks_batch, active_masks_batch, old_action_log_probs_batch, adv_targ, available_actions_batch
+            sample = (share_obs_batch, obs_batch, node_obs_batch, adj_batch, agent_id_batch, share_agent_id_batch, rnn_states_batch, rnn_states_critic_batch, actions_batch, value_preds_batch, return_batch, masks_batch, active_masks_batch, old_action_log_probs_batch, adv_targ, available_actions_batch)
+            if self.wm_features is not None:
+                if not self.wm_feature_ready.all():
+                    raise ValueError("PPO rollout has missing cached WM features")
+                yield sample + (self.wm_features.reshape(-1, num_agents+1, 3)[indices].copy(),)
+            else:
+                yield sample
 
     def naive_recurrent_generator(
         self, advantages: arr, num_mini_batch: int

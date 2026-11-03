@@ -143,6 +143,14 @@ class DeepQNetwork(nn.Module):
 
         # algorithm
         self.trainer = TrainAlgo(self.env.all_args, self.policy, device=self.device)
+        self.wm_runtime = None
+        self.wm_update_records = []
+        self.evaluation_metadata = None
+        if getattr(self.all_args, "use_wm_actor", False):
+            if self.all_args.use_recurrent_policy or self.all_args.use_naive_recurrent_policy:
+                raise ValueError("WM Actor integration currently supports feedforward TG policy only")
+            from .wm_runtime import FrozenWMRuntime
+            self.wm_runtime = FrozenWMRuntime(self.all_args.wm_actor_checkpoint, self.env.buoy_number)
 
 
         # build two network: eval_net and target_net
@@ -300,6 +308,13 @@ class DeepQNetwork(nn.Module):
     @torch.no_grad()
     def collect(self, step: int) -> Tuple[arr, arr, arr, arr, arr, arr]:
         self.trainer.prep_rollout()
+        wm_features = None
+        if self.wm_runtime is not None:
+            predicted = self.wm_runtime.predict(self.buffer.obs[step], self.buffer.node_obs[step],
+                self.buffer.adj[step], self.buffer.available_actions[step], step)
+            self.buffer.wm_features[step] = predicted.copy()
+            self.buffer.wm_feature_ready[step] = True
+            wm_features = np.concatenate(self.buffer.wm_features[step])
         (
             value,
             action,
@@ -317,6 +332,8 @@ class DeepQNetwork(nn.Module):
             np.concatenate(self.buffer.rnn_states_critic[step]),
             np.concatenate(self.buffer.masks[step]),
             available_actions=np.concatenate(self.buffer.available_actions[step]),
+            deterministic=getattr(self.all_args, "tg_evaluate", False),
+            wm_features=wm_features,
         )
         # [self.envs, agents, dim]
         values = np.array(np.split(_t2n(value), self.n_rollout_threads))
@@ -328,6 +345,8 @@ class DeepQNetwork(nn.Module):
         rnn_states_critic = np.array(
             np.split(_t2n(rnn_states_critic), self.n_rollout_threads)
         )
+        if self.wm_runtime is not None:
+            self.wm_runtime.record_actions(actions)
         # rearrange action
         if self.env.action_space[0].__class__.__name__ == "MultiDiscrete":
             for i in range(self.envs.action_space[0].shape):
@@ -523,6 +542,8 @@ class DeepQNetwork(nn.Module):
         # reset env
         obs, agent_id, node_obs, adj = self.env.reset_graph()
         self.buffer.reset_episode()
+        if self.wm_runtime is not None:
+            self.wm_runtime.reset()
 
         # replay buffer
 
@@ -541,10 +562,51 @@ class DeepQNetwork(nn.Module):
         self.buffer.active_masks[0] = self.env.active_masks()
     def train(self):
         """Train policies with data in buffer."""
+        if self.wm_runtime is not None:
+            import hashlib
+            from .wm_runtime import tensor_digest
+            self.wm_runtime.assert_frozen()
+            if not self.buffer.wm_feature_ready.all():
+                raise ValueError("Missing cached WM features before PPO update")
+            cached_digest = hashlib.sha256(self.buffer.wm_features.tobytes()).hexdigest()
+            errors = []
+            with torch.no_grad():
+                for step in range(self.buffer.episode_length):
+                    replay, _ = self.policy.actor.evaluate_actions(
+                        self.buffer.obs[step, 0], self.buffer.node_obs[step, 0], self.buffer.adj[step, 0],
+                        self.buffer.agent_id[step, 0], self.buffer.rnn_states[step, 0],
+                        self.buffer.actions[step, 0], self.buffer.masks[step, 0],
+                        available_actions=self.buffer.available_actions[step, 0],
+                        active_masks=self.buffer.active_masks[step, 0],
+                        wm_features=self.buffer.wm_features[step, 0])
+                    errors.append(float((torch.exp(replay-torch.as_tensor(
+                        self.buffer.action_log_probs[step, 0], device=self.device))-1).abs().max()))
+            if not np.isfinite(errors).all() or max(errors) > 1e-4:
+                raise ValueError("Cached WM behavior probability replay mismatch")
+            actor_before = tensor_digest(self.policy.actor.state_dict())
+            critic_before = tensor_digest(self.policy.critic.state_dict())
+            fusion_before = tensor_digest(self.policy.actor.wm_fusion.state_dict())
         self.trainer.prep_training()      # 准备训练环境
         train_infos = self.trainer.train(self.buffer)
+        if self.wm_runtime is not None:
+            self.wm_runtime.assert_frozen()
+            if hashlib.sha256(self.buffer.wm_features.tobytes()).hexdigest() != cached_digest:
+                raise ValueError("PPO mutated cached WM features")
+            self.wm_update_records.append({"ratio_max_error": max(errors), "cache_sha256": cached_digest,
+                "actor_changed": actor_before != tensor_digest(self.policy.actor.state_dict()),
+                "critic_changed": critic_before != tensor_digest(self.policy.critic.state_dict()),
+                "fusion_changed": fusion_before != tensor_digest(self.policy.actor.wm_fusion.state_dict()),
+                "wm_frozen": True, "metrics": {key: float(value) for key,value in train_infos.items()}})
         #从缓冲区采样数据，计算损失函数，并通过反向传播更新网络参数。
 
         #更新后处理缓冲区
         self.buffer.after_update()
         return train_infos
+
+    def save_policy(self, run_dir):
+        from .policy_artifacts import save_policy
+        save_policy(self, run_dir)
+
+    def load_policy(self, path):
+        from .policy_artifacts import load_policy
+        load_policy(self, path)

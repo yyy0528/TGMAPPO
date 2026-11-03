@@ -1,0 +1,79 @@
+"""Original TG policy weights and frozen evaluation; no training resume."""
+
+import hashlib
+import json
+from pathlib import Path
+
+import torch
+from .wm_runtime import tensor_digest
+
+
+CONFIG_KEYS = ("grid_size", "comm_range", "num_moving_buoys", "random_channel", "episode_length",
+               "hidden_size", "gnn_hidden_size", "gnn_num_heads", "gnn_layer_N", "gnn_concat_heads",
+               "actor_graph_aggr", "critic_graph_aggr", "global_aggr_type", "graph_feat_type",
+               "use_cent_obs", "use_recurrent_policy", "use_naive_recurrent_policy", "use_popart",
+               "num_agents", "obs_type", "layer_N", "use_ReLU", "use_feature_normalization",
+               "recurrent_N", "use_valuenorm", "stacked_frames", "num_embeddings", "embedding_size",
+               "embed_hidden_size", "embed_layer_N", "embed_use_ReLU", "embed_add_self_loop", "gnn_use_ReLU")
+
+
+def signature(learner):
+    return {key: getattr(learner.all_args, key) for key in CONFIG_KEYS}
+
+
+def load_policy(learner, path):
+    try:
+        payload = (torch.load(path, map_location="cpu", weights_only=True)
+                   if int(torch.__version__.split('.')[0]) >= 2 else torch.load(path, map_location="cpu"))
+        if (payload["format"] != "original_tg_policy_v1" or payload["config"] != signature(learner)
+                or payload["use_wm_actor"] != (learner.wm_runtime is not None)):
+            raise ValueError("Incompatible TG environment/config/WM mode")
+        if learner.wm_runtime is not None and payload["wm"]["checkpoint_sha256"] != learner.wm_runtime.file_sha256:
+            raise ValueError("Policy expects a different frozen WM")
+        networks = [("actor", learner.policy.actor), ("critic", learner.policy.critic)]
+        if learner.trainer._use_valuenorm:
+            networks.append(("value_normalizer", learner.trainer.value_normalizer))
+        for name, network in networks:
+            expected = network.state_dict()
+            state = payload[name]
+            if set(state) != set(expected):
+                raise ValueError("Policy parameter names differ")
+            for key, value in state.items():
+                if value.shape != expected[key].shape or value.dtype != expected[key].dtype or not torch.isfinite(value).all():
+                    raise ValueError("Invalid policy tensor: " + key)
+        for name, network in networks:
+            network.load_state_dict(payload[name])
+        learner.evaluation_metadata = {"source": str(Path(path).resolve()),
+            "checkpoint_sha256": hashlib.sha256(Path(path).read_bytes()).hexdigest(),
+            "actor_sha256": tensor_digest(learner.policy.actor.state_dict()),
+            "critic_sha256": tensor_digest(learner.policy.critic.state_dict())}
+    except Exception as exc:
+        raise ValueError("Cannot load TG policy {}: {}".format(path, exc)) from None
+
+
+def save_policy(learner, run_dir):
+    root = Path(run_dir)
+    wm = learner.wm_runtime.metadata() if learner.wm_runtime is not None else None
+    if getattr(learner.all_args, "tg_evaluate", False):
+        metadata = dict(learner.evaluation_metadata)
+        metadata["actor_unchanged"] = tensor_digest(learner.policy.actor.state_dict()) == metadata["actor_sha256"]
+        metadata["critic_unchanged"] = tensor_digest(learner.policy.critic.state_dict()) == metadata["critic_sha256"]
+        if not metadata["actor_unchanged"] or not metadata["critic_unchanged"]:
+            raise ValueError("Frozen evaluation changed policy weights")
+        metadata.update(mode="frozen_greedy_evaluation", wm=wm, optimizer_updates=0)
+    else:
+        path = root / "checkpoints" / "tg_policy_latest.pt"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        payload = {"format": "original_tg_policy_v1", "config": signature(learner),
+            "use_wm_actor": learner.wm_runtime is not None, "wm": wm,
+            "actor": learner.policy.actor.state_dict(), "critic": learner.policy.critic.state_dict(),
+            "value_normalizer": (learner.trainer.value_normalizer.state_dict()
+                                 if learner.trainer._use_valuenorm else None),
+            "training_resume_supported": False}
+        with path.open("xb") as stream:
+            torch.save(payload, stream)
+        metadata = {"mode": "training", "checkpoint": str(path.resolve()),
+                    "checkpoint_sha256": hashlib.sha256(path.read_bytes()).hexdigest(), "wm": wm,
+                    "wm_ppo_updates": learner.wm_update_records, "training_resume_supported": False}
+    with (root / "logs" / "TG_policy_report.json").open("x", encoding="utf-8") as stream:
+        json.dump(metadata, stream, indent=2, allow_nan=False)

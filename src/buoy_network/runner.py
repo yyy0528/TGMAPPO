@@ -322,6 +322,9 @@ class Runner:
                         agent.step += 1
                         queue_before = (buoy.packet, self.env.buoys[action_origin].packet)
                         reward, done, reach = self.env.buoy_go(action,pass_added_reward,penalty)
+                        wm_runtime = getattr(self.agents[0].RL, "wm_runtime", None)
+                        if wm_runtime is not None:
+                            wm_runtime.record_attempt(buoy.id, action_origin, reach)
                         if self.data_exporter is not None:
                             self.data_exporter.attempt(
                                 self.env, buoy.id, action_origin, service_packet_ids.get(buoy.id),
@@ -535,7 +538,7 @@ class Runner:
                 # insert data into buffer
                 self.agents[0].RL.insert(data)
                 if terminal:
-                    if self.data_behavior == "tg-mappo":
+                    if self.data_behavior == "tg-mappo" and not getattr(self.env.all_args, "tg_evaluate", False):
                         self.agents[0].RL.compute()
                         train_infos = self.agents[0].RL.train()
                     #print(self.step,self.env.all_args.episode_length)
@@ -570,6 +573,9 @@ class Runner:
             print(
                 f'episode {episode} | rate {rate:.4f} | average_hops {average_hops:.2f} | average_q_time {average_q_time:.2f} | temp_reward: {temp_reward:.2f}')
 
+        learner = self.agents[0].RL
+        if self.data_behavior == "tg-mappo" and hasattr(learner, "save_policy"):
+            learner.save_policy(self.run_dir)
         # 新增：所有episode结束后绘制图像
         self.plot_metrics()
         self.metric_writer.close()

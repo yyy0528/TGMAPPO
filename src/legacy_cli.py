@@ -43,7 +43,8 @@ def reject_research_options(arguments):
         "dataset", "plugin", "config", "policy", "checkpoint", "policy_checkpoint", "resume",
     }
     unsupported = []
-    data_options = {"wm_data_split", "wm_export_max_steps", "wm_export_max_bytes", "wm_export_max_packets"}
+    data_options = {"wm_data_split", "wm_export_max_steps", "wm_export_max_bytes", "wm_export_max_packets",
+                    "wm_actor_checkpoint"}
     for argument in arguments:
         if not argument.startswith("--"):
             continue

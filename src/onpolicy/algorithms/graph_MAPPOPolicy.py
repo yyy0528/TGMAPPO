@@ -126,6 +126,7 @@ class GR_MAPPOPolicy:
         masks,
         available_actions=None,
         deterministic=False,
+        wm_features=None,
     ) -> Tuple[Tensor, Tensor, Tensor, Tensor, Tensor]:
         """
         Compute actions and value function predictions for the given inputs.
@@ -174,6 +175,7 @@ class GR_MAPPOPolicy:
             masks,
             available_actions,
             deterministic,
+            wm_features=wm_features,
         )
 
         values, rnn_states_critic = self.critic.forward(
@@ -220,6 +222,7 @@ class GR_MAPPOPolicy:
         masks,
         available_actions=None,
         active_masks=None,
+        wm_features=None,
     ) -> Tuple[Tensor, Tensor, Tensor]:
         """
         Get action logprobs / entropy and
@@ -267,6 +270,7 @@ class GR_MAPPOPolicy:
             masks,
             available_actions,
             active_masks,
+            wm_features=wm_features,
         )
         #print(action   )
         #print(available_actions)
@@ -286,6 +290,7 @@ class GR_MAPPOPolicy:
         masks,
         available_actions=None,
         deterministic=False,
+        wm_features=None,
     ) -> Tuple[Tensor, Tensor]:
         """
         Compute actions using the given inputs.
@@ -317,5 +322,6 @@ class GR_MAPPOPolicy:
             masks,
             available_actions,
             deterministic,
+            wm_features=wm_features,
         )
         return actions, rnn_states_actor

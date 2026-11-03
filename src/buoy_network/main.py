@@ -101,6 +101,10 @@ def parse_args(args, parser):
     parser.add_argument("--scenario_seed", type=int, default=None,
                         help="Optional simulator RNG seed; omitted preserves legacy seed 2568")
     parser.add_argument("--export_wm_data", type=lambda x: bool(strtobool(x)), default=False)
+    parser.add_argument("--use_wm_actor", type=lambda x: bool(strtobool(x)), default=False)
+    parser.add_argument("--wm_actor_checkpoint", default="")
+    parser.add_argument("--tg_evaluate", type=lambda x: bool(strtobool(x)), default=False)
+    parser.add_argument("--tg_policy_checkpoint", default="")
     parser.add_argument("--data_behavior", choices=("tg-mappo", "random", "geographic"), default="tg-mappo")
     parser.add_argument("--wm_data_split", choices=("train", "validation", "test"), default="train")
     parser.add_argument("--wm_export_max_steps", type=int, default=20000)
@@ -141,6 +145,16 @@ def main(args):
         parser.error("Require positive episode settings/comm_range and one rollout thread")
     # The buoy graph and legal routing links must have the same physical radius.
     all_args.max_edge_dist = all_args.comm_range
+    if bool(all_args.wm_actor_checkpoint) != all_args.use_wm_actor:
+        parser.error("--use_wm_actor true requires --wm_actor_checkpoint; disabled mode accepts no WM path")
+    if bool(all_args.tg_policy_checkpoint) != all_args.tg_evaluate:
+        parser.error("Policy checkpoint is evaluation-only; provide --tg_evaluate true and --tg_policy_checkpoint")
+    if all_args.tg_evaluate and (all_args.export_wm_data or all_args.data_behavior != "tg-mappo"):
+        parser.error("Frozen policy evaluation requires TG behavior and raw data export disabled")
+    if all_args.use_wm_actor and (all_args.use_recurrent_policy or all_args.use_naive_recurrent_policy
+                                 or all_args.data_behavior != "tg-mappo" or all_args.export_wm_data
+                                 or all_args.comm_range != 1.5 or all_args.grid_size != 5):
+        parser.error("WM integration requires 25 nodes, radius 1.5, feedforward TG, raw export disabled")
     if all_args.data_behavior != "tg-mappo" and not all_args.export_wm_data:
         parser.error("Rule behavior is data-only and requires --export_wm_data true")
     if all_args.scenario_seed is not None and not 0 <= all_args.scenario_seed < 2 ** 32:
@@ -150,7 +164,8 @@ def main(args):
                 all_args.wm_export_max_packets) <= 0
             or all_args.effective_num_env_steps > all_args.wm_export_max_steps):
         parser.error("WM data budgets must be positive and cover the full requested training")
-    print("Training budget: {} episodes x {} joint slots = {} environment steps ({})".format(
+    print("{} budget: {} episodes x {} joint slots = {} environment steps ({})".format(
+        "Evaluation" if all_args.tg_evaluate else "Training",
         all_args.num_episodes, all_args.episode_length,
         all_args.effective_num_env_steps, all_args.training_budget_source), flush=True)
     from .environment import buoy_environment
@@ -176,12 +191,17 @@ def main(args):
             n_features_max = n_features_tmp
         if n_actions_tmp > n_actions_max:
             n_actions_max = n_actions_tmp
-    RL = DeepQNetwork(n_actions_max, n_features_max,
-                      learning_rate=0.001,
-                      reward_decay=0.9,
-                      e_greedy=1,
-                      replace_target_iter=200,
-                      memory_size=100000, env=env)
+    try:
+        RL = DeepQNetwork(n_actions_max, n_features_max,
+                          learning_rate=0.001,
+                          reward_decay=0.9,
+                          e_greedy=1,
+                          replace_target_iter=200,
+                          memory_size=100000, env=env)
+        if all_args.tg_evaluate:
+            RL.load_policy(all_args.tg_policy_checkpoint)
+    except (ValueError, OSError) as exc:
+        parser.error(str(exc))
 
     for i in range(agent_number):
         n_actions = env.get_n_action(i)
