@@ -2,6 +2,8 @@
 
 日期：2026-11-03。接续 task_v2 奖励修复；本轮奖励、环境、动作掩码和 greedy 评估定义不变。
 
+后续已完成[学习率开关修复与计划对照](TG_MAPPO_LR_SWITCH_FIX.md)，本文末尾待审查的lr_decay问题现已关闭；本文保留当轮源码/结果，后续采用新记录中的显式计划。
+
 ## 1. 已确认的 bug
 
 原 PopArt.update 每次通过 `nn.Parameter(...)` 替换 weight/bias/stddev：优化器仍持有旧 weight/bias，当前价值头有梯度却没有被优化器更新；stddev 还被误设为可训练参数。

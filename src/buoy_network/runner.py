@@ -18,6 +18,7 @@ import random
 import csv
 from .physical_metrics import PacketMetrics
 from .task_reward import reward_contract, TaskRewardLedger, REWARD_FIELDS
+from .learning_rate import advance_schedule
 
 logger = setup_logger(log_dir="outputs/TG-MAPPO/diagnostic_logs", log_name="buoy_2018")
 class tmp_buffer:
@@ -133,7 +134,8 @@ class Runner:
             if self.data_exporter is not None:
                 self.data_exporter.start_episode(self.env, episode, added_value)
             self.memory_id =0
-            self.agents[0].RL.policy.lr_decay(episode, episodes)
+            advance_schedule(self.agents[0].RL.policy, self.env.all_args, episode, episodes,
+                training=self.data_behavior == "tg-mappo" and not getattr(self.env.all_args,"tg_evaluate",False))
             temp_reward = 0
             memory_id_poll=[]
 

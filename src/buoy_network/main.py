@@ -141,8 +141,10 @@ def main(args):
     all_args, parser = graph_config(args, parser)
     all_args = parser.parse_args(args)
     from .task_reward import reward_contract
+    from .learning_rate import schedule_spec
     try:
         reward_contract(all_args)
+        schedule_spec(all_args)
         if all_args.tg_reward_version == "legacy_v1" and any(
                 getattr(all_args, "tg_"+key) != 1. for key in
                 ("delivery_weight", "delay_weight", "unfinished_weight")):

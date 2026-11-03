@@ -201,7 +201,7 @@ class PopArtIntegration(unittest.TestCase):
             restored.train = lambda: self.fail("Frozen evaluation called train")
             run(env2,restored)
             report = json.loads((root/"eval/moves_0/logs/TG_policy_report.json").read_text(encoding="utf-8"))
-            self.assertEqual(report["source_training_implementation"],"tg_ppo_popart_v2")
+            self.assertEqual(report["source_training_implementation"],"tg_ppo_v3_lr_switch")
             self.assertTrue(report["actor_unchanged"] and report["critic_unchanged"])
             self.assertEqual(report["optimizer_updates"],0)
 

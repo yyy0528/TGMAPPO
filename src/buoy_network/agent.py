@@ -627,6 +627,8 @@ class DeepQNetwork(nn.Module):
         self.training_records.append(dict(
             {key: float(value) for key,value in train_infos.items()},
             update=self.profile["ppo_updates"], popart=self.trainer._use_popart,
+            actor_lr=float(self.policy.actor_optimizer.param_groups[0]["lr"]),
+            critic_lr=float(self.policy.critic_optimizer.param_groups[0]["lr"]),
             critic_head_in_optimizer=head_registered,
             critic_head_optimizer_steps=int(optimizer.state.get(head.weight, {}).get("step", 0))))
         diagnostic_start = time.perf_counter()

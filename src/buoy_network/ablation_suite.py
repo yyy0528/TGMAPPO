@@ -45,13 +45,16 @@ def validate(config):
                 "eval_episodes", "episode_length", "ppo_epoch", "num_mini_batch", "num_moving_buoys",
                 "random_channel", "wm_checkpoint", "wm_sha256", "pm_checkpoint", "pm_sha256",
                 "target_delivery_rate", "target_window", "job_timeout_seconds", "auxiliary_reports"}
-    if config.get("schema") == "original_tg_ablation_v2":
+    if config.get("schema") in ("original_tg_ablation_v2","original_tg_ablation_v3"):
         required.add("reward_contract")
         spec = config["reward_contract"]
         parsed = reward_contract(SimpleNamespace(tg_reward_version=spec.get("version"),
             **{"tg_"+key: spec.get(key) for key in ("delivery_weight", "delay_weight", "unfinished_weight")}))
         require(spec == parsed and spec["version"] == "task_v2", "Invalid explicit task reward contract")
-    require(set(config) == required and config["schema"] in ("original_tg_ablation_v1", "original_tg_ablation_v2"), "Unknown/incomplete suite schema")
+    if config.get("schema") == "original_tg_ablation_v3":
+        required.add("learning_rate_schedule")
+        require(config.get("learning_rate_schedule") in ("fixed","linear"),"Require explicit fixed/linear learning-rate schedule")
+    require(set(config) == required and config["schema"] in ("original_tg_ablation_v1", "original_tg_ablation_v2", "original_tg_ablation_v3"), "Unknown/incomplete suite schema")
     for field in ("python", "wm_checkpoint", "pm_checkpoint"):
         config[field] = str((ROOT/config[field]).resolve())
     config["auxiliary_reports"] = {name:str((ROOT/path).resolve()) for name,path in config["auxiliary_reports"].items()}
@@ -110,6 +113,9 @@ def jobs(config, suite):
               "--episode_length", "80", "--num_moving_buoys", str(config["num_moving_buoys"]),
               "--random_channel", str(config["random_channel"]).lower(), "--ppo_epoch", str(config["ppo_epoch"]),
               "--num_mini_batch", str(config["num_mini_batch"])]
+    # Old suite schemas used implicit decay. Preserve their actual historical plan.
+    if config.get("learning_rate_schedule","linear") == "linear":
+        common.append("--use_linear_lr_decay")
     if "reward_contract" in config:
         spec = config["reward_contract"]
         common += ["--tg_reward_version", spec["version"]]
@@ -176,6 +182,10 @@ def inspect_job(job, config):
     report_path = root/"logs"/"TG_policy_report.json"
     report = read(report_path)
     actual = read(root/"logs"/"TG_MAPPO_environment.json")["config"]
+    if "learning_rate_schedule" in config:
+        require(actual["use_linear_lr_decay"] == (config["learning_rate_schedule"] == "linear"), "Job schedule differs from frozen protocol")
+        spec = report["learning_rate_schedule"] if job["kind"] == "training" else report["source_learning_rate_schedule"]
+        require(spec["kind"] == config["learning_rate_schedule"], "Checkpoint schedule mismatch")
     if "reward_contract" in config:
         from .task_reward_audit import audit_reward_csv
         require(report.get("reward_contract") == config["reward_contract"]

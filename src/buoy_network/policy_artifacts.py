@@ -7,8 +7,9 @@ from pathlib import Path
 import torch
 from .wm_runtime import tensor_digest
 from .task_reward import reward_contract
+from .learning_rate import schedule_spec, optimizer_rates
 
-TRAINING_IMPLEMENTATION = "tg_ppo_popart_v2"
+TRAINING_IMPLEMENTATION = "tg_ppo_v3_lr_switch"
 
 
 CONFIG_KEYS = ("grid_size", "comm_range", "num_moving_buoys", "random_channel", "episode_length",
@@ -59,6 +60,7 @@ def load_policy(learner, path):
             network.load_state_dict(payload[name])
         learner.evaluation_metadata = {"source": str(Path(path).resolve()),
             "source_training_implementation": payload.get("training_implementation", "legacy_popart_v1"),
+            "source_learning_rate_schedule":payload.get("learning_rate_schedule"),
             "checkpoint_sha256": hashlib.sha256(Path(path).read_bytes()).hexdigest(),
             "actor_sha256": tensor_digest(learner.policy.actor.state_dict()),
             "critic_sha256": tensor_digest(learner.policy.critic.state_dict())}
@@ -83,11 +85,13 @@ def save_policy(learner, run_dir):
         if not metadata["actor_unchanged"] or not metadata["critic_unchanged"]:
             raise ValueError("Frozen evaluation changed policy weights")
         metadata.update(mode="frozen_greedy_evaluation", wm=wm, pm=pm, optimizer_updates=0)
+        metadata["evaluation_optimizer_rates"] = optimizer_rates(learner.policy)
     else:
         path = root / "checkpoints" / "tg_policy_latest.pt"
         path.parent.mkdir(parents=True, exist_ok=True)
         payload = {"format": "original_tg_policy_v1", "config": signature(learner),
             "training_implementation": TRAINING_IMPLEMENTATION,
+            "learning_rate_schedule":schedule_spec(learner.all_args),
             "reward_contract": reward_contract(learner.all_args),
             "use_wm_actor": learner.wm_runtime is not None, "wm": wm,
             "use_pm_reward": learner.pm_runtime is not None, "pm": pm,
@@ -100,6 +104,7 @@ def save_policy(learner, run_dir):
             torch.save(payload, stream)
         metadata = {"mode": "training", "checkpoint": str(path.resolve()),
                     "training_implementation": TRAINING_IMPLEMENTATION,
+                    "learning_rate_schedule":schedule_spec(learner.all_args),
                     "training_updates": learner.training_records,
                     "checkpoint_sha256": hashlib.sha256(path.read_bytes()).hexdigest(), "wm": wm,
                     "wm_ppo_updates": learner.wm_update_records, "pm": pm,

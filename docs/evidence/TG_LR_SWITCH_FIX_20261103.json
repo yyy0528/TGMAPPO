@@ -1,0 +1,2550 @@
+{
+  "success": true,
+  "scope": "LR switch semantics and development tests; no convergence/innovation claim",
+  "tests": [
+    {
+      "path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\targeted_fixes\\20261103_211305_429315\\test_report.json",
+      "sha256": "7c570262fafa17e88b69cd44a1f5c60fa47b4ffdd3eba3a9611694128e337f7e",
+      "report": {
+        "python": "D:\\python3.6.8\\python.exe",
+        "scope": "legacy_fixed_v1 targeted regressions",
+        "stages": [
+          {
+            "name": "functions",
+            "tests": 21,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "seconds": 2.377,
+            "log": "functions.log"
+          },
+          {
+            "name": "modules",
+            "tests": 24,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "seconds": 6.771,
+            "log": "modules.log"
+          },
+          {
+            "name": "integration",
+            "tests": 6,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "seconds": 22.774,
+            "log": "integration.log"
+          }
+        ],
+        "success": true,
+        "tests": 51
+      }
+    },
+    {
+      "path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_actor_tests\\20261103_211304_750038\\report.json",
+      "sha256": "99c58041a53d5dba41c751d73cd123e7ef256127264f8248a6ace75ec1f068f8",
+      "report": {
+        "python": "D:\\python3.6.8\\python.exe",
+        "stages": [
+          {
+            "name": "functions",
+            "tests": 3,
+            "failures": 0,
+            "errors": 0
+          },
+          {
+            "name": "modules",
+            "tests": 3,
+            "failures": 0,
+            "errors": 0
+          },
+          {
+            "name": "integration",
+            "tests": 2,
+            "failures": 0,
+            "errors": 0
+          }
+        ],
+        "success": true
+      }
+    },
+    {
+      "path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_pm_tests\\20261103_211304_952745\\report.json",
+      "sha256": "3b80c1b6add280ad18631d9e1e1a53f3b1c32af2a6ebd499ee2c680938320606",
+      "report": {
+        "python": "D:\\python3.6.8\\python.exe",
+        "success": true,
+        "stages": [
+          {
+            "name": "functions",
+            "tests": 2,
+            "failures": 0,
+            "errors": 0
+          },
+          {
+            "name": "modules",
+            "tests": 2,
+            "failures": 0,
+            "errors": 0
+          },
+          {
+            "name": "integration",
+            "tests": 2,
+            "failures": 0,
+            "errors": 0
+          }
+        ]
+      }
+    },
+    {
+      "path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_ablation_tests\\20261103_211305_481974\\report.json",
+      "sha256": "75d1e7bc42a0651a0a481a6f9fef150554aa37f36f626b3e4987867b742ec4f1",
+      "report": {
+        "success": true,
+        "python": "D:\\python3.6.8\\python.exe",
+        "stages": [
+          {
+            "name": "functions",
+            "tests": 6,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          {
+            "name": "modules",
+            "tests": 4,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          }
+        ]
+      }
+    },
+    {
+      "path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_task_reward_tests\\20261103_211304_889416\\report.json",
+      "sha256": "2c2524d127d34600022c65c0b50de1dd596c286c4f960c1a25bbb5cc805256ec",
+      "report": {
+        "python": "D:\\python3.6.8\\python.exe",
+        "success": true,
+        "stages": [
+          {
+            "name": "functions",
+            "tests": 4,
+            "failures": 0,
+            "errors": 0
+          },
+          {
+            "name": "modules",
+            "tests": 2,
+            "failures": 0,
+            "errors": 0
+          },
+          {
+            "name": "integration",
+            "tests": 2,
+            "failures": 0,
+            "errors": 0
+          }
+        ]
+      }
+    },
+    {
+      "path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_popart_tests\\20261103_211304_830373\\report.json",
+      "sha256": "06fa9a7560b3f87779f63fecff1c5cef1da38c6000ada8a61456648506da4c8e",
+      "report": {
+        "python": "D:\\python3.6.8\\python.exe",
+        "success": true,
+        "stages": [
+          {
+            "name": "functions",
+            "tests": 4,
+            "failures": 0,
+            "errors": 0
+          },
+          {
+            "name": "modules",
+            "tests": 2,
+            "failures": 0,
+            "errors": 0
+          },
+          {
+            "name": "integration",
+            "tests": 1,
+            "failures": 0,
+            "errors": 0
+          }
+        ]
+      }
+    },
+    {
+      "path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_lr_tests\\20261103_211043_507230\\report.json",
+      "sha256": "565a2ba1bf86135d922f4b38007c3a1feeff754498e7176fdb31255686e2035d",
+      "report": {
+        "python": "D:\\python3.6.8\\python.exe",
+        "success": true,
+        "stages": [
+          {
+            "name": "functions",
+            "tests": 4,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          {
+            "name": "modules",
+            "tests": 2,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          {
+            "name": "integration",
+            "tests": 2,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          }
+        ]
+      }
+    },
+    {
+      "path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_lr_regressions\\extra_tests.json",
+      "sha256": "f513aa83ae412b06084ecb9092ca295b57d00fc86ef614e35d5bc5bbbc322311",
+      "report": {
+        "success": true,
+        "stages": [
+          {
+            "name": "modern_models_and_diagnostics",
+            "tests": 15,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          {
+            "name": "legacy_capture",
+            "tests": 2,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          }
+        ],
+        "commands": [
+          {
+            "command": "& \"D:\\python3.10.9\\python.exe\" -m unittest tests.test_tg_world_model tests.test_tg_progress_model tests.test_policy_diagnostics -v",
+            "exit_code": 0,
+            "stdout": "test_future_targets_do_not_change_inputs_and_wait_is_masked (tests.test_tg_world_model.WorldModelFunctions) ... ok\r\ntest_motion_context_is_observed_offset_not_future_motion (tests.test_tg_world_model.WorldModelFunctions) ... ok\r\ntest_real_gradients_checkpoint_and_evaluation_preserve_normalization (tests.test_tg_world_model.WorldModelFunctions) ... ok\r\ntest_receiver_feedback_uses_only_matching_previous_attempts (tests.test_tg_world_model.WorldModelFunctions) ... ok\r\ntest_selection_preserves_mandatory_head_gates (tests.test_tg_world_model.WorldModelFunctions) ... ok\r\ntest_topology_is_independent_of_current_candidate_action (tests.test_tg_world_model.WorldModelFunctions) ... ok\r\ntest_causal_gru_and_online_prefix_equivalence (tests.test_tg_progress_model.ProgressFunctions) ... ok\r\ntest_censored_likelihood_is_observed_survival_not_failure (tests.test_tg_progress_model.ProgressFunctions) ... ok\r\ntest_packet_weighting_padding_and_real_gradient_update (tests.test_tg_progress_model.ProgressFunctions) ... ok\r\ntest_prefix_features_only_use_current_and_past (tests.test_tg_progress_model.ProgressFunctions) ... ok\r\ntest_unknown_window_results_do_not_count_as_zero_brier (tests.test_tg_progress_model.ProgressFunctions) ... ok\r\ntest_active_wait_sink_opportunity_and_initial_agreement (tests.test_policy_diagnostics.DiagnosticFunctions) ... ok\r\ntest_cycles_preserve_direction_and_ignore_path_prefix (tests.test_policy_diagnostics.DiagnosticFunctions) ... ok\r\ntest_observed_traps_are_not_physical_disconnections (tests.test_policy_diagnostics.DiagnosticFunctions) ... ok\r\ntest_successful_loop_counts_and_wait_are_separate (tests.test_policy_diagnostics.DiagnosticFunctions) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 15 tests in 2.029s\r\n\r\nOK\r\n",
+            "tests": 15
+          },
+          {
+            "command": "& \"D:\\python3.6.8\\python.exe\" -m unittest discover -s tests -p test_legacy_diagnostic_capture.py -v",
+            "exit_code": 0,
+            "stdout": "D:\\python3.6.8\\lib\\site-packages\\torch\\cuda\\amp\\autocast_mode.py:118: UserWarning: torch.cuda.amp.autocast only affects CUDA ops, but CUDA is not available.  Disabling.\r\n  warnings.warn(\"torch.cuda.amp.autocast only affects CUDA ops, but CUDA is not available.  Disabling.\")\r\ntest_baseline_capture_is_read_only_and_detaches_cleanly (test_legacy_diagnostic_capture.CaptureModules) ... D:\\python3.6.8\\lib\\site-packages\\torch\\cuda\\amp\\grad_scaler.py:116: UserWarning: torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.\r\n  warnings.warn(\"torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.\")\r\nok\r\ntest_wm_distribution_capture_uses_cached_inputs_without_sampling (test_legacy_diagnostic_capture.CaptureModules) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 2 tests in 0.202s\r\n\r\nOK\r\n",
+            "tests": 2
+          }
+        ]
+      }
+    }
+  ],
+  "test_count": 115,
+  "pilot_jobs": 72,
+  "resume_new_jobs": 0,
+  "source_files": 151,
+  "suites": {
+    "fixed": {
+      "path": "results/tg_ablation_lr_fixed_pilot/20261103_211528_024882",
+      "manifest_sha256": "e656b716d30b51fad1ff371b643af7abe48432a86bcd506db5705902e67d121c",
+      "summary": {
+        "purpose": "pilot",
+        "budget": {
+          "purpose": "pilot",
+          "training_jobs": 18,
+          "evaluation_jobs": 18,
+          "training_steps_per_job": 160,
+          "total_training_steps": 2880,
+          "total_evaluation_steps": 2880,
+          "independent_training_seeds": [
+            11,
+            22,
+            33
+          ],
+          "evaluation_scenes": [
+            7001
+          ]
+        },
+        "by_training_seed": [
+          {
+            "group": "A",
+            "train_seed": 11,
+            "generated": 48,
+            "delivered": 8,
+            "delivery_rate": 0.16666666666666666,
+            "unresolved_fraction": 0.8333333333333334,
+            "success_hops_mean": 1.25,
+            "success_delay_mean": 5.5,
+            "success_delay_p95": 19,
+            "retry_attempts": 168,
+            "loop_transfers": 140,
+            "true_drop_rate": null,
+            "target_first_training_steps": null,
+            "train_worker_seconds": 22.2104741,
+            "resources": {
+              "actor_trainable": 21956,
+              "critic_trainable": 18615,
+              "wm_frozen": 0,
+              "pm_frozen": 0,
+              "wm_active": false,
+              "device": "cpu",
+              "cuda_peak_bytes": null
+            },
+            "profile": {
+              "collect_calls": 160,
+              "collect_seconds": 1.9778762999999904,
+              "ppo_updates": 2,
+              "ppo_seconds": 7.571818400000001,
+              "diagnostic_seconds": 5.9000000005582365e-06
+            }
+          },
+          {
+            "group": "A",
+            "train_seed": 22,
+            "generated": 48,
+            "delivered": 0,
+            "delivery_rate": 0.0,
+            "unresolved_fraction": 1.0,
+            "success_hops_mean": null,
+            "success_delay_mean": null,
+            "success_delay_p95": null,
+            "retry_attempts": 389,
+            "loop_transfers": 104,
+            "true_drop_rate": null,
+            "target_first_training_steps": null,
+            "train_worker_seconds": 22.604380399999997,
+            "resources": {
+              "actor_trainable": 21956,
+              "critic_trainable": 18615,
+              "wm_frozen": 0,
+              "pm_frozen": 0,
+              "wm_active": false,
+              "device": "cpu",
+              "cuda_peak_bytes": null
+            },
+            "profile": {
+              "collect_calls": 160,
+              "collect_seconds": 2.1489915999999982,
+              "ppo_updates": 2,
+              "ppo_seconds": 7.378799499999999,
+              "diagnostic_seconds": 1.139999999910657e-05
+            }
+          },
+          {
+            "group": "A",
+            "train_seed": 33,
+            "generated": 48,
+            "delivered": 4,
+            "delivery_rate": 0.08333333333333333,
+            "unresolved_fraction": 0.9166666666666666,
+            "success_hops_mean": 1.5,
+            "success_delay_mean": 5,
+            "success_delay_p95": 7,
+            "retry_attempts": 281,
+            "loop_transfers": 390,
+            "true_drop_rate": null,
+            "target_first_training_steps": null,
+            "train_worker_seconds": 22.866383799999994,
+            "resources": {
+              "actor_trainable": 21956,
+              "critic_trainable": 18615,
+              "wm_frozen": 0,
+              "pm_frozen": 0,
+              "wm_active": false,
+              "device": "cpu",
+              "cuda_peak_bytes": null
+            },
+            "profile": {
+              "collect_calls": 160,
+              "collect_seconds": 2.0216246999999896,
+              "ppo_updates": 2,
+              "ppo_seconds": 7.6340245,
+              "diagnostic_seconds": 8.900000000089392e-06
+            }
+          },
+          {
+            "group": "B",
+            "train_seed": 11,
+            "generated": 48,
+            "delivered": 8,
+            "delivery_rate": 0.16666666666666666,
+            "unresolved_fraction": 0.8333333333333334,
+            "success_hops_mean": 1.25,
+            "success_delay_mean": 5.5,
+            "success_delay_p95": 19,
+            "retry_attempts": 168,
+            "loop_transfers": 140,
+            "true_drop_rate": null,
+            "target_first_training_steps": null,
+            "train_worker_seconds": 31.07697909999999,
+            "resources": {
+              "actor_trainable": 24165,
+              "critic_trainable": 18615,
+              "wm_frozen": 66789,
+              "pm_frozen": 0,
+              "wm_active": true,
+              "device": "cpu",
+              "cuda_peak_bytes": null
+            },
+            "profile": {
+              "collect_calls": 160,
+              "collect_seconds": 8.747324900000002,
+              "ppo_updates": 2,
+              "ppo_seconds": 7.643807500000001,
+              "diagnostic_seconds": 0.9496946000000026
+            }
+          },
+          {
+            "group": "B",
+            "train_seed": 22,
+            "generated": 48,
+            "delivered": 0,
+            "delivery_rate": 0.0,
+            "unresolved_fraction": 1.0,
+            "success_hops_mean": null,
+            "success_delay_mean": null,
+            "success_delay_p95": null,
+            "retry_attempts": 409,
+            "loop_transfers": 105,
+            "true_drop_rate": null,
+            "target_first_training_steps": null,
+            "train_worker_seconds": 31.924196300000006,
+            "resources": {
+              "actor_trainable": 24165,
+              "critic_trainable": 18615,
+              "wm_frozen": 66789,
+              "pm_frozen": 0,
+              "wm_active": true,
+              "device": "cpu",
+              "cuda_peak_bytes": null
+            },
+            "profile": {
+              "collect_calls": 160,
+              "collect_seconds": 9.130307699999992,
+              "ppo_updates": 2,
+              "ppo_seconds": 7.524834799999999,
+              "diagnostic_seconds": 1.0171531000000034
+            }
+          },
+          {
+            "group": "B",
+            "train_seed": 33,
+            "generated": 48,
+            "delivered": 4,
+            "delivery_rate": 0.08333333333333333,
+            "unresolved_fraction": 0.9166666666666666,
+            "success_hops_mean": 1.5,
+            "success_delay_mean": 5.25,
+            "success_delay_p95": 10,
+            "retry_attempts": 178,
+            "loop_transfers": 176,
+            "true_drop_rate": null,
+            "target_first_training_steps": null,
+            "train_worker_seconds": 34.1062714,
+            "resources": {
+              "actor_trainable": 24165,
+              "critic_trainable": 18615,
+              "wm_frozen": 66789,
+              "pm_frozen": 0,
+              "wm_active": true,
+              "device": "cpu",
+              "cuda_peak_bytes": null
+            },
+            "profile": {
+              "collect_calls": 160,
+              "collect_seconds": 10.28723460000001,
+              "ppo_updates": 2,
+              "ppo_seconds": 7.649584500000001,
+              "diagnostic_seconds": 1.096835500000001
+            }
+          },
+          {
+            "group": "C",
+            "train_seed": 11,
+            "generated": 48,
+            "delivered": 12,
+            "delivery_rate": 0.25,
+            "unresolved_fraction": 0.75,
+            "success_hops_mean": 2,
+            "success_delay_mean": 9.416666666666666,
+            "success_delay_p95": 19,
+            "retry_attempts": 290,
+            "loop_transfers": 282,
+            "true_drop_rate": null,
+            "target_first_training_steps": null,
+            "train_worker_seconds": 30.71970140000002,
+            "resources": {
+              "actor_trainable": 21956,
+              "critic_trainable": 18615,
+              "wm_frozen": 0,
+              "pm_frozen": 24496,
+              "wm_active": false,
+              "device": "cpu",
+              "cuda_peak_bytes": null
+            },
+            "profile": {
+              "collect_calls": 160,
+              "collect_seconds": 2.309037399999979,
+              "ppo_updates": 2,
+              "ppo_seconds": 7.749525800000001,
+              "diagnostic_seconds": 0.00442080000000189
+            }
+          },
+          {
+            "group": "C",
+            "train_seed": 22,
+            "generated": 48,
+            "delivered": 2,
+            "delivery_rate": 0.041666666666666664,
+            "unresolved_fraction": 0.9583333333333334,
+            "success_hops_mean": 1,
+            "success_delay_mean": 4.5,
+            "success_delay_p95": 8,
+            "retry_attempts": 223,
+            "loop_transfers": 109,
+            "true_drop_rate": null,
+            "target_first_training_steps": null,
+            "train_worker_seconds": 30.23950210000004,
+            "resources": {
+              "actor_trainable": 21956,
+              "critic_trainable": 18615,
+              "wm_frozen": 0,
+              "pm_frozen": 24496,
+              "wm_active": false,
+              "device": "cpu",
+              "cuda_peak_bytes": null
+            },
+            "profile": {
+              "collect_calls": 160,
+              "collect_seconds": 2.401013699999988,
+              "ppo_updates": 2,
+              "ppo_seconds": 7.846941400000002,
+              "diagnostic_seconds": 0.00445789999999846
+            }
+          },
+          {
+            "group": "C",
+            "train_seed": 33,
+            "generated": 48,
+            "delivered": 4,
+            "delivery_rate": 0.08333333333333333,
+            "unresolved_fraction": 0.9166666666666666,
+            "success_hops_mean": 1.5,
+            "success_delay_mean": 4.25,
+            "success_delay_p95": 7,
+            "retry_attempts": 383,
+            "loop_transfers": 393,
+            "true_drop_rate": null,
+            "target_first_training_steps": null,
+            "train_worker_seconds": 28.641043500000023,
+            "resources": {
+              "actor_trainable": 21956,
+              "critic_trainable": 18615,
+              "wm_frozen": 0,
+              "pm_frozen": 24496,
+              "wm_active": false,
+              "device": "cpu",
+              "cuda_peak_bytes": null
+            },
+            "profile": {
+              "collect_calls": 160,
+              "collect_seconds": 2.0214100999999927,
+              "ppo_updates": 2,
+              "ppo_seconds": 7.892187699999999,
+              "diagnostic_seconds": 0.004432999999998799
+            }
+          },
+          {
+            "group": "D",
+            "train_seed": 11,
+            "generated": 48,
+            "delivered": 12,
+            "delivery_rate": 0.25,
+            "unresolved_fraction": 0.75,
+            "success_hops_mean": 2,
+            "success_delay_mean": 9.416666666666666,
+            "success_delay_p95": 19,
+            "retry_attempts": 290,
+            "loop_transfers": 282,
+            "true_drop_rate": null,
+            "target_first_training_steps": null,
+            "train_worker_seconds": 35.931650700000034,
+            "resources": {
+              "actor_trainable": 24165,
+              "critic_trainable": 18615,
+              "wm_frozen": 66789,
+              "pm_frozen": 24496,
+              "wm_active": true,
+              "device": "cpu",
+              "cuda_peak_bytes": null
+            },
+            "profile": {
+              "collect_calls": 160,
+              "collect_seconds": 8.511333499999974,
+              "ppo_updates": 2,
+              "ppo_seconds": 7.407681600000002,
+              "diagnostic_seconds": 0.9046623000000018
+            }
+          },
+          {
+            "group": "D",
+            "train_seed": 22,
+            "generated": 48,
+            "delivered": 2,
+            "delivery_rate": 0.041666666666666664,
+            "unresolved_fraction": 0.9583333333333334,
+            "success_hops_mean": 1,
+            "success_delay_mean": 4.5,
+            "success_delay_p95": 8,
+            "retry_attempts": 223,
+            "loop_transfers": 109,
+            "true_drop_rate": null,
+            "target_first_training_steps": null,
+            "train_worker_seconds": 37.85549470000001,
+            "resources": {
+              "actor_trainable": 24165,
+              "critic_trainable": 18615,
+              "wm_frozen": 66789,
+              "pm_frozen": 24496,
+              "wm_active": true,
+              "device": "cpu",
+              "cuda_peak_bytes": null
+            },
+            "profile": {
+              "collect_calls": 160,
+              "collect_seconds": 9.639332699999997,
+              "ppo_updates": 2,
+              "ppo_seconds": 7.5473751,
+              "diagnostic_seconds": 0.8758990999999963
+            }
+          },
+          {
+            "group": "D",
+            "train_seed": 33,
+            "generated": 48,
+            "delivered": 4,
+            "delivery_rate": 0.08333333333333333,
+            "unresolved_fraction": 0.9166666666666666,
+            "success_hops_mean": 1.5,
+            "success_delay_mean": 4.25,
+            "success_delay_p95": 7,
+            "retry_attempts": 383,
+            "loop_transfers": 393,
+            "true_drop_rate": null,
+            "target_first_training_steps": null,
+            "train_worker_seconds": 39.01121009999997,
+            "resources": {
+              "actor_trainable": 24165,
+              "critic_trainable": 18615,
+              "wm_frozen": 66789,
+              "pm_frozen": 24496,
+              "wm_active": true,
+              "device": "cpu",
+              "cuda_peak_bytes": null
+            },
+            "profile": {
+              "collect_calls": 160,
+              "collect_seconds": 10.00601900000001,
+              "ppo_updates": 2,
+              "ppo_seconds": 7.657957900000003,
+              "diagnostic_seconds": 0.9175023999999983
+            }
+          },
+          {
+            "group": "E",
+            "train_seed": 11,
+            "generated": 48,
+            "delivered": 8,
+            "delivery_rate": 0.16666666666666666,
+            "unresolved_fraction": 0.8333333333333334,
+            "success_hops_mean": 1.25,
+            "success_delay_mean": 5.5,
+            "success_delay_p95": 19,
+            "retry_attempts": 168,
+            "loop_transfers": 140,
+            "true_drop_rate": null,
+            "target_first_training_steps": null,
+            "train_worker_seconds": 24.853341099999966,
+            "resources": {
+              "actor_trainable": 24213,
+              "critic_trainable": 18615,
+              "wm_frozen": 0,
+              "pm_frozen": 0,
+              "wm_active": false,
+              "device": "cpu",
+              "cuda_peak_bytes": null
+            },
+            "profile": {
+              "collect_calls": 160,
+              "collect_seconds": 2.3048043999999814,
+              "ppo_updates": 2,
+              "ppo_seconds": 7.822273899999999,
+              "diagnostic_seconds": 4.600000003129878e-06
+            }
+          },
+          {
+            "group": "E",
+            "train_seed": 22,
+            "generated": 48,
+            "delivered": 0,
+            "delivery_rate": 0.0,
+            "unresolved_fraction": 1.0,
+            "success_hops_mean": null,
+            "success_delay_mean": null,
+            "success_delay_p95": null,
+            "retry_attempts": 426,
+            "loop_transfers": 98,
+            "true_drop_rate": null,
+            "target_first_training_steps": null,
+            "train_worker_seconds": 23.545290799999975,
+            "resources": {
+              "actor_trainable": 24213,
+              "critic_trainable": 18615,
+              "wm_frozen": 0,
+              "pm_frozen": 0,
+              "wm_active": false,
+              "device": "cpu",
+              "cuda_peak_bytes": null
+            },
+            "profile": {
+              "collect_calls": 160,
+              "collect_seconds": 2.1536107000000015,
+              "ppo_updates": 2,
+              "ppo_seconds": 7.7294467000000004,
+              "diagnostic_seconds": 5.59999999527605e-06
+            }
+          },
+          {
+            "group": "E",
+            "train_seed": 33,
+            "generated": 48,
+            "delivered": 4,
+            "delivery_rate": 0.08333333333333333,
+            "unresolved_fraction": 0.9166666666666666,
+            "success_hops_mean": 1.5,
+            "success_delay_mean": 7.75,
+            "success_delay_p95": 17,
+            "retry_attempts": 287,
+            "loop_transfers": 352,
+            "true_drop_rate": null,
+            "target_first_training_steps": null,
+            "train_worker_seconds": 24.95036159999995,
+            "resources": {
+              "actor_trainable": 24213,
+              "critic_trainable": 18615,
+              "wm_frozen": 0,
+              "pm_frozen": 0,
+              "wm_active": false,
+              "device": "cpu",
+              "cuda_peak_bytes": null
+            },
+            "profile": {
+              "collect_calls": 160,
+              "collect_seconds": 2.2999909000000036,
+              "ppo_updates": 2,
+              "ppo_seconds": 7.8469061999999985,
+              "diagnostic_seconds": 6.399999999295858e-06
+            }
+          },
+          {
+            "group": "F",
+            "train_seed": 11,
+            "generated": 48,
+            "delivered": 8,
+            "delivery_rate": 0.16666666666666666,
+            "unresolved_fraction": 0.8333333333333334,
+            "success_hops_mean": 1.25,
+            "success_delay_mean": 5.5,
+            "success_delay_p95": 19,
+            "retry_attempts": 168,
+            "loop_transfers": 140,
+            "true_drop_rate": null,
+            "target_first_training_steps": null,
+            "train_worker_seconds": 26.338905400000044,
+            "resources": {
+              "actor_trainable": 24165,
+              "critic_trainable": 18615,
+              "wm_frozen": 66789,
+              "pm_frozen": 0,
+              "wm_active": false,
+              "device": "cpu",
+              "cuda_peak_bytes": null
+            },
+            "profile": {
+              "collect_calls": 160,
+              "collect_seconds": 2.4778084999999885,
+              "ppo_updates": 2,
+              "ppo_seconds": 7.922315899999999,
+              "diagnostic_seconds": 0.9130200000000057
+            }
+          },
+          {
+            "group": "F",
+            "train_seed": 22,
+            "generated": 48,
+            "delivered": 0,
+            "delivery_rate": 0.0,
+            "unresolved_fraction": 1.0,
+            "success_hops_mean": null,
+            "success_delay_mean": null,
+            "success_delay_p95": null,
+            "retry_attempts": 405,
+            "loop_transfers": 88,
+            "true_drop_rate": null,
+            "target_first_training_steps": null,
+            "train_worker_seconds": 26.53725929999996,
+            "resources": {
+              "actor_trainable": 24165,
+              "critic_trainable": 18615,
+              "wm_frozen": 66789,
+              "pm_frozen": 0,
+              "wm_active": false,
+              "device": "cpu",
+              "cuda_peak_bytes": null
+            },
+            "profile": {
+              "collect_calls": 160,
+              "collect_seconds": 2.7439484000000114,
+              "ppo_updates": 2,
+              "ppo_seconds": 8.323284300000001,
+              "diagnostic_seconds": 0.9912100000000041
+            }
+          },
+          {
+            "group": "F",
+            "train_seed": 33,
+            "generated": 48,
+            "delivered": 4,
+            "delivery_rate": 0.08333333333333333,
+            "unresolved_fraction": 0.9166666666666666,
+            "success_hops_mean": 1.5,
+            "success_delay_mean": 5.5,
+            "success_delay_p95": 7,
+            "retry_attempts": 275,
+            "loop_transfers": 335,
+            "true_drop_rate": null,
+            "target_first_training_steps": null,
+            "train_worker_seconds": 25.342475600000057,
+            "resources": {
+              "actor_trainable": 24165,
+              "critic_trainable": 18615,
+              "wm_frozen": 66789,
+              "pm_frozen": 0,
+              "wm_active": false,
+              "device": "cpu",
+              "cuda_peak_bytes": null
+            },
+            "profile": {
+              "collect_calls": 160,
+              "collect_seconds": 2.433052799999998,
+              "ppo_updates": 2,
+              "ppo_seconds": 7.5370751,
+              "diagnostic_seconds": 0.8762595999999974
+            }
+          }
+        ],
+        "groups": [
+          {
+            "group": "A",
+            "independent_training_n": 3,
+            "metrics": {
+              "delivery_rate": {
+                "mean": 0.08333333333333333,
+                "sample_std": 0.08333333333333333,
+                "n_defined": 3
+              },
+              "unresolved_fraction": {
+                "mean": 0.9166666666666666,
+                "sample_std": 0.08333333333333331,
+                "n_defined": 3
+              },
+              "success_hops_mean": {
+                "mean": 1.375,
+                "sample_std": 0.1767766952966369,
+                "n_defined": 2
+              },
+              "success_delay_mean": {
+                "mean": 5.25,
+                "sample_std": 0.3535533905932738,
+                "n_defined": 2
+              },
+              "success_delay_p95": {
+                "mean": 13,
+                "sample_std": 8.48528137423857,
+                "n_defined": 2
+              },
+              "retry_attempts": {
+                "mean": 279.3333333333333,
+                "sample_std": 110.50942644559031,
+                "n_defined": 3
+              },
+              "loop_transfers": {
+                "mean": 211.33333333333334,
+                "sample_std": 155.7733396102598,
+                "n_defined": 3
+              }
+            }
+          },
+          {
+            "group": "B",
+            "independent_training_n": 3,
+            "metrics": {
+              "delivery_rate": {
+                "mean": 0.08333333333333333,
+                "sample_std": 0.08333333333333333,
+                "n_defined": 3
+              },
+              "unresolved_fraction": {
+                "mean": 0.9166666666666666,
+                "sample_std": 0.08333333333333331,
+                "n_defined": 3
+              },
+              "success_hops_mean": {
+                "mean": 1.375,
+                "sample_std": 0.1767766952966369,
+                "n_defined": 2
+              },
+              "success_delay_mean": {
+                "mean": 5.375,
+                "sample_std": 0.1767766952966369,
+                "n_defined": 2
+              },
+              "success_delay_p95": {
+                "mean": 14.5,
+                "sample_std": 6.363961030678928,
+                "n_defined": 2
+              },
+              "retry_attempts": {
+                "mean": 251.66666666666666,
+                "sample_std": 136.34637264457507,
+                "n_defined": 3
+              },
+              "loop_transfers": {
+                "mean": 140.33333333333334,
+                "sample_std": 35.50117368951811,
+                "n_defined": 3
+              }
+            }
+          },
+          {
+            "group": "C",
+            "independent_training_n": 3,
+            "metrics": {
+              "delivery_rate": {
+                "mean": 0.125,
+                "sample_std": 0.11023963796102461,
+                "n_defined": 3
+              },
+              "unresolved_fraction": {
+                "mean": 0.875,
+                "sample_std": 0.11023963796102462,
+                "n_defined": 3
+              },
+              "success_hops_mean": {
+                "mean": 1.5,
+                "sample_std": 0.5,
+                "n_defined": 3
+              },
+              "success_delay_mean": {
+                "mean": 6.055555555555555,
+                "sample_std": 2.913490333933841,
+                "n_defined": 3
+              },
+              "success_delay_p95": {
+                "mean": 11.333333333333334,
+                "sample_std": 6.658328118479393,
+                "n_defined": 3
+              },
+              "retry_attempts": {
+                "mean": 298.6666666666667,
+                "sample_std": 80.35131195776042,
+                "n_defined": 3
+              },
+              "loop_transfers": {
+                "mean": 261.3333333333333,
+                "sample_std": 143.12348980280396,
+                "n_defined": 3
+              }
+            }
+          },
+          {
+            "group": "D",
+            "independent_training_n": 3,
+            "metrics": {
+              "delivery_rate": {
+                "mean": 0.125,
+                "sample_std": 0.11023963796102461,
+                "n_defined": 3
+              },
+              "unresolved_fraction": {
+                "mean": 0.875,
+                "sample_std": 0.11023963796102462,
+                "n_defined": 3
+              },
+              "success_hops_mean": {
+                "mean": 1.5,
+                "sample_std": 0.5,
+                "n_defined": 3
+              },
+              "success_delay_mean": {
+                "mean": 6.055555555555555,
+                "sample_std": 2.913490333933841,
+                "n_defined": 3
+              },
+              "success_delay_p95": {
+                "mean": 11.333333333333334,
+                "sample_std": 6.658328118479393,
+                "n_defined": 3
+              },
+              "retry_attempts": {
+                "mean": 298.6666666666667,
+                "sample_std": 80.35131195776042,
+                "n_defined": 3
+              },
+              "loop_transfers": {
+                "mean": 261.3333333333333,
+                "sample_std": 143.12348980280396,
+                "n_defined": 3
+              }
+            }
+          },
+          {
+            "group": "E",
+            "independent_training_n": 3,
+            "metrics": {
+              "delivery_rate": {
+                "mean": 0.08333333333333333,
+                "sample_std": 0.08333333333333333,
+                "n_defined": 3
+              },
+              "unresolved_fraction": {
+                "mean": 0.9166666666666666,
+                "sample_std": 0.08333333333333331,
+                "n_defined": 3
+              },
+              "success_hops_mean": {
+                "mean": 1.375,
+                "sample_std": 0.1767766952966369,
+                "n_defined": 2
+              },
+              "success_delay_mean": {
+                "mean": 6.625,
+                "sample_std": 1.590990257669732,
+                "n_defined": 2
+              },
+              "success_delay_p95": {
+                "mean": 18,
+                "sample_std": 1.4142135623730951,
+                "n_defined": 2
+              },
+              "retry_attempts": {
+                "mean": 293.6666666666667,
+                "sample_std": 129.12913433200632,
+                "n_defined": 3
+              },
+              "loop_transfers": {
+                "mean": 196.66666666666666,
+                "sample_std": 136.15187598168941,
+                "n_defined": 3
+              }
+            }
+          },
+          {
+            "group": "F",
+            "independent_training_n": 3,
+            "metrics": {
+              "delivery_rate": {
+                "mean": 0.08333333333333333,
+                "sample_std": 0.08333333333333333,
+                "n_defined": 3
+              },
+              "unresolved_fraction": {
+                "mean": 0.9166666666666666,
+                "sample_std": 0.08333333333333331,
+                "n_defined": 3
+              },
+              "success_hops_mean": {
+                "mean": 1.375,
+                "sample_std": 0.1767766952966369,
+                "n_defined": 2
+              },
+              "success_delay_mean": {
+                "mean": 5.5,
+                "sample_std": 0.0,
+                "n_defined": 2
+              },
+              "success_delay_p95": {
+                "mean": 13,
+                "sample_std": 8.48528137423857,
+                "n_defined": 2
+              },
+              "retry_attempts": {
+                "mean": 282.6666666666667,
+                "sample_std": 118.68585987106187,
+                "n_defined": 3
+              },
+              "loop_transfers": {
+                "mean": 187.66666666666666,
+                "sample_std": 130.21648641141155,
+                "n_defined": 3
+              }
+            }
+          }
+        ],
+        "statistical_unit": "independent trained policy, not evaluation episode",
+        "drop_rate_supported": false,
+        "limitations": [
+          "pilot is not convergence or significance evidence",
+          "one frozen WM/PM pretraining seed",
+          "task_v2 excludes legacy numeric reward; legacy observation/history state retained",
+          "CPU wall timing; CUDA unmeasured",
+          "E matches trainable extra Actor capacity within 2.2%, not frozen-model total capacity",
+          "F uses same four-frame input scope and scorer; idle WM loaded but never called"
+        ]
+      }
+    },
+    "linear": {
+      "path": "results/tg_ablation_lr_linear_pilot/20261103_211525_205795",
+      "manifest_sha256": "e17479da99988a660547af64108bbccf87e20422a190a98c5d42fa9ee61df9be",
+      "summary": {
+        "purpose": "pilot",
+        "budget": {
+          "purpose": "pilot",
+          "training_jobs": 18,
+          "evaluation_jobs": 18,
+          "training_steps_per_job": 160,
+          "total_training_steps": 2880,
+          "total_evaluation_steps": 2880,
+          "independent_training_seeds": [
+            11,
+            22,
+            33
+          ],
+          "evaluation_scenes": [
+            7001
+          ]
+        },
+        "by_training_seed": [
+          {
+            "group": "A",
+            "train_seed": 11,
+            "generated": 48,
+            "delivered": 10,
+            "delivery_rate": 0.20833333333333334,
+            "unresolved_fraction": 0.7916666666666666,
+            "success_hops_mean": 1.6,
+            "success_delay_mean": 6.7,
+            "success_delay_p95": 18,
+            "retry_attempts": 178,
+            "loop_transfers": 129,
+            "true_drop_rate": null,
+            "target_first_training_steps": null,
+            "train_worker_seconds": 22.0142916,
+            "resources": {
+              "actor_trainable": 21956,
+              "critic_trainable": 18615,
+              "wm_frozen": 0,
+              "pm_frozen": 0,
+              "wm_active": false,
+              "device": "cpu",
+              "cuda_peak_bytes": null
+            },
+            "profile": {
+              "collect_calls": 160,
+              "collect_seconds": 1.9152946000000037,
+              "ppo_updates": 2,
+              "ppo_seconds": 8.041849799999998,
+              "diagnostic_seconds": 6.199999999623174e-06
+            }
+          },
+          {
+            "group": "A",
+            "train_seed": 22,
+            "generated": 48,
+            "delivered": 0,
+            "delivery_rate": 0.0,
+            "unresolved_fraction": 1.0,
+            "success_hops_mean": null,
+            "success_delay_mean": null,
+            "success_delay_p95": null,
+            "retry_attempts": 356,
+            "loop_transfers": 217,
+            "true_drop_rate": null,
+            "target_first_training_steps": null,
+            "train_worker_seconds": 22.167479,
+            "resources": {
+              "actor_trainable": 21956,
+              "critic_trainable": 18615,
+              "wm_frozen": 0,
+              "pm_frozen": 0,
+              "wm_active": false,
+              "device": "cpu",
+              "cuda_peak_bytes": null
+            },
+            "profile": {
+              "collect_calls": 160,
+              "collect_seconds": 1.794831899999998,
+              "ppo_updates": 2,
+              "ppo_seconds": 7.827926400000002,
+              "diagnostic_seconds": 5.300000000652005e-06
+            }
+          },
+          {
+            "group": "A",
+            "train_seed": 33,
+            "generated": 48,
+            "delivered": 0,
+            "delivery_rate": 0.0,
+            "unresolved_fraction": 1.0,
+            "success_hops_mean": null,
+            "success_delay_mean": null,
+            "success_delay_p95": null,
+            "retry_attempts": 312,
+            "loop_transfers": 327,
+            "true_drop_rate": null,
+            "target_first_training_steps": null,
+            "train_worker_seconds": 22.793463200000005,
+            "resources": {
+              "actor_trainable": 21956,
+              "critic_trainable": 18615,
+              "wm_frozen": 0,
+              "pm_frozen": 0,
+              "wm_active": false,
+              "device": "cpu",
+              "cuda_peak_bytes": null
+            },
+            "profile": {
+              "collect_calls": 160,
+              "collect_seconds": 1.8469225999999976,
+              "ppo_updates": 2,
+              "ppo_seconds": 8.0725489,
+              "diagnostic_seconds": 5.300000002428362e-06
+            }
+          },
+          {
+            "group": "B",
+            "train_seed": 11,
+            "generated": 48,
+            "delivered": 10,
+            "delivery_rate": 0.20833333333333334,
+            "unresolved_fraction": 0.7916666666666666,
+            "success_hops_mean": 1.6,
+            "success_delay_mean": 6.7,
+            "success_delay_p95": 18,
+            "retry_attempts": 178,
+            "loop_transfers": 129,
+            "true_drop_rate": null,
+            "target_first_training_steps": null,
+            "train_worker_seconds": 31.3181582,
+            "resources": {
+              "actor_trainable": 24165,
+              "critic_trainable": 18615,
+              "wm_frozen": 66789,
+              "pm_frozen": 0,
+              "wm_active": true,
+              "device": "cpu",
+              "cuda_peak_bytes": null
+            },
+            "profile": {
+              "collect_calls": 160,
+              "collect_seconds": 8.51486890000001,
+              "ppo_updates": 2,
+              "ppo_seconds": 8.5675564,
+              "diagnostic_seconds": 0.9861763000000003
+            }
+          },
+          {
+            "group": "B",
+            "train_seed": 22,
+            "generated": 48,
+            "delivered": 0,
+            "delivery_rate": 0.0,
+            "unresolved_fraction": 1.0,
+            "success_hops_mean": null,
+            "success_delay_mean": null,
+            "success_delay_p95": null,
+            "retry_attempts": 356,
+            "loop_transfers": 217,
+            "true_drop_rate": null,
+            "target_first_training_steps": null,
+            "train_worker_seconds": 31.770744199999996,
+            "resources": {
+              "actor_trainable": 24165,
+              "critic_trainable": 18615,
+              "wm_frozen": 66789,
+              "pm_frozen": 0,
+              "wm_active": true,
+              "device": "cpu",
+              "cuda_peak_bytes": null
+            },
+            "profile": {
+              "collect_calls": 160,
+              "collect_seconds": 8.745193799999978,
+              "ppo_updates": 2,
+              "ppo_seconds": 8.316316500000001,
+              "diagnostic_seconds": 0.9615407999999981
+            }
+          },
+          {
+            "group": "B",
+            "train_seed": 33,
+            "generated": 48,
+            "delivered": 0,
+            "delivery_rate": 0.0,
+            "unresolved_fraction": 1.0,
+            "success_hops_mean": null,
+            "success_delay_mean": null,
+            "success_delay_p95": null,
+            "retry_attempts": 321,
+            "loop_transfers": 321,
+            "true_drop_rate": null,
+            "target_first_training_steps": null,
+            "train_worker_seconds": 33.9436111,
+            "resources": {
+              "actor_trainable": 24165,
+              "critic_trainable": 18615,
+              "wm_frozen": 66789,
+              "pm_frozen": 0,
+              "wm_active": true,
+              "device": "cpu",
+              "cuda_peak_bytes": null
+            },
+            "profile": {
+              "collect_calls": 160,
+              "collect_seconds": 9.880356599999995,
+              "ppo_updates": 2,
+              "ppo_seconds": 8.461329699999999,
+              "diagnostic_seconds": 0.9514859999999956
+            }
+          },
+          {
+            "group": "C",
+            "train_seed": 11,
+            "generated": 48,
+            "delivered": 12,
+            "delivery_rate": 0.25,
+            "unresolved_fraction": 0.75,
+            "success_hops_mean": 2,
+            "success_delay_mean": 8.75,
+            "success_delay_p95": 24,
+            "retry_attempts": 195,
+            "loop_transfers": 121,
+            "true_drop_rate": null,
+            "target_first_training_steps": null,
+            "train_worker_seconds": 30.989560200000028,
+            "resources": {
+              "actor_trainable": 21956,
+              "critic_trainable": 18615,
+              "wm_frozen": 0,
+              "pm_frozen": 24496,
+              "wm_active": false,
+              "device": "cpu",
+              "cuda_peak_bytes": null
+            },
+            "profile": {
+              "collect_calls": 160,
+              "collect_seconds": 2.150154399999997,
+              "ppo_updates": 2,
+              "ppo_seconds": 9.226842499999998,
+              "diagnostic_seconds": 0.005424399999998997
+            }
+          },
+          {
+            "group": "C",
+            "train_seed": 22,
+            "generated": 48,
+            "delivered": 2,
+            "delivery_rate": 0.041666666666666664,
+            "unresolved_fraction": 0.9583333333333334,
+            "success_hops_mean": 1,
+            "success_delay_mean": 4.5,
+            "success_delay_p95": 8,
+            "retry_attempts": 223,
+            "loop_transfers": 109,
+            "true_drop_rate": null,
+            "target_first_training_steps": null,
+            "train_worker_seconds": 29.61586870000002,
+            "resources": {
+              "actor_trainable": 21956,
+              "critic_trainable": 18615,
+              "wm_frozen": 0,
+              "pm_frozen": 24496,
+              "wm_active": false,
+              "device": "cpu",
+              "cuda_peak_bytes": null
+            },
+            "profile": {
+              "collect_calls": 160,
+              "collect_seconds": 2.047502200000016,
+              "ppo_updates": 2,
+              "ppo_seconds": 8.855719200000001,
+              "diagnostic_seconds": 0.004382599999996906
+            }
+          },
+          {
+            "group": "C",
+            "train_seed": 33,
+            "generated": 48,
+            "delivered": 4,
+            "delivery_rate": 0.08333333333333333,
+            "unresolved_fraction": 0.9166666666666666,
+            "success_hops_mean": 1.5,
+            "success_delay_mean": 4,
+            "success_delay_p95": 7,
+            "retry_attempts": 399,
+            "loop_transfers": 424,
+            "true_drop_rate": null,
+            "target_first_training_steps": null,
+            "train_worker_seconds": 27.99861599999997,
+            "resources": {
+              "actor_trainable": 21956,
+              "critic_trainable": 18615,
+              "wm_frozen": 0,
+              "pm_frozen": 24496,
+              "wm_active": false,
+              "device": "cpu",
+              "cuda_peak_bytes": null
+            },
+            "profile": {
+              "collect_calls": 160,
+              "collect_seconds": 1.8999951999999984,
+              "ppo_updates": 2,
+              "ppo_seconds": 8.3475355,
+              "diagnostic_seconds": 0.004442900000002581
+            }
+          },
+          {
+            "group": "D",
+            "train_seed": 11,
+            "generated": 48,
+            "delivered": 12,
+            "delivery_rate": 0.25,
+            "unresolved_fraction": 0.75,
+            "success_hops_mean": 2,
+            "success_delay_mean": 8.75,
+            "success_delay_p95": 24,
+            "retry_attempts": 195,
+            "loop_transfers": 121,
+            "true_drop_rate": null,
+            "target_first_training_steps": null,
+            "train_worker_seconds": 35.62767059999999,
+            "resources": {
+              "actor_trainable": 24165,
+              "critic_trainable": 18615,
+              "wm_frozen": 66789,
+              "pm_frozen": 24496,
+              "wm_active": true,
+              "device": "cpu",
+              "cuda_peak_bytes": null
+            },
+            "profile": {
+              "collect_calls": 160,
+              "collect_seconds": 8.18174849999999,
+              "ppo_updates": 2,
+              "ppo_seconds": 8.421336,
+              "diagnostic_seconds": 0.983943199999997
+            }
+          },
+          {
+            "group": "D",
+            "train_seed": 22,
+            "generated": 48,
+            "delivered": 2,
+            "delivery_rate": 0.041666666666666664,
+            "unresolved_fraction": 0.9583333333333334,
+            "success_hops_mean": 1,
+            "success_delay_mean": 4.5,
+            "success_delay_p95": 8,
+            "retry_attempts": 223,
+            "loop_transfers": 109,
+            "true_drop_rate": null,
+            "target_first_training_steps": null,
+            "train_worker_seconds": 37.957675800000004,
+            "resources": {
+              "actor_trainable": 24165,
+              "critic_trainable": 18615,
+              "wm_frozen": 66789,
+              "pm_frozen": 24496,
+              "wm_active": true,
+              "device": "cpu",
+              "cuda_peak_bytes": null
+            },
+            "profile": {
+              "collect_calls": 160,
+              "collect_seconds": 9.312520000000006,
+              "ppo_updates": 2,
+              "ppo_seconds": 8.415299700000002,
+              "diagnostic_seconds": 0.9809783999999961
+            }
+          },
+          {
+            "group": "D",
+            "train_seed": 33,
+            "generated": 48,
+            "delivered": 4,
+            "delivery_rate": 0.08333333333333333,
+            "unresolved_fraction": 0.9166666666666666,
+            "success_hops_mean": 1.5,
+            "success_delay_mean": 4,
+            "success_delay_p95": 7,
+            "retry_attempts": 399,
+            "loop_transfers": 424,
+            "true_drop_rate": null,
+            "target_first_training_steps": null,
+            "train_worker_seconds": 39.132031600000005,
+            "resources": {
+              "actor_trainable": 24165,
+              "critic_trainable": 18615,
+              "wm_frozen": 66789,
+              "pm_frozen": 24496,
+              "wm_active": true,
+              "device": "cpu",
+              "cuda_peak_bytes": null
+            },
+            "profile": {
+              "collect_calls": 160,
+              "collect_seconds": 9.822525400000009,
+              "ppo_updates": 2,
+              "ppo_seconds": 8.411794,
+              "diagnostic_seconds": 0.9697341999999995
+            }
+          },
+          {
+            "group": "E",
+            "train_seed": 11,
+            "generated": 48,
+            "delivered": 10,
+            "delivery_rate": 0.20833333333333334,
+            "unresolved_fraction": 0.7916666666666666,
+            "success_hops_mean": 1.6,
+            "success_delay_mean": 6.7,
+            "success_delay_p95": 18,
+            "retry_attempts": 178,
+            "loop_transfers": 129,
+            "true_drop_rate": null,
+            "target_first_training_steps": null,
+            "train_worker_seconds": 24.331756499999983,
+            "resources": {
+              "actor_trainable": 24213,
+              "critic_trainable": 18615,
+              "wm_frozen": 0,
+              "pm_frozen": 0,
+              "wm_active": false,
+              "device": "cpu",
+              "cuda_peak_bytes": null
+            },
+            "profile": {
+              "collect_calls": 160,
+              "collect_seconds": 1.9752758999999933,
+              "ppo_updates": 2,
+              "ppo_seconds": 8.8078262,
+              "diagnostic_seconds": 4.900000002194815e-06
+            }
+          },
+          {
+            "group": "E",
+            "train_seed": 22,
+            "generated": 48,
+            "delivered": 0,
+            "delivery_rate": 0.0,
+            "unresolved_fraction": 1.0,
+            "success_hops_mean": null,
+            "success_delay_mean": null,
+            "success_delay_p95": null,
+            "retry_attempts": 356,
+            "loop_transfers": 217,
+            "true_drop_rate": null,
+            "target_first_training_steps": null,
+            "train_worker_seconds": 22.71959019999997,
+            "resources": {
+              "actor_trainable": 24213,
+              "critic_trainable": 18615,
+              "wm_frozen": 0,
+              "pm_frozen": 0,
+              "wm_active": false,
+              "device": "cpu",
+              "cuda_peak_bytes": null
+            },
+            "profile": {
+              "collect_calls": 160,
+              "collect_seconds": 1.8720234000000133,
+              "ppo_updates": 2,
+              "ppo_seconds": 8.195601400000001,
+              "diagnostic_seconds": 5.00000000069889e-06
+            }
+          },
+          {
+            "group": "E",
+            "train_seed": 33,
+            "generated": 48,
+            "delivered": 0,
+            "delivery_rate": 0.0,
+            "unresolved_fraction": 1.0,
+            "success_hops_mean": null,
+            "success_delay_mean": null,
+            "success_delay_p95": null,
+            "retry_attempts": 328,
+            "loop_transfers": 316,
+            "true_drop_rate": null,
+            "target_first_training_steps": null,
+            "train_worker_seconds": 24.83060290000003,
+            "resources": {
+              "actor_trainable": 24213,
+              "critic_trainable": 18615,
+              "wm_frozen": 0,
+              "pm_frozen": 0,
+              "wm_active": false,
+              "device": "cpu",
+              "cuda_peak_bytes": null
+            },
+            "profile": {
+              "collect_calls": 160,
+              "collect_seconds": 2.1089025999999937,
+              "ppo_updates": 2,
+              "ppo_seconds": 8.541028400000002,
+              "diagnostic_seconds": 5.499999999436511e-06
+            }
+          },
+          {
+            "group": "F",
+            "train_seed": 11,
+            "generated": 48,
+            "delivered": 10,
+            "delivery_rate": 0.20833333333333334,
+            "unresolved_fraction": 0.7916666666666666,
+            "success_hops_mean": 1.6,
+            "success_delay_mean": 6.7,
+            "success_delay_p95": 18,
+            "retry_attempts": 178,
+            "loop_transfers": 129,
+            "true_drop_rate": null,
+            "target_first_training_steps": null,
+            "train_worker_seconds": 26.033777299999997,
+            "resources": {
+              "actor_trainable": 24165,
+              "critic_trainable": 18615,
+              "wm_frozen": 66789,
+              "pm_frozen": 0,
+              "wm_active": false,
+              "device": "cpu",
+              "cuda_peak_bytes": null
+            },
+            "profile": {
+              "collect_calls": 160,
+              "collect_seconds": 2.270144000000004,
+              "ppo_updates": 2,
+              "ppo_seconds": 9.0206272,
+              "diagnostic_seconds": 1.008779999999999
+            }
+          },
+          {
+            "group": "F",
+            "train_seed": 22,
+            "generated": 48,
+            "delivered": 0,
+            "delivery_rate": 0.0,
+            "unresolved_fraction": 1.0,
+            "success_hops_mean": null,
+            "success_delay_mean": null,
+            "success_delay_p95": null,
+            "retry_attempts": 356,
+            "loop_transfers": 217,
+            "true_drop_rate": null,
+            "target_first_training_steps": null,
+            "train_worker_seconds": 25.771137300000078,
+            "resources": {
+              "actor_trainable": 24165,
+              "critic_trainable": 18615,
+              "wm_frozen": 66789,
+              "pm_frozen": 0,
+              "wm_active": false,
+              "device": "cpu",
+              "cuda_peak_bytes": null
+            },
+            "profile": {
+              "collect_calls": 160,
+              "collect_seconds": 2.3939787999999873,
+              "ppo_updates": 2,
+              "ppo_seconds": 9.0499841,
+              "diagnostic_seconds": 1.0800184999999995
+            }
+          },
+          {
+            "group": "F",
+            "train_seed": 33,
+            "generated": 48,
+            "delivered": 0,
+            "delivery_rate": 0.0,
+            "unresolved_fraction": 1.0,
+            "success_hops_mean": null,
+            "success_delay_mean": null,
+            "success_delay_p95": null,
+            "retry_attempts": 321,
+            "loop_transfers": 321,
+            "true_drop_rate": null,
+            "target_first_training_steps": null,
+            "train_worker_seconds": 25.64501109999992,
+            "resources": {
+              "actor_trainable": 24165,
+              "critic_trainable": 18615,
+              "wm_frozen": 66789,
+              "pm_frozen": 0,
+              "wm_active": false,
+              "device": "cpu",
+              "cuda_peak_bytes": null
+            },
+            "profile": {
+              "collect_calls": 160,
+              "collect_seconds": 2.2717784000000103,
+              "ppo_updates": 2,
+              "ppo_seconds": 8.527930899999998,
+              "diagnostic_seconds": 0.9664386
+            }
+          }
+        ],
+        "groups": [
+          {
+            "group": "A",
+            "independent_training_n": 3,
+            "metrics": {
+              "delivery_rate": {
+                "mean": 0.06944444444444445,
+                "sample_std": 0.12028130608117205,
+                "n_defined": 3
+              },
+              "unresolved_fraction": {
+                "mean": 0.9305555555555556,
+                "sample_std": 0.12028130608117206,
+                "n_defined": 3
+              },
+              "success_hops_mean": {
+                "mean": 1.6,
+                "sample_std": null,
+                "n_defined": 1
+              },
+              "success_delay_mean": {
+                "mean": 6.7,
+                "sample_std": null,
+                "n_defined": 1
+              },
+              "success_delay_p95": {
+                "mean": 18,
+                "sample_std": null,
+                "n_defined": 1
+              },
+              "retry_attempts": {
+                "mean": 282,
+                "sample_std": 92.71461589199407,
+                "n_defined": 3
+              },
+              "loop_transfers": {
+                "mean": 224.33333333333334,
+                "sample_std": 99.20349456210367,
+                "n_defined": 3
+              }
+            }
+          },
+          {
+            "group": "B",
+            "independent_training_n": 3,
+            "metrics": {
+              "delivery_rate": {
+                "mean": 0.06944444444444445,
+                "sample_std": 0.12028130608117205,
+                "n_defined": 3
+              },
+              "unresolved_fraction": {
+                "mean": 0.9305555555555556,
+                "sample_std": 0.12028130608117206,
+                "n_defined": 3
+              },
+              "success_hops_mean": {
+                "mean": 1.6,
+                "sample_std": null,
+                "n_defined": 1
+              },
+              "success_delay_mean": {
+                "mean": 6.7,
+                "sample_std": null,
+                "n_defined": 1
+              },
+              "success_delay_p95": {
+                "mean": 18,
+                "sample_std": null,
+                "n_defined": 1
+              },
+              "retry_attempts": {
+                "mean": 285,
+                "sample_std": 94.30270409696638,
+                "n_defined": 3
+              },
+              "loop_transfers": {
+                "mean": 222.33333333333334,
+                "sample_std": 96.11104688501386,
+                "n_defined": 3
+              }
+            }
+          },
+          {
+            "group": "C",
+            "independent_training_n": 3,
+            "metrics": {
+              "delivery_rate": {
+                "mean": 0.125,
+                "sample_std": 0.11023963796102461,
+                "n_defined": 3
+              },
+              "unresolved_fraction": {
+                "mean": 0.875,
+                "sample_std": 0.11023963796102462,
+                "n_defined": 3
+              },
+              "success_hops_mean": {
+                "mean": 1.5,
+                "sample_std": 0.5,
+                "n_defined": 3
+              },
+              "success_delay_mean": {
+                "mean": 5.75,
+                "sample_std": 2.6100766272276377,
+                "n_defined": 3
+              },
+              "success_delay_p95": {
+                "mean": 13,
+                "sample_std": 9.539392014169456,
+                "n_defined": 3
+              },
+              "retry_attempts": {
+                "mean": 272.3333333333333,
+                "sample_std": 110.58631621196781,
+                "n_defined": 3
+              },
+              "loop_transfers": {
+                "mean": 218,
+                "sample_std": 178.50210082797346,
+                "n_defined": 3
+              }
+            }
+          },
+          {
+            "group": "D",
+            "independent_training_n": 3,
+            "metrics": {
+              "delivery_rate": {
+                "mean": 0.125,
+                "sample_std": 0.11023963796102461,
+                "n_defined": 3
+              },
+              "unresolved_fraction": {
+                "mean": 0.875,
+                "sample_std": 0.11023963796102462,
+                "n_defined": 3
+              },
+              "success_hops_mean": {
+                "mean": 1.5,
+                "sample_std": 0.5,
+                "n_defined": 3
+              },
+              "success_delay_mean": {
+                "mean": 5.75,
+                "sample_std": 2.6100766272276377,
+                "n_defined": 3
+              },
+              "success_delay_p95": {
+                "mean": 13,
+                "sample_std": 9.539392014169456,
+                "n_defined": 3
+              },
+              "retry_attempts": {
+                "mean": 272.3333333333333,
+                "sample_std": 110.58631621196781,
+                "n_defined": 3
+              },
+              "loop_transfers": {
+                "mean": 218,
+                "sample_std": 178.50210082797346,
+                "n_defined": 3
+              }
+            }
+          },
+          {
+            "group": "E",
+            "independent_training_n": 3,
+            "metrics": {
+              "delivery_rate": {
+                "mean": 0.06944444444444445,
+                "sample_std": 0.12028130608117205,
+                "n_defined": 3
+              },
+              "unresolved_fraction": {
+                "mean": 0.9305555555555556,
+                "sample_std": 0.12028130608117206,
+                "n_defined": 3
+              },
+              "success_hops_mean": {
+                "mean": 1.6,
+                "sample_std": null,
+                "n_defined": 1
+              },
+              "success_delay_mean": {
+                "mean": 6.7,
+                "sample_std": null,
+                "n_defined": 1
+              },
+              "success_delay_p95": {
+                "mean": 18,
+                "sample_std": null,
+                "n_defined": 1
+              },
+              "retry_attempts": {
+                "mean": 287.3333333333333,
+                "sample_std": 95.71485429824011,
+                "n_defined": 3
+              },
+              "loop_transfers": {
+                "mean": 220.66666666666666,
+                "sample_std": 93.55390602926921,
+                "n_defined": 3
+              }
+            }
+          },
+          {
+            "group": "F",
+            "independent_training_n": 3,
+            "metrics": {
+              "delivery_rate": {
+                "mean": 0.06944444444444445,
+                "sample_std": 0.12028130608117205,
+                "n_defined": 3
+              },
+              "unresolved_fraction": {
+                "mean": 0.9305555555555556,
+                "sample_std": 0.12028130608117206,
+                "n_defined": 3
+              },
+              "success_hops_mean": {
+                "mean": 1.6,
+                "sample_std": null,
+                "n_defined": 1
+              },
+              "success_delay_mean": {
+                "mean": 6.7,
+                "sample_std": null,
+                "n_defined": 1
+              },
+              "success_delay_p95": {
+                "mean": 18,
+                "sample_std": null,
+                "n_defined": 1
+              },
+              "retry_attempts": {
+                "mean": 285,
+                "sample_std": 94.30270409696638,
+                "n_defined": 3
+              },
+              "loop_transfers": {
+                "mean": 222.33333333333334,
+                "sample_std": 96.11104688501386,
+                "n_defined": 3
+              }
+            }
+          }
+        ],
+        "statistical_unit": "independent trained policy, not evaluation episode",
+        "drop_rate_supported": false,
+        "limitations": [
+          "pilot is not convergence or significance evidence",
+          "one frozen WM/PM pretraining seed",
+          "task_v2 excludes legacy numeric reward; legacy observation/history state retained",
+          "CPU wall timing; CUDA unmeasured",
+          "E matches trainable extra Actor capacity within 2.2%, not frozen-model total capacity",
+          "F uses same four-frame input scope and scorer; idle WM loaded but never called"
+        ]
+      }
+    }
+  },
+  "old_linear_parity": [
+    {
+      "key": "A_seed_11",
+      "old_physical_exact": true,
+      "actor_critic_exact": true
+    },
+    {
+      "key": "A_seed_11_scene_7001",
+      "old_physical_exact": true
+    },
+    {
+      "key": "A_seed_22",
+      "old_physical_exact": true,
+      "actor_critic_exact": true
+    },
+    {
+      "key": "A_seed_22_scene_7001",
+      "old_physical_exact": true
+    },
+    {
+      "key": "A_seed_33",
+      "old_physical_exact": true,
+      "actor_critic_exact": true
+    },
+    {
+      "key": "A_seed_33_scene_7001",
+      "old_physical_exact": true
+    },
+    {
+      "key": "B_seed_11",
+      "old_physical_exact": true,
+      "actor_critic_exact": true
+    },
+    {
+      "key": "B_seed_11_scene_7001",
+      "old_physical_exact": true
+    },
+    {
+      "key": "B_seed_22",
+      "old_physical_exact": true,
+      "actor_critic_exact": true
+    },
+    {
+      "key": "B_seed_22_scene_7001",
+      "old_physical_exact": true
+    },
+    {
+      "key": "B_seed_33",
+      "old_physical_exact": true,
+      "actor_critic_exact": true
+    },
+    {
+      "key": "B_seed_33_scene_7001",
+      "old_physical_exact": true
+    },
+    {
+      "key": "C_seed_11",
+      "old_physical_exact": true,
+      "actor_critic_exact": true
+    },
+    {
+      "key": "C_seed_11_scene_7001",
+      "old_physical_exact": true
+    },
+    {
+      "key": "C_seed_22",
+      "old_physical_exact": true,
+      "actor_critic_exact": true
+    },
+    {
+      "key": "C_seed_22_scene_7001",
+      "old_physical_exact": true
+    },
+    {
+      "key": "C_seed_33",
+      "old_physical_exact": true,
+      "actor_critic_exact": true
+    },
+    {
+      "key": "C_seed_33_scene_7001",
+      "old_physical_exact": true
+    },
+    {
+      "key": "D_seed_11",
+      "old_physical_exact": true,
+      "actor_critic_exact": true
+    },
+    {
+      "key": "D_seed_11_scene_7001",
+      "old_physical_exact": true
+    },
+    {
+      "key": "D_seed_22",
+      "old_physical_exact": true,
+      "actor_critic_exact": true
+    },
+    {
+      "key": "D_seed_22_scene_7001",
+      "old_physical_exact": true
+    },
+    {
+      "key": "D_seed_33",
+      "old_physical_exact": true,
+      "actor_critic_exact": true
+    },
+    {
+      "key": "D_seed_33_scene_7001",
+      "old_physical_exact": true
+    },
+    {
+      "key": "E_seed_11",
+      "old_physical_exact": true,
+      "actor_critic_exact": true
+    },
+    {
+      "key": "E_seed_11_scene_7001",
+      "old_physical_exact": true
+    },
+    {
+      "key": "E_seed_22",
+      "old_physical_exact": true,
+      "actor_critic_exact": true
+    },
+    {
+      "key": "E_seed_22_scene_7001",
+      "old_physical_exact": true
+    },
+    {
+      "key": "E_seed_33",
+      "old_physical_exact": true,
+      "actor_critic_exact": true
+    },
+    {
+      "key": "E_seed_33_scene_7001",
+      "old_physical_exact": true
+    },
+    {
+      "key": "F_seed_11",
+      "old_physical_exact": true,
+      "actor_critic_exact": true
+    },
+    {
+      "key": "F_seed_11_scene_7001",
+      "old_physical_exact": true
+    },
+    {
+      "key": "F_seed_22",
+      "old_physical_exact": true,
+      "actor_critic_exact": true
+    },
+    {
+      "key": "F_seed_22_scene_7001",
+      "old_physical_exact": true
+    },
+    {
+      "key": "F_seed_33",
+      "old_physical_exact": true,
+      "actor_critic_exact": true
+    },
+    {
+      "key": "F_seed_33_scene_7001",
+      "old_physical_exact": true
+    }
+  ],
+  "paired_rollouts": [
+    {
+      "key": "A_seed_11",
+      "training_physics_exact": true,
+      "final_weights_differ": true
+    },
+    {
+      "key": "A_seed_22",
+      "training_physics_exact": true,
+      "final_weights_differ": true
+    },
+    {
+      "key": "A_seed_33",
+      "training_physics_exact": true,
+      "final_weights_differ": true
+    },
+    {
+      "key": "B_seed_11",
+      "training_physics_exact": true,
+      "final_weights_differ": true
+    },
+    {
+      "key": "B_seed_22",
+      "training_physics_exact": true,
+      "final_weights_differ": true
+    },
+    {
+      "key": "B_seed_33",
+      "training_physics_exact": true,
+      "final_weights_differ": true
+    },
+    {
+      "key": "C_seed_11",
+      "training_physics_exact": true,
+      "final_weights_differ": true
+    },
+    {
+      "key": "C_seed_22",
+      "training_physics_exact": true,
+      "final_weights_differ": true
+    },
+    {
+      "key": "C_seed_33",
+      "training_physics_exact": true,
+      "final_weights_differ": true
+    },
+    {
+      "key": "D_seed_11",
+      "training_physics_exact": true,
+      "final_weights_differ": true
+    },
+    {
+      "key": "D_seed_22",
+      "training_physics_exact": true,
+      "final_weights_differ": true
+    },
+    {
+      "key": "D_seed_33",
+      "training_physics_exact": true,
+      "final_weights_differ": true
+    },
+    {
+      "key": "E_seed_11",
+      "training_physics_exact": true,
+      "final_weights_differ": true
+    },
+    {
+      "key": "E_seed_22",
+      "training_physics_exact": true,
+      "final_weights_differ": true
+    },
+    {
+      "key": "E_seed_33",
+      "training_physics_exact": true,
+      "final_weights_differ": true
+    },
+    {
+      "key": "F_seed_11",
+      "training_physics_exact": true,
+      "final_weights_differ": true
+    },
+    {
+      "key": "F_seed_22",
+      "training_physics_exact": true,
+      "final_weights_differ": true
+    },
+    {
+      "key": "F_seed_33",
+      "training_physics_exact": true,
+      "final_weights_differ": true
+    }
+  ],
+  "before_probe": {
+    "source_root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_ablation_popart_v2_pilot\\20261103_200507_863382\\source_snapshot",
+    "source_runner_sha256": "a7dd4a66f16dff036f8e8815cd0aedd4572990772cdf53dde32548a3771bce72",
+    "linear_requested": false,
+    "optimizer_rates": [
+      {
+        "episode": 0,
+        "actor": 0.0005,
+        "critic": 0.0005
+      },
+      {
+        "episode": 1,
+        "actor": 0.00025,
+        "critic": 0.00025
+      }
+    ],
+    "actor_sha256": "c3da168400e1e2a79d234106b4bab1efb7b82c1ae02bf467aa31676daa474297",
+    "critic_sha256": "b83650755fb17901e47047894400de0f2f0684747321ff856f1f38a9f27219bb",
+    "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_lr_archived_before_probe\\20261103_212454_557328"
+  },
+  "fixed_probe": {
+    "source_root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network",
+    "source_runner_sha256": "1179f722c2033a91f2dd6708ca8629faa9195be8d8d65548c2097b262d2986a7",
+    "linear_requested": false,
+    "optimizer_rates": [
+      {
+        "episode": 0,
+        "actor": 0.0005,
+        "critic": 0.0005
+      },
+      {
+        "episode": 1,
+        "actor": 0.0005,
+        "critic": 0.0005
+      }
+    ],
+    "actor_sha256": "6de4868342f3284d42d864a2f6580503435a8769ec666a9498109b419c578457",
+    "critic_sha256": "6454e2c00fc9a6a492dc928e8a60540d088d63ffcc7e85bc55e73092272a5f5b",
+    "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_lr_fixed_probe\\20261103_211305_061773"
+  },
+  "linear_probe": {
+    "source_root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network",
+    "source_runner_sha256": "1179f722c2033a91f2dd6708ca8629faa9195be8d8d65548c2097b262d2986a7",
+    "linear_requested": true,
+    "optimizer_rates": [
+      {
+        "episode": 0,
+        "actor": 0.0005,
+        "critic": 0.0005
+      },
+      {
+        "episode": 1,
+        "actor": 0.00025,
+        "critic": 0.00025
+      }
+    ],
+    "actor_sha256": "c3da168400e1e2a79d234106b4bab1efb7b82c1ae02bf467aa31676daa474297",
+    "critic_sha256": "b83650755fb17901e47047894400de0f2f0684747321ff856f1f38a9f27219bb",
+    "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_lr_linear_probe\\20261103_211304_947267"
+  },
+  "baseline_20_episode_comparison": [
+    {
+      "seed": 11,
+      "fixed_delivered": 12,
+      "linear_delivered": 14,
+      "generated": 48,
+      "fixed_physical": [
+        {
+          "schema": "original_tg_physical_v1",
+          "episode": 0,
+          "horizon": 80,
+          "generated_packets": 24,
+          "delivered_packets": 6,
+          "unresolved_packets": 18,
+          "delivery_rate": 0.25,
+          "unresolved_fraction": 0.75,
+          "true_drop_count": null,
+          "true_drop_rate": null,
+          "success_hops_mean": 1.6666666666666667,
+          "success_delay_mean": 5.166666666666667,
+          "success_delay_p95": 11,
+          "attempts": 215,
+          "ack_successes": 114,
+          "ack_failures": 101,
+          "retry_attempts": 101,
+          "loop_transfers": 60,
+          "success_hops": [
+            3,
+            2,
+            2,
+            1,
+            1,
+            1
+          ],
+          "success_delays": [
+            11,
+            5,
+            8,
+            1,
+            3,
+            3
+          ]
+        },
+        {
+          "schema": "original_tg_physical_v1",
+          "episode": 1,
+          "horizon": 80,
+          "generated_packets": 24,
+          "delivered_packets": 6,
+          "unresolved_packets": 18,
+          "delivery_rate": 0.25,
+          "unresolved_fraction": 0.75,
+          "true_drop_count": null,
+          "true_drop_rate": null,
+          "success_hops_mean": 1.6666666666666667,
+          "success_delay_mean": 4.666666666666667,
+          "success_delay_p95": 10,
+          "attempts": 201,
+          "ack_successes": 107,
+          "ack_failures": 94,
+          "retry_attempts": 93,
+          "loop_transfers": 53,
+          "success_hops": [
+            3,
+            2,
+            2,
+            1,
+            1,
+            1
+          ],
+          "success_delays": [
+            8,
+            10,
+            5,
+            1,
+            3,
+            1
+          ]
+        }
+      ],
+      "old_evaluation": "results\\tg_popart_budget_probe\\evaluation\\runs\\A_seed_11_e20_scene7001\\moves_5",
+      "old_evaluation_sha256": "6ca12064ec7448377fb426c9114341c5bc2877bba885b52f9e80d1912c62e58f",
+      "training": "results\\tg_lr_budget_fixed\\training\\runs\\A_seed_11_e20_fixed\\moves_5",
+      "evaluation": "results\\tg_lr_budget_fixed\\evaluation\\runs\\A_seed_11_e20_fixed_scene7001\\moves_5",
+      "critic_head_optimizer_steps": 40
+    },
+    {
+      "seed": 22,
+      "fixed_delivered": 10,
+      "linear_delivered": 10,
+      "generated": 48,
+      "fixed_physical": [
+        {
+          "schema": "original_tg_physical_v1",
+          "episode": 0,
+          "horizon": 80,
+          "generated_packets": 24,
+          "delivered_packets": 5,
+          "unresolved_packets": 19,
+          "delivery_rate": 0.20833333333333334,
+          "unresolved_fraction": 0.7916666666666666,
+          "true_drop_count": null,
+          "true_drop_rate": null,
+          "success_hops_mean": 1.4,
+          "success_delay_mean": 6.4,
+          "success_delay_p95": 10,
+          "attempts": 183,
+          "ack_successes": 90,
+          "ack_failures": 93,
+          "retry_attempts": 93,
+          "loop_transfers": 61,
+          "success_hops": [
+            2,
+            2,
+            1,
+            1,
+            1
+          ],
+          "success_delays": [
+            10,
+            9,
+            1,
+            7,
+            5
+          ]
+        },
+        {
+          "schema": "original_tg_physical_v1",
+          "episode": 1,
+          "horizon": 80,
+          "generated_packets": 24,
+          "delivered_packets": 5,
+          "unresolved_packets": 19,
+          "delivery_rate": 0.20833333333333334,
+          "unresolved_fraction": 0.7916666666666666,
+          "true_drop_count": null,
+          "true_drop_rate": null,
+          "success_hops_mean": 1.4,
+          "success_delay_mean": 4.2,
+          "success_delay_p95": 9,
+          "attempts": 174,
+          "ack_successes": 92,
+          "ack_failures": 82,
+          "retry_attempts": 80,
+          "loop_transfers": 61,
+          "success_hops": [
+            2,
+            2,
+            1,
+            1,
+            1
+          ],
+          "success_delays": [
+            4,
+            9,
+            3,
+            1,
+            4
+          ]
+        }
+      ],
+      "old_evaluation": "results\\tg_popart_budget_probe\\evaluation\\runs\\A_seed_22_e20_scene7001\\moves_5",
+      "old_evaluation_sha256": "f9f58c44ebda9573580739ec63cfe0306664745cdc8d4009a788d7795f630146",
+      "training": "results\\tg_lr_budget_fixed\\training\\runs\\A_seed_22_e20_fixed\\moves_5",
+      "evaluation": "results\\tg_lr_budget_fixed\\evaluation\\runs\\A_seed_22_e20_fixed_scene7001\\moves_5",
+      "critic_head_optimizer_steps": 40
+    },
+    {
+      "seed": 33,
+      "fixed_delivered": 14,
+      "linear_delivered": 16,
+      "generated": 48,
+      "fixed_physical": [
+        {
+          "schema": "original_tg_physical_v1",
+          "episode": 0,
+          "horizon": 80,
+          "generated_packets": 24,
+          "delivered_packets": 7,
+          "unresolved_packets": 17,
+          "delivery_rate": 0.2916666666666667,
+          "unresolved_fraction": 0.7083333333333334,
+          "true_drop_count": null,
+          "true_drop_rate": null,
+          "success_hops_mean": 2.2857142857142856,
+          "success_delay_mean": 8.857142857142858,
+          "success_delay_p95": 20,
+          "attempts": 202,
+          "ack_successes": 107,
+          "ack_failures": 95,
+          "retry_attempts": 94,
+          "loop_transfers": 59,
+          "success_hops": [
+            4,
+            4,
+            3,
+            2,
+            1,
+            1,
+            1
+          ],
+          "success_delays": [
+            17,
+            20,
+            13,
+            7,
+            3,
+            1,
+            1
+          ]
+        },
+        {
+          "schema": "original_tg_physical_v1",
+          "episode": 1,
+          "horizon": 80,
+          "generated_packets": 24,
+          "delivered_packets": 7,
+          "unresolved_packets": 17,
+          "delivery_rate": 0.2916666666666667,
+          "unresolved_fraction": 0.7083333333333334,
+          "true_drop_count": null,
+          "true_drop_rate": null,
+          "success_hops_mean": 2.2857142857142856,
+          "success_delay_mean": 7.142857142857143,
+          "success_delay_p95": 15,
+          "attempts": 196,
+          "ack_successes": 116,
+          "ack_failures": 80,
+          "retry_attempts": 80,
+          "loop_transfers": 67,
+          "success_hops": [
+            4,
+            4,
+            3,
+            2,
+            1,
+            1,
+            1
+          ],
+          "success_delays": [
+            12,
+            15,
+            11,
+            9,
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "old_evaluation": "results\\tg_popart_budget_probe\\evaluation\\runs\\A_seed_33_e20_scene7001\\moves_5",
+      "old_evaluation_sha256": "0dd651ee312506906fd4cf2b60f39faecb3f0aee231e3be401840cdf269437f6",
+      "training": "results\\tg_lr_budget_fixed\\training\\runs\\A_seed_33_e20_fixed\\moves_5",
+      "evaluation": "results\\tg_lr_budget_fixed\\evaluation\\runs\\A_seed_33_e20_fixed_scene7001\\moves_5",
+      "critic_head_optimizer_steps": 40
+    }
+  ],
+  "fixed_20_mean": 0.25,
+  "fixed_20_sample_sd": 0.04166666666666667,
+  "validator_sha256": "fb99a4b43b80ca98d4be2aa40440977a9a01ed224908f6fc21598de925600a92",
+  "new_test_sha256": "2c032e5120b97d03b38f24549f9882e90e88d0acd335e96c201f714ba1904a69"
+}
