@@ -146,6 +146,12 @@ class DeepQNetwork(nn.Module):
         self.wm_runtime = None
         self.wm_update_records = []
         self.evaluation_metadata = None
+        self.pm_runtime = None
+        self.pm_update_records = []
+        if getattr(self.all_args, "use_pm_reward", False):
+            from .progress_runtime import FrozenPMRuntime
+            self.pm_runtime = FrozenPMRuntime(self.all_args.pm_reward_checkpoint, self.env.buoy_number,
+                self.all_args.episode_length, self.buffer.gamma, self.all_args.pm_reward_alpha)
         if getattr(self.all_args, "use_wm_actor", False):
             if self.all_args.use_recurrent_policy or self.all_args.use_naive_recurrent_policy:
                 raise ValueError("WM Actor integration currently supports feedforward TG policy only")
@@ -562,6 +568,16 @@ class DeepQNetwork(nn.Module):
         self.buffer.active_masks[0] = self.env.active_masks()
     def train(self):
         """Train policies with data in buffer."""
+        if self.pm_runtime is not None:
+            from .wm_runtime import tensor_digest
+            self.pm_runtime.assert_frozen()
+            expected = np.array([row["reward_train"] for row in self.pm_runtime.episode_records])
+            if expected.shape != (self.buffer.episode_length,) or not np.allclose(
+                    self.buffer.rewards[:, 0, :, 0], np.broadcast_to(expected[:, None], (len(expected), self.env.buoy_number)),
+                    rtol=1e-6, atol=1e-5):
+                raise ValueError("PPO buffer does not contain PM shaped team rewards")
+            pm_actor_before = tensor_digest(self.policy.actor.state_dict())
+            pm_critic_before = tensor_digest(self.policy.critic.state_dict())
         if self.wm_runtime is not None:
             import hashlib
             from .wm_runtime import tensor_digest
@@ -588,6 +604,12 @@ class DeepQNetwork(nn.Module):
             fusion_before = tensor_digest(self.policy.actor.wm_fusion.state_dict())
         self.trainer.prep_training()      # 准备训练环境
         train_infos = self.trainer.train(self.buffer)
+        if self.pm_runtime is not None:
+            self.pm_runtime.assert_frozen()
+            self.pm_update_records.append({"pm_frozen": True,
+                "actor_changed": pm_actor_before != tensor_digest(self.policy.actor.state_dict()),
+                "critic_changed": pm_critic_before != tensor_digest(self.policy.critic.state_dict()),
+                "gae_uses_shaped_rewards": True})
         if self.wm_runtime is not None:
             self.wm_runtime.assert_frozen()
             if hashlib.sha256(self.buffer.wm_features.tobytes()).hexdigest() != cached_digest:

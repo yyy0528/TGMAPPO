@@ -1,0 +1,12 @@
+{
+  "baseline": "results/tg_step6_final_baseline/runs/20261103_142752_782391/moves_5",
+  "wm": "results/tg_step6_final_wm/runs/20261103_142752_052297/moves_5",
+  "alpha0": "results/tg_step6_final_alpha0/runs/20261103_142940_292196/moves_5",
+  "pm": "results/tg_step6_final_pm/runs/20261103_142940_497301/moves_5",
+  "wm_pm": "results/tg_step6_final_wm_pm/runs/20261103_142939_927101/moves_5",
+  "eval_baseline": "results/tg_step6_final_eval_baseline/runs/20261103_143150_316570/moves_5",
+  "eval_wm": "results/tg_step6_final_eval_wm/runs/20261103_143148_331798/moves_5",
+  "eval_pm": "results/tg_step6_final_eval_pm/runs/20261103_143148_088880/moves_5",
+  "eval_wm_pm": "results/tg_step6_final_eval_wm_pm/runs/20261103_143148_261841/moves_5",
+  "eval_wm_pm_repeat": "results/tg_step6_final_eval_wm_pm_repeat/runs/20261103_143148_331798/moves_5"
+}

@@ -15,6 +15,7 @@ from .utils import setup_logger
 from src.experiment_io import MetricCsvWriter, moving_buoy_ids
 from .transition_data import TransitionRecorder, routing_actions
 import random
+import csv
 
 logger = setup_logger(log_dir="outputs/TG-MAPPO/diagnostic_logs", log_name="buoy_2018")
 class tmp_buffer:
@@ -55,6 +56,13 @@ class Runner:
         )
         self.log_dir = os.path.join(self.run_dir, "logs")
         os.makedirs(self.log_dir, exist_ok=True)  # 创建日志目录
+        self.pm_runtime = getattr(self.agents[0].RL, "pm_runtime", None)
+        self.pm_stream = None
+        if self.pm_runtime is not None:
+            self.pm_stream = open(os.path.join(self.log_dir, "TG_PM_rewards.csv"), "x", newline="", encoding="utf-8")
+            self.pm_writer = csv.DictWriter(self.pm_stream, fieldnames=("episode", "step", "reward_env", "phi_t",
+                "phi_tp1", "reward_progress", "reward_train", "terminated", "rollout_truncated"))
+            self.pm_writer.writeheader()
         self.data_exporter = None
         self.data_behavior = getattr(self.env.all_args, "data_behavior", "tg-mappo")
         self.data_rng = random.Random(getattr(self.env.all_args, "seed", 0))
@@ -83,6 +91,8 @@ class Runner:
         try:
             return self._run()
         finally:
+            if self.pm_stream is not None:
+                self.pm_stream.close()
             if self.data_exporter is not None:
                 self.data_exporter.close()
             self.metric_writer.close()
@@ -105,6 +115,8 @@ class Runner:
             self.env.packet_generation()
             next_queue_order = self.env.packet_id
             self.agents[0].RL.warmup()
+            if self.pm_runtime is not None:
+                self.pm_runtime.start_episode(self.env, episode)
             if self.data_exporter is not None:
                 self.data_exporter.start_episode(self.env, episode, added_value)
             self.memory_id =0
@@ -371,6 +383,8 @@ class Runner:
                                 if k == 0:
                                     k = 1
                                     packet.transmit(action[1])
+                                    if self.pm_runtime is not None and packet.if_sink:
+                                        self.pm_runtime.delivered(packet.id)
                                     if self.data_exporter is not None:
                                         self.data_exporter.transmitted(packet)
                                     packet.queue_order = next_queue_order
@@ -507,6 +521,10 @@ class Runner:
 
                 reward_tmp = np.sum(reward_list)
                 temp_reward += reward_tmp
+                if self.pm_runtime is not None:
+                    pm_row = self.pm_runtime.advance(self.env, self.step, reward_tmp, terminal)
+                    self.pm_writer.writerow(pm_row)
+                    reward_tmp = pm_row["reward_train"]
                 if self.data_exporter is not None:
                     self.data_exporter.end_step(self.env, added_value, reward_tmp, terminal)
                 #print(f"reward_tep: {reward_tmp}")

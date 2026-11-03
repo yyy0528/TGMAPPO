@@ -1,0 +1,1379 @@
+{
+  "success": true,
+  "scope": "censored-time PM minimal integration, not full outcome PM or performance acceptance",
+  "test_count": 76,
+  "tests": [
+    {
+      "python": "D:\\python3.6.8\\python.exe",
+      "scope": "legacy_fixed_v1 targeted regressions",
+      "stages": [
+        {
+          "name": "functions",
+          "tests": 21,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "seconds": 1.794,
+          "log": "functions.log"
+        },
+        {
+          "name": "modules",
+          "tests": 24,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "seconds": 5.799,
+          "log": "modules.log"
+        },
+        {
+          "name": "integration",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "seconds": 20.894,
+          "log": "integration.log"
+        }
+      ],
+      "success": true,
+      "tests": 51
+    },
+    {
+      "python": "D:\\python3.6.8\\python.exe",
+      "stages": [
+        {
+          "name": "functions",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "modules",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "integration",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0
+        }
+      ],
+      "success": true
+    },
+    {
+      "python": "D:\\python3.6.8\\python.exe",
+      "success": true,
+      "stages": [
+        {
+          "name": "functions",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "modules",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "integration",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0
+        }
+      ]
+    },
+    {
+      "module": "tests.test_tg_progress_model",
+      "tests": 5,
+      "exit_code": 0,
+      "log": "test_causal_gru_and_online_prefix_equivalence (tests.test_tg_progress_model.ProgressFunctions) ... ok\ntest_censored_likelihood_is_observed_survival_not_failure (tests.test_tg_progress_model.ProgressFunctions) ... ok\ntest_packet_weighting_padding_and_real_gradient_update (tests.test_tg_progress_model.ProgressFunctions) ... ok\ntest_prefix_features_only_use_current_and_past (tests.test_tg_progress_model.ProgressFunctions) ... ok\ntest_unknown_window_results_do_not_count_as_zero_brier (tests.test_tg_progress_model.ProgressFunctions) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 1.286s\n\nOK\n"
+    },
+    {
+      "module": "tests.test_tg_world_model",
+      "tests": 6,
+      "exit_code": 0,
+      "log": "test_future_targets_do_not_change_inputs_and_wait_is_masked (tests.test_tg_world_model.WorldModelFunctions) ... ok\ntest_motion_context_is_observed_offset_not_future_motion (tests.test_tg_world_model.WorldModelFunctions) ... ok\ntest_real_gradients_checkpoint_and_evaluation_preserve_normalization (tests.test_tg_world_model.WorldModelFunctions) ... ok\ntest_receiver_feedback_uses_only_matching_previous_attempts (tests.test_tg_world_model.WorldModelFunctions) ... ok\ntest_selection_preserves_mandatory_head_gates (tests.test_tg_world_model.WorldModelFunctions) ... ok\ntest_topology_is_independent_of_current_candidate_action (tests.test_tg_world_model.WorldModelFunctions) ... ok\n\n----------------------------------------------------------------------\nRan 6 tests in 1.301s\n\nOK\n"
+    }
+  ],
+  "runs": {
+    "baseline": {
+      "run": "results\\tg_step6_final_baseline\\runs\\20261103_142752_782391\\moves_5",
+      "metrics": [
+        {
+          "episode": 0.0,
+          "delivery_rate": 0.375,
+          "average_hops": 54.083333333333336,
+          "average_delay": 29.285714285714285
+        },
+        {
+          "episode": 1.0,
+          "delivery_rate": 0.25,
+          "average_hops": 61.916666666666664,
+          "average_delay": 31.75
+        }
+      ],
+      "report": {
+        "mode": "training",
+        "checkpoint": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_step6_final_baseline\\runs\\20261103_142752_782391\\moves_5\\checkpoints\\tg_policy_latest.pt",
+        "checkpoint_sha256": "ac9816c0a2bac50599c281634ae649bb1c94f6a2d8f7e2ecd4f0aa3a2a485a15",
+        "wm": null,
+        "wm_ppo_updates": [],
+        "pm": null,
+        "pm_ppo_updates": [],
+        "training_resume_supported": false
+      },
+      "config": {
+        "seed": 0,
+        "scenario_seed": null,
+        "num_episodes": 2,
+        "episode_length": 80,
+        "num_moving_buoys": 5,
+        "random_channel": true,
+        "gamma": 0.99,
+        "use_pm_reward": false,
+        "pm_reward_alpha": 1.0,
+        "use_wm_actor": false,
+        "tg_evaluate": false
+      }
+    },
+    "wm": {
+      "run": "results\\tg_step6_final_wm\\runs\\20261103_142752_052297\\moves_5",
+      "metrics": [
+        {
+          "episode": 0.0,
+          "delivery_rate": 0.375,
+          "average_hops": 54.083333333333336,
+          "average_delay": 29.285714285714285
+        },
+        {
+          "episode": 1.0,
+          "delivery_rate": 0.25,
+          "average_hops": 61.916666666666664,
+          "average_delay": 31.75
+        }
+      ],
+      "report": {
+        "mode": "training",
+        "checkpoint": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_step6_final_wm\\runs\\20261103_142752_052297\\moves_5\\checkpoints\\tg_policy_latest.pt",
+        "checkpoint_sha256": "a6d8c76a2929376fe4e8a7a21edbadc72adb6372f647e34864eaa44318c5e165",
+        "wm": {
+          "checkpoint": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_multiscene_gate_selection\\20261103_000951_565881\\wm_best.pt",
+          "checkpoint_sha256": "2919dff60d3128321170410e632e7bddd476a4f09c766b92108bfe9cb73daca9",
+          "state_sha256": "6382137db574de437731e71df413df5e88c441ccb55236088ac2754197f9aea6",
+          "history_length": 4,
+          "features": [
+            "ack_probability",
+            "sender_joint_queue_fraction_delta",
+            "receiver_joint_queue_fraction_delta"
+          ],
+          "predictions": 160,
+          "frozen": true,
+          "critic_uses_wm": false,
+          "not_used": [
+            "motion",
+            "delivery",
+            "drop",
+            "uncertainty"
+          ]
+        },
+        "wm_ppo_updates": [
+          {
+            "ratio_max_error": 0.0,
+            "cache_sha256": "3ff98af868c2394528a73a33e5b280a2405b93d70068fa3540e4edb2dede3fab",
+            "actor_changed": true,
+            "critic_changed": true,
+            "fusion_changed": true,
+            "wm_frozen": true,
+            "metrics": {
+              "value_loss": 2.8127976655960083,
+              "policy_loss": 0.0001849133986979723,
+              "dist_entropy": 1.8891658186912537,
+              "actor_grad_norm": 0.31012171506881714,
+              "critic_grad_norm": 22.49601173400879,
+              "ratio": 1.0000587701797485
+            }
+          },
+          {
+            "ratio_max_error": 0.0,
+            "cache_sha256": "abeb8cd99e01f4040bb1bd64d2adb796afae69c8647ca037d568e9dd1235375d",
+            "actor_changed": true,
+            "critic_changed": true,
+            "fusion_changed": true,
+            "wm_frozen": true,
+            "metrics": {
+              "value_loss": 0.4772583693265915,
+              "policy_loss": -7.355213710980024e-05,
+              "dist_entropy": 1.9422800540924072,
+              "actor_grad_norm": 0.3418680727481842,
+              "critic_grad_norm": 1.0790023803710938,
+              "ratio": 0.9999105334281921
+            }
+          }
+        ],
+        "pm": null,
+        "pm_ppo_updates": [],
+        "training_resume_supported": false
+      },
+      "config": {
+        "seed": 0,
+        "scenario_seed": null,
+        "num_episodes": 2,
+        "episode_length": 80,
+        "num_moving_buoys": 5,
+        "random_channel": true,
+        "gamma": 0.99,
+        "use_pm_reward": false,
+        "pm_reward_alpha": 1.0,
+        "use_wm_actor": true,
+        "tg_evaluate": false
+      }
+    },
+    "alpha0": {
+      "run": "results\\tg_step6_final_alpha0\\runs\\20261103_142940_292196\\moves_5",
+      "metrics": [
+        {
+          "episode": 0.0,
+          "delivery_rate": 0.375,
+          "average_hops": 54.083333333333336,
+          "average_delay": 29.285714285714285
+        },
+        {
+          "episode": 1.0,
+          "delivery_rate": 0.25,
+          "average_hops": 61.916666666666664,
+          "average_delay": 31.75
+        }
+      ],
+      "report": {
+        "mode": "training",
+        "checkpoint": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_step6_final_alpha0\\runs\\20261103_142940_292196\\moves_5\\checkpoints\\tg_policy_latest.pt",
+        "checkpoint_sha256": "5c314fd720d05678ba885d4b924a4d8807a2bd0e2638eb9c3a4e262e46cda894",
+        "wm": null,
+        "wm_ppo_updates": [],
+        "pm": {
+          "checkpoint": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_pm_final_pretrain\\20261103_142745_276042\\pm_best.pt",
+          "checkpoint_sha256": "f62f05b520cbaf665823ce38981c6c88f5e4f816dc01f85d3149aca7d3f81240",
+          "state_sha256": "64168e20e02f658aadd82b88391f2998b6850b5f65a5d3f84158406a7e36741a",
+          "architecture": "legacy_tg_survival_pm_v1",
+          "features": [
+            "sink_distance",
+            "own_queue",
+            "neighbor_queue",
+            "best_neighbor_distance",
+            "best_link",
+            "mean_link",
+            "degree",
+            "elapsed_window",
+            "remaining_window",
+            "hops",
+            "revisit_fraction",
+            "waiting",
+            "neighbor_change",
+            "sink_queue"
+          ],
+          "alpha": 0.0,
+          "gamma": 0.99,
+          "horizon": 80,
+          "frozen": true,
+          "target": "delivery within remaining finite window; not eventual failure",
+          "reliability_gate": "constant_one; no uncertainty claim",
+          "episodes": [
+            {
+              "episode": 0,
+              "initial_phi": 0.8535205523173014,
+              "discounted_progress": 0.0,
+              "boundary_error": 0.0,
+              "terminal_phi": 0.0,
+              "delivered": 9,
+              "unresolved_censored": 15
+            },
+            {
+              "episode": 1,
+              "initial_phi": 0.8469508488972982,
+              "discounted_progress": 0.0,
+              "boundary_error": 0.0,
+              "terminal_phi": 0.0,
+              "delivered": 6,
+              "unresolved_censored": 18
+            }
+          ]
+        },
+        "pm_ppo_updates": [
+          {
+            "pm_frozen": true,
+            "actor_changed": true,
+            "critic_changed": true,
+            "gae_uses_shaped_rewards": true
+          },
+          {
+            "pm_frozen": true,
+            "actor_changed": true,
+            "critic_changed": true,
+            "gae_uses_shaped_rewards": true
+          }
+        ],
+        "training_resume_supported": false
+      },
+      "config": {
+        "seed": 0,
+        "scenario_seed": null,
+        "num_episodes": 2,
+        "episode_length": 80,
+        "num_moving_buoys": 5,
+        "random_channel": true,
+        "gamma": 0.99,
+        "use_pm_reward": true,
+        "pm_reward_alpha": 0.0,
+        "use_wm_actor": false,
+        "tg_evaluate": false
+      },
+      "reward_audit": {
+        "rows": 160,
+        "boundary_errors": [
+          0.0,
+          0.0
+        ],
+        "minimum_progress": -0.0,
+        "maximum_progress": -0.0
+      }
+    },
+    "pm": {
+      "run": "results\\tg_step6_final_pm\\runs\\20261103_142940_497301\\moves_5",
+      "metrics": [
+        {
+          "episode": 0.0,
+          "delivery_rate": 0.375,
+          "average_hops": 54.083333333333336,
+          "average_delay": 29.285714285714285
+        },
+        {
+          "episode": 1.0,
+          "delivery_rate": 0.25,
+          "average_hops": 61.916666666666664,
+          "average_delay": 31.75
+        }
+      ],
+      "report": {
+        "mode": "training",
+        "checkpoint": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_step6_final_pm\\runs\\20261103_142940_497301\\moves_5\\checkpoints\\tg_policy_latest.pt",
+        "checkpoint_sha256": "e9ce1034980cf38b023954fa535883cb44ffb6ff05f37c4001916de09219c0ad",
+        "wm": null,
+        "wm_ppo_updates": [],
+        "pm": {
+          "checkpoint": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_pm_final_pretrain\\20261103_142745_276042\\pm_best.pt",
+          "checkpoint_sha256": "f62f05b520cbaf665823ce38981c6c88f5e4f816dc01f85d3149aca7d3f81240",
+          "state_sha256": "64168e20e02f658aadd82b88391f2998b6850b5f65a5d3f84158406a7e36741a",
+          "architecture": "legacy_tg_survival_pm_v1",
+          "features": [
+            "sink_distance",
+            "own_queue",
+            "neighbor_queue",
+            "best_neighbor_distance",
+            "best_link",
+            "mean_link",
+            "degree",
+            "elapsed_window",
+            "remaining_window",
+            "hops",
+            "revisit_fraction",
+            "waiting",
+            "neighbor_change",
+            "sink_queue"
+          ],
+          "alpha": 1.0,
+          "gamma": 0.99,
+          "horizon": 80,
+          "frozen": true,
+          "target": "delivery within remaining finite window; not eventual failure",
+          "reliability_gate": "constant_one; no uncertainty claim",
+          "episodes": [
+            {
+              "episode": 0,
+              "initial_phi": 0.8535205523173014,
+              "discounted_progress": -0.8535205523173014,
+              "boundary_error": 0.0,
+              "terminal_phi": 0.0,
+              "delivered": 9,
+              "unresolved_censored": 15
+            },
+            {
+              "episode": 1,
+              "initial_phi": 0.8469508488972982,
+              "discounted_progress": -0.8469508488972982,
+              "boundary_error": 0.0,
+              "terminal_phi": 0.0,
+              "delivered": 6,
+              "unresolved_censored": 18
+            }
+          ]
+        },
+        "pm_ppo_updates": [
+          {
+            "pm_frozen": true,
+            "actor_changed": true,
+            "critic_changed": true,
+            "gae_uses_shaped_rewards": true
+          },
+          {
+            "pm_frozen": true,
+            "actor_changed": true,
+            "critic_changed": true,
+            "gae_uses_shaped_rewards": true
+          }
+        ],
+        "training_resume_supported": false
+      },
+      "config": {
+        "seed": 0,
+        "scenario_seed": null,
+        "num_episodes": 2,
+        "episode_length": 80,
+        "num_moving_buoys": 5,
+        "random_channel": true,
+        "gamma": 0.99,
+        "use_pm_reward": true,
+        "pm_reward_alpha": 1.0,
+        "use_wm_actor": false,
+        "tg_evaluate": false
+      },
+      "reward_audit": {
+        "rows": 160,
+        "boundary_errors": [
+          0.0,
+          0.0
+        ],
+        "minimum_progress": -0.14113940556844085,
+        "maximum_progress": 0.019038319786389674
+      }
+    },
+    "wm_pm": {
+      "run": "results\\tg_step6_final_wm_pm\\runs\\20261103_142939_927101\\moves_5",
+      "metrics": [
+        {
+          "episode": 0.0,
+          "delivery_rate": 0.375,
+          "average_hops": 54.083333333333336,
+          "average_delay": 29.285714285714285
+        },
+        {
+          "episode": 1.0,
+          "delivery_rate": 0.25,
+          "average_hops": 61.916666666666664,
+          "average_delay": 31.75
+        }
+      ],
+      "report": {
+        "mode": "training",
+        "checkpoint": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_step6_final_wm_pm\\runs\\20261103_142939_927101\\moves_5\\checkpoints\\tg_policy_latest.pt",
+        "checkpoint_sha256": "7ce8d580bbd642faad522752b5b5a42ec86e836adbabe3061ea34e0ec77a2ac5",
+        "wm": {
+          "checkpoint": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_multiscene_gate_selection\\20261103_000951_565881\\wm_best.pt",
+          "checkpoint_sha256": "2919dff60d3128321170410e632e7bddd476a4f09c766b92108bfe9cb73daca9",
+          "state_sha256": "6382137db574de437731e71df413df5e88c441ccb55236088ac2754197f9aea6",
+          "history_length": 4,
+          "features": [
+            "ack_probability",
+            "sender_joint_queue_fraction_delta",
+            "receiver_joint_queue_fraction_delta"
+          ],
+          "predictions": 160,
+          "frozen": true,
+          "critic_uses_wm": false,
+          "not_used": [
+            "motion",
+            "delivery",
+            "drop",
+            "uncertainty"
+          ]
+        },
+        "wm_ppo_updates": [
+          {
+            "ratio_max_error": 0.0,
+            "cache_sha256": "3ff98af868c2394528a73a33e5b280a2405b93d70068fa3540e4edb2dede3fab",
+            "actor_changed": true,
+            "critic_changed": true,
+            "fusion_changed": true,
+            "wm_frozen": true,
+            "metrics": {
+              "value_loss": 2.8128135204315186,
+              "policy_loss": 0.00018489151261746883,
+              "dist_entropy": 1.8891657590866089,
+              "actor_grad_norm": 0.3101236820220947,
+              "critic_grad_norm": 22.49604034423828,
+              "ratio": 1.000058650970459
+            }
+          },
+          {
+            "ratio_max_error": 0.0,
+            "cache_sha256": "abeb8cd99e01f4040bb1bd64d2adb796afae69c8647ca037d568e9dd1235375d",
+            "actor_changed": true,
+            "critic_changed": true,
+            "fusion_changed": true,
+            "wm_frozen": true,
+            "metrics": {
+              "value_loss": 0.47725337743759155,
+              "policy_loss": -7.378744248853764e-05,
+              "dist_entropy": 1.9422800540924072,
+              "actor_grad_norm": 0.34187352657318115,
+              "critic_grad_norm": 1.0788995027542114,
+              "ratio": 0.9999104738235474
+            }
+          }
+        ],
+        "pm": {
+          "checkpoint": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_pm_final_pretrain\\20261103_142745_276042\\pm_best.pt",
+          "checkpoint_sha256": "f62f05b520cbaf665823ce38981c6c88f5e4f816dc01f85d3149aca7d3f81240",
+          "state_sha256": "64168e20e02f658aadd82b88391f2998b6850b5f65a5d3f84158406a7e36741a",
+          "architecture": "legacy_tg_survival_pm_v1",
+          "features": [
+            "sink_distance",
+            "own_queue",
+            "neighbor_queue",
+            "best_neighbor_distance",
+            "best_link",
+            "mean_link",
+            "degree",
+            "elapsed_window",
+            "remaining_window",
+            "hops",
+            "revisit_fraction",
+            "waiting",
+            "neighbor_change",
+            "sink_queue"
+          ],
+          "alpha": 1.0,
+          "gamma": 0.99,
+          "horizon": 80,
+          "frozen": true,
+          "target": "delivery within remaining finite window; not eventual failure",
+          "reliability_gate": "constant_one; no uncertainty claim",
+          "episodes": [
+            {
+              "episode": 0,
+              "initial_phi": 0.8535205523173014,
+              "discounted_progress": -0.8535205523173014,
+              "boundary_error": 0.0,
+              "terminal_phi": 0.0,
+              "delivered": 9,
+              "unresolved_censored": 15
+            },
+            {
+              "episode": 1,
+              "initial_phi": 0.8469508488972982,
+              "discounted_progress": -0.8469508488972982,
+              "boundary_error": 0.0,
+              "terminal_phi": 0.0,
+              "delivered": 6,
+              "unresolved_censored": 18
+            }
+          ]
+        },
+        "pm_ppo_updates": [
+          {
+            "pm_frozen": true,
+            "actor_changed": true,
+            "critic_changed": true,
+            "gae_uses_shaped_rewards": true
+          },
+          {
+            "pm_frozen": true,
+            "actor_changed": true,
+            "critic_changed": true,
+            "gae_uses_shaped_rewards": true
+          }
+        ],
+        "training_resume_supported": false
+      },
+      "config": {
+        "seed": 0,
+        "scenario_seed": null,
+        "num_episodes": 2,
+        "episode_length": 80,
+        "num_moving_buoys": 5,
+        "random_channel": true,
+        "gamma": 0.99,
+        "use_pm_reward": true,
+        "pm_reward_alpha": 1.0,
+        "use_wm_actor": true,
+        "tg_evaluate": false
+      },
+      "reward_audit": {
+        "rows": 160,
+        "boundary_errors": [
+          0.0,
+          0.0
+        ],
+        "minimum_progress": -0.14113940556844085,
+        "maximum_progress": 0.019038319786389674
+      }
+    },
+    "eval_baseline": {
+      "run": "results\\tg_step6_final_eval_baseline\\runs\\20261103_143150_316570\\moves_5",
+      "metrics": [
+        {
+          "episode": 0.0,
+          "delivery_rate": 0.16666666666666666,
+          "average_hops": 67.04166666666667,
+          "average_delay": 2.3333333333333335
+        },
+        {
+          "episode": 1.0,
+          "delivery_rate": 0.16666666666666666,
+          "average_hops": 67.04166666666667,
+          "average_delay": 7.333333333333333
+        }
+      ],
+      "report": {
+        "source": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_step6_final_baseline\\runs\\20261103_142752_782391\\moves_5\\checkpoints\\tg_policy_latest.pt",
+        "checkpoint_sha256": "ac9816c0a2bac50599c281634ae649bb1c94f6a2d8f7e2ecd4f0aa3a2a485a15",
+        "actor_sha256": "6066e9a134104c593ba2130cea61e8c8479b7a3d3c46a186b191a0cce0b63e31",
+        "critic_sha256": "081126a01deeb024892eaa83116ec5ad756f20c34ed947a6e6524c2f331d2ea2",
+        "actor_unchanged": true,
+        "critic_unchanged": true,
+        "mode": "frozen_greedy_evaluation",
+        "wm": null,
+        "pm": null,
+        "optimizer_updates": 0
+      },
+      "config": {
+        "seed": 404,
+        "scenario_seed": 404,
+        "num_episodes": 2,
+        "episode_length": 80,
+        "num_moving_buoys": 5,
+        "random_channel": true,
+        "gamma": 0.99,
+        "use_pm_reward": false,
+        "pm_reward_alpha": 1.0,
+        "use_wm_actor": false,
+        "tg_evaluate": true
+      }
+    },
+    "eval_wm": {
+      "run": "results\\tg_step6_final_eval_wm\\runs\\20261103_143148_331798\\moves_5",
+      "metrics": [
+        {
+          "episode": 0.0,
+          "delivery_rate": 0.16666666666666666,
+          "average_hops": 67.04166666666667,
+          "average_delay": 2.3333333333333335
+        },
+        {
+          "episode": 1.0,
+          "delivery_rate": 0.16666666666666666,
+          "average_hops": 67.04166666666667,
+          "average_delay": 7.333333333333333
+        }
+      ],
+      "report": {
+        "source": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_step6_final_wm\\runs\\20261103_142752_052297\\moves_5\\checkpoints\\tg_policy_latest.pt",
+        "checkpoint_sha256": "a6d8c76a2929376fe4e8a7a21edbadc72adb6372f647e34864eaa44318c5e165",
+        "actor_sha256": "b635fe5d0a7979cc609861983689773546c4677f926f1fef0aac98a6de12994b",
+        "critic_sha256": "081126a01deeb024892eaa83116ec5ad756f20c34ed947a6e6524c2f331d2ea2",
+        "actor_unchanged": true,
+        "critic_unchanged": true,
+        "mode": "frozen_greedy_evaluation",
+        "wm": {
+          "checkpoint": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_multiscene_gate_selection\\20261103_000951_565881\\wm_best.pt",
+          "checkpoint_sha256": "2919dff60d3128321170410e632e7bddd476a4f09c766b92108bfe9cb73daca9",
+          "state_sha256": "6382137db574de437731e71df413df5e88c441ccb55236088ac2754197f9aea6",
+          "history_length": 4,
+          "features": [
+            "ack_probability",
+            "sender_joint_queue_fraction_delta",
+            "receiver_joint_queue_fraction_delta"
+          ],
+          "predictions": 160,
+          "frozen": true,
+          "critic_uses_wm": false,
+          "not_used": [
+            "motion",
+            "delivery",
+            "drop",
+            "uncertainty"
+          ]
+        },
+        "pm": null,
+        "optimizer_updates": 0
+      },
+      "config": {
+        "seed": 404,
+        "scenario_seed": 404,
+        "num_episodes": 2,
+        "episode_length": 80,
+        "num_moving_buoys": 5,
+        "random_channel": true,
+        "gamma": 0.99,
+        "use_pm_reward": false,
+        "pm_reward_alpha": 1.0,
+        "use_wm_actor": true,
+        "tg_evaluate": true
+      }
+    },
+    "eval_pm": {
+      "run": "results\\tg_step6_final_eval_pm\\runs\\20261103_143148_088880\\moves_5",
+      "metrics": [
+        {
+          "episode": 0.0,
+          "delivery_rate": 0.16666666666666666,
+          "average_hops": 67.04166666666667,
+          "average_delay": 2.3333333333333335
+        },
+        {
+          "episode": 1.0,
+          "delivery_rate": 0.16666666666666666,
+          "average_hops": 67.04166666666667,
+          "average_delay": 7.333333333333333
+        }
+      ],
+      "report": {
+        "source": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_step6_final_pm\\runs\\20261103_142940_497301\\moves_5\\checkpoints\\tg_policy_latest.pt",
+        "checkpoint_sha256": "e9ce1034980cf38b023954fa535883cb44ffb6ff05f37c4001916de09219c0ad",
+        "actor_sha256": "9dc96ec70faab2a4358165db815c9a467e46a5107ca2feaa842e8d8bc6f18dbb",
+        "critic_sha256": "c34729f079aa6574b43ee0339aeed039f68d2b6fa328f0edde0bcb0a47042187",
+        "actor_unchanged": true,
+        "critic_unchanged": true,
+        "mode": "frozen_greedy_evaluation",
+        "wm": null,
+        "pm": {
+          "checkpoint": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_pm_final_pretrain\\20261103_142745_276042\\pm_best.pt",
+          "checkpoint_sha256": "f62f05b520cbaf665823ce38981c6c88f5e4f816dc01f85d3149aca7d3f81240",
+          "state_sha256": "64168e20e02f658aadd82b88391f2998b6850b5f65a5d3f84158406a7e36741a",
+          "architecture": "legacy_tg_survival_pm_v1",
+          "features": [
+            "sink_distance",
+            "own_queue",
+            "neighbor_queue",
+            "best_neighbor_distance",
+            "best_link",
+            "mean_link",
+            "degree",
+            "elapsed_window",
+            "remaining_window",
+            "hops",
+            "revisit_fraction",
+            "waiting",
+            "neighbor_change",
+            "sink_queue"
+          ],
+          "alpha": 1.0,
+          "gamma": 0.99,
+          "horizon": 80,
+          "frozen": true,
+          "target": "delivery within remaining finite window; not eventual failure",
+          "reliability_gate": "constant_one; no uncertainty claim",
+          "episodes": [
+            {
+              "episode": 0,
+              "initial_phi": 0.8535205523173014,
+              "discounted_progress": -0.8535205523173015,
+              "boundary_error": 1.1102230246251565e-16,
+              "terminal_phi": 0.0,
+              "delivered": 4,
+              "unresolved_censored": 20
+            },
+            {
+              "episode": 1,
+              "initial_phi": 0.8493471145629883,
+              "discounted_progress": -0.8493471145629878,
+              "boundary_error": 4.440892098500626e-16,
+              "terminal_phi": 0.0,
+              "delivered": 4,
+              "unresolved_censored": 20
+            }
+          ]
+        },
+        "optimizer_updates": 0
+      },
+      "config": {
+        "seed": 404,
+        "scenario_seed": 404,
+        "num_episodes": 2,
+        "episode_length": 80,
+        "num_moving_buoys": 5,
+        "random_channel": true,
+        "gamma": 0.99,
+        "use_pm_reward": true,
+        "pm_reward_alpha": 1.0,
+        "use_wm_actor": false,
+        "tg_evaluate": true
+      },
+      "reward_audit": {
+        "rows": 160,
+        "boundary_errors": [
+          1.1102230246251565e-16,
+          4.440892098500626e-16
+        ],
+        "minimum_progress": -0.17734937349955238,
+        "maximum_progress": 0.018010256290435733
+      }
+    },
+    "eval_wm_pm": {
+      "run": "results\\tg_step6_final_eval_wm_pm\\runs\\20261103_143148_261841\\moves_5",
+      "metrics": [
+        {
+          "episode": 0.0,
+          "delivery_rate": 0.16666666666666666,
+          "average_hops": 67.04166666666667,
+          "average_delay": 2.3333333333333335
+        },
+        {
+          "episode": 1.0,
+          "delivery_rate": 0.16666666666666666,
+          "average_hops": 67.04166666666667,
+          "average_delay": 7.333333333333333
+        }
+      ],
+      "report": {
+        "source": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_step6_final_wm_pm\\runs\\20261103_142939_927101\\moves_5\\checkpoints\\tg_policy_latest.pt",
+        "checkpoint_sha256": "7ce8d580bbd642faad522752b5b5a42ec86e836adbabe3061ea34e0ec77a2ac5",
+        "actor_sha256": "c1e1f4aa99387539d19a3e943ae5f849267b28b638b8cdaf43c4e346636354b7",
+        "critic_sha256": "c34729f079aa6574b43ee0339aeed039f68d2b6fa328f0edde0bcb0a47042187",
+        "actor_unchanged": true,
+        "critic_unchanged": true,
+        "mode": "frozen_greedy_evaluation",
+        "wm": {
+          "checkpoint": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_multiscene_gate_selection\\20261103_000951_565881\\wm_best.pt",
+          "checkpoint_sha256": "2919dff60d3128321170410e632e7bddd476a4f09c766b92108bfe9cb73daca9",
+          "state_sha256": "6382137db574de437731e71df413df5e88c441ccb55236088ac2754197f9aea6",
+          "history_length": 4,
+          "features": [
+            "ack_probability",
+            "sender_joint_queue_fraction_delta",
+            "receiver_joint_queue_fraction_delta"
+          ],
+          "predictions": 160,
+          "frozen": true,
+          "critic_uses_wm": false,
+          "not_used": [
+            "motion",
+            "delivery",
+            "drop",
+            "uncertainty"
+          ]
+        },
+        "pm": {
+          "checkpoint": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_pm_final_pretrain\\20261103_142745_276042\\pm_best.pt",
+          "checkpoint_sha256": "f62f05b520cbaf665823ce38981c6c88f5e4f816dc01f85d3149aca7d3f81240",
+          "state_sha256": "64168e20e02f658aadd82b88391f2998b6850b5f65a5d3f84158406a7e36741a",
+          "architecture": "legacy_tg_survival_pm_v1",
+          "features": [
+            "sink_distance",
+            "own_queue",
+            "neighbor_queue",
+            "best_neighbor_distance",
+            "best_link",
+            "mean_link",
+            "degree",
+            "elapsed_window",
+            "remaining_window",
+            "hops",
+            "revisit_fraction",
+            "waiting",
+            "neighbor_change",
+            "sink_queue"
+          ],
+          "alpha": 1.0,
+          "gamma": 0.99,
+          "horizon": 80,
+          "frozen": true,
+          "target": "delivery within remaining finite window; not eventual failure",
+          "reliability_gate": "constant_one; no uncertainty claim",
+          "episodes": [
+            {
+              "episode": 0,
+              "initial_phi": 0.8535205523173014,
+              "discounted_progress": -0.8535205523173015,
+              "boundary_error": 1.1102230246251565e-16,
+              "terminal_phi": 0.0,
+              "delivered": 4,
+              "unresolved_censored": 20
+            },
+            {
+              "episode": 1,
+              "initial_phi": 0.8493471145629883,
+              "discounted_progress": -0.8493471145629878,
+              "boundary_error": 4.440892098500626e-16,
+              "terminal_phi": 0.0,
+              "delivered": 4,
+              "unresolved_censored": 20
+            }
+          ]
+        },
+        "optimizer_updates": 0
+      },
+      "config": {
+        "seed": 404,
+        "scenario_seed": 404,
+        "num_episodes": 2,
+        "episode_length": 80,
+        "num_moving_buoys": 5,
+        "random_channel": true,
+        "gamma": 0.99,
+        "use_pm_reward": true,
+        "pm_reward_alpha": 1.0,
+        "use_wm_actor": true,
+        "tg_evaluate": true
+      },
+      "reward_audit": {
+        "rows": 160,
+        "boundary_errors": [
+          1.1102230246251565e-16,
+          4.440892098500626e-16
+        ],
+        "minimum_progress": -0.17734937349955238,
+        "maximum_progress": 0.018010256290435733
+      }
+    },
+    "eval_wm_pm_repeat": {
+      "run": "results\\tg_step6_final_eval_wm_pm_repeat\\runs\\20261103_143148_331798\\moves_5",
+      "metrics": [
+        {
+          "episode": 0.0,
+          "delivery_rate": 0.16666666666666666,
+          "average_hops": 67.04166666666667,
+          "average_delay": 2.3333333333333335
+        },
+        {
+          "episode": 1.0,
+          "delivery_rate": 0.16666666666666666,
+          "average_hops": 67.04166666666667,
+          "average_delay": 7.333333333333333
+        }
+      ],
+      "report": {
+        "source": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_step6_final_wm_pm\\runs\\20261103_142939_927101\\moves_5\\checkpoints\\tg_policy_latest.pt",
+        "checkpoint_sha256": "7ce8d580bbd642faad522752b5b5a42ec86e836adbabe3061ea34e0ec77a2ac5",
+        "actor_sha256": "c1e1f4aa99387539d19a3e943ae5f849267b28b638b8cdaf43c4e346636354b7",
+        "critic_sha256": "c34729f079aa6574b43ee0339aeed039f68d2b6fa328f0edde0bcb0a47042187",
+        "actor_unchanged": true,
+        "critic_unchanged": true,
+        "mode": "frozen_greedy_evaluation",
+        "wm": {
+          "checkpoint": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_multiscene_gate_selection\\20261103_000951_565881\\wm_best.pt",
+          "checkpoint_sha256": "2919dff60d3128321170410e632e7bddd476a4f09c766b92108bfe9cb73daca9",
+          "state_sha256": "6382137db574de437731e71df413df5e88c441ccb55236088ac2754197f9aea6",
+          "history_length": 4,
+          "features": [
+            "ack_probability",
+            "sender_joint_queue_fraction_delta",
+            "receiver_joint_queue_fraction_delta"
+          ],
+          "predictions": 160,
+          "frozen": true,
+          "critic_uses_wm": false,
+          "not_used": [
+            "motion",
+            "delivery",
+            "drop",
+            "uncertainty"
+          ]
+        },
+        "pm": {
+          "checkpoint": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_pm_final_pretrain\\20261103_142745_276042\\pm_best.pt",
+          "checkpoint_sha256": "f62f05b520cbaf665823ce38981c6c88f5e4f816dc01f85d3149aca7d3f81240",
+          "state_sha256": "64168e20e02f658aadd82b88391f2998b6850b5f65a5d3f84158406a7e36741a",
+          "architecture": "legacy_tg_survival_pm_v1",
+          "features": [
+            "sink_distance",
+            "own_queue",
+            "neighbor_queue",
+            "best_neighbor_distance",
+            "best_link",
+            "mean_link",
+            "degree",
+            "elapsed_window",
+            "remaining_window",
+            "hops",
+            "revisit_fraction",
+            "waiting",
+            "neighbor_change",
+            "sink_queue"
+          ],
+          "alpha": 1.0,
+          "gamma": 0.99,
+          "horizon": 80,
+          "frozen": true,
+          "target": "delivery within remaining finite window; not eventual failure",
+          "reliability_gate": "constant_one; no uncertainty claim",
+          "episodes": [
+            {
+              "episode": 0,
+              "initial_phi": 0.8535205523173014,
+              "discounted_progress": -0.8535205523173015,
+              "boundary_error": 1.1102230246251565e-16,
+              "terminal_phi": 0.0,
+              "delivered": 4,
+              "unresolved_censored": 20
+            },
+            {
+              "episode": 1,
+              "initial_phi": 0.8493471145629883,
+              "discounted_progress": -0.8493471145629878,
+              "boundary_error": 4.440892098500626e-16,
+              "terminal_phi": 0.0,
+              "delivered": 4,
+              "unresolved_censored": 20
+            }
+          ]
+        },
+        "optimizer_updates": 0
+      },
+      "config": {
+        "seed": 404,
+        "scenario_seed": 404,
+        "num_episodes": 2,
+        "episode_length": 80,
+        "num_moving_buoys": 5,
+        "random_channel": true,
+        "gamma": 0.99,
+        "use_pm_reward": true,
+        "pm_reward_alpha": 1.0,
+        "use_wm_actor": true,
+        "tg_evaluate": true
+      },
+      "reward_audit": {
+        "rows": 160,
+        "boundary_errors": [
+          1.1102230246251565e-16,
+          4.440892098500626e-16
+        ],
+        "minimum_progress": -0.17734937349955238,
+        "maximum_progress": 0.018010256290435733
+      }
+    }
+  },
+  "pretraining": {
+    "config": {
+      "dataset": "results/tg_wm_multiscene/20261102_235951_684782",
+      "epochs": 40,
+      "batch_size": 24,
+      "hidden": 64,
+      "lr": 0.001,
+      "seed": 12,
+      "output_root": "results/tg_pm_final_pretrain"
+    },
+    "initial_validation": {
+      "survival_nll": 2.0932705402374268,
+      "prior_survival_nll": 2.0932705402374268,
+      "window_brier": 0.21398963034152985,
+      "prior_window_brier": 0.21398963034152985,
+      "packets": 144,
+      "delivered": 70,
+      "censored": 74,
+      "identifiable_window_packets": 144
+    },
+    "selected_validation": {
+      "survival_nll": 1.3757646083831787,
+      "prior_survival_nll": 2.0932705402374268,
+      "window_brier": 0.0731605812907219,
+      "prior_window_brier": 0.21398963034152985,
+      "packets": 144,
+      "delivered": 70,
+      "censored": 74,
+      "identifiable_window_packets": 144
+    },
+    "training": {
+      "survival_nll": 1.5951173305511475,
+      "prior_survival_nll": 2.264578104019165,
+      "window_brier": 0.07956511527299881,
+      "prior_window_brier": 0.21491065621376038,
+      "packets": 576,
+      "delivered": 286,
+      "censored": 290,
+      "identifiable_window_packets": 576
+    },
+    "selected_epoch": 29,
+    "gate_passed": true,
+    "parameter_count": 24496,
+    "seconds": 32.62419500001124,
+    "checkpoint_sha256": "f62f05b520cbaf665823ce38981c6c88f5e4f816dc01f85d3149aca7d3f81240",
+    "audits": [
+      {
+        "passed": true,
+        "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_multiscene\\20261102_235951_684782\\source_runs\\runs\\tg-mappo_seed_0\\moves_5\\wm_data",
+        "split": "train",
+        "scenario_seed": 0,
+        "episodes": 2,
+        "steps": 160,
+        "snapshots": 162,
+        "packets": 48,
+        "delivered": 14,
+        "unresolved": 34,
+        "attempts": 1473,
+        "ack_successes": 850,
+        "waits": 2527,
+        "bytes": 6242194
+      },
+      {
+        "passed": true,
+        "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_multiscene\\20261102_235951_684782\\source_runs\\runs\\random_seed_0\\moves_5\\wm_data",
+        "split": "train",
+        "scenario_seed": 0,
+        "episodes": 2,
+        "steps": 160,
+        "snapshots": 162,
+        "packets": 48,
+        "delivered": 8,
+        "unresolved": 40,
+        "attempts": 1464,
+        "ack_successes": 873,
+        "waits": 2536,
+        "bytes": 6221525
+      },
+      {
+        "passed": true,
+        "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_multiscene\\20261102_235951_684782\\source_runs\\runs\\geographic_seed_0\\moves_5\\wm_data",
+        "split": "train",
+        "scenario_seed": 0,
+        "episodes": 2,
+        "steps": 160,
+        "snapshots": 162,
+        "packets": 48,
+        "delivered": 48,
+        "unresolved": 0,
+        "attempts": 297,
+        "ack_successes": 141,
+        "waits": 3703,
+        "bytes": 5518411
+      },
+      {
+        "passed": true,
+        "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_multiscene\\20261102_235951_684782\\source_runs\\runs\\tg-mappo_seed_1\\moves_5\\wm_data",
+        "split": "train",
+        "scenario_seed": 1,
+        "episodes": 2,
+        "steps": 160,
+        "snapshots": 162,
+        "packets": 48,
+        "delivered": 8,
+        "unresolved": 40,
+        "attempts": 1567,
+        "ack_successes": 875,
+        "waits": 2433,
+        "bytes": 6234237
+      },
+      {
+        "passed": true,
+        "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_multiscene\\20261102_235951_684782\\source_runs\\runs\\random_seed_1\\moves_5\\wm_data",
+        "split": "train",
+        "scenario_seed": 1,
+        "episodes": 2,
+        "steps": 160,
+        "snapshots": 162,
+        "packets": 48,
+        "delivered": 16,
+        "unresolved": 32,
+        "attempts": 1435,
+        "ack_successes": 844,
+        "waits": 2565,
+        "bytes": 6164297
+      },
+      {
+        "passed": true,
+        "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_multiscene\\20261102_235951_684782\\source_runs\\runs\\geographic_seed_1\\moves_5\\wm_data",
+        "split": "train",
+        "scenario_seed": 1,
+        "episodes": 2,
+        "steps": 160,
+        "snapshots": 162,
+        "packets": 48,
+        "delivered": 48,
+        "unresolved": 0,
+        "attempts": 259,
+        "ack_successes": 140,
+        "waits": 3741,
+        "bytes": 5499279
+      },
+      {
+        "passed": true,
+        "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_multiscene\\20261102_235951_684782\\source_runs\\runs\\tg-mappo_seed_2\\moves_5\\wm_data",
+        "split": "train",
+        "scenario_seed": 2,
+        "episodes": 2,
+        "steps": 160,
+        "snapshots": 162,
+        "packets": 48,
+        "delivered": 10,
+        "unresolved": 38,
+        "attempts": 1522,
+        "ack_successes": 841,
+        "waits": 2478,
+        "bytes": 6204694
+      },
+      {
+        "passed": true,
+        "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_multiscene\\20261102_235951_684782\\source_runs\\runs\\random_seed_2\\moves_5\\wm_data",
+        "split": "train",
+        "scenario_seed": 2,
+        "episodes": 2,
+        "steps": 160,
+        "snapshots": 162,
+        "packets": 48,
+        "delivered": 16,
+        "unresolved": 32,
+        "attempts": 1384,
+        "ack_successes": 755,
+        "waits": 2616,
+        "bytes": 6159637
+      },
+      {
+        "passed": true,
+        "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_multiscene\\20261102_235951_684782\\source_runs\\runs\\geographic_seed_2\\moves_5\\wm_data",
+        "split": "train",
+        "scenario_seed": 2,
+        "episodes": 2,
+        "steps": 160,
+        "snapshots": 162,
+        "packets": 48,
+        "delivered": 48,
+        "unresolved": 0,
+        "attempts": 267,
+        "ack_successes": 140,
+        "waits": 3733,
+        "bytes": 5466701
+      },
+      {
+        "passed": true,
+        "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_multiscene\\20261102_235951_684782\\source_runs\\runs\\tg-mappo_seed_3\\moves_5\\wm_data",
+        "split": "train",
+        "scenario_seed": 3,
+        "episodes": 2,
+        "steps": 160,
+        "snapshots": 162,
+        "packets": 48,
+        "delivered": 10,
+        "unresolved": 38,
+        "attempts": 1582,
+        "ack_successes": 825,
+        "waits": 2418,
+        "bytes": 6242900
+      },
+      {
+        "passed": true,
+        "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_multiscene\\20261102_235951_684782\\source_runs\\runs\\random_seed_3\\moves_5\\wm_data",
+        "split": "train",
+        "scenario_seed": 3,
+        "episodes": 2,
+        "steps": 160,
+        "snapshots": 162,
+        "packets": 48,
+        "delivered": 12,
+        "unresolved": 36,
+        "attempts": 1523,
+        "ack_successes": 799,
+        "waits": 2477,
+        "bytes": 6221665
+      },
+      {
+        "passed": true,
+        "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_multiscene\\20261102_235951_684782\\source_runs\\runs\\geographic_seed_3\\moves_5\\wm_data",
+        "split": "train",
+        "scenario_seed": 3,
+        "episodes": 2,
+        "steps": 160,
+        "snapshots": 162,
+        "packets": 48,
+        "delivered": 48,
+        "unresolved": 0,
+        "attempts": 448,
+        "ack_successes": 141,
+        "waits": 3552,
+        "bytes": 5646619
+      },
+      {
+        "passed": true,
+        "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_multiscene\\20261102_235951_684782\\source_runs\\runs\\tg-mappo_seed_101\\moves_5\\wm_data",
+        "split": "validation",
+        "scenario_seed": 101,
+        "episodes": 2,
+        "steps": 160,
+        "snapshots": 162,
+        "packets": 48,
+        "delivered": 15,
+        "unresolved": 33,
+        "attempts": 1467,
+        "ack_successes": 794,
+        "waits": 2533,
+        "bytes": 6191298
+      },
+      {
+        "passed": true,
+        "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_multiscene\\20261102_235951_684782\\source_runs\\runs\\random_seed_101\\moves_5\\wm_data",
+        "split": "validation",
+        "scenario_seed": 101,
+        "episodes": 2,
+        "steps": 160,
+        "snapshots": 162,
+        "packets": 48,
+        "delivered": 7,
+        "unresolved": 41,
+        "attempts": 1623,
+        "ack_successes": 848,
+        "waits": 2377,
+        "bytes": 6257896
+      },
+      {
+        "passed": true,
+        "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_multiscene\\20261102_235951_684782\\source_runs\\runs\\geographic_seed_101\\moves_5\\wm_data",
+        "split": "validation",
+        "scenario_seed": 101,
+        "episodes": 2,
+        "steps": 160,
+        "snapshots": 162,
+        "packets": 48,
+        "delivered": 48,
+        "unresolved": 0,
+        "attempts": 211,
+        "ack_successes": 140,
+        "waits": 3789,
+        "bytes": 5446575
+      }
+    ],
+    "train_scenario_seeds": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "validation_scenario_seeds": [
+      101
+    ],
+    "test_evaluated": false,
+    "normalization_fit_split": "train",
+    "limitations": [
+      "no true failure events",
+      "no reliability heads",
+      "CPU only",
+      "no routing benefit proven"
+    ]
+  },
+  "source_files_sha256": {
+    "src/buoy_network/progress_model.py": "43ab011920cbbf478ede6b0e9be27bd421843ff6495e73e0ca0c44b612c2f8a0",
+    "src/buoy_network/progress_runtime.py": "9efdc9bbe7ef7c17168b5a67e379cfbd984d2ea2ab7af47fb77e3ac57524859a",
+    "src/buoy_network/agent.py": "4f36a71f00a3935f3113a1bd14870d9063d4f77273c7b1e4019cd919013d5b7c",
+    "src/buoy_network/runner.py": "bb9fe7e7ab9e3c0edb30c4c2a93dbff74804cbdb330a2b5b0f71359f591e52a6",
+    "src/buoy_network/main.py": "5246f3840fbd918e62ea44193f93fdd8c6832a824eb0474402c99cb0a8df084c",
+    "src/buoy_network/policy_artifacts.py": "1347917ea4cc85642d4889c64342274031e6b95b5ce76ebf414eea3c7bd44dec",
+    "src/legacy_cli.py": "317ed146918597584095c3ee4ea05fc0d1e60ee4dc044e86b58c8a6e7f76f62d",
+    "src/onpolicy/utils/util.py": "e469e353b79c028f30ea4bd21b6c54b1ee70d39a9c56f25e5e8e580bf01cd36e",
+    "tests/test_legacy_targeted_fixes.py": "5e5195c995ca247623bdcdbf6e0e4410452d2019b3e30d0fc6fef931bd121912",
+    "tests/test_tg_progress_model.py": "28acd23311e14f7cb7ff4ad5be562be57aec2da7e1090f992cdee17f4551dc84",
+    "tests/test_legacy_pm_reward.py": "4fbd5280ff78a38ce5da915e040c57976bdbb735987d51c22d7cf6da2d8d1eb8",
+    "scripts/train_tg_pm.py": "31c098e5748ef97249bd94cf77ff3e0c0d04e5b320a409749eb30c1d68fdd549",
+    "scripts/test_tg_pm.py": "22531196031e44b6837d4e8e403bf5c0119f8f31ed1ece08dba45ee71487fe99",
+    "scripts/verify_tg_pm_runs.py": "c0912b557b183438551f697f6c9b964f044806481d4822e91fd17e28893a4fc1"
+  },
+  "limitations": [
+    "no true TTL/drop failure supervision",
+    "one actor training seed, short budget",
+    "no performance improvement shown",
+    "constant reliability gate",
+    "CPU only",
+    "no cross-rollout task continuation"
+  ]
+}

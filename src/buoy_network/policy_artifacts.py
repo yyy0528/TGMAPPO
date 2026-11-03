@@ -30,6 +30,11 @@ def load_policy(learner, path):
             raise ValueError("Incompatible TG environment/config/WM mode")
         if learner.wm_runtime is not None and payload["wm"]["checkpoint_sha256"] != learner.wm_runtime.file_sha256:
             raise ValueError("Policy expects a different frozen WM")
+        if payload.get("use_pm_reward", False) != (learner.pm_runtime is not None):
+            raise ValueError("Policy PM mode mismatch")
+        if learner.pm_runtime is not None and any(payload["pm"][key] != learner.pm_runtime.metadata()[key]
+                                                for key in ("checkpoint_sha256", "alpha", "gamma")):
+            raise ValueError("Policy expects different PM weights/alpha/gamma")
         networks = [("actor", learner.policy.actor), ("critic", learner.policy.critic)]
         if learner.trainer._use_valuenorm:
             networks.append(("value_normalizer", learner.trainer.value_normalizer))
@@ -54,18 +59,20 @@ def load_policy(learner, path):
 def save_policy(learner, run_dir):
     root = Path(run_dir)
     wm = learner.wm_runtime.metadata() if learner.wm_runtime is not None else None
+    pm = learner.pm_runtime.metadata() if learner.pm_runtime is not None else None
     if getattr(learner.all_args, "tg_evaluate", False):
         metadata = dict(learner.evaluation_metadata)
         metadata["actor_unchanged"] = tensor_digest(learner.policy.actor.state_dict()) == metadata["actor_sha256"]
         metadata["critic_unchanged"] = tensor_digest(learner.policy.critic.state_dict()) == metadata["critic_sha256"]
         if not metadata["actor_unchanged"] or not metadata["critic_unchanged"]:
             raise ValueError("Frozen evaluation changed policy weights")
-        metadata.update(mode="frozen_greedy_evaluation", wm=wm, optimizer_updates=0)
+        metadata.update(mode="frozen_greedy_evaluation", wm=wm, pm=pm, optimizer_updates=0)
     else:
         path = root / "checkpoints" / "tg_policy_latest.pt"
         path.parent.mkdir(parents=True, exist_ok=True)
         payload = {"format": "original_tg_policy_v1", "config": signature(learner),
             "use_wm_actor": learner.wm_runtime is not None, "wm": wm,
+            "use_pm_reward": learner.pm_runtime is not None, "pm": pm,
             "actor": learner.policy.actor.state_dict(), "critic": learner.policy.critic.state_dict(),
             "value_normalizer": (learner.trainer.value_normalizer.state_dict()
                                  if learner.trainer._use_valuenorm else None),
@@ -74,6 +81,7 @@ def save_policy(learner, run_dir):
             torch.save(payload, stream)
         metadata = {"mode": "training", "checkpoint": str(path.resolve()),
                     "checkpoint_sha256": hashlib.sha256(path.read_bytes()).hexdigest(), "wm": wm,
-                    "wm_ppo_updates": learner.wm_update_records, "training_resume_supported": False}
+                    "wm_ppo_updates": learner.wm_update_records, "pm": pm,
+                    "pm_ppo_updates": learner.pm_update_records, "training_resume_supported": False}
     with (root / "logs" / "TG_policy_report.json").open("x", encoding="utf-8") as stream:
         json.dump(metadata, stream, indent=2, allow_nan=False)

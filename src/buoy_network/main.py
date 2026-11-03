@@ -103,6 +103,9 @@ def parse_args(args, parser):
     parser.add_argument("--export_wm_data", type=lambda x: bool(strtobool(x)), default=False)
     parser.add_argument("--use_wm_actor", type=lambda x: bool(strtobool(x)), default=False)
     parser.add_argument("--wm_actor_checkpoint", default="")
+    parser.add_argument("--use_pm_reward", type=lambda x: bool(strtobool(x)), default=False)
+    parser.add_argument("--pm_reward_checkpoint", default="")
+    parser.add_argument("--pm_reward_alpha", type=float, default=1.0)
     parser.add_argument("--tg_evaluate", type=lambda x: bool(strtobool(x)), default=False)
     parser.add_argument("--tg_policy_checkpoint", default="")
     parser.add_argument("--data_behavior", choices=("tg-mappo", "random", "geographic"), default="tg-mappo")
@@ -147,6 +150,13 @@ def main(args):
     all_args.max_edge_dist = all_args.comm_range
     if bool(all_args.wm_actor_checkpoint) != all_args.use_wm_actor:
         parser.error("--use_wm_actor true requires --wm_actor_checkpoint; disabled mode accepts no WM path")
+    if bool(all_args.pm_reward_checkpoint) != all_args.use_pm_reward:
+        parser.error("--use_pm_reward true requires --pm_reward_checkpoint; disabled mode accepts no PM path")
+    if not np.isfinite(all_args.pm_reward_alpha) or all_args.pm_reward_alpha < 0:
+        parser.error("PM alpha must be finite and nonnegative")
+    if all_args.use_pm_reward and (all_args.data_behavior != "tg-mappo" or all_args.export_wm_data
+                                   or all_args.grid_size != 5 or all_args.comm_range != 1.5):
+        parser.error("PM integration requires original 25-node TG, radius 1.5, raw export disabled")
     if bool(all_args.tg_policy_checkpoint) != all_args.tg_evaluate:
         parser.error("Policy checkpoint is evaluation-only; provide --tg_evaluate true and --tg_policy_checkpoint")
     if all_args.tg_evaluate and (all_args.export_wm_data or all_args.data_behavior != "tg-mappo"):

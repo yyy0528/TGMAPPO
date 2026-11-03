@@ -220,3 +220,10 @@ CPU 环境中的 AMP/CUDA warning 表示自动关闭 CUDA AMP，不是测试失�
 三个字段是 ACK 概率、发送/接收节点到下一联合时隙的队列占比变化；PPO minibatch 复用采样缓存。
 Critic 输入和环境奖励维持原流程；PM 仍未实现。新增原 TG checkpoint 保存与独立冻结评估。
 具体模块、约束、命令和 64 项验收证据见 [第 5 步接入说明](TG_MAPPO_WM_INTEGRATION.md)；当前接续步骤以[总进度](TG_MAPPO_EXPERIMENT_PROGRESS.md)为准。
+
+## 10. 第 6 步接口更新（2026-11-03）
+
+新增独立删失投递时间 PM，使用当前/过去包路径和可见图的 14 维特征，冻结后按初始包数聚合团队势函数。
+原环境执行完 t→t+1 后，Runner 在广播奖励和调用 insert/compute 之前计算 `r_train=r_env+alpha*(buffer.gamma*Phi_tp1-Phi_t)`。
+TG_PM_rewards.csv 保存分项；GAE/Critic 使用 r_train；原指标仍按环境结果。实际投递和完整任务终止将相应势函数置零。
+不改变原始未结束标签，未实现真实失败分类或跨 rollout 延续；通用差分函数的截断边界已测。当前总计 76 项通过，见 [PM 接入说明](TG_MAPPO_PM_INTEGRATION.md)。
