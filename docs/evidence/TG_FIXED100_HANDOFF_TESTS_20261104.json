@@ -1,0 +1,39 @@
+{
+  "python": "D:\\python3.6.8\\python.exe",
+  "success": true,
+  "stages": [
+    {
+      "name": "functions",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "modules",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "integration",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_fixed100_handoff_tests\\20261104_142036_609125",
+  "source_sha256": {
+    "scripts/run_tg_fixed100_ablation.py": "4c24d4d847eeff70ae2c74db0681c375c95a597cc88f62e5f34b312a8df4f4e4",
+    "scripts/test_tg_fixed100_ablation.py": "5929bd1cb5348c5175478aa09674d879e9ff56b6ebcebd593b8ff526fc3e280d",
+    "tests/test_fixed100_ablation.py": "4a920c8dbdd19a5cb68879186055a58128f9d29834f727c78d8346ea47811251",
+    "configs/tg_ablation_fixed100.json": "d586264b1cbb52c29c06e71f0b99144766888bcbcb16161fbd24fea8e31b0251"
+  },
+  "logs": {
+    "functions": "test_import_copies_actual_attempts_without_mutating_old_jobs (test_fixed100_ablation.Fixed100Functions) ... ok\ntest_incremental_budget_does_not_charge_reused_training (test_fixed100_ablation.Fixed100Functions) ... ok\ntest_protocol_rejects_unequal_budgets_and_information (test_fixed100_ablation.Fixed100Functions) ... ok\ntest_runtime_comparison_detects_changes_additions_and_removal (test_fixed100_ablation.Fixed100Functions) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.049s\n\nOK\n",
+    "modules": "test_actual_update_validation_rejects_budget_nan_and_auxiliary_changes (test_fixed100_ablation.Fixed100Modules) ... ok\ntest_medium_training_requires_receipt_and_never_falls_back_to_new_a (test_fixed100_ablation.Fixed100Modules) ... ok\ntest_plan_is_read_only_and_never_probes_or_starts_subprocesses (test_fixed100_ablation.Fixed100Modules) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.017s\n\nOK\n",
+    "integration": "test_real_prepare_imports_only_a_and_rejects_tampering_or_early_run (test_fixed100_ablation.Fixed100Integration) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 7.349s\n\nOK\n"
+  }
+}
