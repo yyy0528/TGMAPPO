@@ -341,7 +341,7 @@ class GraphReplayBuffer(object):
             self.available_actions[0] = self.available_actions[-1].copy()
 
     def compute_returns(
-        self, next_value: arr, value_normalizer: Optional[PopArt] = None
+        self, next_value: arr, value_normalizer: Optional[PopArt] = None, rewards_override=None
     ) -> None:
         """
         Compute returns either as discounted sum of rewards, or using GAE.
@@ -350,15 +350,18 @@ class GraphReplayBuffer(object):
         value_normalizer: (PopArt)
             If not None, PopArt value normalizer instance.
         """
+        rewards = self.rewards if rewards_override is None else np.asarray(rewards_override,dtype=self.rewards.dtype)
+        if rewards.shape != self.rewards.shape or not np.isfinite(rewards).all():
+            raise ValueError("Invalid return-computation reward coordinates")
         if self._use_proper_time_limits:
             if self._use_gae:
                 self.value_preds[-1] = next_value
                 gae = 0
-                for step in reversed(range(self.rewards.shape[0])):
+                for step in reversed(range(rewards.shape[0])):
                     if self._use_popart or self._use_valuenorm:
                         # step + 1
                         delta = (
-                            self.rewards[step]
+                            rewards[step]
                             + self.gamma
                             * value_normalizer.denormalize(self.value_preds[step + 1])
                             * self.masks[step + 1]
@@ -374,7 +377,7 @@ class GraphReplayBuffer(object):
                         )
                     else:
                         delta = (
-                            self.rewards[step]
+                            rewards[step]
                             + self.gamma
                             * self.value_preds[step + 1]
                             * self.masks[step + 1]
@@ -388,11 +391,11 @@ class GraphReplayBuffer(object):
                         self.returns[step] = gae + self.value_preds[step]
             else:
                 self.returns[-1] = next_value
-                for step in reversed(range(self.rewards.shape[0])):
+                for step in reversed(range(rewards.shape[0])):
                     if self._use_popart or self._use_valuenorm:
                         self.returns[step] = (
                             self.returns[step + 1] * self.gamma * self.masks[step + 1]
-                            + self.rewards[step]
+                            + rewards[step]
                         ) * self.bad_masks[step + 1] + (
                             1 - self.bad_masks[step + 1]
                         ) * value_normalizer.denormalize(
@@ -401,7 +404,7 @@ class GraphReplayBuffer(object):
                     else:
                         self.returns[step] = (
                             self.returns[step + 1] * self.gamma * self.masks[step + 1]
-                            + self.rewards[step]
+                            + rewards[step]
                         ) * self.bad_masks[step + 1] + (
                             1 - self.bad_masks[step + 1]
                         ) * self.value_preds[
@@ -411,10 +414,10 @@ class GraphReplayBuffer(object):
             if self._use_gae:
                 self.value_preds[-1] = next_value
                 gae = 0
-                for step in reversed(range(self.rewards.shape[0])):
+                for step in reversed(range(rewards.shape[0])):
                     if self._use_popart or self._use_valuenorm:
                         delta = (
-                            self.rewards[step]
+                            rewards[step]
                             + self.gamma
                             * value_normalizer.denormalize(self.value_preds[step + 1])
                             * self.masks[step + 1]
@@ -429,7 +432,7 @@ class GraphReplayBuffer(object):
                         )
                     else:
                         delta = (
-                            self.rewards[step]
+                            rewards[step]
                             + self.gamma
                             * self.value_preds[step + 1]
                             * self.masks[step + 1]
@@ -442,10 +445,10 @@ class GraphReplayBuffer(object):
                         self.returns[step] = gae + self.value_preds[step]
             else:
                 self.returns[-1] = next_value
-                for step in reversed(range(self.rewards.shape[0])):
+                for step in reversed(range(rewards.shape[0])):
                     self.returns[step] = (
                         self.returns[step + 1] * self.gamma * self.masks[step + 1]
-                        + self.rewards[step]
+                        + rewards[step]
                     )
 
     def feed_forward_generator(

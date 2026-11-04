@@ -47,6 +47,8 @@ def load_policy(learner, path):
             raise ValueError("Policy PM mode mismatch")
         if learner.pm_runtime is not None and payload["pm"].get("potential_mode","remaining") != learner.pm_runtime.potential_mode:
             raise ValueError("Policy PM potential mode mismatch")
+        if learner.pm_runtime is not None and payload["pm"].get("value_mode","learned_shaped") != learner.pm_runtime.value_mode:
+            raise ValueError("Policy PM value coordinate mode mismatch")
         if learner.pm_runtime is not None and any(payload["pm"][key] != learner.pm_runtime.metadata()[key]
                                                 for key in ("checkpoint_sha256", "alpha", "gamma")):
             raise ValueError("Policy expects different PM weights/alpha/gamma")

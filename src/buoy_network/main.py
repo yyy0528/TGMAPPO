@@ -109,6 +109,7 @@ def parse_args(args, parser):
     parser.add_argument("--pm_reward_checkpoint", default="")
     parser.add_argument("--pm_reward_alpha", type=float, default=1.0)
     parser.add_argument("--pm_potential_mode", choices=("remaining","completion_credit"),default="remaining")
+    parser.add_argument("--pm_value_mode", choices=("learned_shaped","base_residual"),default="learned_shaped")
     parser.add_argument("--tg_reward_version", choices=("legacy_v1", "task_v2"), default="legacy_v1")
     parser.add_argument("--tg_critic_time_mode", choices=("disabled","constant","remaining"),default="disabled")
     parser.add_argument("--tg_delivery_weight", type=float, default=1.0)
@@ -181,6 +182,9 @@ def main(args):
         parser.error("--use_pm_reward true requires --pm_reward_checkpoint; disabled mode accepts no PM path")
     if not np.isfinite(all_args.pm_reward_alpha) or all_args.pm_reward_alpha < 0:
         parser.error("PM alpha must be finite and nonnegative")
+    if all_args.pm_value_mode != "learned_shaped" and (not all_args.use_pm_reward or
+            all_args.use_recurrent_policy or all_args.use_naive_recurrent_policy or not all_args.use_gae):
+        parser.error("PM base residual requires PM-enabled feedforward full-task GAE")
     if all_args.use_pm_reward and (all_args.data_behavior != "tg-mappo" or all_args.export_wm_data
                                    or all_args.grid_size != 5 or all_args.comm_range != 1.5):
         parser.error("PM integration requires original 25-node TG, radius 1.5, raw export disabled")

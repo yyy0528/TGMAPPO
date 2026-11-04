@@ -155,7 +155,8 @@ class DeepQNetwork(nn.Module):
             from .progress_runtime import FrozenPMRuntime
             self.pm_runtime = FrozenPMRuntime(self.all_args.pm_reward_checkpoint, self.env.buoy_number,
                 self.all_args.episode_length, self.buffer.gamma, self.all_args.pm_reward_alpha,
-                getattr(self.all_args,"pm_potential_mode","remaining"))
+                getattr(self.all_args,"pm_potential_mode","remaining"),
+                getattr(self.all_args,"pm_value_mode","learned_shaped"))
         if getattr(self.all_args, "use_wm_actor", False):
             if self.all_args.use_recurrent_policy or self.all_args.use_naive_recurrent_policy:
                 raise ValueError("WM Actor integration currently supports feedforward TG policy only")
@@ -466,7 +467,14 @@ class DeepQNetwork(nn.Module):
             critic_time=(np.concatenate(self.buffer.critic_time[-1]) if self.buffer.critic_time is not None else None),
         )
         next_values = np.array(np.split(_t2n(next_values), self.n_rollout_threads))
-        self.buffer.compute_returns(next_values, self.trainer.value_normalizer)
+        if self.pm_runtime is not None and self.pm_runtime.value_mode == "base_residual":
+            from .pm_value import prepare_residual_rollout
+            self.buffer.value_preds[-1] = next_values
+            rewards, self.pm_value_diagnostic = prepare_residual_rollout(
+                self.buffer,self.pm_runtime,self.trainer.value_normalizer)
+            self.buffer.compute_returns(next_values,self.trainer.value_normalizer,rewards_override=rewards)
+        else:
+            self.buffer.compute_returns(next_values, self.trainer.value_normalizer)
 
     #eval 方法用于评估当前策略的性能。
     @torch.no_grad()
@@ -642,7 +650,9 @@ class DeepQNetwork(nn.Module):
             self.pm_update_records.append({"pm_frozen": True,
                 "actor_changed": pm_actor_before != tensor_digest(self.policy.actor.state_dict()),
                 "critic_changed": pm_critic_before != tensor_digest(self.policy.critic.state_dict()),
-                "gae_uses_shaped_rewards": True})
+                "gae_uses_shaped_rewards": self.pm_runtime.value_mode == "learned_shaped",
+                "value_mode": self.pm_runtime.value_mode,
+                "value_coordinates": (self.pm_value_diagnostic if self.pm_runtime.value_mode == "base_residual" else None)})
         if self.wm_runtime is not None:
             self.wm_runtime.assert_frozen()
             if hashlib.sha256(self.buffer.wm_features.tobytes()).hexdigest() != cached_digest:

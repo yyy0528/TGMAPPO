@@ -27,9 +27,11 @@ def completion_potential(remaining_probability_mass, delivered, initial_packets)
 
 
 class FrozenPMRuntime:
-    def __init__(self, path, n, horizon, gamma, alpha, potential_mode="remaining"):
+    def __init__(self, path, n, horizon, gamma, alpha, potential_mode="remaining", value_mode="learned_shaped"):
         if potential_mode not in ("remaining", "completion_credit"):
             raise ValueError("Unknown PM potential mode")
+        if value_mode not in ("learned_shaped", "base_residual"):
+            raise ValueError("Unknown PM value mode")
         shaping_reward(0, 0, 0, gamma, alpha)
         try:
             payload = (torch.load(path, map_location="cpu", weights_only=True)
@@ -63,12 +65,13 @@ class FrozenPMRuntime:
         self.initial_digest = tensor_digest(self.model.state_dict())
         self.n, self.horizon, self.gamma, self.alpha = n, horizon, gamma, alpha
         self.potential_mode = potential_mode
-        self.settings = (n, horizon, gamma, alpha, potential_mode)
+        self.value_mode = value_mode
+        self.settings = (n, horizon, gamma, alpha, potential_mode, value_mode)
         self.summaries, self.episode_records = [], []
         self.started = False
 
     def assert_frozen(self):
-        if ((self.n, self.horizon, self.gamma, self.alpha, self.potential_mode) != self.settings or self.model.training
+        if ((self.n, self.horizon, self.gamma, self.alpha, self.potential_mode, self.value_mode) != self.settings or self.model.training
                 or any(p.requires_grad for p in self.model.parameters())
                 or tensor_digest(self.model.state_dict()) != self.initial_digest):
             raise ValueError("PM weights/normalization/alpha/gamma must remain fixed")
@@ -154,5 +157,6 @@ class FrozenPMRuntime:
                 "state_sha256": self.initial_digest, "architecture": ARCHITECTURE,
                 "features": list(FEATURES), "alpha": self.alpha, "gamma": self.gamma, "horizon": self.horizon,
                 "potential_mode": self.potential_mode,
+                "value_mode": self.value_mode,
                 "frozen": True, "target": "delivery within remaining finite window; not eventual failure",
                 "reliability_gate": "constant_one; no uncertainty claim", "episodes": self.summaries}
