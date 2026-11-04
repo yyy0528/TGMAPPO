@@ -1,0 +1,28 @@
+{
+  "new_tests": {
+    "functions": 3,
+    "modules": 1,
+    "integration": 1,
+    "passed": 5
+  },
+  "legacy_discovery": {
+    "pattern": "test_legacy*.py",
+    "passed": 105,
+    "seconds": 89.053
+  },
+  "unique_passed": 110,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "standalone_legacy_pm_also_passed": 6,
+  "source_sha256": {
+    "src/buoy_network/progress_runtime.py": "96f93778b97dc483c7004e04b89984d848b50efc762e5cd992cb56fbff5a7567",
+    "src/buoy_network/agent.py": "caa4f1d73d1ca96363ce5ae4339e12dcadc3dd2136f63b24d9fc610adf122f9b",
+    "src/buoy_network/main.py": "90e34a8f427460100becc702bca85ae254f7f44445a687f4a52de9cb55ab88a2",
+    "src/buoy_network/policy_artifacts.py": "38fd69f25227356a55924a48e3e2d892dc384a81e7cfff78106f2394b670f804",
+    "src/legacy_cli.py": "fd72a1033702d2193ad9a54f76129c00494a8e7b0ee28d4a2a8ea0bfcd0a3ba4",
+    "tests/test_pm_completion_credit.py": "e302b0df4b513bcfcec390942bab4146d3d5b966d80937b9f8c6f983411ec7fd"
+  },
+  "performance_acceptance": "failed: fixed2 12.50 percent to 8.33 percent; candidate not promoted",
+  "scope": "Observed actual unittest runs; other research/orchestration tests not all rerun"
+}

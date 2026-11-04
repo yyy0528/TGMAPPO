@@ -154,7 +154,8 @@ class DeepQNetwork(nn.Module):
         if getattr(self.all_args, "use_pm_reward", False):
             from .progress_runtime import FrozenPMRuntime
             self.pm_runtime = FrozenPMRuntime(self.all_args.pm_reward_checkpoint, self.env.buoy_number,
-                self.all_args.episode_length, self.buffer.gamma, self.all_args.pm_reward_alpha)
+                self.all_args.episode_length, self.buffer.gamma, self.all_args.pm_reward_alpha,
+                getattr(self.all_args,"pm_potential_mode","remaining"))
         if getattr(self.all_args, "use_wm_actor", False):
             if self.all_args.use_recurrent_policy or self.all_args.use_naive_recurrent_policy:
                 raise ValueError("WM Actor integration currently supports feedforward TG policy only")

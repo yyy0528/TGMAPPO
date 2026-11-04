@@ -108,6 +108,7 @@ def parse_args(args, parser):
     parser.add_argument("--use_pm_reward", type=lambda x: bool(strtobool(x)), default=False)
     parser.add_argument("--pm_reward_checkpoint", default="")
     parser.add_argument("--pm_reward_alpha", type=float, default=1.0)
+    parser.add_argument("--pm_potential_mode", choices=("remaining","completion_credit"),default="remaining")
     parser.add_argument("--tg_reward_version", choices=("legacy_v1", "task_v2"), default="legacy_v1")
     parser.add_argument("--tg_critic_time_mode", choices=("disabled","constant","remaining"),default="disabled")
     parser.add_argument("--tg_delivery_weight", type=float, default=1.0)

@@ -17,8 +17,19 @@ def shaping_reward(environment_reward, phi_t, phi_tp1, gamma, alpha, terminated=
     return float(environment_reward+progress), float(progress), float(following)
 
 
+def completion_potential(remaining_probability_mass, delivered, initial_packets):
+    """Expected completed fraction, retaining real deliveries before the terminal boundary."""
+    if (type(delivered) is not int or type(initial_packets) is not int or
+            not 0 <= delivered <= initial_packets or not math.isfinite(remaining_probability_mass)
+            or not 0 <= remaining_probability_mass <= initial_packets-delivered+1e-6):
+        raise ValueError("Invalid PM completion mass")
+    return (remaining_probability_mass+delivered)/max(initial_packets,1)
+
+
 class FrozenPMRuntime:
-    def __init__(self, path, n, horizon, gamma, alpha):
+    def __init__(self, path, n, horizon, gamma, alpha, potential_mode="remaining"):
+        if potential_mode not in ("remaining", "completion_credit"):
+            raise ValueError("Unknown PM potential mode")
         shaping_reward(0, 0, 0, gamma, alpha)
         try:
             payload = (torch.load(path, map_location="cpu", weights_only=True)
@@ -51,12 +62,13 @@ class FrozenPMRuntime:
         self.file_sha256 = hashlib.sha256(Path(path).read_bytes()).hexdigest()
         self.initial_digest = tensor_digest(self.model.state_dict())
         self.n, self.horizon, self.gamma, self.alpha = n, horizon, gamma, alpha
-        self.settings = (n, horizon, gamma, alpha)
+        self.potential_mode = potential_mode
+        self.settings = (n, horizon, gamma, alpha, potential_mode)
         self.summaries, self.episode_records = [], []
         self.started = False
 
     def assert_frozen(self):
-        if ((self.n, self.horizon, self.gamma, self.alpha) != self.settings or self.model.training
+        if ((self.n, self.horizon, self.gamma, self.alpha, self.potential_mode) != self.settings or self.model.training
                 or any(p.requires_grad for p in self.model.parameters())
                 or tensor_digest(self.model.state_dict()) != self.initial_digest):
             raise ValueError("PM weights/normalization/alpha/gamma must remain fixed")
@@ -66,8 +78,11 @@ class FrozenPMRuntime:
         alive = {p.id: p for p in env.packets if not p.if_sink}
         if set(alive) != self.packet_ids-self.finished:
             raise ValueError("PM packet conservation/delivery callback mismatch")
-        if not alive or step == self.horizon:
+        if step == self.horizon:
             return 0.0
+        if not alive:
+            return (completion_potential(0.,len(self.finished),self.initial_packets)
+                    if self.potential_mode == "completion_credit" else 0.0)
         obs, _, nodes, distances = env.observe_graph()
         actor = {"obs": obs, "node_features": nodes[0], "distances": distances[0]}
         keys, rows, hidden = [], [], []
@@ -84,7 +99,10 @@ class FrozenPMRuntime:
             raise ValueError("Nonfinite PM score")
         for index, key in enumerate(keys):
             self.hidden[key] = following[0, index].clone()
-        return float(probability.sum())/max(self.initial_packets, 1)
+        mass = float(probability.sum())
+        if self.potential_mode == "completion_credit":
+            return completion_potential(mass,len(self.finished),self.initial_packets)
+        return mass/max(self.initial_packets, 1)
 
     def start_episode(self, env, episode):
         self.assert_frozen()
@@ -135,5 +153,6 @@ class FrozenPMRuntime:
         return {"checkpoint": self.path, "checkpoint_sha256": self.file_sha256,
                 "state_sha256": self.initial_digest, "architecture": ARCHITECTURE,
                 "features": list(FEATURES), "alpha": self.alpha, "gamma": self.gamma, "horizon": self.horizon,
+                "potential_mode": self.potential_mode,
                 "frozen": True, "target": "delivery within remaining finite window; not eventual failure",
                 "reliability_gate": "constant_one; no uncertainty claim", "episodes": self.summaries}
