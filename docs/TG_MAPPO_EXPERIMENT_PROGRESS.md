@@ -9,7 +9,7 @@
 
 - 实验主线：**现有 TG-MAPPO + 原浮标环境 → 加入 WM → 加入 PM → 消融实验**。
 - 已完成：**第 1–3 步、第 4–6 步最小版、第 7 步工具及三种子短预实验**。
-- 当前下一步：**仍在第7步：六组fixed100准备/短兼容已验收，用户随后要求继续优化，B–F的15个100回合模型及15个冻结评估已于2026-11-04 14:41启动，正在同一准备目录依次执行；A六任务直接复用，不重训。PPO1×2、task_v2、时钟disabled、冻结WM/PM版本保持。不要启动第二个同套件调度器；中断后用新入口同一目录--mode run接续。最终结果尚未产生，创新收益仍未验收。legacy_v1仍为CLI默认**。见[六组fixed100准备与接续](TG_MAPPO_FIXED100_ABLATION.md)；A预算对照结果仍见[交互预算记录](TG_MAPPO_INTERACTION_BUDGET.md)。
+- 当前下一步：**仍在第7步：用户已选择后台运行、稍后汇总。B–F的15个100回合模型及15个冻结评估于2026-11-04 14:41启动，依次执行；A六任务复用。另已启动结束后的自动验收/出图进程。下一次先读取套件manifest和postprocessing/report.json，仍running时不要重复run，completed时读fixed100_acceptance.json/summary/figures再汇总，failed时查原日志先诊断。PPO1×2、task_v2、时钟disabled、冻结版本保持；最终创新收益仍未验收。legacy_v1仍为CLI默认**。见[六组fixed100准备与接续](TG_MAPPO_FIXED100_ABLATION.md)。
 - 第 4 步最小版已完成：4 个训练场景、接收者历史反馈、位移上下文与独立门槛选模；三项均优于原定简单基线，见 [优化记录](TG_MAPPO_WM_OPTIMIZATION.md)。
 - 第 2 步说明与运行证据：[TG_MAPPO_INTERFACE.md](TG_MAPPO_INTERFACE.md)；35 项回归通过，同配置 2×80 时隙短训练通过。
 - 第 3 步说明与数据入口：[TG_MAPPO_DATA_COLLECTION.md](TG_MAPPO_DATA_COLLECTION.md)；最终 50 项 TG 回归通过，已采集三种行为的 1440 时隙混合数据。
@@ -449,6 +449,10 @@
 - 新增只读实时状态脚本scripts/report_tg_fixed100_status.py及逐模型验收器scripts/verify_tg_fixed100_results.py。验收器首轮错误地从冻结评估报告读取training_updates，引发KeyError；先记录原因再将更新字段检查限定到training。原失败源码/记录位于套件verification_attempts/initial，原训练实现未改、任务未受影响。
 - 修复后实际核验A六个历史任务通过；函数2→模块1→真实联调1共4项通过，覆盖冻结报告字段与拒绝把未完成套件当完整成功。新增验收器--partial仅检查已完成任务，完整汇总仍要求36任务completed。
 - 本地准备提交e31da8f9已保存；两次Git推送分别连接重置、github.com:443不可达，尚未同步该提交。后续重试；不因此中止本地训练，原无关改动和大模型仍留本地。
+- 后续Git已通过HTTP/1.1成功补推至b541a9e3，包含e31da8f9准备提交及监控/验收工具；前两次失败保留为历史，不再是当前阻碍。
+- 用户明确选择后台运行。已启动scripts/finalize_tg_fixed100.py独立等待进程；它每30秒读manifest，全部完成后执行完整只读验收和原出图脚本，训练/验收/出图失败均记录停止，不改模型或代码。其锁在postprocessing子目录，不与训练锁冲突。
+- 后台收尾3项测试最终通过：运行中只等待、真实小子进程完成后幂等、子进程失败停止且留日志。首次3例均因默认临时目录在项目外导致文件替换WinError5；先说明原因、保留失败源码/记录，再改为项目内临时目录验证通过。[凭据](evidence/TG_FIXED100_BACKGROUND_TOOLS_20261104.json)。原任务未受影响。
+- 接续资料：套件postprocessing/queued.json记录后台队列；完成后查看postprocessing/report.json、fixed100_acceptance.json、summary.json和figures。下次先确认当前状态，不能把后台正在跑写成全部完成，也不要重复启动调度器。源码/大模型未作额外迁移，历史评分53保留。
 
 ### 后续日志模板（复制后填写真实结果）
 

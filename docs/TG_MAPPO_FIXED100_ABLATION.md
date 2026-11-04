@@ -1,10 +1,14 @@
 # fixed100 六组消融准备与兼容验收
 
 日期：2026-11-04。主线：原 TG-MAPPO、原浮标环境，Python3.6.8 / Torch1.8.1 CPU。
-当前状态：**统一配置、基线复用及六组三种子短兼容验收全部通过；已准备好B–F100回合，尚未启动。**
-本阶段不启动B–F的100回合训练，不把两回合结果与100回合A作性能比较。
+当前状态：**准备及短兼容已验收，用户选择B–F100回合后台运行，最终结果待完成后汇总。**
+下文准备阶段的“尚未启动”是历史验收边界，不把两回合结果与100回合A作性能比较。
 
 后续执行更新：用户在上述验收后要求继续优化，已于2026-11-04 14:41从本准备目录启动B–F100回合，A六任务跳过。以下“尚未启动”描述的是准备阶段验收边界；当前实时状态以本目录manifest和[进度入口](TG_MAPPO_EXPERIMENT_PROGRESS.md)为准。不要重复启动同一调度器，最终性能汇总仍待完成。
+
+用户随后明确选择“先后台运行，保存接续记录，稍后汇总”。训练队列继续，另已启动`scripts/finalize_tg_fixed100.py`等待进程；它不启动/接续训练，检测到全部completed后自动调用完整只读验收与原出图工具。训练failed或验收/出图失败时保存日志并停止，不自动改代码。
+队列记录位于套件`postprocessing/queued.json`，最终收尾记录`postprocessing/report.json`，完整数值验收`fixed100_acceptance.json`，图在`figures`。
+3项后台收尾测试通过，首次因测试临时目录在项目外触发WinError5，改为项目内目录后通过；原失败记录和源码保留在verification_attempts/finalizer_temp_permissions。[测试与实际等待凭据](evidence/TG_FIXED100_BACKGROUND_TOOLS_20261104.json)。
 
 运行期间可只读查看每个模型的完成回合数，不影响随机数或模型：
 
@@ -128,5 +132,11 @@ E只控制新增Actor可训练容量；总容量、历史Critic及可靠性机�
 
 运行后如任务中断，仍用同一run命令接续；完成任务校验后跳过，失败任务新建attempt目录，保留原日志。
 这也是下一次第一件事：从本准备目录用新入口启动B–F15个模型及15个冻结评估，保持当前配置与源码；不要重新prepare或重训A。
+当前队列已经运行，接续前先看实时状态；仍running时不要再次run。全部完成后先读fixed100_acceptance.json、summary.json和postprocessing/report.json，再分析三种子投递/环路差异。若训练已完成但收尾进程不在，可只重启以下收尾命令，不重复训练：
+
+```powershell
+& "D:\python3.10.9\python.exe" scripts/finalize_tg_fixed100.py results/tg_ablation_fixed100/20261104_142119_244782
+```
+
 后续验收应逐组/逐种子检查投递、WAIT、回访、Sink选择、实际更新步数及冻结辅助；三个训练种子才是独立统计单位。
 7001已经用于开发，不能作最终盲测；正式1000回合、多预留场景、完整PM失败标签/可靠性、GPU均未在本阶段完成。
