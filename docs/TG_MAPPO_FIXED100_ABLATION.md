@@ -4,6 +4,16 @@
 当前状态：**统一配置、基线复用及六组三种子短兼容验收全部通过；已准备好B–F100回合，尚未启动。**
 本阶段不启动B–F的100回合训练，不把两回合结果与100回合A作性能比较。
 
+后续执行更新：用户在上述验收后要求继续优化，已于2026-11-04 14:41从本准备目录启动B–F100回合，A六任务跳过。以下“尚未启动”描述的是准备阶段验收边界；当前实时状态以本目录manifest和[进度入口](TG_MAPPO_EXPERIMENT_PROGRESS.md)为准。不要重复启动同一调度器，最终性能汇总仍待完成。
+
+运行期间可只读查看每个模型的完成回合数，不影响随机数或模型：
+
+```powershell
+& "D:\python3.10.9\python.exe" scripts/report_tg_fixed100_status.py results/tg_ablation_fixed100/20261104_142119_244782
+```
+
+逐模型验收器`scripts/verify_tg_fixed100_results.py`的`--partial`只验已完成任务，完整验收必须等36任务全部完成。原训练实现未改。新增4项分层测试通过，初版误读冻结报告training_updates的错误已保留原因并修复，见[工具验证与失败记录](evidence/TG_FIXED100_RESULT_TOOLS_20261104.json)。
+
 ## 1. 共同条件与六组职责
 
 配置：`configs/tg_ablation_fixed100.json`。训练种子11/22/33；各100×80联合时隙；每个网络200次实际Adam更新。
