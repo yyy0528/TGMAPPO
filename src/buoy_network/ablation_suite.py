@@ -54,6 +54,9 @@ def validate(config):
     if config.get("schema") == "original_tg_ablation_v3":
         required.add("learning_rate_schedule")
         require(config.get("learning_rate_schedule") in ("fixed","linear"),"Require explicit fixed/linear learning-rate schedule")
+        if "critic_time_mode" in config:
+            required.add("critic_time_mode")
+            require(config["critic_time_mode"] in ("disabled","constant","remaining"),"Invalid Critic clock mode")
     require(set(config) == required and config["schema"] in ("original_tg_ablation_v1", "original_tg_ablation_v2", "original_tg_ablation_v3"), "Unknown/incomplete suite schema")
     for field in ("python", "wm_checkpoint", "pm_checkpoint"):
         config[field] = str((ROOT/config[field]).resolve())
@@ -119,6 +122,8 @@ def jobs(config, suite):
     # Old suite schemas used implicit decay. Preserve their actual historical plan.
     if config.get("learning_rate_schedule","linear") == "linear":
         common.append("--use_linear_lr_decay")
+    if "critic_time_mode" in config:
+        common += ["--tg_critic_time_mode",config["critic_time_mode"]]
     if "reward_contract" in config:
         spec = config["reward_contract"]
         common += ["--tg_reward_version", spec["version"]]
@@ -185,6 +190,9 @@ def inspect_job(job, config):
     report_path = root/"logs"/"TG_policy_report.json"
     report = read(report_path)
     actual = read(root/"logs"/"TG_MAPPO_environment.json")["config"]
+    mode = config.get("critic_time_mode","disabled")
+    require(actual.get("tg_critic_time_mode","disabled") == mode
+            and report.get("critic_time_mode","disabled") == mode,"Critic clock differs from frozen protocol")
     if "learning_rate_schedule" in config:
         require(actual["use_linear_lr_decay"] == (config["learning_rate_schedule"] == "linear"), "Job schedule differs from frozen protocol")
         spec = report["learning_rate_schedule"] if job["kind"] == "training" else report["source_learning_rate_schedule"]

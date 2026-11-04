@@ -127,6 +127,7 @@ class GR_MAPPOPolicy:
         available_actions=None,
         deterministic=False,
         wm_features=None,
+        critic_time=None,
     ) -> Tuple[Tensor, Tensor, Tensor, Tensor, Tensor]:
         """
         Compute actions and value function predictions for the given inputs.
@@ -179,12 +180,12 @@ class GR_MAPPOPolicy:
         )
 
         values, rnn_states_critic = self.critic.forward(
-            cent_obs, node_obs, adj, share_agent_id, rnn_states_critic, masks
+            cent_obs, node_obs, adj, share_agent_id, rnn_states_critic, masks, critic_time=critic_time
         )
         return (values, actions, action_log_probs, rnn_states_actor, rnn_states_critic)
 
     def get_values(
-        self, cent_obs, node_obs, adj, share_agent_id, rnn_states_critic, masks
+        self, cent_obs, node_obs, adj, share_agent_id, rnn_states_critic, masks, critic_time=None
     ) -> Tensor:
         """
         Get value function predictions.
@@ -204,7 +205,7 @@ class GR_MAPPOPolicy:
         :return values: (torch.Tensor) value function predictions.
         """
         values, _ = self.critic.forward(
-            cent_obs, node_obs, adj, share_agent_id, rnn_states_critic, masks
+            cent_obs, node_obs, adj, share_agent_id, rnn_states_critic, masks, critic_time=critic_time
         )
         return values
 
@@ -223,6 +224,7 @@ class GR_MAPPOPolicy:
         available_actions=None,
         active_masks=None,
         wm_features=None,
+        critic_time=None,
     ) -> Tuple[Tensor, Tensor, Tensor]:
         """
         Get action logprobs / entropy and
@@ -276,7 +278,7 @@ class GR_MAPPOPolicy:
         #print(available_actions)
 
         values, _ = self.critic.forward(
-            cent_obs, node_obs, adj, share_agent_id, rnn_states_critic, masks
+            cent_obs, node_obs, adj, share_agent_id, rnn_states_critic, masks, critic_time=critic_time
         )
         return values, action_log_probs, dist_entropy
 

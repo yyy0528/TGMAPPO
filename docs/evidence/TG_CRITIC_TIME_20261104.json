@@ -1,0 +1,2454 @@
+{
+  "success": true,
+  "scope": "Critic-only clock plumbing and bounded baseline diagnostics; not formal innovation acceptance",
+  "tests": 139,
+  "new_tests": {
+    "success": true,
+    "stages": [
+      {
+        "name": "functions",
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "stdout": "D:\\python3.6.8\\lib\\site-packages\\torch\\cuda\\amp\\autocast_mode.py:118: UserWarning: torch.cuda.amp.autocast only affects CUDA ops, but CUDA is not available.  Disabling.\r\n  warnings.warn(\"torch.cuda.amp.autocast only affects CUDA ops, but CUDA is not available.  Disabling.\")\r\ntest_clock_decision_and_terminal_indices (tests.test_legacy_critic_time.TimeFunctions) ... ok\r\ntest_initial_identity_rng_and_trainable_branch (tests.test_legacy_critic_time.TimeFunctions) ... ok\r\ntest_invalid_modes_shapes_and_ranges (tests.test_legacy_critic_time.TimeFunctions) ... ok\r\ntest_remaining_changes_output_constant_ignores_clock (tests.test_legacy_critic_time.TimeFunctions) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 4 tests in 0.036s\r\n\r\nOK\r\n",
+        "exit_code": 0
+      },
+      {
+        "name": "modules",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "stdout": "D:\\python3.6.8\\lib\\site-packages\\torch\\cuda\\amp\\autocast_mode.py:118: UserWarning: torch.cuda.amp.autocast only affects CUDA ops, but CUDA is not available.  Disabling.\r\n  warnings.warn(\"torch.cuda.amp.autocast only affects CUDA ops, but CUDA is not available.  Disabling.\")\r\ntest_buffer_clock_alignment_reset_and_shuffled_samples (tests.test_legacy_critic_time.TimeModules) ... D:\\python3.6.8\\lib\\site-packages\\torch\\cuda\\amp\\grad_scaler.py:116: UserWarning: torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.\r\n  warnings.warn(\"torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.\")\r\nok\r\ntest_checkpoint_clock_mode_guard_and_old_missing_field (tests.test_legacy_critic_time.TimeModules) ... ok\r\ntest_same_original_initialization_and_equal_capacity_controls (tests.test_legacy_critic_time.TimeModules) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 3 tests in 3.960s\r\n\r\nOK\r\n",
+        "exit_code": 0
+      },
+      {
+        "name": "integration",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "stdout": "D:\\python3.6.8\\lib\\site-packages\\torch\\cuda\\amp\\autocast_mode.py:118: UserWarning: torch.cuda.amp.autocast only affects CUDA ops, but CUDA is not available.  Disabling.\r\n  warnings.warn(\"torch.cuda.amp.autocast only affects CUDA ops, but CUDA is not available.  Disabling.\")\r\ntest_first_rollout_and_actor_update_identical_clock_branch_learns (tests.test_legacy_critic_time.TimeIntegration) ... D:\\python3.6.8\\lib\\site-packages\\torch\\cuda\\amp\\grad_scaler.py:116: UserWarning: torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.\r\n  warnings.warn(\"torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.\")\r\nok\r\ntest_time_with_frozen_wm_pm_and_four_epoch_ppo (tests.test_legacy_critic_time.TimeIntegration) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 2 tests in 5.049s\r\n\r\nOK\r\n",
+        "exit_code": 0
+      }
+    ],
+    "initial_module_failure": {
+      "chunk_id": "6536ab",
+      "wall_time_seconds": 5.9274064,
+      "exit_code": 1,
+      "original_token_count": 528,
+      "output": "D:\\python3.6.8\\lib\\site-packages\\torch\\cuda\\amp\\autocast_mode.py:118: UserWarning: torch.cuda.amp.autocast only affects CUDA ops, but CUDA is not available.  Disabling.\r\n  warnings.warn(\"torch.cuda.amp.autocast only affects CUDA ops, but CUDA is not available.  Disabling.\")\r\ntest_buffer_clock_alignment_reset_and_shuffled_samples (tests.test_legacy_critic_time.TimeModules) ... D:\\python3.6.8\\lib\\site-packages\\torch\\cuda\\amp\\grad_scaler.py:116: UserWarning: torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.\r\n  warnings.warn(\"torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.\")\r\nok\r\ntest_checkpoint_clock_mode_guard_and_old_missing_field (tests.test_legacy_critic_time.TimeModules) ... ERROR\r\ntest_same_original_initialization_and_equal_capacity_controls (tests.test_legacy_critic_time.TimeModules) ... ok\r\n\r\n======================================================================\r\nERROR: test_checkpoint_clock_mode_guard_and_old_missing_field (tests.test_legacy_critic_time.TimeModules)\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\tests\\test_legacy_critic_time.py\", line 117, in test_checkpoint_clock_mode_guard_and_old_missing_field\r\n    loaded.load_policy(path)\r\n  File \"D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\src\\buoy_network\\agent.py\", line 667, in load_policy\r\n    load_policy(self, path)\r\n  File \"D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\src\\buoy_network\\policy_artifacts.py\", line 72, in load_policy\r\n    raise ValueError(\"Cannot load TG policy {}: {}\".format(path, exc)) from None\r\nValueError: Cannot load TG policy C:\\Users\\17702\\AppData\\Local\\Temp\\tmpiw_2wf36\\disabled\\moves_5\\checkpoints\\tg_policy_latest.pt: [Errno 2] No such file or directory: 'C:\\\\Users\\\\17702\\\\AppData\\\\Local\\\\Temp\\\\tmpiw_2wf36\\\\disabled\\\\moves_5\\\\checkpoints\\\\tg_policy_latest.pt'\r\n\r\n----------------------------------------------------------------------\r\nRan 3 tests in 1.320s\r\n\r\nFAILED (errors=1)\r\n"
+    },
+    "failure_reason": "Test harness expected moves_5 but configured 0 moving buoys; changed test to derive output path from config."
+  },
+  "regressions": {
+    "success": true,
+    "reports": [
+      {
+        "name": "test_legacy_fixes.py",
+        "path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\targeted_fixes\\20261104_124154_979932\\test_report.json"
+      },
+      {
+        "name": "test_tg_wm_actor.py",
+        "path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_actor_tests\\20261104_124155_004843\\report.json"
+      },
+      {
+        "name": "test_tg_pm.py",
+        "path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_pm_tests\\20261104_124154_698680\\report.json"
+      },
+      {
+        "name": "test_tg_ablation.py",
+        "path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_ablation_tests\\20261104_124154_856237\\report.json"
+      },
+      {
+        "name": "test_tg_task_reward.py",
+        "path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_task_reward_tests\\20261104_124154_503917\\report.json"
+      },
+      {
+        "name": "test_tg_popart.py",
+        "path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_popart_tests\\20261104_124154_237024\\report.json"
+      },
+      {
+        "name": "test_tg_lr_schedule.py",
+        "path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_lr_tests\\20261104_124156_434955\\report.json"
+      },
+      {
+        "name": "test_tg_ppo_budget.py",
+        "path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_ppo_budget_tests\\20261104_124156_112150\\report.json"
+      }
+    ],
+    "extra": [
+      {
+        "name": "legacy_diagnostic_credit_fixed",
+        "tests": 9,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "stdout": "D:\\python3.6.8\\lib\\site-packages\\torch\\cuda\\amp\\autocast_mode.py:118: UserWarning: torch.cuda.amp.autocast only affects CUDA ops, but CUDA is not available.  Disabling.\r\n  warnings.warn(\"torch.cuda.amp.autocast only affects CUDA ops, but CUDA is not available.  Disabling.\")\r\ntest_baseline_capture_is_read_only_and_detaches_cleanly (tests.test_legacy_diagnostic_capture.CaptureModules) ... D:\\python3.6.8\\lib\\site-packages\\torch\\cuda\\amp\\grad_scaler.py:116: UserWarning: torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.\r\n  warnings.warn(\"torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.\")\r\nok\r\ntest_wm_distribution_capture_uses_cached_inputs_without_sampling (tests.test_legacy_diagnostic_capture.CaptureModules) ... ok\r\ntest_empty_and_constant_advantages (tests.test_credit_diagnostics.CreditFunctions) ... ok\r\ntest_matches_original_active_standardization_without_mutation (tests.test_credit_diagnostics.CreditFunctions) ... ok\r\ntest_rejects_shapes_and_nonfinite_values (tests.test_credit_diagnostics.CreditFunctions) ... ok\r\ntest_joint_delivery_does_not_label_another_action_as_own_delivery (tests.test_credit_diagnostics.CreditModules) ... ok\r\ntest_wait_and_failed_ack_are_separate (tests.test_credit_diagnostics.CreditModules) ... ok\r\ntest_actual_ppo_weights_and_losses_are_bitwise_unchanged (tests.test_legacy_credit_capture.CaptureIntegration) ... ok\r\ntest_training_graph_keeps_lazy_probability_cache_unread (tests.test_legacy_credit_capture.CaptureModule) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 9 tests in 6.296s\r\n\r\nOK\r\n",
+        "exit_code": 0
+      },
+      {
+        "name": "modern_models_diagnostic",
+        "tests": 15,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "stdout": "test_future_targets_do_not_change_inputs_and_wait_is_masked (tests.test_tg_world_model.WorldModelFunctions) ... ok\r\ntest_motion_context_is_observed_offset_not_future_motion (tests.test_tg_world_model.WorldModelFunctions) ... ok\r\ntest_real_gradients_checkpoint_and_evaluation_preserve_normalization (tests.test_tg_world_model.WorldModelFunctions) ... ok\r\ntest_receiver_feedback_uses_only_matching_previous_attempts (tests.test_tg_world_model.WorldModelFunctions) ... ok\r\ntest_selection_preserves_mandatory_head_gates (tests.test_tg_world_model.WorldModelFunctions) ... ok\r\ntest_topology_is_independent_of_current_candidate_action (tests.test_tg_world_model.WorldModelFunctions) ... ok\r\ntest_causal_gru_and_online_prefix_equivalence (tests.test_tg_progress_model.ProgressFunctions) ... ok\r\ntest_censored_likelihood_is_observed_survival_not_failure (tests.test_tg_progress_model.ProgressFunctions) ... ok\r\ntest_packet_weighting_padding_and_real_gradient_update (tests.test_tg_progress_model.ProgressFunctions) ... ok\r\ntest_prefix_features_only_use_current_and_past (tests.test_tg_progress_model.ProgressFunctions) ... ok\r\ntest_unknown_window_results_do_not_count_as_zero_brier (tests.test_tg_progress_model.ProgressFunctions) ... ok\r\ntest_active_wait_sink_opportunity_and_initial_agreement (tests.test_policy_diagnostics.DiagnosticFunctions) ... ok\r\ntest_cycles_preserve_direction_and_ignore_path_prefix (tests.test_policy_diagnostics.DiagnosticFunctions) ... ok\r\ntest_observed_traps_are_not_physical_disconnections (tests.test_policy_diagnostics.DiagnosticFunctions) ... ok\r\ntest_successful_loop_counts_and_wait_are_separate (tests.test_policy_diagnostics.DiagnosticFunctions) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 15 tests in 3.023s\r\n\r\nOK\r\n",
+        "exit_code": 0
+      }
+    ],
+    "initial_bad_command": {
+      "chunk_id": "147eed",
+      "wall_time_seconds": 4.3e-06,
+      "exit_code": 1,
+      "original_token_count": 254,
+      "output": "D:\\python3.6.8\\lib\\site-packages\\torch\\cuda\\amp\\autocast_mode.py:118: UserWarning: torch.cuda.amp.autocast only affects CUDA ops, but CUDA is not available.  Disabling.\r\n  warnings.warn(\"torch.cuda.amp.autocast only affects CUDA ops, but CUDA is not available.  Disabling.\")\r\ntest_legacy_policy_diagnostics (unittest.loader._FailedTest) ... ERROR\r\ntest_empty_and_constant_advantages (tests.test_credit_diagnostics.CreditFunctions) ... ok\r\ntest_matches_original_active_standardization_without_mutation (tests.test_credit_diagnostics.CreditFunctions) ... ok\r\ntest_rejects_shapes_and_nonfinite_values (tests.test_credit_diagnostics.CreditFunctions) ... ok\r\ntest_joint_delivery_does_not_label_another_action_as_own_delivery (tests.test_credit_diagnostics.CreditModules) ... ok\r\ntest_wait_and_failed_ack_are_separate (tests.test_credit_diagnostics.CreditModules) ... ok\r\ntest_actual_ppo_weights_and_losses_are_bitwise_unchanged (tests.test_legacy_credit_capture.CaptureIntegration) ... D:\\python3.6.8\\lib\\site-packages\\torch\\cuda\\amp\\grad_scaler.py:116: UserWarning: torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.\r\n  warnings.warn(\"torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.\")\r\nok\r\ntest_training_graph_keeps_lazy_probability_cache_unread (tests.test_legacy_credit_capture.CaptureModule) ... ok\r\n\r\n======================================================================\r\nERROR: test_legacy_policy_diagnostics (unittest.loader._FailedTest)\r\n----------------------------------------------------------------------\r\nImportError: Failed to import test module: test_legacy_policy_diagnostics\r\nTraceback (most recent call last):\r\n  File \"D:\\python3.6.8\\lib\\unittest\\loader.py\", line 153, in loadTestsFromName\r\n    module = __import__(module_name)\r\nModuleNotFoundError: No module named 'tests.test_legacy_policy_diagnostics'\r\n\r\n\r\n----------------------------------------------------------------------\r\nRan 8 tests in 8.664s\r\n\r\nFAILED (errors=1)\r\n"
+    },
+    "initial_bad_command_reason": "Incorrect test module name; corrected to tests.test_legacy_diagnostic_capture; rerun passed."
+  },
+  "regression_reports": [
+    {
+      "path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\targeted_fixes\\20261104_124154_979932\\test_report.json",
+      "sha256": "13c626732a413d3992143002a4dca94e38c4d52ae9d73531577aa09408ce5f96",
+      "report": {
+        "python": "D:\\python3.6.8\\python.exe",
+        "scope": "legacy_fixed_v1 targeted regressions",
+        "stages": [
+          {
+            "name": "functions",
+            "tests": 21,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "seconds": 3.66,
+            "log": "functions.log"
+          },
+          {
+            "name": "modules",
+            "tests": 24,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "seconds": 9.258,
+            "log": "modules.log"
+          },
+          {
+            "name": "integration",
+            "tests": 6,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "seconds": 34.654,
+            "log": "integration.log"
+          }
+        ],
+        "smoke": {
+          "command": [
+            "D:\\python3.6.8\\python.exe",
+            "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\run_algorithm.py",
+            "--algorithm",
+            "tg-mappo",
+            "--num_episodes",
+            "2",
+            "--episode_length",
+            "80",
+            "--num_env_steps",
+            "160",
+            "--ppo_epoch",
+            "1",
+            "--num_mini_batch",
+            "2",
+            "--num_moving_buoys",
+            "25",
+            "--random_channel",
+            "true",
+            "--output-root",
+            "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\targeted_fixes\\20261104_124154_979932\\smoke"
+          ],
+          "exit_code": 0,
+          "seconds": 25.632,
+          "episodes": [
+            {
+              "episode": "0",
+              "delivery_rate": "0.16666666666666666",
+              "average_hops": "68.33333333333333",
+              "average_delay": "19.5"
+            },
+            {
+              "episode": "1",
+              "delivery_rate": "0.20833333333333334",
+              "average_hops": "64.875",
+              "average_delay": "21.666666666666668"
+            }
+          ],
+          "metrics": "smoke\\runs\\20261104_124242_678767\\moves_25\\logs\\tg_mappo_metrics.csv"
+        },
+        "success": true,
+        "tests": 51
+      }
+    },
+    {
+      "path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_actor_tests\\20261104_124155_004843\\report.json",
+      "sha256": "99c58041a53d5dba41c751d73cd123e7ef256127264f8248a6ace75ec1f068f8",
+      "report": {
+        "python": "D:\\python3.6.8\\python.exe",
+        "stages": [
+          {
+            "name": "functions",
+            "tests": 3,
+            "failures": 0,
+            "errors": 0
+          },
+          {
+            "name": "modules",
+            "tests": 3,
+            "failures": 0,
+            "errors": 0
+          },
+          {
+            "name": "integration",
+            "tests": 2,
+            "failures": 0,
+            "errors": 0
+          }
+        ],
+        "success": true
+      }
+    },
+    {
+      "path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_pm_tests\\20261104_124154_698680\\report.json",
+      "sha256": "3b80c1b6add280ad18631d9e1e1a53f3b1c32af2a6ebd499ee2c680938320606",
+      "report": {
+        "python": "D:\\python3.6.8\\python.exe",
+        "success": true,
+        "stages": [
+          {
+            "name": "functions",
+            "tests": 2,
+            "failures": 0,
+            "errors": 0
+          },
+          {
+            "name": "modules",
+            "tests": 2,
+            "failures": 0,
+            "errors": 0
+          },
+          {
+            "name": "integration",
+            "tests": 2,
+            "failures": 0,
+            "errors": 0
+          }
+        ]
+      }
+    },
+    {
+      "path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_ablation_tests\\20261104_124154_856237\\report.json",
+      "sha256": "75d1e7bc42a0651a0a481a6f9fef150554aa37f36f626b3e4987867b742ec4f1",
+      "report": {
+        "success": true,
+        "python": "D:\\python3.6.8\\python.exe",
+        "stages": [
+          {
+            "name": "functions",
+            "tests": 6,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          {
+            "name": "modules",
+            "tests": 4,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          }
+        ]
+      }
+    },
+    {
+      "path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_task_reward_tests\\20261104_124154_503917\\report.json",
+      "sha256": "2c2524d127d34600022c65c0b50de1dd596c286c4f960c1a25bbb5cc805256ec",
+      "report": {
+        "python": "D:\\python3.6.8\\python.exe",
+        "success": true,
+        "stages": [
+          {
+            "name": "functions",
+            "tests": 4,
+            "failures": 0,
+            "errors": 0
+          },
+          {
+            "name": "modules",
+            "tests": 2,
+            "failures": 0,
+            "errors": 0
+          },
+          {
+            "name": "integration",
+            "tests": 2,
+            "failures": 0,
+            "errors": 0
+          }
+        ]
+      }
+    },
+    {
+      "path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_popart_tests\\20261104_124154_237024\\report.json",
+      "sha256": "06fa9a7560b3f87779f63fecff1c5cef1da38c6000ada8a61456648506da4c8e",
+      "report": {
+        "python": "D:\\python3.6.8\\python.exe",
+        "success": true,
+        "stages": [
+          {
+            "name": "functions",
+            "tests": 4,
+            "failures": 0,
+            "errors": 0
+          },
+          {
+            "name": "modules",
+            "tests": 2,
+            "failures": 0,
+            "errors": 0
+          },
+          {
+            "name": "integration",
+            "tests": 1,
+            "failures": 0,
+            "errors": 0
+          }
+        ]
+      }
+    },
+    {
+      "path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_lr_tests\\20261104_124156_434955\\report.json",
+      "sha256": "565a2ba1bf86135d922f4b38007c3a1feeff754498e7176fdb31255686e2035d",
+      "report": {
+        "python": "D:\\python3.6.8\\python.exe",
+        "success": true,
+        "stages": [
+          {
+            "name": "functions",
+            "tests": 4,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          {
+            "name": "modules",
+            "tests": 2,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          {
+            "name": "integration",
+            "tests": 2,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          }
+        ]
+      }
+    },
+    {
+      "path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_ppo_budget_tests\\20261104_124156_112150\\report.json",
+      "sha256": "565a2ba1bf86135d922f4b38007c3a1feeff754498e7176fdb31255686e2035d",
+      "report": {
+        "python": "D:\\python3.6.8\\python.exe",
+        "success": true,
+        "stages": [
+          {
+            "name": "functions",
+            "tests": 4,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          {
+            "name": "modules",
+            "tests": 2,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          },
+          {
+            "name": "integration",
+            "tests": 2,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          }
+        ]
+      }
+    }
+  ],
+  "source_file_count": 167,
+  "smoke_suites": {
+    "disabled": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_critic_time_disabled_smoke\\20261104_124501_129139",
+    "constant": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_critic_time_constant_smoke\\20261104_124457_670116",
+    "remaining": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_critic_time_remaining_smoke\\20261104_124457_644175"
+  },
+  "smoke_summaries": {
+    "disabled": {
+      "purpose": "diagnostic",
+      "budget": {
+        "purpose": "diagnostic",
+        "training_jobs": 3,
+        "evaluation_jobs": 3,
+        "training_steps_per_job": 160,
+        "total_training_steps": 480,
+        "total_evaluation_steps": 480,
+        "independent_training_seeds": [
+          11,
+          22,
+          33
+        ],
+        "evaluation_scenes": [
+          7001
+        ]
+      },
+      "by_training_seed": [
+        {
+          "group": "A",
+          "train_seed": 11,
+          "generated": 48,
+          "delivered": 10,
+          "delivery_rate": 0.20833333333333334,
+          "unresolved_fraction": 0.7916666666666666,
+          "success_hops_mean": 1.6,
+          "success_delay_mean": 6.7,
+          "success_delay_p95": 18,
+          "retry_attempts": 178,
+          "loop_transfers": 129,
+          "true_drop_rate": null,
+          "target_first_training_steps": null,
+          "train_worker_seconds": 48.4505632,
+          "resources": {
+            "actor_trainable": 21956,
+            "critic_trainable": 18615,
+            "wm_frozen": 0,
+            "pm_frozen": 0,
+            "wm_active": false,
+            "device": "cpu",
+            "cuda_peak_bytes": null
+          },
+          "profile": {
+            "collect_calls": 160,
+            "collect_seconds": 9.609810399999985,
+            "ppo_updates": 2,
+            "ppo_seconds": 13.099265300000003,
+            "diagnostic_seconds": 8.699999991534924e-06
+          }
+        },
+        {
+          "group": "A",
+          "train_seed": 22,
+          "generated": 48,
+          "delivered": 0,
+          "delivery_rate": 0.0,
+          "unresolved_fraction": 1.0,
+          "success_hops_mean": null,
+          "success_delay_mean": null,
+          "success_delay_p95": null,
+          "retry_attempts": 356,
+          "loop_transfers": 217,
+          "true_drop_rate": null,
+          "target_first_training_steps": null,
+          "train_worker_seconds": 44.5527017,
+          "resources": {
+            "actor_trainable": 21956,
+            "critic_trainable": 18615,
+            "wm_frozen": 0,
+            "pm_frozen": 0,
+            "wm_active": false,
+            "device": "cpu",
+            "cuda_peak_bytes": null
+          },
+          "profile": {
+            "collect_calls": 160,
+            "collect_seconds": 7.082126299999988,
+            "ppo_updates": 2,
+            "ppo_seconds": 12.920484300000002,
+            "diagnostic_seconds": 6.699999996584438e-06
+          }
+        },
+        {
+          "group": "A",
+          "train_seed": 33,
+          "generated": 48,
+          "delivered": 0,
+          "delivery_rate": 0.0,
+          "unresolved_fraction": 1.0,
+          "success_hops_mean": null,
+          "success_delay_mean": null,
+          "success_delay_p95": null,
+          "retry_attempts": 312,
+          "loop_transfers": 327,
+          "true_drop_rate": null,
+          "target_first_training_steps": null,
+          "train_worker_seconds": 34.317317599999996,
+          "resources": {
+            "actor_trainable": 21956,
+            "critic_trainable": 18615,
+            "wm_frozen": 0,
+            "pm_frozen": 0,
+            "wm_active": false,
+            "device": "cpu",
+            "cuda_peak_bytes": null
+          },
+          "profile": {
+            "collect_calls": 160,
+            "collect_seconds": 4.098279899999995,
+            "ppo_updates": 2,
+            "ppo_seconds": 10.3185549,
+            "diagnostic_seconds": 1.0200000003735e-05
+          }
+        }
+      ],
+      "groups": [
+        {
+          "group": "A",
+          "independent_training_n": 3,
+          "metrics": {
+            "delivery_rate": {
+              "mean": 0.06944444444444445,
+              "sample_std": 0.12028130608117205,
+              "n_defined": 3
+            },
+            "unresolved_fraction": {
+              "mean": 0.9305555555555556,
+              "sample_std": 0.12028130608117206,
+              "n_defined": 3
+            },
+            "success_hops_mean": {
+              "mean": 1.6,
+              "sample_std": null,
+              "n_defined": 1
+            },
+            "success_delay_mean": {
+              "mean": 6.7,
+              "sample_std": null,
+              "n_defined": 1
+            },
+            "success_delay_p95": {
+              "mean": 18,
+              "sample_std": null,
+              "n_defined": 1
+            },
+            "retry_attempts": {
+              "mean": 282,
+              "sample_std": 92.71461589199407,
+              "n_defined": 3
+            },
+            "loop_transfers": {
+              "mean": 224.33333333333334,
+              "sample_std": 99.20349456210367,
+              "n_defined": 3
+            }
+          }
+        }
+      ],
+      "statistical_unit": "independent trained policy, not evaluation episode",
+      "drop_rate_supported": false,
+      "limitations": [
+        "baseline only; not a WM/PM ablation",
+        "development scene; no convergence/significance claim",
+        "optimizer compute budget varies; environment interactions held fixed",
+        "CPU timings are not a controlled speed benchmark"
+      ]
+    },
+    "constant": {
+      "purpose": "diagnostic",
+      "budget": {
+        "purpose": "diagnostic",
+        "training_jobs": 3,
+        "evaluation_jobs": 3,
+        "training_steps_per_job": 160,
+        "total_training_steps": 480,
+        "total_evaluation_steps": 480,
+        "independent_training_seeds": [
+          11,
+          22,
+          33
+        ],
+        "evaluation_scenes": [
+          7001
+        ]
+      },
+      "by_training_seed": [
+        {
+          "group": "A",
+          "train_seed": 11,
+          "generated": 48,
+          "delivered": 10,
+          "delivery_rate": 0.20833333333333334,
+          "unresolved_fraction": 0.7916666666666666,
+          "success_hops_mean": 1.6,
+          "success_delay_mean": 6.7,
+          "success_delay_p95": 18,
+          "retry_attempts": 178,
+          "loop_transfers": 129,
+          "true_drop_rate": null,
+          "target_first_training_steps": null,
+          "train_worker_seconds": 47.2182363,
+          "resources": {
+            "actor_trainable": 21956,
+            "critic_trainable": 18743,
+            "wm_frozen": 0,
+            "pm_frozen": 0,
+            "wm_active": false,
+            "device": "cpu",
+            "cuda_peak_bytes": null
+          },
+          "profile": {
+            "collect_calls": 160,
+            "collect_seconds": 7.130652700000007,
+            "ppo_updates": 2,
+            "ppo_seconds": 15.224542899999998,
+            "diagnostic_seconds": 1.4900000003592595e-05
+          }
+        },
+        {
+          "group": "A",
+          "train_seed": 22,
+          "generated": 48,
+          "delivered": 0,
+          "delivery_rate": 0.0,
+          "unresolved_fraction": 1.0,
+          "success_hops_mean": null,
+          "success_delay_mean": null,
+          "success_delay_p95": null,
+          "retry_attempts": 356,
+          "loop_transfers": 217,
+          "true_drop_rate": null,
+          "target_first_training_steps": null,
+          "train_worker_seconds": 41.28086950000001,
+          "resources": {
+            "actor_trainable": 21956,
+            "critic_trainable": 18743,
+            "wm_frozen": 0,
+            "pm_frozen": 0,
+            "wm_active": false,
+            "device": "cpu",
+            "cuda_peak_bytes": null
+          },
+          "profile": {
+            "collect_calls": 160,
+            "collect_seconds": 6.22381149999999,
+            "ppo_updates": 2,
+            "ppo_seconds": 13.038994699999996,
+            "diagnostic_seconds": 6.600000002521256e-06
+          }
+        },
+        {
+          "group": "A",
+          "train_seed": 33,
+          "generated": 48,
+          "delivered": 0,
+          "delivery_rate": 0.0,
+          "unresolved_fraction": 1.0,
+          "success_hops_mean": null,
+          "success_delay_mean": null,
+          "success_delay_p95": null,
+          "retry_attempts": 312,
+          "loop_transfers": 327,
+          "true_drop_rate": null,
+          "target_first_training_steps": null,
+          "train_worker_seconds": 36.6075735,
+          "resources": {
+            "actor_trainable": 21956,
+            "critic_trainable": 18743,
+            "wm_frozen": 0,
+            "pm_frozen": 0,
+            "wm_active": false,
+            "device": "cpu",
+            "cuda_peak_bytes": null
+          },
+          "profile": {
+            "collect_calls": 160,
+            "collect_seconds": 5.3035879,
+            "ppo_updates": 2,
+            "ppo_seconds": 10.7254253,
+            "diagnostic_seconds": 6.799999997753048e-06
+          }
+        }
+      ],
+      "groups": [
+        {
+          "group": "A",
+          "independent_training_n": 3,
+          "metrics": {
+            "delivery_rate": {
+              "mean": 0.06944444444444445,
+              "sample_std": 0.12028130608117205,
+              "n_defined": 3
+            },
+            "unresolved_fraction": {
+              "mean": 0.9305555555555556,
+              "sample_std": 0.12028130608117206,
+              "n_defined": 3
+            },
+            "success_hops_mean": {
+              "mean": 1.6,
+              "sample_std": null,
+              "n_defined": 1
+            },
+            "success_delay_mean": {
+              "mean": 6.7,
+              "sample_std": null,
+              "n_defined": 1
+            },
+            "success_delay_p95": {
+              "mean": 18,
+              "sample_std": null,
+              "n_defined": 1
+            },
+            "retry_attempts": {
+              "mean": 282,
+              "sample_std": 92.71461589199407,
+              "n_defined": 3
+            },
+            "loop_transfers": {
+              "mean": 224.33333333333334,
+              "sample_std": 99.20349456210367,
+              "n_defined": 3
+            }
+          }
+        }
+      ],
+      "statistical_unit": "independent trained policy, not evaluation episode",
+      "drop_rate_supported": false,
+      "limitations": [
+        "baseline only; not a WM/PM ablation",
+        "development scene; no convergence/significance claim",
+        "optimizer compute budget varies; environment interactions held fixed",
+        "CPU timings are not a controlled speed benchmark"
+      ]
+    },
+    "remaining": {
+      "purpose": "diagnostic",
+      "budget": {
+        "purpose": "diagnostic",
+        "training_jobs": 3,
+        "evaluation_jobs": 3,
+        "training_steps_per_job": 160,
+        "total_training_steps": 480,
+        "total_evaluation_steps": 480,
+        "independent_training_seeds": [
+          11,
+          22,
+          33
+        ],
+        "evaluation_scenes": [
+          7001
+        ]
+      },
+      "by_training_seed": [
+        {
+          "group": "A",
+          "train_seed": 11,
+          "generated": 48,
+          "delivered": 10,
+          "delivery_rate": 0.20833333333333334,
+          "unresolved_fraction": 0.7916666666666666,
+          "success_hops_mean": 1.6,
+          "success_delay_mean": 6.7,
+          "success_delay_p95": 18,
+          "retry_attempts": 178,
+          "loop_transfers": 129,
+          "true_drop_rate": null,
+          "target_first_training_steps": null,
+          "train_worker_seconds": 48.359558299999996,
+          "resources": {
+            "actor_trainable": 21956,
+            "critic_trainable": 18743,
+            "wm_frozen": 0,
+            "pm_frozen": 0,
+            "wm_active": false,
+            "device": "cpu",
+            "cuda_peak_bytes": null
+          },
+          "profile": {
+            "collect_calls": 160,
+            "collect_seconds": 8.69984130000002,
+            "ppo_updates": 2,
+            "ppo_seconds": 15.007655300000001,
+            "diagnostic_seconds": 9.400000001491549e-06
+          }
+        },
+        {
+          "group": "A",
+          "train_seed": 22,
+          "generated": 48,
+          "delivered": 0,
+          "delivery_rate": 0.0,
+          "unresolved_fraction": 1.0,
+          "success_hops_mean": null,
+          "success_delay_mean": null,
+          "success_delay_p95": null,
+          "retry_attempts": 356,
+          "loop_transfers": 217,
+          "true_drop_rate": null,
+          "target_first_training_steps": null,
+          "train_worker_seconds": 45.174583299999995,
+          "resources": {
+            "actor_trainable": 21956,
+            "critic_trainable": 18743,
+            "wm_frozen": 0,
+            "pm_frozen": 0,
+            "wm_active": false,
+            "device": "cpu",
+            "cuda_peak_bytes": null
+          },
+          "profile": {
+            "collect_calls": 160,
+            "collect_seconds": 7.229899899999985,
+            "ppo_updates": 2,
+            "ppo_seconds": 13.630487100000002,
+            "diagnostic_seconds": 7.900000003502328e-06
+          }
+        },
+        {
+          "group": "A",
+          "train_seed": 33,
+          "generated": 48,
+          "delivered": 0,
+          "delivery_rate": 0.0,
+          "unresolved_fraction": 1.0,
+          "success_hops_mean": null,
+          "success_delay_mean": null,
+          "success_delay_p95": null,
+          "retry_attempts": 312,
+          "loop_transfers": 327,
+          "true_drop_rate": null,
+          "target_first_training_steps": null,
+          "train_worker_seconds": 34.947070199999985,
+          "resources": {
+            "actor_trainable": 21956,
+            "critic_trainable": 18743,
+            "wm_frozen": 0,
+            "pm_frozen": 0,
+            "wm_active": false,
+            "device": "cpu",
+            "cuda_peak_bytes": null
+          },
+          "profile": {
+            "collect_calls": 160,
+            "collect_seconds": 3.4384252000000117,
+            "ppo_updates": 2,
+            "ppo_seconds": 11.787742600000001,
+            "diagnostic_seconds": 8.100000002286833e-06
+          }
+        }
+      ],
+      "groups": [
+        {
+          "group": "A",
+          "independent_training_n": 3,
+          "metrics": {
+            "delivery_rate": {
+              "mean": 0.06944444444444445,
+              "sample_std": 0.12028130608117205,
+              "n_defined": 3
+            },
+            "unresolved_fraction": {
+              "mean": 0.9305555555555556,
+              "sample_std": 0.12028130608117206,
+              "n_defined": 3
+            },
+            "success_hops_mean": {
+              "mean": 1.6,
+              "sample_std": null,
+              "n_defined": 1
+            },
+            "success_delay_mean": {
+              "mean": 6.7,
+              "sample_std": null,
+              "n_defined": 1
+            },
+            "success_delay_p95": {
+              "mean": 18,
+              "sample_std": null,
+              "n_defined": 1
+            },
+            "retry_attempts": {
+              "mean": 282,
+              "sample_std": 92.71461589199407,
+              "n_defined": 3
+            },
+            "loop_transfers": {
+              "mean": 224.33333333333334,
+              "sample_std": 99.20349456210367,
+              "n_defined": 3
+            }
+          }
+        }
+      ],
+      "statistical_unit": "independent trained policy, not evaluation episode",
+      "drop_rate_supported": false,
+      "limitations": [
+        "baseline only; not a WM/PM ablation",
+        "development scene; no convergence/significance claim",
+        "optimizer compute budget varies; environment interactions held fixed",
+        "CPU timings are not a controlled speed benchmark"
+      ]
+    }
+  },
+  "old_default_parity": [
+    {
+      "seed": 11,
+      "actor_critic_exact": true,
+      "training_evaluation_physics_exact": true
+    },
+    {
+      "seed": 22,
+      "actor_critic_exact": true,
+      "training_evaluation_physics_exact": true
+    },
+    {
+      "seed": 33,
+      "actor_critic_exact": true,
+      "training_evaluation_physics_exact": true
+    }
+  ],
+  "old20_seed33_parity": true,
+  "probe": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_critic_time_probe\\20261104_125005_339468",
+  "medium_seed33": {
+    "disabled": {
+      "greedy_physical": [
+        {
+          "schema": "original_tg_physical_v1",
+          "episode": 0,
+          "horizon": 80,
+          "generated_packets": 24,
+          "delivered_packets": 8,
+          "unresolved_packets": 16,
+          "delivery_rate": 0.3333333333333333,
+          "unresolved_fraction": 0.6666666666666666,
+          "true_drop_count": null,
+          "true_drop_rate": null,
+          "success_hops_mean": 2.0,
+          "success_delay_mean": 6.875,
+          "success_delay_p95": 20,
+          "attempts": 193,
+          "ack_successes": 115,
+          "ack_failures": 78,
+          "retry_attempts": 77,
+          "loop_transfers": 80,
+          "success_hops": [
+            3,
+            3,
+            2,
+            3,
+            1,
+            1,
+            2,
+            1
+          ],
+          "success_delays": [
+            9,
+            12,
+            3,
+            20,
+            2,
+            1,
+            7,
+            1
+          ]
+        },
+        {
+          "schema": "original_tg_physical_v1",
+          "episode": 1,
+          "horizon": 80,
+          "generated_packets": 24,
+          "delivered_packets": 8,
+          "unresolved_packets": 16,
+          "delivery_rate": 0.3333333333333333,
+          "unresolved_fraction": 0.6666666666666666,
+          "true_drop_count": null,
+          "true_drop_rate": null,
+          "success_hops_mean": 2.0,
+          "success_delay_mean": 8.625,
+          "success_delay_p95": 28,
+          "attempts": 195,
+          "ack_successes": 105,
+          "ack_failures": 90,
+          "retry_attempts": 89,
+          "loop_transfers": 70,
+          "success_hops": [
+            3,
+            3,
+            2,
+            3,
+            1,
+            1,
+            2,
+            1
+          ],
+          "success_delays": [
+            11,
+            15,
+            6,
+            28,
+            1,
+            1,
+            5,
+            2
+          ]
+        }
+      ],
+      "sample_physical": [
+        {
+          "schema": "original_tg_physical_v1",
+          "episode": 0,
+          "horizon": 80,
+          "generated_packets": 24,
+          "delivered_packets": 2,
+          "unresolved_packets": 22,
+          "delivery_rate": 0.08333333333333333,
+          "unresolved_fraction": 0.9166666666666666,
+          "true_drop_count": null,
+          "true_drop_rate": null,
+          "success_hops_mean": 5.5,
+          "success_delay_mean": 36.0,
+          "success_delay_p95": 71,
+          "attempts": 639,
+          "ack_successes": 328,
+          "ack_failures": 311,
+          "retry_attempts": 309,
+          "loop_transfers": 152,
+          "success_hops": [
+            10,
+            1
+          ],
+          "success_delays": [
+            71,
+            1
+          ]
+        },
+        {
+          "schema": "original_tg_physical_v1",
+          "episode": 1,
+          "horizon": 80,
+          "generated_packets": 24,
+          "delivered_packets": 4,
+          "unresolved_packets": 20,
+          "delivery_rate": 0.16666666666666666,
+          "unresolved_fraction": 0.8333333333333334,
+          "true_drop_count": null,
+          "true_drop_rate": null,
+          "success_hops_mean": 10.0,
+          "success_delay_mean": 37.0,
+          "success_delay_p95": 77,
+          "attempts": 688,
+          "ack_successes": 360,
+          "ack_failures": 328,
+          "retry_attempts": 322,
+          "loop_transfers": 163,
+          "success_hops": [
+            15,
+            12,
+            12,
+            1
+          ],
+          "success_delays": [
+            77,
+            38,
+            28,
+            5
+          ]
+        }
+      ],
+      "value_mc_bias": 0.6475755728218615,
+      "value_mc_rmse": 0.6513708054653917,
+      "calibration_sha256": "01ad56d56e4d3410edd62752bce8199423833303e37eae78feefa824a5774b88",
+      "checkpoint_sha256": "a1cbac0a791f9010ed4c0f199e405fba66dbd9e7304106d0ef4245d49b7b0bef",
+      "training_updates": [
+        {
+          "value_loss": 1.447352111339569,
+          "policy_loss": -0.0007951017469167709,
+          "dist_entropy": 1.9191043376922607,
+          "actor_grad_norm": 0.2823333144187927,
+          "critic_grad_norm": 16.632766723632812,
+          "ratio": 1.0000860691070557,
+          "approx_kl": 0.00012852915097028017,
+          "clip_fraction": 0.0,
+          "update": 1,
+          "popart": true,
+          "actor_lr": 0.0005,
+          "critic_lr": 0.0003,
+          "actor_optimizer_steps": 2,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 2
+        },
+        {
+          "value_loss": 1.3367630243301392,
+          "policy_loss": -0.0006329305469989777,
+          "dist_entropy": 1.964365303516388,
+          "actor_grad_norm": 0.3362448215484619,
+          "critic_grad_norm": 15.96681022644043,
+          "ratio": 1.000093698501587,
+          "approx_kl": 6.160978955449536e-05,
+          "clip_fraction": 0.0,
+          "update": 2,
+          "popart": true,
+          "actor_lr": 0.000475,
+          "critic_lr": 0.000285,
+          "actor_optimizer_steps": 4,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 4
+        },
+        {
+          "value_loss": 0.993677943944931,
+          "policy_loss": -0.0006845369935035706,
+          "dist_entropy": 1.9168158769607544,
+          "actor_grad_norm": 0.3385714888572693,
+          "critic_grad_norm": 13.327253341674805,
+          "ratio": 1.0000532865524292,
+          "approx_kl": 1.8374370483797975e-05,
+          "clip_fraction": 0.0,
+          "update": 3,
+          "popart": true,
+          "actor_lr": 0.00045,
+          "critic_lr": 0.00026999999999999995,
+          "actor_optimizer_steps": 6,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 6
+        },
+        {
+          "value_loss": 0.8396415114402771,
+          "policy_loss": 0.0035782307386398315,
+          "dist_entropy": 1.933964192867279,
+          "actor_grad_norm": 0.3336275815963745,
+          "critic_grad_norm": 10.23040771484375,
+          "ratio": 0.9999228715896606,
+          "approx_kl": 1.5887311747064814e-05,
+          "clip_fraction": 0.0,
+          "update": 4,
+          "popart": true,
+          "actor_lr": 0.00042500000000000003,
+          "critic_lr": 0.00025499999999999996,
+          "actor_optimizer_steps": 8,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 8
+        },
+        {
+          "value_loss": 1.0303250551223755,
+          "policy_loss": -0.002346169203519821,
+          "dist_entropy": 1.8904552459716797,
+          "actor_grad_norm": 0.3102159798145294,
+          "critic_grad_norm": 12.213380813598633,
+          "ratio": 1.0000402927398682,
+          "approx_kl": 9.227966984326486e-06,
+          "clip_fraction": 0.0,
+          "update": 5,
+          "popart": true,
+          "actor_lr": 0.0004,
+          "critic_lr": 0.00023999999999999998,
+          "actor_optimizer_steps": 10,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 10
+        },
+        {
+          "value_loss": 1.5256216526031494,
+          "policy_loss": -0.00029454659670591354,
+          "dist_entropy": 1.9151259064674377,
+          "actor_grad_norm": 0.28955936431884766,
+          "critic_grad_norm": 15.633708953857422,
+          "ratio": 1.0000715255737305,
+          "approx_kl": 6.957563073228812e-06,
+          "clip_fraction": 0.0,
+          "update": 6,
+          "popart": true,
+          "actor_lr": 0.000375,
+          "critic_lr": 0.000225,
+          "actor_optimizer_steps": 12,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 12
+        },
+        {
+          "value_loss": 1.1038845777511597,
+          "policy_loss": 0.0012504253536462784,
+          "dist_entropy": 1.9211068153381348,
+          "actor_grad_norm": 0.38122016191482544,
+          "critic_grad_norm": 13.417768478393555,
+          "ratio": 1.0000135898590088,
+          "approx_kl": 9.972838597605005e-06,
+          "clip_fraction": 0.0,
+          "update": 7,
+          "popart": true,
+          "actor_lr": 0.00035000000000000005,
+          "critic_lr": 0.00020999999999999998,
+          "actor_optimizer_steps": 14,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 14
+        },
+        {
+          "value_loss": 1.033889502286911,
+          "policy_loss": -0.0018266774713993073,
+          "dist_entropy": 1.8960111737251282,
+          "actor_grad_norm": 0.32726383209228516,
+          "critic_grad_norm": 12.113885879516602,
+          "ratio": 0.9999574422836304,
+          "approx_kl": 6.287252290348988e-06,
+          "clip_fraction": 0.0,
+          "update": 8,
+          "popart": true,
+          "actor_lr": 0.000325,
+          "critic_lr": 0.00019499999999999997,
+          "actor_optimizer_steps": 16,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 16
+        },
+        {
+          "value_loss": 0.721139132976532,
+          "policy_loss": -0.0007756203413009644,
+          "dist_entropy": 1.9117695093154907,
+          "actor_grad_norm": 0.30113357305526733,
+          "critic_grad_norm": 10.587122917175293,
+          "ratio": 1.000032901763916,
+          "approx_kl": 4.066353994858218e-06,
+          "clip_fraction": 0.0,
+          "update": 9,
+          "popart": true,
+          "actor_lr": 0.00030000000000000003,
+          "critic_lr": 0.00017999999999999998,
+          "actor_optimizer_steps": 18,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 18
+        },
+        {
+          "value_loss": 0.9469284117221832,
+          "policy_loss": -0.0032076090574264526,
+          "dist_entropy": 1.8963759541511536,
+          "actor_grad_norm": 0.30578601360321045,
+          "critic_grad_norm": 11.621295928955078,
+          "ratio": 0.9999535083770752,
+          "approx_kl": 3.6365515825309558e-06,
+          "clip_fraction": 0.0,
+          "update": 10,
+          "popart": true,
+          "actor_lr": 0.00027499999999999996,
+          "critic_lr": 0.00016499999999999997,
+          "actor_optimizer_steps": 20,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 20
+        },
+        {
+          "value_loss": 0.3356933295726776,
+          "policy_loss": 7.606903091073036e-05,
+          "dist_entropy": 1.9069320559501648,
+          "actor_grad_norm": 0.4292738735675812,
+          "critic_grad_norm": 4.803249359130859,
+          "ratio": 1.0000158548355103,
+          "approx_kl": 3.5617206322058337e-06,
+          "clip_fraction": 0.0,
+          "update": 11,
+          "popart": true,
+          "actor_lr": 0.00025,
+          "critic_lr": 0.00015,
+          "actor_optimizer_steps": 22,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 22
+        },
+        {
+          "value_loss": 0.8222957849502563,
+          "policy_loss": -0.0005985512398183346,
+          "dist_entropy": 1.9317947626113892,
+          "actor_grad_norm": 0.344054639339447,
+          "critic_grad_norm": 10.228499412536621,
+          "ratio": 0.9999985694885254,
+          "approx_kl": 2.54537758337392e-06,
+          "clip_fraction": 0.0,
+          "update": 12,
+          "popart": true,
+          "actor_lr": 0.000225,
+          "critic_lr": 0.00013499999999999997,
+          "actor_optimizer_steps": 24,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 24
+        },
+        {
+          "value_loss": 0.203664168715477,
+          "policy_loss": -0.0008818302303552628,
+          "dist_entropy": 1.9236983060836792,
+          "actor_grad_norm": 0.362271249294281,
+          "critic_grad_norm": 3.6798770427703857,
+          "ratio": 0.9999905824661255,
+          "approx_kl": 1.3399554745774367e-06,
+          "clip_fraction": 0.0,
+          "update": 13,
+          "popart": true,
+          "actor_lr": 0.00020000000000000004,
+          "critic_lr": 0.00011999999999999999,
+          "actor_optimizer_steps": 26,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 26
+        },
+        {
+          "value_loss": 0.668311595916748,
+          "policy_loss": 0.00034895725548267365,
+          "dist_entropy": 1.9508458971977234,
+          "actor_grad_norm": 0.42553091049194336,
+          "critic_grad_norm": 9.228609085083008,
+          "ratio": 0.99998939037323,
+          "approx_kl": 1.8224303630631766e-06,
+          "clip_fraction": 0.0,
+          "update": 14,
+          "popart": true,
+          "actor_lr": 0.00017499999999999997,
+          "critic_lr": 0.00010499999999999998,
+          "actor_optimizer_steps": 28,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 28
+        },
+        {
+          "value_loss": 0.6292132139205933,
+          "policy_loss": 0.0002346700057387352,
+          "dist_entropy": 1.950513482093811,
+          "actor_grad_norm": 0.3430083394050598,
+          "critic_grad_norm": 9.002223014831543,
+          "ratio": 0.9999872446060181,
+          "approx_kl": 1.1991459132332238e-06,
+          "clip_fraction": 0.0,
+          "update": 15,
+          "popart": true,
+          "actor_lr": 0.00015000000000000001,
+          "critic_lr": 8.999999999999999e-05,
+          "actor_optimizer_steps": 30,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 30
+        },
+        {
+          "value_loss": 0.4717565029859543,
+          "policy_loss": -0.0004091542214155197,
+          "dist_entropy": 1.8980600833892822,
+          "actor_grad_norm": 0.3480282425880432,
+          "critic_grad_norm": 7.242464065551758,
+          "ratio": 1.0000195503234863,
+          "approx_kl": 8.164594760273758e-07,
+          "clip_fraction": 0.0,
+          "update": 16,
+          "popart": true,
+          "actor_lr": 0.000125,
+          "critic_lr": 7.499999999999998e-05,
+          "actor_optimizer_steps": 32,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 32
+        },
+        {
+          "value_loss": 0.18633267283439636,
+          "policy_loss": -0.0005365964025259018,
+          "dist_entropy": 1.9117169976234436,
+          "actor_grad_norm": 0.40420830249786377,
+          "critic_grad_norm": 4.196493148803711,
+          "ratio": 1.0000109672546387,
+          "approx_kl": 6.310747835414077e-07,
+          "clip_fraction": 0.0,
+          "update": 17,
+          "popart": true,
+          "actor_lr": 9.999999999999999e-05,
+          "critic_lr": 5.9999999999999995e-05,
+          "actor_optimizer_steps": 34,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 34
+        },
+        {
+          "value_loss": 0.4892621487379074,
+          "policy_loss": 0.0025217272341251373,
+          "dist_entropy": 1.9340453743934631,
+          "actor_grad_norm": 0.3719032406806946,
+          "critic_grad_norm": 6.448944091796875,
+          "ratio": 0.9999959468841553,
+          "approx_kl": 2.846757354291185e-07,
+          "clip_fraction": 0.0,
+          "update": 18,
+          "popart": true,
+          "actor_lr": 7.500000000000003e-05,
+          "critic_lr": 4.500000000000001e-05,
+          "actor_optimizer_steps": 36,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 36
+        },
+        {
+          "value_loss": 1.0516194105148315,
+          "policy_loss": -3.968598321080208e-05,
+          "dist_entropy": 1.9178295731544495,
+          "actor_grad_norm": 0.37790265679359436,
+          "critic_grad_norm": 12.321911811828613,
+          "ratio": 1.0000004768371582,
+          "approx_kl": 7.439432891942488e-08,
+          "clip_fraction": 0.0,
+          "update": 19,
+          "popart": true,
+          "actor_lr": 4.999999999999997e-05,
+          "critic_lr": 2.999999999999997e-05,
+          "actor_optimizer_steps": 38,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 38
+        },
+        {
+          "value_loss": 0.16171841323375702,
+          "policy_loss": -0.00013786368072032928,
+          "dist_entropy": 1.9443526864051819,
+          "actor_grad_norm": 0.3758136034011841,
+          "critic_grad_norm": 4.261536121368408,
+          "ratio": 1.0000011920928955,
+          "approx_kl": 1.643235769677176e-08,
+          "clip_fraction": 0.0,
+          "update": 20,
+          "popart": true,
+          "actor_lr": 2.500000000000001e-05,
+          "critic_lr": 1.4999999999999985e-05,
+          "actor_optimizer_steps": 40,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 40
+        }
+      ],
+      "parameters": {
+        "actor_trainable": 21956,
+        "critic_trainable": 18615,
+        "wm_frozen": 0,
+        "pm_frozen": 0,
+        "wm_active": false,
+        "device": "cpu",
+        "cuda_peak_bytes": null
+      },
+      "clock_parameter_l1": 0.0
+    },
+    "constant": {
+      "greedy_physical": [
+        {
+          "schema": "original_tg_physical_v1",
+          "episode": 0,
+          "horizon": 80,
+          "generated_packets": 24,
+          "delivered_packets": 8,
+          "unresolved_packets": 16,
+          "delivery_rate": 0.3333333333333333,
+          "unresolved_fraction": 0.6666666666666666,
+          "true_drop_count": null,
+          "true_drop_rate": null,
+          "success_hops_mean": 2.0,
+          "success_delay_mean": 6.875,
+          "success_delay_p95": 20,
+          "attempts": 193,
+          "ack_successes": 115,
+          "ack_failures": 78,
+          "retry_attempts": 77,
+          "loop_transfers": 80,
+          "success_hops": [
+            3,
+            3,
+            2,
+            3,
+            1,
+            1,
+            2,
+            1
+          ],
+          "success_delays": [
+            9,
+            12,
+            3,
+            20,
+            2,
+            1,
+            7,
+            1
+          ]
+        },
+        {
+          "schema": "original_tg_physical_v1",
+          "episode": 1,
+          "horizon": 80,
+          "generated_packets": 24,
+          "delivered_packets": 8,
+          "unresolved_packets": 16,
+          "delivery_rate": 0.3333333333333333,
+          "unresolved_fraction": 0.6666666666666666,
+          "true_drop_count": null,
+          "true_drop_rate": null,
+          "success_hops_mean": 2.0,
+          "success_delay_mean": 8.625,
+          "success_delay_p95": 28,
+          "attempts": 195,
+          "ack_successes": 105,
+          "ack_failures": 90,
+          "retry_attempts": 89,
+          "loop_transfers": 70,
+          "success_hops": [
+            3,
+            3,
+            2,
+            3,
+            1,
+            1,
+            2,
+            1
+          ],
+          "success_delays": [
+            11,
+            15,
+            6,
+            28,
+            1,
+            1,
+            5,
+            2
+          ]
+        }
+      ],
+      "sample_physical": [
+        {
+          "schema": "original_tg_physical_v1",
+          "episode": 0,
+          "horizon": 80,
+          "generated_packets": 24,
+          "delivered_packets": 2,
+          "unresolved_packets": 22,
+          "delivery_rate": 0.08333333333333333,
+          "unresolved_fraction": 0.9166666666666666,
+          "true_drop_count": null,
+          "true_drop_rate": null,
+          "success_hops_mean": 5.5,
+          "success_delay_mean": 36.0,
+          "success_delay_p95": 71,
+          "attempts": 639,
+          "ack_successes": 328,
+          "ack_failures": 311,
+          "retry_attempts": 309,
+          "loop_transfers": 152,
+          "success_hops": [
+            10,
+            1
+          ],
+          "success_delays": [
+            71,
+            1
+          ]
+        },
+        {
+          "schema": "original_tg_physical_v1",
+          "episode": 1,
+          "horizon": 80,
+          "generated_packets": 24,
+          "delivered_packets": 4,
+          "unresolved_packets": 20,
+          "delivery_rate": 0.16666666666666666,
+          "unresolved_fraction": 0.8333333333333334,
+          "true_drop_count": null,
+          "true_drop_rate": null,
+          "success_hops_mean": 10.0,
+          "success_delay_mean": 37.0,
+          "success_delay_p95": 77,
+          "attempts": 688,
+          "ack_successes": 360,
+          "ack_failures": 328,
+          "retry_attempts": 322,
+          "loop_transfers": 163,
+          "success_hops": [
+            15,
+            12,
+            12,
+            1
+          ],
+          "success_delays": [
+            77,
+            38,
+            28,
+            5
+          ]
+        }
+      ],
+      "value_mc_bias": 0.6406610557980633,
+      "value_mc_rmse": 0.6444970190379239,
+      "calibration_sha256": "60d6e8a92068cecebe09f2d62ada3ec5e68be04929aa17435a0f934801826dbb",
+      "checkpoint_sha256": "5064e0b1b4c3f538c31f8310a33b2d9cf6f7ebd3a67e0e468eec6842c7963531",
+      "training_updates": [
+        {
+          "value_loss": 1.4460537433624268,
+          "policy_loss": -0.0007951017469167709,
+          "dist_entropy": 1.9191043376922607,
+          "actor_grad_norm": 0.2823333144187927,
+          "critic_grad_norm": 16.651710510253906,
+          "ratio": 1.0000860691070557,
+          "approx_kl": 0.00012852915097028017,
+          "clip_fraction": 0.0,
+          "update": 1,
+          "popart": true,
+          "actor_lr": 0.0005,
+          "critic_lr": 0.0003,
+          "actor_optimizer_steps": 2,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 2
+        },
+        {
+          "value_loss": 1.333800196647644,
+          "policy_loss": -0.0006325673311948776,
+          "dist_entropy": 1.964365303516388,
+          "actor_grad_norm": 0.3362477421760559,
+          "critic_grad_norm": 15.97818374633789,
+          "ratio": 1.0000935792922974,
+          "approx_kl": 6.160569319035858e-05,
+          "clip_fraction": 0.0,
+          "update": 2,
+          "popart": true,
+          "actor_lr": 0.000475,
+          "critic_lr": 0.000285,
+          "actor_optimizer_steps": 4,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 4
+        },
+        {
+          "value_loss": 0.9893714189529419,
+          "policy_loss": -0.0006848592311143875,
+          "dist_entropy": 1.9168159365653992,
+          "actor_grad_norm": 0.3385605812072754,
+          "critic_grad_norm": 13.330718994140625,
+          "ratio": 1.0000531673431396,
+          "approx_kl": 1.8367645679973066e-05,
+          "clip_fraction": 0.0,
+          "update": 3,
+          "popart": true,
+          "actor_lr": 0.00045,
+          "critic_lr": 0.00026999999999999995,
+          "actor_optimizer_steps": 6,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 6
+        },
+        {
+          "value_loss": 0.8342781066894531,
+          "policy_loss": 0.00357881560921669,
+          "dist_entropy": 1.9339643716812134,
+          "actor_grad_norm": 0.3336791396141052,
+          "critic_grad_norm": 10.215851783752441,
+          "ratio": 0.9999228715896606,
+          "approx_kl": 1.588861232448835e-05,
+          "clip_fraction": 0.0,
+          "update": 4,
+          "popart": true,
+          "actor_lr": 0.00042500000000000003,
+          "critic_lr": 0.00025499999999999996,
+          "actor_optimizer_steps": 8,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 8
+        },
+        {
+          "value_loss": 1.0229902863502502,
+          "policy_loss": -0.0023468397557735443,
+          "dist_entropy": 1.8904553651809692,
+          "actor_grad_norm": 0.3102436363697052,
+          "critic_grad_norm": 12.200709342956543,
+          "ratio": 1.0000404119491577,
+          "approx_kl": 9.234471690433566e-06,
+          "clip_fraction": 0.0,
+          "update": 5,
+          "popart": true,
+          "actor_lr": 0.0004,
+          "critic_lr": 0.00023999999999999998,
+          "actor_optimizer_steps": 10,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 10
+        },
+        {
+          "value_loss": 1.513309121131897,
+          "policy_loss": -0.00029475148767232895,
+          "dist_entropy": 1.915125846862793,
+          "actor_grad_norm": 0.2895474433898926,
+          "critic_grad_norm": 15.613554954528809,
+          "ratio": 1.0000715255737305,
+          "approx_kl": 6.961336566746468e-06,
+          "clip_fraction": 0.0,
+          "update": 6,
+          "popart": true,
+          "actor_lr": 0.000375,
+          "critic_lr": 0.000225,
+          "actor_optimizer_steps": 12,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 12
+        },
+        {
+          "value_loss": 1.0915018916130066,
+          "policy_loss": 0.00125160813331604,
+          "dist_entropy": 1.9211064577102661,
+          "actor_grad_norm": 0.38123810291290283,
+          "critic_grad_norm": 13.3784818649292,
+          "ratio": 1.0000135898590088,
+          "approx_kl": 9.972838597605005e-06,
+          "clip_fraction": 0.0,
+          "update": 7,
+          "popart": true,
+          "actor_lr": 0.00035000000000000005,
+          "critic_lr": 0.00020999999999999998,
+          "actor_optimizer_steps": 14,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 14
+        },
+        {
+          "value_loss": 1.0203870236873627,
+          "policy_loss": -0.0018277093768119812,
+          "dist_entropy": 1.8960111141204834,
+          "actor_grad_norm": 0.327325701713562,
+          "critic_grad_norm": 12.064157485961914,
+          "ratio": 0.9999574422836304,
+          "approx_kl": 6.28695579507621e-06,
+          "clip_fraction": 0.0,
+          "update": 8,
+          "popart": true,
+          "actor_lr": 0.000325,
+          "critic_lr": 0.00019499999999999997,
+          "actor_optimizer_steps": 16,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 16
+        },
+        {
+          "value_loss": 0.7081223130226135,
+          "policy_loss": -0.0007729660719633102,
+          "dist_entropy": 1.9117693305015564,
+          "actor_grad_norm": 0.3012148141860962,
+          "critic_grad_norm": 10.522000312805176,
+          "ratio": 1.000032901763916,
+          "approx_kl": 4.066686415171716e-06,
+          "clip_fraction": 0.0,
+          "update": 9,
+          "popart": true,
+          "actor_lr": 0.00030000000000000003,
+          "critic_lr": 0.00017999999999999998,
+          "actor_optimizer_steps": 18,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 18
+        },
+        {
+          "value_loss": 0.9297051429748535,
+          "policy_loss": -0.0032068751752376556,
+          "dist_entropy": 1.896375596523285,
+          "actor_grad_norm": 0.30579355359077454,
+          "critic_grad_norm": 11.55221939086914,
+          "ratio": 0.9999535083770752,
+          "approx_kl": 3.6380884012032766e-06,
+          "clip_fraction": 0.0,
+          "update": 10,
+          "popart": true,
+          "actor_lr": 0.00027499999999999996,
+          "critic_lr": 0.00016499999999999997,
+          "actor_optimizer_steps": 20,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 20
+        },
+        {
+          "value_loss": 0.3267900347709656,
+          "policy_loss": 7.652980275452137e-05,
+          "dist_entropy": 1.906930923461914,
+          "actor_grad_norm": 0.4290679693222046,
+          "critic_grad_norm": 4.7150349617004395,
+          "ratio": 1.0000158548355103,
+          "approx_kl": 3.563854761523544e-06,
+          "clip_fraction": 0.0,
+          "update": 11,
+          "popart": true,
+          "actor_lr": 0.00025,
+          "critic_lr": 0.00015,
+          "actor_optimizer_steps": 22,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 22
+        },
+        {
+          "value_loss": 0.8053945600986481,
+          "policy_loss": -0.0006032586097717285,
+          "dist_entropy": 1.9317930340766907,
+          "actor_grad_norm": 0.34413570165634155,
+          "critic_grad_norm": 10.156427383422852,
+          "ratio": 0.9999986886978149,
+          "approx_kl": 2.5433043902012287e-06,
+          "clip_fraction": 0.0,
+          "update": 12,
+          "popart": true,
+          "actor_lr": 0.000225,
+          "critic_lr": 0.00013499999999999997,
+          "actor_optimizer_steps": 24,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 24
+        },
+        {
+          "value_loss": 0.1960144266486168,
+          "policy_loss": -0.0008770022541284561,
+          "dist_entropy": 1.923696517944336,
+          "actor_grad_norm": 0.3623673915863037,
+          "critic_grad_norm": 3.5768721103668213,
+          "ratio": 0.999990701675415,
+          "approx_kl": 1.341032657364849e-06,
+          "clip_fraction": 0.0,
+          "update": 13,
+          "popart": true,
+          "actor_lr": 0.00020000000000000004,
+          "critic_lr": 0.00011999999999999999,
+          "actor_optimizer_steps": 26,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 26
+        },
+        {
+          "value_loss": 0.6510362327098846,
+          "policy_loss": 0.0003493987023830414,
+          "dist_entropy": 1.950844407081604,
+          "actor_grad_norm": 0.42562124133110046,
+          "critic_grad_norm": 9.148298263549805,
+          "ratio": 0.99998939037323,
+          "approx_kl": 1.8208114624940208e-06,
+          "clip_fraction": 0.0,
+          "update": 14,
+          "popart": true,
+          "actor_lr": 0.00017499999999999997,
+          "critic_lr": 0.00010499999999999998,
+          "actor_optimizer_steps": 28,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 28
+        },
+        {
+          "value_loss": 0.611832320690155,
+          "policy_loss": 0.00023549329489469528,
+          "dist_entropy": 1.95051109790802,
+          "actor_grad_norm": 0.34320998191833496,
+          "critic_grad_norm": 8.917627334594727,
+          "ratio": 0.9999872446060181,
+          "approx_kl": 1.1983852346020285e-06,
+          "clip_fraction": 0.0,
+          "update": 15,
+          "popart": true,
+          "actor_lr": 0.00015000000000000001,
+          "critic_lr": 8.999999999999999e-05,
+          "actor_optimizer_steps": 30,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 30
+        },
+        {
+          "value_loss": 0.4583325535058975,
+          "policy_loss": -0.0004032207652926445,
+          "dist_entropy": 1.8980587124824524,
+          "actor_grad_norm": 0.34798532724380493,
+          "critic_grad_norm": 7.160907745361328,
+          "ratio": 1.0000195503234863,
+          "approx_kl": 8.167353939825261e-07,
+          "clip_fraction": 0.0,
+          "update": 16,
+          "popart": true,
+          "actor_lr": 0.000125,
+          "critic_lr": 7.499999999999998e-05,
+          "actor_optimizer_steps": 32,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 32
+        },
+        {
+          "value_loss": 0.17657651007175446,
+          "policy_loss": -0.0005344860255718231,
+          "dist_entropy": 1.9117146730422974,
+          "actor_grad_norm": 0.40427207946777344,
+          "critic_grad_norm": 4.077737331390381,
+          "ratio": 1.0000109672546387,
+          "approx_kl": 6.31427894859371e-07,
+          "clip_fraction": 0.0,
+          "update": 17,
+          "popart": true,
+          "actor_lr": 9.999999999999999e-05,
+          "critic_lr": 5.9999999999999995e-05,
+          "actor_optimizer_steps": 34,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 34
+        },
+        {
+          "value_loss": 0.4741049110889435,
+          "policy_loss": 0.002519465982913971,
+          "dist_entropy": 1.934043288230896,
+          "actor_grad_norm": 0.37203413248062134,
+          "critic_grad_norm": 6.350153923034668,
+          "ratio": 0.9999959468841553,
+          "approx_kl": 2.8432262411115516e-07,
+          "clip_fraction": 0.0,
+          "update": 18,
+          "popart": true,
+          "actor_lr": 7.500000000000003e-05,
+          "critic_lr": 4.500000000000001e-05,
+          "actor_optimizer_steps": 36,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 36
+        },
+        {
+          "value_loss": 1.0252145528793335,
+          "policy_loss": -3.935978747904301e-05,
+          "dist_entropy": 1.9178282022476196,
+          "actor_grad_norm": 0.37784308195114136,
+          "critic_grad_norm": 12.251970291137695,
+          "ratio": 1.0000004768371582,
+          "approx_kl": 7.469160578921219e-08,
+          "clip_fraction": 0.0,
+          "update": 19,
+          "popart": true,
+          "actor_lr": 4.999999999999997e-05,
+          "critic_lr": 2.999999999999997e-05,
+          "actor_optimizer_steps": 38,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 38
+        },
+        {
+          "value_loss": 0.152407206594944,
+          "policy_loss": -0.00013897009193897247,
+          "dist_entropy": 1.9443503022193909,
+          "actor_grad_norm": 0.37551984190940857,
+          "critic_grad_norm": 4.141146183013916,
+          "ratio": 1.0000011920928955,
+          "approx_kl": 1.6581743977894803e-08,
+          "clip_fraction": 0.0,
+          "update": 20,
+          "popart": true,
+          "actor_lr": 2.500000000000001e-05,
+          "critic_lr": 1.4999999999999985e-05,
+          "actor_optimizer_steps": 40,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 40
+        }
+      ],
+      "parameters": {
+        "actor_trainable": 21956,
+        "critic_trainable": 18743,
+        "wm_frozen": 0,
+        "pm_frozen": 0,
+        "wm_active": false,
+        "device": "cpu",
+        "cuda_peak_bytes": null
+      },
+      "clock_parameter_l1": 0.7494550943374634
+    },
+    "remaining": {
+      "greedy_physical": [
+        {
+          "schema": "original_tg_physical_v1",
+          "episode": 0,
+          "horizon": 80,
+          "generated_packets": 24,
+          "delivered_packets": 8,
+          "unresolved_packets": 16,
+          "delivery_rate": 0.3333333333333333,
+          "unresolved_fraction": 0.6666666666666666,
+          "true_drop_count": null,
+          "true_drop_rate": null,
+          "success_hops_mean": 2.0,
+          "success_delay_mean": 6.875,
+          "success_delay_p95": 20,
+          "attempts": 193,
+          "ack_successes": 115,
+          "ack_failures": 78,
+          "retry_attempts": 77,
+          "loop_transfers": 80,
+          "success_hops": [
+            3,
+            3,
+            2,
+            3,
+            1,
+            1,
+            2,
+            1
+          ],
+          "success_delays": [
+            9,
+            12,
+            3,
+            20,
+            2,
+            1,
+            7,
+            1
+          ]
+        },
+        {
+          "schema": "original_tg_physical_v1",
+          "episode": 1,
+          "horizon": 80,
+          "generated_packets": 24,
+          "delivered_packets": 8,
+          "unresolved_packets": 16,
+          "delivery_rate": 0.3333333333333333,
+          "unresolved_fraction": 0.6666666666666666,
+          "true_drop_count": null,
+          "true_drop_rate": null,
+          "success_hops_mean": 2.0,
+          "success_delay_mean": 8.625,
+          "success_delay_p95": 28,
+          "attempts": 195,
+          "ack_successes": 105,
+          "ack_failures": 90,
+          "retry_attempts": 89,
+          "loop_transfers": 70,
+          "success_hops": [
+            3,
+            3,
+            2,
+            3,
+            1,
+            1,
+            2,
+            1
+          ],
+          "success_delays": [
+            11,
+            15,
+            6,
+            28,
+            1,
+            1,
+            5,
+            2
+          ]
+        }
+      ],
+      "sample_physical": [
+        {
+          "schema": "original_tg_physical_v1",
+          "episode": 0,
+          "horizon": 80,
+          "generated_packets": 24,
+          "delivered_packets": 2,
+          "unresolved_packets": 22,
+          "delivery_rate": 0.08333333333333333,
+          "unresolved_fraction": 0.9166666666666666,
+          "true_drop_count": null,
+          "true_drop_rate": null,
+          "success_hops_mean": 5.5,
+          "success_delay_mean": 36.0,
+          "success_delay_p95": 71,
+          "attempts": 639,
+          "ack_successes": 328,
+          "ack_failures": 311,
+          "retry_attempts": 309,
+          "loop_transfers": 152,
+          "success_hops": [
+            10,
+            1
+          ],
+          "success_delays": [
+            71,
+            1
+          ]
+        },
+        {
+          "schema": "original_tg_physical_v1",
+          "episode": 1,
+          "horizon": 80,
+          "generated_packets": 24,
+          "delivered_packets": 4,
+          "unresolved_packets": 20,
+          "delivery_rate": 0.16666666666666666,
+          "unresolved_fraction": 0.8333333333333334,
+          "true_drop_count": null,
+          "true_drop_rate": null,
+          "success_hops_mean": 10.0,
+          "success_delay_mean": 37.0,
+          "success_delay_p95": 77,
+          "attempts": 688,
+          "ack_successes": 360,
+          "ack_failures": 328,
+          "retry_attempts": 322,
+          "loop_transfers": 163,
+          "success_hops": [
+            15,
+            12,
+            12,
+            1
+          ],
+          "success_delays": [
+            77,
+            38,
+            28,
+            5
+          ]
+        }
+      ],
+      "value_mc_bias": 0.6437485470466565,
+      "value_mc_rmse": 0.6474683791706852,
+      "calibration_sha256": "05ce21b8b43ebcba33baaa16fd31cf68c5bd9fece9700cc4f9299d0c116c142f",
+      "checkpoint_sha256": "ab3747cb3812cb4e579c7f956761e531d684c3b26aa6fe311dd782f365a070f0",
+      "training_updates": [
+        {
+          "value_loss": 1.4469389915466309,
+          "policy_loss": -0.0007951017469167709,
+          "dist_entropy": 1.9191043376922607,
+          "actor_grad_norm": 0.2823333144187927,
+          "critic_grad_norm": 16.630050659179688,
+          "ratio": 1.0000860691070557,
+          "approx_kl": 0.00012852915097028017,
+          "clip_fraction": 0.0,
+          "update": 1,
+          "popart": true,
+          "actor_lr": 0.0005,
+          "critic_lr": 0.0003,
+          "actor_optimizer_steps": 2,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 2
+        },
+        {
+          "value_loss": 1.3360501527786255,
+          "policy_loss": -0.0006330227479338646,
+          "dist_entropy": 1.964365303516388,
+          "actor_grad_norm": 0.33624282479286194,
+          "critic_grad_norm": 15.95948600769043,
+          "ratio": 1.000093698501587,
+          "approx_kl": 6.1606835515704e-05,
+          "clip_fraction": 0.0,
+          "update": 2,
+          "popart": true,
+          "actor_lr": 0.000475,
+          "critic_lr": 0.000285,
+          "actor_optimizer_steps": 4,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 4
+        },
+        {
+          "value_loss": 0.9925918281078339,
+          "policy_loss": -0.000684395432472229,
+          "dist_entropy": 1.9168160557746887,
+          "actor_grad_norm": 0.33857229351997375,
+          "critic_grad_norm": 13.313291549682617,
+          "ratio": 1.0000532865524292,
+          "approx_kl": 1.8373308193986304e-05,
+          "clip_fraction": 0.0,
+          "update": 3,
+          "popart": true,
+          "actor_lr": 0.00045,
+          "critic_lr": 0.00026999999999999995,
+          "actor_optimizer_steps": 6,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 6
+        },
+        {
+          "value_loss": 0.8394598066806793,
+          "policy_loss": 0.003578316420316696,
+          "dist_entropy": 1.9339643120765686,
+          "actor_grad_norm": 0.33362746238708496,
+          "critic_grad_norm": 10.209086418151855,
+          "ratio": 0.9999228715896606,
+          "approx_kl": 1.5885860193520784e-05,
+          "clip_fraction": 0.0,
+          "update": 4,
+          "popart": true,
+          "actor_lr": 0.00042500000000000003,
+          "critic_lr": 0.00025499999999999996,
+          "actor_optimizer_steps": 8,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 8
+        },
+        {
+          "value_loss": 1.0292008519172668,
+          "policy_loss": -0.0023469608277082443,
+          "dist_entropy": 1.8904554843902588,
+          "actor_grad_norm": 0.3102385997772217,
+          "critic_grad_norm": 12.18820571899414,
+          "ratio": 1.0000402927398682,
+          "approx_kl": 9.226108886650763e-06,
+          "clip_fraction": 0.0,
+          "update": 5,
+          "popart": true,
+          "actor_lr": 0.0004,
+          "critic_lr": 0.00023999999999999998,
+          "actor_optimizer_steps": 10,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 10
+        },
+        {
+          "value_loss": 1.5233910083770752,
+          "policy_loss": -0.00029475055634975433,
+          "dist_entropy": 1.9151262044906616,
+          "actor_grad_norm": 0.28953447937965393,
+          "critic_grad_norm": 15.609973907470703,
+          "ratio": 1.0000715255737305,
+          "approx_kl": 6.954301625228254e-06,
+          "clip_fraction": 0.0,
+          "update": 6,
+          "popart": true,
+          "actor_lr": 0.000375,
+          "critic_lr": 0.000225,
+          "actor_optimizer_steps": 12,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 12
+        },
+        {
+          "value_loss": 1.100504457950592,
+          "policy_loss": 0.0012512244284152985,
+          "dist_entropy": 1.9211073517799377,
+          "actor_grad_norm": 0.38125675916671753,
+          "critic_grad_norm": 13.382341384887695,
+          "ratio": 1.0000135898590088,
+          "approx_kl": 9.970524843083695e-06,
+          "clip_fraction": 0.0,
+          "update": 7,
+          "popart": true,
+          "actor_lr": 0.00035000000000000005,
+          "critic_lr": 0.00020999999999999998,
+          "actor_optimizer_steps": 14,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 14
+        },
+        {
+          "value_loss": 1.0306936204433441,
+          "policy_loss": -0.0018263403326272964,
+          "dist_entropy": 1.8960121870040894,
+          "actor_grad_norm": 0.3272845149040222,
+          "critic_grad_norm": 12.069650650024414,
+          "ratio": 0.9999575018882751,
+          "approx_kl": 6.28695579507621e-06,
+          "clip_fraction": 0.0,
+          "update": 8,
+          "popart": true,
+          "actor_lr": 0.000325,
+          "critic_lr": 0.00019499999999999997,
+          "actor_optimizer_steps": 16,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 16
+        },
+        {
+          "value_loss": 0.7171297967433929,
+          "policy_loss": -0.0007772836834192276,
+          "dist_entropy": 1.9117707014083862,
+          "actor_grad_norm": 0.30104419589042664,
+          "critic_grad_norm": 10.535614013671875,
+          "ratio": 1.000032901763916,
+          "approx_kl": 4.065223038196564e-06,
+          "clip_fraction": 0.0,
+          "update": 9,
+          "popart": true,
+          "actor_lr": 0.00030000000000000003,
+          "critic_lr": 0.00017999999999999998,
+          "actor_optimizer_steps": 18,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 18
+        },
+        {
+          "value_loss": 0.9430248737335205,
+          "policy_loss": -0.0032076016068458557,
+          "dist_entropy": 1.8963775038719177,
+          "actor_grad_norm": 0.30573299527168274,
+          "critic_grad_norm": 11.569820404052734,
+          "ratio": 0.9999536871910095,
+          "approx_kl": 3.6354156236484414e-06,
+          "clip_fraction": 0.0,
+          "update": 10,
+          "popart": true,
+          "actor_lr": 0.00027499999999999996,
+          "critic_lr": 0.00016499999999999997,
+          "actor_optimizer_steps": 20,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 20
+        },
+        {
+          "value_loss": 0.33471599221229553,
+          "policy_loss": 7.592281326651573e-05,
+          "dist_entropy": 1.9069337248802185,
+          "actor_grad_norm": 0.4293232560157776,
+          "critic_grad_norm": 4.727625370025635,
+          "ratio": 1.0000158548355103,
+          "approx_kl": 3.561034418453346e-06,
+          "clip_fraction": 0.0,
+          "update": 11,
+          "popart": true,
+          "actor_lr": 0.00025,
+          "critic_lr": 0.00015,
+          "actor_optimizer_steps": 22,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 22
+        },
+        {
+          "value_loss": 0.8186943233013153,
+          "policy_loss": -0.0005969405174255371,
+          "dist_entropy": 1.931797206401825,
+          "actor_grad_norm": 0.34404438734054565,
+          "critic_grad_norm": 10.170839309692383,
+          "ratio": 0.9999985694885254,
+          "approx_kl": 2.5468027615715982e-06,
+          "clip_fraction": 0.0,
+          "update": 12,
+          "popart": true,
+          "actor_lr": 0.000225,
+          "critic_lr": 0.00013499999999999997,
+          "actor_optimizer_steps": 24,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 24
+        },
+        {
+          "value_loss": 0.20267304033041,
+          "policy_loss": -0.0008837040513753891,
+          "dist_entropy": 1.923700988292694,
+          "actor_grad_norm": 0.36216622591018677,
+          "critic_grad_norm": 3.5964810848236084,
+          "ratio": 0.9999905824661255,
+          "approx_kl": 1.341104507446289e-06,
+          "clip_fraction": 0.0,
+          "update": 13,
+          "popart": true,
+          "actor_lr": 0.00020000000000000004,
+          "critic_lr": 0.00011999999999999999,
+          "actor_optimizer_steps": 26,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 26
+        },
+        {
+          "value_loss": 0.6645663976669312,
+          "policy_loss": 0.00034913793206214905,
+          "dist_entropy": 1.9508485198020935,
+          "actor_grad_norm": 0.42548972368240356,
+          "critic_grad_norm": 9.16571044921875,
+          "ratio": 0.9999894499778748,
+          "approx_kl": 1.8225775875180261e-06,
+          "clip_fraction": 0.0,
+          "update": 14,
+          "popart": true,
+          "actor_lr": 0.00017499999999999997,
+          "critic_lr": 0.00010499999999999998,
+          "actor_optimizer_steps": 28,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 28
+        },
+        {
+          "value_loss": 0.6252951323986053,
+          "policy_loss": 0.00023492146283388138,
+          "dist_entropy": 1.9505165815353394,
+          "actor_grad_norm": 0.34298551082611084,
+          "critic_grad_norm": 8.937995910644531,
+          "ratio": 0.9999871253967285,
+          "approx_kl": 1.1999755997749162e-06,
+          "clip_fraction": 0.0,
+          "update": 15,
+          "popart": true,
+          "actor_lr": 0.00015000000000000001,
+          "critic_lr": 8.999999999999999e-05,
+          "actor_optimizer_steps": 30,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 30
+        },
+        {
+          "value_loss": 0.46759311854839325,
+          "policy_loss": -0.00041256844997406006,
+          "dist_entropy": 1.8980631232261658,
+          "actor_grad_norm": 0.34801262617111206,
+          "critic_grad_norm": 7.164141654968262,
+          "ratio": 1.0000195503234863,
+          "approx_kl": 8.179771953109594e-07,
+          "clip_fraction": 0.0,
+          "update": 16,
+          "popart": true,
+          "actor_lr": 0.000125,
+          "critic_lr": 7.499999999999998e-05,
+          "actor_optimizer_steps": 32,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 32
+        },
+        {
+          "value_loss": 0.18439881503582,
+          "policy_loss": -0.0005365591496229172,
+          "dist_entropy": 1.9117204546928406,
+          "actor_grad_norm": 0.40444058179855347,
+          "critic_grad_norm": 4.10742712020874,
+          "ratio": 1.0000109672546387,
+          "approx_kl": 6.318516057035595e-07,
+          "clip_fraction": 0.0,
+          "update": 17,
+          "popart": true,
+          "actor_lr": 9.999999999999999e-05,
+          "critic_lr": 5.9999999999999995e-05,
+          "actor_optimizer_steps": 34,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 34
+        },
+        {
+          "value_loss": 0.4872203469276428,
+          "policy_loss": 0.002522248774766922,
+          "dist_entropy": 1.9340487718582153,
+          "actor_grad_norm": 0.3718959093093872,
+          "critic_grad_norm": 6.363861083984375,
+          "ratio": 0.9999959468841553,
+          "approx_kl": 2.8354580194900336e-07,
+          "clip_fraction": 0.0,
+          "update": 18,
+          "popart": true,
+          "actor_lr": 7.500000000000003e-05,
+          "critic_lr": 4.500000000000001e-05,
+          "actor_optimizer_steps": 36,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 36
+        },
+        {
+          "value_loss": 1.0459314584732056,
+          "policy_loss": -3.990856930613518e-05,
+          "dist_entropy": 1.917833149433136,
+          "actor_grad_norm": 0.37803417444229126,
+          "critic_grad_norm": 12.269889831542969,
+          "ratio": 1.0000005960464478,
+          "approx_kl": 7.417136771437072e-08,
+          "clip_fraction": 0.0,
+          "update": 19,
+          "popart": true,
+          "actor_lr": 4.999999999999997e-05,
+          "critic_lr": 2.999999999999997e-05,
+          "actor_optimizer_steps": 38,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 38
+        },
+        {
+          "value_loss": 0.15907859057188034,
+          "policy_loss": -0.00013731420040130615,
+          "dist_entropy": 1.9443561434745789,
+          "actor_grad_norm": 0.3759344220161438,
+          "critic_grad_norm": 4.170778274536133,
+          "ratio": 1.0000011920928955,
+          "approx_kl": 1.6357665444388658e-08,
+          "clip_fraction": 0.0,
+          "update": 20,
+          "popart": true,
+          "actor_lr": 2.500000000000001e-05,
+          "critic_lr": 1.4999999999999985e-05,
+          "actor_optimizer_steps": 40,
+          "critic_head_in_optimizer": true,
+          "critic_head_optimizer_steps": 40
+        }
+      ],
+      "parameters": {
+        "actor_trainable": 21956,
+        "critic_trainable": 18743,
+        "wm_frozen": 0,
+        "pm_frozen": 0,
+        "wm_active": false,
+        "device": "cpu",
+        "cuda_peak_bytes": null
+      },
+      "clock_parameter_l1": 0.7366971969604492
+    }
+  },
+  "actual_budget": {
+    "smoke_training_steps": 1440,
+    "smoke_greedy_steps": 1440,
+    "probe_training_steps": 4800,
+    "probe_greedy_steps": 480,
+    "frozen_sample_steps": 480,
+    "initial_failed_sample_slots": 1,
+    "train_eval_jobs": 24,
+    "sample_diagnostics": 3,
+    "resume_new_jobs": 0
+  },
+  "initial_sampling_error": {
+    "type": "TypeError",
+    "cause": "Diagnostic used tuple indexing on Runner reward list",
+    "fix": "Convert reward list with np.asarray before indexing",
+    "failed_output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_critic_time_probe\\20261104_125005_339468\\calibration\\disabled"
+  },
+  "limitations": [
+    "medium probe uses only previously selected train seed33 and development scene7001",
+    "sample MC outcomes are noisy and correlated; no convergence or significance claim",
+    "same seeds do not force equal later channel/random frames once policies differ",
+    "clock adds 128 Critic parameters, constant-input control matches capacity; Actor inputs/architecture unchanged",
+    "WM/PM only compatibility tested; no new auxiliary performance comparison"
+  ],
+  "validator_sha256": "47fbaa6a1dd70edc3c3b336d3eeb5072dba1f375afd22679d473a2e9f3795ea0"
+}

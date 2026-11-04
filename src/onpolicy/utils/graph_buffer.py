@@ -205,6 +205,9 @@ class GraphReplayBuffer(object):
                                      num_agents+1, 3), dtype=np.float32)
                             if getattr(args, "use_wm_actor", False) else None)
         self.wm_feature_ready = np.zeros(self.episode_length, dtype=bool)
+        from onpolicy.algorithms.utils.critic_time import time_mode, task_clock
+        self.critic_time = (task_clock(self.episode_length,self.n_rollout_threads,num_agents)
+                            if time_mode(args) != "disabled" else None)
         self.tag =[]
 
     def reset_episode(self):
@@ -224,6 +227,9 @@ class GraphReplayBuffer(object):
         self.wm_feature_ready.fill(False)
         if self.wm_features is not None:
             self.wm_features.fill(0)
+        if self.critic_time is not None:
+            from onpolicy.algorithms.utils.critic_time import task_clock
+            self.critic_time[:] = task_clock(self.episode_length,self.n_rollout_threads,self.rewards.shape[2])
 
     def insert(
         self,
@@ -621,9 +627,10 @@ class GraphReplayBuffer(object):
             if self.wm_features is not None:
                 if not self.wm_feature_ready.all():
                     raise ValueError("PPO rollout has missing cached WM features")
-                yield sample + (self.wm_features.reshape(-1, num_agents+1, 3)[indices].copy(),)
-            else:
-                yield sample
+                sample += (self.wm_features.reshape(-1, num_agents+1, 3)[indices].copy(),)
+            if self.critic_time is not None:
+                sample += (self.critic_time[:-1].reshape(-1,1)[indices].copy(),)
+            yield sample
 
     def naive_recurrent_generator(
         self, advantages: arr, num_mini_batch: int

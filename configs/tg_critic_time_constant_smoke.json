@@ -1,0 +1,44 @@
+{
+  "schema": "original_tg_ablation_v3",
+  "purpose": "diagnostic",
+  "python": "D:/python3.6.8/python.exe",
+  "reward_contract": {
+    "version": "task_v2",
+    "delivery_weight": 1,
+    "delay_weight": 1,
+    "unfinished_weight": 1,
+    "normalization": "initial_packets_and_task_horizon_v1"
+  },
+  "groups": [
+    "A"
+  ],
+  "train_seeds": [
+    11,
+    22,
+    33
+  ],
+  "eval_seeds": [
+    7001
+  ],
+  "train_episodes": 2,
+  "eval_episodes": 2,
+  "episode_length": 80,
+  "ppo_epoch": 1,
+  "num_mini_batch": 2,
+  "num_moving_buoys": 5,
+  "random_channel": true,
+  "target_delivery_rate": 0.8,
+  "target_window": 20,
+  "job_timeout_seconds": 1800,
+  "wm_checkpoint": "results/tg_wm_multiscene_gate_selection/20261103_000951_565881/wm_best.pt",
+  "wm_sha256": "2919dff60d3128321170410e632e7bddd476a4f09c766b92108bfe9cb73daca9",
+  "pm_checkpoint": "results/tg_pm_final_pretrain/20261103_142745_276042/pm_best.pt",
+  "pm_sha256": "f62f05b520cbaf665823ce38981c6c88f5e4f816dc01f85d3149aca7d3f81240",
+  "auxiliary_reports": {
+    "wm": "results/tg_wm_multiscene_gate_selection/20261103_000951_565881/report.json",
+    "pm": "results/tg_pm_final_pretrain/20261103_142745_276042/report.json",
+    "data": "results/tg_wm_multiscene/20261102_235951_684782/dataset_manifest.json"
+  },
+  "learning_rate_schedule": "linear",
+  "critic_time_mode": "constant"
+}

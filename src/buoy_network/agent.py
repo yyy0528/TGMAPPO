@@ -346,6 +346,7 @@ class DeepQNetwork(nn.Module):
             available_actions=np.concatenate(self.buffer.available_actions[step]),
             deterministic=getattr(self.all_args, "tg_evaluate", False),
             wm_features=wm_features,
+            critic_time=(np.concatenate(self.buffer.critic_time[step]) if self.buffer.critic_time is not None else None),
         )
         # [self.envs, agents, dim]
         values = np.array(np.split(_t2n(value), self.n_rollout_threads))
@@ -461,6 +462,7 @@ class DeepQNetwork(nn.Module):
             np.concatenate(self.buffer.share_agent_id[-1]),
             np.concatenate(self.buffer.rnn_states_critic[-1]),
             np.concatenate(self.buffer.masks[-1]),
+            critic_time=(np.concatenate(self.buffer.critic_time[-1]) if self.buffer.critic_time is not None else None),
         )
         next_values = np.array(np.split(_t2n(next_values), self.n_rollout_threads))
         self.buffer.compute_returns(next_values, self.trainer.value_normalizer)

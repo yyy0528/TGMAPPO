@@ -109,6 +109,7 @@ def parse_args(args, parser):
     parser.add_argument("--pm_reward_checkpoint", default="")
     parser.add_argument("--pm_reward_alpha", type=float, default=1.0)
     parser.add_argument("--tg_reward_version", choices=("legacy_v1", "task_v2"), default="legacy_v1")
+    parser.add_argument("--tg_critic_time_mode", choices=("disabled","constant","remaining"),default="disabled")
     parser.add_argument("--tg_delivery_weight", type=float, default=1.0)
     parser.add_argument("--tg_delay_weight", type=float, default=1.0)
     parser.add_argument("--tg_unfinished_weight", type=float, default=1.0)
@@ -145,6 +146,8 @@ def main(args):
     try:
         reward_contract(all_args)
         schedule_spec(all_args)
+        from onpolicy.algorithms.utils.critic_time import time_mode
+        time_mode(all_args)
         if all_args.tg_reward_version == "legacy_v1" and any(
                 getattr(all_args, "tg_"+key) != 1. for key in
                 ("delivery_weight", "delay_weight", "unfinished_weight")):

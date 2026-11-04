@@ -8,6 +8,7 @@ import torch
 from .wm_runtime import tensor_digest
 from .task_reward import reward_contract
 from .learning_rate import schedule_spec, optimizer_rates
+from onpolicy.algorithms.utils.critic_time import time_mode
 
 TRAINING_IMPLEMENTATION = "tg_ppo_v3_lr_switch"
 
@@ -38,6 +39,8 @@ def load_policy(learner, path):
             raise ValueError("Policy expects a different frozen WM")
         if payload.get("actor_extra_width", 0) != getattr(learner.all_args, "actor_extra_width", 0):
             raise ValueError("Actor expansion configuration mismatch")
+        if payload.get("critic_time_mode","disabled") != time_mode(learner.all_args):
+            raise ValueError("Critic clock configuration mismatch")
         if learner.wm_runtime is not None and payload["wm"].get("feature_source", "learned") != learner.wm_runtime.feature_source:
             raise ValueError("Candidate feature source mismatch")
         if payload.get("use_pm_reward", False) != (learner.pm_runtime is not None):
@@ -61,6 +64,7 @@ def load_policy(learner, path):
         learner.evaluation_metadata = {"source": str(Path(path).resolve()),
             "source_training_implementation": payload.get("training_implementation", "legacy_popart_v1"),
             "source_learning_rate_schedule":payload.get("learning_rate_schedule"),
+            "source_critic_time_mode":payload.get("critic_time_mode","disabled"),
             "checkpoint_sha256": hashlib.sha256(Path(path).read_bytes()).hexdigest(),
             "actor_sha256": tensor_digest(learner.policy.actor.state_dict()),
             "critic_sha256": tensor_digest(learner.policy.critic.state_dict())}
@@ -96,6 +100,7 @@ def save_policy(learner, run_dir):
             "use_wm_actor": learner.wm_runtime is not None, "wm": wm,
             "use_pm_reward": learner.pm_runtime is not None, "pm": pm,
             "actor_extra_width": getattr(learner.all_args, "actor_extra_width", 0),
+            "critic_time_mode":time_mode(learner.all_args),
             "actor": learner.policy.actor.state_dict(), "critic": learner.policy.critic.state_dict(),
             "value_normalizer": (learner.trainer.value_normalizer.state_dict()
                                  if learner.trainer._use_valuenorm else None),
@@ -110,6 +115,7 @@ def save_policy(learner, run_dir):
                     "wm_ppo_updates": learner.wm_update_records, "pm": pm,
                     "pm_ppo_updates": learner.pm_update_records, "training_resume_supported": False}
     metadata.update(profile=learner.profile, resources=resources, reward_contract=reward_contract(learner.all_args),
+                    critic_time_mode=time_mode(learner.all_args),
                     timing_scope="CPU collect and PPO wall time; diagnostics separated; import/env/plot overhead excluded")
     with (root / "logs" / "TG_policy_report.json").open("x", encoding="utf-8") as stream:
         json.dump(metadata, stream, indent=2, allow_nan=False)

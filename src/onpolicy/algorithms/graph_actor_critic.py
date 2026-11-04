@@ -11,6 +11,7 @@ from onpolicy.algorithms.utils.mlp import MLPBase
 from onpolicy.algorithms.utils.rnn import RNNLayer
 from onpolicy.algorithms.utils.act import ACTLayer
 from onpolicy.algorithms.utils.popart import PopArt
+from onpolicy.algorithms.utils.critic_time import CriticTime, time_mode
 from onpolicy.utils.shared_buffer import SharedReplayBuffer
 from onpolicy.utils.util import get_shape_from_obs_space
 
@@ -426,10 +427,13 @@ class GR_Critic(nn.Module):
         else:
             self.v_out = init_(nn.Linear(self.hidden_size, 1))
 
+        mode = time_mode(args)
+        self.time_conditioning = CriticTime(self.hidden_size,mode) if mode != "disabled" else None
+
         self.to(device)
 
     def forward(
-        self, cent_obs, node_obs, adj, agent_id, rnn_states, masks
+        self, cent_obs, node_obs, adj, agent_id, rnn_states, masks, critic_time=None
     ) -> Tuple[Tensor, Tensor]:
         """
         Compute actions from the given inputs.
@@ -499,6 +503,8 @@ class GR_Critic(nn.Module):
 
         if self._use_naive_recurrent_policy or self._use_recurrent_policy:
             critic_features, rnn_states = self.rnn(critic_features, rnn_states, masks)
+        if self.time_conditioning is not None:
+            critic_features = self.time_conditioning(critic_features,critic_time)
         values = self.v_out(critic_features)
 
         return (values, rnn_states)

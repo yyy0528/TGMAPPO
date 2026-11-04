@@ -153,6 +153,12 @@ class GR_MAPPO():
         """
 
 
+        critic_time = None
+        if self.policy.critic.time_conditioning is not None:
+            expected = 18 if self.policy.actor.use_wm else 17
+            if len(sample) != expected:
+                raise ValueError("Critic clock PPO sample requires cached decision-time clock")
+            critic_time,sample = sample[-1],sample[:-1]
         wm_features = sample[-1] if self.policy.actor.use_wm else None
         if self.policy.actor.use_wm:
             if len(sample) != 17:
@@ -188,7 +194,7 @@ class GR_MAPPO():
                                                         actions_batch, 
                                                         masks_batch, 
                                                         available_actions_batch,
-                                                        active_masks_batch, wm_features=wm_features)
+                                                        active_masks_batch, wm_features=wm_features, critic_time=critic_time)
         # actor update
         # print(f'obs: {obs_batch.shape}')
         # st = time.time()
