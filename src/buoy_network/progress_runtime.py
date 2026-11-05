@@ -1,5 +1,6 @@
 """Frozen censored-time PM and potential shaping in the original TG runner."""
 import hashlib
+import json
 import math
 from pathlib import Path
 import numpy as np
@@ -27,7 +28,7 @@ def completion_potential(remaining_probability_mass, delivered, initial_packets)
 
 
 class FrozenPMRuntime:
-    def __init__(self, path, n, horizon, gamma, alpha, potential_mode="remaining", value_mode="learned_shaped", task_contract=None):
+    def __init__(self, path, n, horizon, gamma, alpha, potential_mode="remaining", value_mode="learned_shaped", task_contract=None, reliability_report=None):
         if potential_mode not in ("remaining", "completion_credit", "task_return"):
             raise ValueError("Unknown PM potential mode")
         if value_mode not in ("learned_shaped", "base_residual"):
@@ -68,18 +69,29 @@ class FrozenPMRuntime:
         self.path = str(Path(path).resolve())
         self.file_sha256 = hashlib.sha256(Path(path).read_bytes()).hexdigest()
         self.initial_digest = tensor_digest(self.model.state_dict())
+        self.requested_alpha=alpha
+        self.reliability=None
+        if reliability_report:
+            if potential_mode!='task_return' or value_mode!='learned_shaped':
+                raise ValueError('PM reliability calibration requires task_return / learned_shaped')
+            from .pm_reliability import load_gate
+            self.reliability=load_gate(reliability_report,self.file_sha256,horizon,n,gamma,alpha,self.task_contract)
+            alpha=self.reliability['effective_alpha']
         self.n, self.horizon, self.gamma, self.alpha = n, horizon, gamma, alpha
         self.potential_mode = potential_mode
         self.value_mode = value_mode
-        self.settings = (n, horizon, gamma, alpha, potential_mode, value_mode, self.contract_signature())
+        self.settings = (n, horizon, gamma, alpha, potential_mode, value_mode, self.contract_signature(),self.reliability_signature())
         self.summaries, self.episode_records = [], []
         self.started = False
 
     def contract_signature(self):
         return tuple(sorted(self.task_contract.items())) if self.task_contract is not None else None
 
+    def reliability_signature(self):
+        return (self.requested_alpha,json.dumps(self.reliability,sort_keys=True,allow_nan=False))
+
     def assert_frozen(self):
-        if ((self.n, self.horizon, self.gamma, self.alpha, self.potential_mode, self.value_mode, self.contract_signature()) != self.settings or self.model.training
+        if ((self.n, self.horizon, self.gamma, self.alpha, self.potential_mode, self.value_mode, self.contract_signature(),self.reliability_signature()) != self.settings or self.model.training
                 or any(p.requires_grad for p in self.model.parameters())
                 or tensor_digest(self.model.state_dict()) != self.initial_digest):
             raise ValueError("PM weights/normalization/alpha/gamma must remain fixed")
@@ -166,6 +178,8 @@ class FrozenPMRuntime:
 
     def metadata(self):
         self.assert_frozen()
+        if self.reliability is not None and hashlib.sha256(Path(self.reliability['report']).read_bytes()).hexdigest()!=self.reliability['report_sha256']:
+            raise ValueError('PM reliability report changed after initialization')
         return {"checkpoint": self.path, "checkpoint_sha256": self.file_sha256,
                 "state_sha256": self.initial_digest, "architecture": ARCHITECTURE,
                 "features": list(FEATURES), "alpha": self.alpha, "gamma": self.gamma, "horizon": self.horizon,
@@ -174,4 +188,7 @@ class FrozenPMRuntime:
                 "task_return_contract": dict(self.task_contract) if self.task_contract is not None else None,
                 "frozen": True, "target": ("expected discounted task_v2 return under frozen behavior-time hazards"
                     if self.potential_mode == "task_return" else "delivery within remaining finite window; not eventual failure"),
-                "reliability_gate": "constant_one; no uncertainty claim", "episodes": self.summaries}
+                "requested_alpha":self.requested_alpha,
+                "reliability":json.loads(json.dumps(self.reliability)),
+                "reliability_gate": ("independent_initial_value_prior_calibration; no uncertainty guarantee"
+                    if self.reliability is not None else "constant_one; no uncertainty claim"), "episodes": self.summaries}

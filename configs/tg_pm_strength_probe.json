@@ -1,0 +1,11 @@
+{
+  "schema": "original_tg_pm_strength_probe_v1",
+  "purpose": "targeted development regression; alpha=0.1 is the original plan's cold-start value, not a sweep",
+  "reference_suite": "results/tg_pm_task_return/pilot_20261105_140555_016580",
+  "alpha": 0.1,
+  "train_seeds": [11, 22, 33],
+  "eval_scenes": [8001, 8002, 8003],
+  "train_episodes": 20,
+  "eval_episodes": 2,
+  "decision": "Mean delivery and base return exceed A and alpha=1, at least two seeds improve over A and no seed is worse than A. Development only; reused development seeds/scenes cannot establish formal efficacy."
+}

@@ -1,0 +1,883 @@
+{
+  "schema": "tg_pm_reliability_engineering_v1",
+  "date": "2026-11-05",
+  "unique_tests": 131,
+  "tests": {
+    "python": "D:\\python3.6.8\\python.exe",
+    "success": true,
+    "stages": [
+      {
+        "name": "functions",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "modules",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "integration",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "legacy",
+        "command": [
+          "D:\\python3.6.8\\python.exe",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-p",
+          "test_legacy*.py",
+          "-v"
+        ],
+        "exit_code": 0
+      },
+      {
+        "name": "value",
+        "command": [
+          "D:\\python3.6.8\\python.exe",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-p",
+          "test_pm_value.py",
+          "-v"
+        ],
+        "exit_code": 0
+      },
+      {
+        "name": "credit",
+        "command": [
+          "D:\\python3.6.8\\python.exe",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-p",
+          "test_pm_completion_credit.py",
+          "-v"
+        ],
+        "exit_code": 0
+      },
+      {
+        "name": "task_return",
+        "command": [
+          "D:\\python3.6.8\\python.exe",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-p",
+          "test_pm_task_return.py",
+          "-v"
+        ],
+        "exit_code": 0
+      }
+    ]
+  },
+  "test_logs": {
+    "credit": "D:\\python3.6.8\\lib\\site-packages\\torch\\cuda\\amp\\autocast_mode.py:118: UserWarning: torch.cuda.amp.autocast only affects CUDA ops, but CUDA is not available.  Disabling.\n  warnings.warn(\"torch.cuda.amp.autocast only affects CUDA ops, but CUDA is not available.  Disabling.\")\ntest_delivery_does_not_remove_completed_credit (test_pm_completion_credit.CreditFunctions) ... ok\ntest_invalid_mass_rejected (test_pm_completion_credit.CreditFunctions) ... ok\ntest_terminal_discount_identity_remains_exact (test_pm_completion_credit.CreditFunctions) ... ok\ntest_real_ppo_freeze_metadata_reload_and_mode_rejection (test_pm_completion_credit.CreditIntegration) ... D:\\python3.6.8\\lib\\site-packages\\torch\\cuda\\amp\\grad_scaler.py:116: UserWarning: torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.\n  warnings.warn(\"torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.\")\nok\ntest_all_delivered_retains_credit_until_terminal (test_pm_completion_credit.CreditModules) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.792s\n\nOK\n",
+    "functions": "test_good_prior_enabled_bad_or_zero_prior_disabled (test_pm_reliability.ReliabilityFunctions) ... ok\ntest_missing_duplicate_nonfinite_or_terminal_data_rejected (test_pm_reliability.ReliabilityFunctions) ... ok\ntest_one_bad_episode_rejects_an_average_improvement (test_pm_reliability.ReliabilityFunctions) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.001s\n\nOK\n",
+    "integration": "test_actual_independent_calibration_is_sampled_and_never_updates (test_pm_reliability.ReliabilityIntegration) ... ok\ntest_initialization_and_checkpoint_calibration_mismatches_rejected (test_pm_reliability.ReliabilityIntegration) ... ok\ntest_real_ppo_gate_off_equals_baseline_gate_on_equals_always_PM (test_pm_reliability.ReliabilityIntegration) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 7.558s\n\nOK\n",
+    "legacy": "D:\\python3.6.8\\lib\\site-packages\\torch\\cuda\\amp\\autocast_mode.py:118: UserWarning: torch.cuda.amp.autocast only affects CUDA ops, but CUDA is not available.  Disabling.\n  warnings.warn(\"torch.cuda.amp.autocast only affects CUDA ops, but CUDA is not available.  Disabling.\")\ntest_history_control_never_calls_learned_forward (test_legacy_ablation.AblationFunctions) ... ok\ntest_real_hops_delays_retry_loops_and_censor_denominators (test_legacy_ablation.AblationFunctions) ... ok\ntest_transfer_without_ack_is_rejected (test_legacy_ablation.AblationFunctions) ... ok\ntest_expansion_neutral_rng_and_real_training (test_legacy_ablation.AblationModules) ... D:\\python3.6.8\\lib\\site-packages\\torch\\cuda\\amp\\grad_scaler.py:116: UserWarning: torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.\n  warnings.warn(\"torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.\")\nok\ntest_history_control_real_ppo_and_checkpoint (test_legacy_ablation.AblationModules) ... ok\ntest_conflicting_explicit_budgets_fail (test_legacy_budget.TrainingBudgetTests) ... ok\ntest_default_budget_preserves_existing_episode_count (test_legacy_budget.TrainingBudgetTests) ... ok\ntest_episode_only_budget (test_legacy_budget.TrainingBudgetTests) ... ok\ntest_equals_spelling_and_last_duplicate_value (test_legacy_budget.TrainingBudgetTests) ... ok\ntest_launcher_does_not_inject_a_phantom_budget (test_legacy_budget.TrainingBudgetTests) ... ok\ntest_matching_explicit_budgets (test_legacy_budget.TrainingBudgetTests) ... ok\ntest_nonpositive_budgets_fail (test_legacy_budget.TrainingBudgetTests) ... ok\ntest_partial_and_too_short_episode_budgets_fail (test_legacy_budget.TrainingBudgetTests) ... ok\ntest_real_cli_rejects_conflicts_and_abbreviations_before_environment_import (test_legacy_budget.TrainingBudgetTests) ... ok\ntest_steps_only_derives_complete_episodes (test_legacy_budget.TrainingBudgetTests) ... ok\ntest_actual_ppo_weights_and_losses_are_bitwise_unchanged (test_legacy_credit_capture.CaptureIntegration) ... ok\ntest_training_graph_keeps_lazy_probability_cache_unread (test_legacy_credit_capture.CaptureModule) ... ok\ntest_clock_decision_and_terminal_indices (test_legacy_critic_time.TimeFunctions) ... ok\ntest_initial_identity_rng_and_trainable_branch (test_legacy_critic_time.TimeFunctions) ... ok\ntest_invalid_modes_shapes_and_ranges (test_legacy_critic_time.TimeFunctions) ... ok\ntest_remaining_changes_output_constant_ignores_clock (test_legacy_critic_time.TimeFunctions) ... ok\ntest_first_rollout_and_actor_update_identical_clock_branch_learns (test_legacy_critic_time.TimeIntegration) ... ok\ntest_time_with_frozen_wm_pm_and_four_epoch_ppo (test_legacy_critic_time.TimeIntegration) ... ok\ntest_buffer_clock_alignment_reset_and_shuffled_samples (test_legacy_critic_time.TimeModules) ... ok\ntest_checkpoint_clock_mode_guard_and_old_missing_field (test_legacy_critic_time.TimeModules) ... ok\ntest_same_original_initialization_and_equal_capacity_controls (test_legacy_critic_time.TimeModules) ... ok\ntest_baseline_capture_is_read_only_and_detaches_cleanly (test_legacy_diagnostic_capture.CaptureModules) ... ok\ntest_wm_distribution_capture_uses_cached_inputs_without_sampling (test_legacy_diagnostic_capture.CaptureModules) ... ok\ntest_cli_default_fixed_and_explicit_linear (test_legacy_lr_schedule.LRFunctions) ... ok\ntest_original_linear_formula_and_last_epoch_endpoint (test_legacy_lr_schedule.LRFunctions) ... ok\ntest_spec_records_separate_rates_and_rejects_invalid_inputs (test_legacy_lr_schedule.LRFunctions) ... ok\ntest_switch_off_and_evaluation_never_call_scheduler (test_legacy_lr_schedule.LRFunctions) ... ok\ntest_legacy_unrecorded_schedule_is_not_invented_on_load (test_legacy_lr_schedule.LRIntegration) ... ok\ntest_wm_pm_both_schedules_and_frozen_evaluation_never_schedule (test_legacy_lr_schedule.LRIntegration) ... ok\ntest_real_runner_logs_rates_in_training_checkpoint_and_report (test_legacy_lr_schedule.LRModules) ... ok\ntest_suite_schedule_is_explicit_and_old_schemas_preserve_linear (test_legacy_lr_schedule.LRModules) ... ok\ntest_alpha_zero_exactly_recovers_baseline_weights_and_metrics (test_legacy_pm_reward.PMIntegration) ... ok\ntest_combined_frozen_models_shaped_gae_and_no_update_evaluation (test_legacy_pm_reward.PMIntegration) ... D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\tests\\test_legacy_pm_reward.py:199: ResourceWarning: unclosed file <_io.TextIOWrapper name='C:\\\\Users\\\\17702\\\\AppData\\\\Local\\\\Temp\\\\tmpznp86olm\\\\train\\\\moves_0\\\\logs\\\\TG_PM_rewards.csv' mode='r' encoding='utf-8'>\n  rows = list(csv.DictReader((root/\"train\"/\"moves_0\"/\"logs\"/\"TG_PM_rewards.csv\").open(encoding=\"utf-8\")))\nok\ntest_exported_packet_history_matches_online_runtime_features (test_legacy_pm_reward.PMModules) ... ok\ntest_pm_policy_metadata_is_required_and_old_baseline_still_loads (test_legacy_pm_reward.PMModules) ... ok\ntest_boundary_discount_identity_no_clipping_and_truncation (test_legacy_pm_reward.ShapingFunctions) ... ok\ntest_loader_preserves_rng_and_rejects_unvalidated_models (test_legacy_pm_reward.ShapingFunctions) ... ok\ntest_empty_rollout_does_not_update_stats (test_legacy_popart.PopArtFunctions) ... ok\ntest_invalid_targets_do_not_mutate_and_roundtrip_is_finite (test_legacy_popart.PopArtFunctions) ... ok\ntest_parameter_identity_output_preservation_and_real_optimizer_step (test_legacy_popart.PopArtFunctions) ... ok\ntest_rollout_fixed_stats_value_clip_coordinates_and_exception_cleanup (test_legacy_popart.PopArtFunctions) ... ok\ntest_default_popart_wm_pm_rewards_gae_and_frozen_reload (test_legacy_popart.PopArtIntegration) ... ok\ntest_original_tg_multiple_epochs_fixed_stats_head_learns_and_buffer_is_unchanged (test_legacy_popart.PopArtModules) ... ok\ntest_shared_nongraph_mappo_popart_path_has_real_updates (test_legacy_popart.PopArtModules) ... ok\ntest_invalid_metric_inputs (test_legacy_ppo_budget.BudgetFunctions) ... ok\ntest_known_ratios_and_clipping (test_legacy_ppo_budget.BudgetFunctions) ... ok\ntest_masks_empty_and_multiple_action_components (test_legacy_ppo_budget.BudgetFunctions) ... ok\ntest_no_rng_gradient_or_input_changes (test_legacy_ppo_budget.BudgetFunctions) ... ok\ntest_four_epoch_wm_pm_cached_features_and_frozen_models (test_legacy_ppo_budget.BudgetIntegration) ... ok\ntest_real_ppo_counts_popart_once_per_rollout_and_fixed_interactions (test_legacy_ppo_budget.BudgetIntegration) ... ok\ntest_baseline_diagnostic_protocol_and_ablation_guards (test_legacy_ppo_budget.BudgetModules) ... ok\ntest_diagnostics_preserve_actual_policy_optimizer_results (test_legacy_ppo_budget.BudgetModules) ... ok\ntest_a_packet_cannot_use_two_hops_in_one_joint_slot (test_legacy_targeted_fixes.ActionAndRolloutFixes) ... ok\ntest_buffer_rejects_overflow_and_old_scalar_masks_before_mutation (test_legacy_targeted_fixes.ActionAndRolloutFixes) ... ok\ntest_global_action_masks_include_wait_for_inactive_nodes (test_legacy_targeted_fixes.ActionAndRolloutFixes) ... ok\ntest_new_arrivals_stay_behind_already_queued_packets (test_legacy_targeted_fixes.ActionAndRolloutFixes) ... ok\ntest_runner_keeps_wait_and_exactly_t_transitions (test_legacy_targeted_fixes.ActionAndRolloutFixes) ... ok\ntest_sampling_and_probability_replay_use_the_same_current_mask (test_legacy_targeted_fixes.ActionAndRolloutFixes) ... ok\ntest_warmup_resets_recurrent_state_and_writes_real_initial_observations (test_legacy_targeted_fixes.ActionAndRolloutFixes) ... ok\ntest_research_options_are_rejected_before_any_output_or_training (test_legacy_targeted_fixes.ArgumentFixes) ... ok\ntest_channel_refresh_and_rotation_preserve_configured_loss (test_legacy_targeted_fixes.GeometryAndChannelFixes) ... ok\ntest_gnn_includes_links_at_the_physical_radius (test_legacy_targeted_fixes.GeometryAndChannelFixes) ... ok\ntest_graph_distance_is_physical_and_changes_after_motion (test_legacy_targeted_fixes.GeometryAndChannelFixes) ... ok\ntest_huber_large_negative_errors_have_symmetric_nonzero_gradients (test_legacy_targeted_fixes.GeometryAndChannelFixes) ... ok\ntest_lossless_channel_override_survives_reset_and_rotation (test_legacy_targeted_fixes.GeometryAndChannelFixes) ... ok\ntest_node_features_are_physical_with_a_valid_entity_type (test_legacy_targeted_fixes.GeometryAndChannelFixes) ... ok\ntest_topology_refresh_keeps_link_statistics_by_receiver (test_legacy_targeted_fixes.GeometryAndChannelFixes) ... ok\ntest_all_inactive_wait_rollout_has_finite_losses_and_parameters (test_legacy_targeted_fixes.NeuralIntegrationFixes) ... ok\ntest_real_two_episode_ppo_updates_and_replays_each_probability (test_legacy_targeted_fixes.NeuralIntegrationFixes) ... ok\ntest_delivery_once_pre_slot_time_and_empty_packets (test_legacy_task_reward.RewardFunctions) ... ok\ntest_faster_delivery_outranks_wait_discounted_and_undiscounted (test_legacy_task_reward.RewardFunctions) ... ok\ntest_invalid_weights_boundaries_and_legacy_identity (test_legacy_task_reward.RewardFunctions) ... ok\ntest_wait_cost_and_closed_form (test_legacy_task_reward.RewardFunctions) ... ok\ntest_alpha_zero_keeps_task_v2_baseline_exact (test_legacy_task_reward.RewardIntegration) ... ok\ntest_task_reward_pm_wm_buffer_gae_and_independent_reward_audit (test_legacy_task_reward.RewardIntegration) ... ok\ntest_checkpoint_contract_old_compatibility_and_mismatch_rejection (test_legacy_task_reward.RewardModules) ... ok\ntest_suite_v2_uses_one_reward_for_all_groups_and_rejects_drift (test_legacy_task_reward.RewardModules) ... ok\ntest_collection_uses_independent_splits_and_rejects_budget_before_launch (test_legacy_transition_data.ExportProcessIntegrationTests) ... ok\ntest_export_toggle_preserves_original_training_metrics_and_audits (test_legacy_transition_data.ExportProcessIntegrationTests) ... ok\ntest_rule_runs_never_update_ppo_and_export_valid_samples (test_legacy_transition_data.ExportProcessIntegrationTests) ... ok\ntest_ack_failure_does_not_make_final_packet_outcome_negative (test_legacy_transition_data.RecorderModuleTests) ... ok\ntest_actual_delivery_is_archived_before_legacy_packet_deletion (test_legacy_transition_data.RecorderModuleTests) ... ok\ntest_audit_rejects_corruption_and_reader_rejects_incomplete (test_legacy_transition_data.RecorderModuleTests) ... ok\ntest_export_can_be_disabled_and_budget_failure_is_incomplete (test_legacy_transition_data.RecorderModuleTests) ... ok\ntest_packet_and_byte_budgets_leave_incomplete_dataset (test_legacy_transition_data.RecorderModuleTests) ... ok\ntest_reader_has_only_past_actions_and_current_inputs_with_wait_mask (test_legacy_transition_data.RecorderModuleTests) ... ok\ntest_split_manifest_rejects_seed_reuse_and_escape (test_legacy_transition_data.RecorderModuleTests) ... ok\ntest_wait_is_not_a_failed_attempt_and_unresolved_is_not_a_failure (test_legacy_transition_data.RecorderModuleTests) ... ok\ntest_explicit_scenario_seed_changes_channel_and_default_preserves_legacy (test_legacy_transition_data.SnapshotFunctionTests) ... ok\ntest_only_explicit_data_options_pass_the_legacy_guard (test_legacy_transition_data.SnapshotFunctionTests) ... ok\ntest_rule_actions_are_legal_and_use_a_private_rng (test_legacy_transition_data.SnapshotFunctionTests) ... ok\ntest_snapshot_is_detached_and_does_not_consume_rng (test_legacy_transition_data.SnapshotFunctionTests) ... ok\ntest_minibatch_features_follow_the_same_shuffled_indices (test_legacy_wm_actor.ActorCacheModules) ... ok\ntest_neutral_initialization_masks_and_real_prediction_influence (test_legacy_wm_actor.ActorCacheModules) ... ok\ntest_policy_reload_validates_mode_environment_and_wm_hash (test_legacy_wm_actor.ActorCacheModules) ... ok\ntest_frozen_load_preserves_rng_and_rejects_invalid_artifacts (test_legacy_wm_actor.FrozenInputFunctions) ... ok\ntest_inference_encoder_never_needs_future_targets (test_legacy_wm_actor.FrozenInputFunctions) ... ok\ntest_online_history_matches_offline_encoder_and_model (test_legacy_wm_actor.FrozenInputFunctions) ... ok\ntest_all_wait_training_is_finite (test_legacy_wm_actor.WMIntegrationTests) ... ok\ntest_real_ppo_uses_only_cache_and_frozen_eval_never_updates (test_legacy_wm_actor.WMIntegrationTests) ... ok\n\n----------------------------------------------------------------------\nRan 105 tests in 70.887s\n\nOK\n",
+    "modules": "test_report_recomputed_and_model_phase_tampering_rejected (test_pm_reliability.ReliabilityModules) ... ok\ntest_runtime_gate_is_frozen_and_report_file_changes_rejected (test_pm_reliability.ReliabilityModules) ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 2.129s\n\nOK\n",
+    "task_return": "test_delivery_slot_cost_terminal_and_extreme_hazards (test_pm_task_return.ReturnFunctions) ... ok\ntest_expected_return_matches_independent_outcome_enumeration (test_pm_task_return.ReturnFunctions) ... ok\ntest_invalid_contract_window_or_nonfinite_rejected (test_pm_task_return.ReturnFunctions) ... ok\ntest_actual_ppo_updates_popart_and_reload_guards (test_pm_task_return.ReturnIntegration) ... D:\\python3.6.8\\lib\\site-packages\\torch\\cuda\\amp\\autocast_mode.py:118: UserWarning: torch.cuda.amp.autocast only affects CUDA ops, but CUDA is not available.  Disabling.\n  warnings.warn(\"torch.cuda.amp.autocast only affects CUDA ops, but CUDA is not available.  Disabling.\")\nD:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\src\\buoy_network\\utils.py:66: ResourceWarning: unclosed file <_io.TextIOWrapper name='D:\\\\programs\\\\20251012\\\\20250829buoy\\\\20240607buoy\\\\buoy_network\\\\outputs\\\\TG-MAPPO\\\\diagnostic_logs\\\\buoy_2018.log' mode='a' encoding='utf-8'>\n  logger.handlers.clear()\nD:\\python3.6.8\\lib\\site-packages\\torch\\cuda\\amp\\grad_scaler.py:116: UserWarning: torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.\n  warnings.warn(\"torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.\")\nok\ntest_runtime_team_potential_matches_enumerated_remaining_packets (test_pm_task_return.ReturnModules) ... ok\ntest_wrong_task_contract_is_rejected (test_pm_task_return.ReturnModules) ... ok\n\n----------------------------------------------------------------------\nRan 6 tests in 4.299s\n\nOK\n",
+    "value": "D:\\python3.6.8\\lib\\site-packages\\torch\\cuda\\amp\\autocast_mode.py:118: UserWarning: torch.cuda.amp.autocast only affects CUDA ops, but CUDA is not available.  Disabling.\n  warnings.warn(\"torch.cuda.amp.autocast only affects CUDA ops, but CUDA is not available.  Disabling.\")\ntest_inconsistent_cache_or_nonfinite_values_rejected (test_pm_value.ValueFunctions) ... ok\ntest_monte_carlo_targets_shift_but_advantages_do_not (test_pm_value.ValueFunctions) ... ok\ntest_same_cached_trajectory_td_gae_identity_all_lambdas (test_pm_value.ValueFunctions) ... ok\ntest_actual_ppo_residual_matches_baseline_with_popart_and_plain_values (test_pm_value.ValueIntegration) ... D:\\python3.6.8\\lib\\site-packages\\torch\\cuda\\amp\\grad_scaler.py:116: UserWarning: torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.\n  warnings.warn(\"torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.\")\nok\ntest_wm_pm_popart_and_value_mode_checkpoint_guard (test_pm_value.ValueIntegration) ... ok\ntest_buffer_override_does_not_relabel_collected_rewards (test_pm_value.ValueModules) ... ok\ntest_popart_audit_uses_raw_values_and_keeps_cache_immutable (test_pm_value.ValueModules) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 12.561s\n\nOK\n"
+  },
+  "compatibility": {
+    "engineering_passed": true,
+    "stage": "preflight",
+    "audited_tasks": 12,
+    "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_pm_reliability_compat\\preflight_20261105_152009_914066",
+    "auditor_sha256": "a554653b762cca80d08821e4e1a00f10b8b0294b29d242dd9b6774d88f95447e",
+    "manifest_sha256": "f07943bf8cae39aab1f080543107506d80b905ecb3190b8bf413f980ccec36cf",
+    "first_rollout_controls": [
+      {
+        "seed": 11,
+        "base_rewards_values_masks_exact": true,
+        "actual_gae_change_max": 0.5053833723068237,
+        "old_base_value_prior_sampled_MC_mse": 0.2557776514887004,
+        "new_base_value_prior_sampled_MC_mse": 0.13226835757317107,
+        "no_PM_same_numeric_value_sampled_MC_mse": 0.0982161291287786,
+        "scope": "sampled first training rollout, all agent copies; not exact conditional V or independent samples"
+      },
+      {
+        "seed": 22,
+        "base_rewards_values_masks_exact": true,
+        "actual_gae_change_max": 0.8420354127883911,
+        "old_base_value_prior_sampled_MC_mse": 0.9600428675461088,
+        "new_base_value_prior_sampled_MC_mse": 0.08473122396288796,
+        "no_PM_same_numeric_value_sampled_MC_mse": 0.5901043618444506,
+        "scope": "sampled first training rollout, all agent copies; not exact conditional V or independent samples"
+      },
+      {
+        "seed": 33,
+        "base_rewards_values_masks_exact": true,
+        "actual_gae_change_max": 0.7569729089736938,
+        "old_base_value_prior_sampled_MC_mse": 1.1482728851676063,
+        "new_base_value_prior_sampled_MC_mse": 0.13255123626584298,
+        "no_PM_same_numeric_value_sampled_MC_mse": 0.7318091550401022,
+        "scope": "sampled first training rollout, all agent copies; not exact conditional V or independent samples"
+      }
+    ],
+    "training_value_diagnostics": [
+      {
+        "group": "remaining",
+        "seed": 11,
+        "episodes": [
+          {
+            "episode": 0,
+            "effective_value_sampled_MC_mse": 0.2557776514887004,
+            "effective_value_sampled_MC_bias": 0.4731128585529992,
+            "actual_gae_std": 0.12978927791118622,
+            "actual_gae_recompute_max_error": 1.9092726133429494e-07
+          },
+          {
+            "episode": 1,
+            "effective_value_sampled_MC_mse": 0.6581594648905095,
+            "effective_value_sampled_MC_bias": 0.7849524643231621,
+            "actual_gae_std": 0.12374311685562134,
+            "actual_gae_recompute_max_error": 2.0590858917923782e-07
+          }
+        ],
+        "scope": "all cached agent copies; correlated sampled MC, not true conditional value"
+      },
+      {
+        "group": "task_return",
+        "seed": 11,
+        "episodes": [
+          {
+            "episode": 0,
+            "effective_value_sampled_MC_mse": 0.13226835757317107,
+            "effective_value_sampled_MC_bias": -0.27249401513911825,
+            "actual_gae_std": 0.22092150151729584,
+            "actual_gae_recompute_max_error": 1.1882114259176291e-07
+          },
+          {
+            "episode": 1,
+            "effective_value_sampled_MC_mse": 0.08713385237445383,
+            "effective_value_sampled_MC_bias": 0.0010503550121485716,
+            "actual_gae_std": 0.2331274449825287,
+            "actual_gae_recompute_max_error": 1.3971350054653442e-07
+          }
+        ],
+        "scope": "all cached agent copies; correlated sampled MC, not true conditional value"
+      },
+      {
+        "group": "remaining",
+        "seed": 22,
+        "episodes": [
+          {
+            "episode": 0,
+            "effective_value_sampled_MC_mse": 0.9600428675461088,
+            "effective_value_sampled_MC_bias": 0.9599658289196827,
+            "actual_gae_std": 0.11670183390378952,
+            "actual_gae_recompute_max_error": 2.1096855173929896e-07
+          },
+          {
+            "episode": 1,
+            "effective_value_sampled_MC_mse": 0.7641263403063585,
+            "effective_value_sampled_MC_bias": 0.8510299136385858,
+            "actual_gae_std": 0.1317892074584961,
+            "actual_gae_recompute_max_error": 1.874730573281358e-07
+          }
+        ],
+        "scope": "all cached agent copies; correlated sampled MC, not true conditional value"
+      },
+      {
+        "group": "task_return",
+        "seed": 22,
+        "episodes": [
+          {
+            "episode": 0,
+            "effective_value_sampled_MC_mse": 0.08473122396288796,
+            "effective_value_sampled_MC_bias": 0.11773578663901879,
+            "actual_gae_std": 0.17888207733631134,
+            "actual_gae_recompute_max_error": 2.2890933970565186e-07
+          },
+          {
+            "episode": 1,
+            "effective_value_sampled_MC_mse": 0.07122020638060013,
+            "effective_value_sampled_MC_bias": -0.05530747986936756,
+            "actual_gae_std": 0.21716010570526123,
+            "actual_gae_recompute_max_error": 2.269483918571069e-07
+          }
+        ],
+        "scope": "all cached agent copies; correlated sampled MC, not true conditional value"
+      },
+      {
+        "group": "remaining",
+        "seed": 33,
+        "episodes": [
+          {
+            "episode": 0,
+            "effective_value_sampled_MC_mse": 1.1482728851676063,
+            "effective_value_sampled_MC_bias": 1.0602425454884818,
+            "actual_gae_std": 0.14971382915973663,
+            "actual_gae_recompute_max_error": 2.3586708924883126e-07
+          },
+          {
+            "episode": 1,
+            "effective_value_sampled_MC_mse": 1.0759943038161763,
+            "effective_value_sampled_MC_bias": 1.0250868204848684,
+            "actual_gae_std": 0.16140791773796082,
+            "actual_gae_recompute_max_error": 2.1298579322426292e-07
+          }
+        ],
+        "scope": "all cached agent copies; correlated sampled MC, not true conditional value"
+      },
+      {
+        "group": "task_return",
+        "seed": 33,
+        "episodes": [
+          {
+            "episode": 0,
+            "effective_value_sampled_MC_mse": 0.13255123626584298,
+            "effective_value_sampled_MC_bias": 0.3112964089646514,
+            "actual_gae_std": 0.1302139312028885,
+            "actual_gae_recompute_max_error": 1.4166855355490782e-07
+          },
+          {
+            "episode": 1,
+            "effective_value_sampled_MC_mse": 0.06093316735073266,
+            "effective_value_sampled_MC_bias": 0.17238231711421423,
+            "actual_gae_std": 0.16406743228435516,
+            "actual_gae_recompute_max_error": 7.710616389822178e-08
+          }
+        ],
+        "scope": "all cached agent copies; correlated sampled MC, not true conditional value"
+      }
+    ],
+    "group_statistics": {},
+    "by_training_seed": [
+      {
+        "group": "task_return",
+        "seed": 11,
+        "delivery_rate": 0.0,
+        "base_return": -1.1426396330617115,
+        "scene_results": [
+          {
+            "delivery_rate": 0.0,
+            "return": -1.1426396330617115,
+            "scene": 7001,
+            "loops": 206
+          }
+        ]
+      },
+      {
+        "group": "task_return",
+        "seed": 22,
+        "delivery_rate": 0.0,
+        "base_return": -1.1426396330617115,
+        "scene_results": [
+          {
+            "delivery_rate": 0.0,
+            "return": -1.1426396330617115,
+            "scene": 7001,
+            "loops": 204
+          }
+        ]
+      },
+      {
+        "group": "task_return",
+        "seed": 33,
+        "delivery_rate": 0.08333333333333333,
+        "base_return": -0.9711000215247719,
+        "scene_results": [
+          {
+            "delivery_rate": 0.08333333333333333,
+            "return": -0.9711000215247719,
+            "scene": 7001,
+            "loops": 87
+          }
+        ]
+      }
+    ],
+    "development_gate": null,
+    "formal_efficacy_proven": false,
+    "artifacts": [
+      {
+        "tag": "A_11_training",
+        "report_sha256": "4adb08ccc5b097432356788b5efa1d4b699c65540368f3351f4bd8600042f27c",
+        "physical_sha256": "b4798ca2b25e87b251c3066decad6b3e0d1a0db47a03ebe1ad09ec701562ebc9",
+        "return_from_physical_events": -0.6861172063361206
+      },
+      {
+        "tag": "remaining_11_training",
+        "report_sha256": "1e7ee61c45e9f92ff102da8dfde77f2e7d6eb25297fdade30ae3c621f47c3c0d",
+        "physical_sha256": "593bc91ba98aa6ba8bea11afaab0dca3178ae17970624ea8b2b12e4c4c2a3afc",
+        "return_from_physical_events": -0.6339852108441562
+      },
+      {
+        "tag": "task_return_11_training",
+        "report_sha256": "28de9778d2255a7bad515bed582bcb5942aab5b804a8cae7c81fdb2e88f21e34",
+        "physical_sha256": "eda406ef75d23cd9e60ebdb410306c23eb8fc2f0c92a46c8473f56814f2bdb2b",
+        "return_from_physical_events": -0.6664060126397673
+      },
+      {
+        "tag": "task_return_11_evaluation_7001",
+        "report_sha256": "6e1d2dc8328184de07a219e70e4bea9ab5054fc2996d3d4bcfbe8c3fa164b58c",
+        "physical_sha256": "b9cd73869f3f33edb0952cd752921b520ba8f08ea9674a117eabc6ad7b65383a",
+        "return_from_physical_events": -1.1426396330617115
+      },
+      {
+        "tag": "A_22_training",
+        "report_sha256": "33b1543b08651a5e4517417a4a56c0d1a6efb79ae86283bfdc3c7ee620507e36",
+        "physical_sha256": "d02ff7231b3c7b53bd5b091425e07d81e7667b58525fcf49c41575815360d725",
+        "return_from_physical_events": -0.860563115866484
+      },
+      {
+        "tag": "remaining_22_training",
+        "report_sha256": "c6912d372a7938e8980d1884fc841c96e2de7dc3cf9f6f0cdd8d0af8770f5024",
+        "physical_sha256": "9e586e4d6dfd8329361212d745693ec7ad8ff08b30b4a4277ca8f96b5fd82ad0",
+        "return_from_physical_events": -0.9132538662720563
+      },
+      {
+        "tag": "task_return_22_training",
+        "report_sha256": "96fbae876e77fe1136616ec3b1840d0b58ea280c52a4ad8ad85a7aed4e11ba7e",
+        "physical_sha256": "2368d2b246e0fb9e9544290347643b5af4e12fb17ef6f17f73603fb1b62240e2",
+        "return_from_physical_events": -0.9081640732554663
+      },
+      {
+        "tag": "task_return_22_evaluation_7001",
+        "report_sha256": "d0817c12dca5b01652bd85bbfd8179021ee12e7d81b4703b2961bcbd4a685eab",
+        "physical_sha256": "64a4f9c25afb0ec9c42848669c34f14c39f8bbfea933eb6b1c2c52fba9ae955c",
+        "return_from_physical_events": -1.1426396330617115
+      },
+      {
+        "tag": "A_33_training",
+        "report_sha256": "ae91b3e41aa7ba97246eeab4c699188166665c0bde40cfcf0064dff6263fbd4f",
+        "physical_sha256": "cf8075f4f4eb1216c58c3e9e079bc636744785e9dca75a1baa7651d449b002a1",
+        "return_from_physical_events": -0.7304225105807602
+      },
+      {
+        "tag": "remaining_33_training",
+        "report_sha256": "8a867f1d0f12b948ed75cbb4532b9569e415b740ec6d5d97753f42fdd329d9e3",
+        "physical_sha256": "979c461d9e47dacacc6e2034af0d66f41759eb0ac24d2bea8e5f922de06ddf1c",
+        "return_from_physical_events": -0.7761437779072367
+      },
+      {
+        "tag": "task_return_33_training",
+        "report_sha256": "ba64344502ea39e232e95daf1bcc262cd635d3db7333b03af7a0d30adc1c940e",
+        "physical_sha256": "ca1c479a93ec5c2903d00c53737019e411f3e031e21a1046e5a56480d312a8c8",
+        "return_from_physical_events": -0.6258358273969489
+      },
+      {
+        "tag": "task_return_33_evaluation_7001",
+        "report_sha256": "97dff05b883cc325d5d2bc99e5b6cffa0f34000932e46142f936e616d24d3555",
+        "physical_sha256": "947310c9f49b3d9400d509b66e8175859350db043443e9c570b6ceb91941e8c2",
+        "return_from_physical_events": -0.9711000215247719
+      }
+    ],
+    "limitations": [
+      "20-episode development only; no fixed100 rerun",
+      "three training seeds; scenes not independent training repetitions",
+      "frozen behavior PM may be miscalibrated on new policies",
+      "CPU only"
+    ]
+  },
+  "task_return_default_models_exact_seeds": [
+    11,
+    22,
+    33
+  ],
+  "calibration_results": {
+    "44": {
+      "initial_actor_sha256": "5a97f069399bb6dddb94867ccdeb53a3cd469b55f507c8e17b0faf15444897a5",
+      "initial_critic_sha256": "2eb2a5ed3973754f66d16554fd9dc5618d8de2563f79aea0bdb39b4adb9e9b57",
+      "policy_signature": {
+        "grid_size": 5,
+        "comm_range": 1.5,
+        "num_moving_buoys": 5,
+        "random_channel": true,
+        "episode_length": 80,
+        "hidden_size": 64,
+        "gnn_hidden_size": 16,
+        "gnn_num_heads": 3,
+        "gnn_layer_N": 2,
+        "gnn_concat_heads": false,
+        "actor_graph_aggr": "node",
+        "critic_graph_aggr": "global",
+        "global_aggr_type": "mean",
+        "graph_feat_type": "global",
+        "use_cent_obs": false,
+        "use_recurrent_policy": false,
+        "use_naive_recurrent_policy": false,
+        "use_popart": true,
+        "num_agents": 25,
+        "obs_type": "global",
+        "layer_N": 1,
+        "use_ReLU": false,
+        "use_feature_normalization": true,
+        "recurrent_N": 1,
+        "use_valuenorm": false,
+        "stacked_frames": 1,
+        "num_embeddings": 3,
+        "embedding_size": 2,
+        "embed_hidden_size": 16,
+        "embed_layer_N": 1,
+        "embed_use_ReLU": true,
+        "embed_add_self_loop": false,
+        "gnn_use_ReLU": true
+      },
+      "pm_checkpoint_sha256": "f62f05b520cbaf665823ce38981c6c88f5e4f816dc01f85d3149aca7d3f81240",
+      "schema": "tg_pm_initial_value_gate_v1",
+      "phase": "independent_initial_policy_calibration",
+      "training_seed": 44,
+      "horizon": 80,
+      "nodes": 25,
+      "gamma": 0.99,
+      "maximum_alpha": 1.0,
+      "potential_mode": "task_return",
+      "value_mode": "learned_shaped",
+      "weights_unchanged": true,
+      "optimizer_updates": 0,
+      "reward_contract": {
+        "delivery_weight": 1.0,
+        "delay_weight": 1.0,
+        "unfinished_weight": 1.0,
+        "version": "task_v2",
+        "normalization": "initial_packets_and_task_horizon_v1"
+      },
+      "decision": {
+        "rule": {
+          "minimum_episodes": 4,
+          "minimum_scenes": 2,
+          "relative_mse_margin": 0.05,
+          "every_episode_improves": true
+        },
+        "enabled": true,
+        "effective_alpha": 1.0,
+        "baseline_mse": 0.5878319068486609,
+        "pm_prior_mse": 0.06574955987073428,
+        "episodes": [
+          {
+            "scene": 4101,
+            "episode": 0,
+            "baseline_mse": 0.3662659291573897,
+            "pm_prior_mse": 0.0450280676121221
+          },
+          {
+            "scene": 4101,
+            "episode": 1,
+            "baseline_mse": 0.6208764801151403,
+            "pm_prior_mse": 0.06840004194454405
+          },
+          {
+            "scene": 4102,
+            "episode": 0,
+            "baseline_mse": 0.38476254948587485,
+            "pm_prior_mse": 0.057586977053826545
+          },
+          {
+            "scene": 4102,
+            "episode": 1,
+            "baseline_mse": 0.9794226686362387,
+            "pm_prior_mse": 0.09198315287244443
+          }
+        ],
+        "interpretation": "initial value-prior calibration only; not routing efficacy or uncertainty"
+      },
+      "source_parts": [
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_pm_reliability\\20261105_152508_334744\\calibration_44\\scene_4101\\calibration_part.json",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_pm_reliability\\20261105_152508_334744\\calibration_44\\scene_4102\\calibration_part.json"
+      ],
+      "sha256": "898006a4d18867f293e5ef8ee2ff5343cd36ea07c41119cc3a6c970799894856"
+    },
+    "55": {
+      "initial_actor_sha256": "edb25fbf919ebc59a002dd1543ec822da8b0827112a1cf0fa991f48d5f7d5bf4",
+      "initial_critic_sha256": "cab386a7e8dc0c893896d8374a164e8c93478a093dce9b42a5c2324af4d38164",
+      "policy_signature": {
+        "grid_size": 5,
+        "comm_range": 1.5,
+        "num_moving_buoys": 5,
+        "random_channel": true,
+        "episode_length": 80,
+        "hidden_size": 64,
+        "gnn_hidden_size": 16,
+        "gnn_num_heads": 3,
+        "gnn_layer_N": 2,
+        "gnn_concat_heads": false,
+        "actor_graph_aggr": "node",
+        "critic_graph_aggr": "global",
+        "global_aggr_type": "mean",
+        "graph_feat_type": "global",
+        "use_cent_obs": false,
+        "use_recurrent_policy": false,
+        "use_naive_recurrent_policy": false,
+        "use_popart": true,
+        "num_agents": 25,
+        "obs_type": "global",
+        "layer_N": 1,
+        "use_ReLU": false,
+        "use_feature_normalization": true,
+        "recurrent_N": 1,
+        "use_valuenorm": false,
+        "stacked_frames": 1,
+        "num_embeddings": 3,
+        "embedding_size": 2,
+        "embed_hidden_size": 16,
+        "embed_layer_N": 1,
+        "embed_use_ReLU": true,
+        "embed_add_self_loop": false,
+        "gnn_use_ReLU": true
+      },
+      "pm_checkpoint_sha256": "f62f05b520cbaf665823ce38981c6c88f5e4f816dc01f85d3149aca7d3f81240",
+      "schema": "tg_pm_initial_value_gate_v1",
+      "phase": "independent_initial_policy_calibration",
+      "training_seed": 55,
+      "horizon": 80,
+      "nodes": 25,
+      "gamma": 0.99,
+      "maximum_alpha": 1.0,
+      "potential_mode": "task_return",
+      "value_mode": "learned_shaped",
+      "weights_unchanged": true,
+      "optimizer_updates": 0,
+      "reward_contract": {
+        "delivery_weight": 1.0,
+        "delay_weight": 1.0,
+        "unfinished_weight": 1.0,
+        "version": "task_v2",
+        "normalization": "initial_packets_and_task_horizon_v1"
+      },
+      "decision": {
+        "rule": {
+          "minimum_episodes": 4,
+          "minimum_scenes": 2,
+          "relative_mse_margin": 0.05,
+          "every_episode_improves": true
+        },
+        "enabled": true,
+        "effective_alpha": 1.0,
+        "baseline_mse": 0.4608129277772785,
+        "pm_prior_mse": 0.05467932074073539,
+        "episodes": [
+          {
+            "scene": 4101,
+            "episode": 0,
+            "baseline_mse": 0.3331767939469372,
+            "pm_prior_mse": 0.045121860251017075
+          },
+          {
+            "scene": 4101,
+            "episode": 1,
+            "baseline_mse": 0.7571857126712446,
+            "pm_prior_mse": 0.07287737230346641
+          },
+          {
+            "scene": 4102,
+            "episode": 0,
+            "baseline_mse": 0.2844961731913314,
+            "pm_prior_mse": 0.03410638680944485
+          },
+          {
+            "scene": 4102,
+            "episode": 1,
+            "baseline_mse": 0.4683930312996008,
+            "pm_prior_mse": 0.0666116635990132
+          }
+        ],
+        "interpretation": "initial value-prior calibration only; not routing efficacy or uncertainty"
+      },
+      "source_parts": [
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_pm_reliability\\20261105_152508_334744\\calibration_55\\scene_4101\\calibration_part.json",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_pm_reliability\\20261105_152508_334744\\calibration_55\\scene_4102\\calibration_part.json"
+      ],
+      "sha256": "90aabbf08f01bb2b9e8a0e367a29e3bac3140837e4f31f5418ac2187e4a67e11"
+    },
+    "66": {
+      "initial_actor_sha256": "8ff1f3ae58671314688bd2ef94fc5ee83d7f7e1a59f013f7e92a724d556f1141",
+      "initial_critic_sha256": "687d8fd75fe559e1b915d38c0cf3caec3d7d87f72b5aff7db9ed02399a15a543",
+      "policy_signature": {
+        "grid_size": 5,
+        "comm_range": 1.5,
+        "num_moving_buoys": 5,
+        "random_channel": true,
+        "episode_length": 80,
+        "hidden_size": 64,
+        "gnn_hidden_size": 16,
+        "gnn_num_heads": 3,
+        "gnn_layer_N": 2,
+        "gnn_concat_heads": false,
+        "actor_graph_aggr": "node",
+        "critic_graph_aggr": "global",
+        "global_aggr_type": "mean",
+        "graph_feat_type": "global",
+        "use_cent_obs": false,
+        "use_recurrent_policy": false,
+        "use_naive_recurrent_policy": false,
+        "use_popart": true,
+        "num_agents": 25,
+        "obs_type": "global",
+        "layer_N": 1,
+        "use_ReLU": false,
+        "use_feature_normalization": true,
+        "recurrent_N": 1,
+        "use_valuenorm": false,
+        "stacked_frames": 1,
+        "num_embeddings": 3,
+        "embedding_size": 2,
+        "embed_hidden_size": 16,
+        "embed_layer_N": 1,
+        "embed_use_ReLU": true,
+        "embed_add_self_loop": false,
+        "gnn_use_ReLU": true
+      },
+      "pm_checkpoint_sha256": "f62f05b520cbaf665823ce38981c6c88f5e4f816dc01f85d3149aca7d3f81240",
+      "schema": "tg_pm_initial_value_gate_v1",
+      "phase": "independent_initial_policy_calibration",
+      "training_seed": 66,
+      "horizon": 80,
+      "nodes": 25,
+      "gamma": 0.99,
+      "maximum_alpha": 1.0,
+      "potential_mode": "task_return",
+      "value_mode": "learned_shaped",
+      "weights_unchanged": true,
+      "optimizer_updates": 0,
+      "reward_contract": {
+        "delivery_weight": 1.0,
+        "delay_weight": 1.0,
+        "unfinished_weight": 1.0,
+        "version": "task_v2",
+        "normalization": "initial_packets_and_task_horizon_v1"
+      },
+      "decision": {
+        "rule": {
+          "minimum_episodes": 4,
+          "minimum_scenes": 2,
+          "relative_mse_margin": 0.05,
+          "every_episode_improves": true
+        },
+        "enabled": true,
+        "effective_alpha": 1.0,
+        "baseline_mse": 0.5883422485562768,
+        "pm_prior_mse": 0.07083498698602467,
+        "episodes": [
+          {
+            "scene": 4101,
+            "episode": 0,
+            "baseline_mse": 0.4838978308024969,
+            "pm_prior_mse": 0.053058407521397066
+          },
+          {
+            "scene": 4101,
+            "episode": 1,
+            "baseline_mse": 0.790416584665658,
+            "pm_prior_mse": 0.08582787438350753
+          },
+          {
+            "scene": 4102,
+            "episode": 0,
+            "baseline_mse": 0.4292310224034253,
+            "pm_prior_mse": 0.07146115165408665
+          },
+          {
+            "scene": 4102,
+            "episode": 1,
+            "baseline_mse": 0.6498235563535272,
+            "pm_prior_mse": 0.07299251438510744
+          }
+        ],
+        "interpretation": "initial value-prior calibration only; not routing efficacy or uncertainty"
+      },
+      "source_parts": [
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_pm_reliability\\20261105_152508_334744\\calibration_66\\scene_4101\\calibration_part.json",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_pm_reliability\\20261105_152508_334744\\calibration_66\\scene_4102\\calibration_part.json"
+      ],
+      "sha256": "60f53c4bff8b861cebac0541703b1473b9dc293ffc490b1f427637ba52ed9353"
+    },
+    "11": {
+      "initial_actor_sha256": "597b0e4afbde349c68a6a25a0bbfc8e7f13a00ad5baa9a1db7ab6be5fc8fd68d",
+      "initial_critic_sha256": "b0b99db0b0fda87c0897060d0bb56812c28014214bf722848c9ee53aba14fadd",
+      "policy_signature": {
+        "grid_size": 5,
+        "comm_range": 1.5,
+        "num_moving_buoys": 5,
+        "random_channel": true,
+        "episode_length": 80,
+        "hidden_size": 64,
+        "gnn_hidden_size": 16,
+        "gnn_num_heads": 3,
+        "gnn_layer_N": 2,
+        "gnn_concat_heads": false,
+        "actor_graph_aggr": "node",
+        "critic_graph_aggr": "global",
+        "global_aggr_type": "mean",
+        "graph_feat_type": "global",
+        "use_cent_obs": false,
+        "use_recurrent_policy": false,
+        "use_naive_recurrent_policy": false,
+        "use_popart": true,
+        "num_agents": 25,
+        "obs_type": "global",
+        "layer_N": 1,
+        "use_ReLU": false,
+        "use_feature_normalization": true,
+        "recurrent_N": 1,
+        "use_valuenorm": false,
+        "stacked_frames": 1,
+        "num_embeddings": 3,
+        "embedding_size": 2,
+        "embed_hidden_size": 16,
+        "embed_layer_N": 1,
+        "embed_use_ReLU": true,
+        "embed_add_self_loop": false,
+        "gnn_use_ReLU": true
+      },
+      "pm_checkpoint_sha256": "f62f05b520cbaf665823ce38981c6c88f5e4f816dc01f85d3149aca7d3f81240",
+      "schema": "tg_pm_initial_value_gate_v1",
+      "phase": "independent_initial_policy_calibration",
+      "training_seed": 11,
+      "horizon": 80,
+      "nodes": 25,
+      "gamma": 0.99,
+      "maximum_alpha": 1.0,
+      "potential_mode": "task_return",
+      "value_mode": "learned_shaped",
+      "weights_unchanged": true,
+      "optimizer_updates": 0,
+      "reward_contract": {
+        "delivery_weight": 1.0,
+        "delay_weight": 1.0,
+        "unfinished_weight": 1.0,
+        "version": "task_v2",
+        "normalization": "initial_packets_and_task_horizon_v1"
+      },
+      "decision": {
+        "rule": {
+          "minimum_episodes": 4,
+          "minimum_scenes": 2,
+          "relative_mse_margin": 0.05,
+          "every_episode_improves": true
+        },
+        "enabled": true,
+        "effective_alpha": 1.0,
+        "baseline_mse": 0.3820298125393913,
+        "pm_prior_mse": 0.06424358572840484,
+        "episodes": [
+          {
+            "scene": 4101,
+            "episode": 0,
+            "baseline_mse": 0.3027379497317428,
+            "pm_prior_mse": 0.08086456211413316
+          },
+          {
+            "scene": 4101,
+            "episode": 1,
+            "baseline_mse": 0.3948272105997015,
+            "pm_prior_mse": 0.0368794899682762
+          },
+          {
+            "scene": 4102,
+            "episode": 0,
+            "baseline_mse": 0.24951874420633743,
+            "pm_prior_mse": 0.0706895037857756
+          },
+          {
+            "scene": 4102,
+            "episode": 1,
+            "baseline_mse": 0.5810353456197834,
+            "pm_prior_mse": 0.06854078704543441
+          }
+        ],
+        "interpretation": "initial value-prior calibration only; not routing efficacy or uncertainty"
+      },
+      "source_parts": [
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_pm_reliability\\20261105_152508_334744\\regression_seed11\\scene_4101\\calibration_part.json",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_pm_reliability\\20261105_152508_334744\\regression_seed11\\scene_4102\\calibration_part.json"
+      ],
+      "sha256": "e4142aaa479b39a296d9f4fb5ee001e949df64e333bfd23ca2cd3a77ffbfcd30"
+    }
+  },
+  "sink_credit_diagnosis": {
+    "scope": "sampled frozen failed policy, not an efficacy evaluation or causal attribution",
+    "weights_unchanged": true,
+    "optimizer_updates": 0,
+    "source_snapshot": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_pm_task_return\\pilot_20261105_140555_016580\\source_snapshot",
+    "decode": "sample",
+    "episodes": [
+      {
+        "episode": 0,
+        "critic_max_agent_spread": 1.1920928955078125e-07,
+        "advantage_max_agent_spread": 1.2685636710529913e-07,
+        "Sink_ACK_success": 8,
+        "Sink_ACK_success_negative_normalized_GAE": 3,
+        "Sink_ACK_success_negative_team_train_reward": 1
+      },
+      {
+        "episode": 1,
+        "critic_max_agent_spread": 1.1920928955078125e-07,
+        "advantage_max_agent_spread": 1.246870633200836e-07,
+        "Sink_ACK_success": 10,
+        "Sink_ACK_success_negative_normalized_GAE": 2,
+        "Sink_ACK_success_negative_team_train_reward": 0
+      }
+    ],
+    "actions": {
+      "Sink_chosen": {
+        "count": 38,
+        "mean_normalized_gae": 0.23823100704134523,
+        "negative_fraction": 0.3684210526315789
+      },
+      "Sink_ACK_success": {
+        "count": 18,
+        "mean_normalized_gae": 0.36644730554270044,
+        "negative_fraction": 0.2777777777777778
+      },
+      "Sink_legal_other_action": {
+        "count": 170,
+        "mean_normalized_gae": -0.27755077489984953,
+        "negative_fraction": 0.6058823529411764
+      }
+    },
+    "physical": {
+      "generated": 48,
+      "delivered": 18,
+      "sink_legal_count": 208,
+      "sink_chosen_count": 38,
+      "revisit_transfers": 356
+    },
+    "limitation": "Team rewards/global critic give common signals; a good local action may have a negative sampled team advantage without a GAE implementation bug."
+  },
+  "failed_attempt": {
+    "exit_code": 1,
+    "phase": "before calibration, zero interactions",
+    "cause": "Incorrectly guessed historical environment-config path; corrected by reading original manifest",
+    "incorrect_path": "results/tg_ablation_lr_fixed_pilot/20261103_211528_024882/training/runs/A_seed_11/moves_5/logs/TG_MAPPO_environment.json",
+    "correct_path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_ablation_lr_fixed_pilot\\20261103_211528_024882\\training\\runs\\A_seed_11_attempt_1\\moves_5\\logs\\TG_MAPPO_environment.json"
+  },
+  "source_hashes": {
+    "src/buoy_network/pm_reliability.py": "fe400bc2dd4cf966fce055a19235b18eace3c73d5d8238c78b7fcbf9a4b0d6b7",
+    "src/buoy_network/pm_calibration.py": "fee3d2ef6a8defb4e7e49a89d573e0d09c87c8e12d2cb80b9367a2ef178ba18e",
+    "src/buoy_network/progress_runtime.py": "7eb9f2719b5175a9936fe685a3f9643a64c46a914301b92ead37f31908cf6d09",
+    "src/buoy_network/agent.py": "62ebeeb1aac93267a144d99378d1cf10d2846089c6bd94083ffda455c2812f6b",
+    "src/buoy_network/main.py": "de0d521e5e3c7da84432bf7e53fd0f0fcce31e3c646804d8a86644561a1e9473",
+    "src/buoy_network/policy_artifacts.py": "453e0da4f05f19534b59aa85df0e1c705eef7c89a0cfcf2c990c5b87ebc34ab1",
+    "src/legacy_cli.py": "b248d1730d88ce8670a49ac58e4b1209c2914005905eddd82fc276000e42736d",
+    "tests/test_pm_reliability.py": "41c52fd8b7658ba0861893f8048629327c0676757406c63d17e6231db60ea06e",
+    "configs/tg_pm_reliability_pilot.json": "f64e7d529020330e30181aaa2c95baf558cf25d465d619f4253d227be40bc073",
+    "scripts/calibrate_tg_pm.py": "4a6ea96f79ec8ac40a233984393a9231f86a64331a7971fc7e44545d71a9883b",
+    "scripts/check_tg_pm_reliability.py": "94c408b1c8c8c58f5b78cc0a0ad01a13afb5bb5d5448d0a0337d242e1cded1bb",
+    "scripts/analyze_tg_pm_reliability.py": "7609b357e84f3c24374262e7181568c7b5c064a4d167f842731506d64f736cf1",
+    "configs/tg_pm_strength_probe.json": "9c9eda312ec1a897c40295de8b88b94241f0779a7da1709bc82eea6c7059a57a",
+    "scripts/check_tg_pm_strength.py": "7dfc10af2f7ca483782cef229c206cf56833f00bd4b7364e6ad8f27e07a6fcbc",
+    "scripts/diagnose_tg_pm_sink_credit.py": "f938b539f3fc11e8573ae5f9d02483aac4da5998ed3fcf90f80ecf30a857287b"
+  },
+  "scope": "engineering passed; MSE gate fails to reject known greedy failure; full efficacy experiments still running; not promoted"
+}

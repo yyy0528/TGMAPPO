@@ -49,6 +49,12 @@ def load_policy(learner, path):
             raise ValueError("Policy PM potential mode mismatch")
         if learner.pm_runtime is not None and payload["pm"].get("value_mode","learned_shaped") != learner.pm_runtime.value_mode:
             raise ValueError("Policy PM value coordinate mode mismatch")
+        if learner.pm_runtime is not None:
+            old_gate=payload['pm'].get('reliability')
+            new_gate=learner.pm_runtime.reliability
+            if (old_gate is None)!=(new_gate is None) or (old_gate is not None and
+                    old_gate['report_sha256']!=new_gate['report_sha256']):
+                raise ValueError('Policy PM reliability calibration mismatch')
         if learner.pm_runtime is not None and learner.pm_runtime.potential_mode == "task_return" and payload["pm"].get("task_return_contract") != learner.pm_runtime.task_contract:
             raise ValueError("Policy PM task-return contract mismatch")
         if learner.pm_runtime is not None and any(payload["pm"][key] != learner.pm_runtime.metadata()[key]

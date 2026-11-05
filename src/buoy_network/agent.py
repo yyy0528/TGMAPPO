@@ -157,7 +157,16 @@ class DeepQNetwork(nn.Module):
             self.pm_runtime = FrozenPMRuntime(self.all_args.pm_reward_checkpoint, self.env.buoy_number,
                 self.all_args.episode_length, self.buffer.gamma, self.all_args.pm_reward_alpha,
                 getattr(self.all_args,"pm_potential_mode","remaining"),
-                getattr(self.all_args,"pm_value_mode","learned_shaped"), reward_contract(self.all_args))
+                getattr(self.all_args,"pm_value_mode","learned_shaped"), reward_contract(self.all_args),
+                getattr(self.all_args,"pm_reliability_report",None))
+            if self.pm_runtime.reliability is not None and not getattr(self.all_args,'tg_evaluate',False):
+                from .wm_runtime import tensor_digest
+                from .policy_artifacts import signature
+                gate=self.pm_runtime.reliability
+                if (gate['training_seed']!=self.all_args.seed or gate['policy_signature']!=signature(self)
+                        or gate['initial_actor_sha256']!=tensor_digest(self.policy.actor.state_dict())
+                        or gate['initial_critic_sha256']!=tensor_digest(self.policy.critic.state_dict())):
+                    raise ValueError('PM calibration does not match fresh training initialization')
         if getattr(self.all_args, "use_wm_actor", False):
             if self.all_args.use_recurrent_policy or self.all_args.use_naive_recurrent_policy:
                 raise ValueError("WM Actor integration currently supports feedforward TG policy only")

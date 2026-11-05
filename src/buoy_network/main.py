@@ -108,6 +108,7 @@ def parse_args(args, parser):
     parser.add_argument("--use_pm_reward", type=lambda x: bool(strtobool(x)), default=False)
     parser.add_argument("--pm_reward_checkpoint", default="")
     parser.add_argument("--pm_reward_alpha", type=float, default=1.0)
+    parser.add_argument("--pm_reliability_report", default="")
     parser.add_argument("--pm_potential_mode", choices=("remaining","completion_credit","task_return"),default="remaining")
     parser.add_argument("--pm_value_mode", choices=("learned_shaped","base_residual"),default="learned_shaped")
     parser.add_argument("--tg_reward_version", choices=("legacy_v1", "task_v2"), default="legacy_v1")
@@ -184,6 +185,10 @@ def main(args):
         parser.error("PM alpha must be finite and nonnegative")
     if all_args.pm_potential_mode == "task_return" and (not all_args.use_pm_reward or all_args.tg_reward_version != "task_v2"):
         parser.error("PM task-return potential requires enabled PM and task_v2 reward")
+    if all_args.pm_reliability_report and (not all_args.use_pm_reward or all_args.pm_potential_mode!='task_return'
+            or all_args.pm_value_mode!='learned_shaped' or all_args.use_wm_actor
+            or all_args.use_recurrent_policy or all_args.use_naive_recurrent_policy):
+        parser.error('PM reliability report requires feedforward task_return / learned_shaped without WM')
     if all_args.pm_value_mode != "learned_shaped" and (not all_args.use_pm_reward or
             all_args.use_recurrent_policy or all_args.use_naive_recurrent_policy or not all_args.use_gae):
         parser.error("PM base residual requires PM-enabled feedforward full-task GAE")
