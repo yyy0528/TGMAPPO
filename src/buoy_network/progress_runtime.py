@@ -27,12 +27,17 @@ def completion_potential(remaining_probability_mass, delivered, initial_packets)
 
 
 class FrozenPMRuntime:
-    def __init__(self, path, n, horizon, gamma, alpha, potential_mode="remaining", value_mode="learned_shaped"):
-        if potential_mode not in ("remaining", "completion_credit"):
+    def __init__(self, path, n, horizon, gamma, alpha, potential_mode="remaining", value_mode="learned_shaped", task_contract=None):
+        if potential_mode not in ("remaining", "completion_credit", "task_return"):
             raise ValueError("Unknown PM potential mode")
         if value_mode not in ("learned_shaped", "base_residual"):
             raise ValueError("Unknown PM value mode")
         shaping_reward(0, 0, 0, gamma, alpha)
+        self.task_contract = dict(task_contract) if potential_mode == "task_return" and task_contract is not None else None
+        if potential_mode == "task_return":
+            from .pm_return import expected_task_return
+            # Validate before any interaction. The reward contract is fixed too.
+            expected_task_return(torch.zeros(horizon), horizon, horizon, gamma, self.task_contract or {})
         try:
             payload = (torch.load(path, map_location="cpu", weights_only=True)
                        if int(torch.__version__.split('.')[0]) >= 2 else torch.load(path, map_location="cpu"))
@@ -66,12 +71,15 @@ class FrozenPMRuntime:
         self.n, self.horizon, self.gamma, self.alpha = n, horizon, gamma, alpha
         self.potential_mode = potential_mode
         self.value_mode = value_mode
-        self.settings = (n, horizon, gamma, alpha, potential_mode, value_mode)
+        self.settings = (n, horizon, gamma, alpha, potential_mode, value_mode, self.contract_signature())
         self.summaries, self.episode_records = [], []
         self.started = False
 
+    def contract_signature(self):
+        return tuple(sorted(self.task_contract.items())) if self.task_contract is not None else None
+
     def assert_frozen(self):
-        if ((self.n, self.horizon, self.gamma, self.alpha, self.potential_mode, self.value_mode) != self.settings or self.model.training
+        if ((self.n, self.horizon, self.gamma, self.alpha, self.potential_mode, self.value_mode, self.contract_signature()) != self.settings or self.model.training
                 or any(p.requires_grad for p in self.model.parameters())
                 or tensor_digest(self.model.state_dict()) != self.initial_digest):
             raise ValueError("PM weights/normalization/alpha/gamma must remain fixed")
@@ -102,6 +110,11 @@ class FrozenPMRuntime:
             raise ValueError("Nonfinite PM score")
         for index, key in enumerate(keys):
             self.hidden[key] = following[0, index].clone()
+        if self.potential_mode == "task_return":
+            from .pm_return import expected_task_return
+            result = expected_task_return(logits, torch.full((len(keys),), self.horizon-step, dtype=torch.long),
+                                          self.horizon, self.gamma, self.task_contract)
+            return float(result['task_return'].sum())/max(self.initial_packets, 1)
         mass = float(probability.sum())
         if self.potential_mode == "completion_credit":
             return completion_potential(mass,len(self.finished),self.initial_packets)
@@ -158,5 +171,7 @@ class FrozenPMRuntime:
                 "features": list(FEATURES), "alpha": self.alpha, "gamma": self.gamma, "horizon": self.horizon,
                 "potential_mode": self.potential_mode,
                 "value_mode": self.value_mode,
-                "frozen": True, "target": "delivery within remaining finite window; not eventual failure",
+                "task_return_contract": dict(self.task_contract) if self.task_contract is not None else None,
+                "frozen": True, "target": ("expected discounted task_v2 return under frozen behavior-time hazards"
+                    if self.potential_mode == "task_return" else "delivery within remaining finite window; not eventual failure"),
                 "reliability_gate": "constant_one; no uncertainty claim", "episodes": self.summaries}

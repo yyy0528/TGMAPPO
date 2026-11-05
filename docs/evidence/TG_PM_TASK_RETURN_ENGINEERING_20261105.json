@@ -1,0 +1,401 @@
+{
+  "schema": "tg_pm_task_return_engineering_v1",
+  "date": "2026-11-05",
+  "scope": "target calibration and engineering acceptance; development routing pilot still running",
+  "test_count_unique": 123,
+  "test_report": {
+    "python": "D:\\python3.6.8\\python.exe",
+    "success": true,
+    "stages": [
+      {
+        "name": "functions",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "modules",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "integration",
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "legacy",
+        "command": [
+          "D:\\python3.6.8\\python.exe",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-p",
+          "test_legacy*.py",
+          "-v"
+        ],
+        "exit_code": 0
+      },
+      {
+        "name": "value",
+        "command": [
+          "D:\\python3.6.8\\python.exe",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-p",
+          "test_pm_value.py",
+          "-v"
+        ],
+        "exit_code": 0
+      },
+      {
+        "name": "credit",
+        "command": [
+          "D:\\python3.6.8\\python.exe",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-p",
+          "test_pm_completion_credit.py",
+          "-v"
+        ],
+        "exit_code": 0
+      }
+    ]
+  },
+  "test_logs": {
+    "credit": "D:\\python3.6.8\\lib\\site-packages\\torch\\cuda\\amp\\autocast_mode.py:118: UserWarning: torch.cuda.amp.autocast only affects CUDA ops, but CUDA is not available.  Disabling.\n  warnings.warn(\"torch.cuda.amp.autocast only affects CUDA ops, but CUDA is not available.  Disabling.\")\ntest_delivery_does_not_remove_completed_credit (test_pm_completion_credit.CreditFunctions) ... ok\ntest_invalid_mass_rejected (test_pm_completion_credit.CreditFunctions) ... ok\ntest_terminal_discount_identity_remains_exact (test_pm_completion_credit.CreditFunctions) ... ok\ntest_real_ppo_freeze_metadata_reload_and_mode_rejection (test_pm_completion_credit.CreditIntegration) ... D:\\python3.6.8\\lib\\site-packages\\torch\\cuda\\amp\\grad_scaler.py:116: UserWarning: torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.\n  warnings.warn(\"torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.\")\nok\ntest_all_delivered_retains_credit_until_terminal (test_pm_completion_credit.CreditModules) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.756s\n\nOK\n",
+    "functions": "test_delivery_slot_cost_terminal_and_extreme_hazards (test_pm_task_return.ReturnFunctions) ... ok\ntest_expected_return_matches_independent_outcome_enumeration (test_pm_task_return.ReturnFunctions) ... ok\ntest_invalid_contract_window_or_nonfinite_rejected (test_pm_task_return.ReturnFunctions) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.004s\n\nOK\n",
+    "integration": "test_actual_ppo_updates_popart_and_reload_guards (test_pm_task_return.ReturnIntegration) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 2.788s\n\nOK\n",
+    "legacy": "D:\\python3.6.8\\lib\\site-packages\\torch\\cuda\\amp\\autocast_mode.py:118: UserWarning: torch.cuda.amp.autocast only affects CUDA ops, but CUDA is not available.  Disabling.\n  warnings.warn(\"torch.cuda.amp.autocast only affects CUDA ops, but CUDA is not available.  Disabling.\")\ntest_history_control_never_calls_learned_forward (test_legacy_ablation.AblationFunctions) ... ok\ntest_real_hops_delays_retry_loops_and_censor_denominators (test_legacy_ablation.AblationFunctions) ... ok\ntest_transfer_without_ack_is_rejected (test_legacy_ablation.AblationFunctions) ... ok\ntest_expansion_neutral_rng_and_real_training (test_legacy_ablation.AblationModules) ... D:\\python3.6.8\\lib\\site-packages\\torch\\cuda\\amp\\grad_scaler.py:116: UserWarning: torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.\n  warnings.warn(\"torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.\")\nok\ntest_history_control_real_ppo_and_checkpoint (test_legacy_ablation.AblationModules) ... ok\ntest_conflicting_explicit_budgets_fail (test_legacy_budget.TrainingBudgetTests) ... ok\ntest_default_budget_preserves_existing_episode_count (test_legacy_budget.TrainingBudgetTests) ... ok\ntest_episode_only_budget (test_legacy_budget.TrainingBudgetTests) ... ok\ntest_equals_spelling_and_last_duplicate_value (test_legacy_budget.TrainingBudgetTests) ... ok\ntest_launcher_does_not_inject_a_phantom_budget (test_legacy_budget.TrainingBudgetTests) ... ok\ntest_matching_explicit_budgets (test_legacy_budget.TrainingBudgetTests) ... ok\ntest_nonpositive_budgets_fail (test_legacy_budget.TrainingBudgetTests) ... ok\ntest_partial_and_too_short_episode_budgets_fail (test_legacy_budget.TrainingBudgetTests) ... ok\ntest_real_cli_rejects_conflicts_and_abbreviations_before_environment_import (test_legacy_budget.TrainingBudgetTests) ... ok\ntest_steps_only_derives_complete_episodes (test_legacy_budget.TrainingBudgetTests) ... ok\ntest_actual_ppo_weights_and_losses_are_bitwise_unchanged (test_legacy_credit_capture.CaptureIntegration) ... ok\ntest_training_graph_keeps_lazy_probability_cache_unread (test_legacy_credit_capture.CaptureModule) ... ok\ntest_clock_decision_and_terminal_indices (test_legacy_critic_time.TimeFunctions) ... ok\ntest_initial_identity_rng_and_trainable_branch (test_legacy_critic_time.TimeFunctions) ... ok\ntest_invalid_modes_shapes_and_ranges (test_legacy_critic_time.TimeFunctions) ... ok\ntest_remaining_changes_output_constant_ignores_clock (test_legacy_critic_time.TimeFunctions) ... ok\ntest_first_rollout_and_actor_update_identical_clock_branch_learns (test_legacy_critic_time.TimeIntegration) ... ok\ntest_time_with_frozen_wm_pm_and_four_epoch_ppo (test_legacy_critic_time.TimeIntegration) ... ok\ntest_buffer_clock_alignment_reset_and_shuffled_samples (test_legacy_critic_time.TimeModules) ... ok\ntest_checkpoint_clock_mode_guard_and_old_missing_field (test_legacy_critic_time.TimeModules) ... ok\ntest_same_original_initialization_and_equal_capacity_controls (test_legacy_critic_time.TimeModules) ... ok\ntest_baseline_capture_is_read_only_and_detaches_cleanly (test_legacy_diagnostic_capture.CaptureModules) ... ok\ntest_wm_distribution_capture_uses_cached_inputs_without_sampling (test_legacy_diagnostic_capture.CaptureModules) ... ok\ntest_cli_default_fixed_and_explicit_linear (test_legacy_lr_schedule.LRFunctions) ... ok\ntest_original_linear_formula_and_last_epoch_endpoint (test_legacy_lr_schedule.LRFunctions) ... ok\ntest_spec_records_separate_rates_and_rejects_invalid_inputs (test_legacy_lr_schedule.LRFunctions) ... ok\ntest_switch_off_and_evaluation_never_call_scheduler (test_legacy_lr_schedule.LRFunctions) ... ok\ntest_legacy_unrecorded_schedule_is_not_invented_on_load (test_legacy_lr_schedule.LRIntegration) ... ok\ntest_wm_pm_both_schedules_and_frozen_evaluation_never_schedule (test_legacy_lr_schedule.LRIntegration) ... ok\ntest_real_runner_logs_rates_in_training_checkpoint_and_report (test_legacy_lr_schedule.LRModules) ... ok\ntest_suite_schedule_is_explicit_and_old_schemas_preserve_linear (test_legacy_lr_schedule.LRModules) ... ok\ntest_alpha_zero_exactly_recovers_baseline_weights_and_metrics (test_legacy_pm_reward.PMIntegration) ... ok\ntest_combined_frozen_models_shaped_gae_and_no_update_evaluation (test_legacy_pm_reward.PMIntegration) ... D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\tests\\test_legacy_pm_reward.py:199: ResourceWarning: unclosed file <_io.TextIOWrapper name='C:\\\\Users\\\\17702\\\\AppData\\\\Local\\\\Temp\\\\tmp5ru2f2cz\\\\train\\\\moves_0\\\\logs\\\\TG_PM_rewards.csv' mode='r' encoding='utf-8'>\n  rows = list(csv.DictReader((root/\"train\"/\"moves_0\"/\"logs\"/\"TG_PM_rewards.csv\").open(encoding=\"utf-8\")))\nok\ntest_exported_packet_history_matches_online_runtime_features (test_legacy_pm_reward.PMModules) ... ok\ntest_pm_policy_metadata_is_required_and_old_baseline_still_loads (test_legacy_pm_reward.PMModules) ... ok\ntest_boundary_discount_identity_no_clipping_and_truncation (test_legacy_pm_reward.ShapingFunctions) ... ok\ntest_loader_preserves_rng_and_rejects_unvalidated_models (test_legacy_pm_reward.ShapingFunctions) ... ok\ntest_empty_rollout_does_not_update_stats (test_legacy_popart.PopArtFunctions) ... ok\ntest_invalid_targets_do_not_mutate_and_roundtrip_is_finite (test_legacy_popart.PopArtFunctions) ... ok\ntest_parameter_identity_output_preservation_and_real_optimizer_step (test_legacy_popart.PopArtFunctions) ... ok\ntest_rollout_fixed_stats_value_clip_coordinates_and_exception_cleanup (test_legacy_popart.PopArtFunctions) ... ok\ntest_default_popart_wm_pm_rewards_gae_and_frozen_reload (test_legacy_popart.PopArtIntegration) ... ok\ntest_original_tg_multiple_epochs_fixed_stats_head_learns_and_buffer_is_unchanged (test_legacy_popart.PopArtModules) ... ok\ntest_shared_nongraph_mappo_popart_path_has_real_updates (test_legacy_popart.PopArtModules) ... ok\ntest_invalid_metric_inputs (test_legacy_ppo_budget.BudgetFunctions) ... ok\ntest_known_ratios_and_clipping (test_legacy_ppo_budget.BudgetFunctions) ... ok\ntest_masks_empty_and_multiple_action_components (test_legacy_ppo_budget.BudgetFunctions) ... ok\ntest_no_rng_gradient_or_input_changes (test_legacy_ppo_budget.BudgetFunctions) ... ok\ntest_four_epoch_wm_pm_cached_features_and_frozen_models (test_legacy_ppo_budget.BudgetIntegration) ... ok\ntest_real_ppo_counts_popart_once_per_rollout_and_fixed_interactions (test_legacy_ppo_budget.BudgetIntegration) ... ok\ntest_baseline_diagnostic_protocol_and_ablation_guards (test_legacy_ppo_budget.BudgetModules) ... ok\ntest_diagnostics_preserve_actual_policy_optimizer_results (test_legacy_ppo_budget.BudgetModules) ... ok\ntest_a_packet_cannot_use_two_hops_in_one_joint_slot (test_legacy_targeted_fixes.ActionAndRolloutFixes) ... ok\ntest_buffer_rejects_overflow_and_old_scalar_masks_before_mutation (test_legacy_targeted_fixes.ActionAndRolloutFixes) ... ok\ntest_global_action_masks_include_wait_for_inactive_nodes (test_legacy_targeted_fixes.ActionAndRolloutFixes) ... ok\ntest_new_arrivals_stay_behind_already_queued_packets (test_legacy_targeted_fixes.ActionAndRolloutFixes) ... ok\ntest_runner_keeps_wait_and_exactly_t_transitions (test_legacy_targeted_fixes.ActionAndRolloutFixes) ... ok\ntest_sampling_and_probability_replay_use_the_same_current_mask (test_legacy_targeted_fixes.ActionAndRolloutFixes) ... ok\ntest_warmup_resets_recurrent_state_and_writes_real_initial_observations (test_legacy_targeted_fixes.ActionAndRolloutFixes) ... ok\ntest_research_options_are_rejected_before_any_output_or_training (test_legacy_targeted_fixes.ArgumentFixes) ... ok\ntest_channel_refresh_and_rotation_preserve_configured_loss (test_legacy_targeted_fixes.GeometryAndChannelFixes) ... ok\ntest_gnn_includes_links_at_the_physical_radius (test_legacy_targeted_fixes.GeometryAndChannelFixes) ... ok\ntest_graph_distance_is_physical_and_changes_after_motion (test_legacy_targeted_fixes.GeometryAndChannelFixes) ... ok\ntest_huber_large_negative_errors_have_symmetric_nonzero_gradients (test_legacy_targeted_fixes.GeometryAndChannelFixes) ... ok\ntest_lossless_channel_override_survives_reset_and_rotation (test_legacy_targeted_fixes.GeometryAndChannelFixes) ... ok\ntest_node_features_are_physical_with_a_valid_entity_type (test_legacy_targeted_fixes.GeometryAndChannelFixes) ... ok\ntest_topology_refresh_keeps_link_statistics_by_receiver (test_legacy_targeted_fixes.GeometryAndChannelFixes) ... ok\ntest_all_inactive_wait_rollout_has_finite_losses_and_parameters (test_legacy_targeted_fixes.NeuralIntegrationFixes) ... ok\ntest_real_two_episode_ppo_updates_and_replays_each_probability (test_legacy_targeted_fixes.NeuralIntegrationFixes) ... ok\ntest_delivery_once_pre_slot_time_and_empty_packets (test_legacy_task_reward.RewardFunctions) ... ok\ntest_faster_delivery_outranks_wait_discounted_and_undiscounted (test_legacy_task_reward.RewardFunctions) ... ok\ntest_invalid_weights_boundaries_and_legacy_identity (test_legacy_task_reward.RewardFunctions) ... ok\ntest_wait_cost_and_closed_form (test_legacy_task_reward.RewardFunctions) ... ok\ntest_alpha_zero_keeps_task_v2_baseline_exact (test_legacy_task_reward.RewardIntegration) ... ok\ntest_task_reward_pm_wm_buffer_gae_and_independent_reward_audit (test_legacy_task_reward.RewardIntegration) ... ok\ntest_checkpoint_contract_old_compatibility_and_mismatch_rejection (test_legacy_task_reward.RewardModules) ... ok\ntest_suite_v2_uses_one_reward_for_all_groups_and_rejects_drift (test_legacy_task_reward.RewardModules) ... ok\ntest_collection_uses_independent_splits_and_rejects_budget_before_launch (test_legacy_transition_data.ExportProcessIntegrationTests) ... ok\ntest_export_toggle_preserves_original_training_metrics_and_audits (test_legacy_transition_data.ExportProcessIntegrationTests) ... ok\ntest_rule_runs_never_update_ppo_and_export_valid_samples (test_legacy_transition_data.ExportProcessIntegrationTests) ... ok\ntest_ack_failure_does_not_make_final_packet_outcome_negative (test_legacy_transition_data.RecorderModuleTests) ... ok\ntest_actual_delivery_is_archived_before_legacy_packet_deletion (test_legacy_transition_data.RecorderModuleTests) ... ok\ntest_audit_rejects_corruption_and_reader_rejects_incomplete (test_legacy_transition_data.RecorderModuleTests) ... ok\ntest_export_can_be_disabled_and_budget_failure_is_incomplete (test_legacy_transition_data.RecorderModuleTests) ... ok\ntest_packet_and_byte_budgets_leave_incomplete_dataset (test_legacy_transition_data.RecorderModuleTests) ... ok\ntest_reader_has_only_past_actions_and_current_inputs_with_wait_mask (test_legacy_transition_data.RecorderModuleTests) ... ok\ntest_split_manifest_rejects_seed_reuse_and_escape (test_legacy_transition_data.RecorderModuleTests) ... ok\ntest_wait_is_not_a_failed_attempt_and_unresolved_is_not_a_failure (test_legacy_transition_data.RecorderModuleTests) ... ok\ntest_explicit_scenario_seed_changes_channel_and_default_preserves_legacy (test_legacy_transition_data.SnapshotFunctionTests) ... ok\ntest_only_explicit_data_options_pass_the_legacy_guard (test_legacy_transition_data.SnapshotFunctionTests) ... ok\ntest_rule_actions_are_legal_and_use_a_private_rng (test_legacy_transition_data.SnapshotFunctionTests) ... ok\ntest_snapshot_is_detached_and_does_not_consume_rng (test_legacy_transition_data.SnapshotFunctionTests) ... ok\ntest_minibatch_features_follow_the_same_shuffled_indices (test_legacy_wm_actor.ActorCacheModules) ... ok\ntest_neutral_initialization_masks_and_real_prediction_influence (test_legacy_wm_actor.ActorCacheModules) ... ok\ntest_policy_reload_validates_mode_environment_and_wm_hash (test_legacy_wm_actor.ActorCacheModules) ... ok\ntest_frozen_load_preserves_rng_and_rejects_invalid_artifacts (test_legacy_wm_actor.FrozenInputFunctions) ... ok\ntest_inference_encoder_never_needs_future_targets (test_legacy_wm_actor.FrozenInputFunctions) ... ok\ntest_online_history_matches_offline_encoder_and_model (test_legacy_wm_actor.FrozenInputFunctions) ... ok\ntest_all_wait_training_is_finite (test_legacy_wm_actor.WMIntegrationTests) ... ok\ntest_real_ppo_uses_only_cache_and_frozen_eval_never_updates (test_legacy_wm_actor.WMIntegrationTests) ... ok\n\n----------------------------------------------------------------------\nRan 105 tests in 71.860s\n\nOK\n",
+    "modules": "test_runtime_team_potential_matches_enumerated_remaining_packets (test_pm_task_return.ReturnModules) ... ok\ntest_wrong_task_contract_is_rejected (test_pm_task_return.ReturnModules) ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 1.897s\n\nOK\n",
+    "value": "D:\\python3.6.8\\lib\\site-packages\\torch\\cuda\\amp\\autocast_mode.py:118: UserWarning: torch.cuda.amp.autocast only affects CUDA ops, but CUDA is not available.  Disabling.\n  warnings.warn(\"torch.cuda.amp.autocast only affects CUDA ops, but CUDA is not available.  Disabling.\")\ntest_inconsistent_cache_or_nonfinite_values_rejected (test_pm_value.ValueFunctions) ... ok\ntest_monte_carlo_targets_shift_but_advantages_do_not (test_pm_value.ValueFunctions) ... ok\ntest_same_cached_trajectory_td_gae_identity_all_lambdas (test_pm_value.ValueFunctions) ... ok\ntest_actual_ppo_residual_matches_baseline_with_popart_and_plain_values (test_pm_value.ValueIntegration) ... D:\\python3.6.8\\lib\\site-packages\\torch\\cuda\\amp\\grad_scaler.py:116: UserWarning: torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.\n  warnings.warn(\"torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.\")\nok\ntest_wm_pm_popart_and_value_mode_checkpoint_guard (test_pm_value.ValueIntegration) ... ok\ntest_buffer_override_does_not_relabel_collected_rewards (test_pm_value.ValueModules) ... ok\ntest_popart_audit_uses_raw_values_and_keeps_cache_immutable (test_pm_value.ValueModules) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 12.526s\n\nOK\n"
+  },
+  "initial_fixture_failure": {
+    "tests_run": 6,
+    "errors": 1,
+    "cause": "Module fixture never called packet_generation; PM had no live packets and capture stayed empty; other five tests passed."
+  },
+  "offline_calibration": {
+    "checkpoint_sha256": "f62f05b520cbaf665823ce38981c6c88f5e4f816dc01f85d3149aca7d3f81240",
+    "gamma": 0.99,
+    "contract": {
+      "delivery_weight": 1.0,
+      "delay_weight": 1.0,
+      "unfinished_weight": 1.0,
+      "version": "task_v2",
+      "normalization": "initial_packets_and_task_horizon_v1"
+    },
+    "weighting": "equal packet, then equal observed prefixes per packet",
+    "test_evaluated": false,
+    "fit_performed": false,
+    "splits": {
+      "train": {
+        "all": {
+          "actual_mean": -0.1539281894866017,
+          "probability_as_value_mse": 0.854595124582294,
+          "probability_as_value_bias": 0.6650599300490958,
+          "task_return_mse": 0.24783997791289217,
+          "task_return_bias": 0.035994301142566625,
+          "hazard_prior_task_return_mse": 0.8274629443318644,
+          "hazard_prior_task_return_bias": 0.026808884963575343,
+          "zero_mse": 0.92939610116261,
+          "zero_bias": 0.1539281894866017,
+          "packets": 576,
+          "delivered": 286
+        },
+        "tg-mappo": {
+          "actual_mean": -0.7023699439508838,
+          "probability_as_value_mse": 1.2792770542313223,
+          "probability_as_value_bias": 0.9584988155054659,
+          "task_return_mse": 0.3304213324841532,
+          "task_return_bias": 0.072641322100695,
+          "hazard_prior_task_return_mse": 0.8155778152581319,
+          "hazard_prior_task_return_bias": 0.541967976018591,
+          "zero_mse": 1.0379806008212442,
+          "zero_bias": 0.7023699439508838,
+          "packets": 192,
+          "delivered": 42
+        },
+        "random": {
+          "actual_mean": -0.6040726802827906,
+          "probability_as_value_mse": 1.2494725005277563,
+          "probability_as_value_bias": 0.9109990133854713,
+          "task_return_mse": 0.3805806714592856,
+          "task_return_bias": 0.07402120497203458,
+          "hazard_prior_task_return_mse": 0.815133687246213,
+          "hazard_prior_task_return_bias": 0.4493400068451719,
+          "zero_mse": 1.0147606920620682,
+          "zero_bias": 0.6040726802827906,
+          "packets": 192,
+          "delivered": 52
+        },
+        "geographic": {
+          "actual_mean": 0.8446580557738695,
+          "probability_as_value_mse": 0.03503581898780126,
+          "probability_as_value_bias": 0.12568196125635098,
+          "task_return_mse": 0.03251792979523794,
+          "task_return_bias": -0.03867962364502961,
+          "hazard_prior_task_return_mse": 0.8516773304912585,
+          "hazard_prior_task_return_bias": -0.9108813279730373,
+          "zero_mse": 0.7354470106045131,
+          "zero_bias": -0.8446580557738695,
+          "packets": 192,
+          "delivered": 192
+        },
+        "scenario_seeds": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "validation": {
+        "all": {
+          "actual_mean": -0.14741085975374035,
+          "probability_as_value_mse": 0.8298793706045079,
+          "probability_as_value_bias": 0.6367103665816823,
+          "task_return_mse": 0.23339404685359522,
+          "task_return_bias": -0.00603450313773961,
+          "hazard_prior_task_return_mse": 0.8706163436006951,
+          "hazard_prior_task_return_bias": 0.020099338913531835,
+          "zero_mse": 0.9754121709102841,
+          "zero_bias": 0.14741085975374035,
+          "packets": 144,
+          "delivered": 70
+        },
+        "tg-mappo": {
+          "actual_mean": -0.5313794914856119,
+          "probability_as_value_mse": 1.1917579390684752,
+          "probability_as_value_bias": 0.8496956147938942,
+          "task_return_mse": 0.41261817229829584,
+          "task_return_bias": 0.016780690179338486,
+          "hazard_prior_task_return_mse": 0.8088921061782943,
+          "hazard_prior_task_return_bias": 0.3796465535322678,
+          "zero_mse": 0.9876245965129211,
+          "zero_bias": 0.5313794914856119,
+          "packets": 48,
+          "delivered": 15
+        },
+        "random": {
+          "actual_mean": -0.8327096567994987,
+          "probability_as_value_mse": 1.2904136528786643,
+          "probability_as_value_bias": 1.0065793205368394,
+          "task_return_mse": 0.2575106157153569,
+          "task_return_bias": 0.04350164594218891,
+          "hazard_prior_task_return_mse": 0.8307627249338863,
+          "hazard_prior_task_return_bias": 0.6643713094846557,
+          "zero_mse": 1.0843836249650904,
+          "zero_bias": 0.8327096567994987,
+          "packets": 48,
+          "delivered": 7
+        },
+        "geographic": {
+          "actual_mean": 0.9218565690238912,
+          "probability_as_value_mse": 0.007466519866382943,
+          "probability_as_value_bias": 0.05385616441431215,
+          "task_return_mse": 0.030053352547132817,
+          "task_return_bias": -0.07838584553474622,
+          "hazard_prior_task_return_mse": 0.9721941996899058,
+          "hazard_prior_task_return_bias": -0.9837198462763285,
+          "zero_mse": 0.8542282912528384,
+          "zero_bias": -0.9218565690238912,
+          "packets": 48,
+          "delivered": 48
+        },
+        "scenario_seeds": [
+          101
+        ]
+      }
+    }
+  },
+  "preflight_acceptance": {
+    "engineering_passed": true,
+    "stage": "preflight",
+    "audited_tasks": 12,
+    "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_pm_task_return\\preflight_20261105_140102_431103",
+    "auditor_sha256": "1067293c318719e10fc5fa5dd95809e5f23742c63ba36fb0010f1b568dc4a9f6",
+    "manifest_sha256": "40506069d80818aa9e336f8b9482bf6a6e8b89fe234c7be2d2307fdfbd8eeb13",
+    "first_rollout_controls": [
+      {
+        "seed": 11,
+        "base_rewards_values_masks_exact": true,
+        "actual_gae_change_max": 0.5053833723068237,
+        "old_base_value_prior_sampled_MC_mse": 0.2557776514887004,
+        "new_base_value_prior_sampled_MC_mse": 0.13226835757317107,
+        "no_PM_same_numeric_value_sampled_MC_mse": 0.0982161291287786,
+        "scope": "sampled first training rollout, all agent copies; not exact conditional V or independent samples"
+      },
+      {
+        "seed": 22,
+        "base_rewards_values_masks_exact": true,
+        "actual_gae_change_max": 0.8420354127883911,
+        "old_base_value_prior_sampled_MC_mse": 0.9600428675461088,
+        "new_base_value_prior_sampled_MC_mse": 0.08473122396288796,
+        "no_PM_same_numeric_value_sampled_MC_mse": 0.5901043618444506,
+        "scope": "sampled first training rollout, all agent copies; not exact conditional V or independent samples"
+      },
+      {
+        "seed": 33,
+        "base_rewards_values_masks_exact": true,
+        "actual_gae_change_max": 0.7569729089736938,
+        "old_base_value_prior_sampled_MC_mse": 1.1482728851676063,
+        "new_base_value_prior_sampled_MC_mse": 0.13255123626584298,
+        "no_PM_same_numeric_value_sampled_MC_mse": 0.7318091550401022,
+        "scope": "sampled first training rollout, all agent copies; not exact conditional V or independent samples"
+      }
+    ],
+    "by_training_seed": [
+      {
+        "group": "task_return",
+        "seed": 11,
+        "delivery_rate": 0.0,
+        "base_return": -1.1426396330617115,
+        "scene_results": [
+          {
+            "delivery_rate": 0.0,
+            "return": -1.1426396330617115,
+            "scene": 7001,
+            "loops": 206
+          }
+        ]
+      },
+      {
+        "group": "task_return",
+        "seed": 22,
+        "delivery_rate": 0.0,
+        "base_return": -1.1426396330617115,
+        "scene_results": [
+          {
+            "delivery_rate": 0.0,
+            "return": -1.1426396330617115,
+            "scene": 7001,
+            "loops": 204
+          }
+        ]
+      },
+      {
+        "group": "task_return",
+        "seed": 33,
+        "delivery_rate": 0.08333333333333333,
+        "base_return": -0.9711000215247719,
+        "scene_results": [
+          {
+            "delivery_rate": 0.08333333333333333,
+            "return": -0.9711000215247719,
+            "scene": 7001,
+            "loops": 87
+          }
+        ]
+      }
+    ],
+    "development_gate": null,
+    "formal_efficacy_proven": false,
+    "artifacts": [
+      {
+        "tag": "A_11_training",
+        "report_sha256": "3a81286889e1930e84f4cd1468a7603e939b822fdac60d4099defa3c2d259937",
+        "physical_sha256": "b4798ca2b25e87b251c3066decad6b3e0d1a0db47a03ebe1ad09ec701562ebc9",
+        "return_from_physical_events": -0.6861172063361206
+      },
+      {
+        "tag": "remaining_11_training",
+        "report_sha256": "7364cc8d8a026f5a925adf85bcbd06f7867ca1f21127cd084a58f457baea0c23",
+        "physical_sha256": "593bc91ba98aa6ba8bea11afaab0dca3178ae17970624ea8b2b12e4c4c2a3afc",
+        "return_from_physical_events": -0.6339852108441562
+      },
+      {
+        "tag": "task_return_11_training",
+        "report_sha256": "4f3cc00c1b27a84b1338d091b0b6e6a828e4f9e2c696aa8d223e0c5b07e0293e",
+        "physical_sha256": "eda406ef75d23cd9e60ebdb410306c23eb8fc2f0c92a46c8473f56814f2bdb2b",
+        "return_from_physical_events": -0.6664060126397673
+      },
+      {
+        "tag": "task_return_11_evaluation_7001",
+        "report_sha256": "b42e9de165e78f5ae2abb2e9782571bb71a1de18093b34b3a7c17a661e4c4897",
+        "physical_sha256": "b9cd73869f3f33edb0952cd752921b520ba8f08ea9674a117eabc6ad7b65383a",
+        "return_from_physical_events": -1.1426396330617115
+      },
+      {
+        "tag": "A_22_training",
+        "report_sha256": "161a762b0c1d3ca8f8dee502f51c1fe0af64dd4d3d9258caf29ac638b94aaeec",
+        "physical_sha256": "d02ff7231b3c7b53bd5b091425e07d81e7667b58525fcf49c41575815360d725",
+        "return_from_physical_events": -0.860563115866484
+      },
+      {
+        "tag": "remaining_22_training",
+        "report_sha256": "b1d90e19e6194221ab43a17b364fae05624c332d39709f441cc3f7a623f1d449",
+        "physical_sha256": "9e586e4d6dfd8329361212d745693ec7ad8ff08b30b4a4277ca8f96b5fd82ad0",
+        "return_from_physical_events": -0.9132538662720563
+      },
+      {
+        "tag": "task_return_22_training",
+        "report_sha256": "b04dabbc498f4c89dfb43be16d74c5eb286ed3a0697b82e8218a255bf8f40003",
+        "physical_sha256": "2368d2b246e0fb9e9544290347643b5af4e12fb17ef6f17f73603fb1b62240e2",
+        "return_from_physical_events": -0.9081640732554663
+      },
+      {
+        "tag": "task_return_22_evaluation_7001",
+        "report_sha256": "648d7733e5792575379336a4888d81f11413e0a2c17126d9fdaa250d498c22be",
+        "physical_sha256": "64a4f9c25afb0ec9c42848669c34f14c39f8bbfea933eb6b1c2c52fba9ae955c",
+        "return_from_physical_events": -1.1426396330617115
+      },
+      {
+        "tag": "A_33_training",
+        "report_sha256": "262d421768e1bdda59679265a7f7825640b21cc603c359fdd1161f7b435812ab",
+        "physical_sha256": "cf8075f4f4eb1216c58c3e9e079bc636744785e9dca75a1baa7651d449b002a1",
+        "return_from_physical_events": -0.7304225105807602
+      },
+      {
+        "tag": "remaining_33_training",
+        "report_sha256": "8836cfff1901f0f58671db097e7544b8e1b106182bd2e82117d69bfb09cafb1d",
+        "physical_sha256": "979c461d9e47dacacc6e2034af0d66f41759eb0ac24d2bea8e5f922de06ddf1c",
+        "return_from_physical_events": -0.7761437779072367
+      },
+      {
+        "tag": "task_return_33_training",
+        "report_sha256": "250d056288c07f497f8001635218068eed1cacb33846a29f02060ed6fc2a4da1",
+        "physical_sha256": "ca1c479a93ec5c2903d00c53737019e411f3e031e21a1046e5a56480d312a8c8",
+        "return_from_physical_events": -0.6258358273969489
+      },
+      {
+        "tag": "task_return_33_evaluation_7001",
+        "report_sha256": "9276cfc75e4311264cb037cd61ef3f7afc41811635ea94923d90a30ce72cb8ee",
+        "physical_sha256": "947310c9f49b3d9400d509b66e8175859350db043443e9c570b6ceb91941e8c2",
+        "return_from_physical_events": -0.9711000215247719
+      }
+    ],
+    "limitations": [
+      "20-episode development only; no fixed100 rerun",
+      "three training seeds; scenes not independent training repetitions",
+      "frozen behavior PM may be miscalibrated on new policies",
+      "CPU only"
+    ]
+  },
+  "pilot_root": "results/tg_pm_task_return/pilot_20261105_140555_016580",
+  "formal_efficacy_proven": false,
+  "hashes": {
+    "src/buoy_network/pm_return.py": "bfc968ad279b32ffc02861d99cb3a3f89153d35ec1adf58da242b94d227e0cdb",
+    "src/buoy_network/progress_runtime.py": "29b716e41c6dcbffe8b43cadb7ec6a5f6c462088c5e2ec53197aec3230462b0c",
+    "src/buoy_network/agent.py": "6d3514c91315febe64cf8dab6b6dd771d729d593e795815ce35c0b84a88bbf64",
+    "src/buoy_network/main.py": "fde72c27d5781d4c705789771f092fbe569cbcbb69931dd334e5e08ee552d3a4",
+    "src/buoy_network/policy_artifacts.py": "8b8f59c9cfb4127d6148f2ecc466c335f00d1f25c92db7e4ddcb68bd69e7f451",
+    "tests/test_pm_task_return.py": "c4ad856923348d5ca436a2112b429a3fe20005dbdb3d0660c4b8cbfb82a71825",
+    "configs/tg_pm_task_return_pilot.json": "b060a66b2139b18fb49807a56ec994cf68cb60564f3ccb521763d6be16e882bc",
+    "scripts/check_tg_pm_task_return.py": "0a5b03c35bd2f2cc4cf369ed9fb3b611ca96e38785c48cc04a6bea936fb8d08e",
+    "scripts/analyze_tg_pm_task_return.py": "1067293c318719e10fc5fa5dd95809e5f23742c63ba36fb0010f1b568dc4a9f6",
+    "results/tg_wm_multiscene/20261102_235951_684782/dataset_manifest.json": "634b750b3117ad8030fb4dd6ff654bcaf0593779fd642f5b691ccf14f2f16160"
+  }
+}

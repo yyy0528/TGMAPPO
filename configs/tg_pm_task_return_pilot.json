@@ -1,0 +1,20 @@
+{
+  "schema": "original_tg_pm_task_return_pilot_v1",
+  "purpose": "development; single prespecified candidate, no efficacy claim from preflight",
+  "train_seeds": [11, 22, 33],
+  "eval_scenes": [8001, 8002, 8003],
+  "train_episodes": 20,
+  "eval_episodes": 2,
+  "horizon": 80,
+  "groups": ["A", "remaining", "task_return"],
+  "ppo_epoch": 1,
+  "num_mini_batch": 2,
+  "pm_alpha": 1.0,
+  "pm_value_mode": "learned_shaped",
+  "pm_checkpoint": "results/tg_pm_final_pretrain/20261103_142745_276042/pm_best.pt",
+  "pm_sha256": "f62f05b520cbaf665823ce38981c6c88f5e4f816dc01f85d3149aca7d3f81240",
+  "learning_rate_schedule": "fixed",
+  "critic_time_mode": "disabled",
+  "reward_version": "task_v2",
+  "decision": "Candidate mean delivery must exceed A and old PM, improve over A on at least 2/3 training seeds, and improve mean task return over A; otherwise do not promote. Development evidence only, even on pass."
+}
