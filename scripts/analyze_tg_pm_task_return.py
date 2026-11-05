@@ -48,6 +48,29 @@ def same_first_rollout(manifest):
     return result
 
 
+def value_diagnostics(job, episodes):
+    """Cached raw coordinates only; sampled MC is a diagnostic, not true V."""
+    rows=[];folder=Path(job['output']).parent/'value_audit'
+    for ep in range(episodes):
+        with np.load(str(folder/('episode_{}.npz'.format(ep)))) as a:
+            for key in ('base_rewards','shaped_rewards','raw_values','phi','masks','actual_gae'):
+                require(np.isfinite(a[key]).all(),'Nonfinite cached '+key)
+            require(np.all(a['phi'][-1]==0) and np.all(a['masks'][-1]==0),'Terminal cache mismatch')
+            base=a['base_rewards'];mc=np.zeros_like(base);gae=np.zeros_like(base)
+            delta=a['shaped_rewards']+.99*a['raw_values'][1:]*a['masks'][1:]-a['raw_values'][:-1]
+            for t in reversed(range(len(base))):
+                mc[t]=base[t]+(.99*mc[t+1] if t+1<len(base) else 0)
+                gae[t]=delta[t]+(.99*.95*gae[t+1]*a['masks'][t+1] if t+1<len(base) else 0)
+            error=float(np.max(np.abs(gae-a['actual_gae'])))
+            require(error<1e-5,'Actual GAE differs from cached shaped coordinates')
+            e=a['raw_values'][:-1]+a['phi'][:-1]-mc
+            rows.append({'episode':ep,'effective_value_sampled_MC_mse':float((e**2).mean()),
+                'effective_value_sampled_MC_bias':float(e.mean()),'actual_gae_std':float(a['actual_gae'].std()),
+                'actual_gae_recompute_max_error':error})
+    return {'group':job['group'],'seed':job['seed'],'episodes':rows,
+            'scope':'all cached agent copies; correlated sampled MC, not true conditional value'}
+
+
 def audit(root):
     m=read(root/'manifest.json');c=m['config']
     require(m['status']=='completed','Cannot accept an incomplete/failed experiment')
@@ -58,6 +81,7 @@ def audit(root):
     require(digest(ROOT/c['pm_checkpoint'])==c['pm_sha256'],'PM file changed')
     per_seed={}
     entries=[]
+    diagnostics=[]
     for j in m['jobs']:
         out=Path(j['output']);r=read(out/'logs/TG_policy_report.json')
         actual=read(out/'logs/TG_MAPPO_environment.json')['config']
@@ -91,6 +115,7 @@ def audit(root):
                             for n in ('actor','critic')),'Historical parameters differ')
                 for filename in ('TG_physical_metrics.jsonl','TG_reward_components.csv'):
                     require(digest(out/'logs'/filename)==digest(original/'logs'/filename),'Historical trajectory/reward differs')
+            if j['group']!='A':diagnostics.append(value_diagnostics(j,episodes))
         else:
             require(r['optimizer_updates']==0 and r['actor_unchanged'] and r['critic_unchanged'],'Frozen evaluation changed weights')
             train=next(x for x in m['jobs'] if x['kind']=='training' and x['group']==j['group'] and x['seed']==j['seed'])
@@ -103,6 +128,8 @@ def audit(root):
             require(all(abs(s['boundary_error'])<1e-7 and s['terminal_phi']==0 for s in pm['episodes']),'Potential boundary error')
         physical=[json.loads(x) for x in (out/'logs/TG_physical_metrics.jsonl').read_text(encoding='utf-8').splitlines()]
         require(len(physical)==episodes and all(x['generated_packets']==x['delivered_packets']+x['unresolved_packets'] for x in physical),'Packet conservation')
+        from buoy_network.task_reward_audit import audit_reward_csv
+        audit_reward_csv(out/'logs',r['reward_contract'])
         value=physical_return(physical,r['reward_contract'])
         require(abs(value-j['mean_discounted_base_return'])<1e-10,'CSV return differs from physical timestamps')
         if j['kind']=='evaluation':
@@ -116,6 +143,7 @@ def audit(root):
         summary.append({'group':group,'seed':seed,'delivery_rate':statistics.mean(x['delivery_rate'] for x in rows),
             'base_return':statistics.mean(x['return'] for x in rows),'scene_results':rows})
     gate=None
+    statistics_by_group={}
     if m['stage']=='pilot':
         means={g:statistics.mean(x['delivery_rate'] for x in summary if x['group']==g) for g in c['groups']}
         returns={g:statistics.mean(x['base_return'] for x in summary if x['group']==g) for g in c['groups']}
@@ -124,9 +152,16 @@ def audit(root):
         gate={'mean_delivery':means,'mean_base_return':returns,'wins_vs_A':wins,
               'passed':means['task_return']>max(means['A'],means['remaining']) and wins>=2 and returns['task_return']>returns['A']}
         require(gate['passed']==m['development_gate']['passed'],'Development decision mismatch')
+        for group in c['groups']:
+            selected=[r for r in summary if r['group']==group]
+            statistics_by_group[group]={'independent_training_seeds':len(selected),
+                'delivery_mean':means[group],'delivery_sample_SD':statistics.stdev(r['delivery_rate'] for r in selected),
+                'base_return_mean':returns[group],'base_return_sample_SD':statistics.stdev(r['base_return'] for r in selected)}
     return {'engineering_passed':True,'stage':m['stage'],'audited_tasks':expected,'root':str(root),
             'auditor_sha256':digest(Path(__file__)),
             'manifest_sha256':digest(root/'manifest.json'),'first_rollout_controls':same_first_rollout(m),
+            'training_value_diagnostics':diagnostics,
+            'group_statistics':statistics_by_group,
             'by_training_seed':summary,'development_gate':gate,'formal_efficacy_proven':False,
             'artifacts':entries,'limitations':['20-episode development only; no fixed100 rerun',
                 'three training seeds; scenes not independent training repetitions',
@@ -160,7 +195,9 @@ def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('root');p.add_argument('--output')
     args=p.parse_args();root=Path(args.root).resolve()
     report=audit(root)
-    if report['stage']=='pilot':plot(report,root)
+    if report['stage']=='pilot':
+        plot(report,root)
+        report['figures']={str(p.relative_to(root)):digest(p) for p in (root/'figures').iterdir() if p.is_file()}
     output=Path(args.output) if args.output else root/'acceptance.json'
     output.write_text(json.dumps(report,indent=2,allow_nan=False),encoding='utf-8')
     print(json.dumps({k:report[k] for k in ('engineering_passed','audited_tasks','development_gate','formal_efficacy_proven')},indent=2))
