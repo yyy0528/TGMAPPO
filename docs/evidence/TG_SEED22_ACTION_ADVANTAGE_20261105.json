@@ -1,0 +1,5137 @@
+{
+  "schema": "tg_seed22_actions_advantages_v1",
+  "date": "2026-11-05",
+  "scope": "read-only targeted diagnosis; no policy change or training",
+  "acceptance": {
+    "diagnosis_complete": true,
+    "training_started": false,
+    "optimizer_updates": 0,
+    "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_seed22_signals\\20261105_165019_896744",
+    "manifest_sha256": "444ea4d9bf1ce429061c450412906c7edcb3e43de9576fbcd82a269afd1db9cf",
+    "auditor_sha256": "519c43733ae747a0c93e3b1e13724471e6cd3ab3c908e464512e4f2c876eb6ee",
+    "summaries": [
+      {
+        "group": "A",
+        "decode": "greedy",
+        "delivered": 10,
+        "generated": 48,
+        "active_decisions": 1681,
+        "active_wait_count": 1293,
+        "active_wait_fraction": 0.7691850089232599,
+        "sink_legal_count": 49,
+        "sink_chosen_count": 49,
+        "revisit_transfers": 127,
+        "mean_normalized_entropy": 0.9910176928365458,
+        "mean_top_probability_gap": 0.026965362296297323,
+        "groups": {
+          "all_active": {
+            "count": 1681,
+            "advantage_mean": -1.3526096100132782e-16,
+            "raw_advantage_mean": -0.06763306776450546,
+            "base_reward_mean": -0.01629207564941503,
+            "progress_reward_mean": 0.0,
+            "wait_score_mean": -0.05579249403573887,
+            "sink_score_mean": 0.03104508871978732,
+            "negative_advantage_fraction": 0.619274241522903
+          },
+          "WAIT": {
+            "count": 1293,
+            "advantage_mean": -0.07607938472370666,
+            "raw_advantage_mean": -0.07188470169835989,
+            "base_reward_mean": -0.01737077855117298,
+            "progress_reward_mean": 0.0,
+            "wait_score_mean": -0.06072874039146441,
+            "sink_score_mean": 0.0,
+            "negative_advantage_fraction": 0.6473317865429234
+          },
+          "forward": {
+            "count": 388,
+            "advantage_mean": 0.25353258878286755,
+            "raw_advantage_mean": -0.0534646072581297,
+            "base_reward_mean": -0.012697326030927833,
+            "progress_reward_mean": 0.0,
+            "wait_score_mean": -0.03934258027812771,
+            "sink_score_mean": 0.134502046747326,
+            "negative_advantage_fraction": 0.5257731958762887
+          },
+          "Sink_chosen": {
+            "count": 49,
+            "advantage_mean": 1.4636323658353763,
+            "raw_advantage_mean": 0.014430141387296994,
+            "base_reward_mean": 0.002083333333333333,
+            "progress_reward_mean": 0.0,
+            "wait_score_mean": -0.23756044633959947,
+            "sink_score_mean": 1.0650366150604587,
+            "negative_advantage_fraction": 0.0
+          },
+          "Sink_ACK_success": {
+            "count": 10,
+            "advantage_mean": 1.6053413227061093,
+            "raw_advantage_mean": 0.02231165416083322,
+            "base_reward_mean": 0.03020833333333333,
+            "progress_reward_mean": 0.0,
+            "wait_score_mean": -0.24040807702675412,
+            "sink_score_mean": 1.2019124478689287,
+            "negative_advantage_fraction": 0.0
+          },
+          "Sink_legal_other": {
+            "count": 0
+          },
+          "successful_revisit": {
+            "count": 127,
+            "advantage_mean": -0.05595502445224923,
+            "raw_advantage_mean": -0.07069382681650725,
+            "base_reward_mean": -0.02035761154855642,
+            "progress_reward_mean": 0.0,
+            "wait_score_mean": 0.005001252856247701,
+            "sink_score_mean": 0.0,
+            "negative_advantage_fraction": 0.6141732283464567
+          },
+          "revisit_with_other_delivery": {
+            "count": 7,
+            "advantage_mean": 1.3155311737990871,
+            "raw_advantage_mean": 0.005881017704677882,
+            "base_reward_mean": 0.030729166666666665,
+            "progress_reward_mean": 0.0,
+            "wait_score_mean": -0.21657453916758357,
+            "sink_score_mean": 0.0,
+            "negative_advantage_fraction": 0.0
+          }
+        },
+        "value_coordinate_error_max": 0.0
+      },
+      {
+        "group": "A",
+        "decode": "sample",
+        "delivered": 19,
+        "generated": 48,
+        "active_decisions": 1620,
+        "active_wait_count": 240,
+        "active_wait_fraction": 0.14814814814814814,
+        "sink_legal_count": 217,
+        "sink_chosen_count": 63,
+        "revisit_transfers": 334,
+        "mean_normalized_entropy": 0.9843127365567568,
+        "mean_top_probability_gap": 0.03036657692749559,
+        "groups": {
+          "all_active": {
+            "count": 1620,
+            "advantage_mean": 1.75442650804963e-17,
+            "raw_advantage_mean": 0.02609601927537188,
+            "base_reward_mean": -0.011478909465020575,
+            "progress_reward_mean": 0.0,
+            "wait_score_mean": -0.0033154768375702596,
+            "sink_score_mean": 0.006330783722021555,
+            "negative_advantage_fraction": 0.5265432098765432
+          },
+          "WAIT": {
+            "count": 240,
+            "advantage_mean": -0.06120446051624469,
+            "raw_advantage_mean": 0.023205023040829477,
+            "base_reward_mean": -0.004965277777777777,
+            "progress_reward_mean": 0.0,
+            "wait_score_mean": -0.044123922807759425,
+            "sink_score_mean": -0.004964198376532047,
+            "negative_advantage_fraction": 0.5625
+          },
+          "forward": {
+            "count": 1380,
+            "advantage_mean": 0.01064425400282516,
+            "raw_advantage_mean": 0.026598801229205337,
+            "base_reward_mean": -0.01261171497584541,
+            "progress_reward_mean": 0.0,
+            "wait_score_mean": 0.003781644200723506,
+            "sink_score_mean": 0.008295128434813486,
+            "negative_advantage_fraction": 0.5202898550724637
+          },
+          "Sink_chosen": {
+            "count": 63,
+            "advantage_mean": 0.3731260050903069,
+            "raw_advantage_mean": 0.03549579917657492,
+            "base_reward_mean": 0.0061177248677248665,
+            "progress_reward_mean": 0.0,
+            "wait_score_mean": -0.057262884891225226,
+            "sink_score_mean": 0.27667253145067483,
+            "negative_advantage_fraction": 0.30158730158730157
+          },
+          "Sink_ACK_success": {
+            "count": 19,
+            "advantage_mean": 1.2938198313696363,
+            "raw_advantage_mean": 0.061744416879598044,
+            "base_reward_mean": 0.03574561403508771,
+            "progress_reward_mean": 0.0,
+            "wait_score_mean": -0.19964827731687054,
+            "sink_score_mean": 0.9575944865030523,
+            "negative_advantage_fraction": 0.0
+          },
+          "Sink_legal_other": {
+            "count": 154,
+            "advantage_mean": 0.1879788995915787,
+            "raw_advantage_mean": 0.03067538391547297,
+            "base_reward_mean": -0.01219223484848485,
+            "progress_reward_mean": 0.0,
+            "wait_score_mean": 0.0023080650530261835,
+            "sink_score_mean": -0.046587661374789605,
+            "negative_advantage_fraction": 0.42207792207792205
+          },
+          "successful_revisit": {
+            "count": 334,
+            "advantage_mean": 0.10672187767277097,
+            "raw_advantage_mean": 0.029929280982281054,
+            "base_reward_mean": -0.016195733532934135,
+            "progress_reward_mean": 0.0,
+            "wait_score_mean": -0.01464299553586386,
+            "sink_score_mean": -0.005482247098942698,
+            "negative_advantage_fraction": 0.5059880239520959
+          },
+          "revisit_with_other_delivery": {
+            "count": 45,
+            "advantage_mean": 1.1806878885529226,
+            "raw_advantage_mean": 0.0569568540283154,
+            "base_reward_mean": 0.0334375,
+            "progress_reward_mean": 0.0,
+            "wait_score_mean": -0.1810095625190429,
+            "sink_score_mean": 0.0,
+            "negative_advantage_fraction": 0.0
+          }
+        },
+        "value_coordinate_error_max": 0.0
+      },
+      {
+        "group": "task_return",
+        "decode": "greedy",
+        "delivered": 20,
+        "generated": 48,
+        "active_decisions": 694,
+        "active_wait_count": 0,
+        "active_wait_fraction": 0.0,
+        "sink_legal_count": 50,
+        "sink_chosen_count": 50,
+        "revisit_transfers": 204,
+        "mean_normalized_entropy": 0.9906992431142777,
+        "mean_top_probability_gap": 0.0353791437914289,
+        "groups": {
+          "all_active": {
+            "count": 694,
+            "advantage_mean": 0.0,
+            "raw_advantage_mean": -0.1070890581515882,
+            "base_reward_mean": -0.002976404899135447,
+            "progress_reward_mean": -0.014940033165271422,
+            "wait_score_mean": -0.0016385844372303186,
+            "sink_score_mean": -0.021583456141594105,
+            "negative_advantage_fraction": 0.5922190201729106
+          },
+          "WAIT": {
+            "count": 0
+          },
+          "forward": {
+            "count": 694,
+            "advantage_mean": 0.0,
+            "raw_advantage_mean": -0.1070890581515882,
+            "base_reward_mean": -0.002976404899135447,
+            "progress_reward_mean": -0.014940033165271422,
+            "wait_score_mean": -0.0016385844372303186,
+            "sink_score_mean": -0.021583456141594105,
+            "negative_advantage_fraction": 0.5922190201729106
+          },
+          "Sink_chosen": {
+            "count": 50,
+            "advantage_mean": -0.3950508735902518,
+            "raw_advantage_mean": -0.16731090096930104,
+            "base_reward_mean": 0.012489583333333332,
+            "progress_reward_mean": -0.0249372622059497,
+            "wait_score_mean": 0.04478514155460962,
+            "sink_score_mean": -0.29957837124532616,
+            "negative_advantage_fraction": 0.74
+          },
+          "Sink_ACK_success": {
+            "count": 20,
+            "advantage_mean": -0.3613192764925903,
+            "raw_advantage_mean": -0.16154398977734957,
+            "base_reward_mean": 0.03565104166666667,
+            "progress_reward_mean": -0.018704307949034514,
+            "wait_score_mean": 0.03985732307605086,
+            "sink_score_mean": -0.2763139564671916,
+            "negative_advantage_fraction": 0.75
+          },
+          "Sink_legal_other": {
+            "count": 0
+          },
+          "successful_revisit": {
+            "count": 204,
+            "advantage_mean": 0.46965862344763504,
+            "raw_advantage_mean": -0.032822715889763744,
+            "base_reward_mean": -0.014578227124183012,
+            "progress_reward_mean": 0.0014909011174941721,
+            "wait_score_mean": -0.0614522166771617,
+            "sink_score_mean": 0.0,
+            "negative_advantage_fraction": 0.39705882352941174
+          },
+          "revisit_with_other_delivery": {
+            "count": 7,
+            "advantage_mean": -0.27301267946624386,
+            "raw_advantage_mean": -0.14738220248434666,
+            "base_reward_mean": 0.03311011904761904,
+            "progress_reward_mean": 0.002586324880469809,
+            "wait_score_mean": 0.03701255713230723,
+            "sink_score_mean": 0.0,
+            "negative_advantage_fraction": 0.8571428571428571
+          }
+        },
+        "value_coordinate_error_max": 2.220446049250313e-16
+      },
+      {
+        "group": "task_return",
+        "decode": "sample",
+        "delivered": 18,
+        "generated": 48,
+        "active_decisions": 1800,
+        "active_wait_count": 200,
+        "active_wait_fraction": 0.1111111111111111,
+        "sink_legal_count": 221,
+        "sink_chosen_count": 56,
+        "revisit_transfers": 386,
+        "mean_normalized_entropy": 0.9915430901683938,
+        "mean_top_probability_gap": 0.032602238605419796,
+        "groups": {
+          "all_active": {
+            "count": 1800,
+            "advantage_mean": 1.578983857244667e-17,
+            "raw_advantage_mean": 0.011355939004241596,
+            "base_reward_mean": -0.011636863425925924,
+            "progress_reward_mean": -0.007177493735161461,
+            "wait_score_mean": -0.004717893880607341,
+            "sink_score_mean": 0.004477749860404871,
+            "negative_advantage_fraction": 0.31833333333333336
+          },
+          "WAIT": {
+            "count": 200,
+            "advantage_mean": -0.046010150381809174,
+            "raw_advantage_mean": -0.0012855362092336065,
+            "base_reward_mean": -0.008734374999999999,
+            "progress_reward_mean": -0.013306761164986095,
+            "wait_score_mean": -0.03973618043479096,
+            "sink_score_mean": 0.00872741864206317,
+            "negative_advantage_fraction": 0.34
+          },
+          "forward": {
+            "count": 1600,
+            "advantage_mean": 0.005751268797726112,
+            "raw_advantage_mean": 0.012936123405925995,
+            "base_reward_mean": -0.011999674479166665,
+            "progress_reward_mean": -0.006411335306433382,
+            "wait_score_mean": -0.00034060806133438647,
+            "sink_score_mean": 0.003946541262697584,
+            "negative_advantage_fraction": 0.315625
+          },
+          "Sink_chosen": {
+            "count": 56,
+            "advantage_mean": -0.0019651653337077585,
+            "raw_advantage_mean": 0.01092965709334638,
+            "base_reward_mean": 0.004631696428571427,
+            "progress_reward_mean": 0.005663244764998352,
+            "wait_score_mean": -0.0005885257881947936,
+            "sink_score_mean": -0.0031532532573721856,
+            "negative_advantage_fraction": 0.375
+          },
+          "Sink_ACK_success": {
+            "count": 18,
+            "advantage_mean": 0.21182301435542067,
+            "raw_advantage_mean": 0.05532991711465737,
+            "base_reward_mean": 0.03125,
+            "progress_reward_mean": 0.025600868834575876,
+            "wait_score_mean": -0.025603623796497298,
+            "sink_score_mean": 0.15737289034446392,
+            "negative_advantage_fraction": 0.16666666666666666
+          },
+          "Sink_legal_other": {
+            "count": 165,
+            "advantage_mean": -0.20378402536498358,
+            "raw_advantage_mean": -0.03224624409420667,
+            "base_reward_mean": -0.01116161616161616,
+            "progress_reward_mean": -0.02466543108548511,
+            "wait_score_mean": -0.021303761308408636,
+            "sink_score_mean": 0.04991837534025219,
+            "negative_advantage_fraction": 0.41818181818181815
+          },
+          "successful_revisit": {
+            "count": 386,
+            "advantage_mean": 0.29651709104613583,
+            "raw_advantage_mean": 0.07831878297300333,
+            "base_reward_mean": -0.014456498272884283,
+            "progress_reward_mean": 0.009960234159733652,
+            "wait_score_mean": -0.03656927579124986,
+            "sink_score_mean": -0.002154631344054415,
+            "negative_advantage_fraction": 0.18652849740932642
+          },
+          "revisit_with_other_delivery": {
+            "count": 46,
+            "advantage_mean": 0.4814069010544822,
+            "raw_advantage_mean": 0.12079316792359832,
+            "base_reward_mean": 0.03171422101449277,
+            "progress_reward_mean": 0.026738428762331373,
+            "wait_score_mean": -0.06236870221863029,
+            "sink_score_mean": -0.0003305469328613052,
+            "negative_advantage_fraction": 0.06521739130434782
+          }
+        },
+        "value_coordinate_error_max": 1.6653345369377348e-16
+      },
+      {
+        "group": "alpha01",
+        "decode": "greedy",
+        "delivered": 8,
+        "generated": 48,
+        "active_decisions": 1360,
+        "active_wait_count": 961,
+        "active_wait_fraction": 0.7066176470588236,
+        "sink_legal_count": 27,
+        "sink_chosen_count": 27,
+        "revisit_transfers": 210,
+        "mean_normalized_entropy": 0.9892991466497034,
+        "mean_top_probability_gap": 0.033067120436359856,
+        "groups": {
+          "all_active": {
+            "count": 1360,
+            "advantage_mean": -2.716781048494501e-16,
+            "raw_advantage_mean": -0.09065899096247573,
+            "base_reward_mean": -0.01649011948529412,
+            "progress_reward_mean": -0.00040298266914091236,
+            "wait_score_mean": -0.0719551090273255,
+            "sink_score_mean": 0.02029102593497109,
+            "negative_advantage_fraction": 0.38529411764705884
+          },
+          "WAIT": {
+            "count": 961,
+            "advantage_mean": -0.11004754336950519,
+            "raw_advantage_mean": -0.09378878393974306,
+            "base_reward_mean": -0.01885622615331252,
+            "progress_reward_mean": -0.00010681854323431194,
+            "wait_score_mean": -0.08286989954019089,
+            "sink_score_mean": 0.0,
+            "negative_advantage_fraction": 0.4120707596253902
+          },
+          "forward": {
+            "count": 399,
+            "advantage_mean": 0.26505185257667696,
+            "raw_advantage_mean": -0.08312081790193966,
+            "base_reward_mean": -0.010791301169590643,
+            "progress_reward_mean": -0.0011163002756477871,
+            "wait_score_mean": -0.045666603556489424,
+            "sink_score_mean": 0.06916239416431248,
+            "negative_advantage_fraction": 0.3208020050125313
+          },
+          "Sink_chosen": {
+            "count": 27,
+            "advantage_mean": 1.3381676909357894,
+            "raw_advantage_mean": -0.05269462904848114,
+            "base_reward_mean": 0.013155864197530863,
+            "progress_reward_mean": -0.005128365796287964,
+            "wait_score_mean": -0.18478956789490072,
+            "sink_score_mean": 1.0220664915392845,
+            "negative_advantage_fraction": 0.0
+          },
+          "Sink_ACK_success": {
+            "count": 8,
+            "advantage_mean": 1.9855900868949916,
+            "raw_advantage_mean": -0.03427850428147736,
+            "base_reward_mean": 0.040299479166666666,
+            "progress_reward_mean": -0.0013205256629533484,
+            "wait_score_mean": -0.2882811534568129,
+            "sink_score_mean": 1.4920584612950123,
+            "negative_advantage_fraction": 0.0
+          },
+          "Sink_legal_other": {
+            "count": 0
+          },
+          "successful_revisit": {
+            "count": 210,
+            "advantage_mean": -0.1923474081897509,
+            "raw_advantage_mean": -0.09604548066207064,
+            "base_reward_mean": -0.02534722222222222,
+            "progress_reward_mean": 0.0007085979613662654,
+            "wait_score_mean": 0.02364427983618562,
+            "sink_score_mean": 0.0,
+            "negative_advantage_fraction": 0.44761904761904764
+          },
+          "revisit_with_other_delivery": {
+            "count": 5,
+            "advantage_mean": 1.3069379327916781,
+            "raw_advantage_mean": -0.05401289696793941,
+            "base_reward_mean": 0.030416666666666665,
+            "progress_reward_mean": -0.0028450404471663305,
+            "wait_score_mean": -0.16042404432632157,
+            "sink_score_mean": 0.0,
+            "negative_advantage_fraction": 0.0
+          }
+        },
+        "value_coordinate_error_max": 2.220446049250313e-16
+      },
+      {
+        "group": "alpha01",
+        "decode": "sample",
+        "delivered": 19,
+        "generated": 48,
+        "active_decisions": 1381,
+        "active_wait_count": 220,
+        "active_wait_fraction": 0.15930485155684287,
+        "sink_legal_count": 165,
+        "sink_chosen_count": 42,
+        "revisit_transfers": 285,
+        "mean_normalized_entropy": 0.9884089191199025,
+        "mean_top_probability_gap": 0.028189965212888947,
+        "groups": {
+          "all_active": {
+            "count": 1381,
+            "advantage_mean": -2.0580528190010142e-17,
+            "raw_advantage_mean": 0.024258403499008346,
+            "base_reward_mean": -0.010377066739077961,
+            "progress_reward_mean": -0.0015032750639829952,
+            "wait_score_mean": -0.0026006185837327126,
+            "sink_score_mean": 0.00792904549075498,
+            "negative_advantage_fraction": 0.501086169442433
+          },
+          "WAIT": {
+            "count": 220,
+            "advantage_mean": -0.04985668041354478,
+            "raw_advantage_mean": 0.022478072976504754,
+            "base_reward_mean": -0.0057859848484848484,
+            "progress_reward_mean": -0.0029545138843369134,
+            "wait_score_mean": -0.028223482277536554,
+            "sink_score_mean": -0.0005809159325131753,
+            "negative_advantage_fraction": 0.5318181818181819
+          },
+          "forward": {
+            "count": 1161,
+            "advantage_mean": 0.009447432981033439,
+            "raw_advantage_mean": 0.024595761565288102,
+            "base_reward_mean": -0.011247039190353142,
+            "progress_reward_mean": -0.0012282771824344491,
+            "wait_score_mean": 0.0022547044245677557,
+            "sink_score_mean": 0.009541613546843693,
+            "negative_advantage_fraction": 0.49526270456503013
+          },
+          "Sink_chosen": {
+            "count": 42,
+            "advantage_mean": 0.2689443920059999,
+            "raw_advantage_mean": 0.03162240877852375,
+            "base_reward_mean": 0.010664682539682538,
+            "progress_reward_mean": 0.000743679505619792,
+            "wait_score_mean": -0.03090255465872551,
+            "sink_score_mean": 0.2158004241299484,
+            "negative_advantage_fraction": 0.40476190476190477
+          },
+          "Sink_ACK_success": {
+            "count": 19,
+            "advantage_mean": 0.9443155354823302,
+            "raw_advantage_mean": 0.057567284805530694,
+            "base_reward_mean": 0.031387061403508776,
+            "progress_reward_mean": 0.00436435090318395,
+            "wait_score_mean": -0.11884665758938655,
+            "sink_score_mean": 0.7406388527318042,
+            "negative_advantage_fraction": 0.10526315789473684
+          },
+          "Sink_legal_other": {
+            "count": 123,
+            "advantage_mean": -0.05755423244894394,
+            "raw_advantage_mean": 0.017243798978272825,
+            "base_reward_mean": -0.018309620596205962,
+            "progress_reward_mean": -0.0024827816023075488,
+            "wait_score_mean": 0.019471233656699245,
+            "sink_score_mean": 0.015336536660770677,
+            "negative_advantage_fraction": 0.5284552845528455
+          },
+          "successful_revisit": {
+            "count": 285,
+            "advantage_mean": 0.12408085601442322,
+            "raw_advantage_mean": 0.029110102795040574,
+            "base_reward_mean": -0.01659722222222222,
+            "progress_reward_mean": 0.0009242448839607393,
+            "wait_score_mean": -0.02086546093555478,
+            "sink_score_mean": 0.0006543754139866347,
+            "negative_advantage_fraction": 0.5052631578947369
+          },
+          "revisit_with_other_delivery": {
+            "count": 37,
+            "advantage_mean": 1.030496784255056,
+            "raw_advantage_mean": 0.05846151117201833,
+            "base_reward_mean": 0.03129222972972973,
+            "progress_reward_mean": 0.004570163595053109,
+            "wait_score_mean": -0.174642110761195,
+            "sink_score_mean": -0.000851742666351758,
+            "negative_advantage_fraction": 0.10810810810810811
+          }
+        },
+        "value_coordinate_error_max": 2.220446049250313e-16
+      }
+    ],
+    "packet_delivery_differences": [
+      {
+        "episode": 0,
+        "packet_id": 13,
+        "baseline": {
+          "episode": 0,
+          "packet_id": 13,
+          "route": [
+            13,
+            19,
+            24
+          ],
+          "delivered": true,
+          "delivery_step": 21,
+          "service_wait": 0,
+          "forced_wait": 0,
+          "queued_behind": 13,
+          "forward_attempts": 8,
+          "alive_slots": 21
+        },
+        "alpha01": {
+          "episode": 0,
+          "packet_id": 13,
+          "route": [
+            13,
+            17,
+            12,
+            17,
+            12,
+            17,
+            12,
+            17,
+            12,
+            17,
+            12
+          ],
+          "delivered": false,
+          "delivery_step": null,
+          "service_wait": 0,
+          "forced_wait": 0,
+          "queued_behind": 69,
+          "forward_attempts": 11,
+          "alive_slots": 80
+        }
+      },
+      {
+        "episode": 1,
+        "packet_id": 13,
+        "baseline": {
+          "episode": 1,
+          "packet_id": 13,
+          "route": [
+            13,
+            19,
+            24
+          ],
+          "delivered": true,
+          "delivery_step": 8,
+          "service_wait": 0,
+          "forced_wait": 0,
+          "queued_behind": 6,
+          "forward_attempts": 2,
+          "alive_slots": 8
+        },
+        "alpha01": {
+          "episode": 1,
+          "packet_id": 13,
+          "route": [
+            13,
+            17,
+            12,
+            17,
+            12,
+            17,
+            12,
+            17,
+            12,
+            17,
+            12
+          ],
+          "delivered": false,
+          "delivery_step": null,
+          "service_wait": 0,
+          "forced_wait": 0,
+          "queued_behind": 63,
+          "forward_attempts": 17,
+          "alive_slots": 80
+        }
+      }
+    ],
+    "same_inputs": {
+      "own_probability_max_error": 5.960464477539063e-08,
+      "executed_environment_steps": 0,
+      "optimizer_updates": 0,
+      "fingerprints": {
+        "A": {
+          "actor_state_sha256": "883fe6c43960b1a88ed9b7810437913e7592731b854773736a5b5f0816868915",
+          "checkpoint_sha256": "4d65f2cf04faacb6a3198f9956dd9bfd7e2f69262c9de11ed0af1585c6c66c4e",
+          "weights_unchanged": true,
+          "RNG_unchanged": true
+        },
+        "task_return": {
+          "actor_state_sha256": "e9ecaa2bdf7775c3c6d153ea47c3ce289829fe79acbab6bed9ffe2afda13a50c",
+          "checkpoint_sha256": "12c261118dd66dbe791909c4c437be771462fcc316b14c9e38bc7fb5ddfc01cd",
+          "weights_unchanged": true,
+          "RNG_unchanged": true
+        },
+        "alpha01": {
+          "actor_state_sha256": "dd6ace0e81fba14191a4ccf70cfc1256262ea4976c65acc0c554bd910116a928",
+          "checkpoint_sha256": "d2d4953adb67d236095f07001b4fd8f7da119c318ee27d6fa00d202fd01e7b52",
+          "weights_unchanged": true,
+          "RNG_unchanged": true
+        }
+      },
+      "summaries": {
+        "A": {
+          "active_decisions": 1360,
+          "same_action": 842,
+          "low_WAIT_alt_forward": 150,
+          "low_forward_alt_WAIT": 15,
+          "sink_legal": 27,
+          "sink_chosen": 27,
+          "WAIT_minus_best_forward_on_low_WAIT": 0.007531540468335152
+        },
+        "task_return": {
+          "active_decisions": 1360,
+          "same_action": 38,
+          "low_WAIT_alt_forward": 961,
+          "low_forward_alt_WAIT": 0,
+          "sink_legal": 27,
+          "sink_chosen": 27,
+          "WAIT_minus_best_forward_on_low_WAIT": -0.07414491474628448
+        },
+        "alpha01": {
+          "active_decisions": 1360,
+          "same_action": 1360,
+          "low_WAIT_alt_forward": 0,
+          "low_forward_alt_WAIT": 0,
+          "sink_legal": 27,
+          "sink_chosen": 27,
+          "WAIT_minus_best_forward_on_low_WAIT": 0.034396011382341385
+        }
+      },
+      "packet13_examples": [
+        {
+          "episode": 0,
+          "step": 0,
+          "sender": 13,
+          "service_packet_id": 13,
+          "actual_action": 17,
+          "alternative_actions": {
+            "A": 19,
+            "task_return": 19,
+            "alpha01": 17
+          },
+          "rankings": {
+            "A": [
+              [
+                19,
+                0.14755839109420776
+              ],
+              [
+                17,
+                0.13918457925319672
+              ],
+              [
+                25,
+                0.1180029883980751
+              ],
+              [
+                8,
+                0.11101363599300385
+              ],
+              [
+                7,
+                0.10861513763666153
+              ],
+              [
+                12,
+                0.10565391182899475
+              ],
+              [
+                9,
+                0.09961367398500443
+              ],
+              [
+                14,
+                0.09284800291061401
+              ],
+              [
+                18,
+                0.07750961929559708
+              ]
+            ],
+            "task_return": [
+              [
+                19,
+                0.1388627290725708
+              ],
+              [
+                18,
+                0.13249018788337708
+              ],
+              [
+                9,
+                0.11255306005477905
+              ],
+              [
+                8,
+                0.10934861749410629
+              ],
+              [
+                17,
+                0.10760213434696198
+              ],
+              [
+                7,
+                0.10295829176902771
+              ],
+              [
+                14,
+                0.10066351294517517
+              ],
+              [
+                12,
+                0.09900186955928802
+              ],
+              [
+                25,
+                0.09651962667703629
+              ]
+            ],
+            "alpha01": [
+              [
+                17,
+                0.15297941863536835
+              ],
+              [
+                19,
+                0.15134796500205994
+              ],
+              [
+                12,
+                0.1345783770084381
+              ],
+              [
+                18,
+                0.11683674901723862
+              ],
+              [
+                25,
+                0.11341854929924011
+              ],
+              [
+                9,
+                0.09195616096258163
+              ],
+              [
+                7,
+                0.09114623069763184
+              ],
+              [
+                14,
+                0.07659752666950226
+              ],
+              [
+                8,
+                0.07113901525735855
+              ]
+            ]
+          }
+        },
+        {
+          "episode": 0,
+          "step": 5,
+          "sender": 17,
+          "service_packet_id": 13,
+          "actual_action": 12,
+          "alternative_actions": {
+            "A": 16,
+            "task_return": 22,
+            "alpha01": 12
+          },
+          "rankings": {
+            "A": [
+              [
+                16,
+                0.1727510243654251
+              ],
+              [
+                23,
+                0.14547258615493774
+              ],
+              [
+                25,
+                0.13177138566970825
+              ],
+              [
+                12,
+                0.11976651847362518
+              ],
+              [
+                22,
+                0.10483799129724503
+              ],
+              [
+                18,
+                0.08793452382087708
+              ],
+              [
+                11,
+                0.08787427097558975
+              ],
+              [
+                13,
+                0.07718583941459656
+              ],
+              [
+                21,
+                0.07240583002567291
+              ]
+            ],
+            "task_return": [
+              [
+                22,
+                0.13068556785583496
+              ],
+              [
+                13,
+                0.128135085105896
+              ],
+              [
+                21,
+                0.126885324716568
+              ],
+              [
+                18,
+                0.12016211450099945
+              ],
+              [
+                11,
+                0.1172051802277565
+              ],
+              [
+                23,
+                0.10426328331232071
+              ],
+              [
+                16,
+                0.09610576182603836
+              ],
+              [
+                12,
+                0.08971653133630753
+              ],
+              [
+                25,
+                0.08684118837118149
+              ]
+            ],
+            "alpha01": [
+              [
+                12,
+                0.1444062441587448
+              ],
+              [
+                18,
+                0.1284516155719757
+              ],
+              [
+                11,
+                0.1271297037601471
+              ],
+              [
+                22,
+                0.12380996346473694
+              ],
+              [
+                25,
+                0.1235494464635849
+              ],
+              [
+                23,
+                0.1030624657869339
+              ],
+              [
+                13,
+                0.10023916512727737
+              ],
+              [
+                16,
+                0.0833195373415947
+              ],
+              [
+                21,
+                0.06603183597326279
+              ]
+            ]
+          }
+        },
+        {
+          "episode": 0,
+          "step": 7,
+          "sender": 12,
+          "service_packet_id": 13,
+          "actual_action": 17,
+          "alternative_actions": {
+            "A": 16,
+            "task_return": 13,
+            "alpha01": 17
+          },
+          "rankings": {
+            "A": [
+              [
+                16,
+                0.15803751349449158
+              ],
+              [
+                17,
+                0.14567553997039795
+              ],
+              [
+                25,
+                0.12153556942939758
+              ],
+              [
+                8,
+                0.11645864695310593
+              ],
+              [
+                6,
+                0.11319435387849808
+              ],
+              [
+                7,
+                0.11308424174785614
+              ],
+              [
+                18,
+                0.08071073889732361
+              ],
+              [
+                11,
+                0.08063402771949768
+              ],
+              [
+                13,
+                0.07066931575536728
+              ]
+            ],
+            "task_return": [
+              [
+                13,
+                0.1381508708000183
+              ],
+              [
+                18,
+                0.12522420287132263
+              ],
+              [
+                11,
+                0.12259964644908905
+              ],
+              [
+                6,
+                0.11771167814731598
+              ],
+              [
+                16,
+                0.10352391749620438
+              ],
+              [
+                8,
+                0.10275480151176453
+              ],
+              [
+                17,
+                0.10134538263082504
+              ],
+              [
+                7,
+                0.09739228338003159
+              ],
+              [
+                25,
+                0.09129723906517029
+              ]
+            ],
+            "alpha01": [
+              [
+                17,
+                0.16480010747909546
+              ],
+              [
+                18,
+                0.12691637873649597
+              ],
+              [
+                11,
+                0.12595655024051666
+              ],
+              [
+                25,
+                0.12249895930290222
+              ],
+              [
+                6,
+                0.10213585197925568
+              ],
+              [
+                13,
+                0.09950386732816696
+              ],
+              [
+                7,
+                0.09858442097902298
+              ],
+              [
+                16,
+                0.08272716403007507
+              ],
+              [
+                8,
+                0.07687675207853317
+              ]
+            ]
+          }
+        },
+        {
+          "episode": 0,
+          "step": 19,
+          "sender": 17,
+          "service_packet_id": 13,
+          "actual_action": 12,
+          "alternative_actions": {
+            "A": 16,
+            "task_return": 22,
+            "alpha01": 12
+          },
+          "rankings": {
+            "A": [
+              [
+                16,
+                0.17271482944488525
+              ],
+              [
+                23,
+                0.14551718533039093
+              ],
+              [
+                25,
+                0.13177990913391113
+              ],
+              [
+                12,
+                0.11980562657117844
+              ],
+              [
+                22,
+                0.10481724143028259
+              ],
+              [
+                18,
+                0.08794258534908295
+              ],
+              [
+                11,
+                0.08783993124961853
+              ],
+              [
+                13,
+                0.07720154523849487
+              ],
+              [
+                21,
+                0.07238117605447769
+              ]
+            ],
+            "task_return": [
+              [
+                22,
+                0.1307263970375061
+              ],
+              [
+                13,
+                0.1280679702758789
+              ],
+              [
+                21,
+                0.1269025355577469
+              ],
+              [
+                18,
+                0.12017704546451569
+              ],
+              [
+                11,
+                0.11717712879180908
+              ],
+              [
+                23,
+                0.10425091534852982
+              ],
+              [
+                16,
+                0.09608015418052673
+              ],
+              [
+                12,
+                0.08977267891168594
+              ],
+              [
+                25,
+                0.08684523403644562
+              ]
+            ],
+            "alpha01": [
+              [
+                12,
+                0.14446310698986053
+              ],
+              [
+                18,
+                0.12843887507915497
+              ],
+              [
+                11,
+                0.12717993557453156
+              ],
+              [
+                22,
+                0.1238299310207367
+              ],
+              [
+                25,
+                0.12351973354816437
+              ],
+              [
+                23,
+                0.10303498804569244
+              ],
+              [
+                13,
+                0.10024082660675049
+              ],
+              [
+                16,
+                0.08327315747737885
+              ],
+              [
+                21,
+                0.0660194531083107
+              ]
+            ]
+          }
+        },
+        {
+          "episode": 0,
+          "step": 20,
+          "sender": 12,
+          "service_packet_id": 13,
+          "actual_action": 17,
+          "alternative_actions": {
+            "A": 16,
+            "task_return": 13,
+            "alpha01": 17
+          },
+          "rankings": {
+            "A": [
+              [
+                16,
+                0.1580212563276291
+              ],
+              [
+                17,
+                0.1454896330833435
+              ],
+              [
+                25,
+                0.12164805829524994
+              ],
+              [
+                8,
+                0.11644391715526581
+              ],
+              [
+                7,
+                0.11314145475625992
+              ],
+              [
+                6,
+                0.11311984807252884
+              ],
+              [
+                18,
+                0.08071526885032654
+              ],
+              [
+                11,
+                0.08065252006053925
+              ],
+              [
+                13,
+                0.07076799124479294
+              ]
+            ],
+            "task_return": [
+              [
+                13,
+                0.13832956552505493
+              ],
+              [
+                18,
+                0.12497510015964508
+              ],
+              [
+                11,
+                0.12239550799131393
+              ],
+              [
+                6,
+                0.11767403036355972
+              ],
+              [
+                16,
+                0.10364201664924622
+              ],
+              [
+                8,
+                0.10278759151697159
+              ],
+              [
+                17,
+                0.10153979063034058
+              ],
+              [
+                7,
+                0.09732051938772202
+              ],
+              [
+                25,
+                0.09133589267730713
+              ]
+            ],
+            "alpha01": [
+              [
+                17,
+                0.16465669870376587
+              ],
+              [
+                18,
+                0.12686945497989655
+              ],
+              [
+                11,
+                0.12604910135269165
+              ],
+              [
+                25,
+                0.1226113960146904
+              ],
+              [
+                6,
+                0.10204579681158066
+              ],
+              [
+                13,
+                0.09953388571739197
+              ],
+              [
+                7,
+                0.09867347776889801
+              ],
+              [
+                16,
+                0.0827517881989479
+              ],
+              [
+                8,
+                0.07680843770503998
+              ]
+            ]
+          }
+        },
+        {
+          "episode": 0,
+          "step": 35,
+          "sender": 17,
+          "service_packet_id": 13,
+          "actual_action": 12,
+          "alternative_actions": {
+            "A": 16,
+            "task_return": 22,
+            "alpha01": 12
+          },
+          "rankings": {
+            "A": [
+              [
+                16,
+                0.1726568341255188
+              ],
+              [
+                23,
+                0.14555330574512482
+              ],
+              [
+                25,
+                0.13170978426933289
+              ],
+              [
+                12,
+                0.11984889209270477
+              ],
+              [
+                22,
+                0.1048135980963707
+              ],
+              [
+                18,
+                0.08795968443155289
+              ],
+              [
+                11,
+                0.08782454580068588
+              ],
+              [
+                13,
+                0.07725625485181808
+              ],
+              [
+                21,
+                0.07237706333398819
+              ]
+            ],
+            "task_return": [
+              [
+                22,
+                0.13074305653572083
+              ],
+              [
+                13,
+                0.12812823057174683
+              ],
+              [
+                21,
+                0.12685438990592957
+              ],
+              [
+                18,
+                0.12016725540161133
+              ],
+              [
+                11,
+                0.11718924343585968
+              ],
+              [
+                23,
+                0.10424727201461792
+              ],
+              [
+                16,
+                0.09605148434638977
+              ],
+              [
+                12,
+                0.08978883177042007
+              ],
+              [
+                25,
+                0.08683013170957565
+              ]
+            ],
+            "alpha01": [
+              [
+                12,
+                0.1444002091884613
+              ],
+              [
+                18,
+                0.12847952544689178
+              ],
+              [
+                11,
+                0.1272207498550415
+              ],
+              [
+                22,
+                0.1238652691245079
+              ],
+              [
+                25,
+                0.12347618490457535
+              ],
+              [
+                23,
+                0.1030232161283493
+              ],
+              [
+                13,
+                0.10027854889631271
+              ],
+              [
+                16,
+                0.0832308903336525
+              ],
+              [
+                21,
+                0.06602555513381958
+              ]
+            ]
+          }
+        },
+        {
+          "episode": 0,
+          "step": 41,
+          "sender": 12,
+          "service_packet_id": 13,
+          "actual_action": 17,
+          "alternative_actions": {
+            "A": 16,
+            "task_return": 13,
+            "alpha01": 17
+          },
+          "rankings": {
+            "A": [
+              [
+                16,
+                0.15804189443588257
+              ],
+              [
+                17,
+                0.14557598531246185
+              ],
+              [
+                25,
+                0.12152907252311707
+              ],
+              [
+                8,
+                0.11650371551513672
+              ],
+              [
+                6,
+                0.1131509318947792
+              ],
+              [
+                7,
+                0.11309094727039337
+              ],
+              [
+                18,
+                0.08072420209646225
+              ],
+              [
+                11,
+                0.08062692731618881
+              ],
+              [
+                13,
+                0.07075635343790054
+              ]
+            ],
+            "task_return": [
+              [
+                13,
+                0.13830971717834473
+              ],
+              [
+                18,
+                0.12497549504041672
+              ],
+              [
+                11,
+                0.12241168320178986
+              ],
+              [
+                6,
+                0.1176375150680542
+              ],
+              [
+                16,
+                0.10363772511482239
+              ],
+              [
+                8,
+                0.10282471030950546
+              ],
+              [
+                17,
+                0.10152468830347061
+              ],
+              [
+                7,
+                0.09736712276935577
+              ],
+              [
+                25,
+                0.09131135046482086
+              ]
+            ],
+            "alpha01": [
+              [
+                17,
+                0.164717435836792
+              ],
+              [
+                18,
+                0.12690407037734985
+              ],
+              [
+                11,
+                0.1260332465171814
+              ],
+              [
+                25,
+                0.12255924195051193
+              ],
+              [
+                6,
+                0.1020679771900177
+              ],
+              [
+                13,
+                0.09954304993152618
+              ],
+              [
+                7,
+                0.09861627966165543
+              ],
+              [
+                16,
+                0.0827304869890213
+              ],
+              [
+                8,
+                0.07682818919420242
+              ]
+            ]
+          }
+        },
+        {
+          "episode": 0,
+          "step": 55,
+          "sender": 17,
+          "service_packet_id": 13,
+          "actual_action": 12,
+          "alternative_actions": {
+            "A": 16,
+            "task_return": 22,
+            "alpha01": 12
+          },
+          "rankings": {
+            "A": [
+              [
+                16,
+                0.17265762388706207
+              ],
+              [
+                23,
+                0.14555715024471283
+              ],
+              [
+                25,
+                0.13173744082450867
+              ],
+              [
+                12,
+                0.11983934789896011
+              ],
+              [
+                22,
+                0.10481099039316177
+              ],
+              [
+                18,
+                0.08795498311519623
+              ],
+              [
+                11,
+                0.087823286652565
+              ],
+              [
+                13,
+                0.0772424042224884
+              ],
+              [
+                21,
+                0.07237681746482849
+              ]
+            ],
+            "task_return": [
+              [
+                22,
+                0.1307382434606552
+              ],
+              [
+                13,
+                0.12816207110881805
+              ],
+              [
+                21,
+                0.12685438990592957
+              ],
+              [
+                18,
+                0.12016245722770691
+              ],
+              [
+                11,
+                0.11720290035009384
+              ],
+              [
+                23,
+                0.1042337641119957
+              ],
+              [
+                16,
+                0.09606022387742996
+              ],
+              [
+                12,
+                0.08975361287593842
+              ],
+              [
+                25,
+                0.08683229982852936
+              ]
+            ],
+            "alpha01": [
+              [
+                12,
+                0.14439305663108826
+              ],
+              [
+                18,
+                0.12847791612148285
+              ],
+              [
+                11,
+                0.12720724940299988
+              ],
+              [
+                22,
+                0.1238655298948288
+              ],
+              [
+                25,
+                0.12348797917366028
+              ],
+              [
+                23,
+                0.10303084552288055
+              ],
+              [
+                13,
+                0.10026653856039047
+              ],
+              [
+                16,
+                0.08324439078569412
+              ],
+              [
+                21,
+                0.06602635979652405
+              ]
+            ]
+          }
+        },
+        {
+          "episode": 0,
+          "step": 64,
+          "sender": 12,
+          "service_packet_id": 13,
+          "actual_action": 17,
+          "alternative_actions": {
+            "A": 16,
+            "task_return": 13,
+            "alpha01": 17
+          },
+          "rankings": {
+            "A": [
+              [
+                16,
+                0.1580529808998108
+              ],
+              [
+                17,
+                0.14563630521297455
+              ],
+              [
+                25,
+                0.12151095271110535
+              ],
+              [
+                8,
+                0.11650312691926956
+              ],
+              [
+                6,
+                0.11316832154989243
+              ],
+              [
+                7,
+                0.1130777895450592
+              ],
+              [
+                18,
+                0.08072388917207718
+              ],
+              [
+                11,
+                0.08061130344867706
+              ],
+              [
+                13,
+                0.07071534544229507
+              ]
+            ],
+            "task_return": [
+              [
+                13,
+                0.1382579803466797
+              ],
+              [
+                18,
+                0.12503792345523834
+              ],
+              [
+                11,
+                0.12245338410139084
+              ],
+              [
+                6,
+                0.11767427623271942
+              ],
+              [
+                16,
+                0.10361592471599579
+              ],
+              [
+                8,
+                0.10281987488269806
+              ],
+              [
+                17,
+                0.10145770013332367
+              ],
+              [
+                7,
+                0.09739033877849579
+              ],
+              [
+                25,
+                0.09129258245229721
+              ]
+            ],
+            "alpha01": [
+              [
+                17,
+                0.1647937297821045
+              ],
+              [
+                18,
+                0.12691007554531097
+              ],
+              [
+                11,
+                0.12602892518043518
+              ],
+              [
+                25,
+                0.12252818048000336
+              ],
+              [
+                6,
+                0.1020827516913414
+              ],
+              [
+                13,
+                0.09953702986240387
+              ],
+              [
+                7,
+                0.09860377758741379
+              ],
+              [
+                16,
+                0.0827079713344574
+              ],
+              [
+                8,
+                0.07680756598711014
+              ]
+            ]
+          }
+        },
+        {
+          "episode": 0,
+          "step": 74,
+          "sender": 17,
+          "service_packet_id": 13,
+          "actual_action": 12,
+          "alternative_actions": {
+            "A": 16,
+            "task_return": 22,
+            "alpha01": 12
+          },
+          "rankings": {
+            "A": [
+              [
+                16,
+                0.1726805418729782
+              ],
+              [
+                23,
+                0.14553304016590118
+              ],
+              [
+                25,
+                0.13176320493221283
+              ],
+              [
+                12,
+                0.11982794851064682
+              ],
+              [
+                22,
+                0.10481519252061844
+              ],
+              [
+                18,
+                0.08794793486595154
+              ],
+              [
+                11,
+                0.087827667593956
+              ],
+              [
+                13,
+                0.07722029089927673
+              ],
+              [
+                21,
+                0.07238417118787766
+              ]
+            ],
+            "task_return": [
+              [
+                22,
+                0.13072440028190613
+              ],
+              [
+                13,
+                0.12821513414382935
+              ],
+              [
+                21,
+                0.12684640288352966
+              ],
+              [
+                18,
+                0.12015251815319061
+              ],
+              [
+                11,
+                0.11721203476190567
+              ],
+              [
+                23,
+                0.10423112660646439
+              ],
+              [
+                16,
+                0.09608148038387299
+              ],
+              [
+                12,
+                0.08971329778432846
+              ],
+              [
+                25,
+                0.08682364225387573
+              ]
+            ],
+            "alpha01": [
+              [
+                12,
+                0.14443829655647278
+              ],
+              [
+                18,
+                0.12845756113529205
+              ],
+              [
+                11,
+                0.1271946132183075
+              ],
+              [
+                22,
+                0.12384271621704102
+              ],
+              [
+                25,
+                0.1235017478466034
+              ],
+              [
+                23,
+                0.10303142666816711
+              ],
+              [
+                13,
+                0.10025710612535477
+              ],
+              [
+                16,
+                0.08325409144163132
+              ],
+              [
+                21,
+                0.06602241098880768
+              ]
+            ]
+          }
+        },
+        {
+          "episode": 0,
+          "step": 75,
+          "sender": 17,
+          "service_packet_id": 13,
+          "actual_action": 12,
+          "alternative_actions": {
+            "A": 16,
+            "task_return": 22,
+            "alpha01": 12
+          },
+          "rankings": {
+            "A": [
+              [
+                16,
+                0.1726813167333603
+              ],
+              [
+                23,
+                0.14553342759609222
+              ],
+              [
+                25,
+                0.13175751268863678
+              ],
+              [
+                12,
+                0.11982682347297668
+              ],
+              [
+                22,
+                0.1048164889216423
+              ],
+              [
+                18,
+                0.08794861286878586
+              ],
+              [
+                11,
+                0.08782992511987686
+              ],
+              [
+                13,
+                0.07722201198339462
+              ],
+              [
+                21,
+                0.07238392531871796
+              ]
+            ],
+            "task_return": [
+              [
+                22,
+                0.13072672486305237
+              ],
+              [
+                13,
+                0.12820279598236084
+              ],
+              [
+                21,
+                0.12684200704097748
+              ],
+              [
+                18,
+                0.12015416473150253
+              ],
+              [
+                11,
+                0.11720497906208038
+              ],
+              [
+                23,
+                0.10423722863197327
+              ],
+              [
+                16,
+                0.09608279913663864
+              ],
+              [
+                12,
+                0.0897265151143074
+              ],
+              [
+                25,
+                0.08682284504175186
+              ]
+            ],
+            "alpha01": [
+              [
+                12,
+                0.14444036781787872
+              ],
+              [
+                18,
+                0.12845872342586517
+              ],
+              [
+                11,
+                0.12719523906707764
+              ],
+              [
+                22,
+                0.12384241074323654
+              ],
+              [
+                25,
+                0.12350055575370789
+              ],
+              [
+                23,
+                0.10303089767694473
+              ],
+              [
+                13,
+                0.1002565249800682
+              ],
+              [
+                16,
+                0.08325378596782684
+              ],
+              [
+                21,
+                0.06602147966623306
+              ]
+            ]
+          }
+        },
+        {
+          "episode": 1,
+          "step": 0,
+          "sender": 13,
+          "service_packet_id": 13,
+          "actual_action": 17,
+          "alternative_actions": {
+            "A": 19,
+            "task_return": 19,
+            "alpha01": 17
+          },
+          "rankings": {
+            "A": [
+              [
+                19,
+                0.14755746722221375
+              ],
+              [
+                17,
+                0.13918229937553406
+              ],
+              [
+                25,
+                0.11800441145896912
+              ],
+              [
+                8,
+                0.11101392656564713
+              ],
+              [
+                7,
+                0.10861515253782272
+              ],
+              [
+                12,
+                0.10565461218357086
+              ],
+              [
+                9,
+                0.09961359947919846
+              ],
+              [
+                14,
+                0.09284795820713043
+              ],
+              [
+                18,
+                0.07751055061817169
+              ]
+            ],
+            "task_return": [
+              [
+                19,
+                0.138860821723938
+              ],
+              [
+                18,
+                0.1324855238199234
+              ],
+              [
+                9,
+                0.11255710572004318
+              ],
+              [
+                8,
+                0.10934998840093613
+              ],
+              [
+                17,
+                0.10760448127985
+              ],
+              [
+                7,
+                0.10295817255973816
+              ],
+              [
+                14,
+                0.10066375881433487
+              ],
+              [
+                12,
+                0.09900102019309998
+              ],
+              [
+                25,
+                0.0965190902352333
+              ]
+            ],
+            "alpha01": [
+              [
+                17,
+                0.1529778093099594
+              ],
+              [
+                19,
+                0.151348277926445
+              ],
+              [
+                12,
+                0.13458052277565002
+              ],
+              [
+                18,
+                0.11683613061904907
+              ],
+              [
+                25,
+                0.11341922730207443
+              ],
+              [
+                9,
+                0.09195663034915924
+              ],
+              [
+                7,
+                0.09114568680524826
+              ],
+              [
+                14,
+                0.07659748196601868
+              ],
+              [
+                8,
+                0.07113821804523468
+              ]
+            ]
+          }
+        },
+        {
+          "episode": 1,
+          "step": 3,
+          "sender": 17,
+          "service_packet_id": 13,
+          "actual_action": 12,
+          "alternative_actions": {
+            "A": 16,
+            "task_return": 22,
+            "alpha01": 12
+          },
+          "rankings": {
+            "A": [
+              [
+                16,
+                0.17270499467849731
+              ],
+              [
+                23,
+                0.1455189287662506
+              ],
+              [
+                25,
+                0.13174854218959808
+              ],
+              [
+                12,
+                0.11980429291725159
+              ],
+              [
+                22,
+                0.10482420772314072
+              ],
+              [
+                18,
+                0.08794458210468292
+              ],
+              [
+                11,
+                0.08784856647253036
+              ],
+              [
+                13,
+                0.07721640169620514
+              ],
+              [
+                21,
+                0.07238946855068207
+              ]
+            ],
+            "task_return": [
+              [
+                22,
+                0.13071388006210327
+              ],
+              [
+                13,
+                0.12812095880508423
+              ],
+              [
+                21,
+                0.12687800824642181
+              ],
+              [
+                18,
+                0.12016888707876205
+              ],
+              [
+                11,
+                0.1172008067369461
+              ],
+              [
+                23,
+                0.10425318032503128
+              ],
+              [
+                16,
+                0.09607379138469696
+              ],
+              [
+                12,
+                0.08975034207105637
+              ],
+              [
+                25,
+                0.08684015274047852
+              ]
+            ],
+            "alpha01": [
+              [
+                12,
+                0.1443856656551361
+              ],
+              [
+                18,
+                0.12847189605236053
+              ],
+              [
+                11,
+                0.12716971337795258
+              ],
+              [
+                22,
+                0.12384297698736191
+              ],
+              [
+                25,
+                0.12351781874895096
+              ],
+              [
+                23,
+                0.10304758697748184
+              ],
+              [
+                13,
+                0.10025466978549957
+              ],
+              [
+                16,
+                0.08328089118003845
+              ],
+              [
+                21,
+                0.06602874398231506
+              ]
+            ]
+          }
+        },
+        {
+          "episode": 1,
+          "step": 7,
+          "sender": 12,
+          "service_packet_id": 13,
+          "actual_action": 17,
+          "alternative_actions": {
+            "A": 16,
+            "task_return": 13,
+            "alpha01": 17
+          },
+          "rankings": {
+            "A": [
+              [
+                16,
+                0.15804003179073334
+              ],
+              [
+                17,
+                0.14556576311588287
+              ],
+              [
+                25,
+                0.12151981890201569
+              ],
+              [
+                8,
+                0.11650903522968292
+              ],
+              [
+                6,
+                0.1131361573934555
+              ],
+              [
+                7,
+                0.11309733241796494
+              ],
+              [
+                18,
+                0.08072032779455185
+              ],
+              [
+                11,
+                0.08063365519046783
+              ],
+              [
+                13,
+                0.07077790796756744
+              ]
+            ],
+            "task_return": [
+              [
+                13,
+                0.13832521438598633
+              ],
+              [
+                18,
+                0.12499155104160309
+              ],
+              [
+                11,
+                0.12244270741939545
+              ],
+              [
+                6,
+                0.11761774122714996
+              ],
+              [
+                16,
+                0.10362331569194794
+              ],
+              [
+                8,
+                0.10279176384210587
+              ],
+              [
+                17,
+                0.10151065140962601
+              ],
+              [
+                7,
+                0.09735981374979019
+              ],
+              [
+                25,
+                0.09133726358413696
+              ]
+            ],
+            "alpha01": [
+              [
+                17,
+                0.16466760635375977
+              ],
+              [
+                18,
+                0.12691231071949005
+              ],
+              [
+                11,
+                0.1260204166173935
+              ],
+              [
+                25,
+                0.12256335467100143
+              ],
+              [
+                6,
+                0.10206823796033859
+              ],
+              [
+                13,
+                0.0995444729924202
+              ],
+              [
+                7,
+                0.09861449897289276
+              ],
+              [
+                16,
+                0.08274952322244644
+              ],
+              [
+                8,
+                0.07685960829257965
+              ]
+            ]
+          }
+        },
+        {
+          "episode": 1,
+          "step": 18,
+          "sender": 17,
+          "service_packet_id": 13,
+          "actual_action": 12,
+          "alternative_actions": {
+            "A": 16,
+            "task_return": 22,
+            "alpha01": 12
+          },
+          "rankings": {
+            "A": [
+              [
+                16,
+                0.17266108095645905
+              ],
+              [
+                23,
+                0.14555500447750092
+              ],
+              [
+                25,
+                0.13175377249717712
+              ],
+              [
+                12,
+                0.11984660476446152
+              ],
+              [
+                22,
+                0.1048034206032753
+              ],
+              [
+                18,
+                0.0879674181342125
+              ],
+              [
+                11,
+                0.08780772984027863
+              ],
+              [
+                13,
+                0.07724086940288544
+              ],
+              [
+                21,
+                0.07236409932374954
+              ]
+            ],
+            "task_return": [
+              [
+                22,
+                0.13075479865074158
+              ],
+              [
+                13,
+                0.12809590995311737
+              ],
+              [
+                21,
+                0.1268695741891861
+              ],
+              [
+                18,
+                0.12017406523227692
+              ],
+              [
+                11,
+                0.11717677861452103
+              ],
+              [
+                23,
+                0.104233518242836
+              ],
+              [
+                16,
+                0.09606174379587173
+              ],
+              [
+                12,
+                0.08978930860757828
+              ],
+              [
+                25,
+                0.08684426546096802
+              ]
+            ],
+            "alpha01": [
+              [
+                12,
+                0.14446251094341278
+              ],
+              [
+                18,
+                0.12845145165920258
+              ],
+              [
+                11,
+                0.12723535299301147
+              ],
+              [
+                22,
+                0.12385107576847076
+              ],
+              [
+                25,
+                0.12346792221069336
+              ],
+              [
+                23,
+                0.10300647467374802
+              ],
+              [
+                13,
+                0.10027024894952774
+              ],
+              [
+                16,
+                0.08323322236537933
+              ],
+              [
+                21,
+                0.06602180004119873
+              ]
+            ]
+          }
+        },
+        {
+          "episode": 1,
+          "step": 21,
+          "sender": 12,
+          "service_packet_id": 13,
+          "actual_action": 17,
+          "alternative_actions": {
+            "A": 16,
+            "task_return": 13,
+            "alpha01": 17
+          },
+          "rankings": {
+            "A": [
+              [
+                16,
+                0.15800714492797852
+              ],
+              [
+                17,
+                0.14545229077339172
+              ],
+              [
+                25,
+                0.12163911759853363
+              ],
+              [
+                8,
+                0.11644919961690903
+              ],
+              [
+                7,
+                0.11314453929662704
+              ],
+              [
+                6,
+                0.1131163239479065
+              ],
+              [
+                18,
+                0.08072119951248169
+              ],
+              [
+                11,
+                0.08066797256469727
+              ],
+              [
+                13,
+                0.07080220431089401
+              ]
+            ],
+            "task_return": [
+              [
+                13,
+                0.1383444368839264
+              ],
+              [
+                18,
+                0.12494397163391113
+              ],
+              [
+                11,
+                0.12237205356359482
+              ],
+              [
+                6,
+                0.1176634132862091
+              ],
+              [
+                16,
+                0.1036541610956192
+              ],
+              [
+                8,
+                0.10278897732496262
+              ],
+              [
+                17,
+                0.10157258808612823
+              ],
+              [
+                7,
+                0.0973106250166893
+              ],
+              [
+                25,
+                0.09134968370199203
+              ]
+            ],
+            "alpha01": [
+              [
+                17,
+                0.1646028608083725
+              ],
+              [
+                18,
+                0.12686927616596222
+              ],
+              [
+                11,
+                0.12604430317878723
+              ],
+              [
+                25,
+                0.12262257933616638
+              ],
+              [
+                6,
+                0.10204353928565979
+              ],
+              [
+                13,
+                0.09953795373439789
+              ],
+              [
+                7,
+                0.09867806732654572
+              ],
+              [
+                16,
+                0.08277038484811783
+              ],
+              [
+                8,
+                0.07683106511831284
+              ]
+            ]
+          }
+        },
+        {
+          "episode": 1,
+          "step": 22,
+          "sender": 12,
+          "service_packet_id": 13,
+          "actual_action": 17,
+          "alternative_actions": {
+            "A": 16,
+            "task_return": 13,
+            "alpha01": 17
+          },
+          "rankings": {
+            "A": [
+              [
+                16,
+                0.15801428258419037
+              ],
+              [
+                17,
+                0.14547409117221832
+              ],
+              [
+                25,
+                0.1215391755104065
+              ],
+              [
+                8,
+                0.11650659143924713
+              ],
+              [
+                6,
+                0.11312327533960342
+              ],
+              [
+                7,
+                0.11311329156160355
+              ],
+              [
+                18,
+                0.0807330533862114
+              ],
+              [
+                11,
+                0.08066034317016602
+              ],
+              [
+                13,
+                0.07083586603403091
+              ]
+            ],
+            "task_return": [
+              [
+                13,
+                0.13836193084716797
+              ],
+              [
+                18,
+                0.12492021918296814
+              ],
+              [
+                11,
+                0.12239602208137512
+              ],
+              [
+                6,
+                0.11758629977703094
+              ],
+              [
+                16,
+                0.10365071147680283
+              ],
+              [
+                8,
+                0.10279582440853119
+              ],
+              [
+                17,
+                0.10158222913742065
+              ],
+              [
+                7,
+                0.09734191000461578
+              ],
+              [
+                25,
+                0.09136484563350677
+              ]
+            ],
+            "alpha01": [
+              [
+                17,
+                0.16456572711467743
+              ],
+              [
+                18,
+                0.12690302729606628
+              ],
+              [
+                11,
+                0.1260181963443756
+              ],
+              [
+                25,
+                0.12259191274642944
+              ],
+              [
+                6,
+                0.10206232964992523
+              ],
+              [
+                13,
+                0.09955383092164993
+              ],
+              [
+                7,
+                0.09862826019525528
+              ],
+              [
+                16,
+                0.08278445154428482
+              ],
+              [
+                8,
+                0.07689233124256134
+              ]
+            ]
+          }
+        },
+        {
+          "episode": 1,
+          "step": 23,
+          "sender": 12,
+          "service_packet_id": 13,
+          "actual_action": 17,
+          "alternative_actions": {
+            "A": 16,
+            "task_return": 13,
+            "alpha01": 17
+          },
+          "rankings": {
+            "A": [
+              [
+                16,
+                0.1580178588628769
+              ],
+              [
+                17,
+                0.145493283867836
+              ],
+              [
+                25,
+                0.12152208387851715
+              ],
+              [
+                8,
+                0.11651194840669632
+              ],
+              [
+                6,
+                0.113120898604393
+              ],
+              [
+                7,
+                0.11311162263154984
+              ],
+              [
+                18,
+                0.08072809875011444
+              ],
+              [
+                11,
+                0.08065926283597946
+              ],
+              [
+                13,
+                0.0708349198102951
+              ]
+            ],
+            "task_return": [
+              [
+                13,
+                0.1383581906557083
+              ],
+              [
+                18,
+                0.12493244558572769
+              ],
+              [
+                11,
+                0.12240394949913025
+              ],
+              [
+                6,
+                0.11760157346725464
+              ],
+              [
+                16,
+                0.10364622622728348
+              ],
+              [
+                8,
+                0.10278657078742981
+              ],
+              [
+                17,
+                0.10156960040330887
+              ],
+              [
+                7,
+                0.09733832627534866
+              ],
+              [
+                25,
+                0.09136322885751724
+              ]
+            ],
+            "alpha01": [
+              [
+                17,
+                0.1645747572183609
+              ],
+              [
+                18,
+                0.12690728902816772
+              ],
+              [
+                11,
+                0.12601801753044128
+              ],
+              [
+                25,
+                0.12259089946746826
+              ],
+              [
+                6,
+                0.10205931216478348
+              ],
+              [
+                13,
+                0.09954937547445297
+              ],
+              [
+                7,
+                0.09863084554672241
+              ],
+              [
+                16,
+                0.08278177678585052
+              ],
+              [
+                8,
+                0.07688774913549423
+              ]
+            ]
+          }
+        },
+        {
+          "episode": 1,
+          "step": 24,
+          "sender": 12,
+          "service_packet_id": 13,
+          "actual_action": 17,
+          "alternative_actions": {
+            "A": 16,
+            "task_return": 13,
+            "alpha01": 17
+          },
+          "rankings": {
+            "A": [
+              [
+                16,
+                0.1580151468515396
+              ],
+              [
+                17,
+                0.14548207819461823
+              ],
+              [
+                25,
+                0.12152451276779175
+              ],
+              [
+                8,
+                0.1165120080113411
+              ],
+              [
+                6,
+                0.1131238043308258
+              ],
+              [
+                7,
+                0.11310911178588867
+              ],
+              [
+                18,
+                0.0807323306798935
+              ],
+              [
+                11,
+                0.08066197484731674
+              ],
+              [
+                13,
+                0.07083901762962341
+              ]
+            ],
+            "task_return": [
+              [
+                13,
+                0.13836225867271423
+              ],
+              [
+                18,
+                0.12492554634809494
+              ],
+              [
+                11,
+                0.1224013939499855
+              ],
+              [
+                6,
+                0.11758321523666382
+              ],
+              [
+                16,
+                0.10364776849746704
+              ],
+              [
+                8,
+                0.10279229283332825
+              ],
+              [
+                17,
+                0.10157658904790878
+              ],
+              [
+                7,
+                0.09734290838241577
+              ],
+              [
+                25,
+                0.09136796742677689
+              ]
+            ],
+            "alpha01": [
+              [
+                17,
+                0.16456124186515808
+              ],
+              [
+                18,
+                0.12690706551074982
+              ],
+              [
+                11,
+                0.12601391971111298
+              ],
+              [
+                25,
+                0.12258988618850708
+              ],
+              [
+                6,
+                0.10206258296966553
+              ],
+              [
+                13,
+                0.09955349564552307
+              ],
+              [
+                7,
+                0.09862601011991501
+              ],
+              [
+                16,
+                0.08278632164001465
+              ],
+              [
+                8,
+                0.076899453997612
+              ]
+            ]
+          }
+        },
+        {
+          "episode": 1,
+          "step": 33,
+          "sender": 17,
+          "service_packet_id": 13,
+          "actual_action": 12,
+          "alternative_actions": {
+            "A": 16,
+            "task_return": 22,
+            "alpha01": 12
+          },
+          "rankings": {
+            "A": [
+              [
+                16,
+                0.17261581122875214
+              ],
+              [
+                23,
+                0.1455741971731186
+              ],
+              [
+                25,
+                0.13174223899841309
+              ],
+              [
+                12,
+                0.11987319588661194
+              ],
+              [
+                22,
+                0.10480233281850815
+              ],
+              [
+                18,
+                0.08796494454145432
+              ],
+              [
+                11,
+                0.08779861778020859
+              ],
+              [
+                13,
+                0.07725659012794495
+              ],
+              [
+                21,
+                0.07237202674150467
+              ]
+            ],
+            "task_return": [
+              [
+                22,
+                0.13076241314411163
+              ],
+              [
+                13,
+                0.1282399594783783
+              ],
+              [
+                21,
+                0.12680447101593018
+              ],
+              [
+                18,
+                0.12014663219451904
+              ],
+              [
+                11,
+                0.11719432473182678
+              ],
+              [
+                23,
+                0.10421759635210037
+              ],
+              [
+                16,
+                0.096073217689991
+              ],
+              [
+                12,
+                0.08974859118461609
+              ],
+              [
+                25,
+                0.08681276440620422
+              ]
+            ],
+            "alpha01": [
+              [
+                12,
+                0.1444716453552246
+              ],
+              [
+                18,
+                0.12845903635025024
+              ],
+              [
+                11,
+                0.12724630534648895
+              ],
+              [
+                22,
+                0.12386725842952728
+              ],
+              [
+                25,
+                0.12346324324607849
+              ],
+              [
+                23,
+                0.1030045598745346
+              ],
+              [
+                13,
+                0.10026980936527252
+              ],
+              [
+                16,
+                0.08320288360118866
+              ],
+              [
+                21,
+                0.06601527333259583
+              ]
+            ]
+          }
+        },
+        {
+          "episode": 1,
+          "step": 34,
+          "sender": 17,
+          "service_packet_id": 13,
+          "actual_action": 12,
+          "alternative_actions": {
+            "A": 16,
+            "task_return": 22,
+            "alpha01": 12
+          },
+          "rankings": {
+            "A": [
+              [
+                16,
+                0.17261947691440582
+              ],
+              [
+                23,
+                0.14557676017284393
+              ],
+              [
+                25,
+                0.1317291408777237
+              ],
+              [
+                12,
+                0.11986624449491501
+              ],
+              [
+                22,
+                0.10480408370494843
+              ],
+              [
+                18,
+                0.08796558529138565
+              ],
+              [
+                11,
+                0.0878053531050682
+              ],
+              [
+                13,
+                0.07726149260997772
+              ],
+              [
+                21,
+                0.07237180322408676
+              ]
+            ],
+            "task_return": [
+              [
+                22,
+                0.13075874745845795
+              ],
+              [
+                13,
+                0.12817972898483276
+              ],
+              [
+                21,
+                0.1268288642168045
+              ],
+              [
+                18,
+                0.12015856057405472
+              ],
+              [
+                11,
+                0.11719430983066559
+              ],
+              [
+                23,
+                0.10422498732805252
+              ],
+              [
+                16,
+                0.09605713188648224
+              ],
+              [
+                12,
+                0.08977100253105164
+              ],
+              [
+                25,
+                0.08682665973901749
+              ]
+            ],
+            "alpha01": [
+              [
+                12,
+                0.14442190527915955
+              ],
+              [
+                18,
+                0.12847502529621124
+              ],
+              [
+                11,
+                0.12723837792873383
+              ],
+              [
+                22,
+                0.12387694418430328
+              ],
+              [
+                25,
+                0.12346599996089935
+              ],
+              [
+                23,
+                0.10301309823989868
+              ],
+              [
+                13,
+                0.10027417540550232
+              ],
+              [
+                16,
+                0.08321349322795868
+              ],
+              [
+                21,
+                0.06602104008197784
+              ]
+            ]
+          }
+        },
+        {
+          "episode": 1,
+          "step": 35,
+          "sender": 17,
+          "service_packet_id": 13,
+          "actual_action": 12,
+          "alternative_actions": {
+            "A": 16,
+            "task_return": 22,
+            "alpha01": 12
+          },
+          "rankings": {
+            "A": [
+              [
+                16,
+                0.17261795699596405
+              ],
+              [
+                23,
+                0.14557652175426483
+              ],
+              [
+                25,
+                0.13173212110996246
+              ],
+              [
+                12,
+                0.11986760795116425
+              ],
+              [
+                22,
+                0.10480382293462753
+              ],
+              [
+                18,
+                0.08796633780002594
+              ],
+              [
+                11,
+                0.08780369907617569
+              ],
+              [
+                13,
+                0.0772598460316658
+              ],
+              [
+                21,
+                0.07237200438976288
+              ]
+            ],
+            "task_return": [
+              [
+                22,
+                0.13075707852840424
+              ],
+              [
+                13,
+                0.12818732857704163
+              ],
+              [
+                21,
+                0.12682369351387024
+              ],
+              [
+                18,
+                0.12015754729509354
+              ],
+              [
+                11,
+                0.11719632893800735
+              ],
+              [
+                23,
+                0.10422629117965698
+              ],
+              [
+                16,
+                0.0960586816072464
+              ],
+              [
+                12,
+                0.08976731449365616
+              ],
+              [
+                25,
+                0.08682579547166824
+              ]
+            ],
+            "alpha01": [
+              [
+                12,
+                0.1444299966096878
+              ],
+              [
+                18,
+                0.1284731924533844
+              ],
+              [
+                11,
+                0.12723955512046814
+              ],
+              [
+                22,
+                0.12387488782405853
+              ],
+              [
+                25,
+                0.12346427887678146
+              ],
+              [
+                23,
+                0.10301191359758377
+              ],
+              [
+                13,
+                0.10027356445789337
+              ],
+              [
+                16,
+                0.08321235328912735
+              ],
+              [
+                21,
+                0.06602029502391815
+              ]
+            ]
+          }
+        },
+        {
+          "episode": 1,
+          "step": 36,
+          "sender": 17,
+          "service_packet_id": 13,
+          "actual_action": 12,
+          "alternative_actions": {
+            "A": 16,
+            "task_return": 22,
+            "alpha01": 12
+          },
+          "rankings": {
+            "A": [
+              [
+                16,
+                0.17262232303619385
+              ],
+              [
+                23,
+                0.14557959139347076
+              ],
+              [
+                25,
+                0.1317257434129715
+              ],
+              [
+                12,
+                0.1198626384139061
+              ],
+              [
+                22,
+                0.10480383038520813
+              ],
+              [
+                18,
+                0.08796447515487671
+              ],
+              [
+                11,
+                0.08780792355537415
+              ],
+              [
+                13,
+                0.07726259529590607
+              ],
+              [
+                21,
+                0.07237084954977036
+              ]
+            ],
+            "task_return": [
+              [
+                22,
+                0.13075615465641022
+              ],
+              [
+                13,
+                0.12817926704883575
+              ],
+              [
+                21,
+                0.12683354318141937
+              ],
+              [
+                18,
+                0.12015856057405472
+              ],
+              [
+                11,
+                0.1171988844871521
+              ],
+              [
+                23,
+                0.10422462970018387
+              ],
+              [
+                16,
+                0.09605371206998825
+              ],
+              [
+                12,
+                0.089767687022686
+              ],
+              [
+                25,
+                0.0868276059627533
+              ]
+            ],
+            "alpha01": [
+              [
+                12,
+                0.14440572261810303
+              ],
+              [
+                18,
+                0.12848055362701416
+              ],
+              [
+                11,
+                0.1272350251674652
+              ],
+              [
+                22,
+                0.1238790825009346
+              ],
+              [
+                25,
+                0.12346654385328293
+              ],
+              [
+                23,
+                0.10301706194877625
+              ],
+              [
+                13,
+                0.10027475655078888
+              ],
+              [
+                16,
+                0.08321776986122131
+              ],
+              [
+                21,
+                0.0660235658288002
+              ]
+            ]
+          }
+        },
+        {
+          "episode": 1,
+          "step": 48,
+          "sender": 12,
+          "service_packet_id": 13,
+          "actual_action": 17,
+          "alternative_actions": {
+            "A": 16,
+            "task_return": 13,
+            "alpha01": 17
+          },
+          "rankings": {
+            "A": [
+              [
+                16,
+                0.15804898738861084
+              ],
+              [
+                17,
+                0.14560404419898987
+              ],
+              [
+                25,
+                0.12151257693767548
+              ],
+              [
+                8,
+                0.1165061816573143
+              ],
+              [
+                6,
+                0.11315790563821793
+              ],
+              [
+                7,
+                0.1130831241607666
+              ],
+              [
+                18,
+                0.0807233527302742
+              ],
+              [
+                11,
+                0.08062214404344559
+              ],
+              [
+                13,
+                0.07074172794818878
+              ]
+            ],
+            "task_return": [
+              [
+                13,
+                0.1382884681224823
+              ],
+              [
+                18,
+                0.1250111609697342
+              ],
+              [
+                11,
+                0.12243695557117462
+              ],
+              [
+                6,
+                0.11765061318874359
+              ],
+              [
+                16,
+                0.10362289845943451
+              ],
+              [
+                8,
+                0.10281755030155182
+              ],
+              [
+                17,
+                0.10148943215608597
+              ],
+              [
+                7,
+                0.09737636148929596
+              ],
+              [
+                25,
+                0.09130652248859406
+              ]
+            ],
+            "alpha01": [
+              [
+                17,
+                0.1647443175315857
+              ],
+              [
+                18,
+                0.12690922617912292
+              ],
+              [
+                11,
+                0.1260264664888382
+              ],
+              [
+                25,
+                0.1225438192486763
+              ],
+              [
+                6,
+                0.10207849740982056
+              ],
+              [
+                13,
+                0.09954050183296204
+              ],
+              [
+                7,
+                0.09860514849424362
+              ],
+              [
+                16,
+                0.08272349089384079
+              ],
+              [
+                8,
+                0.0768284723162651
+              ]
+            ]
+          }
+        },
+        {
+          "episode": 1,
+          "step": 49,
+          "sender": 12,
+          "service_packet_id": 13,
+          "actual_action": 17,
+          "alternative_actions": {
+            "A": 16,
+            "task_return": 13,
+            "alpha01": 17
+          },
+          "rankings": {
+            "A": [
+              [
+                16,
+                0.1580503135919571
+              ],
+              [
+                17,
+                0.14561697840690613
+              ],
+              [
+                25,
+                0.12149672210216522
+              ],
+              [
+                8,
+                0.11651208251714706
+              ],
+              [
+                6,
+                0.11315755546092987
+              ],
+              [
+                7,
+                0.11307966709136963
+              ],
+              [
+                18,
+                0.08072119206190109
+              ],
+              [
+                11,
+                0.08062226325273514
+              ],
+              [
+                13,
+                0.07074321806430817
+              ]
+            ],
+            "task_return": [
+              [
+                13,
+                0.13828714191913605
+              ],
+              [
+                18,
+                0.1250174194574356
+              ],
+              [
+                11,
+                0.12244188040494919
+              ],
+              [
+                6,
+                0.117655910551548
+              ],
+              [
+                16,
+                0.1036202684044838
+              ],
+              [
+                8,
+                0.1028127670288086
+              ],
+              [
+                17,
+                0.1014823317527771
+              ],
+              [
+                7,
+                0.09737573564052582
+              ],
+              [
+                25,
+                0.09130655974149704
+              ]
+            ],
+            "alpha01": [
+              [
+                17,
+                0.1647474765777588
+              ],
+              [
+                18,
+                0.12691321969032288
+              ],
+              [
+                11,
+                0.12602561712265015
+              ],
+              [
+                25,
+                0.12254229933023453
+              ],
+              [
+                6,
+                0.10207608342170715
+              ],
+              [
+                13,
+                0.09953872114419937
+              ],
+              [
+                7,
+                0.09860604256391525
+              ],
+              [
+                16,
+                0.08272246271371841
+              ],
+              [
+                8,
+                0.07682806253433228
+              ]
+            ]
+          }
+        },
+        {
+          "episode": 1,
+          "step": 53,
+          "sender": 17,
+          "service_packet_id": 13,
+          "actual_action": 12,
+          "alternative_actions": {
+            "A": 16,
+            "task_return": 22,
+            "alpha01": 12
+          },
+          "rankings": {
+            "A": [
+              [
+                16,
+                0.17266963422298431
+              ],
+              [
+                23,
+                0.14554646611213684
+              ],
+              [
+                25,
+                0.13177086412906647
+              ],
+              [
+                12,
+                0.11984051018953323
+              ],
+              [
+                22,
+                0.10480823367834091
+              ],
+              [
+                18,
+                0.08795242011547089
+              ],
+              [
+                11,
+                0.08781903237104416
+              ],
+              [
+                13,
+                0.07722287625074387
+              ],
+              [
+                21,
+                0.07236992567777634
+              ]
+            ],
+            "task_return": [
+              [
+                22,
+                0.13074590265750885
+              ],
+              [
+                13,
+                0.12810805439949036
+              ],
+              [
+                21,
+                0.12686263024806976
+              ],
+              [
+                18,
+                0.1201721653342247
+              ],
+              [
+                11,
+                0.11717022210359573
+              ],
+              [
+                23,
+                0.1042477935552597
+              ],
+              [
+                16,
+                0.09607362002134323
+              ],
+              [
+                12,
+                0.0897851511836052
+              ],
+              [
+                25,
+                0.08683440089225769
+              ]
+            ],
+            "alpha01": [
+              [
+                12,
+                0.1444999873638153
+              ],
+              [
+                18,
+                0.12843918800354004
+              ],
+              [
+                11,
+                0.12721742689609528
+              ],
+              [
+                22,
+                0.12384437024593353
+              ],
+              [
+                25,
+                0.12349029630422592
+              ],
+              [
+                23,
+                0.10301336646080017
+              ],
+              [
+                13,
+                0.10024947673082352
+              ],
+              [
+                16,
+                0.08323343843221664
+              ],
+              [
+                21,
+                0.0660124346613884
+              ]
+            ]
+          }
+        },
+        {
+          "episode": 1,
+          "step": 72,
+          "sender": 12,
+          "service_packet_id": 13,
+          "actual_action": 17,
+          "alternative_actions": {
+            "A": 16,
+            "task_return": 13,
+            "alpha01": 17
+          },
+          "rankings": {
+            "A": [
+              [
+                16,
+                0.15805703401565552
+              ],
+              [
+                17,
+                0.14565002918243408
+              ],
+              [
+                25,
+                0.12146716564893723
+              ],
+              [
+                8,
+                0.11651623994112015
+              ],
+              [
+                6,
+                0.11317196488380432
+              ],
+              [
+                7,
+                0.11306358128786087
+              ],
+              [
+                18,
+                0.08072466403245926
+              ],
+              [
+                11,
+                0.08062395453453064
+              ],
+              [
+                13,
+                0.07072535157203674
+              ]
+            ],
+            "task_return": [
+              [
+                13,
+                0.1382487416267395
+              ],
+              [
+                18,
+                0.12509916722774506
+              ],
+              [
+                11,
+                0.12249480932950974
+              ],
+              [
+                6,
+                0.11769439280033112
+              ],
+              [
+                16,
+                0.10359398275613785
+              ],
+              [
+                8,
+                0.10277888923883438
+              ],
+              [
+                17,
+                0.10140427201986313
+              ],
+              [
+                7,
+                0.09737767279148102
+              ],
+              [
+                25,
+                0.09130804985761642
+              ]
+            ],
+            "alpha01": [
+              [
+                17,
+                0.16477546095848083
+              ],
+              [
+                18,
+                0.12693490087985992
+              ],
+              [
+                11,
+                0.12599502503871918
+              ],
+              [
+                25,
+                0.122515968978405
+              ],
+              [
+                6,
+                0.10208431631326675
+              ],
+              [
+                13,
+                0.09952306747436523
+              ],
+              [
+                7,
+                0.0985977053642273
+              ],
+              [
+                16,
+                0.08272054046392441
+              ],
+              [
+                8,
+                0.07685304433107376
+              ]
+            ]
+          }
+        },
+        {
+          "episode": 1,
+          "step": 74,
+          "sender": 17,
+          "service_packet_id": 13,
+          "actual_action": 12,
+          "alternative_actions": {
+            "A": 16,
+            "task_return": 22,
+            "alpha01": 12
+          },
+          "rankings": {
+            "A": [
+              [
+                16,
+                0.1726830005645752
+              ],
+              [
+                23,
+                0.14554056525230408
+              ],
+              [
+                25,
+                0.13179762661457062
+              ],
+              [
+                12,
+                0.11982531100511551
+              ],
+              [
+                22,
+                0.1048085168004036
+              ],
+              [
+                18,
+                0.08794309943914413
+              ],
+              [
+                11,
+                0.08782460540533066
+              ],
+              [
+                13,
+                0.0772046148777008
+              ],
+              [
+                21,
+                0.07237262278795242
+              ]
+            ],
+            "task_return": [
+              [
+                22,
+                0.13073742389678955
+              ],
+              [
+                13,
+                0.12812189757823944
+              ],
+              [
+                21,
+                0.12687276303768158
+              ],
+              [
+                18,
+                0.12017013132572174
+              ],
+              [
+                11,
+                0.11718200892210007
+              ],
+              [
+                23,
+                0.10423783212900162
+              ],
+              [
+                16,
+                0.09608273208141327
+              ],
+              [
+                12,
+                0.08975514769554138
+              ],
+              [
+                25,
+                0.08684005588293076
+              ]
+            ],
+            "alpha01": [
+              [
+                12,
+                0.14447757601737976
+              ],
+              [
+                18,
+                0.12844055891036987
+              ],
+              [
+                11,
+                0.12719330191612244
+              ],
+              [
+                22,
+                0.12384287267923355
+              ],
+              [
+                25,
+                0.12351073324680328
+              ],
+              [
+                23,
+                0.10302834212779999
+              ],
+              [
+                13,
+                0.10023419559001923
+              ],
+              [
+                16,
+                0.08325708657503128
+              ],
+              [
+                21,
+                0.0660153329372406
+              ]
+            ]
+          }
+        }
+      ],
+      "scope": "same observed inputs, counterfactual action rankings only; no counterfactual delivery claim"
+    },
+    "first_rollout": {
+      "matched": {
+        "A": {
+          "physical_exact": true,
+          "scope": "base-reward comparison on verified initial policy; no original A value cache"
+        },
+        "task_return": {
+          "original_values_rewards_Phi_exact": true,
+          "physical_exact": true,
+          "float32_GAE_error": 2.503822624788654e-07
+        },
+        "alpha01": {
+          "original_values_rewards_Phi_exact": true,
+          "physical_exact": true,
+          "float32_GAE_error": 1.912015830107805e-07
+        }
+      },
+      "groups": {
+        "A": {
+          "node13_actions": [
+            {
+              "action": 17,
+              "count": 4,
+              "mean_standardized_advantage": 0.6952938437461853
+            },
+            {
+              "action": 19,
+              "count": 4,
+              "mean_standardized_advantage": 0.7288880348205566
+            },
+            {
+              "action": 25,
+              "count": 5,
+              "mean_standardized_advantage": 0.6111465692520142
+            }
+          ],
+          "contrast_17_minus_19_score_mean": -0.004405101065229239,
+          "contrast_count": 27,
+          "scope": "ratio=1 likelihood term only, not the historical parameter/entropy update"
+        },
+        "task_return": {
+          "node13_actions": [
+            {
+              "action": 17,
+              "count": 4,
+              "mean_standardized_advantage": 0.022262968122959137
+            },
+            {
+              "action": 19,
+              "count": 4,
+              "mean_standardized_advantage": -0.9845576286315918
+            },
+            {
+              "action": 25,
+              "count": 5,
+              "mean_standardized_advantage": -0.37465134263038635
+            }
+          ],
+          "contrast_17_minus_19_score_mean": 0.14878074331918986,
+          "contrast_count": 27,
+          "scope": "ratio=1 likelihood term only, not the historical parameter/entropy update"
+        },
+        "alpha01": {
+          "node13_actions": [
+            {
+              "action": 17,
+              "count": 4,
+              "mean_standardized_advantage": 0.7591143846511841
+            },
+            {
+              "action": 19,
+              "count": 4,
+              "mean_standardized_advantage": 0.6246599555015564
+            },
+            {
+              "action": 25,
+              "count": 5,
+              "mean_standardized_advantage": 0.6003081202507019
+            }
+          ],
+          "contrast_17_minus_19_score_mean": 0.02047620229387593,
+          "contrast_count": 27,
+          "scope": "ratio=1 likelihood term only, not the historical parameter/entropy update"
+        }
+      },
+      "active_decisions": 886,
+      "normalized_advantage_sign_flips": 676,
+      "joint_slots": 80,
+      "joint_slot_advantage_sign_flips": 60,
+      "limitations": [
+        "Only the first rollout is reconstructed; later historical actions/probability changes were not cached.",
+        "Initial actor executes without loading trained weights; shadow PM only reads the environment.",
+        "This does not identify the update that caused the final 17/19 ranking reversal."
+      ]
+    },
+    "packet_PM": {
+      "optimizer_updates": 0,
+      "weights_unchanged": true,
+      "physical_exact": true,
+      "events": [
+        {
+          "packet_id": 13,
+          "sender": 13,
+          "receiver": 17,
+          "ack": true,
+          "episode": 0,
+          "step": 0,
+          "revisit": false,
+          "packet_value_before": 0.8109293353131566,
+          "packet_value_after": 0.49497147717758966,
+          "packet_shaping": -0.0013371148871139287,
+          "team_shaping": -0.004891198893381129,
+          "other_packet_shaping": -0.0035540840062672,
+          "normalized_GAE": 2.7339853000714833,
+          "other_deliveries": 1
+        },
+        {
+          "packet_id": 13,
+          "sender": 17,
+          "receiver": 12,
+          "ack": true,
+          "episode": 0,
+          "step": 5,
+          "revisit": false,
+          "packet_value_before": -0.10725161074067874,
+          "packet_value_after": 0.396370298799188,
+          "packet_shaping": 0.0020819091939661455,
+          "team_shaping": -0.002657624864590733,
+          "other_packet_shaping": -0.004739534058556878,
+          "normalized_GAE": 0.04236777459468362,
+          "other_deliveries": 0
+        },
+        {
+          "packet_id": 13,
+          "sender": 12,
+          "receiver": 17,
+          "ack": true,
+          "episode": 0,
+          "step": 7,
+          "revisit": true,
+          "packet_value_before": 0.6315788142724499,
+          "packet_value_after": -0.026116290961343713,
+          "packet_shaping": -0.0027393080930174177,
+          "team_shaping": -0.0021491094275110506,
+          "other_packet_shaping": 0.0005901986655063671,
+          "normalized_GAE": 0.15256774665148706,
+          "other_deliveries": 0
+        },
+        {
+          "packet_id": 13,
+          "sender": 17,
+          "receiver": 12,
+          "ack": true,
+          "episode": 0,
+          "step": 19,
+          "revisit": true,
+          "packet_value_before": -0.7212979031356194,
+          "packet_value_after": -0.6997544525769235,
+          "packet_shaping": 0.00011892081285193822,
+          "team_shaping": -0.0018032146398872413,
+          "other_packet_shaping": -0.0019221354527391796,
+          "normalized_GAE": 0.07229579474795346,
+          "other_deliveries": 0
+        },
+        {
+          "packet_id": 13,
+          "sender": 12,
+          "receiver": 17,
+          "ack": true,
+          "episode": 0,
+          "step": 20,
+          "revisit": true,
+          "packet_value_before": -0.6997544525769235,
+          "packet_value_after": -0.7026689074161752,
+          "packet_shaping": 1.713430931212512e-05,
+          "team_shaping": -0.0020288884366382823,
+          "other_packet_shaping": -0.0020460227459504076,
+          "normalized_GAE": 0.11410523379514033,
+          "other_deliveries": 0
+        },
+        {
+          "packet_id": 13,
+          "sender": 17,
+          "receiver": 12,
+          "ack": true,
+          "episode": 0,
+          "step": 35,
+          "revisit": true,
+          "packet_value_before": -0.8800214267864205,
+          "packet_value_after": -0.8928311099736101,
+          "packet_shaping": -1.617238369772308e-05,
+          "team_shaping": -3.9820100551890905e-05,
+          "other_packet_shaping": -2.3647716854167825e-05,
+          "normalized_GAE": 0.3920779205326542,
+          "other_deliveries": 0
+        },
+        {
+          "packet_id": 13,
+          "sender": 12,
+          "receiver": 17,
+          "ack": true,
+          "episode": 0,
+          "step": 41,
+          "revisit": true,
+          "packet_value_before": -0.9726853220950348,
+          "packet_value_after": -0.9220958855914914,
+          "packet_shaping": 0.00024920998066440967,
+          "team_shaping": 0.0002709380608288958,
+          "other_packet_shaping": 2.1728080164486153e-05,
+          "normalized_GAE": 0.3848860030055956,
+          "other_deliveries": 0
+        },
+        {
+          "packet_id": 13,
+          "sender": 17,
+          "receiver": 12,
+          "ack": true,
+          "episode": 0,
+          "step": 55,
+          "revisit": true,
+          "packet_value_before": -0.9779675825438994,
+          "packet_value_after": -0.9912858880168757,
+          "packet_shaping": -1.41893608033646e-05,
+          "team_shaping": 0.00016010203146473757,
+          "other_packet_shaping": 0.00017429139226810217,
+          "normalized_GAE": -0.1251226784372429,
+          "other_deliveries": 0
+        },
+        {
+          "packet_id": 13,
+          "sender": 12,
+          "receiver": 17,
+          "ack": true,
+          "episode": 0,
+          "step": 64,
+          "revisit": true,
+          "packet_value_before": -1.0226155453038106,
+          "packet_value_after": -1.0140797408786422,
+          "packet_shaping": 7.781917430814505e-05,
+          "team_shaping": 0.00032502692015745627,
+          "other_packet_shaping": 0.00024720774584931123,
+          "normalized_GAE": -0.699426243533525,
+          "other_deliveries": 0
+        },
+        {
+          "packet_id": 13,
+          "sender": 17,
+          "receiver": 12,
+          "ack": false,
+          "episode": 0,
+          "step": 74,
+          "revisit": false,
+          "packet_value_before": -1.0196273651253498,
+          "packet_value_after": -1.018545356691105,
+          "packet_shaping": 4.6947758338149644e-05,
+          "team_shaping": 0.0004035224789834535,
+          "other_packet_shaping": 0.00035657472064530387,
+          "normalized_GAE": -1.7991464629762206,
+          "other_deliveries": 0
+        },
+        {
+          "packet_id": 13,
+          "sender": 17,
+          "receiver": 12,
+          "ack": true,
+          "episode": 0,
+          "step": 75,
+          "revisit": true,
+          "packet_value_before": -1.018545356691105,
+          "packet_value_after": -1.017386906785015,
+          "packet_shaping": 4.7217995724750196e-05,
+          "team_shaping": 0.00048692118634867734,
+          "other_packet_shaping": 0.0004397031906239271,
+          "normalized_GAE": -1.992548034005543,
+          "other_deliveries": 0
+        },
+        {
+          "packet_id": 13,
+          "sender": 13,
+          "receiver": 17,
+          "ack": true,
+          "episode": 1,
+          "step": 0,
+          "revisit": false,
+          "packet_value_before": 0.8109293353131566,
+          "packet_value_after": 0.6267143986752024,
+          "packet_shaping": -0.0007936753359362758,
+          "team_shaping": 0.0015680724132053209,
+          "other_packet_shaping": 0.002361747749141597,
+          "normalized_GAE": 3.214582180319193,
+          "other_deliveries": 2
+        },
+        {
+          "packet_id": 13,
+          "sender": 17,
+          "receiver": 12,
+          "ack": true,
+          "episode": 1,
+          "step": 3,
+          "revisit": false,
+          "packet_value_before": 0.38482803100700835,
+          "packet_value_after": -0.15316751552010022,
+          "packet_shaping": -0.0022352661307162816,
+          "team_shaping": -0.014181189985637903,
+          "other_packet_shaping": -0.011945923854921622,
+          "normalized_GAE": 1.3109801177716178,
+          "other_deliveries": 0
+        },
+        {
+          "packet_id": 13,
+          "sender": 12,
+          "receiver": 17,
+          "ack": true,
+          "episode": 1,
+          "step": 7,
+          "revisit": true,
+          "packet_value_before": 0.1785902234787273,
+          "packet_value_after": -0.06992425301053251,
+          "packet_shaping": -0.0010325634748298105,
+          "team_shaping": -0.005361756694327284,
+          "other_packet_shaping": -0.004329193219497473,
+          "normalized_GAE": -1.0213465453819754,
+          "other_deliveries": 0
+        },
+        {
+          "packet_id": 13,
+          "sender": 17,
+          "receiver": 12,
+          "ack": true,
+          "episode": 1,
+          "step": 18,
+          "revisit": true,
+          "packet_value_before": -0.6859208077416303,
+          "packet_value_after": -0.6711901974896279,
+          "packet_shaping": 8.934380094541099e-05,
+          "team_shaping": -0.0020445312698643917,
+          "other_packet_shaping": -0.002133875070809803,
+          "normalized_GAE": 0.06440246771741812,
+          "other_deliveries": 0
+        },
+        {
+          "packet_id": 13,
+          "sender": 12,
+          "receiver": 17,
+          "ack": false,
+          "episode": 1,
+          "step": 21,
+          "revisit": false,
+          "packet_value_before": -0.6741220298027764,
+          "packet_value_after": -0.6839722476480499,
+          "packet_shaping": -1.2543730703304392e-05,
+          "team_shaping": -0.00126653502194673,
+          "other_packet_shaping": -0.0012539912912434257,
+          "normalized_GAE": 0.23413331073638569,
+          "other_deliveries": 0
+        },
+        {
+          "packet_id": 13,
+          "sender": 12,
+          "receiver": 17,
+          "ack": false,
+          "episode": 1,
+          "step": 22,
+          "revisit": false,
+          "packet_value_before": -0.6839722476480499,
+          "packet_value_after": -0.6988048317602,
+          "packet_shaping": -3.2685565810617234e-05,
+          "team_shaping": -0.000813787540273064,
+          "other_packet_shaping": -0.0007811019744624467,
+          "normalized_GAE": 0.26308004411769537,
+          "other_deliveries": 0
+        },
+        {
+          "packet_id": 13,
+          "sender": 12,
+          "receiver": 17,
+          "ack": false,
+          "episode": 1,
+          "step": 23,
+          "revisit": false,
+          "packet_value_before": -0.6988048317602,
+          "packet_value_after": -0.718067875574443,
+          "packet_shaping": -5.034318774374362e-05,
+          "team_shaping": -0.0006783262863877815,
+          "other_packet_shaping": -0.0006279830986440379,
+          "normalized_GAE": 0.27011682588522523,
+          "other_deliveries": 0
+        },
+        {
+          "packet_id": 13,
+          "sender": 12,
+          "receiver": 17,
+          "ack": true,
+          "episode": 1,
+          "step": 24,
+          "revisit": true,
+          "packet_value_before": -0.718067875574443,
+          "packet_value_after": -0.669602476637803,
+          "packet_shaping": 0.0002298392654292413,
+          "team_shaping": -0.0006808111218089882,
+          "other_packet_shaping": -0.0009106503872382295,
+          "normalized_GAE": 0.28466210310132883,
+          "other_deliveries": 0
+        },
+        {
+          "packet_id": 13,
+          "sender": 17,
+          "receiver": 12,
+          "ack": false,
+          "episode": 1,
+          "step": 33,
+          "revisit": false,
+          "packet_value_before": -0.7527947674576707,
+          "packet_value_after": -0.7647046822717649,
+          "packet_shaping": -1.7761949964068917e-05,
+          "team_shaping": -7.808211887996332e-05,
+          "other_packet_shaping": -6.03201689158944e-05,
+          "normalized_GAE": 0.46974004330738617,
+          "other_deliveries": 0
+        },
+        {
+          "packet_id": 13,
+          "sender": 17,
+          "receiver": 12,
+          "ack": false,
+          "episode": 1,
+          "step": 34,
+          "revisit": false,
+          "packet_value_before": -0.7647046822717649,
+          "packet_value_after": -0.7820233540584314,
+          "packet_shaping": -3.9576826025342075e-05,
+          "team_shaping": 0.00020891387729867796,
+          "other_packet_shaping": 0.00024849070332402004,
+          "normalized_GAE": 0.4475341839795334,
+          "other_deliveries": 0
+        },
+        {
+          "packet_id": 13,
+          "sender": 17,
+          "receiver": 12,
+          "ack": false,
+          "episode": 1,
+          "step": 35,
+          "revisit": false,
+          "packet_value_before": -0.7820233540584314,
+          "packet_value_after": -0.8017923969593759,
+          "packet_shaping": -4.8962995547294684e-05,
+          "team_shaping": 0.00028721622582984427,
+          "other_packet_shaping": 0.00033617922137713893,
+          "normalized_GAE": 0.4133704949914874,
+          "other_deliveries": 0
+        },
+        {
+          "packet_id": 13,
+          "sender": 17,
+          "receiver": 12,
+          "ack": true,
+          "episode": 1,
+          "step": 36,
+          "revisit": true,
+          "packet_value_before": -0.8017923969593759,
+          "packet_value_after": -0.8585821508505195,
+          "packet_shaping": -0.00020084971826099345,
+          "team_shaping": -3.2229644234937904e-05,
+          "other_packet_shaping": 0.00016862007402605554,
+          "normalized_GAE": 0.3822172104131269,
+          "other_deliveries": 0
+        },
+        {
+          "packet_id": 13,
+          "sender": 12,
+          "receiver": 17,
+          "ack": false,
+          "episode": 1,
+          "step": 48,
+          "revisit": false,
+          "packet_value_before": -0.9905391415862896,
+          "packet_value_after": -0.9916057463823331,
+          "packet_shaping": 3.6872719449082546e-05,
+          "team_shaping": 0.0002841647308694517,
+          "other_packet_shaping": 0.0002472920114203692,
+          "normalized_GAE": 0.27586017419078895,
+          "other_deliveries": 0
+        },
+        {
+          "packet_id": 13,
+          "sender": 12,
+          "receiver": 17,
+          "ack": true,
+          "episode": 1,
+          "step": 49,
+          "revisit": true,
+          "packet_value_before": -0.9916057463823331,
+          "packet_value_after": -0.9503891567071856,
+          "packet_shaping": 0.0002113353385092475,
+          "team_shaping": 0.0002941167479248545,
+          "other_packet_shaping": 8.2781409415607e-05,
+          "normalized_GAE": 0.24749650686157365,
+          "other_deliveries": 0
+        },
+        {
+          "packet_id": 13,
+          "sender": 17,
+          "receiver": 12,
+          "ack": true,
+          "episode": 1,
+          "step": 53,
+          "revisit": true,
+          "packet_value_before": -0.9469074457282937,
+          "packet_value_after": -0.9755051806335735,
+          "packet_shaping": -7.851117957893376e-05,
+          "team_shaping": 0.0003370971744952045,
+          "other_packet_shaping": 0.00041560835407413826,
+          "normalized_GAE": 0.055279964753237675,
+          "other_deliveries": 0
+        },
+        {
+          "packet_id": 13,
+          "sender": 12,
+          "receiver": 17,
+          "ack": true,
+          "episode": 1,
+          "step": 72,
+          "revisit": true,
+          "packet_value_before": -1.0225931328661224,
+          "packet_value_after": -1.0169404754095637,
+          "packet_shaping": 6.592525921106004e-05,
+          "team_shaping": 7.880363109643608e-05,
+          "other_packet_shaping": 1.2878371885376044e-05,
+          "normalized_GAE": -1.3633901438171412,
+          "other_deliveries": 0
+        },
+        {
+          "packet_id": 13,
+          "sender": 17,
+          "receiver": 12,
+          "ack": true,
+          "episode": 1,
+          "step": 74,
+          "revisit": true,
+          "packet_value_before": -1.015610828967941,
+          "packet_value_after": -1.0177362782351411,
+          "packet_shaping": 3.354963964646388e-05,
+          "team_shaping": 0.0003724180057594565,
+          "other_packet_shaping": 0.0003388683661129926,
+          "normalized_GAE": -1.6138884348030758,
+          "other_deliveries": 0
+        }
+      ],
+      "prediction_rows": 160,
+      "scope": "per-packet PM component on observed route, not causal credit or a counterfactual action value"
+    },
+    "artifacts": [
+      {
+        "tag": "A_greedy",
+        "report_sha256": "42f0e07f7cf865c05626f8cefd5c8ff5f8f319212a6887d0c7e61a155afb1a85",
+        "signals_sha256": "717382dfdf0c8b1c173971b3c296d48d9657601b27e31a1d5b07417f11833ed6",
+        "raw_cache_sha256": "66ef4bf0ae06527e10e841d2637bc3844bc0581e26413d0be9e25c1e2b70b54d",
+        "packet_ledger_sha256": "d9f7d931540b1631ce73ec0831d437d3f2b67fed9c8184598028068b5167302a",
+        "input_cache_sha256": "1b9bb030dcc1f9c8a2a7452b30e903fe98e11d58484967c16984c4c2043dcaed"
+      },
+      {
+        "tag": "A_sample",
+        "report_sha256": "13635f1397e42a0e3b1848999ff1ca7fb61e7cf29fa81e6346df37279f7ae4f2",
+        "signals_sha256": "ef56c63371ec759fddd9c34e7f2791b842455e4d458b46c4c7dca384b40a6879",
+        "raw_cache_sha256": "c209429a0986d540dc0dd2cc2e637e43785e2c19ddc08c153a98e10c9c737ed3",
+        "packet_ledger_sha256": "4f184b6e635ea32429cd07d6637964bede531395f054d8183bccb1b1046e4cc7",
+        "input_cache_sha256": "a06a8ac0a14e4f7b1700a7521892466561d8f32bc1b60f8200832a752fbf48f6"
+      },
+      {
+        "tag": "task_return_greedy",
+        "report_sha256": "1e5c70c24eda6b917eae8d9042d7c67af157eb66574d91ebeace42ee8604e88b",
+        "signals_sha256": "300c1ba410cf91e5056413fb786976e2e0eedf7c2b8ca92215685a2d0454e7fd",
+        "raw_cache_sha256": "4f44f179d8de19e532c9d285cfde2dedf47105e1425a28c6707cd0c17fd50ff7",
+        "packet_ledger_sha256": "f240c0a95355d882855cf6effc0ed230d94c6056875f32d2c8279bd9baf1c0b9",
+        "input_cache_sha256": "3947dfc744fd4a824dd2ad1c932bd2245757c6e69aef536d910d41000450fcfd"
+      },
+      {
+        "tag": "task_return_sample",
+        "report_sha256": "6497336417d7403c33fe91ca81b80a9b2075579b7fea7ad03af6a3fe7c85c138",
+        "signals_sha256": "db7a32b13d94b010b40a13cc7d4bc91b934f1b3f93912ad95111ba08fb45cba8",
+        "raw_cache_sha256": "56bd8708bfd72b3fd5892b5b1305b092474f45335ce1a859f8503d11456fa832",
+        "packet_ledger_sha256": "02be596140eb6c4cb22c71ef809eda20c6abfd20e986d2d4cb61512bec414daf",
+        "input_cache_sha256": "a52197a15525c66a85422309956512ad7e73b8011c3c8556339f3ce561c8de11"
+      },
+      {
+        "tag": "alpha01_greedy",
+        "report_sha256": "9cfbc5f6fba594d379f596960f58bc64691b6829952f1d3f19b53855a782e636",
+        "signals_sha256": "bb2d1a53e2d4f091389023e19ca674e80872655ab22649a5e327d1ab3558f7cc",
+        "raw_cache_sha256": "78eca945319539480e6dffe0d13c4ca60141ca53a16577691ca5f1c07a2dfce3",
+        "packet_ledger_sha256": "443dd4586a0e58d17a0d2a3f10c12fa0b8c84980021bcfcc090140f55674ad7b",
+        "input_cache_sha256": "5e3dcd5cc52d3341e9915d6fcd00e0e3cb2ea370ac1f67331b15a8c4f5614f91"
+      },
+      {
+        "tag": "alpha01_sample",
+        "report_sha256": "6156058428b98dd63cfc6f72c7003723be88a43181f470fbe149e798167742e1",
+        "signals_sha256": "d503aca1e6b285626fcfa69e7138d100c24da3789e7ce88f18f544e425c1a1f8",
+        "raw_cache_sha256": "68dec6e30b49f16cabbcbc736e483c56942045c1997c9e524b2279bfb178460f",
+        "packet_ledger_sha256": "dcd851aab027078abd7f64508bece4d1a3d433ea6b6ef6cea4c557f18b263d72",
+        "input_cache_sha256": "9b57846d6adc1432bae270c247e48056139432781c1f073d1a3f0a88a68bfb12"
+      }
+    ],
+    "new_environment_steps": 1200,
+    "budget_description": "6 frozen 160-slot replays + 80-slot initial replay + 160-slot per-packet replay = 1200 slots",
+    "limitations": [
+      "One known training seed and development scene; no new efficacy claim.",
+      "Frozen-policy advantages differ from original training histories except verified initial rollout.",
+      "Exact historical parameter updates after rollout zero require an instrumented training replay; not done."
+    ],
+    "figures": {
+      "figures\\seed22_actions_credit.png": "a09f774048c9dd6e61fd9161f75218aa79896705678fa186bfe88d0bcb3ac436",
+      "figures\\seed22_actions_credit.svg": "14462f6c7b69ed080c0ff2ae088609655f6ada60b2b24248adabc017c251ad07"
+    }
+  },
+  "jobs": [
+    {
+      "tag": "A_greedy",
+      "group": "A",
+      "decode": "greedy",
+      "command": [
+        "D:\\python3.6.8\\python.exe",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\scripts\\diagnose_tg_seed22_signals.py",
+        "--snapshot",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_pm_task_return\\pilot_20261105_140555_016580\\source_snapshot",
+        "--view",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_seed22_signals\\20261105_165019_896744\\view",
+        "--group",
+        "A",
+        "--decode",
+        "greedy",
+        "--output",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_seed22_signals\\20261105_165019_896744\\A_greedy"
+      ],
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_seed22_signals\\20261105_165019_896744\\A_greedy",
+      "state": "completed",
+      "exit_code": 0,
+      "report_sha256": "42f0e07f7cf865c05626f8cefd5c8ff5f8f319212a6887d0c7e61a155afb1a85",
+      "signals_sha256": "717382dfdf0c8b1c173971b3c296d48d9657601b27e31a1d5b07417f11833ed6"
+    },
+    {
+      "tag": "A_sample",
+      "group": "A",
+      "decode": "sample",
+      "command": [
+        "D:\\python3.6.8\\python.exe",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\scripts\\diagnose_tg_seed22_signals.py",
+        "--snapshot",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_pm_task_return\\pilot_20261105_140555_016580\\source_snapshot",
+        "--view",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_seed22_signals\\20261105_165019_896744\\view",
+        "--group",
+        "A",
+        "--decode",
+        "sample",
+        "--output",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_seed22_signals\\20261105_165019_896744\\A_sample"
+      ],
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_seed22_signals\\20261105_165019_896744\\A_sample",
+      "state": "completed",
+      "exit_code": 0,
+      "report_sha256": "13635f1397e42a0e3b1848999ff1ca7fb61e7cf29fa81e6346df37279f7ae4f2",
+      "signals_sha256": "ef56c63371ec759fddd9c34e7f2791b842455e4d458b46c4c7dca384b40a6879"
+    },
+    {
+      "tag": "task_return_greedy",
+      "group": "task_return",
+      "decode": "greedy",
+      "command": [
+        "D:\\python3.6.8\\python.exe",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\scripts\\diagnose_tg_seed22_signals.py",
+        "--snapshot",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_pm_task_return\\pilot_20261105_140555_016580\\source_snapshot",
+        "--view",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_seed22_signals\\20261105_165019_896744\\view",
+        "--group",
+        "task_return",
+        "--decode",
+        "greedy",
+        "--output",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_seed22_signals\\20261105_165019_896744\\task_return_greedy"
+      ],
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_seed22_signals\\20261105_165019_896744\\task_return_greedy",
+      "state": "completed",
+      "exit_code": 0,
+      "report_sha256": "1e5c70c24eda6b917eae8d9042d7c67af157eb66574d91ebeace42ee8604e88b",
+      "signals_sha256": "300c1ba410cf91e5056413fb786976e2e0eedf7c2b8ca92215685a2d0454e7fd"
+    },
+    {
+      "tag": "task_return_sample",
+      "group": "task_return",
+      "decode": "sample",
+      "command": [
+        "D:\\python3.6.8\\python.exe",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\scripts\\diagnose_tg_seed22_signals.py",
+        "--snapshot",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_pm_task_return\\pilot_20261105_140555_016580\\source_snapshot",
+        "--view",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_seed22_signals\\20261105_165019_896744\\view",
+        "--group",
+        "task_return",
+        "--decode",
+        "sample",
+        "--output",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_seed22_signals\\20261105_165019_896744\\task_return_sample"
+      ],
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_seed22_signals\\20261105_165019_896744\\task_return_sample",
+      "state": "completed",
+      "exit_code": 0,
+      "report_sha256": "6497336417d7403c33fe91ca81b80a9b2075579b7fea7ad03af6a3fe7c85c138",
+      "signals_sha256": "db7a32b13d94b010b40a13cc7d4bc91b934f1b3f93912ad95111ba08fb45cba8"
+    },
+    {
+      "tag": "alpha01_greedy",
+      "group": "alpha01",
+      "decode": "greedy",
+      "command": [
+        "D:\\python3.6.8\\python.exe",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\scripts\\diagnose_tg_seed22_signals.py",
+        "--snapshot",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_pm_task_return\\pilot_20261105_140555_016580\\source_snapshot",
+        "--view",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_seed22_signals\\20261105_165019_896744\\view",
+        "--group",
+        "alpha01",
+        "--decode",
+        "greedy",
+        "--output",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_seed22_signals\\20261105_165019_896744\\alpha01_greedy"
+      ],
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_seed22_signals\\20261105_165019_896744\\alpha01_greedy",
+      "state": "completed",
+      "exit_code": 0,
+      "report_sha256": "9cfbc5f6fba594d379f596960f58bc64691b6829952f1d3f19b53855a782e636",
+      "signals_sha256": "bb2d1a53e2d4f091389023e19ca674e80872655ab22649a5e327d1ab3558f7cc"
+    },
+    {
+      "tag": "alpha01_sample",
+      "group": "alpha01",
+      "decode": "sample",
+      "command": [
+        "D:\\python3.6.8\\python.exe",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\scripts\\diagnose_tg_seed22_signals.py",
+        "--snapshot",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_pm_task_return\\pilot_20261105_140555_016580\\source_snapshot",
+        "--view",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_seed22_signals\\20261105_165019_896744\\view",
+        "--group",
+        "alpha01",
+        "--decode",
+        "sample",
+        "--output",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_seed22_signals\\20261105_165019_896744\\alpha01_sample"
+      ],
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_seed22_signals\\20261105_165019_896744\\alpha01_sample",
+      "state": "completed",
+      "exit_code": 0,
+      "report_sha256": "6156058428b98dd63cfc6f72c7003723be88a43181f470fbe149e798167742e1",
+      "signals_sha256": "d503aca1e6b285626fcfa69e7138d100c24da3789e7ce88f18f544e425c1a1f8"
+    }
+  ],
+  "extra_jobs": [
+    {
+      "tag": "initial_sample",
+      "command": [
+        "D:/python3.6.8/python.exe",
+        "scripts/diagnose_tg_seed22_initial.py",
+        "--snapshot",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_pm_task_return\\pilot_20261105_140555_016580\\source_snapshot",
+        "--view",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_seed22_signals\\20261105_165019_896744\\initial_view",
+        "--group",
+        "A",
+        "--stage",
+        "initial",
+        "--decode",
+        "sample",
+        "--shadow-checkpoint",
+        "results/tg_pm_final_pretrain/20261103_142745_276042/pm_best.pt",
+        "--output",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_seed22_signals\\20261105_165019_896744\\initial_sample"
+      ],
+      "exit_code": 0,
+      "environment_steps": 80
+    },
+    {
+      "tag": "same_inputs",
+      "command": [
+        "D:/python3.6.8/python.exe",
+        "scripts/compare_tg_seed22_inputs.py",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_seed22_signals\\20261105_165019_896744"
+      ],
+      "exit_code": 0,
+      "environment_steps": 0
+    },
+    {
+      "tag": "packet_PM",
+      "command": [
+        "D:/python3.6.8/python.exe",
+        "scripts/trace_tg_seed22_packet_pm.py",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_seed22_signals\\20261105_165019_896744"
+      ],
+      "exit_code": 0,
+      "environment_steps": 160
+    }
+  ],
+  "tests": {
+    "command": [
+      "D:/python3.6.8/python.exe",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_seed22_signals.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "log": "test_hand_computed_two_transition_GAE_and_active_normalization (test_seed22_signals.SignalFunctions) ... ok\ntest_zero_active_and_invalid_reward_time_alignment (test_seed22_signals.SignalFunctions) ... ok\ntest_packet_service_wait_and_FIFO_blocking_are_distinct (test_seed22_signals.SignalModules) ... ok\ntest_successful_other_delivery_does_not_label_WAIT_as_own_delivery (test_seed22_signals.SignalModules) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.002s\n\nOK\n"
+  },
+  "source_files_sha256": {
+    "scripts/tg_seed22_signals.py": "6a0e332eb66871572dc855dca9e2f61af55778c67e84e15563e211b52ce1fa28",
+    "scripts/diagnose_tg_seed22_signals.py": "c355a454fb9cb3bdba394e59b33ae4b3134a9e89bf0a6b4cd3bcc83d3edac4a2",
+    "scripts/diagnose_tg_seed22_initial.py": "031b593ce50f36300a4b2a376561032682e5569588e0be5725e248ea55aac7bb",
+    "scripts/check_tg_seed22.py": "734704b3b7f194319d8a2d8deb3b4d8496cc5350d632d5c1d76ece0ac2b35321",
+    "scripts/compare_tg_seed22_inputs.py": "30abc91c339e896d4379901312fe84439db5a86968a8de3ca2ffd4161b872c5b",
+    "scripts/trace_tg_seed22_packet_pm.py": "1d74e54800501a8d55d8cfe921d053372cc3263c38c356f42fe74ba39804f429",
+    "scripts/analyze_tg_seed22.py": "519c43733ae747a0c93e3b1e13724471e6cd3ab3c908e464512e4f2c876eb6ee",
+    "tests/test_seed22_signals.py": "5a022981bf9d3a5d856083b4317c32dd95253f304488a4efd9723f4366e34330"
+  },
+  "first_rollout_rows_sha256": "29f713e8d48bc73a845a811e94184fb01e3b301d473c7a76f500e8e5d73a82cd",
+  "production_code_changed": false,
+  "optimizer_updates": 0,
+  "next": "instrumented exact PM training replay if requested; not started"
+}
