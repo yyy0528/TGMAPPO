@@ -78,6 +78,17 @@ class ActionFunctions(unittest.TestCase):
         self.assertTrue(torch.allclose(raw.grad,expected,atol=1e-6))
         self.assertIsNone(target.grad)
 
+
+    def test_regret_rejects_underflow_and_preserves_tiny_positive_targets(self):
+        raw=torch.tensor([[0.,0.]],requires_grad=True)
+        underflow=target_distribution([0.,-1.],[1,1],1e-6)
+        self.assertEqual(float(underflow[1]),0.)
+        with self.assertRaises(ValueError):
+            teacher_loss(torch.log_softmax(raw,-1),[underflow],objective='expected_regret')
+        target=torch.tensor([[1.,1e-35]])
+        loss=teacher_loss(torch.log_softmax(raw,-1),target,objective='expected_regret')
+        self.assertAlmostEqual(float(loss),-.5*float(target[0,1].log()),places=5)
+
     def test_settings_and_public_guard(self):
         import run_algorithm
         run_algorithm.reject_research_options(['--pm_action_credit','learned','--pm_action_credit_coef=.1','--pm_action_temperature','.2'])

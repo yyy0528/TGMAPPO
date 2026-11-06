@@ -1,0 +1,75 @@
+{
+  "unique_tests": 153,
+  "all_passed": true,
+  "stages": [
+    {
+      "path": "results\\tg_pm_reliability_tests\\20261106_195340_513762\\credit.log",
+      "tests": 5,
+      "passed": true,
+      "sha256": "289fe4678921c9ab85c5fafe7010060775848a270177096d45720998b3082d50"
+    },
+    {
+      "path": "results\\tg_pm_reliability_tests\\20261106_195340_513762\\functions.log",
+      "tests": 3,
+      "passed": true,
+      "sha256": "15c0bd869d361aee44a4c9c6d8846e3229a6e2b796fb174c2743fd4e0f4b971e"
+    },
+    {
+      "path": "results\\tg_pm_reliability_tests\\20261106_195340_513762\\integration.log",
+      "tests": 3,
+      "passed": true,
+      "sha256": "d14dfa75853cbdce6d232d5316e3e28d1263fdff9e4e29e1d97121a757f9459e"
+    },
+    {
+      "path": "results\\tg_pm_reliability_tests\\20261106_195340_513762\\legacy.log",
+      "tests": 105,
+      "passed": true,
+      "sha256": "1c8195faa1259c2e3b91e2d5d48b13a4afb961d4f35e1be8a7b2fc3ef12b7a37"
+    },
+    {
+      "path": "results\\tg_pm_reliability_tests\\20261106_195340_513762\\modules.log",
+      "tests": 2,
+      "passed": true,
+      "sha256": "2498f661cef2d5ea930c2af618e09142b728d5885ce1dfb78926def83b0668be"
+    },
+    {
+      "path": "results\\tg_pm_reliability_tests\\20261106_195340_513762\\task_return.log",
+      "tests": 6,
+      "passed": true,
+      "sha256": "f5a1470e9a7e304a4f94115382c8160cfdd9e979a331acacec1ce57f86a26c54"
+    },
+    {
+      "path": "results\\tg_pm_reliability_tests\\20261106_195340_513762\\value.log",
+      "tests": 7,
+      "passed": true,
+      "sha256": "e85453af8910aa84a53373904e60a2b8203d091cd4da800008fc5f0656ffb0e7"
+    },
+    {
+      "path": "results\\tg_pm_action_credit_tests\\20261106_211348_818103\\test_pm_action_credit.py.log",
+      "tests": 15,
+      "passed": true,
+      "sha256": "8625bfa79145ecca471bcf3f0b21e688ed57de09669bde324ae2a5c9d8869e70"
+    },
+    {
+      "path": "results\\tg_pm_action_credit_tests\\20261106_211348_818103\\test_pm_critic_context.py.log",
+      "tests": 7,
+      "passed": true,
+      "sha256": "df62fb40260f3faaa381b12639d70be5eae5660cd16a73c882e034dcdd062db3"
+    }
+  ],
+  "source_hashes": {
+    "src/onpolicy/algorithms/utils/pm_action_loss.py": "9aa4c5344df4e0efde5da537b36b7193f55c9deb2c25fbee1da5b07699d17911",
+    "tests/test_pm_action_credit.py": "d02e619cbe7e74654ffe688baf14da1f3e837123ee79fc96ef2ddfe6eeab1036"
+  },
+  "red_test": {
+    "git_source": "c4214906",
+    "method": "test_regret_rejects_underflow_and_preserves_tiny_positive_targets",
+    "tests": 1,
+    "failures": 1,
+    "reason": "ValueError not raised for a legal underflowed target; observed before patch.",
+    "training_steps": 0
+  },
+  "patch": "Reject nonfinite policy mass or missing soft target support; preserve tiny positive targets when taking logarithms.",
+  "active_experiment_source_untouched": "results/tg_pm_action_credit/20261106_204430_204518/source_snapshot",
+  "separate_audit": "Require every legal cached target >=1e-30 for archived regret runs to prove this patch does not change their numeric objective."
+}

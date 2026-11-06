@@ -27,9 +27,12 @@ def teacher_loss(logits, targets, active_masks=None, objective='cross_entropy'):
         safe = logits.masked_fill(target == 0, 0.)
         row = -(target*safe).sum(-1, keepdim=True)
     elif objective=='expected_regret':
-        log_target=target.clamp_min(1e-30).log().masked_fill(target<=0,float('-inf'))
+        policy_mass=logits.exp()
+        if not torch.isfinite(policy_mass).all() or ((policy_mass>0)&(target<=0)).any():
+            raise ValueError('PM expected regret requires positive targets on legal policy support; increase temperature if softmax underflows')
+        log_target=target.masked_fill(target<=0,1.).log().masked_fill(target<=0,float('-inf'))
         regret=(log_target.max(-1,keepdim=True)[0]-log_target).masked_fill(target<=0,0.).detach()
-        row=(logits.exp()*regret).sum(-1,keepdim=True)
+        row=(policy_mass*regret).sum(-1,keepdim=True)
     else:
         raise ValueError('Unknown PM action objective')
     if active_masks is None:

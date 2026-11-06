@@ -60,6 +60,8 @@ def audit(root):
                     with np.load(str(out.parent/'value_audit'/('episode_'+str(ep)+'.npz'))) as data:
                         target=data['pm_action_targets'];mask=data['pm_available_actions']
                         require(np.allclose(target.sum(-1),1.,atol=1e-5) and np.all(target[mask==0]==0),'Illegal teacher distribution')
+                        if j['mode'].endswith('_regret'):
+                            require(np.all(target[mask>0]>=1e-30),'Regret source snapshot could clip or lose legal target support')
                         require(digest_bytes(target.tobytes())==r['pm_action_cache_audits'][ep]['sha256'],'Stored teacher differs from actual PPO cache')
                 if j['coefficient']>0:require(all(u['pm_action_target_loss']>0 for u in r['training_updates']),'Teacher loss not trained')
             if r.get('pm') is not None:gae.append({'tag':j['tag'],'value_mode':r['pm']['value_mode'],
