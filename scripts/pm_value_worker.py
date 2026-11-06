@@ -50,9 +50,18 @@ def main():
             'sampled_effective_value_minus_shaped_MC_active_mean':float((effective[:-1]-g_shaped)[active].mean()),
             'scope':'cached same-trajectory counterfactual; MC is sampled, not true conditional V'}
         folder=output/'value_audit';folder.mkdir(exist_ok=True)
+        context=getattr(b,'critic_progress',None)
+        if context is not None and not np.array_equal(context,phi.astype(context.dtype)):
+            raise ValueError('PM Critic cache must contain decision-time Phi, including terminal zero')
+        targets=getattr(b,'pm_action_targets',None)
+        if targets is not None:
+            if not b.pm_action_ready.all() or not np.isfinite(targets).all() or not np.allclose(targets.sum(-1),1.,atol=1e-5) or np.any(targets[b.available_actions[:-1]==0]!=0):
+                raise ValueError('PM action target cache invalid or misaligned')
         np.savez_compressed(str(folder/('episode_{}.npz'.format(runtime.episode))),
             base_rewards=base,shaped_rewards=shaped,raw_values=values,phi=phi,masks=b.masks,
-            base_gae=a['base_gae'],aligned_gae=a['aligned_gae'],actual_gae=actual)
+            base_gae=a['base_gae'],aligned_gae=a['aligned_gae'],actual_gae=actual,
+            **dict(({'critic_progress':context.copy()} if context is not None else {}),
+                   **({'pm_action_targets':targets.copy(),'pm_available_actions':b.available_actions[:-1].copy(),'pm_active_masks':b.active_masks[:-1].copy()} if targets is not None else {})))
         with (folder/'summary.jsonl').open('a',encoding='utf-8') as stream:stream.write(json.dumps(record,allow_nan=False)+'\n')
     with patch.object(DeepQNetwork,'compute',observed):original_main(arguments)
 

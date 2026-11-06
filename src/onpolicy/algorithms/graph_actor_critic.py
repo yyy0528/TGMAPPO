@@ -256,6 +256,7 @@ class GR_Actor(nn.Module):
         available_actions=None,
         active_masks=None,
         wm_features=None,
+        pm_targets=None,
     ) -> Tuple[Tensor, Tensor]:
         """
         Compute log probability and entropy of given actions.
@@ -331,10 +332,13 @@ class GR_Actor(nn.Module):
             entropy = distribution.entropy().unsqueeze(-1)
             dist_entropy = ((entropy * active_masks).sum()/active_masks.sum().clamp(min=1)
                             if self._use_policy_active_masks and active_masks is not None else entropy.mean())
+            if pm_targets is not None:
+                from onpolicy.algorithms.utils.pm_action_loss import teacher_loss
+                return action_log_probs, dist_entropy, teacher_loss(distribution.logits,pm_targets,active_masks)
         else:
-            action_log_probs, dist_entropy = self.act.evaluate_actions(
+            return self.act.evaluate_actions(
                 actor_features, action, available_actions,
-                active_masks=active_masks if self._use_policy_active_masks else None)
+                active_masks=active_masks if self._use_policy_active_masks else None,pm_targets=pm_targets)
 
         return (action_log_probs, dist_entropy)
 
@@ -429,11 +433,15 @@ class GR_Critic(nn.Module):
 
         mode = time_mode(args)
         self.time_conditioning = CriticTime(self.hidden_size,mode) if mode != "disabled" else None
+        from onpolicy.algorithms.utils.critic_progress import context_mode, extend_head
+        self.pm_context_mode = context_mode(args)
+        if self.pm_context_mode != 'disabled':
+            self.v_out = extend_head(self.v_out)
 
         self.to(device)
 
     def forward(
-        self, cent_obs, node_obs, adj, agent_id, rnn_states, masks, critic_time=None
+        self, cent_obs, node_obs, adj, agent_id, rnn_states, masks, critic_time=None, critic_progress=None
     ) -> Tuple[Tensor, Tensor]:
         """
         Compute actions from the given inputs.
@@ -505,6 +513,9 @@ class GR_Critic(nn.Module):
             critic_features, rnn_states = self.rnn(critic_features, rnn_states, masks)
         if self.time_conditioning is not None:
             critic_features = self.time_conditioning(critic_features,critic_time)
+        if self.pm_context_mode != 'disabled':
+            from onpolicy.algorithms.utils.critic_progress import join_context
+            critic_features = join_context(critic_features,critic_progress,self.pm_context_mode)
         values = self.v_out(critic_features)
 
         return (values, rnn_states)

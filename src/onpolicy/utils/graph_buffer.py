@@ -208,6 +208,13 @@ class GraphReplayBuffer(object):
         from onpolicy.algorithms.utils.critic_time import time_mode, task_clock
         self.critic_time = (task_clock(self.episode_length,self.n_rollout_threads,num_agents)
                             if time_mode(args) != "disabled" else None)
+        from onpolicy.algorithms.utils.critic_progress import context_mode
+        self.critic_progress = (np.full_like(self.value_preds,np.nan) if context_mode(args) != 'disabled' else None)
+        from onpolicy.algorithms.utils.pm_action_loss import action_credit_settings
+        self.pm_action_spec = action_credit_settings(args)
+        enabled = self.pm_action_spec['mode'] != 'disabled' and not getattr(args,'tg_evaluate',False)
+        self.pm_action_targets = (np.full((self.episode_length,self.n_rollout_threads,num_agents,num_agents+1),np.nan,dtype=np.float32) if enabled else None)
+        self.pm_action_ready = np.zeros(self.episode_length,dtype=bool)
         self.tag =[]
 
     def reset_episode(self):
@@ -225,6 +232,11 @@ class GraphReplayBuffer(object):
         self.returns.fill(0)
         self.rewards.fill(0)
         self.wm_feature_ready.fill(False)
+        self.pm_action_ready.fill(False)
+        if self.pm_action_targets is not None:
+            self.pm_action_targets.fill(np.nan)
+        if self.critic_progress is not None:
+            self.critic_progress.fill(np.nan)
         if self.wm_features is not None:
             self.wm_features.fill(0)
         if self.critic_time is not None:
@@ -633,6 +645,14 @@ class GraphReplayBuffer(object):
                 sample += (self.wm_features.reshape(-1, num_agents+1, 3)[indices].copy(),)
             if self.critic_time is not None:
                 sample += (self.critic_time[:-1].reshape(-1,1)[indices].copy(),)
+            if self.critic_progress is not None:
+                if not np.isfinite(self.critic_progress).all():
+                    raise ValueError('Missing PM decision-time context in rollout')
+                sample += (self.critic_progress[:-1].reshape(-1,1)[indices].copy(),)
+            if self.pm_action_targets is not None:
+                if not self.pm_action_ready.all() or not np.isfinite(self.pm_action_targets).all():
+                    raise ValueError("Missing cached PM candidate targets")
+                sample += (self.pm_action_targets.reshape(-1,num_agents+1)[indices].copy(),)
             yield sample
 
     def naive_recurrent_generator(

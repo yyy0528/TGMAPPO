@@ -153,6 +153,20 @@ class GR_MAPPO():
         """
 
 
+        from onpolicy.algorithms.utils.pm_action_loss import action_credit_settings
+        action_spec = action_credit_settings(self.policy.actor.args)
+        pm_targets = None
+        if action_spec["mode"] != "disabled":
+            if len(sample) < 17:
+                raise ValueError("PM action credit requires cached targets")
+            target,sample = sample[-1],sample[:-1]
+            if action_spec["coefficient"] > 0:
+                pm_targets = target
+        critic_progress = None
+        if getattr(self.policy.critic,'pm_context_mode','disabled') != 'disabled':
+            if len(sample) < 17:
+                raise ValueError('PM Critic PPO sample requires cached context')
+            critic_progress,sample = sample[-1],sample[:-1]
         critic_time = None
         if self.policy.critic.time_conditioning is not None:
             expected = 18 if self.policy.actor.use_wm else 17
@@ -182,7 +196,7 @@ class GR_MAPPO():
         # Reshape to do in a single forward pass for all steps
         #print("action",actions_batch)
         #print("action", available_actions_batch,self._use_policy_active_masks,active_masks_batch)
-        values, action_log_probs, dist_entropy = self.policy.evaluate_actions(
+        evaluated = self.policy.evaluate_actions(
                                                         share_obs_batch,
                                                         obs_batch,
                                                         node_obs_batch,
@@ -194,7 +208,9 @@ class GR_MAPPO():
                                                         actions_batch, 
                                                         masks_batch, 
                                                         available_actions_batch,
-                                                        active_masks_batch, wm_features=wm_features, critic_time=critic_time)
+                                                        active_masks_batch, wm_features=wm_features, critic_time=critic_time,
+                                                        critic_progress=critic_progress,pm_targets=pm_targets)
+        values, action_log_probs, dist_entropy = evaluated[:3]
         # actor update
         # print(f'obs: {obs_batch.shape}')
         # st = time.time()
@@ -217,6 +233,10 @@ class GR_MAPPO():
                                             dim=-1, keepdim=True).mean()
 
         policy_loss = policy_action_loss
+        self.last_pm_action_loss = 0.
+        if pm_targets is not None:
+            self.last_pm_action_loss = float(evaluated[3].detach())
+            policy_loss = policy_loss+action_spec["coefficient"]*evaluated[3]
 
         self.policy.actor_optimizer.zero_grad()
         # print(f'Actor Zero grad time: {time.time() - st}')
@@ -333,6 +353,9 @@ class GR_MAPPO():
         train_info['ratio'] = 0
         train_info['approx_kl'] = 0
         train_info['clip_fraction'] = 0
+        from onpolicy.algorithms.utils.pm_action_loss import action_credit_settings
+        if action_credit_settings(self.policy.actor.args)['mode'] != 'disabled':
+            train_info['pm_action_target_loss'] = 0.
 
         #PPO 多轮迭代更新
 
@@ -381,6 +404,8 @@ class GR_MAPPO():
                     train_info['ratio'] += imp_weights.mean()       #新旧策略概率比的平均值，用于调整PPO的CLIP范围，值接近1表示策略更新幅度稳定。
                     train_info['approx_kl'] += self.last_ppo_diagnostics['approx_kl']
                     train_info['clip_fraction'] += self.last_ppo_diagnostics['clip_fraction']
+                    if 'pm_action_target_loss' in train_info:
+                        train_info['pm_action_target_loss'] += self.last_pm_action_loss
                     #print(f"value_loss:    {value_loss}")
                 # print(f'PPO epoch time: {time.time() - st}')
                 # print(f'PPO epoch actor backward time: {actor_backward_time}')

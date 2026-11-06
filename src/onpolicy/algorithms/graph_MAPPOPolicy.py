@@ -128,6 +128,7 @@ class GR_MAPPOPolicy:
         deterministic=False,
         wm_features=None,
         critic_time=None,
+        critic_progress=None,
     ) -> Tuple[Tensor, Tensor, Tensor, Tensor, Tensor]:
         """
         Compute actions and value function predictions for the given inputs.
@@ -180,12 +181,12 @@ class GR_MAPPOPolicy:
         )
 
         values, rnn_states_critic = self.critic.forward(
-            cent_obs, node_obs, adj, share_agent_id, rnn_states_critic, masks, critic_time=critic_time
+            cent_obs, node_obs, adj, share_agent_id, rnn_states_critic, masks, critic_time=critic_time, critic_progress=critic_progress
         )
         return (values, actions, action_log_probs, rnn_states_actor, rnn_states_critic)
 
     def get_values(
-        self, cent_obs, node_obs, adj, share_agent_id, rnn_states_critic, masks, critic_time=None
+        self, cent_obs, node_obs, adj, share_agent_id, rnn_states_critic, masks, critic_time=None, critic_progress=None
     ) -> Tensor:
         """
         Get value function predictions.
@@ -205,7 +206,7 @@ class GR_MAPPOPolicy:
         :return values: (torch.Tensor) value function predictions.
         """
         values, _ = self.critic.forward(
-            cent_obs, node_obs, adj, share_agent_id, rnn_states_critic, masks, critic_time=critic_time
+            cent_obs, node_obs, adj, share_agent_id, rnn_states_critic, masks, critic_time=critic_time, critic_progress=critic_progress
         )
         return values
 
@@ -225,6 +226,8 @@ class GR_MAPPOPolicy:
         active_masks=None,
         wm_features=None,
         critic_time=None,
+        critic_progress=None,
+        pm_targets=None,
     ) -> Tuple[Tensor, Tensor, Tensor]:
         """
         Get action logprobs / entropy and
@@ -262,7 +265,7 @@ class GR_MAPPOPolicy:
         :return dist_entropy: (torch.Tensor)
             action distribution entropy for the given inputs.
         """
-        action_log_probs, dist_entropy = self.actor.evaluate_actions(
+        actor_result = self.actor.evaluate_actions(
             obs,
             node_obs,
             adj,
@@ -273,13 +276,17 @@ class GR_MAPPOPolicy:
             available_actions,
             active_masks,
             wm_features=wm_features,
+            pm_targets=pm_targets,
         )
+        action_log_probs, dist_entropy = actor_result[:2]
         #print(action   )
         #print(available_actions)
 
         values, _ = self.critic.forward(
-            cent_obs, node_obs, adj, share_agent_id, rnn_states_critic, masks, critic_time=critic_time
+            cent_obs, node_obs, adj, share_agent_id, rnn_states_critic, masks, critic_time=critic_time, critic_progress=critic_progress
         )
+        if pm_targets is not None:
+            return values, action_log_probs, dist_entropy, actor_result[2]
         return values, action_log_probs, dist_entropy
 
     def act(

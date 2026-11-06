@@ -333,6 +333,14 @@ class DeepQNetwork(nn.Module):
         started = time.perf_counter()
         self.trainer.prep_rollout()
         wm_features = None
+        if self.buffer.pm_action_targets is not None:
+            from .pm_action_credit import collect_action_targets
+            targets = collect_action_targets(self.pm_runtime,self.env,self.buffer,step)
+            self.buffer.pm_action_targets[step,0] = targets
+            self.buffer.pm_action_ready[step] = True
+        if self.buffer.critic_progress is not None:
+            from onpolicy.algorithms.utils.critic_progress import cache_context
+            cache_context(self.buffer,step,self.pm_runtime.phi)
         if self.wm_runtime is not None:
             predicted = self.wm_runtime.predict(self.buffer.obs[step], self.buffer.node_obs[step],
                 self.buffer.adj[step], self.buffer.available_actions[step], step)
@@ -359,6 +367,7 @@ class DeepQNetwork(nn.Module):
             deterministic=getattr(self.all_args, "tg_evaluate", False),
             wm_features=wm_features,
             critic_time=(np.concatenate(self.buffer.critic_time[step]) if self.buffer.critic_time is not None else None),
+            critic_progress=(np.concatenate(self.buffer.critic_progress[step]) if self.buffer.critic_progress is not None else None),
         )
         # [self.envs, agents, dim]
         values = np.array(np.split(_t2n(value), self.n_rollout_threads))
@@ -437,6 +446,9 @@ class DeepQNetwork(nn.Module):
 
         #print("action+maks",action_masks)
 
+        if self.buffer.critic_progress is not None:
+            from onpolicy.algorithms.utils.critic_progress import cache_context
+            cache_context(self.buffer,int(self.buffer.step)+1,self.pm_runtime.phi)
         self.buffer.insert(
             share_obs,
             obs,
@@ -475,6 +487,7 @@ class DeepQNetwork(nn.Module):
             np.concatenate(self.buffer.rnn_states_critic[-1]),
             np.concatenate(self.buffer.masks[-1]),
             critic_time=(np.concatenate(self.buffer.critic_time[-1]) if self.buffer.critic_time is not None else None),
+            critic_progress=(np.concatenate(self.buffer.critic_progress[-1]) if self.buffer.critic_progress is not None else None),
         )
         next_values = np.array(np.split(_t2n(next_values), self.n_rollout_threads))
         if self.pm_runtime is not None and self.pm_runtime.value_mode == "base_residual":
@@ -634,11 +647,21 @@ class DeepQNetwork(nn.Module):
             critic_before = tensor_digest(self.policy.critic.state_dict())
             fusion_before = tensor_digest(self.policy.actor.wm_fusion.state_dict())
         self.profile["diagnostic_seconds"] += time.perf_counter()-diagnostic_start
+        target_digest = None
+        if self.buffer.pm_action_targets is not None:
+            import hashlib
+            target_digest = hashlib.sha256(self.buffer.pm_action_targets.tobytes()).hexdigest()
         self.trainer.prep_training()      # 准备训练环境
         ppo_start = time.perf_counter()
         train_infos = self.trainer.train(self.buffer)
         self.profile["ppo_seconds"] += time.perf_counter()-ppo_start
         self.profile["ppo_updates"] += 1
+        if target_digest is not None:
+            if hashlib.sha256(self.buffer.pm_action_targets.tobytes()).hexdigest() != target_digest:
+                raise ValueError('PPO modified cached PM action targets')
+            if not hasattr(self,'pm_action_cache_audits'):
+                self.pm_action_cache_audits=[]
+            self.pm_action_cache_audits.append(dict(episode=self.pm_runtime.episode,sha256=target_digest,unchanged=True))
         head = self.policy.critic.v_out
         optimizer = self.policy.critic_optimizer
         registered = {id(p) for group in optimizer.param_groups for p in group["params"]}
