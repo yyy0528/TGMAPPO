@@ -20,7 +20,20 @@ def setarg(cmd,key,value):
 def main():
     import numpy as np
     import torch
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--resume');a=p.parse_args()
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--resume')
+    p.add_argument('--value-mode',choices=('learned_shaped','base_residual'),default='learned_shaped')
+    p.add_argument('--holdout-seed-base',type=int,default=1041)
+    p.add_argument('--holdout-scene-base',type=int,default=9101)
+    p.add_argument('--objective',choices=('cross_entropy','expected_regret'),default='cross_entropy')
+    p.add_argument('--start-after',help='Wait for a preceding manifest to finish before creating this trial')
+    a=p.parse_args()
+    if a.start_after:
+        import time
+        prior=Path(a.start_after).resolve()
+        require(ROOT/'results/tg_pm_action_credit' in prior.parents,'Wait path outside PM experiments')
+        print('WAIT '+str(prior),flush=True)
+        while read(prior/'manifest.json')['status']=='running':time.sleep(15)
+        require(read(prior/'manifest.json')['status']=='completed','Preceding trial failed; do not auto-launch another')
     refroot=ROOT/'results/tg_pm_task_return/pilot_20261105_140555_016580'
     lowroot=ROOT/'results/tg_pm_strength/20261105_154758_858806'
     reference,low=read(refroot/'manifest.json'),read(lowroot/'manifest.json')
@@ -34,9 +47,12 @@ def main():
         root=ROOT/'results/tg_pm_action_credit'/datetime.now().strftime('%Y%m%d_%H%M%S_%f');root.mkdir(parents=True,exist_ok=False)
         m={'status':'running','root':str(root),'source':snapshot(root),'jobs':[],
            'protocol':{'development_seeds':[11,22,33],'development_scenes':[8001,8002,8003],
-             'holdout_seeds':[1041,1042,1043,1044,1045],'holdout_scenes':[9101,9102,9103],
+             'holdout_seeds':list(range(a.holdout_seed_base,a.holdout_seed_base+5)),'holdout_scenes':list(range(a.holdout_scene_base,a.holdout_scene_base+3)),
+             'value_mode':a.value_mode,
              'episodes':20,'eval_episodes':2,'alpha':.1,'coefficient':.1,'temperature':.2,
-             'candidate':'learned','control':'zero_model','extra_trainable_parameters':0,
+             'candidate':('learned_regret' if a.objective=='expected_regret' else 'learned'),
+             'control':('zero_regret' if a.objective=='expected_regret' else 'zero_model'),
+             'objective':a.objective,'extra_trainable_parameters':0,
              'development_gate':'Learned exceeds A and old PM means and zero-model mean; >=5pp over A, all seeds >=max(A,old PM), >=2 wins over old PM.',
              'holdout_gate':'All 5 learned seeds strictly exceed matched A; learned no worse than zero_model per seed and strictly greater mean; >=5pp over A.',
              'statistical_unit':'training_seed; scenes averaged within seed, not treated as extra independent seeds',
@@ -44,6 +60,16 @@ def main():
              'no_guarantee':'Auxiliary approximate packet objective is biased; not exact COMA or policy-invariant shaping.'},
            'reference_manifests':{str(x):digest(x) for x in (refroot/'manifest.json',lowroot/'manifest.json')}}
     for name,h in m['source']['files_sha256'].items():require(digest(root/'source_snapshot'/name)==h,'Runtime archive changed')
+    value_mode=m['protocol'].get('value_mode','learned_shaped')
+    holdout_seeds=tuple(m['protocol']['holdout_seeds']);holdout_scenes=tuple(m['protocol']['holdout_scenes'])
+    candidate_mode=m['protocol']['candidate'];control_mode=m['protocol']['control']
+    criteria_path=root/'extra_acceptance_criteria.json'
+    if not criteria_path.exists():
+        require(not any(j['tag'].startswith('holdout_') for j in m['jobs']), 'Cannot add return criteria after holdout started')
+        atomic(criteria_path,{'published':datetime.now().isoformat(),'before_holdout_started':True,
+            'criterion':'Learned mean base return exceeds A, old_PM and control in development; exceeds A and control in holdout.',
+            'reason':'Higher delivery must not hide worse original task return.',
+            'changes_training_or_hyperparameters':False,'does_not_relax_delivery_gates':True})
     atomic(root/'manifest.json',m);print('OUTPUT '+str(root),flush=True)
 
     def run(ref,tag,kind,mode,episodes,seed,scene=None,checkpoint=None,coef=.1,compat=False):
@@ -53,6 +79,7 @@ def main():
              ('--pm_action_temperature',.2),('--num_episodes',episodes),('--num_env_steps',episodes*80),
              ('--seed',seed if scene is None else scene),('--scenario_seed',seed if scene is None else scene)):
             setarg(cmd,key,value)
+        if '--pm_reward_checkpoint' in cmd:setarg(cmd,'--pm_value_mode',value_mode)
         if checkpoint is not None:setarg(cmd,'--tg_policy_checkpoint',checkpoint)
         oldjob=next((j for j in m['jobs'] if j['tag']==tag),None)
         if oldjob:
@@ -81,12 +108,13 @@ def main():
                              pm_action_credit='disabled',pm_action_credit_coef=.1,pm_action_temperature=.2).items():previous.setdefault(key,value)
         ignored={'output_root','tg_policy_checkpoint','num_episodes','num_env_steps','requested_num_env_steps',
                  'requested_num_episodes','effective_num_env_steps','training_budget_source','seed','scenario_seed',
-                 'pm_action_credit','pm_action_credit_coef'}
+                 'pm_action_credit','pm_action_credit_coef','pm_value_mode'}
         require({k:v for k,v in config.items() if k not in ignored}==
                 {k:v for k,v in previous.items() if k not in ignored},'Another setting changed')
         if r.get('pm'):
             original_pm=read(Path(ref['output'])/'logs/TG_policy_report.json')['pm']
-            require(r['pm']['frozen'] and r['pm']['alpha']==.1 and r['pm']['checkpoint_sha256']==original_pm['checkpoint_sha256'],'Wrong PM')
+            require(r['pm']['frozen'] and r['pm']['alpha']==.1 and r['pm']['value_mode']==value_mode
+                    and r['pm']['checkpoint_sha256']==original_pm['checkpoint_sha256'],'Wrong PM')
         if kind=='training':
             require(len(r['training_updates'])==episodes and digest(r['checkpoint'])==r['checkpoint_sha256'],'Missing training')
             for i,u in enumerate(r['training_updates'],1):
@@ -106,16 +134,18 @@ def main():
         physical=[json.loads(x) for x in (out/'logs/TG_physical_metrics.jsonl').read_text(encoding='utf-8').splitlines()]
         audit_reward_csv(out/'logs',r['reward_contract'])
         if compat:
-            old=Path(ref['output']);oldrows=read(old/'logs/TG_policy_report.json')['training_updates'][:episodes]
+            residual = r.get('pm') is not None and r['pm']['value_mode']=='base_residual'
+            old=Path(reference_job(seed,base=True)['output'] if residual else ref['output'])
+            oldrows=read(old/'logs/TG_policy_report.json')['training_updates'][:episodes]
             actual=[{k:v for k,v in u.items() if k!='pm_action_target_loss'} for u in r['training_updates']]
             require(actual==oldrows,'Default/zero coefficient PPO differs')
             for name in ('TG_physical_metrics.jsonl','TG_reward_components.csv','TG_PM_rewards.csv'):
                 q=old/'logs'/name
-                if q.exists():
+                if q.exists() and (not residual or name.endswith('.jsonl')):
                     n=episodes if name.endswith('.jsonl') else 80*episodes+1
                     require((out/'logs'/name).read_bytes()==b''.join(q.read_bytes().splitlines(keepends=True)[:n]),'Default behavior differs')
             if seed==22:
-                group='A' if not config['use_pm_reward'] else 'alpha01'
+                group='A' if not config['use_pm_reward'] or residual else 'alpha01'
                 path=ROOT/'results/tg_pm_update_replay/20261105_211844_626825'/('prefix_'+group)/'replay/moves_5/checkpoints/tg_policy_latest.pt'
                 oldstate=torch.load(str(path),map_location='cpu');newstate=torch.load(r['checkpoint'],map_location='cpu')
                 require(all(torch.equal(oldstate[n][k],newstate[n][k]) for n in ('actor','critic') for k in oldstate[n]),'Prefix tensors differ')
@@ -144,17 +174,17 @@ def main():
             for group,base in (('A',True),('PM',False)):
                 ref=reference_job(seed,base=base)
                 run(ref,'compat_'+group+'_'+str(seed),'training','disabled',2,seed,compat=True)
-        run(reference_job(22),'compat_zero_coefficient','training','learned',2,22,coef=0,compat=True)
-        for mode in ('zero_model','learned'):
+        run(reference_job(22),'compat_zero_coefficient','training',candidate_mode,2,22,coef=0,compat=True)
+        for mode in (control_mode,candidate_mode):
             ck=run(reference_job(22),'smoke_'+mode+'_train','training',mode,2,22)
             run(reference_job(22,'evaluation',8001),'smoke_'+mode+'_eval','evaluation',mode,2,22,8001,ck)
-        for mode in ('zero_model','learned'):
+        for mode in (control_mode,candidate_mode):
             for seed in (11,22,33):
                 ck=run(reference_job(seed),'dev_'+mode+'_'+str(seed)+'_train','training',mode,20,seed)
                 for scene in (8001,8002,8003):
                     run(reference_job(seed,'evaluation',scene),'dev_'+mode+'_'+str(seed)+'_eval_'+str(scene),
                         'evaluation',mode,2,seed,scene,ck)
-        learned,control=rates('dev_','learned',(11,22,33)),rates('dev_','zero_model',(11,22,33))
+        learned,control=rates('dev_',candidate_mode,(11,22,33)),rates('dev_',control_mode,(11,22,33))
         baserates={str(s):statistics.mean(j['delivered']/j['generated'] for j in reference['jobs'] if j['group']=='A' and j['kind']=='evaluation' and j['seed']==s) for s in (11,22,33)}
         oldrates={str(s):statistics.mean(j['delivered']/j['generated'] for j in low['jobs'] if j['kind']=='evaluation' and j['seed']==s) for s in (11,22,33)}
         mean=lambda values:statistics.mean(x['delivery'] for x in values.values())
@@ -164,15 +194,15 @@ def main():
         m['development']={'learned':learned,'zero_model':control,'A':baserates,'old_PM':oldrates,'passed':gate}
         atomic(root/'manifest.json',m);print('DEVELOPMENT_GATE '+str(gate),flush=True)
         if gate:
-            for mode in ('disabled','zero_model','learned'):
-                for seed in (1041,1042,1043,1044,1045):
+            for mode in ('disabled',control_mode,candidate_mode):
+                for seed in holdout_seeds:
                     base=mode=='disabled'
                     ck=run(reference_job(11,base=base),'holdout_'+mode+'_'+str(seed)+'_train','training',mode,20,seed)
-                    for scene in (9101,9102,9103):
+                    for scene in holdout_scenes:
                         run(reference_job(11,'evaluation',8001,base),'holdout_'+mode+'_'+str(seed)+'_eval_'+str(scene),
                             'evaluation',mode,2,seed,scene,ck)
-            values={mode:rates('holdout_',mode,(1041,1042,1043,1044,1045)) for mode in ('disabled','zero_model','learned')}
-            held=values['learned'];base=values['disabled'];ctrl=values['zero_model']
+            values={mode:rates('holdout_',mode,holdout_seeds) for mode in ('disabled',control_mode,candidate_mode)}
+            held=values[candidate_mode];base=values['disabled'];ctrl=values[control_mode]
             passed=all(held[s]['delivery']>base[s]['delivery'] and held[s]['delivery']>=ctrl[s]['delivery'] for s in held)
             passed=passed and mean(held)>mean(ctrl) and mean(held)>=mean(base)+.05
             m['holdout']={'groups':values,'passed':passed,'scope':'5 predeclared new training seeds; 20-rollout budget only'}

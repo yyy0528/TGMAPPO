@@ -1,0 +1,69 @@
+{
+  "published": "2026-11-06T20:49:08.692340",
+  "unique_tests": 152,
+  "all_passed": true,
+  "stages": [
+    {
+      "path": "results\\tg_pm_reliability_tests\\20261106_195340_513762\\credit.log",
+      "tests": 5,
+      "passed": true,
+      "sha256": "289fe4678921c9ab85c5fafe7010060775848a270177096d45720998b3082d50"
+    },
+    {
+      "path": "results\\tg_pm_reliability_tests\\20261106_195340_513762\\functions.log",
+      "tests": 3,
+      "passed": true,
+      "sha256": "15c0bd869d361aee44a4c9c6d8846e3229a6e2b796fb174c2743fd4e0f4b971e"
+    },
+    {
+      "path": "results\\tg_pm_reliability_tests\\20261106_195340_513762\\integration.log",
+      "tests": 3,
+      "passed": true,
+      "sha256": "d14dfa75853cbdce6d232d5316e3e28d1263fdff9e4e29e1d97121a757f9459e"
+    },
+    {
+      "path": "results\\tg_pm_reliability_tests\\20261106_195340_513762\\legacy.log",
+      "tests": 105,
+      "passed": true,
+      "sha256": "1c8195faa1259c2e3b91e2d5d48b13a4afb961d4f35e1be8a7b2fc3ef12b7a37"
+    },
+    {
+      "path": "results\\tg_pm_reliability_tests\\20261106_195340_513762\\modules.log",
+      "tests": 2,
+      "passed": true,
+      "sha256": "2498f661cef2d5ea930c2af618e09142b728d5885ce1dfb78926def83b0668be"
+    },
+    {
+      "path": "results\\tg_pm_reliability_tests\\20261106_195340_513762\\task_return.log",
+      "tests": 6,
+      "passed": true,
+      "sha256": "f5a1470e9a7e304a4f94115382c8160cfdd9e979a331acacec1ce57f86a26c54"
+    },
+    {
+      "path": "results\\tg_pm_reliability_tests\\20261106_195340_513762\\value.log",
+      "tests": 7,
+      "passed": true,
+      "sha256": "e85453af8910aa84a53373904e60a2b8203d091cd4da800008fc5f0656ffb0e7"
+    },
+    {
+      "path": "results\\tg_pm_action_credit_tests\\20261106_204246_333596\\test_pm_action_credit.py.log",
+      "tests": 14,
+      "passed": true,
+      "sha256": "17cd2146745f421e66da30cde1f619cd450a0fa19a775690d8f9c73880e5f743"
+    },
+    {
+      "path": "results\\tg_pm_action_credit_tests\\20261106_204246_333596\\test_pm_critic_context.py.log",
+      "tests": 7,
+      "passed": true,
+      "sha256": "46099a5f6d8f3f20468b9cf71ed0b63a8c411443a70684ed6379d27575fd818e"
+    }
+  ],
+  "source_hashes": {
+    "src/onpolicy/algorithms/utils/pm_action_loss.py": "9bec35a9cf4dd8fcc5a287538f29986fd6a2e37e63eb8dca7f36c2238b7fd60c",
+    "src/buoy_network/pm_action_credit.py": "745fc54860e11cd616923450a8597b4747c348dec0eb9ab5bf8a21a4c5c10a32",
+    "src/onpolicy/algorithms/graph_actor_critic.py": "0a4b198691d147915260fc8aed2e43d26906d3e7b761e5825138d3c59b7cc318",
+    "src/onpolicy/algorithms/utils/act.py": "0c57991adf7fb51b592e477f854ee81aa121122bd472e32a10a042866a5d9964",
+    "tests/test_pm_action_credit.py": "66f1703062c04fb71263a8795f8255d37465ba2ce692f4d0ad8f268d8a413019",
+    "tests/test_pm_critic_context.py": "7afeb3b91bd7745af327aa265e49084e0c3e5b3fd469072341943da06c67d814"
+  }
+}

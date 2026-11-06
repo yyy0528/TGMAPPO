@@ -112,7 +112,7 @@ def parse_args(args, parser):
     parser.add_argument("--pm_potential_mode", choices=("remaining","completion_credit","task_return"),default="remaining")
     parser.add_argument("--pm_value_mode", choices=("learned_shaped","base_residual"),default="learned_shaped")
     parser.add_argument("--pm_critic_context", choices=("disabled","constant","potential"),default="disabled")
-    parser.add_argument("--pm_action_credit", choices=("disabled","zero_model","learned"), default="disabled")
+    parser.add_argument("--pm_action_credit", choices=("disabled","zero_model","learned","zero_regret","learned_regret"), default="disabled")
     parser.add_argument("--pm_action_credit_coef", type=float, default=.1)
     parser.add_argument("--pm_action_temperature", type=float, default=.2)
     parser.add_argument("--tg_reward_version", choices=("legacy_v1", "task_v2"), default="legacy_v1")

@@ -11,6 +11,27 @@ from buoy_network.ablation_suite import read,atomic,digest,require
 from buoy_network.task_reward_audit import audit_reward_csv
 from analyze_tg_pm_strength import cache_audit
 
+def parse_time(value):
+    # Python 3.6 has no datetime.fromisoformat; experiment timestamps are local ISO.
+    return datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f' if '.' in value else '%Y-%m-%dT%H:%M:%S')
+
+
+def value_cache_audit(out,value_mode,episodes):
+    if value_mode=='learned_shaped':
+        return cache_audit(out,.1,episodes)
+    import numpy as np
+    result=[]
+    for ep in range(episodes):
+        with np.load(str(out.parent/'value_audit'/('episode_'+str(ep)+'.npz'))) as a:
+            require(np.allclose(a['shaped_rewards'],a['base_rewards']+.1*(.99*a['phi'][1:]-a['phi'][:-1]),atol=1e-7),'Potential cache mismatch')
+            delta=a['base_rewards']+.99*a['raw_values'][1:]*a['masks'][1:]-a['raw_values'][:-1]
+            gae=np.zeros_like(delta)
+            for t in reversed(range(len(delta))):gae[t]=delta[t]+(.99*.95*gae[t+1]*a['masks'][t+1] if t+1<len(delta) else 0)
+            error=float(np.max(np.abs(gae-a['actual_gae'])))
+            require(error<1e-5,'Base-coordinate GAE mismatch')
+            result.append({'episode':ep,'actual_GAE_error':error})
+    return result
+
 def audit(root):
     import numpy as np
     m=read(root/'manifest.json')
@@ -41,10 +62,11 @@ def audit(root):
                         require(np.allclose(target.sum(-1),1.,atol=1e-5) and np.all(target[mask==0]==0),'Illegal teacher distribution')
                         require(digest_bytes(target.tobytes())==r['pm_action_cache_audits'][ep]['sha256'],'Stored teacher differs from actual PPO cache')
                 if j['coefficient']>0:require(all(u['pm_action_target_loss']>0 for u in r['training_updates']),'Teacher loss not trained')
-            if r.get('pm') is not None:gae.append({'tag':j['tag'],'rollouts':cache_audit(out,.1,j['episodes'])})
+            if r.get('pm') is not None:gae.append({'tag':j['tag'],'value_mode':r['pm']['value_mode'],
+                'rollouts':value_cache_audit(out,r['pm']['value_mode'],j['episodes'])})
             if j['episodes']==20:
                 key=('holdout' if j['tag'].startswith('holdout') else 'development')+'_'+j['mode']
-                wall.setdefault(key,[]).append({'seed':j['seed'],'wall_seconds':(datetime.fromisoformat(j['finished'])-datetime.fromisoformat(j['started'])).total_seconds(),
+                wall.setdefault(key,[]).append({'seed':j['seed'],'wall_seconds':(parse_time(j['finished'])-parse_time(j['started'])).total_seconds(),
                     'collect_seconds':r['profile']['collect_seconds'],'ppo_seconds':r['profile']['ppo_seconds']})
         else:
             require(r['optimizer_updates']==0 and r['actor_unchanged'] and r['critic_unchanged']
@@ -61,7 +83,8 @@ def audit(root):
         return {'per_seed':rows,'mean_delivery':statistics.mean(x['delivery'] for x in rows),
             'sample_SD':statistics.stdev(x['delivery'] for x in rows),
             'mean_base_return':statistics.mean(x['base_return'] for x in rows)}
-    dev={g:summarize('dev_',g,(11,22,33)) for g in ('zero_model','learned')}
+    candidate=m['protocol']['candidate'];control=m['protocol']['control']
+    dev={label:summarize('dev_',mode,(11,22,33)) for label,mode in (('zero_model',control),('learned',candidate))}
     old=read(ROOT/'results/tg_pm_task_return/pilot_20261105_140555_016580/manifest.json')
     low=read(ROOT/'results/tg_pm_strength/20261105_154758_858806/manifest.json')
     refs={'A':{},'old_PM':{}}
@@ -79,14 +102,24 @@ def audit(root):
     require(passed==d['passed'],'Development gate mismatch')
     held=None
     if passed:
-        seeds=(1041,1042,1043,1044,1045)
-        held={g:summarize('holdout_',g,seeds) for g in ('disabled','zero_model','learned')}
+        seeds=tuple(m['protocol']['holdout_seeds'])
+        held={label:summarize('holdout_',mode,seeds) for label,mode in (('disabled','disabled'),('zero_model',control),('learned',candidate))}
         vals={g:{r['seed']:r['delivery'] for r in held[g]['per_seed']} for g in held}
         accepted=all(vals['learned'][s]>vals['disabled'][s] and vals['learned'][s]>=vals['zero_model'][s] for s in seeds)
         accepted=accepted and held['learned']['mean_delivery']>held['zero_model']['mean_delivery'] and held['learned']['mean_delivery']>=held['disabled']['mean_delivery']+.05
         require(accepted==m['holdout']['passed'],'Holdout gate mismatch')
     else:require(m['holdout']['status']=='not_started_sealed','Holdout was used after development failure')
-    return {'engineering_passed':True,'development':dev,'historical_delivery':refs,'development_gate_passed':passed,
+    criteria=read(root/'extra_acceptance_criteria.json')
+    require(criteria['before_holdout_started'] and not criteria['changes_training_or_hyperparameters'],'Return acceptance was not prespecified')
+    starts=[parse_time(j['started']) for j in m['jobs'] if j['tag'].startswith('holdout_')]
+    if starts:require(parse_time(criteria['published'])<min(starts),'Return criterion published after holdout began')
+    a_return=statistics.mean(j['mean_discounted_base_return'] for j in old['jobs'] if j['group']=='A' and j['kind']=='evaluation')
+    old_return=statistics.mean(j['base_return'] for j in low['jobs'] if j['kind']=='evaluation')
+    dev_return=dev['learned']['mean_base_return']>max(a_return,old_return,dev['zero_model']['mean_base_return'])
+    held_return=(held['learned']['mean_base_return']>max(held['disabled']['mean_base_return'],held['zero_model']['mean_base_return'])) if held else False
+    return {'engineering_passed':True,'protocol':m['protocol'],
+       'original_return_checks':{'development_passed':dev_return,'holdout_passed':held_return,'criteria_sha256':digest(root/'extra_acceptance_criteria.json')},
+       'stability_acceptance_passed':bool(passed and m['holdout'].get('passed',False) and dev_return and held_return),'development':dev,'historical_delivery':refs,'development_gate_passed':passed,
        'holdout':held,'holdout_gate_passed':m['holdout'].get('passed',False),'root':str(root),
        'manifest_sha256':digest(root/'manifest.json'),'artifacts':artifacts,'cache_audits':gae,
        'new_environment_slots':slots,'timings':wall,'formal_long_budget_efficacy_proven':False,
@@ -109,7 +142,7 @@ def plot(r,root):
     axes[0].set_xticks(range(4));axes[0].set_xticklabels(labels,rotation=15);axes[0].set_title('Known development seeds');axes[0].set_ylabel('Delivery rate (%)');axes[0].legend()
     if r['holdout']:
         groups2=['disabled','zero_model','learned']
-        for seed in (1041,1042,1043,1044,1045):
+        for seed in [x['seed'] for x in r['holdout']['learned']['per_seed']]:
             y=[100*next(x['delivery'] for x in r['holdout'][g]['per_seed'] if x['seed']==seed) for g in groups2]
             axes[1].plot(range(3),y,marker='o',label=str(seed))
         axes[1].set_xticks(range(3));axes[1].set_xticklabels(['TG','Immediate only','PM action teacher'],rotation=15);axes[1].legend(fontsize=8)

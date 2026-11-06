@@ -1,0 +1,459 @@
+{
+  "engineering_passed": true,
+  "protocol": {
+    "development_seeds": [
+      11,
+      22,
+      33
+    ],
+    "development_scenes": [
+      8001,
+      8002,
+      8003
+    ],
+    "holdout_seeds": [
+      1041,
+      1042,
+      1043,
+      1044,
+      1045
+    ],
+    "holdout_scenes": [
+      9101,
+      9102,
+      9103
+    ],
+    "episodes": 20,
+    "eval_episodes": 2,
+    "alpha": 0.1,
+    "coefficient": 0.1,
+    "temperature": 0.2,
+    "candidate": "learned",
+    "control": "zero_model",
+    "extra_trainable_parameters": 0,
+    "development_gate": "Learned exceeds A and old PM means and zero-model mean; >=5pp over A, all seeds >=max(A,old PM), >=2 wins over old PM.",
+    "holdout_gate": "All 5 learned seeds strictly exceed matched A; learned no worse than zero_model per seed and strictly greater mean; >=5pp over A.",
+    "statistical_unit": "training_seed; scenes averaged within seed, not treated as extra independent seeds",
+    "conditional_holdout": "Run only once development passes; otherwise keep sealed.",
+    "no_guarantee": "Auxiliary approximate packet objective is biased; not exact COMA or policy-invariant shaping."
+  },
+  "original_return_checks": {
+    "development_passed": true,
+    "holdout_passed": true,
+    "criteria_sha256": "95cdeb4135a8b9f32304c9bd624ccef5856daba423ab06a2f97f3ebce4801314"
+  },
+  "stability_acceptance_passed": false,
+  "development": {
+    "zero_model": {
+      "per_seed": [
+        {
+          "seed": 11,
+          "delivery": 0.2916666666666667,
+          "base_return": -0.5720216180346195,
+          "delivered_each_scene": [
+            14,
+            14,
+            14
+          ]
+        },
+        {
+          "seed": 22,
+          "delivery": 0.375,
+          "base_return": -0.4233897160210978,
+          "delivered_each_scene": [
+            18,
+            18,
+            18
+          ]
+        },
+        {
+          "seed": 33,
+          "delivery": 0.5833333333333334,
+          "base_return": -0.09761839254112163,
+          "delivered_each_scene": [
+            28,
+            28,
+            28
+          ]
+        }
+      ],
+      "mean_delivery": 0.4166666666666667,
+      "sample_SD": 0.1502313031443329,
+      "mean_base_return": -0.3643432421989463
+    },
+    "learned": {
+      "per_seed": [
+        {
+          "seed": 11,
+          "delivery": 0.7083333333333334,
+          "base_return": 0.14368195735792472,
+          "delivered_each_scene": [
+            34,
+            34,
+            34
+          ]
+        },
+        {
+          "seed": 22,
+          "delivery": 0.4097222222222222,
+          "base_return": -0.38383624102763914,
+          "delivered_each_scene": [
+            18,
+            20,
+            21
+          ]
+        },
+        {
+          "seed": 33,
+          "delivery": 0.375,
+          "base_return": -0.427243143378396,
+          "delivered_each_scene": [
+            18,
+            18,
+            18
+          ]
+        }
+      ],
+      "mean_delivery": 0.4976851851851852,
+      "sample_SD": 0.183250893361248,
+      "mean_base_return": -0.2224658090160368
+    }
+  },
+  "historical_delivery": {
+    "A": {
+      "11": 0.25,
+      "22": 0.20833333333333334,
+      "33": 0.2916666666666667
+    },
+    "old_PM": {
+      "11": 0.3333333333333333,
+      "22": 0.16666666666666666,
+      "33": 0.3333333333333333
+    }
+  },
+  "development_gate_passed": true,
+  "holdout": {
+    "disabled": {
+      "per_seed": [
+        {
+          "seed": 1041,
+          "delivery": 0.125,
+          "base_return": -0.8802165759149264,
+          "delivered_each_scene": [
+            6,
+            6,
+            6
+          ]
+        },
+        {
+          "seed": 1042,
+          "delivery": 0.875,
+          "base_return": 0.356525498170867,
+          "delivered_each_scene": [
+            42,
+            42,
+            42
+          ]
+        },
+        {
+          "seed": 1043,
+          "delivery": 0.0,
+          "base_return": -1.1426396330617115,
+          "delivered_each_scene": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "seed": 1044,
+          "delivery": 0.125,
+          "base_return": -0.8821352032803905,
+          "delivered_each_scene": [
+            6,
+            6,
+            6
+          ]
+        },
+        {
+          "seed": 1045,
+          "delivery": 0.125,
+          "base_return": -0.8808078246551522,
+          "delivered_each_scene": [
+            6,
+            6,
+            6
+          ]
+        }
+      ],
+      "mean_delivery": 0.25,
+      "sample_SD": 0.3535533905932738,
+      "mean_base_return": -0.6858547477482627
+    },
+    "zero_model": {
+      "per_seed": [
+        {
+          "seed": 1041,
+          "delivery": 0.125,
+          "base_return": -0.8812618893378888,
+          "delivered_each_scene": [
+            6,
+            6,
+            6
+          ]
+        },
+        {
+          "seed": 1042,
+          "delivery": 0.20833333333333334,
+          "base_return": -0.7156414037140002,
+          "delivered_each_scene": [
+            10,
+            10,
+            10
+          ]
+        },
+        {
+          "seed": 1043,
+          "delivery": 0.2916666666666667,
+          "base_return": -0.549911353683798,
+          "delivered_each_scene": [
+            14,
+            14,
+            14
+          ]
+        },
+        {
+          "seed": 1044,
+          "delivery": 0.125,
+          "base_return": -0.879611985544449,
+          "delivered_each_scene": [
+            6,
+            6,
+            6
+          ]
+        },
+        {
+          "seed": 1045,
+          "delivery": 0.20833333333333334,
+          "base_return": -0.7123638897989706,
+          "delivered_each_scene": [
+            10,
+            10,
+            10
+          ]
+        }
+      ],
+      "mean_delivery": 0.19166666666666668,
+      "sample_SD": 0.06972166887783963,
+      "mean_base_return": -0.7477581044158214
+    },
+    "learned": {
+      "per_seed": [
+        {
+          "seed": 1041,
+          "delivery": 0.4166666666666667,
+          "base_return": -0.32818138897179394,
+          "delivered_each_scene": [
+            20,
+            20,
+            20
+          ]
+        },
+        {
+          "seed": 1042,
+          "delivery": 0.8333333333333334,
+          "base_return": 0.35204776637716706,
+          "delivered_each_scene": [
+            40,
+            40,
+            40
+          ]
+        },
+        {
+          "seed": 1043,
+          "delivery": 0.4930555555555556,
+          "base_return": -0.15955964219565802,
+          "delivered_each_scene": [
+            24,
+            23,
+            24
+          ]
+        },
+        {
+          "seed": 1044,
+          "delivery": 0.9583333333333334,
+          "base_return": 0.5990991317995056,
+          "delivered_each_scene": [
+            46,
+            46,
+            46
+          ]
+        },
+        {
+          "seed": 1045,
+          "delivery": 0.4166666666666667,
+          "base_return": -0.3329576787334384,
+          "delivered_each_scene": [
+            20,
+            20,
+            20
+          ]
+        }
+      ],
+      "mean_delivery": 0.6236111111111111,
+      "sample_SD": 0.2543222049892956,
+      "mean_base_return": 0.026089637655156456
+    }
+  },
+  "holdout_gate_passed": false,
+  "new_environment_slots": {
+    "training": 35040,
+    "evaluation": 10400
+  },
+  "timings": {
+    "development_zero_model": [
+      {
+        "seed": 11,
+        "wall_seconds": 231.299823,
+        "collect_seconds": 18.939975599999734,
+        "ppo_seconds": 76.30584719999989
+      },
+      {
+        "seed": 22,
+        "wall_seconds": 226.595867,
+        "collect_seconds": 18.04971049999992,
+        "ppo_seconds": 74.47835290000006
+      },
+      {
+        "seed": 33,
+        "wall_seconds": 227.769234,
+        "collect_seconds": 18.247019999999758,
+        "ppo_seconds": 75.61608420000002
+      }
+    ],
+    "development_learned": [
+      {
+        "seed": 11,
+        "wall_seconds": 271.39624,
+        "collect_seconds": 55.991456699999894,
+        "ppo_seconds": 77.49760070000005
+      },
+      {
+        "seed": 22,
+        "wall_seconds": 275.347316,
+        "collect_seconds": 57.96623770000022,
+        "ppo_seconds": 77.7682418
+      },
+      {
+        "seed": 33,
+        "wall_seconds": 266.282081,
+        "collect_seconds": 53.86405790000043,
+        "ppo_seconds": 76.00743789999996
+      }
+    ],
+    "holdout_disabled": [
+      {
+        "seed": 1041,
+        "wall_seconds": 190.562484,
+        "collect_seconds": 17.306870499999803,
+        "ppo_seconds": 76.86349819999992
+      },
+      {
+        "seed": 1042,
+        "wall_seconds": 184.120419,
+        "collect_seconds": 17.107382400000184,
+        "ppo_seconds": 74.93091519999997
+      },
+      {
+        "seed": 1043,
+        "wall_seconds": 187.962997,
+        "collect_seconds": 17.035948100000333,
+        "ppo_seconds": 76.2443923
+      },
+      {
+        "seed": 1044,
+        "wall_seconds": 185.043143,
+        "collect_seconds": 17.021664799999883,
+        "ppo_seconds": 75.1016071
+      },
+      {
+        "seed": 1045,
+        "wall_seconds": 180.295762,
+        "collect_seconds": 16.149330999999982,
+        "ppo_seconds": 72.04745979999998
+      }
+    ],
+    "holdout_zero_model": [
+      {
+        "seed": 1041,
+        "wall_seconds": 226.867749,
+        "collect_seconds": 17.801799499999618,
+        "ppo_seconds": 74.63729010000002
+      },
+      {
+        "seed": 1042,
+        "wall_seconds": 222.650362,
+        "collect_seconds": 18.026618900000287,
+        "ppo_seconds": 73.4043241
+      },
+      {
+        "seed": 1043,
+        "wall_seconds": 221.158015,
+        "collect_seconds": 17.831792699999728,
+        "ppo_seconds": 72.16645
+      },
+      {
+        "seed": 1044,
+        "wall_seconds": 212.305716,
+        "collect_seconds": 16.417925299999663,
+        "ppo_seconds": 68.43689740000002
+      },
+      {
+        "seed": 1045,
+        "wall_seconds": 211.49773,
+        "collect_seconds": 16.64503200000005,
+        "ppo_seconds": 68.5619751
+      }
+    ],
+    "holdout_learned": [
+      {
+        "seed": 1041,
+        "wall_seconds": 241.700828,
+        "collect_seconds": 50.795892099999975,
+        "ppo_seconds": 69.32212489999995
+      },
+      {
+        "seed": 1042,
+        "wall_seconds": 217.020683,
+        "collect_seconds": 44.50924900000014,
+        "ppo_seconds": 65.02998050000005
+      },
+      {
+        "seed": 1043,
+        "wall_seconds": 253.564973,
+        "collect_seconds": 52.60488840000008,
+        "ppo_seconds": 71.3093113
+      },
+      {
+        "seed": 1044,
+        "wall_seconds": 245.995022,
+        "collect_seconds": 48.96372689999949,
+        "ppo_seconds": 69.0709583
+      },
+      {
+        "seed": 1045,
+        "wall_seconds": 259.526163,
+        "collect_seconds": 53.17348380000013,
+        "ppo_seconds": 73.48657119999994
+      }
+    ]
+  },
+  "limitations": [
+    "Fixed 20-rollout budget; no long-budget, adversarial or topology-size generalization proof.",
+    "Packet lookahead holds topology/other queues; teacher auxiliary objective is biased, not exact COMA or a policy-invariance theorem."
+  ],
+  "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_pm_action_credit\\20261106_185235_592784",
+  "manifest_sha256": "c8d5e661e8b9863cb5fe6011cf24cf255f54f84108a7279d29216d9f332f96c3",
+  "acceptance_sha256": "ac217879c23ebef61c182a4ceae02ba147db9d039e788c37e8f73cd61e77cdf3",
+  "decision": "Rejected for strict seedwise stability: seed1042 learned 40/48 vs TG42/48 in each scene; keep optional, do not change defaults."
+}

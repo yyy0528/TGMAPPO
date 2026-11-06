@@ -151,6 +151,7 @@ class ACTLayer(nn.Module):
         available_actions: Optional[torch.tensor] = None,
         active_masks: Optional[torch.tensor] = None,
         pm_targets=None,
+        pm_action_objective='cross_entropy',
     ):
         """
         Compute log probability and entropy of given actions.
@@ -231,5 +232,5 @@ class ACTLayer(nn.Module):
             if self.mixed_action or self.multi_discrete:
                 raise ValueError("PM action target requires Discrete actions")
             from .pm_action_loss import teacher_loss
-            return action_log_probs, dist_entropy, teacher_loss(action_logits.logits,pm_targets,active_masks)
+            return action_log_probs, dist_entropy, teacher_loss(action_logits.logits,pm_targets,active_masks,pm_action_objective)
         return action_log_probs, dist_entropy

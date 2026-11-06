@@ -334,11 +334,13 @@ class GR_Actor(nn.Module):
                             if self._use_policy_active_masks and active_masks is not None else entropy.mean())
             if pm_targets is not None:
                 from onpolicy.algorithms.utils.pm_action_loss import teacher_loss
-                return action_log_probs, dist_entropy, teacher_loss(distribution.logits,pm_targets,active_masks)
+                objective='expected_regret' if getattr(self.args,'pm_action_credit','disabled').endswith('_regret') else 'cross_entropy'
+                return action_log_probs, dist_entropy, teacher_loss(distribution.logits,pm_targets,active_masks,objective)
         else:
             return self.act.evaluate_actions(
                 actor_features, action, available_actions,
-                active_masks=active_masks if self._use_policy_active_masks else None,pm_targets=pm_targets)
+                active_masks=active_masks if self._use_policy_active_masks else None,pm_targets=pm_targets,
+                pm_action_objective=('expected_regret' if getattr(self.args,'pm_action_credit','disabled').endswith('_regret') else 'cross_entropy'))
 
         return (action_log_probs, dist_entropy)
 

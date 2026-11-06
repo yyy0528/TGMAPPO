@@ -102,6 +102,6 @@ def collect_action_targets(runtime, env, buffer, step):
             targets[node,-1] = 1.
             continue
         scores = packet_action_scores(runtime,actor,node,packet_at[node],legal,step,
-                                      buffer.pm_action_spec['mode']=='learned')
+                                      buffer.pm_action_spec['mode'] in ('learned','learned_regret'))
         targets[node] = target_distribution(scores,legal,buffer.pm_action_spec['temperature'])
     return targets
