@@ -103,13 +103,14 @@ def audit(root):
     passed=passed and all(values[s]>=max(refs['A'][s],refs['old_PM'][s]) for s in values) and sum(values[s]>refs['old_PM'][s] for s in values)>=2
     require(passed==d['passed'],'Development gate mismatch')
     held=None
-    if passed:
+    if passed and m['holdout'].get('status')!='not_started_budget':
         seeds=tuple(m['protocol']['holdout_seeds'])
         held={label:summarize('holdout_',mode,seeds) for label,mode in (('disabled','disabled'),('zero_model',control),('learned',candidate))}
         vals={g:{r['seed']:r['delivery'] for r in held[g]['per_seed']} for g in held}
         accepted=all(vals['learned'][s]>vals['disabled'][s] and vals['learned'][s]>=vals['zero_model'][s] for s in seeds)
         accepted=accepted and held['learned']['mean_delivery']>held['zero_model']['mean_delivery'] and held['learned']['mean_delivery']>=held['disabled']['mean_delivery']+.05
         require(accepted==m['holdout']['passed'],'Holdout gate mismatch')
+    elif passed:require(m['protocol'].get('development_only',False) and not m.get('holdout_release'),'Unexpected sealed budget state')
     else:require(m['holdout']['status']=='not_started_sealed','Holdout was used after development failure')
     criteria=read(root/'extra_acceptance_criteria.json')
     require(criteria['before_holdout_started'] and not criteria['changes_training_or_hyperparameters'],'Return acceptance was not prespecified')

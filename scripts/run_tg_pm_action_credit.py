@@ -21,10 +21,12 @@ def main():
     import numpy as np
     import torch
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--resume')
+    p.add_argument('--development-only',action='store_true',help='Complete known-seed development and keep holdout sealed')
+    p.add_argument('--continue-holdout',help='Open a previously sealed completed development run without retraining')
     p.add_argument('--value-mode',choices=('learned_shaped','base_residual'),default='learned_shaped')
     p.add_argument('--holdout-seed-base',type=int,default=1041)
     p.add_argument('--holdout-scene-base',type=int,default=9101)
-    p.add_argument('--objective',choices=('cross_entropy','expected_regret'),default='cross_entropy')
+    p.add_argument('--objective',choices=('cross_entropy','expected_regret','top_set'),default='cross_entropy')
     p.add_argument('--start-after',help='Wait for a preceding manifest to finish before creating this trial')
     a=p.parse_args()
     if a.start_after:
@@ -32,17 +34,23 @@ def main():
         prior=Path(a.start_after).resolve()
         require(ROOT/'results/tg_pm_action_credit' in prior.parents,'Wait path outside PM experiments')
         print('WAIT '+str(prior),flush=True)
-        while read(prior/'manifest.json')['status']=='running':time.sleep(15)
+        while read(prior/'manifest.json')['status'] in ('waiting','running'):time.sleep(15)
         require(read(prior/'manifest.json')['status']=='completed','Preceding trial failed; do not auto-launch another')
     refroot=ROOT/'results/tg_pm_task_return/pilot_20261105_140555_016580'
     lowroot=ROOT/'results/tg_pm_strength/20261105_154758_858806'
     reference,low=read(refroot/'manifest.json'),read(lowroot/'manifest.json')
     require(reference['status']==low['status']=='completed','References incomplete')
-    if a.resume:
-        root=Path(a.resume).resolve();require(ROOT/'results/tg_pm_action_credit' in root.parents,'Resume outside experiment root')
-        m=read(root/'manifest.json');require(m['status']=='failed','Only resume a failed/incomplete audit')
-        m.setdefault('audit_failures',[]).append(m.pop('error',None));m['status']='running'
-        m.setdefault('resume_controllers',[]).append(digest(Path(__file__)))
+    require(not (a.resume and a.continue_holdout),'Choose resume or holdout continuation')
+    if a.resume or a.continue_holdout:
+        root=Path(a.resume or a.continue_holdout).resolve();require(ROOT/'results/tg_pm_action_credit' in root.parents,'Resume outside experiment root')
+        m=read(root/'manifest.json')
+        if a.continue_holdout:
+            require(m['status']=='completed' and m['development']['passed'] and m['holdout'].get('status')=='not_started_budget','Require a passed, sealed development run')
+            m['holdout_release']={'requested':datetime.now().isoformat(),'reuses_training_checkpoints':True}
+        else:
+            require(m['status']=='failed','Only resume a failed/incomplete audit')
+            m.setdefault('audit_failures',[]).append(m.pop('error',None))
+        m['status']='running';m.setdefault('resume_controllers',[]).append(digest(Path(__file__)))
     else:
         root=ROOT/'results/tg_pm_action_credit'/datetime.now().strftime('%Y%m%d_%H%M%S_%f');root.mkdir(parents=True,exist_ok=False)
         m={'status':'running','root':str(root),'source':snapshot(root),'jobs':[],
@@ -50,8 +58,9 @@ def main():
              'holdout_seeds':list(range(a.holdout_seed_base,a.holdout_seed_base+5)),'holdout_scenes':list(range(a.holdout_scene_base,a.holdout_scene_base+3)),
              'value_mode':a.value_mode,
              'episodes':20,'eval_episodes':2,'alpha':.1,'coefficient':.1,'temperature':.2,
-             'candidate':('learned_regret' if a.objective=='expected_regret' else 'learned'),
-             'control':('zero_regret' if a.objective=='expected_regret' else 'zero_model'),
+             'candidate':{'cross_entropy':'learned','expected_regret':'learned_regret','top_set':'learned_set'}[a.objective],
+             'control':{'cross_entropy':'zero_model','expected_regret':'zero_regret','top_set':'zero_set'}[a.objective],
+             'development_only':a.development_only,'top_set_log_gap':(.1 if a.objective=='top_set' else None),
              'objective':a.objective,'extra_trainable_parameters':0,
              'development_gate':'Learned exceeds A and old PM means and zero-model mean; >=5pp over A, all seeds >=max(A,old PM), >=2 wins over old PM.',
              'holdout_gate':'All 5 learned seeds strictly exceed matched A; learned no worse than zero_model per seed and strictly greater mean; >=5pp over A.',
@@ -193,7 +202,7 @@ def main():
         gate=gate and sum(learned[s]['delivery']>oldrates[s] for s in learned)>=2
         m['development']={'learned':learned,'zero_model':control,'A':baserates,'old_PM':oldrates,'passed':gate}
         atomic(root/'manifest.json',m);print('DEVELOPMENT_GATE '+str(gate),flush=True)
-        if gate:
+        if gate and (not m['protocol'].get('development_only',False) or m.get('holdout_release')):
             for mode in ('disabled',control_mode,candidate_mode):
                 for seed in holdout_seeds:
                     base=mode=='disabled'
@@ -206,6 +215,7 @@ def main():
             passed=all(held[s]['delivery']>base[s]['delivery'] and held[s]['delivery']>=ctrl[s]['delivery'] for s in held)
             passed=passed and mean(held)>mean(ctrl) and mean(held)>=mean(base)+.05
             m['holdout']={'groups':values,'passed':passed,'scope':'5 predeclared new training seeds; 20-rollout budget only'}
+        elif gate:m['holdout']={'status':'not_started_budget','reason':'Development-only budget; training checkpoints retained for later holdout continuation'}
         else:m['holdout']={'status':'not_started_sealed','reason':'Development gate failed'}
         m['status']='completed'
     except Exception as exc:

@@ -1,0 +1,67 @@
+{
+  "all_passed": true,
+  "unique_tests": 157,
+  "stages": [
+    {
+      "path": "results\\tg_pm_reliability_tests\\20261106_223327_993716\\credit.log",
+      "tests": 5,
+      "passed": true,
+      "sha256": "eaeda4d1189747fd63fd98d69ed454b6edefa026ac44ead68110649d3542449f"
+    },
+    {
+      "path": "results\\tg_pm_reliability_tests\\20261106_223327_993716\\functions.log",
+      "tests": 3,
+      "passed": true,
+      "sha256": "80acfbd49af652fe6c32c4a7d08e1a17a1afe76f2da03e2c499279ec3cce393b"
+    },
+    {
+      "path": "results\\tg_pm_reliability_tests\\20261106_223327_993716\\integration.log",
+      "tests": 3,
+      "passed": true,
+      "sha256": "533ee4172157b8859dee86f62a9a1b54e6a9df8609feb75f67fbfe9def1d50df"
+    },
+    {
+      "path": "results\\tg_pm_reliability_tests\\20261106_223327_993716\\legacy.log",
+      "tests": 105,
+      "passed": true,
+      "sha256": "7ae2455e3b6292f21a8ce91f5e465196c1723dc4ae998d2d13daeae599f0d31f"
+    },
+    {
+      "path": "results\\tg_pm_reliability_tests\\20261106_223327_993716\\modules.log",
+      "tests": 2,
+      "passed": true,
+      "sha256": "307f5e8aa8c26c0d74d6121e311bcc5cd657d6fce0a29ba6d45c70eca8d708a8"
+    },
+    {
+      "path": "results\\tg_pm_reliability_tests\\20261106_223327_993716\\task_return.log",
+      "tests": 6,
+      "passed": true,
+      "sha256": "5d61768f8aa101be837dc8cae9f6d6d0cd51c700e0968ef3fca96935206d6e7a"
+    },
+    {
+      "path": "results\\tg_pm_reliability_tests\\20261106_223327_993716\\value.log",
+      "tests": 7,
+      "passed": true,
+      "sha256": "d01c497ba015c2dbbbd2bf8dd877a2100a7920327874c3e73e664c3b0c6fc486"
+    },
+    {
+      "path": "results\\tg_pm_action_credit_tests\\20261106_222929_624065\\test_pm_action_credit.py.log",
+      "tests": 19,
+      "passed": true,
+      "sha256": "4f4c9f8f95625659cce89a77422bc971ed9dcdcf1eacbb26c5ee1f596739c45f"
+    },
+    {
+      "path": "results\\tg_pm_action_credit_tests\\20261106_222929_624065\\test_pm_critic_context.py.log",
+      "tests": 7,
+      "passed": true,
+      "sha256": "6350e9a39d702f787698168febe3b5139cf4be4472a6999db2bbc8919f42d534"
+    }
+  ],
+  "source_hashes": {
+    "src/onpolicy/algorithms/utils/pm_action_loss.py": "f4169c25360b17ed9eda8a65f371a2284620aca4a09fc4ebb3ea23e881027768",
+    "src/onpolicy/algorithms/graph_actor_critic.py": "bca24bf2fa5e78b56ea8661ba590914ca31f71fa47a5439a5b7744cbc0804ee6",
+    "src/buoy_network/main.py": "781ac678d85c56eac2ad64b7248ed5b471b34ee0b49e461a784dbe29c421e233",
+    "src/buoy_network/pm_action_credit.py": "116f1cd884f1bad335004c08a14ca21a1cf29ec3888b361044489e0146cf1816",
+    "tests/test_pm_action_credit.py": "663dbdf6743f933c7fe220892d782ca23bb992a2f8fc5d0559020b6c603c33b5"
+  }
+}

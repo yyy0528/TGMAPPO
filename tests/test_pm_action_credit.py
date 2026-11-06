@@ -89,6 +89,34 @@ class ActionFunctions(unittest.TestCase):
         loss=teacher_loss(torch.log_softmax(raw,-1),target,objective='expected_regret')
         self.assertAlmostEqual(float(loss),-.5*float(target[0,1].log()),places=5)
 
+
+    def test_top_set_does_not_raise_above_average_suboptimal_WAIT(self):
+        q=torch.tensor([[0.,-.05,-.3]])
+        target=torch.softmax(q/.2,-1)
+        regret_raw=torch.tensor([[.13,.2,.67]]).log().requires_grad_(True)
+        set_raw=regret_raw.detach().clone().requires_grad_(True)
+        teacher_loss(torch.log_softmax(regret_raw,-1),target,objective='expected_regret').backward()
+        teacher_loss(torch.log_softmax(set_raw,-1),target,objective='top_set').backward()
+        self.assertLess(float(regret_raw.grad[0,1]),0.)
+        self.assertGreater(float(set_raw.grad[0,1]),0.)
+        self.assertTrue(torch.allclose(set_raw.grad,torch.tensor([[-.87,.2,.67]]),atol=1e-6))
+
+    def test_top_set_preserves_near_ties_and_correct_confidence_without_vanishing(self):
+        q=torch.tensor([[.6,.59,.2]])
+        target=torch.softmax(q/.2,-1).requires_grad_(True)
+        raw=torch.tensor([[0.,5.,-5.]],requires_grad=True)
+        loss=teacher_loss(torch.log_softmax(raw,-1),target,objective='top_set')
+        loss.backward()
+        self.assertLess(float(raw.grad[0,0]),0.)
+        self.assertLess(float(raw.grad[0,1]),0.)
+        self.assertGreater(float(raw.grad[0,2]),0.)
+        self.assertIsNone(target.grad)
+        wrong=torch.tensor([[-1000.,0.]],requires_grad=True)
+        loss=teacher_loss(torch.log_softmax(wrong,-1),[[1.,0.]],objective='top_set')
+        loss.backward()
+        self.assertAlmostEqual(float(loss),1000.)
+        self.assertTrue(torch.allclose(wrong.grad,torch.tensor([[-1.,1.]]),atol=1e-6))
+
     def test_settings_and_public_guard(self):
         import run_algorithm
         run_algorithm.reject_research_options(['--pm_action_credit','learned','--pm_action_credit_coef=.1','--pm_action_temperature','.2'])
@@ -198,6 +226,38 @@ class ActionModules(unittest.TestCase):
             env,l=build(root/'run',pm,'learned_regret',wm=wm,extra=True)
             run(env,l);l.pm_runtime.assert_frozen();l.wm_runtime.assert_frozen()
             self.assertGreater(l.training_records[0]['pm_action_target_loss'],0.)
+
+
+    def test_top_set_zero_auxiliary_exactly_matches_TG(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp);pm=root/'pm.pt';checkpoint(pm);learners=[]
+            for candidate in (False,True):
+                torch.manual_seed(22);random.seed(22);np.random.seed(22)
+                if candidate:
+                    env,l=build(root/'candidate',pm,'learned_set',0.,value_mode='base_residual')
+                else:
+                    env=make_environment(root/'base',length=4);env.all_args.tg_reward_version='task_v2';l=make_learner(env)
+                run(env,l);learners.append(l)
+            for name in ('actor','critic'):
+                self.assertEqual(tensor_digest(getattr(learners[0].policy,name).state_dict()),
+                    tensor_digest(getattr(learners[1].policy,name).state_dict()))
+            for a,b in zip(learners[0].training_records,learners[1].training_records):
+                self.assertEqual(a,{k:v for k,v in b.items() if k!='pm_action_target_loss'})
+
+    def test_top_set_real_PPO_save_reload_and_WM_branch(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp);pm=root/'pm.pt';wm=root/'wm.pt';checkpoint(pm);wm_checkpoint(wm)
+            for k,wm_path in enumerate((None,wm)):
+                env,l=build(root/('run'+str(k)),pm,'learned_set',wm=wm_path,value_mode='base_residual')
+                run(env,l);l.pm_runtime.assert_frozen()
+                if l.wm_runtime is not None:l.wm_runtime.assert_frozen()
+                self.assertGreater(l.training_records[0]['pm_action_target_loss'],0.)
+                path=root/('run'+str(k))/'moves_0/checkpoints/tg_policy_latest.pt'
+                _,loaded=build(root/('load'+str(k)),pm,'learned_set',wm=wm_path,value_mode='base_residual')
+                loaded.load_policy(path)
+                self.assertEqual(tensor_digest(l.policy.actor.state_dict()),tensor_digest(loaded.policy.actor.state_dict()))
+                _,bad=build(root/('bad'+str(k)),pm,'learned_regret',wm=wm_path,value_mode='base_residual')
+                with self.assertRaisesRegex(ValueError,'action credit configuration'):bad.load_policy(path)
 
     def test_real_auxiliary_PPO_updates_only_policy_and_checkpoint_semantics(self):
         with tempfile.TemporaryDirectory() as temp:

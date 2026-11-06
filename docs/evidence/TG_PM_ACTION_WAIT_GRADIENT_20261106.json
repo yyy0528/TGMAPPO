@@ -1,0 +1,225 @@
+{
+  "passed": true,
+  "scope": "Frozen-state auxiliary logit gradient only; no environment transitions or PPO updates",
+  "rows": [
+    {
+      "node": 1,
+      "gradients": {
+        "expected_regret": {
+          "loss": 0.7141167521476746,
+          "WAIT_logit_grad": -0.09186845272779465
+        },
+        "top_set": {
+          "loss": 2.044064998626709,
+          "WAIT_logit_grad": 0.18696199357509613
+        }
+      }
+    },
+    {
+      "node": 2,
+      "gradients": {
+        "expected_regret": {
+          "loss": 0.7004018425941467,
+          "WAIT_logit_grad": -0.09030607342720032
+        },
+        "top_set": {
+          "loss": 1.7372143268585205,
+          "WAIT_logit_grad": 0.19797679781913757
+        }
+      }
+    },
+    {
+      "node": 3,
+      "gradients": {
+        "expected_regret": {
+          "loss": 0.732871413230896,
+          "WAIT_logit_grad": -0.05558300018310547
+        },
+        "top_set": {
+          "loss": 1.8876075744628906,
+          "WAIT_logit_grad": 0.20673659443855286
+        }
+      }
+    },
+    {
+      "node": 4,
+      "gradients": {
+        "expected_regret": {
+          "loss": 0.6336197853088379,
+          "WAIT_logit_grad": -0.02391745150089264
+        },
+        "top_set": {
+          "loss": 1.5168958902359009,
+          "WAIT_logit_grad": 0.3063522279262543
+        }
+      }
+    },
+    {
+      "node": 7,
+      "gradients": {
+        "expected_regret": {
+          "loss": 1.3653056621551514,
+          "WAIT_logit_grad": -0.10648918151855469
+        },
+        "top_set": {
+          "loss": 2.1466760635375977,
+          "WAIT_logit_grad": 0.1315532922744751
+        }
+      }
+    },
+    {
+      "node": 10,
+      "gradients": {
+        "expected_regret": {
+          "loss": 0.7081384658813477,
+          "WAIT_logit_grad": -0.09117096662521362
+        },
+        "top_set": {
+          "loss": 1.7192213535308838,
+          "WAIT_logit_grad": 0.19653940200805664
+        }
+      }
+    },
+    {
+      "node": 14,
+      "gradients": {
+        "expected_regret": {
+          "loss": 0.812301754951477,
+          "WAIT_logit_grad": -0.10090679675340652
+        },
+        "top_set": {
+          "loss": 1.7565873861312866,
+          "WAIT_logit_grad": 0.20939525961875916
+        }
+      }
+    },
+    {
+      "node": 15,
+      "gradients": {
+        "expected_regret": {
+          "loss": 0.6826160550117493,
+          "WAIT_logit_grad": -0.04288140684366226
+        },
+        "top_set": {
+          "loss": 1.6965546607971191,
+          "WAIT_logit_grad": 0.1961604803800583
+        }
+      }
+    },
+    {
+      "node": 20,
+      "gradients": {
+        "expected_regret": {
+          "loss": 0.5394296646118164,
+          "WAIT_logit_grad": 0.004658058285713196
+        },
+        "top_set": {
+          "loss": 1.301379919052124,
+          "WAIT_logit_grad": 0.2889910042285919
+        }
+      }
+    }
+  ],
+  "analytic_observation": {
+    "scope": "Frozen failed-policy initial observation; auxiliary-only local derivative, not full PPO/Adam causal decomposition.",
+    "observations": [
+      {
+        "node": 1,
+        "pi_WAIT": 0.18696197867393494,
+        "q_WAIT_minus_best": -0.04454834128397365,
+        "WAIT_model_advantage": 0.09827499255056801,
+        "regret_logit_gradient": -0.09186843530710205,
+        "top_set_logit_gradient": 0.18696197867393494
+      },
+      {
+        "node": 2,
+        "pi_WAIT": 0.19797679781913757,
+        "q_WAIT_minus_best": -0.048851423663942975,
+        "WAIT_model_advantage": 0.09122894588115556,
+        "regret_logit_gradient": -0.09030607286983289,
+        "top_set_logit_gradient": 0.19797679781913757
+      },
+      {
+        "node": 3,
+        "pi_WAIT": 0.20673659443855286,
+        "q_WAIT_minus_best": -0.09280246179146584,
+        "WAIT_model_advantage": 0.05377180899977585,
+        "regret_logit_gradient": -0.055583003347069934,
+        "top_set_logit_gradient": 0.20673659443855286
+      },
+      {
+        "node": 4,
+        "pi_WAIT": 0.3063522279262543,
+        "q_WAIT_minus_best": -0.11110960067649488,
+        "WAIT_model_advantage": 0.015614365571277392,
+        "regret_logit_gradient": -0.023917478402079143,
+        "top_set_logit_gradient": 0.3063522279262543
+      },
+      {
+        "node": 7,
+        "pi_WAIT": 0.1315533071756363,
+        "q_WAIT_minus_best": -0.11116602682024537,
+        "WAIT_model_advantage": 0.16189513731200958,
+        "regret_logit_gradient": -0.10648920364524306,
+        "top_set_logit_gradient": 0.1315533071756363
+      },
+      {
+        "node": 10,
+        "pi_WAIT": 0.19653941690921783,
+        "q_WAIT_minus_best": -0.048851423663942975,
+        "WAIT_model_advantage": 0.09277626712644892,
+        "regret_logit_gradient": -0.09117096722023052,
+        "top_set_logit_gradient": 0.19653941690921783
+      },
+      {
+        "node": 14,
+        "pi_WAIT": 0.20939525961875916,
+        "q_WAIT_minus_best": -0.06608110681366419,
+        "WAIT_model_advantage": 0.09637924735962355,
+        "regret_logit_gradient": -0.10090678761364491,
+        "top_set_logit_gradient": 0.20939525961875916
+      },
+      {
+        "node": 15,
+        "pi_WAIT": 0.1961604654788971,
+        "q_WAIT_minus_best": -0.09280246179146584,
+        "WAIT_model_advantage": 0.04372073786227504,
+        "regret_logit_gradient": -0.04288140145072356,
+        "top_set_logit_gradient": 0.1961604654788971
+      },
+      {
+        "node": 20,
+        "pi_WAIT": 0.2889910042285919,
+        "q_WAIT_minus_best": -0.11110960067649488,
+        "WAIT_model_advantage": -0.003223663722806122,
+        "regret_logit_gradient": 0.004658049082745112,
+        "top_set_logit_gradient": 0.2889910042285919
+      }
+    ],
+    "regret_pushes_WAIT_up": 8,
+    "WAIT_rows": 9,
+    "top_set_all_WAIT_outside_band": true
+  },
+  "full_replay_summary": {
+    "active_rows": 1765,
+    "wait_rows": 1454,
+    "wait_rows_with_PM_wait_top": 31,
+    "waits_PM_would_forward": 1423,
+    "chosen_equals_PM_top": 72,
+    "chosen_differs_TG_same_input": 1210,
+    "unresolved_head_waits_by_node": {
+      "1": 160,
+      "2": 160,
+      "3": 160,
+      "4": 160,
+      "7": 160,
+      "10": 160,
+      "14": 160,
+      "15": 160,
+      "20": 160,
+      "0": 14
+    },
+    "scope": "Observed candidate trajectory; same-input policies are comparisons, not true causal Q or extra training."
+  },
+  "interpretation": "Local auxiliary logit derivatives only. Positive WAIT gradient lowers its logit relative to good-set actions under independent logit descent; not a full shared-network PPO/Adam causal attribution or guaranteed policy improvement."
+}
