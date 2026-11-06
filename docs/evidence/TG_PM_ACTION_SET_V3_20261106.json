@@ -1,0 +1,208 @@
+{
+  "engineering_passed": true,
+  "protocol": {
+    "development_seeds": [
+      11,
+      22,
+      33
+    ],
+    "development_scenes": [
+      8001,
+      8002,
+      8003
+    ],
+    "holdout_seeds": [
+      3041,
+      3042,
+      3043,
+      3044,
+      3045
+    ],
+    "holdout_scenes": [
+      9301,
+      9302,
+      9303
+    ],
+    "value_mode": "base_residual",
+    "episodes": 20,
+    "eval_episodes": 2,
+    "alpha": 0.1,
+    "coefficient": 0.1,
+    "temperature": 0.2,
+    "candidate": "learned_set",
+    "control": "zero_set",
+    "development_only": true,
+    "top_set_log_gap": 0.1,
+    "objective": "top_set",
+    "extra_trainable_parameters": 0,
+    "development_gate": "Learned exceeds A and old PM means and zero-model mean; >=5pp over A, all seeds >=max(A,old PM), >=2 wins over old PM.",
+    "holdout_gate": "All 5 learned seeds strictly exceed matched A; learned no worse than zero_model per seed and strictly greater mean; >=5pp over A.",
+    "statistical_unit": "training_seed; scenes averaged within seed, not treated as extra independent seeds",
+    "conditional_holdout": "Run only once development passes; otherwise keep sealed.",
+    "no_guarantee": "Auxiliary approximate packet objective is biased; not exact COMA or policy-invariant shaping."
+  },
+  "primary_task_count": 35,
+  "holdout_status": "not_started_budget",
+  "stability_status": "holdout_not_run",
+  "stability_acceptance_passed": false,
+  "original_return_checks": {
+    "development_passed": true,
+    "holdout_passed": null,
+    "criteria_sha256": "daee40d979b2e2db73b797eb86fd6f56b429805aa75a071a911e5805a656b755"
+  },
+  "development": {
+    "zero_model": {
+      "per_seed": [
+        {
+          "seed": 11,
+          "delivery": 0.20833333333333334,
+          "base_return": -0.7340505316125187,
+          "delivered_each_scene": [
+            10,
+            10,
+            10
+          ]
+        },
+        {
+          "seed": 22,
+          "delivery": 0.125,
+          "base_return": -0.8850008721079694,
+          "delivered_each_scene": [
+            6,
+            6,
+            6
+          ]
+        },
+        {
+          "seed": 33,
+          "delivery": 0.3402777777777778,
+          "base_return": -0.4871530296280965,
+          "delivered_each_scene": [
+            16,
+            16,
+            17
+          ]
+        }
+      ],
+      "mean_delivery": 0.22453703703703703,
+      "sample_SD": 0.10854976007123478,
+      "mean_base_return": -0.7020681444495281
+    },
+    "learned": {
+      "per_seed": [
+        {
+          "seed": 11,
+          "delivery": 0.8680555555555556,
+          "base_return": 0.35833310033433813,
+          "delivered_each_scene": [
+            45,
+            39,
+            41
+          ]
+        },
+        {
+          "seed": 22,
+          "delivery": 1.0,
+          "base_return": 0.6086658083889008,
+          "delivered_each_scene": [
+            48,
+            48,
+            48
+          ]
+        },
+        {
+          "seed": 33,
+          "delivery": 0.9166666666666666,
+          "base_return": 0.3484504785444616,
+          "delivered_each_scene": [
+            44,
+            44,
+            44
+          ]
+        }
+      ],
+      "mean_delivery": 0.9282407407407407,
+      "sample_SD": 0.06672933011759062,
+      "mean_base_return": 0.43848312908923354
+    }
+  },
+  "historical_delivery": {
+    "A": {
+      "11": 0.25,
+      "22": 0.20833333333333334,
+      "33": 0.2916666666666667
+    },
+    "old_PM": {
+      "11": 0.3333333333333333,
+      "22": 0.16666666666666666,
+      "33": 0.3333333333333333
+    }
+  },
+  "development_gate_passed": true,
+  "holdout_gate_passed": null,
+  "new_environment_slots": {
+    "training": 11040,
+    "evaluation": 3200
+  },
+  "timings": {
+    "development_zero_set": [
+      {
+        "seed": 11,
+        "wall_seconds": 224.458544,
+        "collect_seconds": 17.80243369999999,
+        "ppo_seconds": 74.10397279999995
+      },
+      {
+        "seed": 22,
+        "wall_seconds": 230.920601,
+        "collect_seconds": 18.529232499999996,
+        "ppo_seconds": 76.49883969999998
+      },
+      {
+        "seed": 33,
+        "wall_seconds": 230.976374,
+        "collect_seconds": 18.996565700000442,
+        "ppo_seconds": 76.98573289999996
+      }
+    ],
+    "development_learned_set": [
+      {
+        "seed": 11,
+        "wall_seconds": 273.862812,
+        "collect_seconds": 55.40948850000041,
+        "ppo_seconds": 80.1825225
+      },
+      {
+        "seed": 22,
+        "wall_seconds": 272.272023,
+        "collect_seconds": 57.032063500000184,
+        "ppo_seconds": 78.08837630000002
+      },
+      {
+        "seed": 33,
+        "wall_seconds": 272.706439,
+        "collect_seconds": 55.05571069999917,
+        "ppo_seconds": 79.04229259999995
+      }
+    ]
+  },
+  "limitations": [
+    "Fixed 20-rollout budget; no long-budget, adversarial or topology-size generalization proof.",
+    "Packet lookahead holds topology/other queues; teacher auxiliary objective is biased, not exact COMA or a policy-invariance theorem."
+  ],
+  "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_pm_action_credit\\20261106_223635_825199",
+  "manifest_sha256": "05b40c9c5c41f04c78e42acdbab593f5c826a2f653bfc4ddc55ab799a982bd18",
+  "acceptance_sha256": "c475faf326c267b52f11f3474870e2b7bb5dd1a453c62e30e498674ea8de2dad",
+  "auditor_sha256": "39817d56f9117ee20d6f8062245ce20e18282fd294d11ebc1d04f27078739edd",
+  "unique_tests": 157,
+  "completed_at": "2026-11-06T23:17:38.226961",
+  "decision": "Development accepted; fresh seeds3041-3045 and scenes9301-9303 remain sealed. No final stability or long-budget claim.",
+  "offline_pm_train_validation_slots": 2400,
+  "extra_trainable_parameters": 0,
+  "pm_frozen_parameters": 24496,
+  "source_hashes": {
+    "src\\buoy_network\\pm_action_credit.py": "116f1cd884f1bad335004c08a14ca21a1cf29ec3888b361044489e0146cf1816",
+    "src\\onpolicy\\algorithms\\graph_actor_critic.py": "bca24bf2fa5e78b56ea8661ba590914ca31f71fa47a5439a5b7744cbc0804ee6",
+    "src\\onpolicy\\algorithms\\utils\\pm_action_loss.py": "f4169c25360b17ed9eda8a65f371a2284620aca4a09fc4ebb3ea23e881027768"
+  }
+}

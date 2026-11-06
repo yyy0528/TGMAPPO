@@ -120,10 +120,13 @@ def audit(root):
     old_return=statistics.mean(j['base_return'] for j in low['jobs'] if j['kind']=='evaluation')
     dev_return=dev['learned']['mean_base_return']>max(a_return,old_return,dev['zero_model']['mean_base_return'])
     held_return=(held['learned']['mean_base_return']>max(held['disabled']['mean_base_return'],held['zero_model']['mean_base_return'])) if held else False
-    return {'engineering_passed':True,'protocol':m['protocol'],
-       'original_return_checks':{'development_passed':dev_return,'holdout_passed':held_return,'criteria_sha256':digest(root/'extra_acceptance_criteria.json')},
-       'stability_acceptance_passed':bool(passed and m['holdout'].get('passed',False) and dev_return and held_return),'development':dev,'historical_delivery':refs,'development_gate_passed':passed,
-       'holdout':held,'holdout_gate_passed':m['holdout'].get('passed',False),'root':str(root),
+    stability_passed=bool(passed and m['holdout'].get('passed',False) and dev_return and held_return)
+    stability_status=('passed' if stability_passed else ('development_failed' if not passed else ('holdout_not_run' if held is None else 'failed')))
+    return {'engineering_passed':True,'protocol':m['protocol'],'primary_task_count':len(m['jobs']),
+       'holdout_status':m['holdout'].get('status','completed'),'stability_status':stability_status,
+       'original_return_checks':{'development_passed':dev_return,'holdout_passed':(held_return if held is not None else None),'criteria_sha256':digest(root/'extra_acceptance_criteria.json')},
+       'stability_acceptance_passed':stability_passed,'development':dev,'historical_delivery':refs,'development_gate_passed':passed,
+       'holdout':held,'holdout_gate_passed':(m['holdout'].get('passed',False) if held is not None else None),'root':str(root),
        'manifest_sha256':digest(root/'manifest.json'),'artifacts':artifacts,'cache_audits':gae,
        'new_environment_slots':slots,'timings':wall,'formal_long_budget_efficacy_proven':False,
        'limitations':['Fixed 20-rollout budget; no long-budget, adversarial or topology-size generalization proof.',
@@ -161,6 +164,6 @@ def main():
     root=Path(a.root).resolve();r=audit(root);plot(r,root)
     r['auditor_sha256']=digest(Path(__file__));r['figures']={str(p.relative_to(root)):digest(p) for p in (root/'figures').iterdir()}
     atomic(root/'acceptance.json',r)
-    print('Engineering PASS; development {}; holdout {}'.format(r['development_gate_passed'],r['holdout_gate_passed']))
+    print('Engineering PASS; development {}; holdout {} ({})'.format(r['development_gate_passed'],r['holdout_gate_passed'],r['holdout_status']))
     print('REPORT '+str(root/'acceptance.json'))
 if __name__=='__main__':main()
