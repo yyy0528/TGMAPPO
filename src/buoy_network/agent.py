@@ -158,7 +158,7 @@ class DeepQNetwork(nn.Module):
                 self.all_args.episode_length, self.buffer.gamma, self.all_args.pm_reward_alpha,
                 getattr(self.all_args,"pm_potential_mode","remaining"),
                 getattr(self.all_args,"pm_value_mode","learned_shaped"), reward_contract(self.all_args),
-                getattr(self.all_args,"pm_reliability_report",None))
+                getattr(self.all_args,"pm_reliability_report",None), device=self.device)
             if self.pm_runtime.reliability is not None and not getattr(self.all_args,'tg_evaluate',False):
                 from .wm_runtime import tensor_digest
                 from .policy_artifacts import signature

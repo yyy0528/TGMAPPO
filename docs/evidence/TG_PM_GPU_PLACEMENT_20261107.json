@@ -1,0 +1,114 @@
+{
+  "date": "2026-11-07",
+  "source_parent": "746e7a658cbf46044f8280aa1e4cbb599f08813b",
+  "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_pm_gpu_split\\20261107_163119_026665",
+  "placement": {
+    "simulator": "cpu",
+    "actor_critic_ppo": "cuda",
+    "online_pm": "cuda:0",
+    "buffers_and_gae": "cpu",
+    "precision": "FP32 neural networks / FP64 PM return conversion"
+  },
+  "tests": {
+    "stage1_cpu_passed": 25,
+    "stage1_cuda_passed": 3,
+    "final_cuda_run": 10,
+    "final_cuda_passed": 10,
+    "final_cpu_run": 141,
+    "final_cpu_passed": 136,
+    "final_cpu_skipped_cuda": 5,
+    "failed": 0
+  },
+  "cpu_preservation": {
+    "actor_exact": true,
+    "critic_exact": true,
+    "ppo_updates_exact": true,
+    "physical_log_exact": true
+  },
+  "short_run_parity": {
+    "same_physical_log": true,
+    "parameter_max_absolute_difference": {
+      "actor": 1.5831756172701716e-07,
+      "critic": 1.7881393432617188e-07
+    }
+  },
+  "short_runs": [
+    {
+      "label": "pm_gpu",
+      "passed": true,
+      "training_loop_seconds": 15.375701199984178,
+      "profile": {
+        "collect_calls": 160,
+        "collect_seconds": 5.685734200407751,
+        "ppo_updates": 2,
+        "ppo_seconds": 0.9510767000028864,
+        "diagnostic_seconds": 0.02221239998470992
+      },
+      "pm_device": "cuda:0",
+      "pm_step_calls": 318,
+      "pm_largest_batch": 303,
+      "simulator_cpu_numpy": true,
+      "peak_cuda_bytes": 764490752,
+      "actor_optimizer_steps": 4,
+      "critic_optimizer_steps": 4
+    },
+    {
+      "label": "pm_cpu_control",
+      "passed": true,
+      "training_loop_seconds": 15.048573900014162,
+      "profile": {
+        "collect_calls": 160,
+        "collect_seconds": 6.263080100063235,
+        "ppo_updates": 2,
+        "ppo_seconds": 0.8548331001074985,
+        "diagnostic_seconds": 0.020592899876646698
+      },
+      "pm_device": "cpu",
+      "pm_step_calls": 2026,
+      "pm_largest_batch": 24,
+      "simulator_cpu_numpy": true,
+      "peak_cuda_bytes": 764379648,
+      "actor_optimizer_steps": 4,
+      "critic_optimizer_steps": 4
+    }
+  ],
+  "source_sha256": {
+    "src/buoy_network/agent.py": "dfbd1830882efe9b2440226e61658856acad72d77f82e88ce77f9784041a0454",
+    "src/buoy_network/progress_runtime.py": "bc39e492c23fbff48cc5b72d1644ffe832aeec8d7a449997b11a76c7aef0d9d6",
+    "src/buoy_network/pm_action_credit.py": "478531b91e8f45584d47170109c665ffddddd081185601edee3e3a52a26d2e58",
+    "tests/test_pm_cuda.py": "814cc2cce1c349b568a4f6daf9dcea4412b04400a7a2491597011514a2189c9b"
+  },
+  "evaluation": {
+    "report": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_pm_gpu_split\\20261107_163119_026665\\pm_gpu_eval\\runs\\20261107_163445_044826\\moves_5\\logs\\TG_policy_report.json",
+    "actor_unchanged": true,
+    "critic_unchanged": true,
+    "optimizer_updates": 0,
+    "pm_device": "cuda:0",
+    "policy_device": "cuda",
+    "boundary_error": 1.3877787807814457e-17
+  },
+  "pm_checkpoint_sha256": "f62f05b520cbaf665823ce38981c6c88f5e4f816dc01f85d3149aca7d3f81240",
+  "cpu300": {
+    "status": "running",
+    "controller_pid": 66616,
+    "snapshot_hashes_unchanged": true,
+    "progress": [
+      {
+        "job": "Immediate_11",
+        "trained_episodes": 300
+      },
+      {
+        "job": "PM_11",
+        "trained_episodes": 26
+      },
+      {
+        "job": "TG_11",
+        "trained_episodes": 300
+      }
+    ]
+  },
+  "limitations": [
+    "One paired two-episode timing only; concurrent CPU workloads; no demonstrated end-to-end speedup.",
+    "No new convergence, policy-gain or unseen-seed stability claim."
+  ]
+}

@@ -28,7 +28,15 @@ def completion_potential(remaining_probability_mass, delivered, initial_packets)
 
 
 class FrozenPMRuntime:
-    def __init__(self, path, n, horizon, gamma, alpha, potential_mode="remaining", value_mode="learned_shaped", task_contract=None, reliability_report=None):
+    def __init__(self, path, n, horizon, gamma, alpha, potential_mode="remaining", value_mode="learned_shaped", task_contract=None, reliability_report=None, device="cpu"):
+        self.device = torch.device(device)
+        if self.device.type not in ("cpu", "cuda"):
+            raise ValueError("PM inference device must be cpu or cuda")
+        if self.device.type == "cuda":
+            if not torch.cuda.is_available():
+                raise ValueError("PM CUDA inference requested, but CUDA is unavailable")
+            if self.device.index is None:
+                self.device = torch.device("cuda", torch.cuda.current_device())
         if potential_mode not in ("remaining", "completion_credit", "task_return"):
             raise ValueError("Unknown PM potential mode")
         if value_mode not in ("learned_shaped", "base_residual"):
@@ -66,6 +74,7 @@ class FrozenPMRuntime:
         self.model.eval()
         for parameter in self.model.parameters():
             parameter.requires_grad_(False)
+        self.model.to(self.device)
         self.path = str(Path(path).resolve())
         self.file_sha256 = hashlib.sha256(Path(path).read_bytes()).hexdigest()
         self.initial_digest = tensor_digest(self.model.state_dict())
@@ -80,7 +89,7 @@ class FrozenPMRuntime:
         self.n, self.horizon, self.gamma, self.alpha = n, horizon, gamma, alpha
         self.potential_mode = potential_mode
         self.value_mode = value_mode
-        self.settings = (n, horizon, gamma, alpha, potential_mode, value_mode, self.contract_signature(),self.reliability_signature())
+        self.settings = (n, horizon, gamma, alpha, potential_mode, value_mode, self.contract_signature(),self.reliability_signature(),str(self.device))
         self.summaries, self.episode_records = [], []
         self.started = False
 
@@ -91,8 +100,9 @@ class FrozenPMRuntime:
         return (self.requested_alpha,json.dumps(self.reliability,sort_keys=True,allow_nan=False))
 
     def assert_frozen(self):
-        if ((self.n, self.horizon, self.gamma, self.alpha, self.potential_mode, self.value_mode, self.contract_signature(),self.reliability_signature()) != self.settings or self.model.training
+        if ((self.n, self.horizon, self.gamma, self.alpha, self.potential_mode, self.value_mode, self.contract_signature(),self.reliability_signature(),str(self.device)) != self.settings or self.model.training
                 or any(p.requires_grad for p in self.model.parameters())
+                or any(t.device != self.device for t in list(self.model.parameters())+list(self.model.buffers()))
                 or tensor_digest(self.model.state_dict()) != self.initial_digest):
             raise ValueError("PM weights/normalization/alpha/gamma must remain fixed")
 
@@ -115,8 +125,9 @@ class FrozenPMRuntime:
             self.prefix_state[key] = state
             keys.append(key)
             rows.append(value)
-            hidden.append(self.hidden.get(key, torch.zeros(self.model.hidden)))
-        logits, following = self.model.step(torch.tensor(np.asarray(rows)), torch.stack(hidden).unsqueeze(0))
+            state = self.hidden.get(key)
+            hidden.append(state if state is not None else self.model.feature_mean.new_zeros(self.model.hidden))
+        logits, following = self.model.step(torch.tensor(np.asarray(rows), device=self.device), torch.stack(hidden).unsqueeze(0))
         probability = -torch.expm1(-torch.nn.functional.softplus(logits[:, :self.horizon-step]).sum(-1))
         if not torch.isfinite(probability).all():
             raise ValueError("Nonfinite PM score")
@@ -124,7 +135,7 @@ class FrozenPMRuntime:
             self.hidden[key] = following[0, index].clone()
         if self.potential_mode == "task_return":
             from .pm_return import expected_task_return
-            result = expected_task_return(logits, torch.full((len(keys),), self.horizon-step, dtype=torch.long),
+            result = expected_task_return(logits, torch.full((len(keys),), self.horizon-step, dtype=torch.long, device=self.device),
                                           self.horizon, self.gamma, self.task_contract)
             return float(result['task_return'].sum())/max(self.initial_packets, 1)
         mass = float(probability.sum())
@@ -182,6 +193,7 @@ class FrozenPMRuntime:
             raise ValueError('PM reliability report changed after initialization')
         return {"checkpoint": self.path, "checkpoint_sha256": self.file_sha256,
                 "state_sha256": self.initial_digest, "architecture": ARCHITECTURE,
+                "inference_device": str(self.device),
                 "features": list(FEATURES), "alpha": self.alpha, "gamma": self.gamma, "horizon": self.horizon,
                 "potential_mode": self.potential_mode,
                 "value_mode": self.value_mode,

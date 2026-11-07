@@ -1,6 +1,8 @@
 # 独立 Conda GPU 环境与验证记录
 
 日期：2026-11-07。目标：保留正在运行的 CPU 300 回合实验，新建独立环境，让原 TG-MAPPO 能显式使用 GPU。
+当前设备划分已更新：`--tg_device cuda` 现在同时将原TG的在线PM推理与Actor/Critic/PPO放在GPU，仿真及NumPy缓存仍在CPU。详细实现、短验证和耗时见 [PM/PPO GPU拆分说明](TG_MAPPO_PM_GPU_PLACEMENT.md)。下文初建环境的计时保留为历史记录。
+
 
 ## 环境与使用
 
@@ -33,7 +35,7 @@ python -c "import sys, torch; print(sys.executable); print(torch.__version__); p
 
 默认仍是 CPU；原 TG 通过 `--tg_device cuda` 选择显卡，不使用另一个研究框架的 `--device`。参数省略或 `--tg_device cpu` 均保持 CPU。请求 CUDA 而不可用时明确报错。
 
-TG+PM 在同一命令上追加以下参数，固定 PM 仍在 CPU 推理，Actor/Critic 与 PPO 使用 GPU：
+TG+PM 在同一命令上追加以下参数，PM、Actor/Critic 与 PPO 使用 GPU，仿真仍在 CPU：
 
 ```text
 --use_pm_reward true --pm_reward_checkpoint results/tg_pm_final_pretrain/20261103_142745_276042/pm_best.pt --pm_reward_alpha 0.1 --pm_potential_mode task_return --pm_value_mode base_residual --pm_action_credit learned_set
@@ -64,7 +66,7 @@ TG+PM 在同一命令上追加以下参数，固定 PM 仍在 CPU 推理，Actor
 - 修正后没有遗留失败的上述测试。首次 FP16 失败是已记录并规避的失败尝试，不计作通过。
 - 这里验收的是设备与运行链路，尚未验证新环境 GPU 的长训练收敛、跨种子收益或 WM+PM 全组合。
 
-## GPU 是否更快
+## 初建环境的历史短测（PM 当时在 CPU）
 
 以下仅为同一新环境、1 个 Torch CPU 线程、同种子/同预算的各一次 2 回合粗测。GPU 为 FP32；后台 CPU 长实验持续运行，且 CPU/GPU 随机采样轨迹可不同。不能据此作正式性能或策略效果结论。
 
