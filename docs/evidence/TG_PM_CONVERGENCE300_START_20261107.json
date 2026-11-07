@@ -1,0 +1,19 @@
+{
+  "client_date": "2026-11-07",
+  "status": "running",
+  "not_complete": true,
+  "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_pm_convergence300\\20261107_143512_724348",
+  "controller_pid": 66616,
+  "source_commit": "74f4d63024c3a2f4d47e75d7cd55ed7db07aa26d",
+  "protocol_sha256": "fd02705508852139fe67c7cc143d230e80e5a1d23aafe8fda4c9a5daa859a1cd",
+  "budget": {
+    "training_steps": 216000,
+    "evaluation_steps": 69120
+  },
+  "verified_model": "TG_11",
+  "verified_prefix_episodes": 20,
+  "prefix_reference_exact": true,
+  "read_only_measurement": true,
+  "current_episode_when_checked": 38,
+  "fresh_holdout_opened": false
+}
