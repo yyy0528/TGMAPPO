@@ -62,7 +62,9 @@ class GR_MAPPO():
         self._use_valuenorm = args.use_valuenorm
         self._use_value_active_masks = args.use_value_active_masks
         self._use_policy_active_masks = args.use_policy_active_masks
-        self.scaler = amp.GradScaler() 
+        # Original TG supports FP32 on both devices. Automatic FP16 can overflow
+        # the PopArt critic on the first rollout; it needs a separate AMP audit.
+        self.scaler = amp.GradScaler(enabled=False)
         assert (self._use_popart and self._use_valuenorm) == False, ("self._use_popart and self._use_valuenorm can not be set True simultaneously")
         
         if self._use_popart:
@@ -123,8 +125,6 @@ class GR_MAPPO():
             value_loss = value_loss.mean()
 
         return value_loss
-    #torch.cuda.amp.autocast是PyTorch中一种混合精度的技术（仅在GPU上训练时可使用），可在保持数值精度的情况下提高训练速度和减少显存占用。
-    @torch.cuda.amp.autocast()
 
     def ppo_update(self, 
                 sample:Tuple, 

@@ -33,7 +33,7 @@ from onpolicy.utils.graph_buffer import GraphReplayBuffer
 def _t2n(x):
     """Convert torch tensor to a numpy array."""
     return x.detach().cpu().numpy()
-device = torch.device("cpu")
+from .compute_device import resolve_tg_device
 
 class Agent:
     def __init__(self, buoy, RL):
@@ -109,7 +109,7 @@ class DeepQNetwork(nn.Module):
         self.epsilon_increment = e_greedy_increment
         self.all_args = env.all_args
         self.epsilon = 0 if e_greedy_increment is not None else self.epsilon_max
-        self.device = device
+        self.device = resolve_tg_device(self.all_args)
         self.n_rollout_threads=1
         self.recurrent_N = self.env.all_args.recurrent_N
         self.hidden_size = self.env.all_args.hidden_size
@@ -138,7 +138,7 @@ class DeepQNetwork(nn.Module):
             self.env.node_observation_space[0],
             self.env.edge_observation_space[0],
             self.env.action_space[0],
-            device=device,
+            device=self.device,
         )
 
         # algorithm
@@ -177,9 +177,9 @@ class DeepQNetwork(nn.Module):
 
         # build two network: eval_net and target_net
         self.eval_net = Network(n_features=self.n_features, n_actions=self.n_actions)
-        self.eval_net = self.eval_net.to(device)
+        self.eval_net = self.eval_net.to(self.device)
         self.target_net = Network(n_features=self.n_features, n_actions=self.n_actions)
-        self.target_net = self.target_net.to(device)
+        self.target_net = self.target_net.to(self.device)
         self.loss_function = nn.MSELoss()
         self.optimizer = torch.optim.Adam(self.eval_net.parameters(), lr=self.lr)
 
@@ -214,10 +214,10 @@ class DeepQNetwork(nn.Module):
         if np.random.uniform() < self.epsilon:
             # forward feed the observation and get q value for every actions
             s = torch.FloatTensor(observation)
-            s = s.to(device)
+            s = s.to(self.device)
             actions_value = self.eval_net(s)
             actions_value = actions_value.to('cpu')
-            actions_value = actions_value.detach().numpy()
+            actions_value = actions_value.detach().cpu().numpy()
 
             action = [np.argmax(actions_value)][0]
         else:
@@ -236,10 +236,10 @@ class DeepQNetwork(nn.Module):
         if np.random.uniform() < self.epsilon:
             # forward feed the observation and get q value for every actions
             s = torch.FloatTensor(observation)
-            s = s.to(device)
+            s = s.to(self.device)
             actions_value = self.eval_net(s)
             actions_value = actions_value.to('cpu')
-            actions_value = actions_value.detach().numpy()
+            actions_value = actions_value.detach().cpu().numpy()
             # avail_actions_np = np.array(avail_actions)
             # actions_value = actions_value*avail_actions_np
             action = [np.argmax(actions_value)][0]
@@ -284,9 +284,9 @@ class DeepQNetwork(nn.Module):
 
         # run the nextwork
         s = torch.FloatTensor(b_s)
-        s = s.to(device)
+        s = s.to(self.device)
         s_ = torch.FloatTensor(b_ns)
-        s_ = s_.to(device)
+        s_ = s_.to(self.device)
         q_eval = self.eval_net(s)
 
         # q_next = self.target_net(s_)
@@ -301,7 +301,7 @@ class DeepQNetwork(nn.Module):
         eval_act_index = b_a
         reward = torch.FloatTensor(b_r)
 
-        reward = reward.to(device)
+        reward = reward.to(self.device)
 
         q_target[batch_index, eval_act_index] = reward + self.gamma * q_next.max(dim=1).values
 

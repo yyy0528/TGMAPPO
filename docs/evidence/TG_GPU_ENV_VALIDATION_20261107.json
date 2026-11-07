@@ -1,0 +1,239 @@
+{
+  "date": "2026-11-07",
+  "environment": {
+    "python": "3.10.22 | packaged by Anaconda, Inc. | (main, Oct 29 2026, 20:28:38) [MSC v.1942 64 bit (AMD64)]",
+    "executable": "D:\\anaconda3\\envs\\buoy_gpu\\python.exe",
+    "torch": "2.6.0+cu124",
+    "torch_cuda": "12.4",
+    "cuda_available": true,
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "numpy": "1.26.4",
+    "pyg": "2.6.1",
+    "gym": "0.23.1",
+    "user_site_enabled": false,
+    "package_paths": {
+      "torch": "D:\\anaconda3\\envs\\buoy_gpu\\lib\\site-packages\\torch\\__init__.py",
+      "numpy": "D:\\anaconda3\\envs\\buoy_gpu\\lib\\site-packages\\numpy\\__init__.py",
+      "gym": "D:\\anaconda3\\envs\\buoy_gpu\\lib\\site-packages\\gym\\__init__.py",
+      "pyg": "D:\\anaconda3\\envs\\buoy_gpu\\lib\\site-packages\\torch_geometric\\__init__.py"
+    }
+  },
+  "validation_root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\gpu_env_validation_20261107",
+  "cpu_regression": {
+    "run": 137,
+    "passed": 136,
+    "skipped_cuda_unavailable": 1,
+    "failed": 0,
+    "log": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\gpu_env_validation_20261107\\final_cpu_regression.log"
+  },
+  "gpu_function_tests": {
+    "run": 6,
+    "passed": 6
+  },
+  "cpu_preservation": {
+    "actor_exact": true,
+    "critic_exact": true,
+    "physical_log_exact": true,
+    "ppo_updates_exact": true
+  },
+  "short_runs": [
+    {
+      "variant": "tg",
+      "device": "cpu",
+      "passed": true,
+      "amp_enabled": false,
+      "all_policy_parameters_on_requested_device": true,
+      "all_policy_parameters_finite": true,
+      "actor_updated": true,
+      "critic_updated": true,
+      "training_loop_seconds": 8.811229799990542,
+      "profile": {
+        "collect_calls": 160,
+        "collect_seconds": 1.6594456996535882,
+        "ppo_updates": 2,
+        "ppo_seconds": 3.1196900999639183,
+        "diagnostic_seconds": 6.700051017105579e-06
+      },
+      "label": "tg_cpu_fp32",
+      "episodes": 2,
+      "environment_steps": 160,
+      "actor_optimizer_steps": 4,
+      "critic_optimizer_steps": 4,
+      "peak_cuda_bytes": null,
+      "frozen_pm_device": null
+    },
+    {
+      "variant": "tg",
+      "device": "cuda",
+      "passed": true,
+      "amp_enabled": false,
+      "all_policy_parameters_on_requested_device": true,
+      "all_policy_parameters_finite": true,
+      "actor_updated": true,
+      "critic_updated": true,
+      "training_loop_seconds": 8.308534599957056,
+      "profile": {
+        "collect_calls": 160,
+        "collect_seconds": 2.0026537000667304,
+        "ppo_updates": 2,
+        "ppo_seconds": 0.6529402999440208,
+        "diagnostic_seconds": 8.900067768990993e-06
+      },
+      "label": "tg_gpu_fp32",
+      "episodes": 2,
+      "environment_steps": 160,
+      "actor_optimizer_steps": 4,
+      "critic_optimizer_steps": 4,
+      "peak_cuda_bytes": 757265408,
+      "frozen_pm_device": null
+    },
+    {
+      "variant": "pm",
+      "device": "cpu",
+      "passed": true,
+      "amp_enabled": false,
+      "all_policy_parameters_on_requested_device": true,
+      "all_policy_parameters_finite": true,
+      "actor_updated": true,
+      "critic_updated": true,
+      "training_loop_seconds": 17.197798200068064,
+      "profile": {
+        "collect_calls": 160,
+        "collect_seconds": 5.96582070121076,
+        "ppo_updates": 2,
+        "ppo_seconds": 3.711521100020036,
+        "diagnostic_seconds": 0.006993500050157309
+      },
+      "label": "pm_cpu_fp32",
+      "episodes": 2,
+      "environment_steps": 160,
+      "actor_optimizer_steps": 4,
+      "critic_optimizer_steps": 4,
+      "peak_cuda_bytes": null,
+      "frozen_pm_device": "cpu"
+    },
+    {
+      "variant": "pm",
+      "device": "cuda",
+      "passed": true,
+      "amp_enabled": false,
+      "all_policy_parameters_on_requested_device": true,
+      "all_policy_parameters_finite": true,
+      "actor_updated": true,
+      "critic_updated": true,
+      "training_loop_seconds": 15.743705899920315,
+      "profile": {
+        "collect_calls": 160,
+        "collect_seconds": 6.481090999674052,
+        "ppo_updates": 2,
+        "ppo_seconds": 0.9897271001245826,
+        "diagnostic_seconds": 0.01966839993838221
+      },
+      "label": "pm_gpu_fp32",
+      "episodes": 2,
+      "environment_steps": 160,
+      "actor_optimizer_steps": 4,
+      "critic_optimizer_steps": 4,
+      "peak_cuda_bytes": 764379648,
+      "frozen_pm_device": "cpu"
+    }
+  ],
+  "evaluations": [
+    {
+      "label": "tg_gpu_fp32",
+      "report": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\gpu_env_validation_20261107\\tg_gpu_fp32_eval\\runs\\20261107_161156_191008\\moves_5\\logs\\TG_policy_report.json",
+      "actor_unchanged": true,
+      "critic_unchanged": true,
+      "optimizer_updates": 0,
+      "device": "cuda",
+      "peak_cuda_bytes": 14300672
+    },
+    {
+      "label": "pm_gpu_fp32",
+      "report": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\gpu_env_validation_20261107\\pm_gpu_fp32_eval\\runs\\20261107_161211_062388\\moves_5\\logs\\TG_policy_report.json",
+      "actor_unchanged": true,
+      "critic_unchanged": true,
+      "optimizer_updates": 0,
+      "device": "cuda",
+      "peak_cuda_bytes": 14300672
+    }
+  ],
+  "failed_attempts": [
+    {
+      "label": "tg_gpu_1",
+      "cause": "Automatic FP16 produced infinite critic gradient norm; strict JSON serialization failed.",
+      "resolution": "Use FP32; retain failure log and partial report.",
+      "log": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\gpu_env_validation_20261107\\tg_gpu_1.log"
+    }
+  ],
+  "source_sha256": {
+    "src/buoy_network/compute_device.py": "b9cb4c25780b5cf3384f6867a71230db42c1ad58fa2a9112c0ce9fd0b6fbd209",
+    "src/buoy_network/agent.py": "dc9ba9fe48886a2dd8c08618cb537dc0a05246e4da014eaf09726791befd818b",
+    "src/buoy_network/main.py": "9af91ad4c9638beb9a4bdd210de245bba0d0b47a557861ce6e23cfcc27d080a6",
+    "src/buoy_network/policy_artifacts.py": "2afdbaed0546f80b7863e89f5e31a1831152195939422441dfc49ecc8a988a32",
+    "src/onpolicy/algorithms/graph_mappo.py": "4d19bc85b3c55bf3c892dea1ae2fb3a546d3028f8039634986dc9ff2df8758c0",
+    "src/onpolicy/algorithms/utils/popart.py": "9566504af0c4416ec35af27e42427044268df3bed1d0caa141fb044c5c615978",
+    "src/onpolicy/utils/valuenorm.py": "cdbcda052997bea6e207123ba85cb8d4ff4d50641e74e46a42e347b28d00d5b3",
+    "tests/test_tg_device.py": "c039e46b337921bf867821d2d42dc2edb9089e148cb08108842e2fbdbe64ba03",
+    "requirements-gpu.txt": "d7b0711d39e2ce73210438a575ae1c8ff14920ce310181ff6185c2f2517f43f5",
+    "environment-gpu.yml": "1f60e05cc97c0a1b87c6eb80df8b8ae989e8e105e5b414fa775a8dd29f6bd300"
+  },
+  "limitations": [
+    "Two-episode device validation only; concurrent CPU study affects timing.",
+    "GPU long convergence and full WM+PM combination not validated.",
+    "New GPU curves must not be appended to original CPU300 study."
+  ],
+  "cpu300_still_running": {
+    "status": "running",
+    "controller_pid": 66616,
+    "jobs": [
+      {
+        "tag": "TG_11",
+        "state": "completed"
+      },
+      {
+        "tag": "Immediate_11",
+        "state": "running"
+      },
+      {
+        "tag": "PM_11",
+        "state": "pending"
+      },
+      {
+        "tag": "TG_22",
+        "state": "pending"
+      },
+      {
+        "tag": "Immediate_22",
+        "state": "pending"
+      },
+      {
+        "tag": "PM_22",
+        "state": "pending"
+      },
+      {
+        "tag": "TG_33",
+        "state": "pending"
+      },
+      {
+        "tag": "Immediate_33",
+        "state": "pending"
+      },
+      {
+        "tag": "PM_33",
+        "state": "pending"
+      }
+    ],
+    "source_snapshot_hashes_unchanged": true,
+    "progress": [
+      {
+        "job": "Immediate_11",
+        "trained_episodes": 240
+      },
+      {
+        "job": "TG_11",
+        "trained_episodes": 300
+      }
+    ]
+  }
+}

@@ -14,6 +14,7 @@
 - 第 2 步说明与运行证据：[TG_MAPPO_INTERFACE.md](TG_MAPPO_INTERFACE.md)；35 项回归通过，同配置 2×80 时隙短训练通过。
 - 第 3 步说明与数据入口：[TG_MAPPO_DATA_COLLECTION.md](TG_MAPPO_DATA_COLLECTION.md)；最终 50 项 TG 回归通过，已采集三种行为的 1440 时隙混合数据。
 - 当前环境：`D:\python3.6.8\python.exe`，Python 3.6.8，PyTorch 1.8.1+cpu，CUDA 不可用；本次已实际检查。
+- 独立 GPU 环境已建好：`buoy_gpu`（Python3.10.22 / Torch2.6.0+cu124 / PyG2.6.1），原TG增加显式 `--tg_device cuda`，默认仍CPU，GPU使用FP32。TG和TG+PM均通过GPU短训练、保存及冻结评估；旧CPU137项回归136通过/1无CUDA跳过，并再次精确复现修改前2回合参考。当前CPU300实验继续使用原快照，不切换设备。见[GPU环境与验证记录](TG_MAPPO_GPU_ENVIRONMENT.md)。
 - 新物理指标、Actor 扩容及历史统计对照、源码快照/依赖/任务接续已实现；86 项回归及 36 个实际子任务通过，见 [第 7 步记录](TG_MAPPO_ABLATION_EXPERIMENTS.md)。
 - 最初 legacy_v1 奖励六组均为三种子短预实验，投递率均值 0.326389、样本 SD 0.565322；无组间提升证据。正式长训练、总容量匹配以及完整失败分类/可靠性仍未完成。
 - 零投递实测：种子 22 的 0↔1/12↔17 与主动 WAIT，种子 33 的 12↔13；物理可达率 100%，Sink 可选却未选。24 冻结复现、2 规则奖励探针和 6 新测试通过，见[诊断说明](TG_MAPPO_ZERO_DELIVERY_DIAGNOSIS.md)。
@@ -558,3 +559,13 @@
 - 旧policy文件不能恢复优化器/RNG，因此从同种子初始化连续跑300；每模型第20回合必须精确匹配旧20回合参考。独立评估子进程不会更新父训练模型。
 - 新8项函数/模块测试、三组各2回合原生探针、9次冻结评估及独立审计通过。工具版本74f4d630已推送；后台实际PID66616，results/tg_pm_convergence300/20261107_143512_724348。
 - 已核验首TG11运行和前20回合参考完全一致；300回合整体仍运行中，没有提前汇报收敛/提升结论。结束自动产出REPORT.md、独立report.json和曲线，失败保留具体任务及原因。下次读取同目录接续，勿重复训练。
+
+
+### 2026-11-07：新建独立 Conda GPU 环境，保留 CPU 长实验
+
+独立 GPU 环境已建好：`buoy_gpu`（Python3.10.22 / Torch2.6.0+cu124 / PyG2.6.1），原TG增加显式 `--tg_device cuda`，默认仍CPU，GPU使用FP32。TG和TG+PM均通过GPU短训练、保存及冻结评估；旧CPU137项回归136通过/1无CUDA跳过，并再次精确复现修改前2回合参考。当前CPU300实验继续使用原快照，不切换设备。见[GPU环境与验证记录](TG_MAPPO_GPU_ENVIRONMENT.md)。
+
+- 修正了PopArt/ValueNorm移动到CUDA后丢失Parameter注册的问题；首次FP16 GPU短训出现Critic梯度inf和JSON保存失败，保留失败日志后改用FP32，再测训练和冻结评估通过。
+- 实测仅为新环境同预算各2回合粗测：PPO约快3.8–4.8倍，整体循环约缩短6%–9%；环境与冻结PM仍在CPU，不能当作正式性能或收敛结论。
+- 原CPU长实验仍running：TG_11已300回合，Immediate_11继续运行，控制器PID66616；源码快照、训练协议、PM模型与其余任务未修改。
+- 未启动第二套GPU300回合；3041–3045留出种子仍未启用。新GPU长实验须统一版本/设备另起对比，不能接在旧CPU曲线后。

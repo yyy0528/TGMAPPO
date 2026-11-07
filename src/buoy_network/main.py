@@ -128,6 +128,8 @@ def parse_args(args, parser):
     parser.add_argument("--wm_export_max_bytes", type=int, default=268435456)
     parser.add_argument("--wm_export_max_packets", type=int, default=10000)
     parser.add_argument("--output_root", type=str, default="results")
+    parser.add_argument("--tg_device", choices=("cpu", "cuda"), default="cpu",
+                        help="Original TG Actor/Critic device; CUDA is explicit opt-in")
 
     all_args = parser.parse_known_args(args)[0]
 

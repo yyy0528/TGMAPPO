@@ -31,25 +31,17 @@ class PopArt(torch.nn.Module):
         self.input_shape = input_shape
         self.output_shape = output_shape
 
-        self.weight = nn.Parameter(torch.Tensor(output_shape, input_shape)).to(
-            **self.tpdv
-        )
-        self.bias = nn.Parameter(torch.Tensor(output_shape)).to(**self.tpdv)
+        self.weight = nn.Parameter(torch.Tensor(output_shape, input_shape))
+        self.bias = nn.Parameter(torch.Tensor(output_shape))
 
-        self.stddev = nn.Parameter(torch.ones(output_shape), requires_grad=False).to(
-            **self.tpdv
-        )
-        self.mean = nn.Parameter(torch.zeros(output_shape), requires_grad=False).to(
-            **self.tpdv
-        )
-        self.mean_sq = nn.Parameter(torch.zeros(output_shape), requires_grad=False).to(
-            **self.tpdv
-        )
-        self.debiasing_term = nn.Parameter(torch.tensor(0.0), requires_grad=False).to(
-            **self.tpdv
-        )
+        self.stddev = nn.Parameter(torch.ones(output_shape), requires_grad=False)
+        self.mean = nn.Parameter(torch.zeros(output_shape), requires_grad=False)
+        self.mean_sq = nn.Parameter(torch.zeros(output_shape), requires_grad=False)
+        self.debiasing_term = nn.Parameter(torch.tensor(0.0), requires_grad=False)
 
         self.reset_parameters()
+        # Move registered parameters together; Parameter.to(cuda) alone returns a Tensor.
+        self.to(**self.tpdv)
 
     def reset_parameters(self):
         torch.nn.init.kaiming_uniform_(self.weight, a=math.sqrt(5))

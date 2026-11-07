@@ -1,0 +1,11 @@
+name: buoy_gpu
+channels:
+  - defaults
+variables:
+  PYTHONNOUSERSITE: "1"
+dependencies:
+  - python=3.10.22
+  - pip
+  - setuptools=75.8.0
+  - pip:
+      - -r requirements-gpu.txt

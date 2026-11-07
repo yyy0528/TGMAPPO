@@ -103,6 +103,8 @@ def save_policy(learner, run_dir):
                  "pm_frozen": sum(p.numel() for p in learner.pm_runtime.model.parameters()) if pm else 0,
                  "wm_active": bool(wm and learner.wm_runtime.feature_source == "learned"),
                  "device": str(learner.device), "cuda_peak_bytes": None}
+    if learner.device.type == "cuda":
+        resources["cuda_peak_bytes"] = torch.cuda.max_memory_allocated(learner.device)
     if getattr(learner.all_args, "tg_evaluate", False):
         metadata = dict(learner.evaluation_metadata)
         metadata["actor_unchanged"] = tensor_digest(learner.policy.actor.state_dict()) == metadata["actor_sha256"]
@@ -142,6 +144,6 @@ def save_policy(learner, run_dir):
                     pm_action_credit=action_credit_settings(learner.all_args),
                     pm_action_cache_audits=getattr(learner,'pm_action_cache_audits',[]),
                     critic_time_mode=time_mode(learner.all_args),
-                    timing_scope="CPU collect and PPO wall time; diagnostics separated; import/env/plot overhead excluded")
+                    timing_scope="Collect/PPO host wall time; diagnostics separated; import/env/plot overhead excluded")
     with (root / "logs" / "TG_policy_report.json").open("x", encoding="utf-8") as stream:
         json.dump(metadata, stream, indent=2, allow_nan=False)
