@@ -1,0 +1,35 @@
+{
+  "client_date": "2026-11-07",
+  "scope": "Measurement preflight only, no300-episode efficacy conclusion",
+  "unit_tests": 8,
+  "unit_command": [
+    "D:/python3.6.8/python.exe",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-p",
+    "test_tg_convergence.py",
+    "-v"
+  ],
+  "unit_exit_code": 0,
+  "unit_log_sha256": "c2c8d625bbeb5372cc83d1209f6314cfd2b45da7108c46da8b54dc0d8455c58e",
+  "native_models": 3,
+  "training_episodes_per_model": 2,
+  "training_steps": 480,
+  "evaluation_steps": 720,
+  "native_reference_exact": true,
+  "initial_states_identical": {
+    "22": {
+      "groups": 3,
+      "identical": true
+    }
+  },
+  "engineering_passed": true,
+  "preflight_root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_pm_convergence_preflight\\20261107_142032_976268",
+  "manifest_sha256": "cef9b698f646f20796f3c414e24f5a0070b2a9a30414ceb9b415e80ede3a6c65",
+  "revalidation_report_sha256": "6e081c3b3a23d69be86ced0b5f8506914eb47679740c926adfbf9468e91f5b55",
+  "old157_tests_rerun": false,
+  "learning_src_unchanged": true
+}

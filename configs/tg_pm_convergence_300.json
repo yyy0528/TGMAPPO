@@ -1,0 +1,38 @@
+{
+  "schema": "tg_pm_convergence_v1",
+  "python": "D:/python3.6.8/python.exe",
+  "groups": [
+    "TG",
+    "Immediate",
+    "PM"
+  ],
+  "seeds": [
+    11,
+    22,
+    33
+  ],
+  "scenes": [
+    8001,
+    8002,
+    8003
+  ],
+  "episodes": 300,
+  "interval": 20,
+  "eval_episodes": 2,
+  "horizon": 80,
+  "moving_buoys": 5,
+  "torch_threads": 16,
+  "reference_episodes": 20,
+  "train_window": 20,
+  "thresholds": [
+    0.5,
+    0.8,
+    0.9
+  ],
+  "consecutive_points": 2,
+  "tail_points": 5,
+  "tail_range": 0.05,
+  "reference_root": "results/tg_pm_action_credit/20261106_223635_825199",
+  "baseline_reference_root": "results/tg_pm_task_return/pilot_20261105_140555_016580",
+  "output_root": "results/tg_pm_convergence300"
+}
