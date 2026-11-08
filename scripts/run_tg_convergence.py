@@ -81,7 +81,7 @@ def run(root):
                 j.update(state='running',started=datetime.now().isoformat());atomic(root/'manifest.json',m)
                 print('START '+j['tag'],flush=True)
                 with (Path(j['work_dir'])/'worker.log').open('xb') as stream:
-                    proc=subprocess.run(j['command'],cwd=str(root/'source_snapshot'),stdout=stream,stderr=subprocess.STDOUT,timeout=14400)
+                    proc=subprocess.run(j['command'],cwd=str(root/'source_snapshot'),stdout=stream,stderr=subprocess.STDOUT,timeout=cfg.get('job_timeout_seconds',14400))
                 j['exit_code']=proc.returncode
                 require(proc.returncode==0,'Training worker failed: '+j['tag']+'; '+str(Path(j['work_dir'])/'worker.log'))
                 state=read(progress);r=read(Path(j['output'])/'logs/TG_policy_report.json')
@@ -92,7 +92,7 @@ def run(root):
                          progress_sha256=digest(progress))
                 atomic(root/'manifest.json',m);print('DONE '+j['tag'],flush=True)
             m['status']='postprocessing';atomic(root/'manifest.json',m)
-            cmd=[cfg['python'],str(root/'source_snapshot/scripts/analyze_tg_convergence.py'),str(root)]
+            cmd=[cfg['python']]+(['-s'] if cfg.get('schema')=='tg_five_convergence_v1' else [])+[str(root/'source_snapshot/scripts/analyze_tg_convergence.py'),str(root)]
             log=root/'postprocessing.log'
             if log.exists():log=root/('postprocessing_retry_'+datetime.now().strftime('%Y%m%d_%H%M%S_%f')+'.log')
             m.setdefault('postprocessing_logs',[]).append(str(log));atomic(root/'manifest.json',m)

@@ -67,12 +67,22 @@ def nested_digest(value):
             for item in x:visit(item)
         else:h.update(pickle.dumps(x,protocol=4))
     visit(value);return h.hexdigest()
-def learner_fingerprint(model):
+def learner_fingerprint(model,auxiliaries=False):
     data={'actor':model.policy.actor.state_dict(),'critic':model.policy.critic.state_dict(),
           'actor_optimizer':model.policy.actor_optimizer.state_dict(),'critic_optimizer':model.policy.critic_optimizer.state_dict(),
           'scaler':model.trainer.scaler.state_dict(),
           'normalizer':model.trainer.value_normalizer.state_dict() if model.trainer.value_normalizer is not None else None}
-    return {'parameters_and_optimizer':nested_digest(data),'rng':rng_digest()}
+    result={'parameters_and_optimizer':nested_digest(data),'rng':rng_digest()}
+    if auxiliaries:
+        extra={}
+        for name,keys in [('wm_runtime',('histories','previous_actions','previous_ack','previous_attempt','next_step','predictions')),
+                          ('pm_runtime',('hidden','prefix_state','finished','packet_ids','phi','step','started','episode_records'))]:
+            runtime=getattr(model,name,None)
+            if runtime is not None:
+                runtime.assert_frozen()
+                extra[name]={k:getattr(runtime,k,None) for k in keys}
+        result['auxiliary_state']=nested_digest(extra)
+    return result
 def assert_reference(model,reference):
     import torch
     old=torch.load(str(Path(reference)/'checkpoints/tg_policy_latest.pt'),map_location='cpu')
@@ -80,12 +90,17 @@ def assert_reference(model,reference):
         current=getattr(model.policy,name).state_dict()
         require(set(current)==set(old[name]) and all(torch.equal(current[k].cpu(),old[name][k]) for k in current),'Prefix20 differs: '+name)
     require(model.training_records==read(Path(reference)/'logs/TG_policy_report.json')['training_updates'],'Prefix20 PPO losses/counters differ')
-def audit_frozen(output,checkpoint,spec):
+def audit_frozen(output,checkpoint,spec,group=None):
     from buoy_network.task_reward_audit import audit_reward_csv
     output=Path(output);r=read(output/'logs/TG_policy_report.json')
     require(r['optimizer_updates']==0 and r['actor_unchanged'] and r['critic_unchanged'],'Evaluation mutated policy')
     require(r['checkpoint_sha256']==digest(checkpoint) and r['profile']['collect_calls']==spec['eval_episodes']*spec['horizon'],'Wrong evaluation source/budget')
-    require(r['resources']['actor_trainable']==21956 and r['resources']['critic_trainable']==18615 and r['resources']['device']=='cpu','Wrong evaluation capacity/device')
+    if spec.get('schema')=='tg_five_convergence_v1':
+        from tg_five import audit_components
+        cfg=read(output/'logs/TG_MAPPO_environment.json')['config']
+        audit_components(r,cfg,spec,group)
+    else:
+        require(r['resources']['actor_trainable']==21956 and r['resources']['critic_trainable']==18615 and r['resources']['device']=='cpu','Wrong evaluation capacity/device')
     audit_reward_csv(output/'logs',r['reward_contract'])
     rows=[json.loads(x) for x in (output/'logs/TG_physical_metrics.jsonl').read_text(encoding='utf-8').splitlines()]
     require(len(rows)==spec['eval_episodes'],'Missing evaluation episodes')

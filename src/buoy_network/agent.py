@@ -172,7 +172,7 @@ class DeepQNetwork(nn.Module):
                 raise ValueError("WM Actor integration currently supports feedforward TG policy only")
             from .wm_runtime import FrozenWMRuntime
             self.wm_runtime = FrozenWMRuntime(self.all_args.wm_actor_checkpoint, self.env.buoy_number,
-                                              getattr(self.all_args, "wm_feature_source", "learned"))
+                                              getattr(self.all_args, "wm_feature_source", "learned"), device=self.device)
 
 
         # build two network: eval_net and target_net

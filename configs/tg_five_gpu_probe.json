@@ -1,0 +1,41 @@
+{
+  "schema": "tg_five_convergence_v1",
+  "python": "D:/anaconda3/envs/buoy_gpu/python.exe",
+  "groups": [
+    "TG",
+    "Immediate",
+    "PM",
+    "WM",
+    "PM_WM"
+  ],
+  "seeds": [
+    22
+  ],
+  "scenes": [
+    8001
+  ],
+  "episodes": 2,
+  "interval": 1,
+  "eval_episodes": 1,
+  "horizon": 80,
+  "moving_buoys": 5,
+  "device": "cuda",
+  "torch_threads": 1,
+  "deterministic": true,
+  "train_window": 2,
+  "thresholds": [
+    0.5,
+    0.8,
+    0.9
+  ],
+  "consecutive_points": 2,
+  "tail_points": 5,
+  "tail_range": 0.05,
+  "wm_checkpoint": "results/tg_wm_multiscene_gate_selection/20261103_000951_565881/wm_best.pt",
+  "wm_sha256": "2919dff60d3128321170410e632e7bddd476a4f09c766b92108bfe9cb73daca9",
+  "pm_checkpoint": "results/tg_pm_final_pretrain/20261103_142745_276042/pm_best.pt",
+  "pm_sha256": "f62f05b520cbaf665823ce38981c6c88f5e4f816dc01f85d3149aca7d3f81240",
+  "job_timeout_seconds": 28800,
+  "output_root": "results/tg_five_gpu_probe",
+  "probe_reference": null
+}

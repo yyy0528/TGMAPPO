@@ -56,11 +56,17 @@ def load_frozen_wm(path, n):
 
 
 class FrozenWMRuntime:
-    def __init__(self, path, n, feature_source="learned"):
+    def __init__(self, path, n, feature_source="learned", device="cpu"):
         if feature_source not in ("learned", "history"):
             raise ValueError("Unknown candidate feature source")
         self.feature_source = feature_source
+        self.device = torch.device(device)
+        if self.device.type not in ("cpu", "cuda") or (self.device.type == "cuda" and not torch.cuda.is_available()):
+            raise ValueError("WM inference requires an available cpu/cuda device")
+        if self.device.type == "cuda" and self.device.index is None:
+            self.device = torch.device("cuda", torch.cuda.current_device())
         self.model, self.history_length = load_frozen_wm(path, n)
+        self.model.to(self.device)
         self.n = n
         self.path = str(Path(path).resolve())
         self.file_sha256 = hashlib.sha256(Path(path).read_bytes()).hexdigest()
@@ -126,13 +132,14 @@ class FrozenWMRuntime:
                     "history": list(self.histories[node]), "candidate_action": int(action)}}, self.history_length))
                 locations.append((node, int(action)))
         if records:
-            data = {key: torch.stack([row[key] for row in records]) for key in records[0]}
+            data = {key: torch.stack([row[key] for row in records]).to(self.device) for key in records[0]}
             prediction = self.model(data)
             values = torch.cat((prediction["ack_logit"].sigmoid().unsqueeze(-1), prediction["queue"]), -1)
             if not torch.isfinite(values).all():
                 raise ValueError("Nonfinite frozen WM prediction")
+            values = values.cpu().numpy()
             for index, (node, action) in enumerate(locations):
-                result[0, node, action] = values[index].cpu().numpy()
+                result[0, node, action] = values[index]
                 if action == self.n:
                     result[0, node, action, 0] = 0.0
                     result[0, node, action, 2] = 0.0
@@ -145,6 +152,8 @@ class FrozenWMRuntime:
     def assert_frozen(self):
         if self.model.training or any(p.requires_grad for p in self.model.parameters()):
             raise ValueError("WM must remain frozen/eval")
+        if any(t.device != self.device for t in list(self.model.parameters())+list(self.model.buffers())):
+            raise ValueError("Frozen WM inference device changed")
         if tensor_digest(self.model.state_dict()) != self.initial_digest:
             raise ValueError("Frozen WM weights/normalization changed")
 
@@ -152,6 +161,7 @@ class FrozenWMRuntime:
         self.assert_frozen()
         return {"checkpoint": self.path, "checkpoint_sha256": self.file_sha256,
                 "state_sha256": self.initial_digest, "history_length": self.history_length,
+                "inference_device": str(self.device),
                 "features": list(FEATURES), "predictions": self.predictions,
                 "feature_source": self.feature_source, "learned_forward_used": self.feature_source == "learned",
                 "frozen": True, "critic_uses_wm": False,
