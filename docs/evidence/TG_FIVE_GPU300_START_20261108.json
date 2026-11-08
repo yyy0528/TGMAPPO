@@ -1,0 +1,162 @@
+{
+  "date": "2026-11-08",
+  "status_observed": "running",
+  "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_five_gpu300\\20261108_140256_956180",
+  "controller_pid": 60524,
+  "source_commit": "be36e8607387cee44f2429175148bc921ebf70cf",
+  "protocol_sha256": "4a5f11c4c21fe7dab4f50782dcef2f5b0ba2977db4838294a02b4143f66cb442",
+  "budget": {
+    "training_models": 15,
+    "training_steps": 360000,
+    "evaluation_steps": 115200
+  },
+  "groups": [
+    "TG",
+    "Immediate",
+    "PM",
+    "WM",
+    "PM_WM"
+  ],
+  "seeds": [
+    11,
+    22,
+    33
+  ],
+  "scenes": [
+    8001,
+    8002,
+    8003
+  ],
+  "software": {
+    "python": "3.10.22 | packaged by Anaconda, Inc. | (main, Oct 29 2026, 20:28:38) [MSC v.1942 64 bit (AMD64)]",
+    "executable": "D:\\anaconda3\\envs\\buoy_gpu\\python.exe",
+    "torch": "2.6.0+cu124",
+    "cuda": "12.4",
+    "pyg": "2.6.1",
+    "numpy": "1.26.4",
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU"
+  },
+  "frozen_wm_sha256": "2919dff60d3128321170410e632e7bddd476a4f09c766b92108bfe9cb73daca9",
+  "frozen_pm_sha256": "f62f05b520cbaf665823ce38981c6c88f5e4f816dc01f85d3149aca7d3f81240",
+  "probe_reference": "results/tg_five_gpu_probe/20261108_135245_396245",
+  "source_snapshot_hashes_verified": true,
+  "jobs": [
+    {
+      "tag": "TG_11",
+      "state": "running"
+    },
+    {
+      "tag": "Immediate_11",
+      "state": "pending"
+    },
+    {
+      "tag": "PM_11",
+      "state": "pending"
+    },
+    {
+      "tag": "WM_11",
+      "state": "pending"
+    },
+    {
+      "tag": "PM_WM_11",
+      "state": "pending"
+    },
+    {
+      "tag": "TG_22",
+      "state": "pending"
+    },
+    {
+      "tag": "Immediate_22",
+      "state": "pending"
+    },
+    {
+      "tag": "PM_22",
+      "state": "pending"
+    },
+    {
+      "tag": "WM_22",
+      "state": "pending"
+    },
+    {
+      "tag": "PM_WM_22",
+      "state": "pending"
+    },
+    {
+      "tag": "TG_33",
+      "state": "pending"
+    },
+    {
+      "tag": "Immediate_33",
+      "state": "pending"
+    },
+    {
+      "tag": "PM_33",
+      "state": "pending"
+    },
+    {
+      "tag": "WM_33",
+      "state": "pending"
+    },
+    {
+      "tag": "PM_WM_33",
+      "state": "pending"
+    }
+  ],
+  "automatic_final_outputs": [
+    "analysis/convergence.png",
+    "analysis/convergence.svg",
+    "analysis/final_comparison.png",
+    "analysis/final_comparison.svg",
+    "analysis/final_comparison.pdf",
+    "analysis/final_comparison.csv",
+    "REPORT.md",
+    "report.json"
+  ],
+  "first_model_observed": {
+    "group": "TG",
+    "seed": 11,
+    "status": "running",
+    "trained_episodes": 43,
+    "checkpoints": [
+      {
+        "episode": 0,
+        "scene_evaluations": 3,
+        "parent_fingerprints_unchanged": true,
+        "compute_settings": {
+          "deterministic": true,
+          "cudnn_deterministic": true,
+          "matmul_tf32": false,
+          "cudnn_tf32": false,
+          "amp": false,
+          "cublas_workspace": ":4096:8"
+        }
+      },
+      {
+        "episode": 20,
+        "scene_evaluations": 3,
+        "parent_fingerprints_unchanged": true,
+        "compute_settings": {
+          "deterministic": true,
+          "cudnn_deterministic": true,
+          "matmul_tf32": false,
+          "cudnn_tf32": false,
+          "amp": false,
+          "cublas_workspace": ":4096:8"
+        }
+      },
+      {
+        "episode": 40,
+        "scene_evaluations": 3,
+        "parent_fingerprints_unchanged": true,
+        "compute_settings": {
+          "deterministic": true,
+          "cudnn_deterministic": true,
+          "matmul_tf32": false,
+          "cudnn_tf32": false,
+          "amp": false,
+          "cublas_workspace": ":4096:8"
+        }
+      }
+    ]
+  }
+}
