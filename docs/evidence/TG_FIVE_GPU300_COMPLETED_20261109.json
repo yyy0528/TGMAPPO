@@ -1,0 +1,440 @@
+{
+  "client_date": "2026-11-09",
+  "timezone": "Asia/Shanghai",
+  "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_five_gpu300\\20261108_140256_956180",
+  "status": "completed",
+  "finished": "2026-11-09T01:07:05.019466",
+  "engineering_passed": true,
+  "models": 15,
+  "training_episodes": 4500,
+  "completed_checkpoints": 240,
+  "completed_scene_evaluations": 720,
+  "budget": {
+    "training_models": 15,
+    "training_steps": 360000,
+    "evaluation_steps": 115200
+  },
+  "report_sha256": "d34394a6806e293adf78dd4de11ba6ed84ab5812d8b563f608c7dd8a67c9291f",
+  "figure_sha256": "628a94dc697219f4fe903fbcf5d4b657d4ea80e447ae3fb7f59e43618e5f0b43",
+  "final_comparison_sha256": "6b7734c15e8b46697596cb7b26519d494398fac800df8dc23aa7b1064a097eaa",
+  "source_snapshot_hashes_verified": true,
+  "source_commit": "be36e8607387cee44f2429175148bc921ebf70cf",
+  "aggregate": {
+    "TG": {
+      "completed_models": 3,
+      "planned_models": 3,
+      "final_delivery": {
+        "n": 3,
+        "mean": 0.599537037037037,
+        "sample_sd": 0.05023734818104331
+      },
+      "final_base_return": {
+        "n": 3,
+        "mean": -0.048969217842926016,
+        "sample_sd": 0.1038927618309394
+      },
+      "auc": {
+        "n": 3,
+        "mean": 0.5081018518518519,
+        "sample_sd": 0.09184390599965245
+      },
+      "confirmed_80": [
+        {
+          "seed": 11,
+          "first_observed_episode": 100,
+          "sustained": {
+            "first_episode": 160,
+            "confirmed_episode": 180,
+            "training_steps": 14400,
+            "training_seconds": 727.054369400139
+          },
+          "status": "confirmed",
+          "resolution_episodes": 20
+        },
+        {
+          "seed": 22,
+          "first_observed_episode": null,
+          "sustained": null,
+          "status": "not_confirmed_by_budget",
+          "resolution_episodes": 20
+        },
+        {
+          "seed": 33,
+          "first_observed_episode": 220,
+          "sustained": null,
+          "status": "not_confirmed_by_budget",
+          "resolution_episodes": 20
+        }
+      ]
+    },
+    "Immediate": {
+      "completed_models": 3,
+      "planned_models": 3,
+      "final_delivery": {
+        "n": 3,
+        "mean": 0.6828703703703703,
+        "sample_sd": 0.21021526542791807
+      },
+      "final_base_return": {
+        "n": 3,
+        "mean": 0.050787305828481275,
+        "sample_sd": 0.3069667182526386
+      },
+      "auc": {
+        "n": 3,
+        "mean": 0.5385030864197531,
+        "sample_sd": 0.15300599070116022
+      },
+      "confirmed_80": [
+        {
+          "seed": 11,
+          "first_observed_episode": null,
+          "sustained": null,
+          "status": "not_confirmed_by_budget",
+          "resolution_episodes": 20
+        },
+        {
+          "seed": 22,
+          "first_observed_episode": 300,
+          "sustained": null,
+          "status": "not_confirmed_by_budget",
+          "resolution_episodes": 20
+        },
+        {
+          "seed": 33,
+          "first_observed_episode": 140,
+          "sustained": {
+            "first_episode": 140,
+            "confirmed_episode": 160,
+            "training_steps": 12800,
+            "training_seconds": 870.8461896005319
+          },
+          "status": "confirmed",
+          "resolution_episodes": 20
+        }
+      ]
+    },
+    "PM": {
+      "completed_models": 3,
+      "planned_models": 3,
+      "final_delivery": {
+        "n": 3,
+        "mean": 0.9560185185185185,
+        "sample_sd": 0.0418591234259841
+      },
+      "final_base_return": {
+        "n": 3,
+        "mean": 0.5412997165214509,
+        "sample_sd": 0.03556614778023836
+      },
+      "auc": {
+        "n": 3,
+        "mean": 0.9439043209876545,
+        "sample_sd": 0.01554606835177265
+      },
+      "confirmed_80": [
+        {
+          "seed": 11,
+          "first_observed_episode": 20,
+          "sustained": {
+            "first_episode": 20,
+            "confirmed_episode": 40,
+            "training_steps": 3200,
+            "training_seconds": 262.0759187998483
+          },
+          "status": "confirmed",
+          "resolution_episodes": 20
+        },
+        {
+          "seed": 22,
+          "first_observed_episode": 20,
+          "sustained": {
+            "first_episode": 20,
+            "confirmed_episode": 40,
+            "training_steps": 3200,
+            "training_seconds": 250.9500555001432
+          },
+          "status": "confirmed",
+          "resolution_episodes": 20
+        },
+        {
+          "seed": 33,
+          "first_observed_episode": 20,
+          "sustained": {
+            "first_episode": 20,
+            "confirmed_episode": 40,
+            "training_steps": 3200,
+            "training_seconds": 261.66587140003685
+          },
+          "status": "confirmed",
+          "resolution_episodes": 20
+        }
+      ]
+    },
+    "WM": {
+      "completed_models": 3,
+      "planned_models": 3,
+      "final_delivery": {
+        "n": 3,
+        "mean": 0.599537037037037,
+        "sample_sd": 0.07294421878050335
+      },
+      "final_base_return": {
+        "n": 3,
+        "mean": -0.06051417246219471,
+        "sample_sd": 0.14503475428547374
+      },
+      "auc": {
+        "n": 3,
+        "mean": 0.45841049382716054,
+        "sample_sd": 0.1063486322368396
+      },
+      "confirmed_80": [
+        {
+          "seed": 11,
+          "first_observed_episode": 140,
+          "sustained": {
+            "first_episode": 140,
+            "confirmed_episode": 160,
+            "training_steps": 12800,
+            "training_seconds": 1214.4444640995935
+          },
+          "status": "confirmed",
+          "resolution_episodes": 20
+        },
+        {
+          "seed": 22,
+          "first_observed_episode": null,
+          "sustained": null,
+          "status": "not_confirmed_by_budget",
+          "resolution_episodes": 20
+        },
+        {
+          "seed": 33,
+          "first_observed_episode": 200,
+          "sustained": null,
+          "status": "not_confirmed_by_budget",
+          "resolution_episodes": 20
+        }
+      ]
+    },
+    "PM_WM": {
+      "completed_models": 3,
+      "planned_models": 3,
+      "final_delivery": {
+        "n": 3,
+        "mean": 1.0,
+        "sample_sd": 0.0
+      },
+      "final_base_return": {
+        "n": 3,
+        "mean": 0.6158062487809246,
+        "sample_sd": 0.017625181785619604
+      },
+      "auc": {
+        "n": 3,
+        "mean": 0.962962962962963,
+        "sample_sd": 0.006415002990995819
+      },
+      "confirmed_80": [
+        {
+          "seed": 11,
+          "first_observed_episode": 20,
+          "sustained": {
+            "first_episode": 20,
+            "confirmed_episode": 40,
+            "training_steps": 3200,
+            "training_seconds": 388.86401169991586
+          },
+          "status": "confirmed",
+          "resolution_episodes": 20
+        },
+        {
+          "seed": 22,
+          "first_observed_episode": 20,
+          "sustained": {
+            "first_episode": 20,
+            "confirmed_episode": 40,
+            "training_steps": 3200,
+            "training_seconds": 462.23303090035915
+          },
+          "status": "confirmed",
+          "resolution_episodes": 20
+        },
+        {
+          "seed": 33,
+          "first_observed_episode": 20,
+          "sustained": {
+            "first_episode": 20,
+            "confirmed_episode": 40,
+            "training_steps": 3200,
+            "training_seconds": 378.2939664000878
+          },
+          "status": "confirmed",
+          "resolution_episodes": 20
+        }
+      ]
+    }
+  },
+  "paired_effects": {
+    "Immediate_vs_TG": {
+      "per_seed": [
+        {
+          "seed": 11,
+          "delivery_delta": -0.1736111111111111,
+          "base_return_delta": -0.30293335594497206,
+          "auc_delta": -0.18634259259259267
+        },
+        {
+          "seed": 22,
+          "delivery_delta": 0.25,
+          "base_return_delta": 0.3591456970325044,
+          "auc_delta": 0.0587962962962964
+        },
+        {
+          "seed": 33,
+          "delivery_delta": 0.17361111111111116,
+          "base_return_delta": 0.24305722992668954,
+          "auc_delta": 0.2187499999999999
+        }
+      ],
+      "delivery_delta": {
+        "n": 3,
+        "mean": 0.08333333333333336,
+        "sample_sd": 0.2257745584306786
+      },
+      "all_seed_delivery_improvements": false
+    },
+    "PM_vs_TG": {
+      "per_seed": [
+        {
+          "seed": 11,
+          "delivery_delta": 0.2847222222222222,
+          "base_return_delta": 0.4682047893453595,
+          "auc_delta": 0.32106481481481486
+        },
+        {
+          "seed": 22,
+          "delivery_delta": 0.32638888888888895,
+          "base_return_delta": 0.5649915990649023,
+          "auc_delta": 0.5201388888888894
+        },
+        {
+          "seed": 33,
+          "delivery_delta": 0.45833333333333337,
+          "base_return_delta": 0.737610414682869,
+          "auc_delta": 0.4662037037037037
+        }
+      ],
+      "delivery_delta": {
+        "n": 3,
+        "mean": 0.3564814814814815,
+        "sample_sd": 0.09063320347431433
+      },
+      "all_seed_delivery_improvements": true
+    },
+    "WM_vs_TG": {
+      "per_seed": [
+        {
+          "seed": 11,
+          "delivery_delta": -0.03472222222222221,
+          "base_return_delta": -0.08826287054552887,
+          "auc_delta": -0.046064814814814836
+        },
+        {
+          "seed": 22,
+          "delivery_delta": 0.04861111111111105,
+          "base_return_delta": 0.09687828745314654,
+          "auc_delta": -0.07662037037037028
+        },
+        {
+          "seed": 33,
+          "delivery_delta": -0.01388888888888884,
+          "base_return_delta": -0.043250280765423754,
+          "auc_delta": -0.02638888888888896
+        }
+      ],
+      "delivery_delta": {
+        "n": 3,
+        "mean": 0.0,
+        "sample_sd": 0.043368041655544386
+      },
+      "all_seed_delivery_improvements": false
+    },
+    "PM_WM_vs_PM": {
+      "per_seed": [
+        {
+          "seed": 11,
+          "delivery_delta": 0.08333333333333337,
+          "base_return_delta": 0.1242370344462903,
+          "auc_delta": 0.02777777777777768
+        },
+        {
+          "seed": 22,
+          "delivery_delta": 0.04861111111111105,
+          "base_return_delta": 0.04617531065483249,
+          "auc_delta": 0.02152777777777748
+        },
+        {
+          "seed": 33,
+          "delivery_delta": 0.0,
+          "base_return_delta": 0.05310725167729846,
+          "auc_delta": 0.007870370370370305
+        }
+      ],
+      "delivery_delta": {
+        "n": 3,
+        "mean": 0.043981481481481476,
+        "sample_sd": 0.0418591234259841
+      },
+      "all_seed_delivery_improvements": false
+    },
+    "PM_WM_vs_WM": {
+      "per_seed": [
+        {
+          "seed": 11,
+          "delivery_delta": 0.4027777777777778,
+          "base_return_delta": 0.6807046943371786,
+          "auc_delta": 0.3949074074074074
+        },
+        {
+          "seed": 22,
+          "delivery_delta": 0.32638888888888895,
+          "base_return_delta": 0.5142886222665882,
+          "auc_delta": 0.618287037037037
+        },
+        {
+          "seed": 33,
+          "delivery_delta": 0.4722222222222222,
+          "base_return_delta": 0.8339679471255912,
+          "auc_delta": 0.5004629629629629
+        }
+      ],
+      "delivery_delta": {
+        "n": 3,
+        "mean": 0.40046296296296297,
+        "sample_sd": 0.07294421878050335
+      },
+      "all_seed_delivery_improvements": true
+    }
+  },
+  "initial_state_checks": {
+    "11": {
+      "groups": 5,
+      "identical": true,
+      "scope": "shared Actor backbone / Critic / optimizer settings / RNG; WM adds zero residual head"
+    },
+    "22": {
+      "groups": 5,
+      "identical": true,
+      "scope": "shared Actor backbone / Critic / optimizer settings / RNG; WM adds zero residual head"
+    },
+    "33": {
+      "groups": 5,
+      "identical": true,
+      "scope": "shared Actor backbone / Critic / optimizer settings / RNG; WM adds zero residual head"
+    }
+  },
+  "scope": "Known training seeds[11, 22, 33]; finite-budget descriptive convergence comparison; fresh3041-3045 remain sealed.",
+  "figure_visual_check": true
+}
