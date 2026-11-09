@@ -1,5 +1,6 @@
 """A snapshotted controller must compare artifacts outside its source tree."""
 import json
+import inspect
 import sys
 import tempfile
 import unittest
@@ -13,6 +14,8 @@ sys.path.insert(0, str(ROOT / 'scripts'))
 from run_tg_wm_input_probe import verify_raw_compatibility
 
 
+@unittest.skipUnless('weights_only' in inspect.signature(torch.load).parameters,
+                     'GPU experiment tools require modern Torch')
 class ProbePaths(unittest.TestCase):
     def test_snapshot_location_does_not_change_absolute_reference(self):
         with tempfile.TemporaryDirectory() as temp:
