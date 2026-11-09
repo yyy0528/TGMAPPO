@@ -233,5 +233,14 @@
     "300-episode improvement pending",
     "unseen training seeds remain sealed",
     "queue error can exceed zero-change baseline on corrected-policy trajectory"
-  ]
+  ],
+  "failed_launch": {
+    "root": "results/tg_wm_input_probe/20261109_121954_535292",
+    "manifest_sha256": "c0c42a1b00aad671996eea53b84bb35176a8ea0aa54ec9f846550be9768ef2d4",
+    "reason": "Snapshot controller incorrectly resolved old compatibility results relative to source_snapshot",
+    "full300_models_started": 0,
+    "raw2_artifacts_verified_exact": true,
+    "path_regression_tests_passed": 2,
+    "fix": "Manifest stores absolute raw_compat_reference; compare helper independent of source ROOT"
+  }
 }

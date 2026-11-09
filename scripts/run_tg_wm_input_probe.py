@@ -29,6 +29,19 @@ def audit(output,episodes,mode,calibration_sha=None,evaluation=False):
     return dict(delivery=sum(x['delivered_packets'] for x in rows)/sum(x['generated_packets'] for x in rows),
                 base_return=statistics.mean(physical_return(x,r['reward_contract']) for x in rows),report_sha256=digest(output/'logs/TG_policy_report.json'))
 
+def verify_raw_compatibility(output, reference):
+    # The controller may run inside a snapshot. Artifact paths must come from
+    # the manifest rather than be resolved relative to this script's location.
+    import torch
+    output,reference=Path(output),Path(reference)
+    assert output.is_absolute() and reference.is_absolute(), 'Compatibility paths must be absolute'
+    x=torch.load(reference/'checkpoints/tg_policy_latest.pt',map_location='cpu',weights_only=True)
+    y=torch.load(output/'checkpoints/tg_policy_latest.pt',map_location='cpu',weights_only=True)
+    assert all(set(x[k])==set(y[k]) and all(torch.equal(x[k][n],y[k][n]) for n in x[k]) for k in ('actor','critic'))
+    assert read(reference/'logs/TG_policy_report.json')['training_updates']==read(output/'logs/TG_policy_report.json')['training_updates']
+    assert (reference/'logs/TG_physical_metrics.jsonl').read_bytes()==(output/'logs/TG_physical_metrics.jsonl').read_bytes()
+
+
 def prepare(calibration,episodes,prefix_reference=None):
     assert episodes in (20,100,300)
     base=ROOT/'results/tg_five_gpu300/20261108_140256_956180';assert read(base/'manifest.json')['status']=='completed'
@@ -41,7 +54,8 @@ def prepare(calibration,episodes,prefix_reference=None):
     wm=ROOT/'results/tg_wm_multiscene_gate_selection/20261103_000951_565881/wm_best.pt'
     (frozen/'wm.pt').write_bytes(wm.read_bytes());(frozen/'calibration.json').write_bytes(Path(calibration).read_bytes())
     m=dict(status='prepared',root=str(root),source=snapshot(root),episodes=episodes,seeds=[11,22,33],scenes=[8001,8002,8003],
-        reference_root=str(base),calibration_sha256=digest(frozen/'calibration.json'),wm_sha256=digest(wm),prefix_reference=prefix_reference,jobs=[])
+        reference_root=str(base),raw_compat_reference=str(ROOT/'results/tg_five_gpu_probe/20261108_135245_396245/jobs/WM_22/training/runs/case/moves_5'),
+        calibration_sha256=digest(frozen/'calibration.json'),wm_sha256=digest(wm),prefix_reference=prefix_reference,jobs=[])
     python=r'D:\anaconda3\envs\buoy_gpu\python.exe'
     for seed in [22,11,22,33]:
         compat=len(m['jobs'])==0;tag='compat_raw22' if compat else 'scaled_'+str(seed);work=root/tag;work.mkdir()
@@ -73,12 +87,7 @@ def run(root):
                 invoke(command,work/'train.log');out=work/'train/runs/case/moves_5'
                 j['train_metrics']=audit(out,j['episodes'],j['mode'],m['calibration_sha256'] if j['mode']!='raw' else None)
                 if j['tag']=='compat_raw22':
-                    import torch
-                    old=ROOT/'results/tg_five_gpu_probe/20261108_135245_396245/jobs/WM_22/training/runs/case/moves_5'
-                    x=torch.load(old/'checkpoints/tg_policy_latest.pt',map_location='cpu',weights_only=True);y=torch.load(out/'checkpoints/tg_policy_latest.pt',map_location='cpu',weights_only=True)
-                    assert all(set(x[k])==set(y[k]) and all(torch.equal(x[k][n],y[k][n]) for n in x[k]) for k in ('actor','critic'))
-                    assert read(old/'logs/TG_policy_report.json')['training_updates']==read(out/'logs/TG_policy_report.json')['training_updates']
-                    assert (old/'logs/TG_physical_metrics.jsonl').read_bytes()==(out/'logs/TG_physical_metrics.jsonl').read_bytes()
+                    verify_raw_compatibility(out,m['raw_compat_reference'])
                     j['legacy_exact']=True
                 else:
                     j['evaluations']=[]
