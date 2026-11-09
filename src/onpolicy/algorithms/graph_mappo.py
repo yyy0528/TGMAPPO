@@ -249,6 +249,12 @@ class GR_MAPPO():
         # print(f'Actor Backward time: {critic_backward_time}')
         # st = time.time()
         self.scaler.unscale_(self.policy.actor_optimizer)
+        if getattr(self.policy.actor, 'wm_actor_input', 'raw') == 'residual_scaled':
+            fusion = self.policy.actor.wm_fusion
+            grads = [p.grad for p in fusion.parameters() if p.grad is not None]
+            self.last_wm_fusion_grad_norm = float(torch.stack([g.detach().norm() for g in grads]).norm()) if grads else 0.
+            first = fusion[0].weight.grad
+            self.last_wm_prediction_grad_norm = float(first[:, -3:].detach().norm()) if first is not None else 0.
         if self._use_max_grad_norm:
             actor_grad_norm = nn.utils.clip_grad_norm_(
                                             self.policy.actor.parameters(), 
@@ -353,6 +359,9 @@ class GR_MAPPO():
         train_info['ratio'] = 0
         train_info['approx_kl'] = 0
         train_info['clip_fraction'] = 0
+        if getattr(self.policy.actor, 'wm_actor_input', 'raw') == 'residual_scaled':
+            train_info['wm_fusion_grad_norm'] = 0.
+            train_info['wm_prediction_columns_grad_norm'] = 0.
         from onpolicy.algorithms.utils.pm_action_loss import action_credit_settings
         if action_credit_settings(self.policy.actor.args)['mode'] != 'disabled':
             train_info['pm_action_target_loss'] = 0.
@@ -391,6 +400,9 @@ class GR_MAPPO():
                     # 执行PPO更新，返回损失和梯度信息
                     value_loss, critic_grad_norm, policy_loss, dist_entropy, \
                     actor_grad_norm, imp_weights, actor_bt, critic_bt = self.ppo_update(sample, update_actor)
+                    if 'wm_fusion_grad_norm' in train_info:
+                        train_info['wm_fusion_grad_norm'] += self.last_wm_fusion_grad_norm
+                        train_info['wm_prediction_columns_grad_norm'] += self.last_wm_prediction_grad_norm
 
 
                     # actor_backward_time += actor_bt

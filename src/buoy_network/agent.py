@@ -144,6 +144,7 @@ class DeepQNetwork(nn.Module):
         # algorithm
         self.trainer = TrainAlgo(self.env.all_args, self.policy, device=self.device)
         self.wm_runtime = None
+        self.wm_calibration_metadata = None
         self.wm_update_records = []
         self.evaluation_metadata = None
         self.pm_runtime = None
@@ -173,6 +174,11 @@ class DeepQNetwork(nn.Module):
             from .wm_runtime import FrozenWMRuntime
             self.wm_runtime = FrozenWMRuntime(self.all_args.wm_actor_checkpoint, self.env.buoy_number,
                                               getattr(self.all_args, "wm_feature_source", "learned"), device=self.device)
+            calibration = None
+            if getattr(self.all_args,'wm_actor_calibration',''):
+                from onpolicy.algorithms.utils.wm_features import load_calibration
+                calibration,self.wm_calibration_metadata = load_calibration(self.all_args.wm_actor_calibration,self.wm_runtime.file_sha256)
+            self.policy.actor.configure_wm_input(self.wm_runtime.model, calibration)
 
 
         # build two network: eval_net and target_net

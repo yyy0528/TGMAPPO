@@ -1,0 +1,237 @@
+{
+  "date": "2026-11-09",
+  "status": "short_validation_completed_full300_not_started",
+  "files": {
+    "results/tg_wm_diagnosis/20261109_113321_476708/report.json": "a940ec59521b0f9622eb1cf4def674b88f210adb03836f4ccc5971fa298370c6",
+    "results/tg_wm_input_probe/20261109_115159_931796/report.json": "fea14bc7b2eeef994654060ca6038904e2168a26ff3dac218c6de2a9c2297036",
+    "results/tg_wm_input_calibration/20261109_114741_867797/calibration.json": "df3c33097ae044f6f11b865904fb251fa06730a3c4182543d510e4a18db0370c",
+    "results/tg_wm_fixed_diagnosis/20261109_121539_537179/diagnosis.json": "23e5aa35b9f4173a48374e402282d9f2c8a91f3865dd9ee9d291bbd96d498fd2",
+    "results/tg_wm_input_gpu_regression.log": "411bfc196c1a62d4b41c7ebdf773fec6dca9f4a3dd04ae592790af2dbccf2598",
+    "results/tg_wm_input_cpu_regression.log": "48bde5d317d8f04880761ccf18c2b777f918924960f4a3bc779886e49f092bda"
+  },
+  "diagnosis": {
+    "status": "completed",
+    "source_study": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_five_gpu300\\20261108_140256_956180",
+    "cases": [
+      {
+        "seed": 11,
+        "scene": 8001,
+        "scope": "Known-scene same-policy read-only replay; interventions are same-observation diagnostics, not counterfactual rollout gains",
+        "ack_attempts": 422,
+        "ack_brier_model": 0.23242368851320738,
+        "ack_brier_observation": 0.25196784280063983,
+        "queue_samples": 1164,
+        "queue_mse_model": 0.00110694801573533,
+        "queue_mse_zero": 0.0013050663332252652,
+        "queue_predicted_rms": 0.015742224143458695,
+        "queue_actual_rms": 0.03612570183713065,
+        "forwarding_feature_std": [
+          0.0691701595370169,
+          0.002235882186151073,
+          0.004274622531949253
+        ],
+        "forwarding_feature_mean": [
+          0.5292024855395181,
+          -0.015807463936285706,
+          0.020509244523948814
+        ],
+        "active_decisions": 742,
+        "decisions": {
+          "base_logit_std": 0.4628475065019253,
+          "residual_logit_std": 0.0016913908413571188,
+          "tv_vs_no_fusion": 0.0006608552932663949,
+          "tv_vs_shuffled": 0.00016578275213304235,
+          "tv_vs_observed_only": 0.0001025988649441346,
+          "argmax_changed": 0.0
+        },
+        "physical_replay_exact": true,
+        "wm_queue_training_scale": [
+          0.03088291734457016,
+          0.03949207812547684
+        ]
+      },
+      {
+        "seed": 22,
+        "scene": 8001,
+        "scope": "Known-scene same-policy read-only replay; interventions are same-observation diagnostics, not counterfactual rollout gains",
+        "ack_attempts": 629,
+        "ack_brier_model": 0.22097931837213014,
+        "ack_brier_observation": 0.24850266466822757,
+        "queue_samples": 1258,
+        "queue_mse_model": 0.0010747213258147465,
+        "queue_mse_zero": 0.0011509671258465393,
+        "queue_predicted_rms": 0.017605480907046982,
+        "queue_actual_rms": 0.03392590641156901,
+        "forwarding_feature_std": [
+          0.07924476090865978,
+          0.0022572659680629935,
+          0.004762970811700534
+        ],
+        "forwarding_feature_mean": [
+          0.529643472799888,
+          -0.015478843885917573,
+          0.020556695501140334
+        ],
+        "active_decisions": 629,
+        "decisions": {
+          "base_logit_std": 0.6185794764084354,
+          "residual_logit_std": 0.002458387168697326,
+          "tv_vs_no_fusion": 0.0006231936879325747,
+          "tv_vs_shuffled": 0.000499979843087909,
+          "tv_vs_observed_only": 0.0002701792966675114,
+          "argmax_changed": 0.0
+        },
+        "physical_replay_exact": true,
+        "wm_queue_training_scale": [
+          0.03088291734457016,
+          0.03949207812547684
+        ]
+      },
+      {
+        "seed": 33,
+        "scene": 8001,
+        "scope": "Known-scene same-policy read-only replay; interventions are same-observation diagnostics, not counterfactual rollout gains",
+        "ack_attempts": 677,
+        "ack_brier_model": 0.23713161132590066,
+        "ack_brier_observation": 0.25317396083400817,
+        "queue_samples": 1354,
+        "queue_mse_model": 0.0013585386009475914,
+        "queue_mse_zero": 0.0013604238183015736,
+        "queue_predicted_rms": 0.017788113090444143,
+        "queue_actual_rms": 0.03688392357520514,
+        "forwarding_feature_std": [
+          0.08096930841844403,
+          0.002854039294889444,
+          0.004332091545756534
+        ],
+        "forwarding_feature_mean": [
+          0.525884702493079,
+          -0.01519066899389457,
+          0.020751864429459803
+        ],
+        "active_decisions": 677,
+        "decisions": {
+          "base_logit_std": 0.6922672085430985,
+          "residual_logit_std": 0.0015257007062044463,
+          "tv_vs_no_fusion": 0.0003481172768060707,
+          "tv_vs_shuffled": 0.0003080693296427829,
+          "tv_vs_observed_only": 0.00017598884433309825,
+          "argmax_changed": 0.0
+        },
+        "physical_replay_exact": true,
+        "wm_queue_training_scale": [
+          0.03088291734457016,
+          0.03949207812547684
+        ]
+      }
+    ]
+  },
+  "pilot20": {
+    "status": "completed",
+    "episodes": 20,
+    "rows": [
+      {
+        "seed": 11,
+        "delivery": 0.5902777777777778,
+        "raw_delivery": 0.16666666666666666,
+        "tg_delivery": 0.2916666666666667,
+        "base_return": -0.08591647382584439,
+        "raw_base_return": -0.8119668004774804
+      },
+      {
+        "seed": 22,
+        "delivery": 0.0,
+        "raw_delivery": 0.0,
+        "tg_delivery": 0.0,
+        "base_return": -1.1426396330617115,
+        "raw_base_return": -1.1426396330617115
+      },
+      {
+        "seed": 33,
+        "delivery": 0.6875,
+        "raw_delivery": 0.0,
+        "tg_delivery": 0.0,
+        "base_return": 0.012935002087559868,
+        "raw_base_return": -1.1426396330617115
+      }
+    ],
+    "mean_delivery": 0.42592592592592593,
+    "mean_raw_delivery": 0.05555555555555555,
+    "mean_tg_delivery": 0.09722222222222222,
+    "scope": "Known three-seed development comparison; controls are immutable same-budget checkpoints, raw2 replay is exact; no unseen-seed or long-budget claim beyond actual episodes"
+  },
+  "calibration": {
+    "schema": "wm_increment_train_calibration_v1",
+    "fit_split": "train",
+    "samples": 15376,
+    "mean": [
+      0.038907088339328766,
+      -0.012425963766872883,
+      0.016492679715156555
+    ],
+    "scale": [
+      0.08027888089418411,
+      0.008793485350906849,
+      0.008591009303927422
+    ],
+    "clip": 5.0,
+    "wm_sha256": "2919dff60d3128321170410e632e7bddd476a4f09c766b92108bfe9cb73daca9",
+    "dataset_manifest_sha256": "634b750b3117ad8030fb4dd6ff654bcaf0593779fd642f5b691ccf14f2f16160",
+    "future_labels_used": false,
+    "description": "Frozen model predictions minus observed ACK; physical queue predictions. No validation/test rows or targets used."
+  },
+  "scaled_diagnostic": {
+    "seed": 11,
+    "scene": 8001,
+    "scope": "Known-scene same-policy read-only replay; interventions are same-observation diagnostics, not counterfactual rollout gains",
+    "ack_attempts": 533,
+    "ack_brier_model": 0.24518381193262898,
+    "ack_brier_observation": 0.25630864461822916,
+    "queue_samples": 1066,
+    "queue_mse_model": 0.001096706035171098,
+    "queue_mse_zero": 0.0010716332817147175,
+    "queue_predicted_rms": 0.017435736111082248,
+    "queue_actual_rms": 0.03273581038732228,
+    "forwarding_feature_std": [
+      0.08045399712016008,
+      0.0032307164160676554,
+      0.005071050768857212
+    ],
+    "forwarding_feature_mean": [
+      0.5274182172179306,
+      -0.014986145783128062,
+      0.01936538159868203
+    ],
+    "active_decisions": 533,
+    "decisions": {
+      "base_logit_std": 0.18183299471356856,
+      "residual_logit_std": 0.010068947900572396,
+      "tv_vs_no_fusion": 0.004000500340790507,
+      "tv_vs_shuffled": 0.0031075654568860052,
+      "tv_vs_observed_only": 0.004000501361226498,
+      "argmax_changed": 0.005628517823639775
+    },
+    "physical_replay_exact": true,
+    "wm_queue_training_scale": [
+      0.03088291734457016,
+      0.03949207812547684
+    ]
+  },
+  "tests": {
+    "new_tests": 6,
+    "gpu_regression": {
+      "passed": 31
+    },
+    "legacy_cpu": {
+      "total": 162,
+      "passed": 153,
+      "cuda_skipped": 9
+    }
+  },
+  "limitations": [
+    "seed22 delivery remains zero at 20 episodes",
+    "300-episode improvement pending",
+    "unseen training seeds remain sealed",
+    "queue error can exceed zero-change baseline on corrected-policy trajectory"
+  ]
+}

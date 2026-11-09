@@ -112,6 +112,8 @@ class GR_Actor(nn.Module):
             action_space, self.hidden_size, self._use_orthogonal, self._gain
         )
         self.use_wm = getattr(args, "use_wm_actor", False)
+        from onpolicy.algorithms.utils.wm_features import wm_input_mode
+        self.wm_actor_input = wm_input_mode(args)
         self.actor_extra_width = getattr(args, "actor_extra_width", 0)
         if self.actor_extra_width:
             if self.use_wm or self.actor_extra_width < 1:
@@ -130,17 +132,36 @@ class GR_Actor(nn.Module):
                 self.wm_fusion = nn.Sequential(nn.Linear(self.hidden_size+3, 32), nn.Tanh(), nn.Linear(32, 1))
                 nn.init.zeros_(self.wm_fusion[-1].weight)
                 nn.init.zeros_(self.wm_fusion[-1].bias)
+            if self.wm_actor_input == 'residual_scaled':
+                self.register_buffer('wm_input_scale', torch.ones(3))
+                self.register_buffer('wm_input_center', torch.zeros(3))
+                self.wm_input_ready = False
 
 ################################################################################
         self.to(device)
 
-    def _wm_distribution(self, features, available_actions, wm_features):
+    @torch.no_grad()
+    def configure_wm_input(self, model, calibration=None):
+        if self.wm_actor_input == 'residual_scaled':
+            from onpolicy.algorithms.utils.wm_features import training_scales
+            self.wm_input_scale.copy_(training_scales(model).to(self.wm_input_scale))
+            if calibration is not None:
+                self.wm_input_scale.copy_(torch.tensor(calibration['scale']).to(self.wm_input_scale))
+                self.wm_input_center.copy_(torch.tensor(calibration['mean']).to(self.wm_input_center))
+            self.wm_input_ready = True
+
+    def _wm_distribution(self, features, available_actions, wm_features, obs=None):
         from onpolicy.algorithms.utils.distributions import FixedCategorical
         if wm_features is None or available_actions is None:
             raise ValueError("WM Actor requires cached features and current action masks")
         wm = check(wm_features).to(**self.tpdv)
         if wm.shape != (features.shape[0], self.wm_action_count, 3) or not torch.isfinite(wm).all():
             raise ValueError("Invalid cached WM feature shape/values")
+        if self.wm_actor_input == 'residual_scaled':
+            if not self.wm_input_ready or obs is None:
+                raise ValueError('WM train-split input scales not configured')
+            from onpolicy.algorithms.utils.wm_features import incremental_features
+            wm = incremental_features(wm, obs, available_actions, self.wm_input_scale, self.wm_input_center)
         mask = available_actions > 0
         if not mask.any(-1).all():
             raise ValueError("WM Actor has no legal action")
@@ -236,7 +257,7 @@ class GR_Actor(nn.Module):
         if self.actor_extra_width:
             actor_features = actor_features+self.actor_extra(actor_features)
         if self.use_wm:
-            distribution = self._wm_distribution(actor_features, available_actions, wm_features)
+            distribution = self._wm_distribution(actor_features, available_actions, wm_features, obs)
             actions = distribution.mode() if deterministic else distribution.sample()
             action_log_probs = distribution.log_probs(actions)
         else:
@@ -327,7 +348,7 @@ class GR_Actor(nn.Module):
         if self.actor_extra_width:
             actor_features = actor_features+self.actor_extra(actor_features)
         if self.use_wm:
-            distribution = self._wm_distribution(actor_features, available_actions, wm_features)
+            distribution = self._wm_distribution(actor_features, available_actions, wm_features, obs)
             action_log_probs = distribution.log_probs(action)
             entropy = distribution.entropy().unsqueeze(-1)
             dist_entropy = ((entropy * active_masks).sum()/active_masks.sum().clamp(min=1)

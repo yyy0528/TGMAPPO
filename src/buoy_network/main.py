@@ -104,6 +104,8 @@ def parse_args(args, parser):
     parser.add_argument("--use_wm_actor", type=lambda x: bool(strtobool(x)), default=False)
     parser.add_argument("--wm_actor_checkpoint", default="")
     parser.add_argument("--wm_feature_source", choices=("learned", "history"), default="learned")
+    parser.add_argument("--wm_actor_input", choices=("raw", "residual_scaled"), default="raw")
+    parser.add_argument("--wm_actor_calibration", default="")
     parser.add_argument("--actor_extra_width", type=int, default=0)
     parser.add_argument("--use_pm_reward", type=lambda x: bool(strtobool(x)), default=False)
     parser.add_argument("--pm_reward_checkpoint", default="")
@@ -181,6 +183,10 @@ def main(args):
     all_args.max_edge_dist = all_args.comm_range
     if bool(all_args.wm_actor_checkpoint) != all_args.use_wm_actor:
         parser.error("--use_wm_actor true requires --wm_actor_checkpoint; disabled mode accepts no WM path")
+    if all_args.wm_actor_input != 'raw' and not all_args.use_wm_actor:
+        parser.error('WM input normalization requires --use_wm_actor true')
+    if all_args.wm_actor_calibration and all_args.wm_actor_input != 'residual_scaled':
+        parser.error('WM calibration requires residual_scaled input mode')
     if all_args.actor_extra_width < 0 or (all_args.actor_extra_width and (all_args.use_wm_actor or all_args.use_pm_reward)):
         parser.error("Actor expansion control requires nonnegative width and WM/PM disabled")
     if all_args.wm_feature_source != "learned" and (not all_args.use_wm_actor or all_args.use_pm_reward):
