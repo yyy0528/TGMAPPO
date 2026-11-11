@@ -22,6 +22,16 @@ def invoke(command, logfile):
         raise RuntimeError('Native command failed: '+str(logfile))
 
 
+def audit_wm_updates(report, episodes, evaluation):
+    if evaluation:
+        assert report['optimizer_updates'] == 0
+        assert not report.get('wm_ppo_updates', [])
+    else:
+        rows = report['wm_ppo_updates']
+        assert len(rows) == episodes
+        assert all(r['wm_frozen'] and r['ratio_max_error'] <= 1e-4 for r in rows)
+
+
 def audit(output, job, calibration_sha, evaluation=False, checkpoint=None):
     import math
     output = Path(output)
@@ -42,7 +52,7 @@ def audit(output, job, calibration_sha, evaluation=False, checkpoint=None):
         assert report['wm_actor_input'] == job['wm_input']
         if job['wm_input'] != 'raw':
             assert report['wm_actor_calibration']['sha256'] == calibration_sha
-        assert all(r['wm_frozen'] and r['ratio_max_error'] <= 1e-4 for r in report['wm_ppo_updates'])
+        audit_wm_updates(report, episodes, evaluation)
     else:
         assert report['wm'] is None
     if evaluation:
@@ -64,7 +74,7 @@ def audit(output, job, calibration_sha, evaluation=False, checkpoint=None):
                 report_sha256=digest(output/'logs/TG_policy_report.json'))
 
 
-def prepare():
+def prepare(reuse_from=None):
     reference = ROOT/'results/tg_wm_input_probe/20261109_122413_853474'
     short = ROOT/'results/tg_wm_input_probe/20261109_115159_931796'
     baseline = ROOT/'results/tg_five_gpu300/20261108_140256_956180'
@@ -103,6 +113,34 @@ def prepare():
                                    (group+'_22')/'training/runs/case/moves_5')
             assert Path(job['reference']).is_dir()
         m['jobs'].append(job)
+    if reuse_from:
+        old_root = Path(reuse_from).resolve()
+        previous = read(old_root/'manifest.json')
+        assert previous['status'] == 'failed', 'Only stopped failed probes can be recovered'
+        assert previous['scenes']==m['scenes'] and previous['seeds']==m['seeds']
+        def core_hashes(source):
+            return {k:v for k,v in source['files_sha256'].items() if Path(k).parts[0]=='src'
+                    or Path(k).name in ('run_algorithm.py','tg_eval_worker.py')}
+        assert core_hashes(previous['source']) == core_hashes(m['source']), 'Training code changed; cannot reuse'
+        assert previous['wm_sha256']==m['wm_sha256'] and previous['calibration_sha256']==m['calibration_sha256']
+        m['recovery_from'] = dict(root=str(old_root),manifest_sha256=digest(old_root/'manifest.json'))
+        for job in m['jobs']:
+            old_job = next(j for j in previous['jobs'] if j['tag']==job['tag'])
+            assert all(job[k]==old_job[k] for k in ('seed','group','episodes','temperature','wm_input'))
+            old_work = Path(old_job['work'])
+            old_output = Path(old_job.get('reuse_training',{}).get('output',str(old_work/'train/runs/case/moves_5')))
+            checkpoint = old_output/'checkpoints/tg_policy_latest.pt'
+            if (old_output/'logs/TG_policy_report.json').is_file() and checkpoint.is_file():
+                audit(old_output,job,m['calibration_sha256'])
+                job['reuse_training'] = dict(output=str(old_output),report_sha256=digest(old_output/'logs/TG_policy_report.json'),checkpoint_sha256=digest(checkpoint))
+                job['reuse_evaluations'] = {}
+                for scene in m['scenes']:
+                    ev = old_work/('eval_'+str(scene))/'runs/case/moves_5'
+                    if not (ev/'logs/TG_policy_report.json').exists() and str(scene) in old_job.get('reuse_evaluations',{}):
+                        ev = Path(old_job['reuse_evaluations'][str(scene)]['output'])
+                    if (ev/'logs/TG_policy_report.json').exists():
+                        audit(ev,job,m['calibration_sha256'],True,checkpoint)
+                        job['reuse_evaluations'][str(scene)] = dict(output=str(ev),report_sha256=digest(ev/'logs/TG_policy_report.json'))
     atomic(root/'manifest.json',m)
     print('OUTPUT '+str(root),flush=True)
 
@@ -120,8 +158,15 @@ def run(root):
             for job in m['jobs']:
                 job.update(state='running',started_at=datetime.now().isoformat());atomic(root/'manifest.json',m)
                 print('START '+job['tag'],flush=True)
-                work = Path(job['work']);invoke(job['command'],work/'train.log')
-                output = work/'train/runs/case/moves_5'
+                work = Path(job['work'])
+                if 'reuse_training' in job:
+                    output = Path(job['reuse_training']['output'])
+                    assert digest(output/'logs/TG_policy_report.json') == job['reuse_training']['report_sha256']
+                    assert digest(output/'checkpoints/tg_policy_latest.pt') == job['reuse_training']['checkpoint_sha256']
+                    print('REUSE_TRAIN '+job['tag'],flush=True)
+                else:
+                    invoke(job['command'],work/'train.log')
+                    output = work/'train/runs/case/moves_5'
                 job['training'] = audit(output,job,m['calibration_sha256'])
                 if 'reference' in job:
                     verify_raw_compatibility(output,job['reference']);job['legacy_exact'] = True
@@ -132,8 +177,13 @@ def run(root):
                         command = list(job['command'])
                         for k,v in [('--num_episodes',2),('--num_env_steps',160),('--seed',scene),('--scenario_seed',scene),
                                     ('--output_root',work/('eval_'+str(scene))),('--tg_evaluate','true'),('--tg_policy_checkpoint',cp)]:setarg(command,k,v)
-                        invoke(command,work/('eval_'+str(scene)+'.log'))
-                        ev = work/('eval_'+str(scene))/'runs/case/moves_5'
+                        reused = job.get('reuse_evaluations',{}).get(str(scene))
+                        if reused:
+                            ev = Path(reused['output'])
+                            assert digest(ev/'logs/TG_policy_report.json') == reused['report_sha256']
+                        else:
+                            invoke(command,work/('eval_'+str(scene)+'.log'))
+                            ev = work/('eval_'+str(scene))/'runs/case/moves_5'
                         job['evaluations'].append(dict(scene=scene,**audit(ev,job,m['calibration_sha256'],True,cp)))
                     job['delivery'] = statistics.mean(x['delivery'] for x in job['evaluations'])
                 job.update(state='completed',finished_at=datetime.now().isoformat());atomic(root/'manifest.json',m)
@@ -184,7 +234,8 @@ def render(root, rows):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--prepare',action='store_true');parser.add_argument('--run')
+    parser.add_argument('--reuse-from')
     args = parser.parse_args()
-    if args.prepare:prepare()
+    if args.prepare:prepare(args.reuse_from)
     elif args.run:run(args.run)
     else:parser.error('Use --prepare or --run ROOT')

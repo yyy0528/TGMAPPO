@@ -1,6 +1,6 @@
 {
   "date": "2026-11-11",
-  "status": "diagnosed_candidate_temperature_tested_pilot_not_started",
+  "status": "paired_audit_failure_fixed_recovery_pending",
   "files_sha256": {
     "results/tg_wm_regression_diagnosis/20261111_171028_381556/report.json": "52a0a4afc6a58025c6df0dc5b293e6a39839df45e69eaa64d9514d1ef285730d",
     "results/tg_wm_frozen_intervention/20261111_173226_128762/report.json": "85dfefa16adc7176080700cc4ecbc254daed54cb05ca4f8122fd3deb56dbe970",
@@ -1167,5 +1167,83 @@
         "loop_transfers": 182
       }
     ]
+  },
+  "paired20": {
+    "root": "results\\tg_temperature_probe\\20261111_180054_040463",
+    "execution": {
+      "pid": 66620,
+      "process_started_at": "2026-11-11T18:02:36.4898348+08:00",
+      "recorded_at": "2026-11-11T18:02:36.5090131+08:00",
+      "source_commit": "301bf9859a391bbf88e25135405e68a8c003a856",
+      "python": "D:\\anaconda3\\envs\\buoy_gpu\\python.exe",
+      "isolated_user_site": true,
+      "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_temperature_probe\\20261111_180054_040463",
+      "temp": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_temperature_probe\\20261111_180054_040463\\temp",
+      "episodes": 20,
+      "seeds": [
+        11,
+        22,
+        33
+      ],
+      "groups": [
+        "TG",
+        "WM"
+      ],
+      "temperature": 0.5,
+      "automatic_long_training": false,
+      "training_resume_supported": false,
+      "sandboxed_start_exited_before_training": true,
+      "launched_outside_sandbox": true
+    },
+    "observed_at": "2026-11-11T18:06:15.231303+08:00",
+    "status": "failed",
+    "jobs": [
+      {
+        "tag": "compat_TG_22",
+        "state": "completed",
+        "legacy_exact": true
+      },
+      {
+        "tag": "compat_WM_22",
+        "state": "completed",
+        "legacy_exact": true
+      },
+      {
+        "tag": "TG_11",
+        "state": "completed",
+        "legacy_exact": null
+      },
+      {
+        "tag": "WM_11",
+        "state": "running",
+        "legacy_exact": null
+      },
+      {
+        "tag": "TG_22",
+        "state": "pending",
+        "legacy_exact": null
+      },
+      {
+        "tag": "WM_22",
+        "state": "pending",
+        "legacy_exact": null
+      },
+      {
+        "tag": "TG_33",
+        "state": "pending",
+        "legacy_exact": null
+      },
+      {
+        "tag": "WM_33",
+        "state": "pending",
+        "legacy_exact": null
+      }
+    ],
+    "wm_sha256": "2919dff60d3128321170410e632e7bddd476a4f09c766b92108bfe9cb73daca9",
+    "calibration_sha256": "df3c33097ae044f6f11b865904fb251fa06730a3c4182543d510e4a18db0370c",
+    "failure": "Frozen WM evaluation omits training-only wm_ppo_updates; audit required it incorrectly",
+    "failure_manifest_sha256": "7bcf40aff51d5f0f29c9cff5b402af5056feb010e9bdc45a01700796c27793b4",
+    "audit_regression_tests_passed": 3,
+    "actual_completed_training_and_eval_audits_passed": true
   }
 }
