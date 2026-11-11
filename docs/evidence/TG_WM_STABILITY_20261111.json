@@ -1,6 +1,6 @@
 {
   "date": "2026-11-11",
-  "status": "paired_audit_failure_fixed_recovery_pending",
+  "status": "temperature_paired_running_scale_floor_calibration_prepared",
   "files_sha256": {
     "results/tg_wm_regression_diagnosis/20261111_171028_381556/report.json": "52a0a4afc6a58025c6df0dc5b293e6a39839df45e69eaa64d9514d1ef285730d",
     "results/tg_wm_frozen_intervention/20261111_173226_128762/report.json": "85dfefa16adc7176080700cc4ecbc254daed54cb05ca4f8122fd3deb56dbe970",
@@ -1245,5 +1245,157 @@
     "failure_manifest_sha256": "7bcf40aff51d5f0f29c9cff5b402af5056feb010e9bdc45a01700796c27793b4",
     "audit_regression_tests_passed": 3,
     "actual_completed_training_and_eval_audits_passed": true
+  },
+  "paired20_recovered": {
+    "root": "results\\tg_temperature_probe\\20261111_181651_527029",
+    "observed_at": "2026-11-11T18:27:19.030704+08:00",
+    "status": "running",
+    "execution": {
+      "pid": 69768,
+      "process_started_at": "2026-11-11T18:17:33.2752709+08:00",
+      "source_commit": "432b300ddba51661c2d941cb6c56d467798e83e4",
+      "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_temperature_probe\\20261111_181651_527029",
+      "temp": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_temperature_probe\\20261111_181651_527029\\temp",
+      "python": "D:\\anaconda3\\envs\\buoy_gpu\\python.exe",
+      "isolated_user_site": true,
+      "launched_outside_sandbox": true,
+      "recovery_from": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_temperature_probe\\20261111_180054_040463",
+      "reused_training_jobs": 4,
+      "reused_evaluations": 4,
+      "automatic_long_training": false,
+      "training_resume_supported": false
+    },
+    "jobs": [
+      {
+        "tag": "compat_TG_22",
+        "state": "completed",
+        "delivery": null,
+        "reused_training": {
+          "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_temperature_probe\\20261111_180054_040463\\compat_TG_22\\train\\runs\\case\\moves_5",
+          "report_sha256": "1be7ce7c6051f4e104b3dc756a6c560b54483c109e40a8cc89ce33c292bce6a0",
+          "checkpoint_sha256": "dabea13dd669ec9d9e0166d3e7d52ff5471a928ed04c0b1e356441ed2a27cfdc"
+        },
+        "reused_evaluations": {}
+      },
+      {
+        "tag": "compat_WM_22",
+        "state": "completed",
+        "delivery": null,
+        "reused_training": {
+          "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_temperature_probe\\20261111_180054_040463\\compat_WM_22\\train\\runs\\case\\moves_5",
+          "report_sha256": "185b73ab174ef54795d208008663dd98c204b16817bfcad0e62badc26e81b586",
+          "checkpoint_sha256": "07c4d34fe93dc817797d57b4ddefd3ec397c4a0cfaa63632e4de4775effad1a6"
+        },
+        "reused_evaluations": {}
+      },
+      {
+        "tag": "TG_11",
+        "state": "completed",
+        "delivery": 0.875,
+        "reused_training": {
+          "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_temperature_probe\\20261111_180054_040463\\TG_11\\train\\runs\\case\\moves_5",
+          "report_sha256": "3f1c550ec89304f97c8a3f2f944d056a9482674c7df60517ff7db77af53b9282",
+          "checkpoint_sha256": "27fce95e5b1e564cfa8a30d2f7426d15a22783019e593128950fccf382da989b"
+        },
+        "reused_evaluations": {
+          "8001": {
+            "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_temperature_probe\\20261111_180054_040463\\TG_11\\eval_8001\\runs\\case\\moves_5",
+            "report_sha256": "723707be62fc9b163948abe6dfbfbd03f28c1693502a76614373a74334f27720"
+          },
+          "8002": {
+            "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_temperature_probe\\20261111_180054_040463\\TG_11\\eval_8002\\runs\\case\\moves_5",
+            "report_sha256": "ee1b7734d74f1c5b4b67edc18582f1c31b976b45ec295a3e882e2d91cd40864b"
+          },
+          "8003": {
+            "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_temperature_probe\\20261111_180054_040463\\TG_11\\eval_8003\\runs\\case\\moves_5",
+            "report_sha256": "1b3e54b926e3104a49841db851b0ccf62c803e5ca3dfbe7134bb2f4375eb1c12"
+          }
+        }
+      },
+      {
+        "tag": "WM_11",
+        "state": "completed",
+        "delivery": 0.3333333333333333,
+        "reused_training": {
+          "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_temperature_probe\\20261111_180054_040463\\WM_11\\train\\runs\\case\\moves_5",
+          "report_sha256": "80e0248f91daa76db50b55cd7a7340975f736593359a00cfd67421be5fad4c1c",
+          "checkpoint_sha256": "228d1f9f961dc94fc2b967578d52e2ef7ef2b80e74530c4d1a6e7f291536a2a4"
+        },
+        "reused_evaluations": {
+          "8001": {
+            "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_temperature_probe\\20261111_180054_040463\\WM_11\\eval_8001\\runs\\case\\moves_5",
+            "report_sha256": "fe9c54b2fd6ec27d4354d9b35230d2f4665472604c72d3bfcabb5ce4ce98cf3e"
+          }
+        }
+      },
+      {
+        "tag": "TG_22",
+        "state": "completed",
+        "delivery": 0.4166666666666667,
+        "reused_training": null,
+        "reused_evaluations": null
+      },
+      {
+        "tag": "WM_22",
+        "state": "completed",
+        "delivery": 0.375,
+        "reused_training": null,
+        "reused_evaluations": null
+      },
+      {
+        "tag": "TG_33",
+        "state": "completed",
+        "delivery": 0.5833333333333334,
+        "reused_training": null,
+        "reused_evaluations": null
+      },
+      {
+        "tag": "WM_33",
+        "state": "running",
+        "delivery": null,
+        "reused_training": null,
+        "reused_evaluations": null
+      }
+    ]
+  },
+  "scale_floor": {
+    "status": "calibration_prepared_training_not_started",
+    "calibration": {
+      "schema": "wm_increment_train_calibration_v1",
+      "fit_split": "train",
+      "samples": 15376,
+      "mean": [
+        0.038907088339328766,
+        -0.012425963766872883,
+        0.016492679715156555
+      ],
+      "scale": [
+        0.49784207344055176,
+        0.03088291734457016,
+        0.03949207812547684
+      ],
+      "clip": 5.0,
+      "wm_sha256": "2919dff60d3128321170410e632e7bddd476a4f09c766b92108bfe9cb73daca9",
+      "dataset_manifest_sha256": "634b750b3117ad8030fb4dd6ff654bcaf0593779fd642f5b691ccf14f2f16160",
+      "future_labels_used": false,
+      "description": "Train prediction scale floored by frozen WM ACK-prior SD and queue target RMS; center unchanged. A conservative input scale, not a calibrated uncertainty estimate.",
+      "scale_rule": "frozen_training_rms_floor_v1",
+      "minimum_scale": [
+        0.49784207344055176,
+        0.03088291734457016,
+        0.03949207812547684
+      ],
+      "source_prediction_scale": [
+        0.08027888089418411,
+        0.008793485350906849,
+        0.008591009303927422
+      ],
+      "source_calibration_sha256": "df3c33097ae044f6f11b865904fb251fa06730a3c4182543d510e4a18db0370c",
+      "uses_frozen_training_target_statistics": true
+    },
+    "path": "results\\tg_wm_scale_floor\\20261111_182314_951169\\calibration.json",
+    "sha256": "9d20bad887e8f6b9f9ff0e7a20e3cbf5aefe0ec36ed5bc7586beec317cc49e23",
+    "focused_tests_passed": 8,
+    "derivation_tests_legacy_passed": 3
   }
 }

@@ -42,7 +42,7 @@ def verify_raw_compatibility(output, reference):
     assert (reference/'logs/TG_physical_metrics.jsonl').read_bytes()==(output/'logs/TG_physical_metrics.jsonl').read_bytes()
 
 
-def prepare(calibration,episodes,prefix_reference=None):
+def prepare(calibration,episodes,prefix_reference=None,comparison_reference=None):
     assert episodes in (20,100,300)
     base=ROOT/'results/tg_five_gpu300/20261108_140256_956180';assert read(base/'manifest.json')['status']=='completed'
     c=read(calibration);assert c['fit_split']=='train' and c['future_labels_used'] is False
@@ -56,6 +56,16 @@ def prepare(calibration,episodes,prefix_reference=None):
     m=dict(status='prepared',root=str(root),source=snapshot(root),episodes=episodes,seeds=[11,22,33],scenes=[8001,8002,8003],
         reference_root=str(base),raw_compat_reference=str(ROOT/'results/tg_five_gpu_probe/20261108_135245_396245/jobs/WM_22/training/runs/case/moves_5'),
         calibration_sha256=digest(frozen/'calibration.json'),wm_sha256=digest(wm),prefix_reference=prefix_reference,jobs=[])
+    if comparison_reference:
+        reference_path=Path(comparison_reference).resolve()
+        reference_manifest=read(reference_path/'manifest.json')
+        reference_report=read(reference_path/'report.json')
+        assert reference_manifest['status']=='completed' and reference_report['episodes']==episodes
+        assert digest(reference_path/'report.json')==reference_manifest['report_sha256']
+        assert len(reference_report['rows'])==len(m['seeds'])
+        assert {r['seed'] for r in reference_report['rows']}==set(m['seeds'])
+        assert all(0<=r['delivery']<=1 for r in reference_report['rows'])
+        m['comparison_reference']=dict(root=str(reference_path),report_sha256=reference_manifest['report_sha256'])
     python=r'D:\anaconda3\envs\buoy_gpu\python.exe'
     for seed in [22,11,22,33]:
         compat=len(m['jobs'])==0;tag='compat_raw22' if compat else 'scaled_'+str(seed);work=root/tag;work.mkdir()
@@ -109,6 +119,12 @@ def run(root):
                 old=next(x for x in reference['models'] if x['group']=='WM' and x['seed']==j['seed']);baseline=next(x for x in reference['models'] if x['group']=='TG' and x['seed']==j['seed'])
                 raw=next(x for x in old['points'] if x['episode']==m['episodes']);tg=next(x for x in baseline['points'] if x['episode']==m['episodes'])
                 rows.append(dict(seed=j['seed'],delivery=j['mean_delivery'],raw_delivery=raw['delivery'],tg_delivery=tg['delivery'],base_return=j['mean_base_return'],raw_base_return=raw['base_return']))
+            if m.get('comparison_reference'):
+                comparison=Path(m['comparison_reference']['root'])/'report.json'
+                assert digest(comparison)==m['comparison_reference']['report_sha256']
+                previous=read(comparison)
+                for row in rows:
+                    row['reference_delivery']=next(r['delivery'] for r in previous['rows'] if r['seed']==row['seed'])
             report=dict(status='completed',episodes=m['episodes'],rows=rows,mean_delivery=statistics.mean(x['delivery'] for x in rows),mean_raw_delivery=statistics.mean(x['raw_delivery'] for x in rows),
                 mean_tg_delivery=statistics.mean(x['tg_delivery'] for x in rows),scope='Known three-seed development comparison; controls are immutable same-budget checkpoints, raw2 replay is exact; no unseen-seed or long-budget claim beyond actual episodes')
             report['mean_delivery_improved']=report['mean_delivery']>report['mean_raw_delivery']
@@ -117,6 +133,11 @@ def run(root):
             report['no_seed_regression_vs_tg']=all(x['delivery']>=x['tg_delivery'] for x in rows)
             report['engineering_passed']=True
             report['unseen_seed_validation_completed']=False
+            if m.get('comparison_reference'):
+                report['comparison_reference']=m['comparison_reference']
+                report['mean_reference_delivery']=statistics.mean(r['reference_delivery'] for r in rows)
+                report['mean_above_reference']=report['mean_delivery']>report['mean_reference_delivery']
+                report['no_seed_regression_vs_reference']=all(r['delivery']>=r['reference_delivery'] for r in rows)
             plot_comparison(root,m,reference,report)
             atomic(root/'report.json',report);m.update(status='completed',report_sha256=digest(root/'report.json'));atomic(root/'manifest.json',m);print(json.dumps(report),flush=True)
         except Exception as e:
@@ -127,10 +148,13 @@ def plot_comparison(root,m,reference,report):
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
     import numpy as np,csv
-    labels=['TG','WM raw','WM fixed'];keys=['tg_delivery','raw_delivery','delivery'];means=[statistics.mean(x[k] for x in report['rows']) for k in keys]
+    labels=['TG','WM raw','WM fixed'];keys=['tg_delivery','raw_delivery','delivery'];colors=['#286f9a','#8a62a6','#2c8b60']
+    if m.get('comparison_reference'):
+        labels=['TG','WM raw','WM previous','WM current'];keys=['tg_delivery','raw_delivery','reference_delivery','delivery'];colors=['#286f9a','#8a62a6','#9d7a43','#2c8b60']
+    means=[statistics.mean(x[k] for x in report['rows']) for k in keys]
     std=[statistics.stdev(x[k] for x in report['rows']) for k in keys]
-    fig,ax=plt.subplots(figsize=(7,4.5),constrained_layout=True);ax.bar(range(3),np.array(means)*100,yerr=np.array(std)*100,capsize=5,color=['#286f9a','#8a62a6','#2c8b60'])
-    ax.set_xticks(range(3));ax.set_xticklabels(labels);ax.set_ylim(0,110);ax.set_ylabel('Frozen delivery (%)');ax.set_title('WM input fix: {} episodes, 3 known training seeds'.format(m['episodes']));ax.grid(axis='y',alpha=.2)
+    fig,ax=plt.subplots(figsize=(7,4.5),constrained_layout=True);ax.bar(range(len(keys)),np.array(means)*100,yerr=np.array(std)*100,capsize=5,color=colors)
+    ax.set_xticks(range(len(keys)));ax.set_xticklabels(labels);ax.set_ylim(0,110);ax.set_ylabel('Frozen delivery (%)');ax.set_title('WM input fix: {} episodes, 3 known training seeds'.format(m['episodes']));ax.grid(axis='y',alpha=.2)
     for ext in ('png','svg','pdf'):fig.savefig(str(root/('comparison.'+ext)),dpi=160)
     plt.close(fig)
     with (root/'comparison.csv').open('w',encoding='utf-8',newline='') as f:
@@ -155,8 +179,8 @@ def plot_comparison(root,m,reference,report):
         plt.close(fig)
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--prepare');p.add_argument('--run');p.add_argument('--prefix-reference');p.add_argument('--episodes',type=int,default=20);a=p.parse_args()
-    if a.prepare:prepare(a.prepare,a.episodes,a.prefix_reference)
+    p=argparse.ArgumentParser();p.add_argument('--prepare');p.add_argument('--run');p.add_argument('--prefix-reference');p.add_argument('--comparison-reference');p.add_argument('--episodes',type=int,default=20);a=p.parse_args()
+    if a.prepare:prepare(a.prepare,a.episodes,a.prefix_reference,a.comparison_reference)
     elif a.run:run(a.run)
     else:p.error('Use --prepare calibration.json or --run root')
 
