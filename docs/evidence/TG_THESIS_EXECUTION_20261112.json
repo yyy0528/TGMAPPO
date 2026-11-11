@@ -1,9 +1,9 @@
 {
   "schema": "tg_thesis_execution_v1",
-  "recorded_at": "2026-11-12T01:25:42.200196",
+  "recorded_at": "2026-11-12T01:27:19.428981",
   "study": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\thesis_experiments\\20261112_011930_763352",
   "status_at_record": "running",
-  "phase_at_record": "preflight",
+  "phase_at_record": "main",
   "all_thesis_experiments_completed": false,
   "unit_tests": {
     "run": 11,
@@ -75,7 +75,7 @@
     },
     {
       "tag": "preflight_PM_WM_22",
-      "state": "running",
+      "state": "completed",
       "legacy_exact": null,
       "carried_from": null
     }
@@ -121,5 +121,11 @@
       "root": "results/thesis_experiments/20261112_011640_791945",
       "cause": "Controller resolved reference under snapshot cwd; absolute manifest resolution fixed; completed TG exact-verified and reused"
     }
+  ],
+  "controller_pid": 73840,
+  "implementation_commit": "90240aa5",
+  "preflight_passed": true,
+  "active_jobs_at_record": [
+    "main_Greedy_22"
   ]
 }
