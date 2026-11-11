@@ -1,6 +1,6 @@
 {
   "date": "2026-11-11",
-  "status": "action_fusion300_running_no_performance_claim",
+  "status": "completed_previous_shared_version_selected",
   "files_sha256": {
     "results/tg_wm_regression_diagnosis/20261111_171028_381556/report.json": "52a0a4afc6a58025c6df0dc5b293e6a39839df45e69eaa64d9514d1ef285730d",
     "results/tg_wm_frozen_intervention/20261111_173226_128762/report.json": "85dfefa16adc7176080700cc4ecbc254daed54cb05ca4f8122fd3deb56dbe970",
@@ -1613,7 +1613,7 @@
     },
     "report_sha256": "0cc32f1e3175cde3ac50834d376a77068ab85d92601d4b5650d19d3fda889e23",
     "short_reference_mean_improved": false,
-    "long300_status": "running",
+    "long300_status": "completed",
     "long300": {
       "root": "results\\tg_wm_input_probe\\20261111_212328_440495",
       "execution": {
@@ -1680,7 +1680,141 @@
         "parent_unchanged": true,
         "checkpoint_sha256": "2e881791f2249130b178f85cf5a1f09e7bc97d9e2f32cfa8b53f01f4ffb72990"
       },
-      "scientific_gate_pending": true
+      "scientific_gate_pending": false,
+      "status": "completed",
+      "report": {
+        "status": "completed",
+        "episodes": 300,
+        "rows": [
+          {
+            "seed": 11,
+            "delivery": 0.4236111111111111,
+            "raw_delivery": 0.5972222222222222,
+            "tg_delivery": 0.6319444444444444,
+            "base_return": -0.3426423131643171,
+            "raw_base_return": -0.05405097120180192,
+            "reference_delivery": 0.9791666666666666
+          },
+          {
+            "seed": 22,
+            "delivery": 1.0,
+            "raw_delivery": 0.673611111111111,
+            "tg_delivery": 0.625,
+            "base_return": 0.48989417638726224,
+            "raw_base_return": 0.08118093328965735,
+            "reference_delivery": 0.6180555555555556
+          },
+          {
+            "seed": 33,
+            "delivery": 0.4583333333333333,
+            "raw_delivery": 0.5277777777777778,
+            "tg_delivery": 0.5416666666666666,
+            "base_return": -0.3012482259575703,
+            "raw_base_return": -0.20867247947443957,
+            "reference_delivery": 0.4236111111111111
+          }
+        ],
+        "mean_delivery": 0.6273148148148148,
+        "mean_raw_delivery": 0.599537037037037,
+        "mean_tg_delivery": 0.599537037037037,
+        "scope": "Known three-seed development comparison; controls are immutable same-budget checkpoints, raw2 replay is exact; no unseen-seed or long-budget claim beyond actual episodes",
+        "mean_delivery_improved": true,
+        "no_seed_delivery_regression": false,
+        "mean_above_tg": true,
+        "no_seed_regression_vs_tg": false,
+        "engineering_passed": true,
+        "unseen_seed_validation_completed": false,
+        "wm_actor_fusion": "action_delta",
+        "comparison_reference": {
+          "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_input_probe\\20261109_122413_853474",
+          "report_sha256": "db8d3eb1d4102e2bcc5e3c3857bf4d47d5c518e189031b86abbcec4a2e2d596f"
+        },
+        "mean_reference_delivery": 0.6736111111111112,
+        "mean_above_reference": false,
+        "no_seed_regression_vs_reference": false,
+        "curve_auc": {
+          "current_wm": 0.5398919753086421,
+          "tg": 0.5081018518518519,
+          "raw_wm": 0.4584104938271605,
+          "previous_wm": 0.5454475308641975
+        }
+      },
+      "report_sha256": "68b56f993114785d01c9be012e30615cf9a6390c579bf0da59d012ce54fbb15f"
     }
+  },
+  "active_selection": {
+    "date": "2026-11-12",
+    "profile": {
+      "schema": "selected_original_tg_wm_v1",
+      "selected_version": "shared_residual_scaled_300",
+      "study_root": "results/tg_wm_input_probe/20261109_122413_853474",
+      "source_commit": "4816ccff5f9c9b097f038b09eed76db2c469cc22",
+      "fusion": "shared",
+      "input_mode": "residual_scaled",
+      "policy_temperature": 1.0,
+      "mean_delivery": 0.6736111111111112,
+      "tg_mean_delivery": 0.599537037037037,
+      "seeds": [
+        11,
+        22,
+        33
+      ],
+      "selection_criterion": "Higher validated three-seed mean delivery above TG; per-seed regression is informational, not a hard rejection gate.",
+      "selection_reason": "Restore the previous higher-mean WM version; action_delta remains experimental."
+    },
+    "verification": {
+      "selected_version": "shared_residual_scaled_300",
+      "seed": 11,
+      "scene": 8001,
+      "original_physical_replay_exact": true,
+      "optimizer_updates": 0,
+      "source_commit": "4816ccff5f9c9b097f038b09eed76db2c469cc22",
+      "command": [
+        "D:\\anaconda3\\envs\\buoy_gpu\\python.exe",
+        "-s",
+        "-u",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_input_probe\\20261109_122413_853474\\source_snapshot\\scripts\\tg_eval_worker.py",
+        "--algorithm",
+        "tg-mappo",
+        "--tg_device",
+        "cuda",
+        "--use_wm_actor",
+        "true",
+        "--wm_actor_checkpoint",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_input_probe\\20261109_122413_853474\\frozen\\wm.pt",
+        "--wm_actor_input",
+        "residual_scaled",
+        "--tg_reward_version",
+        "task_v2",
+        "--num_episodes",
+        "2",
+        "--num_env_steps",
+        "160",
+        "--episode_length",
+        "80",
+        "--ppo_epoch",
+        "1",
+        "--num_mini_batch",
+        "2",
+        "--num_moving_buoys",
+        "5",
+        "--seed",
+        "8001",
+        "--scenario_seed",
+        "8001",
+        "--output_root",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_active_evaluation\\20261112_004658_194110",
+        "--run-name",
+        "case",
+        "--wm_actor_calibration",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_input_probe\\20261109_122413_853474\\frozen\\calibration.json",
+        "--tg_evaluate",
+        "true",
+        "--tg_policy_checkpoint",
+        "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_input_probe\\20261109_122413_853474\\scaled_11\\convergence\\e0300\\checkpoints\\tg_policy_latest.pt"
+      ],
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_active_evaluation\\20261112_004658_194110\\runs\\case\\moves_5"
+    },
+    "user_criterion": "three-seed mean delivery above TG, choose higher-mean validated version"
   }
 }

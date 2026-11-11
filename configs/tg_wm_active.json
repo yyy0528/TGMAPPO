@@ -1,0 +1,14 @@
+{
+  "schema": "selected_original_tg_wm_v1",
+  "selected_version": "shared_residual_scaled_300",
+  "study_root": "results/tg_wm_input_probe/20261109_122413_853474",
+  "source_commit": "4816ccff5f9c9b097f038b09eed76db2c469cc22",
+  "fusion": "shared",
+  "input_mode": "residual_scaled",
+  "policy_temperature": 1.0,
+  "mean_delivery": 0.6736111111111112,
+  "tg_mean_delivery": 0.599537037037037,
+  "seeds": [11, 22, 33],
+  "selection_criterion": "Higher validated three-seed mean delivery above TG; per-seed regression is informational, not a hard rejection gate.",
+  "selection_reason": "Restore the previous higher-mean WM version; action_delta remains experimental."
+}
