@@ -51,6 +51,7 @@ def prepare(calibration,episodes,prefix_reference=None,comparison_reference=None
     if episodes==300:
         assert prefix_reference and read(Path(prefix_reference)/'manifest.json')['status']=='completed','Completed three-seed20 probe required'
         assert digest(calibration)==read(Path(prefix_reference)/'manifest.json')['calibration_sha256'],'Calibration changed since short probe'
+        assert read(Path(prefix_reference)/'manifest.json').get('fusion','shared')==fusion,'Fusion mode changed since short probe'
     root=ROOT/'results/tg_wm_input_probe'/datetime.now().strftime('%Y%m%d_%H%M%S_%f');root.mkdir(parents=True)
     frozen=root/'frozen';frozen.mkdir()
     wm=ROOT/'results/tg_wm_multiscene_gate_selection/20261103_000951_565881/wm_best.pt'
@@ -167,18 +168,33 @@ def plot_comparison(root,m,reference,report):
         fig,ax=plt.subplots(figsize=(9,5),constrained_layout=True)
         for group,color in [('TG','#286f9a'),('WM','#8a62a6')]:
             curve=reference['aggregate'][group]['curve'];x=[p['episode'] for p in curve];y=np.array([p['mean'] for p in curve]);sd=np.array([p['sample_sd'] or 0 for p in curve])
-            ax.plot(x,y*100,'-o',label=group,color=color);ax.fill_between(x,(y-sd)*100,(y+sd)*100,alpha=.12,color=color)
+            ax.plot(x,y*100,'-o',label='WM raw' if group=='WM' else group,color=color);ax.fill_between(x,(y-sd)*100,(y+sd)*100,alpha=.12,color=color)
         models=[read(Path(j['work'])/'convergence/progress.json') for j in m['jobs'][1:]];curve=[]
         for n in range(0,301,20):
             values=[statistics.mean(x['delivery'] for x in next(p for p in s['points'] if p['episode']==n)['evaluations']) for s in models];curve.append((n,statistics.mean(values),statistics.stdev(values)))
+        previous_curve=[]
+        if m.get('comparison_reference'):
+            previous_manifest=read(Path(m['comparison_reference']['root'])/'manifest.json')
+            previous_models=[read(Path(j['work'])/'convergence/progress.json') for j in previous_manifest['jobs'] if j['mode']=='residual_scaled']
+            assert len(previous_models)==3 and all(s['status']=='completed' for s in previous_models)
+            for n in range(0,301,20):
+                values=[statistics.mean(x['delivery'] for x in next(p for p in s['points'] if p['episode']==n)['evaluations']) for s in previous_models]
+                previous_curve.append((n,statistics.mean(values),statistics.stdev(values)))
+            px=[p[0] for p in previous_curve];py=np.array([p[1] for p in previous_curve]);ps=np.array([p[2] for p in previous_curve])
+            ax.plot(px,py*100,'-o',color='#9d7a43',label='WM previous');ax.fill_between(px,(py-ps)*100,(py+ps)*100,color='#9d7a43',alpha=.12)
         with (root/'convergence.csv').open('w',encoding='utf-8',newline='') as f:
-            w=csv.writer(f);w.writerow(['episode','fixed_mean','fixed_sample_sd','raw_mean','tg_mean'])
+            w=csv.writer(f);w.writerow(['episode','fixed_mean','fixed_sample_sd','raw_mean','tg_mean']+(['previous_mean','previous_sample_sd'] if previous_curve else []))
             for n,mean,sd in curve:
                 raw=next(p['mean'] for p in reference['aggregate']['WM']['curve'] if p['episode']==n)
                 tg=next(p['mean'] for p in reference['aggregate']['TG']['curve'] if p['episode']==n)
-                w.writerow([n,mean,sd,raw,tg])
-        x=[p[0] for p in curve];y=np.array([p[1] for p in curve]);sd=np.array([p[2] for p in curve]);ax.plot(x,y*100,'-o',color='#2c8b60',label='WM fixed');ax.fill_between(x,(y-sd)*100,(y+sd)*100,color='#2c8b60',alpha=.12)
-        ax.set_ylim(0,105);ax.set_xlabel('Training episodes');ax.set_ylabel('Frozen delivery (%)');ax.grid(alpha=.2);ax.legend();ax.set_title('Same-budget WM input correction; mean +/- training-seed SD')
+                prior=next((p for p in previous_curve if p[0]==n),None)
+                w.writerow([n,mean,sd,raw,tg]+([prior[1],prior[2]] if prior else []))
+        x=[p[0] for p in curve];y=np.array([p[1] for p in curve]);sd=np.array([p[2] for p in curve]);ax.plot(x,y*100,'-o',color='#2c8b60',label='WM current');ax.fill_between(x,(y-sd)*100,(y+sd)*100,color='#2c8b60',alpha=.12)
+        report['curve_auc']={'current_wm':float(np.trapz(y,x)/300)}
+        for group,key in [('TG','tg'),('WM','raw_wm')]:
+            points=reference['aggregate'][group]['curve'];report['curve_auc'][key]=float(np.trapz([p['mean'] for p in points],[p['episode'] for p in points])/300)
+        if previous_curve:report['curve_auc']['previous_wm']=float(np.trapz([p[1] for p in previous_curve],[p[0] for p in previous_curve])/300)
+        ax.set_ylim(0,105);ax.set_xlabel('Training episodes');ax.set_ylabel('Frozen delivery (%)');ax.grid(alpha=.2);ax.legend();ax.set_title('WM comparison at equal budgets; mean +/- training-seed SD')
         for ext in ('png','svg','pdf'):fig.savefig(str(root/('convergence.'+ext)),dpi=160)
         plt.close(fig)
 

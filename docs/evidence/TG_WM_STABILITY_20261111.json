@@ -1,6 +1,6 @@
 {
   "date": "2026-11-11",
-  "status": "action_fusion_pilot_running",
+  "status": "action_fusion20_completed_no_reference_gain_long300_preparing",
   "files_sha256": {
     "results/tg_wm_regression_diagnosis/20261111_171028_381556/report.json": "52a0a4afc6a58025c6df0dc5b293e6a39839df45e69eaa64d9514d1ef285730d",
     "results/tg_wm_frozen_intervention/20261111_173226_128762/report.json": "85dfefa16adc7176080700cc4ecbc254daed54cb05ca4f8122fd3deb56dbe970",
@@ -1490,7 +1490,7 @@
     "final_report_sha256": "3e01eeef4497ad2356f48ebe8bd5fd94005e75c6c681165a35f4c7f985d8a444"
   },
   "action_fusion": {
-    "status": "running",
+    "status": "completed",
     "mode": "action_delta",
     "temperature": 1.0,
     "calibration": "results/tg_wm_input_calibration/20261109_114741_867797/calibration.json",
@@ -1559,6 +1559,60 @@
         "delivery": null
       }
     ],
-    "scientific_gate_pending": true
+    "scientific_gate_pending": true,
+    "report": {
+      "status": "completed",
+      "episodes": 20,
+      "rows": [
+        {
+          "seed": 11,
+          "delivery": 0.6666666666666666,
+          "raw_delivery": 0.16666666666666666,
+          "tg_delivery": 0.2916666666666667,
+          "base_return": -0.03306129768424722,
+          "raw_base_return": -0.8119668004774804,
+          "reference_delivery": 0.5902777777777778
+        },
+        {
+          "seed": 22,
+          "delivery": 0.0,
+          "raw_delivery": 0.0,
+          "tg_delivery": 0.0,
+          "base_return": -1.1426396330617115,
+          "raw_base_return": -1.1426396330617115,
+          "reference_delivery": 0.0
+        },
+        {
+          "seed": 33,
+          "delivery": 0.5833333333333334,
+          "raw_delivery": 0.0,
+          "tg_delivery": 0.0,
+          "base_return": -0.1683977537130458,
+          "raw_base_return": -1.1426396330617115,
+          "reference_delivery": 0.6875
+        }
+      ],
+      "mean_delivery": 0.4166666666666667,
+      "mean_raw_delivery": 0.05555555555555555,
+      "mean_tg_delivery": 0.09722222222222222,
+      "scope": "Known three-seed development comparison; controls are immutable same-budget checkpoints, raw2 replay is exact; no unseen-seed or long-budget claim beyond actual episodes",
+      "mean_delivery_improved": true,
+      "no_seed_delivery_regression": true,
+      "mean_above_tg": true,
+      "no_seed_regression_vs_tg": true,
+      "engineering_passed": true,
+      "unseen_seed_validation_completed": false,
+      "wm_actor_fusion": "action_delta",
+      "comparison_reference": {
+        "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_input_probe\\20261109_115159_931796",
+        "report_sha256": "fea14bc7b2eeef994654060ca6038904e2168a26ff3dac218c6de2a9c2297036"
+      },
+      "mean_reference_delivery": 0.42592592592592593,
+      "mean_above_reference": false,
+      "no_seed_regression_vs_reference": false
+    },
+    "report_sha256": "0cc32f1e3175cde3ac50834d376a77068ab85d92601d4b5650d19d3fda889e23",
+    "short_reference_mean_improved": false,
+    "long300_status": "not_started"
   }
 }
