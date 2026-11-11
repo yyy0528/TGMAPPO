@@ -1,6 +1,6 @@
 {
   "date": "2026-11-11",
-  "status": "temperature_and_floor_failed_scientific_gate_action_fusion_tested_not_started",
+  "status": "action_fusion_pilot_running",
   "files_sha256": {
     "results/tg_wm_regression_diagnosis/20261111_171028_381556/report.json": "52a0a4afc6a58025c6df0dc5b293e6a39839df45e69eaa64d9514d1ef285730d",
     "results/tg_wm_frozen_intervention/20261111_173226_128762/report.json": "85dfefa16adc7176080700cc4ecbc254daed54cb05ca4f8122fd3deb56dbe970",
@@ -1490,7 +1490,7 @@
     "final_report_sha256": "3e01eeef4497ad2356f48ebe8bd5fd94005e75c6c681165a35f4c7f985d8a444"
   },
   "action_fusion": {
-    "status": "tested_training_not_started",
+    "status": "running",
     "mode": "action_delta",
     "temperature": 1.0,
     "calibration": "results/tg_wm_input_calibration/20261109_114741_867797/calibration.json",
@@ -1507,6 +1507,58 @@
       "results/tg_wm_action_fusion_tests.log": "b6603feaebcaffa005729735fcf0961d974d6ec8d62390b17e6ac643addf070d",
       "results/tg_wm_action_fusion_gpu_regression.log": "d9614deaae5dce62b8d935939efa17172b6e05f0e7dea6a550b5e54e3227b162",
       "results/tg_wm_action_fusion_cpu_regression.log": "518e228052dec077a0572d06c4be8a8b05d97797b15a653b2fb7b10a2b071f13"
-    }
+    },
+    "root": "results\\tg_wm_input_probe\\20261111_204434_031516",
+    "execution": {
+      "pid": 64972,
+      "process_started_at": "2026-11-11T20:46:16.9971821+08:00",
+      "source_commit": "58823b495e59440ea9f1c60a0d2f183b096f4b10",
+      "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_input_probe\\20261111_204434_031516",
+      "temp": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_input_probe\\20261111_204434_031516\\temp",
+      "python": "D:\\anaconda3\\envs\\buoy_gpu\\python.exe",
+      "isolated_user_site": true,
+      "launched_outside_sandbox": true,
+      "episodes": 20,
+      "seeds": [
+        11,
+        22,
+        33
+      ],
+      "policy_temperature": 1.0,
+      "wm_actor_fusion": "action_delta",
+      "original_prediction_std_calibration": true,
+      "automatic_long_training": false,
+      "training_resume_supported": false
+    },
+    "observed_at": "2026-11-11T20:50:40.032417+08:00",
+    "legacy_raw2_exact": true,
+    "source_and_frozen_inputs_verified": true,
+    "jobs": [
+      {
+        "tag": "compat_raw22",
+        "state": "completed",
+        "fusion": "shared",
+        "delivery": null
+      },
+      {
+        "tag": "scaled_11",
+        "state": "running",
+        "fusion": "action_delta",
+        "delivery": null
+      },
+      {
+        "tag": "scaled_22",
+        "state": "pending",
+        "fusion": "action_delta",
+        "delivery": null
+      },
+      {
+        "tag": "scaled_33",
+        "state": "pending",
+        "fusion": "action_delta",
+        "delivery": null
+      }
+    ],
+    "scientific_gate_pending": true
   }
 }
