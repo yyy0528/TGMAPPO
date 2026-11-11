@@ -1,0 +1,125 @@
+{
+  "schema": "tg_thesis_execution_v1",
+  "recorded_at": "2026-11-12T01:25:42.200196",
+  "study": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\thesis_experiments\\20261112_011930_763352",
+  "status_at_record": "running",
+  "phase_at_record": "preflight",
+  "all_thesis_experiments_completed": false,
+  "unit_tests": {
+    "run": 11,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "log_sha256": "8796146da66b148dec03607672859cd6b2ea44d582282cebcc253c85cca76efb"
+  },
+  "reference_audit": {
+    "passed": true,
+    "models": 12,
+    "checkpoints_verified": 192,
+    "sha256": "e701742004670283c9091dab289a21ae0108f226bd550b5ffed0e452ce2be548"
+  },
+  "preflight": [
+    {
+      "tag": "preflight_Greedy_22",
+      "state": "completed",
+      "legacy_exact": null,
+      "carried_from": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\thesis_experiments\\20261112_011640_791945"
+    },
+    {
+      "tag": "preflight_IPPO_22",
+      "state": "completed",
+      "legacy_exact": null,
+      "carried_from": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\thesis_experiments\\20261112_011640_791945"
+    },
+    {
+      "tag": "preflight_QMIX_22",
+      "state": "completed",
+      "legacy_exact": null,
+      "carried_from": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\thesis_experiments\\20261112_011640_791945"
+    },
+    {
+      "tag": "preflight_MAPPO_22",
+      "state": "completed",
+      "legacy_exact": null,
+      "carried_from": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\thesis_experiments\\20261112_011640_791945"
+    },
+    {
+      "tag": "preflight_IQL_22",
+      "state": "completed",
+      "legacy_exact": null,
+      "carried_from": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\thesis_experiments\\20261112_011640_791945"
+    },
+    {
+      "tag": "preflight_TG_22",
+      "state": "completed",
+      "legacy_exact": true,
+      "carried_from": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\thesis_experiments\\20261112_011640_791945"
+    },
+    {
+      "tag": "preflight_Immediate_22",
+      "state": "completed",
+      "legacy_exact": true,
+      "carried_from": null
+    },
+    {
+      "tag": "preflight_PM_22",
+      "state": "completed",
+      "legacy_exact": true,
+      "carried_from": null
+    },
+    {
+      "tag": "preflight_WM_22",
+      "state": "completed",
+      "legacy_exact": null,
+      "carried_from": null
+    },
+    {
+      "tag": "preflight_PM_WM_22",
+      "state": "running",
+      "legacy_exact": null,
+      "carried_from": null
+    }
+  ],
+  "main_learning_models": 15,
+  "main_training_episodes": 4500,
+  "main_training_steps": 360000,
+  "main_rule_jobs": 3,
+  "later_stages": [
+    {
+      "name": "unseen_scenes_and_loss_mobility_load",
+      "state": "pending",
+      "reason": "After main comparison; scenario intervention interfaces require separate tests"
+    },
+    {
+      "name": "WM_PM_component_validation",
+      "state": "pending",
+      "reason": "After main comparison; audit selected-model datasets and censored labels"
+    },
+    {
+      "name": "sensitivity",
+      "state": "pending",
+      "reason": "After main comparison; pre-register ranges and equal budgets"
+    },
+    {
+      "name": "cost_and_failure_analysis",
+      "state": "collecting",
+      "reason": "Timing/physical metrics collected in all jobs; final analysis after completion"
+    }
+  ],
+  "known_limitations": [
+    "Known development seeds/scenes; not blind validation",
+    "Baseline hyperparameter tuning incomplete",
+    "Allocated adapter parameters are not net algorithm parameters",
+    "Greedy repeats are not independent training seeds"
+  ],
+  "failed_studies": [
+    {
+      "root": "results/thesis_experiments/20261112_011122_994968",
+      "cause": "Native checkpoint saver expected logs directory; observer now creates it before saving; failed TG at e0, zero training steps"
+    },
+    {
+      "root": "results/thesis_experiments/20261112_011640_791945",
+      "cause": "Controller resolved reference under snapshot cwd; absolute manifest resolution fixed; completed TG exact-verified and reused"
+    }
+  ]
+}
