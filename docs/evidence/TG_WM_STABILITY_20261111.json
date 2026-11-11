@@ -1,6 +1,6 @@
 {
   "date": "2026-11-11",
-  "status": "action_fusion20_completed_no_reference_gain_long300_preparing",
+  "status": "action_fusion300_running_no_performance_claim",
   "files_sha256": {
     "results/tg_wm_regression_diagnosis/20261111_171028_381556/report.json": "52a0a4afc6a58025c6df0dc5b293e6a39839df45e69eaa64d9514d1ef285730d",
     "results/tg_wm_frozen_intervention/20261111_173226_128762/report.json": "85dfefa16adc7176080700cc4ecbc254daed54cb05ca4f8122fd3deb56dbe970",
@@ -1613,6 +1613,74 @@
     },
     "report_sha256": "0cc32f1e3175cde3ac50834d376a77068ab85d92601d4b5650d19d3fda889e23",
     "short_reference_mean_improved": false,
-    "long300_status": "not_started"
+    "long300_status": "running",
+    "long300": {
+      "root": "results\\tg_wm_input_probe\\20261111_212328_440495",
+      "execution": {
+        "pid": 26576,
+        "process_started_at": "2026-11-11T21:25:11.2505436+08:00",
+        "source_commit": "daec2a278b54e2b3e1a6e38e66d798eb5c9a032e",
+        "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_input_probe\\20261111_212328_440495",
+        "temp": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_input_probe\\20261111_212328_440495\\temp",
+        "python": "D:\\anaconda3\\envs\\buoy_gpu\\python.exe",
+        "isolated_user_site": true,
+        "launched_outside_sandbox": true,
+        "episodes": 300,
+        "seeds": [
+          11,
+          22,
+          33
+        ],
+        "policy_temperature": 1.0,
+        "wm_actor_fusion": "action_delta",
+        "original_prediction_std_calibration": true,
+        "prefix_reference": "results/tg_wm_input_probe/20261111_204434_031516",
+        "comparison_reference": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_input_probe\\20261109_122413_853474",
+        "manual_short_pilot_review": true,
+        "short_pilot_improvement_claim": false,
+        "purpose": "equal-budget long-term stability validation",
+        "training_resume_supported": false
+      },
+      "observed_at": "2026-11-11T21:35:23.954713+08:00",
+      "seed11_trained_episodes": 45,
+      "seed11_completed_checkpoints": [
+        0,
+        20,
+        40
+      ],
+      "seed11_prefix20_exact": true,
+      "seed11_eval20_physical_exact_sha256": {
+        "8001": "3337a33e12649db8bd6979b8f1865c51a64b75851766138177419161908da961",
+        "8002": "5434fff3c5a51bd2770ea7d0f85d60b5bb8632f38bf0e71bc9374bddbb099e45",
+        "8003": "273403a843553fd2c8786b85bdde8dd93c5a83f8074c453ca270d05a31164921"
+      },
+      "seed11_checkpoint20": {
+        "episode": 20,
+        "checkpoint": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_input_probe\\20261111_212328_440495\\scaled_11\\convergence\\e0020\\checkpoints\\tg_policy_latest.pt",
+        "evaluations": [
+          {
+            "scene": 8001,
+            "delivery": 0.6666666666666666,
+            "base_return": 0.08153535320259153,
+            "report_sha256": "866c9c30ac941cd4a61a7f4ffe1b2221df5126d77b0fae48d5a23de66d3d0380"
+          },
+          {
+            "scene": 8002,
+            "delivery": 0.6666666666666666,
+            "base_return": -0.11989694164499011,
+            "report_sha256": "589946f59ecbd1f12b4121e038dbc1826ca8c4d74f47e649cce5a51d5244254e"
+          },
+          {
+            "scene": 8003,
+            "delivery": 0.6666666666666666,
+            "base_return": -0.06082230461034308,
+            "report_sha256": "746f3e4a5f4fe1d1df79cd6fe692a19d7b96fc49123fe7e45dc15364e61ae58c"
+          }
+        ],
+        "parent_unchanged": true,
+        "checkpoint_sha256": "2e881791f2249130b178f85cf5a1f09e7bc97d9e2f32cfa8b53f01f4ffb72990"
+      },
+      "scientific_gate_pending": true
+    }
   }
 }
