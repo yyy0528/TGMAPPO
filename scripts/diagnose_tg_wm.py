@@ -49,7 +49,8 @@ def case(spec):
         if getattr(self,'wm_actor_input','raw')=='residual_scaled':
             from onpolicy.algorithms.utils.wm_features import incremental_features
             fused=incremental_features(raw,obs,available,self.wm_input_scale,self.wm_input_center)
-        residual=self.wm_fusion(torch.cat((features[:,None,:].expand(-1,self.wm_action_count,-1),fused),-1)).squeeze(-1)/temperature
+        if hasattr(self,'_wm_residual'):residual=self._wm_residual(features,fused,mask)/temperature
+        else:residual=self.wm_fusion(torch.cat((features[:,None,:].expand(-1,self.wm_action_count,-1),fused),-1)).squeeze(-1)/temperature
         perm=raw.clone()
         for node in range(len(raw)):
             legal=torch.where(mask[node,:-1])[0]

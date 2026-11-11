@@ -118,6 +118,8 @@ class GR_Actor(nn.Module):
             raise ValueError('TG policy temperature requires categorical actions')
         from onpolicy.algorithms.utils.wm_features import wm_input_mode
         self.wm_actor_input = wm_input_mode(args)
+        from onpolicy.algorithms.utils.wm_fusion import fusion_mode
+        self.wm_actor_fusion = fusion_mode(args)
         self.actor_extra_width = getattr(args, "actor_extra_width", 0)
         if self.actor_extra_width:
             if self.use_wm or self.actor_extra_width < 1:
@@ -169,12 +171,19 @@ class GR_Actor(nn.Module):
         mask = available_actions > 0
         if not mask.any(-1).all():
             raise ValueError("WM Actor has no legal action")
-        joined = torch.cat((features.unsqueeze(1).expand(-1, self.wm_action_count, -1), wm), -1)
-        logits = self.act.action_out.linear(features) + self.wm_fusion(joined).squeeze(-1)
+        logits = self.act.action_out.linear(features) + self._wm_residual(features, wm, mask)
         logits = logits.masked_fill(~mask, float('-inf'))
         logits = logits - logits.max(-1, keepdim=True)[0]
         from onpolicy.algorithms.utils.policy_temperature import temper_distribution
         return temper_distribution(FixedCategorical(logits=logits), self.policy_temperature)
+
+    def _wm_residual(self, features, wm, mask):
+        if self.wm_actor_fusion == 'action_delta':
+            from onpolicy.algorithms.utils.wm_fusion import action_conditioned_residual
+            return action_conditioned_residual(self.wm_fusion, features, wm, mask,
+                                               self.act.action_out.linear.weight)
+        joined = torch.cat((features.unsqueeze(1).expand(-1, self.wm_action_count, -1), wm), -1)
+        return self.wm_fusion(joined).squeeze(-1)
 
     def _tempered_base_distribution(self, features, available_actions):
         from onpolicy.algorithms.utils.policy_temperature import temper_distribution

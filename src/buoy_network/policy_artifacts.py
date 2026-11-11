@@ -43,6 +43,8 @@ def load_policy(learner, path):
             raise ValueError("Actor expansion configuration mismatch")
         if payload.get('wm_actor_input', 'raw') != getattr(learner.all_args, 'wm_actor_input', 'raw'):
             raise ValueError('WM Actor input normalization mismatch')
+        if payload.get('wm_actor_fusion', 'shared') != getattr(learner.all_args, 'wm_actor_fusion', 'shared'):
+            raise ValueError('WM Actor fusion configuration mismatch')
         from onpolicy.algorithms.utils.policy_temperature import temperature_from_args
         if getattr(learner.policy.actor, 'policy_temperature', 1.0) != temperature_from_args(learner.all_args):
             raise ValueError('Runtime policy temperature differs from configuration')
@@ -143,6 +145,7 @@ def save_policy(learner, run_dir):
             "use_pm_reward": learner.pm_runtime is not None, "pm": pm,
             "actor_extra_width": getattr(learner.all_args, "actor_extra_width", 0),
             "wm_actor_input": getattr(learner.all_args, 'wm_actor_input', 'raw'),
+            "wm_actor_fusion": getattr(learner.all_args, 'wm_actor_fusion', 'shared'),
             "policy_temperature": policy_temperature,
             "wm_actor_calibration_sha256": (wm_calibration['sha256'] if wm_calibration else None),
             "critic_time_mode":time_mode(learner.all_args),
@@ -163,6 +166,7 @@ def save_policy(learner, run_dir):
                     "pm_ppo_updates": learner.pm_update_records, "training_resume_supported": False}
     metadata.update(profile=learner.profile, resources=resources, reward_contract=reward_contract(learner.all_args),
                     wm_actor_input=getattr(learner.all_args, 'wm_actor_input', 'raw'),
+                    wm_actor_fusion=getattr(learner.all_args, 'wm_actor_fusion', 'shared'),
                     policy_temperature=policy_temperature,
                     wm_actor_calibration=getattr(learner,'wm_calibration_metadata',None),
                     pm_critic_context=context_mode(learner.all_args),

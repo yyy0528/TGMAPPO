@@ -36,7 +36,7 @@ def entry():
             with (cp/('eval_'+str(scene)+'.log')).open('wb') as stream:r=subprocess.run(cmd,stdout=stream,stderr=subprocess.STDOUT,timeout=900)
             assert r.returncode==0,'Frozen checkpoint evaluation failed: '+str(cp)
             out=cp/('scene_'+str(scene))/'runs/case/moves_5'
-            row['evaluations'].append(dict(scene=scene,**audit(out,2,j['mode'],m['calibration_sha256'],True)))
+            row['evaluations'].append(dict(scene=scene,**audit(out,2,j['mode'],m['calibration_sha256'],True,fusion=j.get('fusion','shared'))))
         assert before==learner_fingerprint(model,auxiliaries=True),'Checkpoint/evaluation mutated parent'
         row['parent_unchanged']=True;row['checkpoint_sha256']=digest(row['checkpoint']);state['points'].append(row);seen.add(n)
         atomic(folder/'progress.json',state);print('CHECKPOINT '+str(n),flush=True)

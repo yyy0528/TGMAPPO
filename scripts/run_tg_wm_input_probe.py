@@ -10,12 +10,13 @@ def invoke(command,log,timeout=7200):
     with Path(log).open('xb') as f:r=subprocess.run(command,stdout=f,stderr=subprocess.STDOUT,timeout=timeout)
     if r.returncode:raise ValueError('Failed command; see '+str(log))
 
-def audit(output,episodes,mode,calibration_sha=None,evaluation=False):
+def audit(output,episodes,mode,calibration_sha=None,evaluation=False,fusion='shared'):
     import math
     output=Path(output);r=read(output/'logs/TG_policy_report.json')
     assert r['resources']['actor_trainable']==24165 and r['resources']['critic_trainable']==18615 and r['resources']['device']=='cuda'
     assert r['wm']['frozen'] and r['wm']['checkpoint_sha256']=='2919dff60d3128321170410e632e7bddd476a4f09c766b92108bfe9cb73daca9'
     assert r['wm_actor_input']==mode and r['profile']['collect_calls']==episodes*80
+    assert r.get('wm_actor_fusion','shared')==fusion
     if calibration_sha:assert r['wm_actor_calibration']['sha256']==calibration_sha
     if evaluation:assert r['actor_unchanged'] and r['critic_unchanged'] and r['optimizer_updates']==0
     else:
@@ -42,8 +43,9 @@ def verify_raw_compatibility(output, reference):
     assert (reference/'logs/TG_physical_metrics.jsonl').read_bytes()==(output/'logs/TG_physical_metrics.jsonl').read_bytes()
 
 
-def prepare(calibration,episodes,prefix_reference=None,comparison_reference=None):
+def prepare(calibration,episodes,prefix_reference=None,comparison_reference=None,fusion='shared'):
     assert episodes in (20,100,300)
+    assert fusion in ('shared','action_delta')
     base=ROOT/'results/tg_five_gpu300/20261108_140256_956180';assert read(base/'manifest.json')['status']=='completed'
     c=read(calibration);assert c['fit_split']=='train' and c['future_labels_used'] is False
     if episodes==300:
@@ -55,7 +57,7 @@ def prepare(calibration,episodes,prefix_reference=None,comparison_reference=None
     (frozen/'wm.pt').write_bytes(wm.read_bytes());(frozen/'calibration.json').write_bytes(Path(calibration).read_bytes())
     m=dict(status='prepared',root=str(root),source=snapshot(root),episodes=episodes,seeds=[11,22,33],scenes=[8001,8002,8003],
         reference_root=str(base),raw_compat_reference=str(ROOT/'results/tg_five_gpu_probe/20261108_135245_396245/jobs/WM_22/training/runs/case/moves_5'),
-        calibration_sha256=digest(frozen/'calibration.json'),wm_sha256=digest(wm),prefix_reference=prefix_reference,jobs=[])
+        calibration_sha256=digest(frozen/'calibration.json'),wm_sha256=digest(wm),prefix_reference=prefix_reference,fusion=fusion,jobs=[])
     if comparison_reference:
         reference_path=Path(comparison_reference).resolve()
         reference_manifest=read(reference_path/'manifest.json')
@@ -75,7 +77,8 @@ def prepare(calibration,episodes,prefix_reference=None,comparison_reference=None
              '--num_episodes',str(n),'--num_env_steps',str(n*80),'--episode_length','80','--ppo_epoch','1','--num_mini_batch','2',
              '--num_moving_buoys','5','--seed',str(seed),'--scenario_seed',str(seed),'--output_root',str(work/'train'),'--run-name','case']
         if not compat:cmd+=['--wm_actor_calibration',str(frozen/'calibration.json')]
-        m['jobs'].append(dict(tag=tag,seed=seed,episodes=n,mode=mode,command=cmd,state='pending',work=str(work)))
+        if not compat and fusion!='shared':cmd+=['--wm_actor_fusion',fusion]
+        m['jobs'].append(dict(tag=tag,seed=seed,episodes=n,mode=mode,fusion='shared' if compat else fusion,command=cmd,state='pending',work=str(work)))
         if episodes==300 and not compat:
             previous=next(j for j in read(Path(prefix_reference)/'manifest.json')['jobs'] if j['seed']==seed and j['mode']=='residual_scaled')
             m['jobs'][-1]['prefix20_reference']=str(Path(previous['work'])/'train/runs/case/moves_5')
@@ -95,7 +98,7 @@ def run(root):
                     atomic(work/'job.json',j)
                     command=command[:3]+[str(root/'source_snapshot/scripts/tg_wm_input_worker.py'),'--job-spec',str(work/'job.json')]+command[4:]
                 invoke(command,work/'train.log');out=work/'train/runs/case/moves_5'
-                j['train_metrics']=audit(out,j['episodes'],j['mode'],m['calibration_sha256'] if j['mode']!='raw' else None)
+                j['train_metrics']=audit(out,j['episodes'],j['mode'],m['calibration_sha256'] if j['mode']!='raw' else None,fusion=j.get('fusion','shared'))
                 if j['tag']=='compat_raw22':
                     verify_raw_compatibility(out,m['raw_compat_reference'])
                     j['legacy_exact']=True
@@ -109,7 +112,7 @@ def run(root):
                         cmd=list(j['command'])
                         for key,value in [('--num_episodes',2),('--num_env_steps',160),('--seed',scene),('--scenario_seed',scene),('--output_root',work/('eval_'+str(scene))),('--tg_evaluate','true'),('--tg_policy_checkpoint',out/'checkpoints/tg_policy_latest.pt')]:setarg(cmd,key,value)
                         invoke(cmd,work/('eval_'+str(scene)+'.log'))
-                        metrics=audit(work/('eval_'+str(scene))/'runs/case/moves_5',2,j['mode'],m['calibration_sha256'],True)
+                        metrics=audit(work/('eval_'+str(scene))/'runs/case/moves_5',2,j['mode'],m['calibration_sha256'],True,fusion=j.get('fusion','shared'))
                         j['evaluations'].append(dict(scene=scene,**metrics))
                     j['mean_delivery']=statistics.mean(x['delivery'] for x in j['evaluations'])
                     j['mean_base_return']=statistics.mean(x['base_return'] for x in j['evaluations'])
@@ -133,6 +136,7 @@ def run(root):
             report['no_seed_regression_vs_tg']=all(x['delivery']>=x['tg_delivery'] for x in rows)
             report['engineering_passed']=True
             report['unseen_seed_validation_completed']=False
+            report['wm_actor_fusion']=m.get('fusion','shared')
             if m.get('comparison_reference'):
                 report['comparison_reference']=m['comparison_reference']
                 report['mean_reference_delivery']=statistics.mean(r['reference_delivery'] for r in rows)
@@ -179,8 +183,8 @@ def plot_comparison(root,m,reference,report):
         plt.close(fig)
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--prepare');p.add_argument('--run');p.add_argument('--prefix-reference');p.add_argument('--comparison-reference');p.add_argument('--episodes',type=int,default=20);a=p.parse_args()
-    if a.prepare:prepare(a.prepare,a.episodes,a.prefix_reference,a.comparison_reference)
+    p=argparse.ArgumentParser();p.add_argument('--prepare');p.add_argument('--run');p.add_argument('--prefix-reference');p.add_argument('--comparison-reference');p.add_argument('--fusion',choices=('shared','action_delta'),default='shared');p.add_argument('--episodes',type=int,default=20);a=p.parse_args()
+    if a.prepare:prepare(a.prepare,a.episodes,a.prefix_reference,a.comparison_reference,a.fusion)
     elif a.run:run(a.run)
     else:p.error('Use --prepare calibration.json or --run root')
 

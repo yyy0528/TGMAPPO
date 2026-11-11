@@ -1,6 +1,6 @@
 {
   "date": "2026-11-11",
-  "status": "temperature_paired_running_scale_floor_calibration_prepared",
+  "status": "temperature_and_floor_failed_scientific_gate_action_fusion_tested_not_started",
   "files_sha256": {
     "results/tg_wm_regression_diagnosis/20261111_171028_381556/report.json": "52a0a4afc6a58025c6df0dc5b293e6a39839df45e69eaa64d9514d1ef285730d",
     "results/tg_wm_frozen_intervention/20261111_173226_128762/report.json": "85dfefa16adc7176080700cc4ecbc254daed54cb05ca4f8122fd3deb56dbe970",
@@ -1249,7 +1249,7 @@
   "paired20_recovered": {
     "root": "results\\tg_temperature_probe\\20261111_181651_527029",
     "observed_at": "2026-11-11T18:27:19.030704+08:00",
-    "status": "running",
+    "status": "completed",
     "execution": {
       "pid": 69768,
       "process_started_at": "2026-11-11T18:17:33.2752709+08:00",
@@ -1356,10 +1356,49 @@
         "reused_training": null,
         "reused_evaluations": null
       }
-    ]
+    ],
+    "run_root": "results/tg_temperature_probe/20261111_181651_527029",
+    "final_report": {
+      "status": "completed",
+      "engineering_passed": true,
+      "episodes": 20,
+      "rows": [
+        {
+          "seed": 11,
+          "tg_cold": 0.875,
+          "wm_cold": 0.3333333333333333,
+          "tg_warm": 0.2916666666666667,
+          "wm_warm": 0.5902777777777778,
+          "wm_train_eval_gap": 0.20416666666666666
+        },
+        {
+          "seed": 22,
+          "tg_cold": 0.4166666666666667,
+          "wm_cold": 0.375,
+          "tg_warm": 0.0,
+          "wm_warm": 0.0,
+          "wm_train_eval_gap": -0.04583333333333334
+        },
+        {
+          "seed": 33,
+          "tg_cold": 0.5833333333333334,
+          "wm_cold": 0.3333333333333333,
+          "tg_warm": 0.0,
+          "wm_warm": 0.6875,
+          "wm_train_eval_gap": 0.14166666666666666
+        }
+      ],
+      "mean_tg_cold": 0.625,
+      "mean_wm_cold": 0.3472222222222222,
+      "scope": "Known-development-seed pilot; temperature is a shared PPO change, WM benefit requires paired TG control; no300 or unseen-seed claim",
+      "wm_above_paired_tg": false,
+      "wm_no_seed_regression_vs_warm": false,
+      "wm_no_seed_regression_vs_paired_tg": false
+    },
+    "final_report_sha256": "c632e43738e92402fb80ac3ddcd95c7b1bf33250f0935a6c08ff0fd92f76ba78"
   },
   "scale_floor": {
-    "status": "calibration_prepared_training_not_started",
+    "status": "completed",
     "calibration": {
       "schema": "wm_increment_train_calibration_v1",
       "fit_split": "train",
@@ -1396,6 +1435,78 @@
     "path": "results\\tg_wm_scale_floor\\20261111_182314_951169\\calibration.json",
     "sha256": "9d20bad887e8f6b9f9ff0e7a20e3cbf5aefe0ec36ed5bc7586beec317cc49e23",
     "focused_tests_passed": 8,
-    "derivation_tests_legacy_passed": 3
+    "derivation_tests_legacy_passed": 3,
+    "run_root": "results/tg_wm_input_probe/20261111_194407_230840",
+    "final_report": {
+      "status": "completed",
+      "episodes": 20,
+      "rows": [
+        {
+          "seed": 11,
+          "delivery": 0.2916666666666667,
+          "raw_delivery": 0.16666666666666666,
+          "tg_delivery": 0.2916666666666667,
+          "base_return": -0.5727575613272645,
+          "raw_base_return": -0.8119668004774804,
+          "reference_delivery": 0.5902777777777778
+        },
+        {
+          "seed": 22,
+          "delivery": 0.0,
+          "raw_delivery": 0.0,
+          "tg_delivery": 0.0,
+          "base_return": -1.1426396330617115,
+          "raw_base_return": -1.1426396330617115,
+          "reference_delivery": 0.0
+        },
+        {
+          "seed": 33,
+          "delivery": 0.0,
+          "raw_delivery": 0.0,
+          "tg_delivery": 0.0,
+          "base_return": -1.1426396330617115,
+          "raw_base_return": -1.1426396330617115,
+          "reference_delivery": 0.6875
+        }
+      ],
+      "mean_delivery": 0.09722222222222222,
+      "mean_raw_delivery": 0.05555555555555555,
+      "mean_tg_delivery": 0.09722222222222222,
+      "scope": "Known three-seed development comparison; controls are immutable same-budget checkpoints, raw2 replay is exact; no unseen-seed or long-budget claim beyond actual episodes",
+      "mean_delivery_improved": true,
+      "no_seed_delivery_regression": true,
+      "mean_above_tg": false,
+      "no_seed_regression_vs_tg": true,
+      "engineering_passed": true,
+      "unseen_seed_validation_completed": false,
+      "comparison_reference": {
+        "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_wm_input_probe\\20261109_115159_931796",
+        "report_sha256": "fea14bc7b2eeef994654060ca6038904e2168a26ff3dac218c6de2a9c2297036"
+      },
+      "mean_reference_delivery": 0.42592592592592593,
+      "mean_above_reference": false,
+      "no_seed_regression_vs_reference": false
+    },
+    "final_report_sha256": "3e01eeef4497ad2356f48ebe8bd5fd94005e75c6c681165a35f4c7f985d8a444"
+  },
+  "action_fusion": {
+    "status": "tested_training_not_started",
+    "mode": "action_delta",
+    "temperature": 1.0,
+    "calibration": "results/tg_wm_input_calibration/20261109_114741_867797/calibration.json",
+    "reference_probe": "results/tg_wm_input_probe/20261109_115159_931796",
+    "actor_parameters": 24165,
+    "new_tests": 6,
+    "gpu_tests_passed": 51,
+    "legacy_cpu_tests": {
+      "total": 156,
+      "passed": 142,
+      "skipped": 14
+    },
+    "test_log_sha256": {
+      "results/tg_wm_action_fusion_tests.log": "b6603feaebcaffa005729735fcf0961d974d6ec8d62390b17e6ac643addf070d",
+      "results/tg_wm_action_fusion_gpu_regression.log": "d9614deaae5dce62b8d935939efa17172b6e05f0e7dea6a550b5e54e3227b162",
+      "results/tg_wm_action_fusion_cpu_regression.log": "518e228052dec077a0572d06c4be8a8b05d97797b15a653b2fb7b10a2b071f13"
+    }
   }
 }

@@ -106,6 +106,7 @@ def parse_args(args, parser):
     parser.add_argument("--wm_feature_source", choices=("learned", "history"), default="learned")
     parser.add_argument("--wm_actor_input", choices=("raw", "residual_scaled"), default="raw")
     parser.add_argument("--wm_actor_calibration", default="")
+    parser.add_argument("--wm_actor_fusion", choices=("shared", "action_delta"), default="shared")
     parser.add_argument("--tg_policy_temperature", type=float, default=1.0)
     parser.add_argument("--actor_extra_width", type=int, default=0)
     parser.add_argument("--use_pm_reward", type=lambda x: bool(strtobool(x)), default=False)
@@ -193,6 +194,11 @@ def main(args):
         parser.error('WM input normalization requires --use_wm_actor true')
     if all_args.wm_actor_calibration and all_args.wm_actor_input != 'residual_scaled':
         parser.error('WM calibration requires residual_scaled input mode')
+    from onpolicy.algorithms.utils.wm_fusion import fusion_mode
+    try:
+        fusion_mode(all_args)
+    except ValueError as exc:
+        parser.error(str(exc))
     if all_args.actor_extra_width < 0 or (all_args.actor_extra_width and (all_args.use_wm_actor or all_args.use_pm_reward)):
         parser.error("Actor expansion control requires nonnegative width and WM/PM disabled")
     if all_args.wm_feature_source != "learned" and (not all_args.use_wm_actor or all_args.use_pm_reward):
