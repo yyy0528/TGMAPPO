@@ -1,6 +1,6 @@
 {
   "date": "2026-11-09",
-  "status": "short_validation_completed_full300_running",
+  "status": "full300_completed_engineering_passed_stability_failed",
   "files": {
     "results/tg_wm_diagnosis/20261109_113321_476708/report.json": "a940ec59521b0f9622eb1cf4def674b88f210adb03836f4ccc5971fa298370c6",
     "results/tg_wm_input_probe/20261109_115159_931796/report.json": "fea14bc7b2eeef994654060ca6038904e2168a26ff3dac218c6de2a9c2297036",
@@ -263,34 +263,48 @@
       ],
       "training_resume_supported": false
     },
-    "observed_at": "2026-11-09T12:31:28.994243+08:00",
-    "status": "running",
+    "observed_at": "2026-11-09T15:47:04.787720+08:00",
+    "status": "completed",
     "jobs": [
       {
         "tag": "compat_raw22",
         "state": "completed",
-        "legacy_exact": true
+        "mean_delivery": null
       },
       {
         "tag": "scaled_11",
-        "state": "running",
-        "legacy_exact": null
+        "state": "completed",
+        "mean_delivery": 0.9791666666666666
       },
       {
         "tag": "scaled_22",
-        "state": "pending",
-        "legacy_exact": null
+        "state": "completed",
+        "mean_delivery": 0.6180555555555556
       },
       {
         "tag": "scaled_33",
-        "state": "pending",
-        "legacy_exact": null
+        "state": "completed",
+        "mean_delivery": 0.4236111111111111
       }
     ],
-    "seed11_trained_episodes": 32,
+    "seed11_trained_episodes": 300,
     "seed11_completed_points": [
       0,
-      20
+      20,
+      40,
+      60,
+      80,
+      100,
+      120,
+      140,
+      160,
+      180,
+      200,
+      220,
+      240,
+      260,
+      280,
+      300
     ],
     "seed11_prefix20_exact": true,
     "source_files_sha256": {
@@ -573,6 +587,61 @@
       ],
       "parent_unchanged": true,
       "checkpoint_sha256": "9cd611a14efcacf8685c30cec3a0ed1483d0d82102075c61d31915185b585ebe"
-    }
+    },
+    "report": {
+      "status": "completed",
+      "episodes": 300,
+      "rows": [
+        {
+          "seed": 11,
+          "delivery": 0.9791666666666666,
+          "raw_delivery": 0.5972222222222222,
+          "tg_delivery": 0.6319444444444444,
+          "base_return": 0.5231783195041403,
+          "raw_base_return": -0.05405097120180192
+        },
+        {
+          "seed": 22,
+          "delivery": 0.6180555555555556,
+          "raw_delivery": 0.673611111111111,
+          "tg_delivery": 0.625,
+          "base_return": 0.03701775280227072,
+          "raw_base_return": 0.08118093328965735
+        },
+        {
+          "seed": 33,
+          "delivery": 0.4236111111111111,
+          "raw_delivery": 0.5277777777777778,
+          "tg_delivery": 0.5416666666666666,
+          "base_return": -0.3573050432122619,
+          "raw_base_return": -0.20867247947443957
+        }
+      ],
+      "mean_delivery": 0.6736111111111112,
+      "mean_raw_delivery": 0.599537037037037,
+      "mean_tg_delivery": 0.599537037037037,
+      "scope": "Known three-seed development comparison; controls are immutable same-budget checkpoints, raw2 replay is exact; no unseen-seed or long-budget claim beyond actual episodes",
+      "mean_delivery_improved": true,
+      "no_seed_delivery_regression": false,
+      "mean_above_tg": true,
+      "no_seed_regression_vs_tg": false,
+      "engineering_passed": true,
+      "unseen_seed_validation_completed": false
+    },
+    "report_sha256": "db8d3eb1d4102e2bcc5e3c3857bf4d47d5c518e189031b86abbcec4a2e2d596f",
+    "artifacts_sha256": {
+      "comparison.csv": "2fffd89dc4e326cb6ce0ed730dfd964c0c50988156eacf8fac873cb553e85378",
+      "comparison.pdf": "c372768377221b2d65e9884e424fea84a8667e48ed3c89cf85890412efe116bf",
+      "comparison.png": "8507d5c293edf3913de1692cb691b6713bbfc2c8ba9a0e42390f37bab1ea318b",
+      "comparison.svg": "88c1bfdc2944ccd247348003c657f197a481791dbc9f22b3f1c0fc000f67cd9d",
+      "convergence.csv": "c26376d3b05f41f094142b0562d51d98db27c52d1661c6c17da1fbd06c08b3da",
+      "convergence.pdf": "56ddfd2424c2b8d208a2a1c68496dbcef8adbe37c2bf0ec958a55adbe7a5ed69",
+      "convergence.png": "5c76edb8899aa40ad9083c2176892b2b34c8ea986e7ec34763c988ad897d814d",
+      "convergence.svg": "00a90100c0e23da50718851ddfa2b67d1e18e4a28b182074a0c5f1fe8d710488"
+    },
+    "completed_models": 3,
+    "completed_checkpoints": 48,
+    "completed_scene_evaluations": 144,
+    "all_three_prefix20_exact": true
   }
 }

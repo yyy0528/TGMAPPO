@@ -43,6 +43,11 @@ def load_policy(learner, path):
             raise ValueError("Actor expansion configuration mismatch")
         if payload.get('wm_actor_input', 'raw') != getattr(learner.all_args, 'wm_actor_input', 'raw'):
             raise ValueError('WM Actor input normalization mismatch')
+        from onpolicy.algorithms.utils.policy_temperature import temperature_from_args
+        if getattr(learner.policy.actor, 'policy_temperature', 1.0) != temperature_from_args(learner.all_args):
+            raise ValueError('Runtime policy temperature differs from configuration')
+        if payload.get('policy_temperature', 1.0) != temperature_from_args(learner.all_args):
+            raise ValueError('Policy sampling temperature mismatch')
         expected_calibration=getattr(learner,'wm_calibration_metadata',None)
         if payload.get('wm_actor_calibration_sha256') != (expected_calibration['sha256'] if expected_calibration else None):
             raise ValueError('WM Actor calibration artifact mismatch')
@@ -107,6 +112,10 @@ def save_policy(learner, run_dir):
     wm = learner.wm_runtime.metadata() if learner.wm_runtime is not None else None
     pm = learner.pm_runtime.metadata() if learner.pm_runtime is not None else None
     wm_calibration = getattr(learner,'wm_calibration_metadata',None)
+    from onpolicy.algorithms.utils.policy_temperature import temperature_from_args
+    policy_temperature = temperature_from_args(learner.all_args)
+    if getattr(learner.policy.actor, 'policy_temperature', 1.0) != policy_temperature:
+        raise ValueError('Runtime policy temperature differs from configuration')
     resources = {"actor_trainable": sum(p.numel() for p in learner.policy.actor.parameters() if p.requires_grad),
                  "critic_trainable": sum(p.numel() for p in learner.policy.critic.parameters() if p.requires_grad),
                  "wm_frozen": sum(p.numel() for p in learner.wm_runtime.model.parameters()) if wm else 0,
@@ -134,6 +143,7 @@ def save_policy(learner, run_dir):
             "use_pm_reward": learner.pm_runtime is not None, "pm": pm,
             "actor_extra_width": getattr(learner.all_args, "actor_extra_width", 0),
             "wm_actor_input": getattr(learner.all_args, 'wm_actor_input', 'raw'),
+            "policy_temperature": policy_temperature,
             "wm_actor_calibration_sha256": (wm_calibration['sha256'] if wm_calibration else None),
             "critic_time_mode":time_mode(learner.all_args),
             "pm_critic_context":context_mode(learner.all_args),
@@ -153,6 +163,7 @@ def save_policy(learner, run_dir):
                     "pm_ppo_updates": learner.pm_update_records, "training_resume_supported": False}
     metadata.update(profile=learner.profile, resources=resources, reward_contract=reward_contract(learner.all_args),
                     wm_actor_input=getattr(learner.all_args, 'wm_actor_input', 'raw'),
+                    policy_temperature=policy_temperature,
                     wm_actor_calibration=getattr(learner,'wm_calibration_metadata',None),
                     pm_critic_context=context_mode(learner.all_args),
                     pm_action_credit=action_credit_settings(learner.all_args),

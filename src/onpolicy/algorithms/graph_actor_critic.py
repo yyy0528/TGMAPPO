@@ -112,6 +112,10 @@ class GR_Actor(nn.Module):
             action_space, self.hidden_size, self._use_orthogonal, self._gain
         )
         self.use_wm = getattr(args, "use_wm_actor", False)
+        from onpolicy.algorithms.utils.policy_temperature import temperature_from_args
+        self.policy_temperature = temperature_from_args(args)
+        if self.policy_temperature != 1.0 and action_space.__class__.__name__ != 'Discrete':
+            raise ValueError('TG policy temperature requires categorical actions')
         from onpolicy.algorithms.utils.wm_features import wm_input_mode
         self.wm_actor_input = wm_input_mode(args)
         self.actor_extra_width = getattr(args, "actor_extra_width", 0)
@@ -169,7 +173,12 @@ class GR_Actor(nn.Module):
         logits = self.act.action_out.linear(features) + self.wm_fusion(joined).squeeze(-1)
         logits = logits.masked_fill(~mask, float('-inf'))
         logits = logits - logits.max(-1, keepdim=True)[0]
-        return FixedCategorical(logits=logits)
+        from onpolicy.algorithms.utils.policy_temperature import temper_distribution
+        return temper_distribution(FixedCategorical(logits=logits), self.policy_temperature)
+
+    def _tempered_base_distribution(self, features, available_actions):
+        from onpolicy.algorithms.utils.policy_temperature import temper_distribution
+        return temper_distribution(self.act.action_out(features, available_actions), self.policy_temperature)
 
 
 
@@ -256,8 +265,9 @@ class GR_Actor(nn.Module):
 
         if self.actor_extra_width:
             actor_features = actor_features+self.actor_extra(actor_features)
-        if self.use_wm:
-            distribution = self._wm_distribution(actor_features, available_actions, wm_features, obs)
+        if self.use_wm or self.policy_temperature != 1.0:
+            distribution = (self._wm_distribution(actor_features, available_actions, wm_features, obs)
+                            if self.use_wm else self._tempered_base_distribution(actor_features, available_actions))
             actions = distribution.mode() if deterministic else distribution.sample()
             action_log_probs = distribution.log_probs(actions)
         else:
@@ -347,8 +357,9 @@ class GR_Actor(nn.Module):
 
         if self.actor_extra_width:
             actor_features = actor_features+self.actor_extra(actor_features)
-        if self.use_wm:
-            distribution = self._wm_distribution(actor_features, available_actions, wm_features, obs)
+        if self.use_wm or self.policy_temperature != 1.0:
+            distribution = (self._wm_distribution(actor_features, available_actions, wm_features, obs)
+                            if self.use_wm else self._tempered_base_distribution(actor_features, available_actions))
             action_log_probs = distribution.log_probs(action)
             entropy = distribution.entropy().unsqueeze(-1)
             dist_entropy = ((entropy * active_masks).sum()/active_masks.sum().clamp(min=1)

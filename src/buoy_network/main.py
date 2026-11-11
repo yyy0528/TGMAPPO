@@ -106,6 +106,7 @@ def parse_args(args, parser):
     parser.add_argument("--wm_feature_source", choices=("learned", "history"), default="learned")
     parser.add_argument("--wm_actor_input", choices=("raw", "residual_scaled"), default="raw")
     parser.add_argument("--wm_actor_calibration", default="")
+    parser.add_argument("--tg_policy_temperature", type=float, default=1.0)
     parser.add_argument("--actor_extra_width", type=int, default=0)
     parser.add_argument("--use_pm_reward", type=lambda x: bool(strtobool(x)), default=False)
     parser.add_argument("--pm_reward_checkpoint", default="")
@@ -181,6 +182,11 @@ def main(args):
         parser.error("Require positive episode settings/comm_range and one rollout thread")
     # The buoy graph and legal routing links must have the same physical radius.
     all_args.max_edge_dist = all_args.comm_range
+    from onpolicy.algorithms.utils.policy_temperature import temperature_from_args
+    try:
+        temperature_from_args(all_args)
+    except ValueError as exc:
+        parser.error(str(exc))
     if bool(all_args.wm_actor_checkpoint) != all_args.use_wm_actor:
         parser.error("--use_wm_actor true requires --wm_actor_checkpoint; disabled mode accepts no WM path")
     if all_args.wm_actor_input != 'raw' and not all_args.use_wm_actor:

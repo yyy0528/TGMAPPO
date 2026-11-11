@@ -1,0 +1,1171 @@
+{
+  "date": "2026-11-11",
+  "status": "diagnosed_candidate_temperature_tested_pilot_not_started",
+  "files_sha256": {
+    "results/tg_wm_regression_diagnosis/20261111_171028_381556/report.json": "52a0a4afc6a58025c6df0dc5b293e6a39839df45e69eaa64d9514d1ef285730d",
+    "results/tg_wm_frozen_intervention/20261111_173226_128762/report.json": "85dfefa16adc7176080700cc4ecbc254daed54cb05ca4f8122fd3deb56dbe970",
+    "results/tg_temperature_gpu_regression_final.log": "643553646b557f74f5a97a224f9130fc69567a8880415d91496d3ad292bc7850",
+    "results/tg_temperature_cpu_regression.log": "b84e29e7b81b55ca1c51a111be3e08ea43ee3f52d1ee8dd14b27965d9d7de22a",
+    "results/tg_temperature_cpu_native_final.log": "caf2a3810165e0e33737005d8513dbffe0ac933687c02d18a4bf20e5304b140b",
+    "results\\tg_wm_decode_probe\\20261111_175516_807328\\report.json": "31617488790925eea51fe262eda6eb1126915e2bd0a63e5cd63eecba8303e45d"
+  },
+  "frozen_replay": {
+    "status": "completed",
+    "cases": [
+      {
+        "seed": 11,
+        "scene": 8001,
+        "scope": "Known-scene same-policy read-only replay; interventions are same-observation diagnostics, not counterfactual rollout gains",
+        "ack_attempts": 455,
+        "ack_brier_model": 0.23241627182618108,
+        "ack_brier_observation": 0.24808372752368457,
+        "queue_samples": 910,
+        "queue_mse_model": 0.0008721184026384654,
+        "queue_mse_zero": 0.0012629731576457935,
+        "queue_predicted_rms": 0.019023836858793067,
+        "queue_actual_rms": 0.03553833363631156,
+        "forwarding_feature_std": [
+          0.072214670269949,
+          0.002570858307422415,
+          0.005182007006266847
+        ],
+        "forwarding_feature_mean": [
+          0.5221554917135671,
+          -0.015526743061540475,
+          0.01974537651865324
+        ],
+        "active_decisions": 455,
+        "decisions": {
+          "base_logit_std": 0.7325897991984756,
+          "residual_logit_std": 0.10205623106314586,
+          "tv_vs_no_fusion": 0.03033437026807895,
+          "tv_vs_shuffled": 0.031703648515618764,
+          "tv_vs_observed_only": 0.030334370855528574,
+          "argmax_changed": 0.1054945054945055,
+          "action": 14.224175824175823,
+          "base_action": 13.993406593406593,
+          "sink_legal": 0.22417582417582418,
+          "sink_probability": 0.18596471443281068,
+          "base_sink_probability": 0.1783124300149771,
+          "wait_probability": 0.060674123796583206,
+          "entropy": 1.4940078660027012,
+          "changed_without_queue": 0.06373626373626373,
+          "changed_without_ack": 0.05274725274725275,
+          "transformed_clip_fraction": 0.0,
+          "successful_revisit": 0.11208791208791209,
+          "own_delivery": 0.10329670329670329,
+          "advantage": -1.5616323862859346e-16,
+          "raw_advantage": 0.13775141062022836
+        },
+        "physical_replay_exact": true,
+        "wm_queue_training_scale": [
+          0.03088291734457016,
+          0.03949207812547684
+        ],
+        "frozen_gae_scope": "Recomputed on frozen evaluation trajectory, not attribution of historical PPO updates",
+        "gae_episodes": [
+          {
+            "episode": 0,
+            "critic_agent_spread": 0.0,
+            "advantage_agent_spread": 0.0
+          },
+          {
+            "episode": 1,
+            "critic_agent_spread": 0.0,
+            "advantage_agent_spread": 0.0
+          }
+        ],
+        "gae_groups": {
+          "WM_changes_action": {
+            "count": 48,
+            "mean_advantage": 0.18044840809463572,
+            "positive_fraction": 0.75
+          },
+          "WAIT": {
+            "count": 0,
+            "mean_advantage": null,
+            "positive_fraction": null
+          },
+          "successful_revisit": {
+            "count": 51,
+            "mean_advantage": -1.0581035594564943,
+            "positive_fraction": 0.29411764705882354
+          },
+          "own_delivery": {
+            "count": 47,
+            "mean_advantage": 0.14263680233631118,
+            "positive_fraction": 0.7021276595744681
+          },
+          "sink_legal_other": {
+            "count": 0,
+            "mean_advantage": null,
+            "positive_fraction": null
+          }
+        }
+      },
+      {
+        "seed": 22,
+        "scene": 8001,
+        "scope": "Known-scene same-policy read-only replay; interventions are same-observation diagnostics, not counterfactual rollout gains",
+        "ack_attempts": 749,
+        "ack_brier_model": 0.24256411933315286,
+        "ack_brier_observation": 0.24749804666636163,
+        "queue_samples": 1498,
+        "queue_mse_model": 0.0009579727742174612,
+        "queue_mse_zero": 0.001109117715199656,
+        "queue_predicted_rms": 0.01675105932005116,
+        "queue_actual_rms": 0.03330341897162596,
+        "forwarding_feature_std": [
+          0.07749027261331624,
+          0.002302323592073269,
+          0.004870811381921785
+        ],
+        "forwarding_feature_mean": [
+          0.518859327477871,
+          -0.015152767729385135,
+          0.0199832226727339
+        ],
+        "active_decisions": 749,
+        "decisions": {
+          "base_logit_std": 0.654934484984114,
+          "residual_logit_std": 0.13874895884611896,
+          "tv_vs_no_fusion": 0.04455963181498372,
+          "tv_vs_shuffled": 0.04360366839348514,
+          "tv_vs_observed_only": 0.04455963208604957,
+          "argmax_changed": 0.07343124165554073,
+          "action": 9.759679572763686,
+          "base_action": 9.854472630173564,
+          "sink_legal": 0.12416555407209613,
+          "sink_probability": 0.11341152864400153,
+          "base_sink_probability": 0.11061844090434993,
+          "wait_probability": 0.06534138291008591,
+          "entropy": 1.5911124118657234,
+          "changed_without_queue": 0.06942590120160214,
+          "changed_without_ack": 0.06942590120160214,
+          "transformed_clip_fraction": 0.0,
+          "successful_revisit": 0.3137516688918558,
+          "own_delivery": 0.04005340453938585,
+          "advantage": 3.7946207517228313e-17,
+          "raw_advantage": -0.0768327176709977
+        },
+        "physical_replay_exact": true,
+        "wm_queue_training_scale": [
+          0.03088291734457016,
+          0.03949207812547684
+        ],
+        "frozen_gae_scope": "Recomputed on frozen evaluation trajectory, not attribution of historical PPO updates",
+        "gae_episodes": [
+          {
+            "episode": 0,
+            "critic_agent_spread": 0.0,
+            "advantage_agent_spread": 0.0
+          },
+          {
+            "episode": 1,
+            "critic_agent_spread": 0.0,
+            "advantage_agent_spread": 0.0
+          }
+        ],
+        "gae_groups": {
+          "WM_changes_action": {
+            "count": 55,
+            "mean_advantage": -0.6105205596432202,
+            "positive_fraction": 0.10909090909090909
+          },
+          "WAIT": {
+            "count": 0,
+            "mean_advantage": null,
+            "positive_fraction": null
+          },
+          "successful_revisit": {
+            "count": 235,
+            "mean_advantage": -0.5796725565837091,
+            "positive_fraction": 0.2170212765957447
+          },
+          "own_delivery": {
+            "count": 30,
+            "mean_advantage": 0.908266130239145,
+            "positive_fraction": 0.9666666666666667
+          },
+          "sink_legal_other": {
+            "count": 0,
+            "mean_advantage": null,
+            "positive_fraction": null
+          }
+        }
+      },
+      {
+        "seed": 33,
+        "scene": 8001,
+        "scope": "Known-scene same-policy read-only replay; interventions are same-observation diagnostics, not counterfactual rollout gains",
+        "ack_attempts": 928,
+        "ack_brier_model": 0.23764670407921706,
+        "ack_brier_observation": 0.2530216625477481,
+        "queue_samples": 1856,
+        "queue_mse_model": 0.0011506436354300543,
+        "queue_mse_zero": 0.0012150907195869107,
+        "queue_predicted_rms": 0.016398040758947567,
+        "queue_actual_rms": 0.03485815140805534,
+        "forwarding_feature_std": [
+          0.08687217414912285,
+          0.0024512450112115724,
+          0.004412516867911447
+        ],
+        "forwarding_feature_mean": [
+          0.5342984884962905,
+          -0.015292390584959212,
+          0.019721929268804568
+        ],
+        "active_decisions": 928,
+        "decisions": {
+          "base_logit_std": 0.42708866847357874,
+          "residual_logit_std": 0.01935509476374889,
+          "tv_vs_no_fusion": 0.00856207996297724,
+          "tv_vs_shuffled": 0.012450906510288217,
+          "tv_vs_observed_only": 0.008562079088356956,
+          "argmax_changed": 0.061422413793103446,
+          "action": 9.516163793103448,
+          "base_action": 10.130387931034482,
+          "sink_legal": 0.06788793103448276,
+          "sink_probability": 0.05757377945400517,
+          "base_sink_probability": 0.05714887650362376,
+          "wait_probability": 0.15975225889946912,
+          "entropy": 1.4882557272654156,
+          "changed_without_queue": 0.021551724137931036,
+          "changed_without_ack": 0.061422413793103446,
+          "transformed_clip_fraction": 0.0,
+          "successful_revisit": 0.44612068965517243,
+          "own_delivery": 0.021551724137931036,
+          "advantage": -6.125368411725002e-17,
+          "raw_advantage": -0.30342922904730346
+        },
+        "physical_replay_exact": true,
+        "wm_queue_training_scale": [
+          0.03088291734457016,
+          0.03949207812547684
+        ],
+        "frozen_gae_scope": "Recomputed on frozen evaluation trajectory, not attribution of historical PPO updates",
+        "gae_episodes": [
+          {
+            "episode": 0,
+            "critic_agent_spread": 0.0,
+            "advantage_agent_spread": 0.0
+          },
+          {
+            "episode": 1,
+            "critic_agent_spread": 0.0,
+            "advantage_agent_spread": 0.0
+          }
+        ],
+        "gae_groups": {
+          "WM_changes_action": {
+            "count": 57,
+            "mean_advantage": -0.18170954262536385,
+            "positive_fraction": 0.5263157894736842
+          },
+          "WAIT": {
+            "count": 0,
+            "mean_advantage": null,
+            "positive_fraction": null
+          },
+          "successful_revisit": {
+            "count": 414,
+            "mean_advantage": -0.18305622917722075,
+            "positive_fraction": 0.5144927536231884
+          },
+          "own_delivery": {
+            "count": 20,
+            "mean_advantage": 0.93682069440878,
+            "positive_fraction": 1.0
+          },
+          "sink_legal_other": {
+            "count": 0,
+            "mean_advantage": null,
+            "positive_fraction": null
+          }
+        }
+      }
+    ]
+  },
+  "frozen_intervention": {
+    "status": "completed",
+    "cases": [
+      {
+        "seed": 22,
+        "scene": 8001,
+        "scope": "Explicit frozen-policy intervention on known development scene; changed trajectory is expected, no training or weight mutation",
+        "ack_attempts": 741,
+        "ack_brier_model": 0.23985079075037055,
+        "ack_brier_observation": 0.24817389868972953,
+        "queue_samples": 1482,
+        "queue_mse_model": 0.0008901019385620001,
+        "queue_mse_zero": 0.0009278002793318848,
+        "queue_predicted_rms": 0.016150218134705914,
+        "queue_actual_rms": 0.03045981417100053,
+        "forwarding_feature_std": [
+          0.07693349980773845,
+          0.002310398696627482,
+          0.0047757068251621645
+        ],
+        "forwarding_feature_mean": [
+          0.5166505493517912,
+          -0.014950995583805565,
+          0.020304591594530002
+        ],
+        "active_decisions": 741,
+        "decisions": {
+          "base_logit_std": 0.6656123218346544,
+          "residual_logit_std": 0.13965688166730156,
+          "tv_vs_no_fusion": 0.0,
+          "tv_vs_shuffled": 0.03953530913747988,
+          "tv_vs_observed_only": 1.9263672201257005e-08,
+          "argmax_changed": 0.0,
+          "action": 10.017543859649123,
+          "base_action": 10.017543859649123,
+          "sink_legal": 0.12955465587044535,
+          "sink_probability": 0.11602762860325185,
+          "base_sink_probability": 0.11602762860325185,
+          "wait_probability": 0.08875555653588824,
+          "entropy": 1.568028866199025,
+          "changed_without_queue": 0.004048582995951417,
+          "changed_without_ack": 0.016194331983805668,
+          "transformed_clip_fraction": 0.0,
+          "successful_revisit": 0.33468286099865047,
+          "own_delivery": 0.04048582995951417,
+          "advantage": -3.835588317193523e-17,
+          "raw_advantage": -0.06632937601126432
+        },
+        "physical_replay_exact": false,
+        "wm_queue_training_scale": [
+          0.03088291734457016,
+          0.03949207812547684
+        ],
+        "frozen_gae_scope": "Recomputed on frozen evaluation trajectory, not attribution of historical PPO updates",
+        "gae_episodes": [
+          {
+            "episode": 0,
+            "critic_agent_spread": 0.0,
+            "advantage_agent_spread": 0.0
+          },
+          {
+            "episode": 1,
+            "critic_agent_spread": 0.0,
+            "advantage_agent_spread": 0.0
+          }
+        ],
+        "gae_groups": {
+          "WM_changes_action": {
+            "count": 0,
+            "mean_advantage": null,
+            "positive_fraction": null
+          },
+          "WAIT": {
+            "count": 0,
+            "mean_advantage": null,
+            "positive_fraction": null
+          },
+          "successful_revisit": {
+            "count": 248,
+            "mean_advantage": -0.6228233905725205,
+            "positive_fraction": 0.21774193548387097
+          },
+          "own_delivery": {
+            "count": 30,
+            "mean_advantage": 0.7486197598767671,
+            "positive_fraction": 0.9333333333333333
+          },
+          "sink_legal_other": {
+            "count": 0,
+            "mean_advantage": null,
+            "positive_fraction": null
+          }
+        },
+        "intervention": "no_fusion",
+        "weights_unchanged": true,
+        "delivery": 0.625,
+        "loop_transfers": 248
+      },
+      {
+        "seed": 33,
+        "scene": 8001,
+        "scope": "Explicit frozen-policy intervention on known development scene; changed trajectory is expected, no training or weight mutation",
+        "ack_attempts": 936,
+        "ack_brier_model": 0.2432070043574008,
+        "ack_brier_observation": 0.25439178577751775,
+        "queue_samples": 1872,
+        "queue_mse_model": 0.0010998143470962848,
+        "queue_mse_zero": 0.001056319762221196,
+        "queue_predicted_rms": 0.015765086796037935,
+        "queue_actual_rms": 0.03250107324722056,
+        "forwarding_feature_std": [
+          0.08459252130304064,
+          0.0022051598997277467,
+          0.004445623324289187
+        ],
+        "forwarding_feature_mean": [
+          0.5368152856604763,
+          -0.015215070664962216,
+          0.019621606171732434
+        ],
+        "active_decisions": 936,
+        "decisions": {
+          "base_logit_std": 0.42883779813782275,
+          "residual_logit_std": 0.01905015316132892,
+          "tv_vs_no_fusion": 0.0,
+          "tv_vs_shuffled": 0.011396762234871237,
+          "tv_vs_observed_only": 1.703544209400813e-08,
+          "argmax_changed": 0.0,
+          "action": 9.854700854700855,
+          "base_action": 9.854700854700855,
+          "sink_legal": 0.06517094017094018,
+          "sink_probability": 0.05521232329117946,
+          "base_sink_probability": 0.05521232329117946,
+          "wait_probability": 0.1689269917541478,
+          "entropy": 1.461444389552642,
+          "changed_without_queue": 0.053418803418803416,
+          "changed_without_ack": 0.0,
+          "transformed_clip_fraction": 0.0,
+          "successful_revisit": 0.46794871794871795,
+          "own_delivery": 0.021367521367521368,
+          "advantage": -3.036507417778206e-17,
+          "raw_advantage": -0.29047189909751014
+        },
+        "physical_replay_exact": false,
+        "wm_queue_training_scale": [
+          0.03088291734457016,
+          0.03949207812547684
+        ],
+        "frozen_gae_scope": "Recomputed on frozen evaluation trajectory, not attribution of historical PPO updates",
+        "gae_episodes": [
+          {
+            "episode": 0,
+            "critic_agent_spread": 0.0,
+            "advantage_agent_spread": 0.0
+          },
+          {
+            "episode": 1,
+            "critic_agent_spread": 0.0,
+            "advantage_agent_spread": 0.0
+          }
+        ],
+        "gae_groups": {
+          "WM_changes_action": {
+            "count": 0,
+            "mean_advantage": null,
+            "positive_fraction": null
+          },
+          "WAIT": {
+            "count": 0,
+            "mean_advantage": null,
+            "positive_fraction": null
+          },
+          "successful_revisit": {
+            "count": 438,
+            "mean_advantage": -0.14228750797166395,
+            "positive_fraction": 0.5616438356164384
+          },
+          "own_delivery": {
+            "count": 20,
+            "mean_advantage": 0.9207459924756576,
+            "positive_fraction": 1.0
+          },
+          "sink_legal_other": {
+            "count": 0,
+            "mean_advantage": null,
+            "positive_fraction": null
+          }
+        },
+        "intervention": "no_fusion",
+        "weights_unchanged": true,
+        "delivery": 0.4166666666666667,
+        "loop_transfers": 438
+      },
+      {
+        "seed": 11,
+        "scene": 8001,
+        "scope": "Explicit frozen-policy intervention on known development scene; changed trajectory is expected, no training or weight mutation",
+        "ack_attempts": 521,
+        "ack_brier_model": 0.2491135347694884,
+        "ack_brier_observation": 0.25797185322059435,
+        "queue_samples": 1042,
+        "queue_mse_model": 0.001206450821542846,
+        "queue_mse_zero": 0.0012829227603997594,
+        "queue_predicted_rms": 0.01718885712126518,
+        "queue_actual_rms": 0.03581791116745586,
+        "forwarding_feature_std": [
+          0.07745753716037264,
+          0.002607787268883935,
+          0.004956606183181957
+        ],
+        "forwarding_feature_mean": [
+          0.5263290844884851,
+          -0.0148601014420836,
+          0.019897642594627483
+        ],
+        "active_decisions": 521,
+        "decisions": {
+          "base_logit_std": 0.6187280724522248,
+          "residual_logit_std": 0.10240212988086946,
+          "tv_vs_no_fusion": 0.0,
+          "tv_vs_shuffled": 0.03421565237001028,
+          "tv_vs_observed_only": 2.3145868573445046e-08,
+          "argmax_changed": 0.0,
+          "action": 11.030710172744723,
+          "base_action": 11.030710172744723,
+          "sink_legal": 0.15738963531669867,
+          "sink_probability": 0.12034896147685865,
+          "base_sink_probability": 0.12034896147685865,
+          "wait_probability": 0.07935038530902361,
+          "entropy": 1.6892113940729518,
+          "changed_without_queue": 0.16506717850287908,
+          "changed_without_ack": 0.26103646833013433,
+          "transformed_clip_fraction": 0.0,
+          "successful_revisit": 0.29174664107485604,
+          "own_delivery": 0.06525911708253358,
+          "advantage": 0.0,
+          "raw_advantage": -0.041380319778406754
+        },
+        "physical_replay_exact": false,
+        "wm_queue_training_scale": [
+          0.03088291734457016,
+          0.03949207812547684
+        ],
+        "frozen_gae_scope": "Recomputed on frozen evaluation trajectory, not attribution of historical PPO updates",
+        "gae_episodes": [
+          {
+            "episode": 0,
+            "critic_agent_spread": 0.0,
+            "advantage_agent_spread": 0.0
+          },
+          {
+            "episode": 1,
+            "critic_agent_spread": 0.0,
+            "advantage_agent_spread": 0.0
+          }
+        ],
+        "gae_groups": {
+          "WM_changes_action": {
+            "count": 0,
+            "mean_advantage": null,
+            "positive_fraction": null
+          },
+          "WAIT": {
+            "count": 0,
+            "mean_advantage": null,
+            "positive_fraction": null
+          },
+          "successful_revisit": {
+            "count": 152,
+            "mean_advantage": -0.7659916284300303,
+            "positive_fraction": 0.17763157894736842
+          },
+          "own_delivery": {
+            "count": 34,
+            "mean_advantage": 0.5857436624519318,
+            "positive_fraction": 0.8529411764705882
+          },
+          "sink_legal_other": {
+            "count": 0,
+            "mean_advantage": null,
+            "positive_fraction": null
+          }
+        },
+        "intervention": "no_fusion",
+        "weights_unchanged": true,
+        "delivery": 0.7083333333333334,
+        "loop_transfers": 152
+      },
+      {
+        "seed": 22,
+        "scene": 8001,
+        "scope": "Explicit frozen-policy intervention on known development scene; changed trajectory is expected, no training or weight mutation",
+        "ack_attempts": 733,
+        "ack_brier_model": 0.24066940390408628,
+        "ack_brier_observation": 0.2485727520226611,
+        "queue_samples": 1466,
+        "queue_mse_model": 0.0009268403218814787,
+        "queue_mse_zero": 0.0009710853499395361,
+        "queue_predicted_rms": 0.016145545990780844,
+        "queue_actual_rms": 0.031162242376625213,
+        "forwarding_feature_std": [
+          0.07954835842828177,
+          0.0022630513765233675,
+          0.004888561387238045
+        ],
+        "forwarding_feature_mean": [
+          0.5184435604823449,
+          -0.014948826285251413,
+          0.020170865695978736
+        ],
+        "active_decisions": 733,
+        "decisions": {
+          "base_logit_std": 0.6420499469785053,
+          "residual_logit_std": 0.13803318579456328,
+          "tv_vs_no_fusion": 0.02267944693087637,
+          "tv_vs_shuffled": 0.03967831835803788,
+          "tv_vs_observed_only": 0.022679447613803905,
+          "argmax_changed": 0.002728512960436562,
+          "action": 9.664392905866302,
+          "base_action": 9.678035470668485,
+          "sink_legal": 0.1145975443383356,
+          "sink_probability": 0.1035652081767989,
+          "base_sink_probability": 0.1023250603578263,
+          "wait_probability": 0.07843444284336262,
+          "entropy": 1.5904205759013983,
+          "changed_without_queue": 0.004092769440654843,
+          "changed_without_ack": 0.004092769440654843,
+          "transformed_clip_fraction": 0.0,
+          "successful_revisit": 0.34379263301500684,
+          "own_delivery": 0.040927694406548434,
+          "advantage": -1.9387250634654848e-17,
+          "raw_advantage": -0.07433951083656816
+        },
+        "physical_replay_exact": false,
+        "wm_queue_training_scale": [
+          0.03088291734457016,
+          0.03949207812547684
+        ],
+        "frozen_gae_scope": "Recomputed on frozen evaluation trajectory, not attribution of historical PPO updates",
+        "gae_episodes": [
+          {
+            "episode": 0,
+            "critic_agent_spread": 0.0,
+            "advantage_agent_spread": 0.0
+          },
+          {
+            "episode": 1,
+            "critic_agent_spread": 0.0,
+            "advantage_agent_spread": 0.0
+          }
+        ],
+        "gae_groups": {
+          "WM_changes_action": {
+            "count": 2,
+            "mean_advantage": 1.0241463166976335,
+            "positive_fraction": 1.0
+          },
+          "WAIT": {
+            "count": 0,
+            "mean_advantage": null,
+            "positive_fraction": null
+          },
+          "successful_revisit": {
+            "count": 252,
+            "mean_advantage": -0.6155178251725479,
+            "positive_fraction": 0.23015873015873015
+          },
+          "own_delivery": {
+            "count": 30,
+            "mean_advantage": 0.8127725209247156,
+            "positive_fraction": 0.9333333333333333
+          },
+          "sink_legal_other": {
+            "count": 0,
+            "mean_advantage": null,
+            "positive_fraction": null
+          }
+        },
+        "intervention": "half_fusion",
+        "weights_unchanged": true,
+        "delivery": 0.625,
+        "loop_transfers": 252
+      },
+      {
+        "seed": 33,
+        "scene": 8001,
+        "scope": "Explicit frozen-policy intervention on known development scene; changed trajectory is expected, no training or weight mutation",
+        "ack_attempts": 926,
+        "ack_brier_model": 0.24671741016039175,
+        "ack_brier_observation": 0.25981423114976404,
+        "queue_samples": 1852,
+        "queue_mse_model": 0.00123815172043256,
+        "queue_mse_zero": 0.0012270893439724827,
+        "queue_predicted_rms": 0.01582413091509999,
+        "queue_actual_rms": 0.035029835054885466,
+        "forwarding_feature_std": [
+          0.07984259497853693,
+          0.0022250707487597395,
+          0.00444173974722564
+        ],
+        "forwarding_feature_mean": [
+          0.530097350136981,
+          -0.015206466379564769,
+          0.01954729608577644
+        ],
+        "active_decisions": 926,
+        "decisions": {
+          "base_logit_std": 0.4169882966716398,
+          "residual_logit_std": 0.019009007320708652,
+          "tv_vs_no_fusion": 0.004243780875409557,
+          "tv_vs_shuffled": 0.01028668533379039,
+          "tv_vs_observed_only": 0.0042437809704527355,
+          "argmax_changed": 0.014038876889848811,
+          "action": 9.74622030237581,
+          "base_action": 9.886609071274298,
+          "sink_legal": 0.056155507559395246,
+          "sink_probability": 0.0477388408477569,
+          "base_sink_probability": 0.047597135889864896,
+          "wait_probability": 0.16677732854683283,
+          "entropy": 1.478917266006861,
+          "changed_without_queue": 0.023758099352051837,
+          "changed_without_ack": 0.014038876889848811,
+          "transformed_clip_fraction": 0.0,
+          "successful_revisit": 0.4222462203023758,
+          "own_delivery": 0.02159827213822894,
+          "advantage": 2.4554392596461347e-16,
+          "raw_advantage": -0.3039665924478577
+        },
+        "physical_replay_exact": false,
+        "wm_queue_training_scale": [
+          0.03088291734457016,
+          0.03949207812547684
+        ],
+        "frozen_gae_scope": "Recomputed on frozen evaluation trajectory, not attribution of historical PPO updates",
+        "gae_episodes": [
+          {
+            "episode": 0,
+            "critic_agent_spread": 0.0,
+            "advantage_agent_spread": 0.0
+          },
+          {
+            "episode": 1,
+            "critic_agent_spread": 0.0,
+            "advantage_agent_spread": 0.0
+          }
+        ],
+        "gae_groups": {
+          "WM_changes_action": {
+            "count": 13,
+            "mean_advantage": -0.0993926066444461,
+            "positive_fraction": 0.46153846153846156
+          },
+          "WAIT": {
+            "count": 0,
+            "mean_advantage": null,
+            "positive_fraction": null
+          },
+          "successful_revisit": {
+            "count": 391,
+            "mean_advantage": -0.07884724244045115,
+            "positive_fraction": 0.59846547314578
+          },
+          "own_delivery": {
+            "count": 20,
+            "mean_advantage": 0.9478897757319368,
+            "positive_fraction": 1.0
+          },
+          "sink_legal_other": {
+            "count": 0,
+            "mean_advantage": null,
+            "positive_fraction": null
+          }
+        },
+        "intervention": "half_fusion",
+        "weights_unchanged": true,
+        "delivery": 0.4166666666666667,
+        "loop_transfers": 391
+      },
+      {
+        "seed": 11,
+        "scene": 8001,
+        "scope": "Explicit frozen-policy intervention on known development scene; changed trajectory is expected, no training or weight mutation",
+        "ack_attempts": 534,
+        "ack_brier_model": 0.23183157641845423,
+        "ack_brier_observation": 0.24939650870359092,
+        "queue_samples": 1068,
+        "queue_mse_model": 0.0009522231213525893,
+        "queue_mse_zero": 0.0012842020456095427,
+        "queue_predicted_rms": 0.01845557640144424,
+        "queue_actual_rms": 0.0358357648949976,
+        "forwarding_feature_std": [
+          0.07880745378939312,
+          0.002647439421014452,
+          0.0050351477920599925
+        ],
+        "forwarding_feature_mean": [
+          0.5246511010720163,
+          -0.015407708886485712,
+          0.019809228064141902
+        ],
+        "active_decisions": 534,
+        "decisions": {
+          "base_logit_std": 0.719769107017401,
+          "residual_logit_std": 0.10252572838147259,
+          "tv_vs_no_fusion": 0.015748766324158465,
+          "tv_vs_shuffled": 0.03191484201852972,
+          "tv_vs_observed_only": 0.015748768380393137,
+          "argmax_changed": 0.06928838951310862,
+          "action": 13.265917602996256,
+          "base_action": 13.211610486891386,
+          "sink_legal": 0.2247191011235955,
+          "sink_probability": 0.18114951319908829,
+          "base_sink_probability": 0.17745520481456084,
+          "wait_probability": 0.06648818156001775,
+          "entropy": 1.545189248600256,
+          "changed_without_queue": 0.0299625468164794,
+          "changed_without_ack": 0.04868913857677903,
+          "transformed_clip_fraction": 0.0,
+          "successful_revisit": 0.1797752808988764,
+          "own_delivery": 0.08614232209737828,
+          "advantage": -2.6612087481651693e-17,
+          "raw_advantage": 0.09824710974190629
+        },
+        "physical_replay_exact": false,
+        "wm_queue_training_scale": [
+          0.03088291734457016,
+          0.03949207812547684
+        ],
+        "frozen_gae_scope": "Recomputed on frozen evaluation trajectory, not attribution of historical PPO updates",
+        "gae_episodes": [
+          {
+            "episode": 0,
+            "critic_agent_spread": 0.0,
+            "advantage_agent_spread": 0.0
+          },
+          {
+            "episode": 1,
+            "critic_agent_spread": 0.0,
+            "advantage_agent_spread": 0.0
+          }
+        ],
+        "gae_groups": {
+          "WM_changes_action": {
+            "count": 37,
+            "mean_advantage": 0.3115729636939953,
+            "positive_fraction": 0.8378378378378378
+          },
+          "WAIT": {
+            "count": 0,
+            "mean_advantage": null,
+            "positive_fraction": null
+          },
+          "successful_revisit": {
+            "count": 96,
+            "mean_advantage": -0.7611806336155036,
+            "positive_fraction": 0.40625
+          },
+          "own_delivery": {
+            "count": 46,
+            "mean_advantage": 0.4229828851723565,
+            "positive_fraction": 0.8043478260869565
+          },
+          "sink_legal_other": {
+            "count": 0,
+            "mean_advantage": null,
+            "positive_fraction": null
+          }
+        },
+        "intervention": "half_fusion",
+        "weights_unchanged": true,
+        "delivery": 0.9583333333333334,
+        "loop_transfers": 96
+      }
+    ]
+  },
+  "tests": {
+    "gpu_regression": {
+      "total": 39,
+      "passed": 39
+    },
+    "legacy_cpu_regression": {
+      "total": 144,
+      "passed": 131,
+      "skipped": 13
+    },
+    "temperature_native_legacy": {
+      "total": 6,
+      "passed": 4,
+      "skipped": 2
+    }
+  },
+  "interpretation": "Fusion suppression does not rescue regressed policies on scene8001; fixed temperature is a candidate shared PPO optimization, not validated WM-specific benefit",
+  "decode_probe_root": "results/tg_wm_decode_probe/20261111_175516_807328",
+  "decode_probe_status": "completed",
+  "decode_probe": {
+    "status": "completed",
+    "cases": [
+      {
+        "seed": 22,
+        "scene": 8001,
+        "scope": "Explicit frozen-policy intervention on known development scene; changed trajectory is expected, no training or weight mutation",
+        "ack_attempts": 863,
+        "ack_brier_model": 0.2423630553912824,
+        "ack_brier_observation": 0.2516743917284946,
+        "queue_samples": 1786,
+        "queue_mse_model": 0.0008027775397104533,
+        "queue_mse_zero": 0.0011878655204257346,
+        "queue_predicted_rms": 0.019679938846011356,
+        "queue_actual_rms": 0.03446542499992905,
+        "forwarding_feature_std": [
+          0.07421047485698622,
+          0.0026388305255903087,
+          0.0053015089791807165
+        ],
+        "forwarding_feature_mean": [
+          0.5336967041825866,
+          -0.016170566658559274,
+          0.01988176529116668
+        ],
+        "active_decisions": 923,
+        "decisions": {
+          "base_logit_std": 0.729483069280891,
+          "residual_logit_std": 0.13979770458290275,
+          "tv_vs_no_fusion": 0.04088635758606804,
+          "tv_vs_shuffled": 0.04394896587817037,
+          "tv_vs_observed_only": 0.04088635793720591,
+          "argmax_changed": 0.07475622968580715,
+          "sink_legal": 0.15167930660888407,
+          "sink_probability": 0.13779630478903376,
+          "base_sink_probability": 0.13448289659919616,
+          "wait_probability": 0.060635019083409486,
+          "entropy": 1.526108041002071,
+          "changed_without_queue": 0.059588299024918745,
+          "changed_without_ack": 0.04008667388949079,
+          "transformed_clip_fraction": 0.0,
+          "successful_revisit": 0.15492957746478872,
+          "own_delivery": 0.04983748645720477,
+          "advantage": 1.539637563943879e-16,
+          "raw_advantage": 0.0840666589029789
+        },
+        "physical_replay_exact": false,
+        "wm_queue_training_scale": [
+          0.03088291734457016,
+          0.03949207812547684
+        ],
+        "frozen_gae_scope": "Recomputed on frozen evaluation trajectory, not attribution of historical PPO updates",
+        "gae_episodes": [
+          {
+            "episode": 0,
+            "critic_agent_spread": 0.0,
+            "advantage_agent_spread": 0.0
+          },
+          {
+            "episode": 1,
+            "critic_agent_spread": 0.0,
+            "advantage_agent_spread": 0.0
+          }
+        ],
+        "gae_groups": {
+          "WM_changes_action": {
+            "count": 69,
+            "mean_advantage": 0.1641039105508151,
+            "positive_fraction": 0.5942028985507246
+          },
+          "WAIT": {
+            "count": 60,
+            "mean_advantage": 0.06151432983430101,
+            "positive_fraction": 0.55
+          },
+          "successful_revisit": {
+            "count": 143,
+            "mean_advantage": -0.4575303280640945,
+            "positive_fraction": 0.3006993006993007
+          },
+          "own_delivery": {
+            "count": 46,
+            "mean_advantage": 0.2596067099274716,
+            "positive_fraction": 0.6086956521739131
+          },
+          "sink_legal_other": {
+            "count": 9,
+            "mean_advantage": 0.11153407820699118,
+            "positive_fraction": 0.4444444444444444
+          }
+        },
+        "intervention": "none",
+        "decode": "sample",
+        "weights_unchanged": true,
+        "delivery": 0.9583333333333334,
+        "loop_transfers": 143
+      },
+      {
+        "seed": 33,
+        "scene": 8001,
+        "scope": "Explicit frozen-policy intervention on known development scene; changed trajectory is expected, no training or weight mutation",
+        "ack_attempts": 810,
+        "ack_brier_model": 0.23941990477163647,
+        "ack_brier_observation": 0.2493389035492768,
+        "queue_samples": 1717,
+        "queue_mse_model": 0.0008699901909063736,
+        "queue_mse_zero": 0.0012497573661005357,
+        "queue_predicted_rms": 0.018780521540705364,
+        "queue_actual_rms": 0.03535190753128515,
+        "forwarding_feature_std": [
+          0.07331713442347121,
+          0.0024946075845552157,
+          0.005100388888578551
+        ],
+        "forwarding_feature_mean": [
+          0.5383520207177206,
+          -0.016026326461138357,
+          0.019802254903473707
+        ],
+        "active_decisions": 907,
+        "decisions": {
+          "base_logit_std": 0.5343301471696537,
+          "residual_logit_std": 0.02022719598117145,
+          "tv_vs_no_fusion": 0.008078502428480717,
+          "tv_vs_shuffled": 0.010895589568838066,
+          "tv_vs_observed_only": 0.008078503154953398,
+          "argmax_changed": 0.025358324145534728,
+          "sink_legal": 0.13671444321940462,
+          "sink_probability": 0.11602938622071961,
+          "base_sink_probability": 0.1153073610518181,
+          "wait_probability": 0.10796924479010021,
+          "entropy": 1.623771560494403,
+          "changed_without_queue": 0.011025358324145534,
+          "changed_without_ack": 0.025358324145534728,
+          "transformed_clip_fraction": 0.0,
+          "successful_revisit": 0.17861080485115766,
+          "own_delivery": 0.047409040793825796,
+          "advantage": -3.133595306549505e-17,
+          "raw_advantage": -0.013497488350694807
+        },
+        "physical_replay_exact": false,
+        "wm_queue_training_scale": [
+          0.03088291734457016,
+          0.03949207812547684
+        ],
+        "frozen_gae_scope": "Recomputed on frozen evaluation trajectory, not attribution of historical PPO updates",
+        "gae_episodes": [
+          {
+            "episode": 0,
+            "critic_agent_spread": 0.0,
+            "advantage_agent_spread": 0.0
+          },
+          {
+            "episode": 1,
+            "critic_agent_spread": 0.0,
+            "advantage_agent_spread": 0.0
+          }
+        ],
+        "gae_groups": {
+          "WM_changes_action": {
+            "count": 23,
+            "mean_advantage": -0.23411839297685513,
+            "positive_fraction": 0.43478260869565216
+          },
+          "WAIT": {
+            "count": 97,
+            "mean_advantage": -0.18581153477661186,
+            "positive_fraction": 0.5670103092783505
+          },
+          "successful_revisit": {
+            "count": 162,
+            "mean_advantage": -0.44266111978463324,
+            "positive_fraction": 0.5123456790123457
+          },
+          "own_delivery": {
+            "count": 43,
+            "mean_advantage": 0.34491473811699447,
+            "positive_fraction": 0.7441860465116279
+          },
+          "sink_legal_other": {
+            "count": 11,
+            "mean_advantage": 0.11934629603991574,
+            "positive_fraction": 0.7272727272727273
+          }
+        },
+        "intervention": "none",
+        "decode": "sample",
+        "weights_unchanged": true,
+        "delivery": 0.8958333333333334,
+        "loop_transfers": 162
+      },
+      {
+        "seed": 11,
+        "scene": 8001,
+        "scope": "Explicit frozen-policy intervention on known development scene; changed trajectory is expected, no training or weight mutation",
+        "ack_attempts": 925,
+        "ack_brier_model": 0.24117063623446452,
+        "ack_brier_observation": 0.2515716218490859,
+        "queue_samples": 1906,
+        "queue_mse_model": 0.0007692811066156437,
+        "queue_mse_zero": 0.0010684461605837228,
+        "queue_predicted_rms": 0.019057405395127444,
+        "queue_actual_rms": 0.032687094710049144,
+        "forwarding_feature_std": [
+          0.07680780719788083,
+          0.0026216821246479896,
+          0.0050902002301322245
+        ],
+        "forwarding_feature_mean": [
+          0.532637974157441,
+          -0.016014825986378267,
+          0.019886624248733022
+        ],
+        "active_decisions": 981,
+        "decisions": {
+          "base_logit_std": 0.6295096030217671,
+          "residual_logit_std": 0.1072145760492265,
+          "tv_vs_no_fusion": 0.03666663364574663,
+          "tv_vs_shuffled": 0.039039313298565595,
+          "tv_vs_observed_only": 0.03666663428798895,
+          "argmax_changed": 0.10295616717635066,
+          "sink_legal": 0.1559633027522936,
+          "sink_probability": 0.12704610812433148,
+          "base_sink_probability": 0.12211297782067737,
+          "wait_probability": 0.06765340921771879,
+          "entropy": 1.6090293497485122,
+          "changed_without_queue": 0.06422018348623854,
+          "changed_without_ack": 0.039755351681957186,
+          "transformed_clip_fraction": 0.0,
+          "successful_revisit": 0.18552497451580022,
+          "own_delivery": 0.04485219164118247,
+          "advantage": 5.794436173374926e-17,
+          "raw_advantage": -0.02271197896322125
+        },
+        "physical_replay_exact": false,
+        "wm_queue_training_scale": [
+          0.03088291734457016,
+          0.03949207812547684
+        ],
+        "frozen_gae_scope": "Recomputed on frozen evaluation trajectory, not attribution of historical PPO updates",
+        "gae_episodes": [
+          {
+            "episode": 0,
+            "critic_agent_spread": 0.0,
+            "advantage_agent_spread": 0.0
+          },
+          {
+            "episode": 1,
+            "critic_agent_spread": 0.0,
+            "advantage_agent_spread": 0.0
+          }
+        ],
+        "gae_groups": {
+          "WM_changes_action": {
+            "count": 101,
+            "mean_advantage": 0.29078871687886715,
+            "positive_fraction": 0.7227722772277227
+          },
+          "WAIT": {
+            "count": 56,
+            "mean_advantage": 0.1844865849040988,
+            "positive_fraction": 0.6964285714285714
+          },
+          "successful_revisit": {
+            "count": 182,
+            "mean_advantage": -0.428313735799307,
+            "positive_fraction": 0.41208791208791207
+          },
+          "own_delivery": {
+            "count": 44,
+            "mean_advantage": 0.25446687756394104,
+            "positive_fraction": 0.7954545454545454
+          },
+          "sink_legal_other": {
+            "count": 30,
+            "mean_advantage": 0.22608523997205532,
+            "positive_fraction": 0.7333333333333333
+          }
+        },
+        "intervention": "none",
+        "decode": "sample",
+        "weights_unchanged": true,
+        "delivery": 0.9166666666666666,
+        "loop_transfers": 182
+      }
+    ]
+  }
+}
