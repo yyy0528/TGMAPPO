@@ -1,0 +1,29 @@
+{
+  "schema": "thesis_generalization_start_v1",
+  "recorded_at": "2026-11-12T15:01:54.129561+08:00",
+  "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\thesis_generalization\\20261112_145410_224809",
+  "controller_pid": 74524,
+  "automation_id": "automation-2",
+  "unit_tests": 7,
+  "unit_failures": 0,
+  "status_at_record": "running",
+  "phase_at_record": "unseen",
+  "completed_at_record": 26,
+  "total_tasks": 340,
+  "formal_tasks": 324,
+  "formal_environment_steps": 51840,
+  "training_updates": 0,
+  "all_thesis_experiments_completed": false,
+  "forecast_finish_cn": [
+    "2026-11-12T16:45:00+08:00",
+    "2026-11-12T18:15:00+08:00"
+  ],
+  "preflight_passed": true,
+  "preflight_tasks": 16,
+  "identity_replays_exact": 11,
+  "intervention_smokes_passed": 5,
+  "active_jobs_at_record": [
+    "unseen_baseline_VDN_11_9402"
+  ],
+  "live_eta_cn_at_record": "2026-11-12T16:12:06.579895+08:00"
+}
