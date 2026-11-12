@@ -88,7 +88,12 @@ def run(job_file, evaluate=None):
     from buoy_network.wm_runtime import tensor_digest
     from buoy_network.thesis_baselines import ALGORITHMS, BaselineLearner, tensor_hash
     baseline = job['algorithm'] in ALGORITHMS
-    cls = type('SelectedBaseline', (BaselineLearner,), {'algorithm':job['algorithm']}) if baseline else native.DeepQNetwork
+    options=job.get('baseline_options',{})
+    if set(options)-{'q_target_interval','q_exploration_steps'} or any(type(v) is not int or v<=0 for v in options.values()):
+        raise ValueError('Invalid registered baseline options')
+    if options and job['algorithm'] not in ('VDN','QMIX','IQL'):
+        raise ValueError('Q options require a Q baseline')
+    cls = type('SelectedBaseline', (BaselineLearner,), dict(algorithm=job['algorithm'],**options)) if baseline else native.DeepQNetwork
     progress = dict(status='running', algorithm=job['algorithm'], seed=job['seed'], trained_episodes=0, points=[])
     seen = set()
     start = time.perf_counter()
@@ -97,6 +102,9 @@ def run(job_file, evaluate=None):
             return
         cp = folder/'convergence'/('e%04d'%n)
         save_point(model, cp, save)
+        if not baseline and n==20 and job.get('prefix_reference'):
+            from buoy_network.thesis_probe_checks import verify_native_prefix
+            verify_native_prefix(cp,folder/'moves_5',job['prefix_reference'])
         weights = cp/'checkpoints'/('baseline.pt' if baseline else 'tg_policy_latest.pt')
         before = (tensor_hash(model.actor),tensor_hash(model.critic)) if baseline else (tensor_digest(model.policy.actor.state_dict()),tensor_digest(model.policy.critic.state_dict()))
         point = dict(episode=n, training_steps=n*80, checkpoint=str(weights), checkpoint_sha256=digest(weights), evaluations=[])

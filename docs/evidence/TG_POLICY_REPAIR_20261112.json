@@ -1,0 +1,1700 @@
+{
+  "schema": "thesis_policy_repair_audit_v1",
+  "recorded_at": "2026-11-12T13:20:15.123457",
+  "audit_root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\thesis_policy_audit\\20261112_130945_545627",
+  "frozen_cases": 9,
+  "environment_steps": 1440,
+  "optimizer_updates": 0,
+  "unit_tests_passed": 21,
+  "unit_failures": 0,
+  "cases": [
+    {
+      "tag": "VDN_11_e300_s8001",
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\thesis_policy_audit\\20261112_130945_545627\\VDN_11_e300_s8001",
+      "report_sha256": "f65ec5ce639cd113572d1c167b18b3f6ee8aad9062a34ffa855e2bf29cdb2c37",
+      "algorithm": "VDN",
+      "seed": 11,
+      "scene": 8001,
+      "checkpoint": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\thesis_extra_baselines\\20261112_104503_699371\\jobs\\main_VDN_11\\convergence\\e0300\\checkpoints\\baseline.pt",
+      "checkpoint_sha256": "5570eb37aa357c473a7988a6019e30d7f088afcf8c0b65940a2ee947d9589f69",
+      "frozen_replay_exact": true,
+      "active_decisions": 3840,
+      "wait_decisions": 3840,
+      "node_groups": {
+        "0": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.06324618207290769
+        },
+        "1": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.05958044938743114
+        },
+        "2": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.04182443767786026
+        },
+        "3": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.05305171208456159
+        },
+        "4": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.03973587043583393
+        },
+        "5": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.04365088446065783
+        },
+        "6": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.02216913001611829
+        },
+        "7": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.020371950790286066
+        },
+        "8": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.011556279379874468
+        },
+        "9": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.06761087095364929
+        },
+        "10": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.0618322866037488
+        },
+        "11": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.05095289824530482
+        },
+        "12": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.029777363780885933
+        },
+        "13": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.03158176708966494
+        },
+        "14": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.06224485831335187
+        },
+        "15": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.0747677487321198
+        },
+        "16": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.04082067385315895
+        },
+        "17": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.05222776597365737
+        },
+        "18": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 160,
+          "sink_missed": 160,
+          "mean_wait_margin": 0.03809540923684836
+        },
+        "19": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 160,
+          "sink_missed": 160,
+          "mean_wait_margin": 0.060028712078928945
+        },
+        "20": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.09994101710617542
+        },
+        "21": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.0942489924840629
+        },
+        "22": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.06827592272311449
+        },
+        "23": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 160,
+          "sink_missed": 160,
+          "mean_wait_margin": 0.060984032414853576
+        }
+      },
+      "unresolved": 48,
+      "delivered": 0
+    },
+    {
+      "tag": "VDN_22_e300_s8001",
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\thesis_policy_audit\\20261112_130945_545627\\VDN_22_e300_s8001",
+      "report_sha256": "c1f442ff19e13d3c9249342a921717bff6c1e4d3c944240e8c3dc078d99dbbd5",
+      "algorithm": "VDN",
+      "seed": 22,
+      "scene": 8001,
+      "checkpoint": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\thesis_extra_baselines\\20261112_104503_699371\\jobs\\main_VDN_22\\convergence\\e0300\\checkpoints\\baseline.pt",
+      "checkpoint_sha256": "bd92ba32d68bc06aea77e160940ad25e6f309ef9aac0671142af104f29ecffef",
+      "frozen_replay_exact": true,
+      "active_decisions": 2579,
+      "wait_decisions": 2148,
+      "node_groups": {
+        "0": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.039422810962423685
+        },
+        "1": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.03502594139426947
+        },
+        "2": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.02122979750856757
+        },
+        "3": {
+          "active": 5,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.05547004342079163
+        },
+        "4": {
+          "active": 44,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.012669828127730976
+        },
+        "5": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.02652708301320672
+        },
+        "6": {
+          "active": 2,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.029482334852218628
+        },
+        "7": {
+          "active": 2,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.0023976564407348633
+        },
+        "8": {
+          "active": 8,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.06956770271062851
+        },
+        "9": {
+          "active": 156,
+          "wait": 124,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.003273789317179949
+        },
+        "10": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.014942016173154115
+        },
+        "11": {
+          "active": 89,
+          "wait": 88,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.013003573323903459
+        },
+        "12": {
+          "active": 158,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.017375185614145253
+        },
+        "13": {
+          "active": 2,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.07428063452243805
+        },
+        "14": {
+          "active": 2,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.04068608582019806
+        },
+        "15": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.0424455835018307
+        },
+        "16": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.01679900996387005
+        },
+        "17": {
+          "active": 85,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.03400282929925358
+        },
+        "18": {
+          "active": 106,
+          "wait": 16,
+          "sink_available": 106,
+          "sink_missed": 106,
+          "mean_wait_margin": -0.004500079267429856
+        },
+        "19": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 160,
+          "sink_missed": 160,
+          "mean_wait_margin": 0.03206455884501338
+        },
+        "20": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.0365629518404603
+        },
+        "21": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.031404251139611004
+        },
+        "22": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.025773410871624946
+        },
+        "23": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 160,
+          "sink_missed": 160,
+          "mean_wait_margin": 0.04454167187213898
+        }
+      },
+      "unresolved": 48,
+      "delivered": 0
+    },
+    {
+      "tag": "VDN_33_e300_s8001",
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\thesis_policy_audit\\20261112_130945_545627\\VDN_33_e300_s8001",
+      "report_sha256": "b9a1403ba0fdf2ee59970ab5342c4350142671c333c2948bff78e5ac69f449ac",
+      "algorithm": "VDN",
+      "seed": 33,
+      "scene": 8001,
+      "checkpoint": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\thesis_extra_baselines\\20261112_104503_699371\\jobs\\main_VDN_33\\convergence\\e0300\\checkpoints\\baseline.pt",
+      "checkpoint_sha256": "3c30a820c8ce5562be128dd1dc3c5089847ab7f4558e406e7f37a678c2556774",
+      "frozen_replay_exact": true,
+      "active_decisions": 3840,
+      "wait_decisions": 3840,
+      "node_groups": {
+        "0": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.05001086574047804
+        },
+        "1": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.06666640043258668
+        },
+        "2": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.038310724310576916
+        },
+        "3": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.05693237334489822
+        },
+        "4": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.03869991227984428
+        },
+        "5": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.06448084879666567
+        },
+        "6": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.015698778443038464
+        },
+        "7": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.04377293717116117
+        },
+        "8": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.029130784422159196
+        },
+        "9": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.040404541045427324
+        },
+        "10": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.09472647476941347
+        },
+        "11": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.044674426317214966
+        },
+        "12": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.05146583318710327
+        },
+        "13": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.05932714780792594
+        },
+        "14": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.026208741031587122
+        },
+        "15": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.08043948272243143
+        },
+        "16": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.03958610882982612
+        },
+        "17": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.054845449328422544
+        },
+        "18": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 160,
+          "sink_missed": 160,
+          "mean_wait_margin": 0.022587936744093894
+        },
+        "19": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 160,
+          "sink_missed": 160,
+          "mean_wait_margin": 0.07764059249311686
+        },
+        "20": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.10257414318621158
+        },
+        "21": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.047603390738368036
+        },
+        "22": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.05291284369304776
+        },
+        "23": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 160,
+          "sink_missed": 160,
+          "mean_wait_margin": 0.12345572831109167
+        }
+      },
+      "unresolved": 48,
+      "delivered": 0
+    },
+    {
+      "tag": "QMIX_11_e300_s8001",
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\thesis_policy_audit\\20261112_130945_545627\\QMIX_11_e300_s8001",
+      "report_sha256": "de090b5d5cbad0b0d1746571a75af5b42a297f0cb63787dcc7e76fa56c3f30ff",
+      "algorithm": "QMIX",
+      "seed": 11,
+      "scene": 8001,
+      "checkpoint": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\thesis_experiments\\20261112_011930_763352\\jobs\\main_QMIX_11\\convergence\\e0300\\checkpoints\\baseline.pt",
+      "checkpoint_sha256": "732b966c20878336edff561326b5da14cc1aa0fe60f6c6a9c133d23e21779812",
+      "frozen_replay_exact": true,
+      "active_decisions": 857,
+      "wait_decisions": 342,
+      "node_groups": {
+        "0": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.019530531857162713
+        },
+        "1": {
+          "active": 57,
+          "wait": 55,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.012198641634823983
+        },
+        "2": {
+          "active": 4,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.03457787074148655
+        },
+        "3": {
+          "active": 10,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.014924556016921997
+        },
+        "4": {
+          "active": 120,
+          "wait": 112,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.006424269080162049
+        },
+        "5": {
+          "active": 2,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.01577754318714142
+        },
+        "6": {
+          "active": 23,
+          "wait": 15,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.006521930513174638
+        },
+        "7": {
+          "active": 5,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.046886146068573
+        },
+        "8": {
+          "active": 98,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.039650995512397924
+        },
+        "9": {
+          "active": 8,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.010815378278493881
+        },
+        "10": {
+          "active": 8,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.033003333024680614
+        },
+        "11": {
+          "active": 6,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.0037055636445681253
+        },
+        "12": {
+          "active": 3,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.05685847004254659
+        },
+        "13": {
+          "active": 57,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.0630014585821252
+        },
+        "14": {
+          "active": 91,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.011212006375029848
+        },
+        "15": {
+          "active": 2,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.028189584612846375
+        },
+        "16": {
+          "active": 57,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.05042624212147897
+        },
+        "17": {
+          "active": 3,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.13401108980178833
+        },
+        "18": {
+          "active": 33,
+          "wait": 0,
+          "sink_available": 33,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.30086299867341015
+        },
+        "19": {
+          "active": 11,
+          "wait": 0,
+          "sink_available": 11,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.2949815771796487
+        },
+        "20": {
+          "active": 2,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.030542917549610138
+        },
+        "21": {
+          "active": 6,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.07539804031451543
+        },
+        "22": {
+          "active": 33,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.14579608539740244
+        },
+        "23": {
+          "active": 58,
+          "wait": 0,
+          "sink_available": 58,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.33413891545657454
+        }
+      },
+      "unresolved": 10,
+      "delivered": 38
+    },
+    {
+      "tag": "QMIX_33_e300_s8001",
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\thesis_policy_audit\\20261112_130945_545627\\QMIX_33_e300_s8001",
+      "report_sha256": "0584cffc2c93a3d165cc1df322c3d34dbedf6f4d8a17ca0c71783f92959bfc9a",
+      "algorithm": "QMIX",
+      "seed": 33,
+      "scene": 8001,
+      "checkpoint": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\thesis_experiments\\20261112_011930_763352\\jobs\\main_QMIX_33\\convergence\\e0300\\checkpoints\\baseline.pt",
+      "checkpoint_sha256": "f6ee89f8b770d9f59048c896d79176eb310ca1e95bd497786e14aa51e3735d8a",
+      "frozen_replay_exact": true,
+      "active_decisions": 3840,
+      "wait_decisions": 3840,
+      "node_groups": {
+        "0": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.08609076291322708
+        },
+        "1": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.06809745375066996
+        },
+        "2": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.0422608295455575
+        },
+        "3": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.09110570643097163
+        },
+        "4": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.12056271582841874
+        },
+        "5": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.08751886794343591
+        },
+        "6": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.019056859612464904
+        },
+        "7": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.09166956255212426
+        },
+        "8": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.04290784113109112
+        },
+        "9": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.05272847283631563
+        },
+        "10": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.06699320953339338
+        },
+        "11": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.049528202041983604
+        },
+        "12": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.04169984832406044
+        },
+        "13": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.06378919621929527
+        },
+        "14": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.04856893504038453
+        },
+        "15": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.07309493031352758
+        },
+        "16": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.08141539050266147
+        },
+        "17": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.07396043855696917
+        },
+        "18": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 160,
+          "sink_missed": 160,
+          "mean_wait_margin": 0.010184161737561226
+        },
+        "19": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 160,
+          "sink_missed": 160,
+          "mean_wait_margin": 0.055302432551980016
+        },
+        "20": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.08080859128385783
+        },
+        "21": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.02486482486128807
+        },
+        "22": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.040264853090047834
+        },
+        "23": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 160,
+          "sink_missed": 160,
+          "mean_wait_margin": 0.011339601315557956
+        }
+      },
+      "unresolved": 48,
+      "delivered": 0
+    },
+    {
+      "tag": "PM_WM_11_e280_s8001",
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\thesis_policy_audit\\20261112_130945_545627\\PM_WM_11_e280_s8001_retry_131215",
+      "report_sha256": "803ad35558ae7373f6d29dc67b08716ee85235e76663f03ef83ed359501e2444",
+      "algorithm": "PM_WM",
+      "seed": 11,
+      "scene": 8001,
+      "checkpoint": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\thesis_experiments\\20261112_011930_763352\\jobs\\main_PM_WM_11\\convergence\\e0280\\checkpoints\\tg_policy_latest.pt",
+      "checkpoint_sha256": "68da859ae70f1725059cd0f0d50d1bff0e2af3620b1e1958d85af0fd575abbc1",
+      "frozen_replay_exact": true,
+      "active_decisions": 346,
+      "wait_decisions": 15,
+      "node_groups": {
+        "0": {
+          "active": 14,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.7413666844367981
+        },
+        "1": {
+          "active": 2,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -2.7844018936157227
+        },
+        "2": {
+          "active": 3,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -2.82161815961202
+        },
+        "3": {
+          "active": 4,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -2.7358129024505615
+        },
+        "4": {
+          "active": 10,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.6668875098228455
+        },
+        "5": {
+          "active": 13,
+          "wait": 1,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.5877885268284724
+        },
+        "6": {
+          "active": 2,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -2.135921835899353
+        },
+        "7": {
+          "active": 18,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -3.180464333958096
+        },
+        "8": {
+          "active": 3,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -3.232651869455973
+        },
+        "9": {
+          "active": 2,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -3.121302843093872
+        },
+        "10": {
+          "active": 16,
+          "wait": 14,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.15818972140550613
+        },
+        "11": {
+          "active": 6,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -1.0342141389846802
+        },
+        "12": {
+          "active": 3,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -2.5182188351949057
+        },
+        "13": {
+          "active": 40,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -4.134810757637024
+        },
+        "14": {
+          "active": 5,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -4.149130535125733
+        },
+        "15": {
+          "active": 4,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.9747510701417923
+        },
+        "16": {
+          "active": 19,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -2.2737019563976086
+        },
+        "17": {
+          "active": 9,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -3.817247814602322
+        },
+        "18": {
+          "active": 3,
+          "wait": 0,
+          "sink_available": 3,
+          "sink_missed": 0,
+          "mean_wait_margin": -7.777443250020345
+        },
+        "19": {
+          "active": 53,
+          "wait": 0,
+          "sink_available": 53,
+          "sink_missed": 0,
+          "mean_wait_margin": -7.808456438892293
+        },
+        "20": {
+          "active": 2,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.9258436262607574
+        },
+        "21": {
+          "active": 42,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -2.209682569617317
+        },
+        "22": {
+          "active": 18,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -3.9044251441955566
+        },
+        "23": {
+          "active": 55,
+          "wait": 0,
+          "sink_available": 55,
+          "sink_missed": 0,
+          "mean_wait_margin": -7.754096690091219
+        }
+      },
+      "unresolved": 0,
+      "delivered": 48,
+      "wm_changes_action": 3,
+      "waits_introduced_by_wm": 0,
+      "wait_teacher_good": 0,
+      "wait_teacher_best": 0,
+      "waits_outside_teacher_set": 15
+    },
+    {
+      "tag": "PM_WM_11_e300_s8001",
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\thesis_policy_audit\\20261112_130945_545627\\PM_WM_11_e300_s8001_retry_131233",
+      "report_sha256": "b3920b207a31c7d1165448ac28ce6be7ddaa9f72b23400e9d156e9b0859e95c1",
+      "algorithm": "PM_WM",
+      "seed": 11,
+      "scene": 8001,
+      "checkpoint": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\thesis_experiments\\20261112_011930_763352\\jobs\\main_PM_WM_11\\convergence\\e0300\\checkpoints\\tg_policy_latest.pt",
+      "checkpoint_sha256": "719c9bcdbb2c75dd2eb11707fc1db9946650c70cae62c286155571febf3fe3f9",
+      "frozen_replay_exact": true,
+      "active_decisions": 749,
+      "wait_decisions": 484,
+      "node_groups": {
+        "0": {
+          "active": 16,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.8010903596878052
+        },
+        "1": {
+          "active": 2,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -2.622465491294861
+        },
+        "2": {
+          "active": 2,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -2.360435366630554
+        },
+        "3": {
+          "active": 2,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -1.8342022895812988
+        },
+        "4": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.14787056483328342
+        },
+        "5": {
+          "active": 160,
+          "wait": 158,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.34934539161622524
+        },
+        "6": {
+          "active": 2,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -1.0413320064544678
+        },
+        "7": {
+          "active": 16,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -3.4240278750658035
+        },
+        "8": {
+          "active": 2,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -3.23734188079834
+        },
+        "9": {
+          "active": 2,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -3.1003313064575195
+        },
+        "10": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.3833128321915865
+        },
+        "11": {
+          "active": 9,
+          "wait": 6,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.05323296123080783
+        },
+        "12": {
+          "active": 3,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -2.3179781436920166
+        },
+        "13": {
+          "active": 32,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -4.081874743103981
+        },
+        "14": {
+          "active": 2,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -4.04050087928772
+        },
+        "15": {
+          "active": 7,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.8402981502669198
+        },
+        "16": {
+          "active": 11,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -1.970816428011114
+        },
+        "17": {
+          "active": 10,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -3.588946795463562
+        },
+        "18": {
+          "active": 8,
+          "wait": 0,
+          "sink_available": 8,
+          "sink_missed": 0,
+          "mean_wait_margin": -7.653188169002533
+        },
+        "19": {
+          "active": 53,
+          "wait": 0,
+          "sink_available": 53,
+          "sink_missed": 0,
+          "mean_wait_margin": -7.55547560385938
+        },
+        "20": {
+          "active": 5,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.8492692708969116
+        },
+        "21": {
+          "active": 27,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -1.9882231111879702
+        },
+        "22": {
+          "active": 13,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -3.566686887007493
+        },
+        "23": {
+          "active": 45,
+          "wait": 0,
+          "sink_available": 45,
+          "sink_missed": 0,
+          "mean_wait_margin": -7.560263315836589
+        }
+      },
+      "unresolved": 7,
+      "delivered": 41,
+      "wm_changes_action": 5,
+      "waits_introduced_by_wm": 0,
+      "wait_teacher_good": 19,
+      "wait_teacher_best": 0,
+      "waits_outside_teacher_set": 465
+    },
+    {
+      "tag": "PM_WM_11_e300_s8002",
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\thesis_policy_audit\\20261112_130945_545627\\PM_WM_11_e300_s8002_retry_131253",
+      "report_sha256": "09e32e73b1a4b0f31d577600f85b2812a6d32e8f592fd0281372a0a8facd7de6",
+      "algorithm": "PM_WM",
+      "seed": 11,
+      "scene": 8002,
+      "checkpoint": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\thesis_experiments\\20261112_011930_763352\\jobs\\main_PM_WM_11\\convergence\\e0300\\checkpoints\\tg_policy_latest.pt",
+      "checkpoint_sha256": "719c9bcdbb2c75dd2eb11707fc1db9946650c70cae62c286155571febf3fe3f9",
+      "frozen_replay_exact": true,
+      "active_decisions": 818,
+      "wait_decisions": 452,
+      "node_groups": {
+        "0": {
+          "active": 5,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.795465624332428
+        },
+        "1": {
+          "active": 14,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -2.792176757540022
+        },
+        "2": {
+          "active": 5,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -2.4641361236572266
+        },
+        "3": {
+          "active": 8,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -2.0290102064609528
+        },
+        "4": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.1549387075006962
+        },
+        "5": {
+          "active": 136,
+          "wait": 123,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.17191998660564423
+        },
+        "6": {
+          "active": 4,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -1.206548124551773
+        },
+        "7": {
+          "active": 12,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -3.421775539716085
+        },
+        "8": {
+          "active": 2,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -3.2410250902175903
+        },
+        "9": {
+          "active": 3,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -3.1233458518981934
+        },
+        "10": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.3948527656495571
+        },
+        "11": {
+          "active": 14,
+          "wait": 8,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.09135521309716362
+        },
+        "12": {
+          "active": 2,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -2.3066697120666504
+        },
+        "13": {
+          "active": 54,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -4.051141650588424
+        },
+        "14": {
+          "active": 10,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -4.160542297363281
+        },
+        "15": {
+          "active": 3,
+          "wait": 1,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.22962172826131186
+        },
+        "16": {
+          "active": 5,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -1.844531035423279
+        },
+        "17": {
+          "active": 17,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -3.742463658837711
+        },
+        "18": {
+          "active": 13,
+          "wait": 0,
+          "sink_available": 13,
+          "sink_missed": 0,
+          "mean_wait_margin": -7.678344909961407
+        },
+        "19": {
+          "active": 97,
+          "wait": 0,
+          "sink_available": 97,
+          "sink_missed": 0,
+          "mean_wait_margin": -7.501770221080976
+        },
+        "20": {
+          "active": 3,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.7227097352345785
+        },
+        "21": {
+          "active": 8,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -1.7646917551755905
+        },
+        "22": {
+          "active": 12,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -3.4990586638450623
+        },
+        "23": {
+          "active": 71,
+          "wait": 0,
+          "sink_available": 71,
+          "sink_missed": 0,
+          "mean_wait_margin": -7.51068089713513
+        }
+      },
+      "unresolved": 6,
+      "delivered": 42,
+      "wm_changes_action": 19,
+      "waits_introduced_by_wm": 0,
+      "wait_teacher_good": 19,
+      "wait_teacher_best": 1,
+      "waits_outside_teacher_set": 433
+    },
+    {
+      "tag": "PM_WM_11_e300_s8003",
+      "output": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\thesis_policy_audit\\20261112_130945_545627\\PM_WM_11_e300_s8003_retry_131313",
+      "report_sha256": "b4eaaaa03d73e3afd45be8105fe52eae1f0419604942955b7ca7d365e47fb491",
+      "algorithm": "PM_WM",
+      "seed": 11,
+      "scene": 8003,
+      "checkpoint": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\thesis_experiments\\20261112_011930_763352\\jobs\\main_PM_WM_11\\convergence\\e0300\\checkpoints\\tg_policy_latest.pt",
+      "checkpoint_sha256": "719c9bcdbb2c75dd2eb11707fc1db9946650c70cae62c286155571febf3fe3f9",
+      "frozen_replay_exact": true,
+      "active_decisions": 695,
+      "wait_decisions": 363,
+      "node_groups": {
+        "0": {
+          "active": 8,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.8341058045625687
+        },
+        "1": {
+          "active": 3,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -2.641163984934489
+        },
+        "2": {
+          "active": 2,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -2.3552685976028442
+        },
+        "3": {
+          "active": 3,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -1.8477472066879272
+        },
+        "4": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.145184438675642
+        },
+        "5": {
+          "active": 52,
+          "wait": 41,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.1262558136995022
+        },
+        "6": {
+          "active": 2,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -1.068145990371704
+        },
+        "7": {
+          "active": 43,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -3.4608751840369645
+        },
+        "8": {
+          "active": 3,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -3.3494627475738525
+        },
+        "9": {
+          "active": 7,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -3.2036260196140836
+        },
+        "10": {
+          "active": 160,
+          "wait": 160,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": 0.3987382363528013
+        },
+        "11": {
+          "active": 13,
+          "wait": 2,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.21296848700596735
+        },
+        "12": {
+          "active": 6,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -2.4161318937937417
+        },
+        "13": {
+          "active": 50,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -4.122021026611328
+        },
+        "14": {
+          "active": 17,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -4.109008424422321
+        },
+        "15": {
+          "active": 3,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.807091236114502
+        },
+        "16": {
+          "active": 2,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -1.7948554754257202
+        },
+        "17": {
+          "active": 9,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -3.610716607835558
+        },
+        "18": {
+          "active": 8,
+          "wait": 0,
+          "sink_available": 8,
+          "sink_missed": 0,
+          "mean_wait_margin": -7.694709837436676
+        },
+        "19": {
+          "active": 60,
+          "wait": 0,
+          "sink_available": 60,
+          "sink_missed": 0,
+          "mean_wait_margin": -7.545264689127604
+        },
+        "20": {
+          "active": 5,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -0.7891526222229004
+        },
+        "21": {
+          "active": 7,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -1.781407117843628
+        },
+        "22": {
+          "active": 10,
+          "wait": 0,
+          "sink_available": 0,
+          "sink_missed": 0,
+          "mean_wait_margin": -3.473325753211975
+        },
+        "23": {
+          "active": 62,
+          "wait": 0,
+          "sink_available": 62,
+          "sink_missed": 0,
+          "mean_wait_margin": -7.513592527758691
+        }
+      },
+      "unresolved": 4,
+      "delivered": 44,
+      "wm_changes_action": 22,
+      "waits_introduced_by_wm": 0,
+      "wait_teacher_good": 8,
+      "wait_teacher_best": 0,
+      "waits_outside_teacher_set": 355
+    }
+  ],
+  "probe_root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\thesis_repair_probe\\20261112_131735_713721",
+  "probe_completed": false,
+  "stable_gain_verified": false
+}

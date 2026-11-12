@@ -133,6 +133,8 @@ class BaselineLearner:
     IQL: shared independent masked TD. QMIX: shared utilities + joint mixer.
     """
     algorithm = None
+    q_target_interval = 100
+    q_exploration_steps = None
 
     def __init__(self, *unused, env=None, **kwargs):
         if self.algorithm not in ALGORITHMS:
@@ -204,7 +206,8 @@ class BaselineLearner:
         elif self.evaluating or self.algorithm in ('QMIX', 'IQL', 'VDN'):
             actions = dist.logits.argmax(-1)
             if not self.evaluating:
-                epsilon = max(.05, 1. - .95*self.steps/max(1, .8*self.all_args.num_episodes*80))
+                epsilon = max(.05, 1. - .95*self.steps/max(1, .8*(self.q_exploration_steps or self.all_args.num_episodes*80)))
+                self.last_epsilon = epsilon
                 actions = self.t([self.random.choice(list(np.flatnonzero(legal[i])))
                     if self.random.random() < epsilon else int(a) for i,a in enumerate(actions.tolist())], torch.long)
         else:
@@ -301,7 +304,7 @@ class BaselineLearner:
             params = list(self.actor.parameters()) + (list(self.mixer.parameters()) if self.mixer else [])
             self.optimize(loss,self.actor_optimizer,params)
             self.updates += 1
-            if self.updates % 100 == 0:
+            if self.updates % self.q_target_interval == 0:
                 self.target.load_state_dict(self.actor.state_dict())
                 if self.mixer:
                     self.target_mixer.load_state_dict(self.mixer.state_dict())
@@ -362,7 +365,9 @@ class BaselineLearner:
                       evaluation=self.evaluating, weights_unchanged=unchanged,
                       trainable_parameters=sum(p.numel() for m in (self.actor,self.critic,self.mixer) if m for p in m.parameters()),
                       device=str(self.device), inference_calls=self.inference_calls, inference_seconds=self.inference_seconds,
-                      update_seconds=self.update_seconds, records=self.records)
+                      update_seconds=self.update_seconds, records=self.records,
+                      q_settings=dict(target_interval=self.q_target_interval,exploration_steps=self.q_exploration_steps or self.all_args.num_episodes*80,
+                                      final_epsilon=getattr(self,'last_epsilon',None)))
         (directory/'logs/baseline_report.json').write_text(json.dumps(report,indent=2,allow_nan=False),encoding='utf-8')
 
     def load_policy(self, path):
