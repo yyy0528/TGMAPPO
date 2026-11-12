@@ -1,0 +1,28 @@
+{
+  "recorded_at": "2026-11-12T10:48:59.503375",
+  "study": "results\\thesis_extra_baselines\\20261112_104503_699371",
+  "status": "running",
+  "phase": "main",
+  "controller_pid": 10652,
+  "unit_tests": 15,
+  "unit_failures": 0,
+  "preflight": [
+    {
+      "tag": "preflight_VDN_22",
+      "state": "completed",
+      "progress_sha256": "10107b2b5a4a920b6b0960a7750379f003c7a7c4cf5f47f970fae3b224272cd3"
+    },
+    {
+      "tag": "preflight_COMA_22",
+      "state": "completed",
+      "progress_sha256": "89590a7fcd93162cceee2a09554bac2fd125bcfa3cb5495c7b4c685673fd8069"
+    }
+  ],
+  "reused_models": 27,
+  "reused_checkpoints": 432,
+  "new_learning_models": 6,
+  "new_training_episodes": 1800,
+  "new_training_steps": 144000,
+  "all_experiments_completed": false,
+  "greedy_excluded": true
+}

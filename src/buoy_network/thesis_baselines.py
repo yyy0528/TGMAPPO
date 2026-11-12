@@ -21,7 +21,42 @@ from torch import nn
 from torch.distributions import Categorical
 
 
-ALGORITHMS = ('MAPPO', 'IPPO', 'QMIX', 'IQL', 'Greedy')
+ALGORITHMS = ('MAPPO', 'IPPO', 'QMIX', 'IQL', 'VDN', 'COMA', 'Greedy')
+
+
+class SumMixer(nn.Module):
+    def forward(self, qs, state):
+        return qs.sum(-1)
+
+
+class CounterfactualCritic(nn.Module):
+    """Q_i(s,u_-i,a): the input explicitly excludes agent i's chosen action."""
+    def __init__(self, agents, features, state_dim):
+        super().__init__()
+        self.agents=agents
+        self.net=mlp(features+state_dim+agents*(agents+1),agents+1)
+
+    def forward(self,x,state,actions):
+        n=self.agents
+        joint=torch.nn.functional.one_hot(actions,n+1).to(x.dtype)
+        other=joint.unsqueeze(-3).expand(*joint.shape[:-2],n,n,n+1)
+        mask=(1-torch.eye(n,device=x.device,dtype=x.dtype)).unsqueeze(-1)
+        other=(other*mask).flatten(-2)
+        expanded=state.unsqueeze(-2).expand(*x.shape[:-1],state.shape[-1])
+        return self.net(torch.cat((x,expanded,other),-1))
+
+
+def counterfactual_advantage(q, probabilities, actions):
+    return q.gather(-1,actions.unsqueeze(-1)).squeeze(-1)-(q*probabilities).sum(-1)
+
+
+def td_lambda_returns(rewards, target_q, gamma, lam):
+    result=torch.zeros_like(target_q)
+    for t in reversed(range(len(rewards))):
+        result[t]=rewards[t]
+        if t+1<len(rewards):
+            result[t]+=gamma*((1-lam)*target_q[t+1]+lam*result[t+1])
+    return result
 
 
 def tensor_hash(network):
@@ -117,8 +152,11 @@ class BaselineLearner:
         obs, ids, nodes, adj = env.observe_graph()
         x, state = encode([obs], [nodes], [adj])
         self.actor = mlp(x.shape[-1], self.n+1).to(self.device)
-        self.critic = mlp(len(state) if self.algorithm == 'MAPPO' else x.shape[-1], 1).to(self.device)
-        self.mixer = Mixer(self.n, len(state)).to(self.device) if self.algorithm == 'QMIX' else None
+        self.critic = (CounterfactualCritic(self.n,x.shape[-1],len(state)) if self.algorithm=='COMA'
+                       else mlp(len(state) if self.algorithm == 'MAPPO' else x.shape[-1], 1)).to(self.device)
+        self.mixer = (Mixer(self.n, len(state)).to(self.device) if self.algorithm == 'QMIX'
+                      else SumMixer().to(self.device) if self.algorithm=='VDN' else None)
+        self.target_critic=copy.deepcopy(self.critic) if self.algorithm=='COMA' else None
         self.target = copy.deepcopy(self.actor)
         self.target_mixer = copy.deepcopy(self.mixer)
         parameters = list(self.actor.parameters()) + (list(self.mixer.parameters()) if self.mixer else [])
@@ -163,7 +201,7 @@ class BaselineLearner:
                 if len(candidates):
                     actions[i] = min(candidates, key=lambda j: sum((self.env.buoys[j].position[k]-sink[k])**2 for k in (0,1)))
             actions = self.t(actions, torch.long)
-        elif self.evaluating or self.algorithm in ('QMIX', 'IQL'):
+        elif self.evaluating or self.algorithm in ('QMIX', 'IQL', 'VDN'):
             actions = dist.logits.argmax(-1)
             if not self.evaluating:
                 epsilon = max(.05, 1. - .95*self.steps/max(1, .8*self.all_args.num_episodes*80))
@@ -190,7 +228,7 @@ class BaselineLearner:
                    done=bool(np.asarray(data[7]).all()))
         if not self.evaluating:
             self.rollout.append(row)
-            if self.algorithm in ('QMIX','IQL'):
+            if self.algorithm in ('QMIX','IQL','VDN'):
                 self.replay.append(row)
             self.steps += 1
 
@@ -250,12 +288,12 @@ class BaselineLearner:
                 nq = self.target(nx).masked_fill(~self.t([r['next_legal'] for r in rows],torch.bool), -1e9).max(-1).values
                 reward = self.t([r['reward'] for r in rows])
                 terminal = self.t([r['done'] for r in rows])
-                if self.algorithm == 'QMIX':
+                if self.algorithm in ('QMIX','VDN'):
                     nq = self.target_mixer(nq*next_active, self.t([r['next_state'] for r in rows]))
                     target = reward + self.all_args.gamma*(1-terminal)*nq
                 else:
                     target = reward[:,None] + self.all_args.gamma*(1-terminal[:,None])*nq*next_active
-            if self.algorithm == 'QMIX':
+            if self.algorithm in ('QMIX','VDN'):
                 prediction = self.mixer(q*active,self.t([r['state'] for r in rows]))
                 loss = (prediction-target).square().mean()
             else:
@@ -272,11 +310,39 @@ class BaselineLearner:
 
     def train(self):
         start = time.perf_counter()
-        losses = self.ppo_update() if self.algorithm in ('MAPPO','IPPO') else self.q_update() if self.algorithm in ('QMIX','IQL') else []
+        losses = (self.ppo_update() if self.algorithm in ('MAPPO','IPPO') else self.q_update()
+                  if self.algorithm in ('QMIX','IQL','VDN') else self.coma_update() if self.algorithm=='COMA' else [])
         self.update_seconds += time.perf_counter()-start
         self.episodes += 1
         self.records.append(dict(episode=self.episodes, environment_steps=self.steps, optimizer_updates=self.updates, losses=losses))
         return {}
+
+    def coma_update(self):
+        rows=self.rollout
+        x,state=self.t([r['x'] for r in rows]),self.t([r['state'] for r in rows])
+        actions=self.t([r['action'] for r in rows],torch.long)
+        legal=self.t([r['legal'] for r in rows],torch.bool)
+        active=self.t([r['active'] for r in rows])
+        with torch.no_grad():
+            tq=self.target_critic(x,state,actions).gather(-1,actions.unsqueeze(-1)).squeeze(-1)
+            returns=td_lambda_returns(self.t([r['reward'] for r in rows]).unsqueeze(-1),tq,self.all_args.gamma,self.all_args.gae_lambda)
+        critic_losses=[]
+        for idx in torch.randperm(len(rows),device=self.device).chunk(2):
+            prediction=self.critic(x[idx],state[idx],actions[idx]).gather(-1,actions[idx].unsqueeze(-1)).squeeze(-1)
+            loss=((prediction-returns[idx]).square()*active[idx]).sum()/active[idx].sum().clamp_min(1)
+            self.optimize(loss,self.critic_optimizer,self.critic.parameters())
+            critic_losses.append(float(loss.detach()))
+        distribution=masked_distribution(self.actor(x),legal)
+        with torch.no_grad():
+            q=self.critic(x,state,actions)
+            advantage=counterfactual_advantage(q,distribution.probs,actions)
+        loss=-(distribution.log_prob(actions)*advantage*active).sum()/active.sum().clamp_min(1)
+        loss-=.01*(distribution.entropy()*active).sum()/active.sum().clamp_min(1)
+        self.optimize(loss,self.actor_optimizer,self.actor.parameters())
+        self.updates+=1
+        if (self.episodes+1)%20==0:
+            self.target_critic.load_state_dict(self.critic.state_dict())
+        return dict(actor_loss=float(loss.detach()),critic_losses=critic_losses,actor_steps=1,critic_steps=2)
 
     def save_policy(self, directory):
         directory = Path(directory)

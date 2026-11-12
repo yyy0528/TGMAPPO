@@ -45,7 +45,7 @@ def inspect(output, algorithm, episodes, evaluation=False):
         elif algorithm != 'Greedy':
             if not report['actor_changed'] or report['optimizer_updates'] <= 0:
                 raise ValueError('Baseline did not learn')
-            if algorithm in ('MAPPO','IPPO') and not report['critic_changed']:
+            if algorithm in ('MAPPO','IPPO','COMA') and not report['critic_changed']:
                 raise ValueError('PPO critic did not learn')
             if algorithm == 'QMIX' and not report['mixer_changed']:
                 raise ValueError('QMIX mixer did not learn')

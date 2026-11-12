@@ -21,7 +21,7 @@ from tg_convergence import atomic, read, digest
 PYTHON = r'D:\anaconda3\envs\buoy_gpu\python.exe'
 BASE = ROOT/'results/tg_five_gpu300/20261108_140256_956180'
 SELECTED = ROOT/'results/tg_wm_input_probe/20261109_122413_853474'
-BASELINES = ['IPPO','QMIX','MAPPO','IQL']
+BASELINES = ['IPPO','QMIX','MAPPO','IQL','VDN','COMA']
 SEEDS = [11,22,33]
 SCENES = [8001,8002,8003]
 
@@ -170,7 +170,7 @@ def summarize(root, manifest, excluded_algorithms=('Greedy',)):
         writer=csv.DictWriter(stream,fieldnames=list(rows[0]));writer.writeheader();writer.writerows(rows)
     with (root/'learning_curves.csv').open('w',newline='',encoding='utf-8') as stream:
         writer=csv.DictWriter(stream,fieldnames=list(curves[0]));writer.writeheader();writer.writerows(curves)
-    groups = [g for g in ['Greedy','IQL','IPPO','QMIX','MAPPO','TG','Immediate','WM','PM','PM_WM'] if any(r['algorithm']==g for r in rows)]
+    groups = [g for g in ['Greedy','IQL','VDN','QMIX','COMA','IPPO','MAPPO','TG','Immediate','WM','PM','PM_WM'] if any(r['algorithm']==g for r in rows)]
     aggregate = []
     for group in groups:
         values=[r['delivery'] for r in rows if r['algorithm']==group]

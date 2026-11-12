@@ -74,3 +74,19 @@ Get-Content results/thesis_experiments/20261112_011930_763352/manifest.json -Raw
 ```
 
 若任务failed，先读对应日志、解释原因、定点修复并重测；不自行覆盖原输出目录。当前工具没有优化器/RNG恢复，不能把训练到一半的policy权重当作可精确续训检查点。
+
+
+## 2026-11-12：补充经典VDN、COMA
+
+新增目录：`results/thesis_extra_baselines/20261112_104503_699371`，后台控制器PID10652。先VDN/COMA各seed22两回合、e0/e2场景8001冻结评估，全部通过再顺序跑VDN三种子300、COMA三种子300；每20回合在8001/8002/8003各冻结2回合。新增1800训练回合、144000训练时隙、46080正式冻结评估时隙；预检单列。GPU模型计算、CPU原仿真不变。
+
+15项函数/模块/报告测试通过；历史27个学习模型、432个检查点哈希审计通过，全部复用。不是重跑原9组，也不重新启用Greedy。结束自动合并为11组CSV/对比图/收敛图。
+
+- VDN依据https://arxiv.org/abs/1706.05296 ：所有活跃个体Q相加学习团队TD误差，无可学习mixer；与QMIX使用相同联合回放、target同步、epsilon与预算。
+- COMA依据https://arxiv.org/abs/1705.08926 ：Critic输入集中观测、本节点编码和其他节点动作，显式屏蔽自身已选动作，输出所有自身候选动作Q。Actor优势为已选动作Q减策略概率加权Q基线，baseline与Q均detach；fresh rollout，TD(lambda=.95)有限任务终止目标，target Critic每20回合同步。每回合2个Critic minibatch、1次Actor更新，没有冒充PPO。
+
+二者为feedforward/参数共享/原global观测适配，非原论文任务复现或独立调参最优版本。新测试覆盖VDN求和及各节点梯度、COMA自身动作不泄漏/其他动作依赖、反事实基线手算及零期望、TD(lambda)终端与bootstrap手算；真实联调和长期效果以manifest为准。
+
+源代码入口：`scripts/run_thesis_extra_baselines.py`。接续只读manifest/progress，running时不得重复启动；任一失败队列立即停止，保留具体日志。
+
+最新状态：VDN与COMA两组真实短训练/保存/冻结评估均已通过，后台已进入main_VDN_11的300回合任务；当前尚无新基线长期结果。机器凭据：`docs/evidence/TG_THESIS_EXTRA_BASELINES_20261112.json`。

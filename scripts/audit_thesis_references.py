@@ -15,9 +15,9 @@ def audit(study):
     for model in master['reused']:
         source=Path(model['source'])
         original=read(source/'manifest.json')
-        if original['status']!='completed' or digest(source/'report.json')!=original['report_sha256']:
+        if original['status'] not in ('completed','main_completed') or digest(source/'report.json')!=original['report_sha256']:
             raise ValueError('Changed/incomplete reference '+str(source))
-        if model['algorithm']=='WM':
+        if model.get('progress'):
             path=Path(model['progress'])
             if digest(path)!=model['progress_sha256']:
                 raise ValueError('Selected WM progress changed')
@@ -36,8 +36,8 @@ def audit(study):
                 raise ValueError('Reference evaluation scenes missing')
         records.append(dict(algorithm=model['algorithm'],seed=model['seed'],source=str(source),
                             checkpoints_verified=16,progress_sha256=digest(path)))
-    if len(records)!=12:
-        raise ValueError('Expected TG/Immediate/PM/selected WM, three seeds each')
+    if len(records)!=master.get('expected_reused_models',12):
+        raise ValueError('Unexpected number of reused models')
     result=dict(passed=True,read_only=True,records=records,checkpoints_verified=sum(r['checkpoints_verified'] for r in records))
     atomic(study/'reference_audit.json',result)
     print(json.dumps(dict(passed=True,models=len(records),checkpoints_verified=result['checkpoints_verified'])))
