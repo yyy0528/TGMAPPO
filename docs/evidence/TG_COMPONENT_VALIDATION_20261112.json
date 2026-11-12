@@ -1,0 +1,1084 @@
+{
+  "status": "completed",
+  "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\component_validation\\20261112_164816_831429",
+  "controller_pid": 45160,
+  "monitor": "continuous current-chat checks completed; no scheduled automation remains",
+  "unit_tests": {
+    "passed": 6,
+    "failed": 0,
+    "log": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\component_validation\\20261112_164816_831429\\unit_tests.log"
+  },
+  "offline_status": "completed",
+  "training_updates": 0,
+  "expected_finish_cn": [
+    "2026-11-12T17:20:00+08:00",
+    "2026-11-12T17:50:00+08:00"
+  ],
+  "source": {
+    "git_parent": "dc3a3556db507682c7c916954aa43a8bb0c54911",
+    "files_sha256": {
+      "configs\\research_graph_mappo.json": "ac464c58269af4e20287f2644ab3697748381663ce2b60c096678760f4ffc73c",
+      "configs\\research_v1.json": "855b5e5535605b84b05be7e861810684ef2e1c7a6972ea1a4b563e8960c3bc3d",
+      "configs\\tg_ablation_fixed100.json": "d586264b1cbb52c29c06e71f0b99144766888bcbcb16161fbd24fea8e31b0251",
+      "configs\\tg_ablation_formal_proposal.json": "0623670438b9afdc13b95377027f1fdd2f6b298299908fa955c15179522e36ba",
+      "configs\\tg_ablation_lr_fixed_pilot.json": "4a86f8506072e4d1082fae121930528d5696c16be556d9f120450dbfb359a0d9",
+      "configs\\tg_ablation_lr_linear_pilot.json": "4122373e2ca57d73bea0c88958db939ad409e8eb24a270ba9761f8e80cb652e9",
+      "configs\\tg_ablation_pilot.json": "e17faa0c09f1a7c64f90269134482335b42fd261fcad77f3de0cc2c24aa4d8c0",
+      "configs\\tg_ablation_task_v2_pilot.json": "a51b68fb643bea28ed44358cbd96080fe7cc80342dbfd2fc91b95d335738e9bc",
+      "configs\\tg_critic_time_constant_smoke.json": "356e0f6b20bd520c37fe928f76532c9144d72d6375725d1d963720b1e8bab25d",
+      "configs\\tg_critic_time_disabled_smoke.json": "1b6bd2e8c18cd6a7e62566c4304d67a6bb23eb743cd74e897e7f2c3c146fe81f",
+      "configs\\tg_critic_time_remaining_smoke.json": "4f0b445601eea5395c58dbea9894e8d1ccf574c78f7e1b672cafb74abce73b4c",
+      "configs\\tg_five_gpu_300.json": "e13b2605834f8b63a72246d16bc5ffde33ffbcd026a2b13638796a42738a2f05",
+      "configs\\tg_five_gpu_probe.json": "e6e74de864a8c55ecec609c2c1310d1ec434164e0ad97510809aa6672e41cc44",
+      "configs\\tg_interaction_fixed100.json": "fcf8a209a8b72daf9ffcec1863c51e408b7962a31097bfa67ffbab34ee36f947",
+      "configs\\tg_pm_convergence_300.json": "897a31f6758e1d9f79acd4962a0f0390b32e40aae704b8c46c6b3de6a931acad",
+      "configs\\tg_pm_convergence_probe.json": "66c341845dda76e2d76b36903a28b0be0fdbc311adfec6ea34039ac8b6f5e578",
+      "configs\\tg_pm_reliability_pilot.json": "f64e7d529020330e30181aaa2c95baf558cf25d465d619f4253d227be40bc073",
+      "configs\\tg_pm_strength_probe.json": "9c9eda312ec1a897c40295de8b88b94241f0779a7da1709bc82eea6c7059a57a",
+      "configs\\tg_pm_task_return_pilot.json": "b060a66b2139b18fb49807a56ec994cf68cb60564f3ccb521763d6be16e882bc",
+      "configs\\tg_ppo_budget_epoch1.json": "9cbed151aa877350dde3f963becb1aa9f682ba5679da9411e73ec9934ca5bda6",
+      "configs\\tg_ppo_budget_epoch4.json": "ee7553f9d41de8c8bb70ac85491d6fa872f0d093d92d0eb387859d57b496a105",
+      "configs\\tg_wm_active.json": "06c4d94574496af90c130823d2ce95dbbf05a4a3f2fa14e5229a6675f90f8d98",
+      "run_algorithm.py": "b83914538e43885b57045cd0a90425b17bf46072a2144cafcacc72935d3e0516",
+      "scripts\\analyze_tg_convergence.py": "955c4146fdbbecaac85fc0c6239dff01f056773843cc8f48d1611a9520927fbe",
+      "scripts\\analyze_tg_pm_action_credit.py": "39817d56f9117ee20d6f8062245ce20e18282fd294d11ebc1d04f27078739edd",
+      "scripts\\analyze_tg_pm_context.py": "34e0569fde7b1cea78dda06f35fd0582412d1a91c677e328143f70a31c452827",
+      "scripts\\analyze_tg_pm_decline.py": "229683c6c55d4753c3df2e6ed054c64fb6a6828e05c616b53eb52678e932266a",
+      "scripts\\analyze_tg_pm_reliability.py": "7609b357e84f3c24374262e7181568c7b5c064a4d167f842731506d64f736cf1",
+      "scripts\\analyze_tg_pm_strength.py": "63cad7cd96f0981ebad6902eef8d5a4847e2a3e29c6c9c6da6e257d6c582fbd5",
+      "scripts\\analyze_tg_pm_target.py": "5579403e58d60379f5a170fd10c97829316acba7011deaf4fc0460322fbfd530",
+      "scripts\\analyze_tg_pm_task_return.py": "a554653b762cca80d08821e4e1a00f10b8b0294b29d242dd9b6774d88f95447e",
+      "scripts\\analyze_tg_pm_updates.py": "964ca765740cecc97529abc3ef34973dda4f2e5cadb1b96878260661bd9e1ea0",
+      "scripts\\analyze_tg_pm_value.py": "ff691677e4c725c597dac0cfca2ffb4ad705746123b58b5996b2941c21ad2c68",
+      "scripts\\analyze_tg_seed22.py": "519c43733ae747a0c93e3b1e13724471e6cd3ab3c908e464512e4f2c876eb6ee",
+      "scripts\\audit_tg_dataset.py": "dc57ea009fa0aa3839b55056e9af32341f7b41ccb1e2efcd011f7576cb79113d",
+      "scripts\\audit_thesis_references.py": "af8264d70a92e891ecc3d66735a237d32f377176148ea7721a0c97ff052427e2",
+      "scripts\\calibrate_tg_pm.py": "4a6ea96f79ec8ac40a233984393a9231f86a64331a7971fc7e44545d71a9883b",
+      "scripts\\calibrate_tg_wm_inputs.py": "084cefc7584a4dad2326fef1336031d7a20231fc560c5b82b92c8c6b33ef53cc",
+      "scripts\\check_tg_pm_action_ranking.py": "84a2ef029ed40b20326b4db7939a10bac07922e02084edd9501f9dceca22e42e",
+      "scripts\\check_tg_pm_context.py": "8117f777ffe0805813ea592f4411c6eb76a26a4a3e71970ff6c15b83bdc332ef",
+      "scripts\\check_tg_pm_credit.py": "44ef7608da3269c7547890fed3100ae820391d4b22a3ece0b4ab66ac5e9b4401",
+      "scripts\\check_tg_pm_reliability.py": "94c408b1c8c8c58f5b78cc0a0ad01a13afb5bb5d5448d0a0337d242e1cded1bb",
+      "scripts\\check_tg_pm_strength.py": "7dfc10af2f7ca483782cef229c206cf56833f00bd4b7364e6ad8f27e07a6fcbc",
+      "scripts\\check_tg_pm_task_return.py": "0a5b03c35bd2f2cc4cf369ed9fb3b611ca96e38785c48cc04a6bea936fb8d08e",
+      "scripts\\check_tg_pm_updates.py": "f9f4888222815f25bf91e74a40fb5ffc741e5cbe4abd253cc8fcb6ec735aa6e6",
+      "scripts\\check_tg_pm_value.py": "9ac22a9cc5e7921d991fcbe676332aadd3758e31980b05dcd2808bbef2d55b20",
+      "scripts\\check_tg_seed22.py": "734704b3b7f194319d8a2d8deb3b4d8496cc5350d632d5c1d76ece0ac2b35321",
+      "scripts\\collect_tg_data.py": "dba8617586b28eed6e92b36151bdf6cb9e76c1053a2975af4c6680f9cfa7d745",
+      "scripts\\compare_tg_seed22_inputs.py": "30abc91c339e896d4379901312fe84439db5a86968a8de3ca2ffd4161b872c5b",
+      "scripts\\derive_tg_wm_scale_floor.py": "ce6c47746d517e28a05e5fbd224f1bf81ca57c400480377bcd76b1293d36d1ad",
+      "scripts\\diagnose_tg_credit.py": "198212869834cfb9adc4c404d0c8194a7bd241ece11f7bef93229edc45c5a458",
+      "scripts\\diagnose_tg_critic_clock.py": "fb48e802f1c159371c6f4bb40794b5a4c55e2a901cadef1332823abef3f8f82e",
+      "scripts\\diagnose_tg_interaction_policy.py": "f83828d38350cbfcc706486008c050ba65d3d5eecce63e7aca35f2b1535d2e46",
+      "scripts\\diagnose_tg_pm_action_case.py": "599a85367b75aba70e3dc082ebd3313640b7c113d40fb98e42fd79e266de1260",
+      "scripts\\diagnose_tg_pm_sink_credit.py": "f938b539f3fc11e8573ae5f9d02483aac4da5998ed3fcf90f80ecf30a857287b",
+      "scripts\\diagnose_tg_pm_updates.py": "d74eacf4d9688b3902861ee0942e1d8e136b3ccab458830d07cc8c80cf469d64",
+      "scripts\\diagnose_tg_policy.py": "1bc8793c0f267f5eb7603d9678a977dc51a3c4c6466cdc685ea7326433816852",
+      "scripts\\diagnose_tg_seed22_initial.py": "031b593ce50f36300a4b2a376561032682e5569588e0be5725e248ea55aac7bb",
+      "scripts\\diagnose_tg_seed22_signals.py": "c355a454fb9cb3bdba394e59b33ae4b3134a9e89bf0a6b4cd3bcc83d3edac4a2",
+      "scripts\\diagnose_tg_wm.py": "5e18c6a9108921fadcb08a21062719d5296e89d9c580f06dce74fb5bc1ecbd30",
+      "scripts\\diagnose_thesis_policies.py": "1ad9819a6fb615982a16f4d248c17718d3fe1213b9ef07fd39ecf0ed324e1ee8",
+      "scripts\\finalize_tg_fixed100.py": "36adad48aa2eed1e0d70892a197ee24c87542e3d3db6cafdc94f33552b87e175",
+      "scripts\\interaction_budget_worker.py": "e472e58d8d23b24ad6a1822233c9b03c8093233d8ef024d578307af4f7227a53",
+      "scripts\\plot_comparison.py": "d6c848b66b46c10a360f870bab46f299aa6306f86de8dae6ddb3e63beb1cd1a5",
+      "scripts\\plot_tg_ablation.py": "4a7005d8f4af8d5fc5f7f4971f707842b0be990f836ae656493d6164cc40ba12",
+      "scripts\\plot_tg_credit.py": "039585010b2e510edc2c31e33ce3126c4aef7f2cff1e50a6c6d06e22f623c47c",
+      "scripts\\plot_tg_critic_time.py": "36a9de18212b5784f7d0b2dcf78a1d9c8c918d28e753ff002f22cf9f7d1ddb5a",
+      "scripts\\plot_tg_interaction_budget.py": "57bb8d82c14165be5d6d9c884803a2cf620f3bc1a5d7804f909a9078b3e27727",
+      "scripts\\plot_tg_lr_schedule.py": "17c214d92acec208015e9a9ae7d79a4f571ffb1cd8112c63a03b61f957bd03a4",
+      "scripts\\plot_tg_policy_diagnosis.py": "501fcca9da3279ebc6410ebc295ae5780e6d357ef8f22350741b997316d7a4c1",
+      "scripts\\plot_tg_ppo_budget.py": "0e6c4e5b62194d30370da5be1d39bb248badfa905e908dbf559d3b5c3fbe3c77",
+      "scripts\\pm_value_worker.py": "ae2f9a36bb33affa2dbda2b1b800dfe828f6069878a16ee8265b3a528ba3440c",
+      "scripts\\probe_tg_lr_schedule.py": "39b5237a14a551a6467e2f83ba3e01bcbc00e36ca15cf43704e1f066221a6393",
+      "scripts\\probe_tg_popart.py": "2f89f1864f69f7090101b744b3e4d4c7e1be01531442f64a95f6f5ae55c4b372",
+      "scripts\\probe_tg_reward_contract.py": "2e6c940e3178a7e533994d6eedc6d4103da61cd9de1897c079f9fef2dc152564",
+      "scripts\\report_tg_fixed100_status.py": "9be74ed6b2dc8de0563a6551bda55664227a509d2939c8d28642f286a7a21668",
+      "scripts\\run_component_validation.py": "9e56127c261f8a7193c7fa19ed53fccd8ca9a9cdcd2eee116592d1e707ddbeeb",
+      "scripts\\run_tg_ablation.py": "b1fd3c41e4c761b842f45269e9d29b7932bc6d1b0e1aa2f631eeedd948355aba",
+      "scripts\\run_tg_convergence.py": "3b594c5e9349c77599df31bdb2fea6f41bf70bb444afff1c7d770680e4e0b4ea",
+      "scripts\\run_tg_critic_time_probe.py": "5db980bb0f0690fb9311f75a0fe896645bf065d0ab629b8e0e06daaf25a301da",
+      "scripts\\run_tg_five.py": "546ea71cf2940e728ddb297cac99d574e7ac694d95d1021672aae0e68f0e0e5e",
+      "scripts\\run_tg_fixed100_ablation.py": "4c24d4d847eeff70ae2c74db0681c375c95a597cc88f62e5f34b312a8df4f4e4",
+      "scripts\\run_tg_interaction_budget.py": "191af5dfa0803ca7a3eccd91155d4ae266c9b65fbdac1a451a0bc9cf7a8e0524",
+      "scripts\\run_tg_pm_action_credit.py": "8a53c24256c712f17568475bed47244ce0aa99836793f9bc9e099a8b86eac181",
+      "scripts\\run_tg_pm_known_case.py": "7be7d2ebccff2d6e82454d5180f1a1bc374dcaed0e5ce95d39ab46abadd35fd1",
+      "scripts\\run_tg_temperature_probe.py": "911422496dae92ce61d60675485cc4e589a7aa3feeaac4c24873e8971c3cc801",
+      "scripts\\run_tg_wm_input_probe.py": "570ce2e0046b1fcd4db182b99c265c04e14868304777407580f0768a0dd6e0fe",
+      "scripts\\run_thesis_experiments.py": "659792153549c519f525c62f328b71f7fa049567a12f9d212422c92c053d00df",
+      "scripts\\run_thesis_extra_baselines.py": "fdb077b0aad880c9c141b6c922c0974f50696e91b9386b811c84c8440d262042",
+      "scripts\\run_thesis_generalization.py": "1bac5b67fc8db97ca31a713a1cbcc8687c70b6c2cb2c1b92789d4d8aabc8fd23",
+      "scripts\\run_thesis_repair_probe.py": "87ad8682450a825ee3bcb722871535c7e11281999ca460b2b7a1431739c383df",
+      "scripts\\test_legacy_fixes.py": "6035bd7e9a5efe22afaa57b298d5437a5f63918d442226d0c2603a0e0956ad8d",
+      "scripts\\test_research.py": "6685f8d9110f192a8eebc695b568b7dad5499ada3bf4ea9e91283e1d04fe7096",
+      "scripts\\test_tg_ablation.py": "10ac37db6bad037652972cede6ce5deb8027c81312c294c23b4670b0cf0bcd03",
+      "scripts\\test_tg_fixed100_ablation.py": "5929bd1cb5348c5175478aa09674d879e9ff56b6ebcebd593b8ff526fc3e280d",
+      "scripts\\test_tg_lr_schedule.py": "bc474eb4acc76528495e95b18ce8cd05ef861eccf18b51be06e014b90feb541e",
+      "scripts\\test_tg_pm.py": "22531196031e44b6837d4e8e403bf5c0119f8f31ed1ece08dba45ee71487fe99",
+      "scripts\\test_tg_pm_reliability.py": "978e829bc6360ab5bdfc9f5e52387fc565293566f018640028694edef5f144b8",
+      "scripts\\test_tg_pm_task_return.py": "b69cf96ecfcbd216c357eff8c4aa4271ac1636df9af4cbc46d313d1d0f8370c4",
+      "scripts\\test_tg_pm_value.py": "f98abf394e2cd0e458ffe65851e163305d98edf8abc023cb16f38d7894090ff4",
+      "scripts\\test_tg_popart.py": "3e66421b63f4c3628f3f64519578088bcbe2ec1388a3589a88f00197f5332b1a",
+      "scripts\\test_tg_ppo_budget.py": "99f3e4829976c47781bb8d357dac5a932f24b4d46ef93cfc027d5503f7373885",
+      "scripts\\test_tg_task_reward.py": "a2ea3094bead6b6fb76b4597b24985418bb02e637d0be8598823ceb9fec2c529",
+      "scripts\\test_tg_wm_actor.py": "6c6ccef1f1f83e7d4e9757cf3f1a0535045d7c76943f41fb634b369dbab9b3df",
+      "scripts\\tg_convergence.py": "f02044daacd174a9d0332d5d9b3bb97df60b0c0081614b9f543a1ba94ebecb14",
+      "scripts\\tg_convergence_worker.py": "5fcf2647bb5a6d289db38048f38558dee0eb910cd8aab1a7d61f0716116b866c",
+      "scripts\\tg_eval_worker.py": "70f0ac319d878823742ea45ea04677610329eb1494ea792396b7241632bb6216",
+      "scripts\\tg_five.py": "9ee8cec6aa1738130e2168742d6e449ed14c09947c5ae7399a54372fae83e283",
+      "scripts\\tg_seed22_signals.py": "6a0e332eb66871572dc855dca9e2f61af55778c67e84e15563e211b52ce1fa28",
+      "scripts\\tg_wm_input_worker.py": "4c55854dcd1af685bd7b6d4eb38a5cf32dcdf2c6f6e7117fa1f97c0fcb86c356",
+      "scripts\\thesis_experiment_worker.py": "e66caba70c892ed08600d757ee06068b8cb15d748156afd99a07c771fb66fe2f",
+      "scripts\\thesis_generalization_worker.py": "ff43afe8f3b4d054973b74a7d31d98b999d9aabe7967840c8a38d304c079bd76",
+      "scripts\\trace_frozen_components.py": "6517ab97697f279378018ee59b2cac21cfadbda017ec3b513c4f1295b08afeae",
+      "scripts\\trace_tg_pm_gradient.py": "0cd3d7ce29972c07193ee748ddd8c5a34ab4b32a6927f0405a5fd7654add374f",
+      "scripts\\trace_tg_seed22_packet_pm.py": "1d74e54800501a8d55d8cfe921d053372cc3263c38c356f42fe74ba39804f429",
+      "scripts\\train_tg_pm.py": "31c098e5748ef97249bd94cf77ff3e0c0d04e5b320a409749eb30c1d68fdd549",
+      "scripts\\train_tg_wm.py": "3d6438642d071fd0e2bca501c1cb186790aea734697de0bd9837bd117006eb30",
+      "scripts\\validate_frozen_components.py": "6625fb6ca5d17ac5ee1f4a9257c93f1056ff4dbf9c5392dbc954acd0a8050640",
+      "scripts\\verify_tg_ablation.py": "46222c9dcd4fb55d2438a80b40afda46dfe0fb66c82fe587cbdad43b850cdd67",
+      "scripts\\verify_tg_credit.py": "08d32a9b2bc57f33a3dde92bf255cd7197b873c8582a7ff489815fb671d14aa4",
+      "scripts\\verify_tg_critic_time.py": "47fbaa6a1dd70edc3c3b336d3eeb5072dba1f375afd22679d473a2e9f3795ea0",
+      "scripts\\verify_tg_fixed100_handoff.py": "1dae2196868e34852d20a1e36c30bf81c0c3afcbaaf6366b6b160638d4cb4ffc",
+      "scripts\\verify_tg_fixed100_results.py": "1ff0f9836258a75c0d8158803ac66b7f5c940909db20cc3af04af8898b4e7faa",
+      "scripts\\verify_tg_interaction_budget.py": "80aa73a26f3d8eb2302e51fa66ba418cce56db15e1b6f7e047f5606aaba847d1",
+      "scripts\\verify_tg_lr_schedule.py": "fb99a4b43b80ca98d4be2aa40440977a9a01ed224908f6fc21598de925600a92",
+      "scripts\\verify_tg_pm_runs.py": "c0912b557b183438551f697f6c9b964f044806481d4822e91fd17e28893a4fc1",
+      "scripts\\verify_tg_policy_diagnosis.py": "70f3cfa18ade295b02f8c968fc4b092c11fe12e58e4020d7d34baf01502bc043",
+      "scripts\\verify_tg_popart.py": "cdc23ddcd4f1fef252022a2e9ea1f86f111b5ee064a081b94ee90adf4d8c3dac",
+      "scripts\\verify_tg_ppo_budget.py": "04385930d4b62011af542fc69b4999ec400f515b3f69254385307e80e75de1a6",
+      "scripts\\verify_tg_task_reward.py": "659309447ad5543514da5b208e4ea5ae3a9c65904423fd346b2b7d63a6202660",
+      "scripts\\verify_tg_wm_actor_runs.py": "f412112c14e399ec7f030a6106f2ab8e8b03e70b83a697633fba8bc35b2d3273",
+      "src\\__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src\\buoy.py": "b1abf26940ecda6f250885432e04c310fcf71769d26b83c96afa1e916a7592c3",
+      "src\\buoy_network\\__init__.py": "bb3995ab9760e39ea0e5a627b70899d3d6c953fb8af87f535b2c60d963ac6b5a",
+      "src\\buoy_network\\ablation_suite.py": "c160e3d6fc407767084f0153b021d29ccb8cdc69c1015fea5303841540fd8686",
+      "src\\buoy_network\\agent.py": "1987b5501f655ba0602e8d532889f341e14de0d44b55c8e577b7b9631e855faa",
+      "src\\buoy_network\\agents\\__init__.py": "453f12ff42c244dc706cd3e7c588c454f41699e6b8dec200f7774302534e27c4",
+      "src\\buoy_network\\agents\\agentDQN.py": "0254f782fda524220c7d73875238881bd0ebc171c65cee3fdb8029a499a2a880",
+      "src\\buoy_network\\agents\\agentIQL.py": "8909decd03bf92fae0dd197e7735cbee93e87ec932d68dee0dedb589be1ff00d",
+      "src\\buoy_network\\agents\\agentMappo.py": "83c92bdf4b99ca656fb1a18611f44e361d04ed60f9191ea43d85f5be0f98fb48",
+      "src\\buoy_network\\agents\\agentQmix.py": "ec4ec0980c32540e2333aa961452fcae283171103a1e53ce9f31580ce2564c8f",
+      "src\\buoy_network\\agents\\agentQmixAttn.py": "4acf1725009a585f0e1fba85d924446ac4f0e09b87113851edd8a69708195831",
+      "src\\buoy_network\\agents\\agentVDN.py": "cf5a3cebc4f2b45e90d85ae68a2269c9707a7a1ab69c946d2453e203a66be6c5",
+      "src\\buoy_network\\buoy.py": "263883b1a3c49050882bd7e914e07b817164eba51e9f0087f562a11b5689493b",
+      "src\\buoy_network\\component_validation.py": "376321c03fdcabc3122c522970d7677e7b6a5d465d865659a4a3dfd65a08e79c",
+      "src\\buoy_network\\compute_device.py": "b9cb4c25780b5cf3384f6867a71230db42c1ad58fa2a9112c0ce9fd0b6fbd209",
+      "src\\buoy_network\\credit_diagnostics.py": "c0eccda2efac3e532a4c6f955c729bdc8b61a63dc9628db12ba9d9bec99c47ac",
+      "src\\buoy_network\\dataset.py": "95d09a597d780fd7bbb537069be8caaa1f0e45e89d90a760c7fa50b120c36071",
+      "src\\buoy_network\\environment.py": "820a52bb632b6d01856315ababe0cdc2626a2abe8bb71be96604298393c126b3",
+      "src\\buoy_network\\learning_rate.py": "0c1e9dc2fbb0d92e0c4b686901ddcc1da80a9ed5a5018babaf1824cbc498247a",
+      "src\\buoy_network\\main.py": "f4e478a00a94b8458b0e70d254a9a809763eae40c1a74f749777d1b7d46fcd02",
+      "src\\buoy_network\\physical_metrics.py": "0233907ae76582d4f9237374bd7e529dfa3b250199280b9eb97229d457b75fae",
+      "src\\buoy_network\\pm_action_credit.py": "478531b91e8f45584d47170109c665ffddddd081185601edee3e3a52a26d2e58",
+      "src\\buoy_network\\pm_calibration.py": "fee3d2ef6a8defb4e7e49a89d573e0d09c87c8e12d2cb80b9367a2ef178ba18e",
+      "src\\buoy_network\\pm_reliability.py": "fe400bc2dd4cf966fce055a19235b18eace3c73d5d8238c78b7fcbf9a4b0d6b7",
+      "src\\buoy_network\\pm_return.py": "bfc968ad279b32ffc02861d99cb3a3f89153d35ec1adf58da242b94d227e0cdb",
+      "src\\buoy_network\\pm_value.py": "a0be7ed9344441be812f8c1eb075bf84fb7be44c908674a7e99107b51e631f26",
+      "src\\buoy_network\\policy_artifacts.py": "835bc378d9d9f83dc3e5845fa4c3ba12beac4f6b37e09966b04948a299deb06c",
+      "src\\buoy_network\\policy_diagnostics.py": "63db598336965c36fb6edab50813872f26601b62057048c86d90b537665f0807",
+      "src\\buoy_network\\progress_model.py": "43ab011920cbbf478ede6b0e9be27bd421843ff6495e73e0ca0c44b612c2f8a0",
+      "src\\buoy_network\\progress_runtime.py": "bc39e492c23fbff48cc5b72d1644ffe832aeec8d7a449997b11a76c7aef0d9d6",
+      "src\\buoy_network\\replay_buffer.py": "0ca63e301b0b79146c85d77e5d984ab1a7756c2be658641421d607db7a789d70",
+      "src\\buoy_network\\research\\__init__.py": "7079a08f3c0d9481b4cf27bce253315e7ec6e1e27663e7d204e5ddb05c6a1720",
+      "src\\buoy_network\\research\\__main__.py": "3d2438ae92f4746e9ffaa1f837b1fe803f6281091d1f31f8c95643716f257d9a",
+      "src\\buoy_network\\research\\bootstrap.py": "1783b47894d3b672951c0ba688af7db033fbece6bddd9d61edb110a8ddce9387",
+      "src\\buoy_network\\research\\cli.py": "11e39d9ce63cd9beed4f739fb7d7019484c1f6df31bcf14b55902e5ed4995029",
+      "src\\buoy_network\\research\\config.py": "957310792abd3b127af7d8b79ed980dba29b9672a61c15bdbb510d3d6b23bc13",
+      "src\\buoy_network\\research\\contracts.py": "e69c27c13b0a35433b69fab4b3905b2f4535639fe6737a4fd1797ec4b3decaf7",
+      "src\\buoy_network\\research\\data\\__init__.py": "d4eaa9265d0c503623287fe1a6c30d0c67367daeb190b5e65039ad5aa751e76d",
+      "src\\buoy_network\\research\\data\\buffers.py": "d5dbfef7672f67de778681e75022e6e8816ca61639e68dd1678f59fed3a1f8cf",
+      "src\\buoy_network\\research\\data\\storage.py": "9f11cc8e5536fd5830e03b1a7f65707d2dda2987541da83c94ddbf7d06ed0077",
+      "src\\buoy_network\\research\\envs\\__init__.py": "49abe97d54a05f4df11dfe118a9c5631d2ea6deacf8588d42cfd29e6c4d67ff3",
+      "src\\buoy_network\\research\\envs\\base.py": "b7796f871443f45cbb3d8ed2fde037fcf5dcbcbd52aa8732201a2be1fdb0bbab",
+      "src\\buoy_network\\research\\envs\\reference.py": "6a452bd89a8d38482a2f54060bfacb07a185aff96c550dceecc56815b103bb0e",
+      "src\\buoy_network\\research\\models\\__init__.py": "a22f3f3adb61421a7408cbb251bc68a47c51d0ad078d298949783b9f32ee8723",
+      "src\\buoy_network\\research\\models\\base.py": "770cc308e87cd3809797e6bb3286a6a046f2aefbbb9859c1be77b18c7e5caf36",
+      "src\\buoy_network\\research\\models\\disabled.py": "1ddb331d8124d304a01886b06d7375959aafafffcf6fe53b8fc6201981fa52d6",
+      "src\\buoy_network\\research\\models\\rewards.py": "8fce4bbaf6114cfac745bcc0126b4273b9923df83e16c6218b11b9c4513f7903",
+      "src\\buoy_network\\research\\policies\\__init__.py": "b39ac534b7b2844df380fb317a9eae5039ff54286325251c4a643bad75669b46",
+      "src\\buoy_network\\research\\policies\\base.py": "b5efa8bf14f10f1fa8f7eb12daab124fee57ed7fe0f73b65ea869e0d221311cc",
+      "src\\buoy_network\\research\\policies\\graph.py": "66b8a8446f376ce3b4732a4630de0eb7fc0f95eee785472c63f311ba569b4be0",
+      "src\\buoy_network\\research\\policies\\rules.py": "57599fed2918198695b314cfb5fbe6d23b1a904ebee648751d2f155f064c2025",
+      "src\\buoy_network\\research\\registry.py": "b8ae7a8404e260682816550b42b68cd1e256ebdb8b73104f5ca7b85550fc56e4",
+      "src\\buoy_network\\research\\runtime\\__init__.py": "7ea4531551070a64263a7cc14e6f4b1ac4e67aac84152647805da8f8d5f30de3",
+      "src\\buoy_network\\research\\runtime\\artifacts.py": "2201d6091bf024dd4c3d09d8c472c94e80879324acf1ac213f78f333bd6a68d9",
+      "src\\buoy_network\\research\\runtime\\checkpoints.py": "999369d937f0e7e800b226b78971cf4a1537d71763e53ebba188799d5add85ff",
+      "src\\buoy_network\\research\\runtime\\device.py": "44f32fc172aa0e3aec79df10cac2ebeada709b7ff0cb45f8d22e578cfd7f4321",
+      "src\\buoy_network\\research\\training\\__init__.py": "f0cd3d78dee0b587e825873d706009811be9ce0453ac56afc8f6a32b577146c2",
+      "src\\buoy_network\\research\\training\\base.py": "62f8338488e6cdec4d8464d739a3789b1be3434c3ba780ad2c5a76a76d2ef8bc",
+      "src\\buoy_network\\research\\training\\ppo.py": "443b11ac5bb80fba3e07128767697b94bf5349d185b6ed86ddd7caef49e2f3f7",
+      "src\\buoy_network\\research\\training\\runner.py": "625d0c2bc5e17154ff79129ca2f255c4ea9cd1aa5c5b288d05dab6be64a8cfb8",
+      "src\\buoy_network\\runner.py": "1179f722c2033a91f2dd6708ca8629faa9195be8d8d65548c2097b262d2986a7",
+      "src\\buoy_network\\scenario_evaluation.py": "cadd28485572e167ad971e4507e458f736a0049815d36f3119debeac8faa7f16",
+      "src\\buoy_network\\task_reward.py": "3ac5f5f209e08f8e997f6006f48d8858ce79ee452f22e9aac376bc021411eabc",
+      "src\\buoy_network\\task_reward_audit.py": "3713240f46e1f6200f58b1def3ad0813a829edfb42defba6fff9e4ff96be23e6",
+      "src\\buoy_network\\thesis_baselines.py": "c64532b5c7afd0bda17b9105bbe83a4f2f3ce1a861444375b4ab2924a2b9de7a",
+      "src\\buoy_network\\thesis_probe_checks.py": "07c73ec8ca2ce1972349248edf9d9aa60bb94ab26445c2e9643ce834fb24e86f",
+      "src\\buoy_network\\transition_data.py": "0c580f74142910a631cbf707acfc24a9914d32925ae19fe335b1322fa7be4bf2",
+      "src\\buoy_network\\utils.py": "c3353713389f266854b48fd43288548c93b6d1e8c79f2f2ecce17e562c58b75b",
+      "src\\buoy_network\\wm_runtime.py": "b10ffb0c2c80da71eb894976cbe522fab4517df17fed4a4758e3889ae8ba58f0",
+      "src\\buoy_network\\world_model.py": "38f4d960de47335c96490150cda4b49a4e7140ab9e465ad84e586745100e09dd",
+      "src\\environment.py": "10237d77741edbbc867c4b95bcb1c84849abe5eb86d3fd44bb7d5e33ab87ee24",
+      "src\\experiment_io.py": "5c213a8ea629e069620fb71957c71bebe48910be05f02a42fc8d371e522cf10a",
+      "src\\legacy_cli.py": "9a4c94ad5edb4027da6b40a9354477d0b0d98c9a202af4c110b56eb8a6273509",
+      "src\\onpolicy\\__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src\\onpolicy\\algorithms\\__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src\\onpolicy\\algorithms\\actor_critic.py": "e8ad139a13a831abda53be99f0b69e118f648bc9e5cde5e944915bdf32d78cce",
+      "src\\onpolicy\\algorithms\\graph_actor_critic.py": "257fa1f214e13801edc56ff192951a253f6665981858f77646a033d4b2c17a60",
+      "src\\onpolicy\\algorithms\\graph_mappo.py": "1a5ad14e9c0bbd548026c3a860021e03f698055e4761ea9a2f386e8fd46f71cb",
+      "src\\onpolicy\\algorithms\\graph_MAPPOPolicy.py": "64a89eb2a6a30c37937bbbe2fc819f1f33b097c8401f7284ceb123952e8e381d",
+      "src\\onpolicy\\algorithms\\mappo.py": "95a5fb9852193cebdc7b071a4b91b43606c75fb91ba511ce50e7aba4f82b84c8",
+      "src\\onpolicy\\algorithms\\MAPPOPolicy.py": "62eb84b6f55c705413b3a6e28f6b38abd099a505a09e725529817ed05db211c7",
+      "src\\onpolicy\\algorithms\\utils\\act.py": "0c57991adf7fb51b592e477f854ee81aa121122bd472e32a10a042866a5d9964",
+      "src\\onpolicy\\algorithms\\utils\\cnn.py": "1d7dd84a51bc666fc4103530b456b60381cbf45e89154fc9daa432dc7acd3b6c",
+      "src\\onpolicy\\algorithms\\utils\\critic_progress.py": "bef5e2dee3e97bfa861989f23f72bfdf4383c4ab5ee977e2feba9d23701284b8",
+      "src\\onpolicy\\algorithms\\utils\\critic_time.py": "a6e96d73bf7705b6acb7f8b11e86d8b617fc0c1a93bfcb1ac8650480e17ec701",
+      "src\\onpolicy\\algorithms\\utils\\distributions.py": "b6a43b5e593685b6240703b55ce7f6c531647847dad89ed857a1ba2cea0957b6",
+      "src\\onpolicy\\algorithms\\utils\\gnn.py": "6b4b9f9e9050d5246a54be2feadceee1dfd38a0f5d47dcc4c9ddddbd34a821b8",
+      "src\\onpolicy\\algorithms\\utils\\mlp.py": "a33503197fa402d308262d580c89c282cf70a4ea7c6b992371309b3a9faec8d0",
+      "src\\onpolicy\\algorithms\\utils\\pm_action_loss.py": "f4169c25360b17ed9eda8a65f371a2284620aca4a09fc4ebb3ea23e881027768",
+      "src\\onpolicy\\algorithms\\utils\\policy_temperature.py": "3e48127cc4e8fdb3a8ca1026f3124e15378b9ffaffa3c652aac2795565fea8c8",
+      "src\\onpolicy\\algorithms\\utils\\popart.py": "9566504af0c4416ec35af27e42427044268df3bed1d0caa141fb044c5c615978",
+      "src\\onpolicy\\algorithms\\utils\\ppo_diagnostics.py": "e88f99fa7b9058414cf053ebed2410f06368dd7100a2003eec5b3e46d47361fe",
+      "src\\onpolicy\\algorithms\\utils\\rnn.py": "a206d716f48485f3884e6ca3a62829ac46f100e449e4d6ac4db54ec50cadafee",
+      "src\\onpolicy\\algorithms\\utils\\test_gnn_batching.py": "3496da5e0f8c369c3a60fa1b85a36bd64711fe79513868b59f4442ee2f40bd80",
+      "src\\onpolicy\\algorithms\\utils\\util.py": "203bd982411e8fd4c8ab86e9804c71bed5d1dd4495634a7066fdf97f15a32168",
+      "src\\onpolicy\\algorithms\\utils\\wm_features.py": "623ba736d02c0e65b8e481ced3443ce621b722cfbf346829e8b1e938f84e8fd5",
+      "src\\onpolicy\\algorithms\\utils\\wm_fusion.py": "9d1f11750a21ce8315daa24205ff68d4a9b91861727b561aa93e366530764cde",
+      "src\\onpolicy\\config.py": "fbf3e4ff507a3c539d5864cce005a7a1448abd09427c9419479fb6be57789dd5",
+      "src\\onpolicy\\envs\\__init__.py": "f85c66fa8b24baf950f5e5534d2a2187a43bc661ae3b5078ba5426f318892f44",
+      "src\\onpolicy\\envs\\env_wrappers.py": "5decc7b6f286056cb28a98d0a27f1c0ca8f186f2073ed4b55ec055a983dc2969",
+      "src\\onpolicy\\envs\\mpe\\core.py": "bf24bd9ac0a2c2fc86756e97e3b4f5bfd1205eaf211b35063f0f672ad3d469ff",
+      "src\\onpolicy\\envs\\mpe\\environment.py": "856e37a864e7259ba92f8bf3af1a0afc7152cfa989053977ef92a0d7eafafab4",
+      "src\\onpolicy\\envs\\mpe\\MPE_env.py": "cb789e977f7048b5c5e257d933c99172e5c8bbeceeb65d985135242ec563ccdb",
+      "src\\onpolicy\\envs\\mpe\\multi_discrete.py": "e8961e03e089dbe68f50da6a194ce2baa5fa554b26dabd87c468e7c54cb1a855",
+      "src\\onpolicy\\envs\\mpe\\rendering.py": "dd03465baec9e3e973a7a5814a4640855c0c8db3a881bf782a3b5539627ee511",
+      "src\\onpolicy\\envs\\mpe\\scenario.py": "d9482463924346880c2678e7098ef159d8e66c90c9a9ded7867415e8c70a3da8",
+      "src\\onpolicy\\envs\\mpe\\scenarios\\__init__.py": "9accdde3d4c122b1a016bfa6746e13452d37f2ce9f491a88c9773db04c233cfe",
+      "src\\onpolicy\\envs\\mpe\\scenarios\\simple_adversary.py": "a75be4288e98303858804fa19edb70b11d5690a3201de4f4b6f88eb0d84b3773",
+      "src\\onpolicy\\envs\\mpe\\scenarios\\simple_attack.py": "8c1638aea0c66463d8cd9054d3eda677e53afbd3ecddb70826176058e917cabb",
+      "src\\onpolicy\\envs\\mpe\\scenarios\\simple_crypto.py": "bff9c6316967a4d70d83460a83f7b50c74d0d4d9c7f03d44f26407780174b437",
+      "src\\onpolicy\\envs\\mpe\\scenarios\\simple_crypto_display.py": "f6b1d951d90eb3198e4003b7d98d39f4f6c82125a04187c9da10229b0e958042",
+      "src\\onpolicy\\envs\\mpe\\scenarios\\simple_push.py": "d9dcbfaf9fce46db220160ba33a0eface842b36d5b660c2a52d9c617db950a31",
+      "src\\onpolicy\\envs\\mpe\\scenarios\\simple_reference.py": "3d50609eea35be4a646906c22fc5b37bfa9bace0e56c6a19e0731de3865accb3",
+      "src\\onpolicy\\envs\\mpe\\scenarios\\simple_speaker_listener.py": "01c5b72e962a75e847f135d0d146072146a9b7c51de67674bd720db384a9415f",
+      "src\\onpolicy\\envs\\mpe\\scenarios\\simple_spread.py": "322ff34961af2451286f757fd69d5a9bce9ab955a20b752db946aad2e8a4550a",
+      "src\\onpolicy\\envs\\mpe\\scenarios\\simple_tag.py": "c053e1d95bac5ff4107b27293f64206bf054355a2f21f243c698afe8e2dbb1ed",
+      "src\\onpolicy\\envs\\mpe\\scenarios\\simple_world_comm.py": "75b9da06446c1c08b1fefb2e0405f54e839d1a2d50269bb932c92a5aaf774913",
+      "src\\onpolicy\\runner\\separated\\base_runner.py": "2e96f888e78a246846c56840b00e7ddeb730823258edb71e873065407d1c9393",
+      "src\\onpolicy\\runner\\separated\\graph_mpe_runner.py": "acfae0c24509d571c9c3f3cac4e3eeba353d611db98a84798d58e2b05d03a861",
+      "src\\onpolicy\\runner\\separated\\mpe_runner.py": "01875416e9a985c642fd12de056497f92454ec25dad2372211ecb6dcee1e5a25",
+      "src\\onpolicy\\runner\\shared\\base_runner.py": "6f3944c79e84c0ddfca35ca298591f460ce212c6e79b27116f8647e7b94a1151",
+      "src\\onpolicy\\runner\\shared\\buoy_runner.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src\\onpolicy\\runner\\shared\\graph_mpe_runner.py": "cc8b8bd1ed6a35e64b62f61b882bde5bb81b431d394e84f19e6ac444253b53fc",
+      "src\\onpolicy\\runner\\shared\\mpe_runner.py": "91d2e96ca48686b64bdfc1b84af120ed65936a6a5893053d127efa9bfaaadcf8",
+      "src\\onpolicy\\scripts\\eval_mpe.py": "6aea3d935f37f7f448c25672dc05a1db5c16314b73de9da7c3bbb639463fc783",
+      "src\\onpolicy\\scripts\\train_mpe.py": "950e8433b907e37e11f7b0dbc025c9b8781c2c2e52c622e2097483ad0c987ada",
+      "src\\onpolicy\\utils\\__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src\\onpolicy\\utils\\graph_buffer.py": "c93ed3af929eb4cc10f7fa1a400d06ce411e63558c43578214af37487250f4a5",
+      "src\\onpolicy\\utils\\multi_discrete.py": "7afdedfb5dce3f8cf2d6652e1ee4cfd8fb150c803b9f2e26a440f83c74d9f285",
+      "src\\onpolicy\\utils\\separated_buffer.py": "87cfde4ec2af88cbbaba01f6bee07d8cb4c8e039e5be2bc5e0006db89a190344",
+      "src\\onpolicy\\utils\\shared_buffer.py": "c89cd77f25f849eb1bccc88d2a1c287ce09f402570cf444db25a3389d461fc7c",
+      "src\\onpolicy\\utils\\util.py": "e469e353b79c028f30ea4bd21b6c54b1ee70d39a9c56f25e5e8e580bf01cd36e",
+      "src\\onpolicy\\utils\\valuenorm.py": "cdbcda052997bea6e207123ba85cb8d4ff4d50641e74e46a42e347b28d00d5b3",
+      "src\\replay_buffer.py": "fd58f14bfee055e63baa034c72a4ec10a3ab15737b4bea800d7f1c53d98e2a3d",
+      "src\\runner.py": "ac26f2e3428c4b571bb0023e2b40afb206f40a18547e11ede101f9a1cbde6997"
+    }
+  },
+  "protocol_sha256": "a4be7889bede8b93fe9bf8b7d1e7d98feed5f991d5b9d69f24c9df4becf128fb",
+  "all_thesis_experiments_completed": false,
+  "extension_root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\component_failure_extension\\20261112_165908_297654",
+  "extension_status": "completed",
+  "extension_tests_passed": 2,
+  "total_online_evaluations": 42,
+  "total_environment_steps": 6720,
+  "extension_scene": 9402,
+  "extension_selection": "Known prior negative scene, diagnostic selection; not blind testing",
+  "engineering_passed": true,
+  "total_tasks": 43,
+  "unit_tests_passed": 9,
+  "unit_tests_failed": 0,
+  "factual_exact": 30,
+  "inference_interventions": 12,
+  "online_environment_steps": 6720,
+  "native_freeze_checks": 42,
+  "wm_gpu_checks": 27,
+  "max_pm_boundary_error": 6.245004513516506e-17,
+  "started": "2026-11-12T16:51:56.745914+08:00",
+  "finished": "2026-11-12T17:09:29.902638+08:00",
+  "report_sha256": {
+    "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\component_validation\\20261112_164816_831429\\report.json": "7a9d4212d357fe446f50051972ef5c266a22192d4ce7e3028821bf8bb8d872f5",
+    "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\component_failure_extension\\20261112_165908_297654\\report.json": "825639bbc7360ba3a270fab5e041464f6c98fe3b506732579bd11452c633c39e"
+  },
+  "artifacts": {
+    "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\component_validation\\20261112_164816_831429\\wm_validation.png": "82e1ab637d0039d776410022429d0a2d73da97555219bb20e2fb794094cf787d",
+    "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\component_validation\\20261112_164816_831429\\wm_validation.svg": "3edff5390cfa7163f90fa09366151f87c1ab2b0640df5072f4bc4a0783f267dd",
+    "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\component_validation\\20261112_164816_831429\\wm_validation.pdf": "1ad96167982eb0ffee033b714b5412e17f541ac6d92c5230de2b5016f1887587",
+    "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\component_validation\\20261112_164816_831429\\pm_validation.png": "a30aca530c7623d5af0aacda840db0a4bb3179d34e7a1d1fcde18b923e926b24",
+    "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\component_validation\\20261112_164816_831429\\pm_validation.svg": "eeb4c9d76b3cd062bf2470285cad8a5ec788cc4cd0b0e3eca9613a1345d843a5",
+    "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\component_validation\\20261112_164816_831429\\pm_validation.pdf": "46fbc27f6fc3c6d4fcca85682fdbaad580bedf8d886e6a0291f80e303f7d5535",
+    "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\component_validation\\20261112_164816_831429\\failure_comparison.png": "2d168779e04c22558d94b008c9eb9f7adf93215ba653b24657c2e7d86154bc88",
+    "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\component_validation\\20261112_164816_831429\\failure_comparison.svg": "6055e5bf5cf52a18e411ac1453d1229926a1598aa5add6a201df7dc94eec8976",
+    "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\component_validation\\20261112_164816_831429\\failure_comparison.pdf": "3226c1fd8cc23122f584ee5b5f5ddef6297dd1c6dd651805f58374e1943bde46",
+    "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\component_validation\\20261112_164816_831429\\packet_routes.png": "a565996529b7ca9eea28aab2e1892946633d9b48dbeafbb836c49c58fea34592",
+    "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\component_validation\\20261112_164816_831429\\packet_routes.svg": "93d46e66599f2b9e97eabb633fa7894eeeac7657a2f826dc5c8aee7fec2cc2d5",
+    "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\component_validation\\20261112_164816_831429\\packet_routes.pdf": "eb102c2ea0d3a478300694aad61ddae84abe33e22c86db5fc99bbd5e84612722",
+    "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\component_validation\\20261112_164816_831429\\presentation\\packet_routes_clean.json": "a418a5e5af0579483ff8c8f84cc7b8a331393cd3d7d061b8cbcd339b42a89d21",
+    "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\component_validation\\20261112_164816_831429\\presentation\\packet_routes_clean.pdf": "a1023bfc83b2abb1197997e3a8d2b9bdfa0594c2201623b2a9e10ba01c09c242",
+    "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\component_validation\\20261112_164816_831429\\presentation\\packet_routes_clean.png": "fcef2436139b5a4e70be1c37b654e6d51dfaac467f2f54694f652ff11559fdcb",
+    "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\component_validation\\20261112_164816_831429\\presentation\\packet_routes_clean.svg": "794defe3cc3bb4fd441ba51d99309c797b543b04e1adf8923ed9d399bbd6942a",
+    "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\component_failure_extension\\20261112_165908_297654\\failure_scene9402.png": "43548474a2f9ce027f78bd9a9e74fc698c3f445bf6bf4f8e51e4c3a28eba06b7",
+    "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\component_failure_extension\\20261112_165908_297654\\failure_scene9402.svg": "7cd70745b8f6297d698bcb17536c35633da306fa34fe8bace8784564a4f537dc",
+    "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\component_failure_extension\\20261112_165908_297654\\failure_scene9402.pdf": "14a609109e80b51014594a2788d84574db35db98aa999ddafaf9fa9f6ee82bbb",
+    "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\component_failure_extension\\20261112_165908_297654\\presentation\\packet_routes_combo33_clean.json": "a63c2972fe5afe5a0b31ed2722b577fb91497022f2bdc7b2ac0d7fbc97ee363c",
+    "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\component_failure_extension\\20261112_165908_297654\\presentation\\packet_routes_combo33_clean.pdf": "57b55732be2b8245275fc26e27abd04484a5257b2bef0946a2ec340f6939a476",
+    "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\component_failure_extension\\20261112_165908_297654\\presentation\\packet_routes_combo33_clean.png": "2a0a40cc6358ac54abe12625a21e2183e47ce9f1df4306b74add15299f184dae",
+    "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\component_failure_extension\\20261112_165908_297654\\presentation\\packet_routes_combo33_clean.svg": "f2f3bf5d503fd2c0c950ef281fd9e7528f4ac026a90efa142cb429c937634f18",
+    "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\component_failure_extension\\20261112_165908_297654\\presentation\\packet_routes_pm33_clean.json": "1af0db8e1d1cb22a8b48f89c42fbc35d871b3aa9f377d6bc914dda600c844057",
+    "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\component_failure_extension\\20261112_165908_297654\\presentation\\packet_routes_pm33_clean.pdf": "8196c9eaea9c81a820510d39ad1cad5a8d368962d838a0000fc775daaf7d0052",
+    "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\component_failure_extension\\20261112_165908_297654\\presentation\\packet_routes_pm33_clean.png": "c02d85adde40abd4b3dce2ce01db66c3c4ade3c01ac9ffa65f84ab1e449025d8",
+    "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\component_failure_extension\\20261112_165908_297654\\presentation\\packet_routes_pm33_clean.svg": "6ede5b220a2aea02cdace123df5fb9681f9e3f83cd3cbaceeb749085d622d731"
+  },
+  "component_performance_checks": {
+    "wm_ack_better_than_history": true,
+    "wm_queue_better_than_zero": true,
+    "wm_motion_better_than_rule": false,
+    "pm_nll_better_than_prior": true,
+    "pm_window_brier_better_than_prior": true,
+    "pm_task_return_better_than_prior": true
+  },
+  "test202_project_blind": false,
+  "test202_history_source": "docs/TG_MAPPO_WM_PRETRAIN.md:23",
+  "acceptance_path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\component_failure_extension\\20261112_165908_297654\\acceptance.json",
+  "acceptance_sha256": "94a4c990ca7f616b84aadcf1bc1a1b0939d06ccafc076a9ce216a6fa52c80248",
+  "extension_controller_pid": 60048,
+  "offline_test202_qualification": "Historical first WM exploration already evaluated scene202; current frozen-version recheck, not project-wide untouched blind test",
+  "case_aggregate": [
+    {
+      "condition": "loss_high",
+      "algorithm": "PM",
+      "mode": "factual",
+      "scene": 9402,
+      "mean": 0.8680555555555556,
+      "sample_sd": 0.012028130608117225,
+      "seeds": [
+        11,
+        22,
+        33
+      ],
+      "delivery_by_seed": [
+        0.875,
+        0.8541666666666666,
+        0.875
+      ],
+      "wait_decisions": 329,
+      "waits_outside_teacher_set": 202,
+      "loop_transfers": 0,
+      "wm_changes_action": 0,
+      "wm_introduces_wait": 0,
+      "wait_nodes": [
+        [
+          "0",
+          160
+        ],
+        [
+          "4",
+          160
+        ],
+        [
+          "20",
+          5
+        ],
+        [
+          "5",
+          4
+        ],
+        [
+          "1",
+          0
+        ],
+        [
+          "2",
+          0
+        ],
+        [
+          "3",
+          0
+        ],
+        [
+          "6",
+          0
+        ],
+        [
+          "7",
+          0
+        ],
+        [
+          "8",
+          0
+        ],
+        [
+          "9",
+          0
+        ],
+        [
+          "10",
+          0
+        ],
+        [
+          "11",
+          0
+        ],
+        [
+          "12",
+          0
+        ],
+        [
+          "13",
+          0
+        ],
+        [
+          "14",
+          0
+        ],
+        [
+          "15",
+          0
+        ],
+        [
+          "16",
+          0
+        ],
+        [
+          "17",
+          0
+        ],
+        [
+          "18",
+          0
+        ],
+        [
+          "19",
+          0
+        ],
+        [
+          "21",
+          0
+        ],
+        [
+          "22",
+          0
+        ],
+        [
+          "23",
+          0
+        ]
+      ]
+    },
+    {
+      "condition": "loss_high",
+      "algorithm": "PM_WM",
+      "mode": "factual",
+      "scene": 9402,
+      "mean": 0.7291666666666666,
+      "sample_sd": 0.0751156515721664,
+      "seeds": [
+        11,
+        22,
+        33
+      ],
+      "delivery_by_seed": [
+        0.75,
+        0.7916666666666666,
+        0.6458333333333334
+      ],
+      "wait_decisions": 405,
+      "waits_outside_teacher_set": 295,
+      "loop_transfers": 0,
+      "wm_changes_action": 220,
+      "wm_introduces_wait": 0,
+      "wait_nodes": [
+        [
+          "4",
+          160
+        ],
+        [
+          "10",
+          160
+        ],
+        [
+          "5",
+          68
+        ],
+        [
+          "11",
+          14
+        ],
+        [
+          "15",
+          3
+        ],
+        [
+          "0",
+          0
+        ],
+        [
+          "1",
+          0
+        ],
+        [
+          "2",
+          0
+        ],
+        [
+          "3",
+          0
+        ],
+        [
+          "6",
+          0
+        ],
+        [
+          "7",
+          0
+        ],
+        [
+          "8",
+          0
+        ],
+        [
+          "9",
+          0
+        ],
+        [
+          "12",
+          0
+        ],
+        [
+          "13",
+          0
+        ],
+        [
+          "14",
+          0
+        ],
+        [
+          "16",
+          0
+        ],
+        [
+          "17",
+          0
+        ],
+        [
+          "18",
+          0
+        ],
+        [
+          "19",
+          0
+        ],
+        [
+          "20",
+          0
+        ],
+        [
+          "21",
+          0
+        ],
+        [
+          "22",
+          0
+        ],
+        [
+          "23",
+          0
+        ]
+      ]
+    },
+    {
+      "condition": "loss_high",
+      "algorithm": "PM_WM",
+      "mode": "no_wm_residual",
+      "scene": 9402,
+      "mean": 0.7638888888888888,
+      "sample_sd": 0.06696979695133996,
+      "seeds": [
+        11,
+        22,
+        33
+      ],
+      "delivery_by_seed": [
+        0.6875,
+        0.8125,
+        0.7916666666666666
+      ],
+      "wait_decisions": 649,
+      "waits_outside_teacher_set": 488,
+      "loop_transfers": 0,
+      "wm_changes_action": 202,
+      "wm_introduces_wait": 0,
+      "wait_nodes": [
+        [
+          "5",
+          164
+        ],
+        [
+          "10",
+          161
+        ],
+        [
+          "4",
+          160
+        ],
+        [
+          "11",
+          160
+        ],
+        [
+          "20",
+          3
+        ],
+        [
+          "0",
+          1
+        ],
+        [
+          "1",
+          0
+        ],
+        [
+          "2",
+          0
+        ],
+        [
+          "3",
+          0
+        ],
+        [
+          "6",
+          0
+        ],
+        [
+          "7",
+          0
+        ],
+        [
+          "8",
+          0
+        ],
+        [
+          "9",
+          0
+        ],
+        [
+          "12",
+          0
+        ],
+        [
+          "13",
+          0
+        ],
+        [
+          "14",
+          0
+        ],
+        [
+          "15",
+          0
+        ],
+        [
+          "16",
+          0
+        ],
+        [
+          "17",
+          0
+        ],
+        [
+          "18",
+          0
+        ],
+        [
+          "19",
+          0
+        ],
+        [
+          "21",
+          0
+        ],
+        [
+          "22",
+          0
+        ],
+        [
+          "23",
+          0
+        ]
+      ]
+    },
+    {
+      "condition": "walk_fast",
+      "algorithm": "PM",
+      "mode": "factual",
+      "scene": 9402,
+      "mean": 0.9583333333333334,
+      "sample_sd": 0.041666666666666685,
+      "seeds": [
+        11,
+        22,
+        33
+      ],
+      "delivery_by_seed": [
+        0.9166666666666666,
+        0.9583333333333334,
+        1.0
+      ],
+      "wait_decisions": 332,
+      "waits_outside_teacher_set": 314,
+      "loop_transfers": 0,
+      "wm_changes_action": 0,
+      "wm_introduces_wait": 0,
+      "wait_nodes": [
+        [
+          "0",
+          160
+        ],
+        [
+          "4",
+          160
+        ],
+        [
+          "10",
+          7
+        ],
+        [
+          "20",
+          5
+        ],
+        [
+          "1",
+          0
+        ],
+        [
+          "2",
+          0
+        ],
+        [
+          "3",
+          0
+        ],
+        [
+          "5",
+          0
+        ],
+        [
+          "6",
+          0
+        ],
+        [
+          "7",
+          0
+        ],
+        [
+          "8",
+          0
+        ],
+        [
+          "9",
+          0
+        ],
+        [
+          "11",
+          0
+        ],
+        [
+          "12",
+          0
+        ],
+        [
+          "13",
+          0
+        ],
+        [
+          "14",
+          0
+        ],
+        [
+          "15",
+          0
+        ],
+        [
+          "16",
+          0
+        ],
+        [
+          "17",
+          0
+        ],
+        [
+          "18",
+          0
+        ],
+        [
+          "19",
+          0
+        ],
+        [
+          "21",
+          0
+        ],
+        [
+          "22",
+          0
+        ],
+        [
+          "23",
+          0
+        ]
+      ]
+    },
+    {
+      "condition": "walk_fast",
+      "algorithm": "PM_WM",
+      "mode": "factual",
+      "scene": 9402,
+      "mean": 0.9444444444444444,
+      "sample_sd": 0.0962250448649376,
+      "seeds": [
+        11,
+        22,
+        33
+      ],
+      "delivery_by_seed": [
+        0.8333333333333334,
+        1.0,
+        1.0
+      ],
+      "wait_decisions": 490,
+      "waits_outside_teacher_set": 476,
+      "loop_transfers": 0,
+      "wm_changes_action": 42,
+      "wm_introduces_wait": 0,
+      "wait_nodes": [
+        [
+          "5",
+          162
+        ],
+        [
+          "4",
+          160
+        ],
+        [
+          "10",
+          160
+        ],
+        [
+          "11",
+          7
+        ],
+        [
+          "20",
+          1
+        ],
+        [
+          "0",
+          0
+        ],
+        [
+          "1",
+          0
+        ],
+        [
+          "2",
+          0
+        ],
+        [
+          "3",
+          0
+        ],
+        [
+          "6",
+          0
+        ],
+        [
+          "7",
+          0
+        ],
+        [
+          "8",
+          0
+        ],
+        [
+          "9",
+          0
+        ],
+        [
+          "12",
+          0
+        ],
+        [
+          "13",
+          0
+        ],
+        [
+          "14",
+          0
+        ],
+        [
+          "15",
+          0
+        ],
+        [
+          "16",
+          0
+        ],
+        [
+          "17",
+          0
+        ],
+        [
+          "18",
+          0
+        ],
+        [
+          "19",
+          0
+        ],
+        [
+          "21",
+          0
+        ],
+        [
+          "22",
+          0
+        ],
+        [
+          "23",
+          0
+        ]
+      ]
+    },
+    {
+      "condition": "walk_fast",
+      "algorithm": "PM_WM",
+      "mode": "no_wm_residual",
+      "scene": 9402,
+      "mean": 0.9305555555555556,
+      "sample_sd": 0.12028130608117206,
+      "seeds": [
+        11,
+        22,
+        33
+      ],
+      "delivery_by_seed": [
+        0.7916666666666666,
+        1.0,
+        1.0
+      ],
+      "wait_decisions": 649,
+      "waits_outside_teacher_set": 631,
+      "loop_transfers": 0,
+      "wm_changes_action": 200,
+      "wm_introduces_wait": 0,
+      "wait_nodes": [
+        [
+          "5",
+          165
+        ],
+        [
+          "10",
+          161
+        ],
+        [
+          "4",
+          160
+        ],
+        [
+          "11",
+          160
+        ],
+        [
+          "20",
+          3
+        ],
+        [
+          "0",
+          0
+        ],
+        [
+          "1",
+          0
+        ],
+        [
+          "2",
+          0
+        ],
+        [
+          "3",
+          0
+        ],
+        [
+          "6",
+          0
+        ],
+        [
+          "7",
+          0
+        ],
+        [
+          "8",
+          0
+        ],
+        [
+          "9",
+          0
+        ],
+        [
+          "12",
+          0
+        ],
+        [
+          "13",
+          0
+        ],
+        [
+          "14",
+          0
+        ],
+        [
+          "15",
+          0
+        ],
+        [
+          "16",
+          0
+        ],
+        [
+          "17",
+          0
+        ],
+        [
+          "18",
+          0
+        ],
+        [
+          "19",
+          0
+        ],
+        [
+          "21",
+          0
+        ],
+        [
+          "22",
+          0
+        ],
+        [
+          "23",
+          0
+        ]
+      ]
+    }
+  ]
+}
