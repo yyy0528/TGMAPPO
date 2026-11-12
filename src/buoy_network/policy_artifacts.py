@@ -11,6 +11,7 @@ from .learning_rate import schedule_spec, optimizer_rates
 from onpolicy.algorithms.utils.critic_time import time_mode
 from onpolicy.algorithms.utils.critic_progress import context_mode
 from onpolicy.algorithms.utils.pm_action_loss import action_credit_settings
+from onpolicy.algorithms.utils.wm_fusion import residual_scale
 
 TRAINING_IMPLEMENTATION = "tg_ppo_v3_lr_switch"
 
@@ -45,6 +46,10 @@ def load_policy(learner, path):
             raise ValueError('WM Actor input normalization mismatch')
         if payload.get('wm_actor_fusion', 'shared') != getattr(learner.all_args, 'wm_actor_fusion', 'shared'):
             raise ValueError('WM Actor fusion configuration mismatch')
+        scale = residual_scale(learner.all_args)
+        if (payload.get('wm_actor_residual_scale', 1.0) != scale
+                or getattr(learner.policy.actor, 'wm_residual_scale', 1.0) != scale):
+            raise ValueError('WM Actor residual scale mismatch')
         from onpolicy.algorithms.utils.policy_temperature import temperature_from_args
         if getattr(learner.policy.actor, 'policy_temperature', 1.0) != temperature_from_args(learner.all_args):
             raise ValueError('Runtime policy temperature differs from configuration')
@@ -116,6 +121,9 @@ def save_policy(learner, run_dir):
     wm_calibration = getattr(learner,'wm_calibration_metadata',None)
     from onpolicy.algorithms.utils.policy_temperature import temperature_from_args
     policy_temperature = temperature_from_args(learner.all_args)
+    wm_scale = residual_scale(learner.all_args)
+    if getattr(learner.policy.actor, 'wm_residual_scale', 1.0) != wm_scale:
+        raise ValueError('Runtime WM scale differs from configuration')
     if getattr(learner.policy.actor, 'policy_temperature', 1.0) != policy_temperature:
         raise ValueError('Runtime policy temperature differs from configuration')
     resources = {"actor_trainable": sum(p.numel() for p in learner.policy.actor.parameters() if p.requires_grad),
@@ -146,6 +154,7 @@ def save_policy(learner, run_dir):
             "actor_extra_width": getattr(learner.all_args, "actor_extra_width", 0),
             "wm_actor_input": getattr(learner.all_args, 'wm_actor_input', 'raw'),
             "wm_actor_fusion": getattr(learner.all_args, 'wm_actor_fusion', 'shared'),
+            "wm_actor_residual_scale": wm_scale,
             "policy_temperature": policy_temperature,
             "wm_actor_calibration_sha256": (wm_calibration['sha256'] if wm_calibration else None),
             "critic_time_mode":time_mode(learner.all_args),
@@ -167,6 +176,7 @@ def save_policy(learner, run_dir):
     metadata.update(profile=learner.profile, resources=resources, reward_contract=reward_contract(learner.all_args),
                     wm_actor_input=getattr(learner.all_args, 'wm_actor_input', 'raw'),
                     wm_actor_fusion=getattr(learner.all_args, 'wm_actor_fusion', 'shared'),
+                    wm_actor_residual_scale=wm_scale,
                     policy_temperature=policy_temperature,
                     wm_actor_calibration=getattr(learner,'wm_calibration_metadata',None),
                     pm_critic_context=context_mode(learner.all_args),

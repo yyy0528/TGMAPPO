@@ -120,6 +120,8 @@ class GR_Actor(nn.Module):
         self.wm_actor_input = wm_input_mode(args)
         from onpolicy.algorithms.utils.wm_fusion import fusion_mode
         self.wm_actor_fusion = fusion_mode(args)
+        from onpolicy.algorithms.utils.wm_fusion import residual_scale
+        self.wm_residual_scale = residual_scale(args)
         self.actor_extra_width = getattr(args, "actor_extra_width", 0)
         if self.actor_extra_width:
             if self.use_wm or self.actor_extra_width < 1:
@@ -171,7 +173,10 @@ class GR_Actor(nn.Module):
         mask = available_actions > 0
         if not mask.any(-1).all():
             raise ValueError("WM Actor has no legal action")
-        logits = self.act.action_out.linear(features) + self._wm_residual(features, wm, mask)
+        residual = self._wm_residual(features, wm, mask)
+        if self.wm_residual_scale != 1.0:
+            residual = residual * self.wm_residual_scale
+        logits = self.act.action_out.linear(features) + residual
         logits = logits.masked_fill(~mask, float('-inf'))
         logits = logits - logits.max(-1, keepdim=True)[0]
         from onpolicy.algorithms.utils.policy_temperature import temper_distribution

@@ -1,4 +1,5 @@
 """Candidate-conditioned forecast residuals with no prediction-free capacity."""
+import math
 import torch
 
 
@@ -10,6 +11,15 @@ def fusion_mode(args):
                                   or getattr(args, 'wm_actor_input', 'raw') != 'residual_scaled'):
         raise ValueError('Action-conditioned WM requires enabled residual_scaled inputs')
     return mode
+
+
+def residual_scale(args):
+    value = float(getattr(args, 'wm_actor_residual_scale', 1.0))
+    if not math.isfinite(value) or value < 0:
+        raise ValueError('WM residual scale must be finite and nonnegative')
+    if value != 1.0 and not getattr(args, 'use_wm_actor', False):
+        raise ValueError('WM residual scaling requires WM enabled')
+    return value
 
 
 def action_conditioned_residual(fusion, features, predictions, available, action_weights):
