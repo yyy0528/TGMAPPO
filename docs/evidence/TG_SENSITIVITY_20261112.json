@@ -1,5 +1,5 @@
 {
-  "status": "running_pilot",
+  "status": "completed",
   "root": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_sensitivity20\\20261112_182652_972485",
   "controller_pid": 8076,
   "unit_tests_passed": 52,
@@ -387,36 +387,210 @@
   "preflight_passed": 5,
   "legacy_default_exact": true,
   "reused_models_verified": 6,
-  "preflight_jobs": [
+  "preflight_jobs": 5,
+  "engineering_passed": true,
+  "unit_tests_failed": 0,
+  "unit_tests_skipped": 0,
+  "new_models": 15,
+  "reused_models": 6,
+  "effective_models": 21,
+  "new_training_steps": 24800,
+  "new_frozen_evaluation_steps": 7600,
+  "total_effective20_frozen_cells": 63,
+  "preflight_frozen_cells": 5,
+  "alpha_invariance_exact": true,
+  "alpha_invariance_sha256": "93857e44394f39b8756697a1c0f7717db2362b53eb3f842d2c6308b948064b10",
+  "report_sha256": "5d78a6a88dd62528c9ed9f0a0ece488833677475e9ed46f62a116c74ed00bda4",
+  "csv_sha256": "36f5f0b6cf507af1121dc1d858fc7cd0565a0233ebf61aec7a7ed0d7fbe81249",
+  "artifacts_sha256": {
+    "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_sensitivity20\\20261112_182652_972485\\sensitivity20.png": "25f2c54f2179fe0a56105ac10e69755e40737df74863c789c0293f2b8e0513c3",
+    "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_sensitivity20\\20261112_182652_972485\\sensitivity20.svg": "9775ce45eaa75c00c08a612e58ebd9177642f1ec2aafb7946544ed8f74906546",
+    "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_sensitivity20\\20261112_182652_972485\\sensitivity20.pdf": "298302484b5666f69823bfda7731ad5cf9f4398819b9729a8cc9208fb7e87bba",
+    "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\docs\\evidence\\TG_SENSITIVITY20_20261112.png": "25f2c54f2179fe0a56105ac10e69755e40737df74863c789c0293f2b8e0513c3",
+    "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_sensitivity20\\20261112_182652_972485\\training_curves20.png": "a93f0b67d7ce60d9ba1ecff8a3fa6df6838d5fc4cf18de78691c9dfa115a5059",
+    "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_sensitivity20\\20261112_182652_972485\\training_curves20.svg": "9604373662d008ae91b4f19903127bc620bfd24d0b969c035a379da02cb7f7f9",
+    "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_sensitivity20\\20261112_182652_972485\\training_curves20.pdf": "bebe7fe8681f050d540f51eca8000813edc988d1b4cf98f1b3d5999aa7b8abed",
+    "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\docs\\evidence\\TG_TRAINING_CURVES20_20261112.png": "a93f0b67d7ce60d9ba1ecff8a3fa6df6838d5fc4cf18de78691c9dfa115a5059"
+  },
+  "started": "2026-11-12T18:28:31.712201+08:00",
+  "finished": "2026-11-12T19:47:32.393979+08:00",
+  "elapsed_controller_seconds": 4740.681777954102,
+  "stable300_improvement_verified": false,
+  "selected_new_default": false,
+  "blind_test_used": false,
+  "source_code_commit": "c06eb721",
+  "acceptance_path": "D:\\programs\\20251012\\20250829buoy\\20240607buoy\\buoy_network\\results\\tg_sensitivity20\\20261112_182652_972485\\acceptance.json",
+  "acceptance_sha256": "99b20292fa03264d788733c1ae572c970424bdf1dcb8a97845e485caa2a95cd2",
+  "cells": [
     {
-      "tag": "preflight_center_22",
-      "delivery": 0.0,
-      "wall_seconds": 56.99511169991456,
-      "legacy_exact": true
+      "variant": "center",
+      "coordinates": {
+        "alpha": 0.1,
+        "aux": 0.1,
+        "wm_scale": 1.0
+      },
+      "training_seeds": [
+        11,
+        22,
+        33
+      ],
+      "n": 3,
+      "mean": 1.0,
+      "sample_sd": 0.0,
+      "training_delivery_mean": 0.4534722222222222,
+      "reused": 3,
+      "scenes": [
+        8001,
+        8002,
+        8003
+      ],
+      "scope": "20-episode development sensitivity, not300 or unseen generalization"
     },
     {
-      "tag": "preflight_alpha0_22",
-      "delivery": 0.0,
-      "wall_seconds": 52.76528909988701,
-      "legacy_exact": null
+      "variant": "alpha0",
+      "coordinates": {
+        "alpha": 0.0,
+        "aux": 0.1,
+        "wm_scale": 1.0
+      },
+      "training_seeds": [
+        11,
+        22,
+        33
+      ],
+      "n": 3,
+      "mean": 1.0,
+      "sample_sd": 0.0,
+      "training_delivery_mean": 0.4534722222222222,
+      "reused": 0,
+      "scenes": [
+        8001,
+        8002,
+        8003
+      ],
+      "scope": "20-episode development sensitivity, not300 or unseen generalization"
     },
     {
-      "tag": "preflight_aux0_22",
-      "delivery": 0.0,
-      "wall_seconds": 48.52359280013479,
-      "legacy_exact": null
+      "variant": "alpha02",
+      "coordinates": {
+        "alpha": 0.2,
+        "aux": 0.1,
+        "wm_scale": 1.0
+      },
+      "training_seeds": [
+        11,
+        22,
+        33
+      ],
+      "n": 3,
+      "mean": 1.0,
+      "sample_sd": 0.0,
+      "training_delivery_mean": 0.4534722222222222,
+      "reused": 0,
+      "scenes": [
+        8001,
+        8002,
+        8003
+      ],
+      "scope": "20-episode development sensitivity, not300 or unseen generalization"
     },
     {
-      "tag": "preflight_wm0_22",
-      "delivery": 0.0,
-      "wall_seconds": 46.565038699889556,
-      "legacy_exact": null
+      "variant": "aux0",
+      "coordinates": {
+        "alpha": 0.1,
+        "aux": 0.0,
+        "wm_scale": 1.0
+      },
+      "training_seeds": [
+        11,
+        22,
+        33
+      ],
+      "n": 3,
+      "mean": 0.42592592592592593,
+      "sample_sd": 0.37205202714855595,
+      "training_delivery_mean": 0.31319444444444444,
+      "reused": 0,
+      "scenes": [
+        8001,
+        8002,
+        8003
+      ],
+      "scope": "20-episode development sensitivity, not300 or unseen generalization"
     },
     {
-      "tag": "preflight_wm2_22",
-      "delivery": 0.0,
-      "wall_seconds": 45.848039499949664,
-      "legacy_exact": null
+      "variant": "aux02",
+      "coordinates": {
+        "alpha": 0.1,
+        "aux": 0.2,
+        "wm_scale": 1.0
+      },
+      "training_seeds": [
+        11,
+        22,
+        33
+      ],
+      "n": 3,
+      "mean": 1.0,
+      "sample_sd": 0.0,
+      "training_delivery_mean": 0.50625,
+      "reused": 3,
+      "scenes": [
+        8001,
+        8002,
+        8003
+      ],
+      "scope": "20-episode development sensitivity, not300 or unseen generalization"
+    },
+    {
+      "variant": "wm0",
+      "coordinates": {
+        "alpha": 0.1,
+        "aux": 0.1,
+        "wm_scale": 0.0
+      },
+      "training_seeds": [
+        11,
+        22,
+        33
+      ],
+      "n": 3,
+      "mean": 0.9027777777777778,
+      "sample_sd": 0.04861111111111113,
+      "training_delivery_mean": 0.46319444444444446,
+      "reused": 0,
+      "scenes": [
+        8001,
+        8002,
+        8003
+      ],
+      "scope": "20-episode development sensitivity, not300 or unseen generalization"
+    },
+    {
+      "variant": "wm2",
+      "coordinates": {
+        "alpha": 0.1,
+        "aux": 0.1,
+        "wm_scale": 2.0
+      },
+      "training_seeds": [
+        11,
+        22,
+        33
+      ],
+      "n": 3,
+      "mean": 0.9421296296296297,
+      "sample_sd": 0.06744815872376604,
+      "training_delivery_mean": 0.4527777777777778,
+      "reused": 0,
+      "scenes": [
+        8001,
+        8002,
+        8003
+      ],
+      "scope": "20-episode development sensitivity, not300 or unseen generalization"
     }
-  ]
+  ],
+  "monitor": "Current-chat continuous checks completed; no scheduled automation created or left active",
+  "next_stage": "capacity-matched control design and smoke validation, not yet started"
 }
