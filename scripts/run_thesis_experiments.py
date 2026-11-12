@@ -21,7 +21,7 @@ from tg_convergence import atomic, read, digest
 PYTHON = r'D:\anaconda3\envs\buoy_gpu\python.exe'
 BASE = ROOT/'results/tg_five_gpu300/20261108_140256_956180'
 SELECTED = ROOT/'results/tg_wm_input_probe/20261109_122413_853474'
-BASELINES = ['Greedy','IPPO','QMIX','MAPPO','IQL']
+BASELINES = ['IPPO','QMIX','MAPPO','IQL']
 SEEDS = [11,22,33]
 SCENES = [8001,8002,8003]
 
@@ -144,7 +144,7 @@ def prepare(recovery=None):
     return root
 
 
-def summarize(root, manifest):
+def summarize(root, manifest, excluded_algorithms=('Greedy',)):
     """Per-seed scatter + mean/SD; never combine different WM configurations."""
     import csv
     import matplotlib
@@ -157,6 +157,8 @@ def summarize(root, manifest):
         if job['phase']=='main' and job['state']=='completed':
             models.append(dict(algorithm=job['algorithm'],seed=job['seed'],points=read(Path(job['work'])/'progress.json')['points'],source=job['work']))
     for model in models:
+        if model['algorithm'] in excluded_algorithms:
+            continue
         for point in model['points']:
             value = point.get('delivery')
             if value is None:
@@ -197,7 +199,23 @@ def summarize(root, manifest):
     for ext in ('png','svg','pdf'):fig.savefig(root/('convergence.'+ext),dpi=160)
     plt.close(fig)
     atomic(root/'report.json',dict(status='main_completed',engineering_passed=True,aggregate=aggregate,
+        excluded_algorithms=list(excluded_algorithms),comparison_scope='Reported algorithms only; original full results retained',
         all_thesis_experiments_completed=False,hyperparameter_tuning_completed=False,later_stages=manifest['later_stages']))
+
+
+def report_only(study):
+    """Re-export a scoped comparison, preserving archived results and models."""
+    study=Path(study).resolve();manifest=read(study/'manifest.json')
+    if manifest['status']!='main_completed':
+        raise ValueError('Require a completed main study')
+    output=study/'reports'/('without_greedy_'+datetime.now().strftime('%Y%m%d_%H%M%S'))
+    output.mkdir(parents=True,exist_ok=False)
+    summarize(output,manifest)
+    atomic(output/'provenance.json',dict(source_study=str(study),source_manifest_sha256=digest(study/'manifest.json'),
+        source_report_sha256=digest(study/'report.json'),excluded_algorithms=['Greedy'],
+        reason='User requested removing Greedy from the main comparison; raw results preserved',training_started=False))
+    print('OUTPUT '+str(output))
+    return output
 
 
 def run(root, preflight_only=False):
@@ -250,9 +268,10 @@ def run(root, preflight_only=False):
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     group=parser.add_mutually_exclusive_group(required=True)
-    group.add_argument('--prepare',action='store_true');group.add_argument('--run')
+    group.add_argument('--prepare',action='store_true');group.add_argument('--run');group.add_argument('--report-only')
     parser.add_argument('--recover-from')
     parser.add_argument('--preflight-only',action='store_true')
     args=parser.parse_args()
-    if args.prepare:prepare(args.recover_from)
+    if args.report_only:report_only(args.report_only)
+    elif args.prepare:prepare(args.recover_from)
     else:run(args.run,args.preflight_only)
